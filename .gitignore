@@ -1,0 +1,37 @@
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rcheck/
+*.tar.gz
+
+# Quarto / LaTeX build artifacts
+_freeze/
+_site/
+.quarto/
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*-blx.bib
+*.run.xml
+*_files/
+*_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+_gsdata_/
+*.swp
+*~
+
+# Local Claude / editor state
+.claude/
+.vscode/
+.idea/
