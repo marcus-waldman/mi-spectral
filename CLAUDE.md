@@ -32,6 +32,14 @@ Rubin (1987) → Meng–Rubin (1992, scalar r) → Cavanaugh–Shumway (2001, pr
 
 - `~/git-repositories/MI-IC` — companion SEM methodology paper; v4.5 derivation, `miicsem` package, and SEM simulations live there. JAIGP paper is cited from there.
 
+## Citation discipline (load-bearing)
+
+**Any citation in `manuscript/` must reference a paper whose markdown copy exists at `literature/<citekey>.md` AND has been read in the current session.** Reliance on training-weight knowledge of cited papers is prohibited. The acquisition workflow and enforcement hook are specified in `todo/001-literature-and-hooks.md`.
+
+Rationale: AI-assisted derivations fail in review when citations are hallucinated. The only defense is acquiring actual PDFs and reading them locally before claiming what they say.
+
+If asked to cite something and `literature/<citekey>.md` does not exist, stop and run the acquisition workflow first.
+
 ## R style
 
 Inherit `~/.claude/CLAUDE.md` global instructions if computation is added.

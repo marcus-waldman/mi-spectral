@@ -32,6 +32,8 @@ _gsdata_/
 *~
 
 # Local Claude / editor state
-.claude/
+# Commit project hooks and settings; ignore only local-override files.
+.claude/settings.local.json
+.claude/*.local.json
 .vscode/
 .idea/
