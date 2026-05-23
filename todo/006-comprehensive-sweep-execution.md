@@ -25,6 +25,20 @@ Before any code:
 
 ---
 
+## Step 1.5 — Confirmed design decisions (user sign-off 2026-05-23)
+
+Three design choices the user confirmed in conversation; bake into the sweep code:
+
+1. **Monotone missingness rate spec**: 40% on the **deepest variable (X_4)**. Pattern frequencies chosen so X_4 marginal rate is 40%; X_3 ≈ 25%, X_2 ≈ 10%, X_1 = 0% (always observed). Most natural analog to the non-monotone 40%-on-tested-partition spec.
+
+2. **Pre-flight tr(RIV) table** (Step 6b below): compute analytic tr(RIV) per candidate per pattern before the sweep. Documents the empirical anchor for H1 and lets us flag pattern-specific surprises before committing R=2000 of compute.
+
+3. **Warm starts in `chan_smi_test_k1`** for Chan SMI's LOO fits. Specifics:
+   - Modify `mle_chol_sigma12` (and its W3 analogs for the candidate-model constraints) to accept optional `par_init` argument; if provided, skip data-derived initialization.
+   - In `chan_smi_test_k1`: fit stacked-all first, save resulting Cholesky params, pass as `par_init` to all leave-one-out fits.
+   - Single-imputation fits use data-derived initial (different dataset size; warm-start from stacked-all may not help).
+   - Expected speedup: 2–3× on Chan SMI at M=200 (LOO fits dominate); modest at M=20.
+
 ## Step 2 — Implement the `mice::ampute` wrapper
 
 Goal: a function `apply_missingness_ampute(X, prop, mech, pattern_type)` in `verification/00-setup.R` that produces missingness via `mice::ampute()` and returns `list(Y, R)` matching the format of the existing `apply_mar`.
@@ -113,11 +127,38 @@ cells <- expand.grid(
 
 ---
 
-## Step 6 — Smoke run
+## Step 6 — Single-cell smoke run
 
 Before the full sweep:
 - Run W3-sweep on **one cell** (e.g., N=200, MAR, non-monotone, FIML, R=200) to confirm the pipeline works end-to-end.
 - Verify the output cache file is well-formed and the selection-rate summary is plausible (should roughly match the preregistered prod numbers).
+
+## Step 6b — Pre-flight tr(RIV) table
+
+Compute analytic tr(RIV) for each candidate model {M_A, M_B, M_C, M_D} under each pattern × mech × N combination (`tr_riv_analytic_general` from `00-setup.R`, restricted to each model's free-parameter set). Build a table:
+
+| pattern | mech | N | tr_M_A | tr_M_B | tr_M_C | tr_M_D | ordering |
+|---|---|---|---|---|---|---|---|
+
+Save as `verification/cache/W3-sweep-rivs-preflight.csv`. Verify:
+- Non-monotone matches preregistered prod (M_A < M_C < M_B < M_D, approximately).
+- Monotone may show different ordering — document it explicitly. This sets the expectation for H1's prediction (monotone gives more heterogeneous candidate-level RIV, larger W3-A) or its counter-prediction (orderings change in a way that breaks H1).
+
+This 10-min calculation is the empirical anchor for H1's prediction. If the orderings don't look favorable for H1, flag it BEFORE running the full sweep — may need to revise the prediction or the candidate models.
+
+## Step 6c — Full-grid R=100 sanity sweep
+
+Before committing to R=2000 across all 60 cells, run the full sweep at R=100 first:
+- All 60 cells at R=100 each.
+- Compute: FIML (12 × 5s = 1 min) + Amelia M=20 (24 × 5s = 2 min) + Amelia M=200 (24 × 10s = 4 min) = **~7 min total**.
+- Check per cell:
+  - No errors (all cells completed).
+  - Selection rates roughly plausible (oracle ~0.7–0.9 at MAR + congenial cells; magnitudes reasonable).
+  - W3-C is high (~0.9+) at MAR + congenial cells, low or near-zero issues elsewhere flagged.
+- If anything looks off (mechanism wired wrong, uncongeniality producing weird imputations, monotone pattern not amputing as expected): debug before the production R=2000 run.
+- Cache: `verification/cache/W3-sanity/<cell-id>.rds`. Discard after R=2000 sweep, or keep for comparison.
+
+This is the most important step. R=100 is too noisy for hypothesis testing but catches all the wiring bugs at low cost.
 
 ---
 
@@ -238,14 +279,16 @@ Brief recap message:
 | Stage | Time |
 |---|---|
 | Implementation (steps 2-5) | 1-2 hours |
-| Smoke run (step 6) | 5 min |
+| Single-cell smoke run (step 6) | 5 min |
+| Pre-flight tr(RIV) table (step 6b) | 10 min |
+| R=100 sanity sweep (step 6c) | ~7 min |
 | W1 sweep (step 7) | 15 min |
-| W3 sweep (step 8) | ~2.3 hours |
-| H3b rate experiment (step 9) | ~20 min |
+| W3 sweep (step 8) | ~2.3 hours (with 2-3x warm-start speedup, more like ~1 hour) |
+| H3b rate experiment (step 9) | ~10 min (with warm-start speedup) |
 | W2 spot-checks (step 10) | ~3 hours |
 | Aggregate + evaluate (steps 11-12) | 30 min |
 | Update docs + commit (steps 13-15) | 30 min |
-| **Total** | **~8 hours** |
+| **Total** | **~6-8 hours** (warm starts shave ~1.5h off Chan SMI, depending on actual convergence improvements) |
 
 Realistic for one day's work in a fresh session. If anything overruns, the W3 sweep is the highest-priority and W2 spot-checks can be deferred.
 
