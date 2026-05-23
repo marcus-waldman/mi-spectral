@@ -2,7 +2,7 @@
 
 Markdown copies of cited papers. One file per citekey.
 
-**Convention:** `<citekey>.md` matches the `@<citekey>` used in `manuscript/`. E.g., `chanmeng2022.md` is the markdown copy of Chan & Meng (2022); citations in the manuscript appear as `@chanmeng2022`.
+**Convention:** `<citekey>.md` matches the `@<citekey>` used in `manuscript/`. Citekeys follow Better BibTeX `firstauthor[+coauthors]ShortTitleYEAR` (consistent with MI-IC's `manuscript/references.bib`). E.g., `chanmengMultipleImprovementsMultiple2022.md` is the markdown copy of Chan & Meng (2022); citations in the manuscript appear as `@chanmengMultipleImprovementsMultiple2022`.
 
 **Purpose.** Every claim in the manuscript about a prior work must be grounded in this directory. The PreToolUse hook (specified in `todo/001-literature-and-hooks.md`) enforces that `literature/<citekey>.md` exists before a citation can be written.
 
