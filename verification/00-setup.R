@@ -725,11 +725,20 @@ chan_smi_test_k1 <- function(imps, test_device, bias_correction = 0,
 }
 
 
-# Test device: complete-data LRT for sigma_{12} = 0 via lavaan.
+# Test device: complete-data LRT for sigma_{12} = 0.
+#
+# Unconstrained MLE has closed form (mle_complete_mvn) — microseconds.
+# Constrained MLE under sigma_{12}=0 has no closed form and uses lavaan.
+# Halving the lavaan calls roughly halves per-replicate time vs the all-
+# lavaan version; on the W2 pilot this is the difference between ~3.6h and
+# ~40min for an R=1000 / M=50 production run.
 lrt_sigma12_device <- function(X) {
-  fit_un <- lavaan_fit_mvn(X, constrained = FALSE)
+  # Unconstrained log-likelihood at the closed-form MLE.
+  theta_un <- mle_complete_mvn(X)
+  ll_un <- loglik_mvn(theta_un, X)
+  # Constrained fit via lavaan (sigma_{12} = 0).
   fit_cn <- lavaan_fit_mvn(X, constrained = TRUE)
-  return(2 * (fit_un$logLik - fit_cn$logLik))
+  return(2 * (ll_un - fit_cn$logLik))
 }
 
 
