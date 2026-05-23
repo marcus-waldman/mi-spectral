@@ -149,7 +149,17 @@ Within each engine bucket, iterate over cells in (cong, N, mech, pattern) order 
 
 ---
 
-## Step 9 — Run W2 spot checks (limited)
+## Step 9 — Run W3 H3b rate side experiment (small, cheap)
+
+Per todo/005 §H3b: 6-cell experiment to test the rate-N relationship.
+- Cells: 3 (N ∈ {200, 500, 1000}) × 2 (rate ∈ {20%, 60%}) at fixed (MAR, non-monotone, M=200, congenial Amelia).
+- R = 2000 per cell.
+- Cost: ~6 cells × 200s = 20 min.
+- Cache: `verification/cache/W3-sweep-rate/<cell-id>.rds`.
+
+Test H3b: W3-A scales linearly with rate, N-invariant within each rate.
+
+## Step 10 — Run W2 spot checks (limited)
 
 W2 is *not* part of the comprehensive sweep (todo/005 §3). But add two spot-check cells for transparency in §4 of the manuscript:
 - **MNAR cell**: W2 at (N=200, MNAR, non-monotone, M=200, congenial). Compares to preregistered cell.
@@ -159,11 +169,11 @@ Each cell: same 8-δ grid, R=1000 (lower than W3's 2000, since W2 is exploratory
 
 ---
 
-## Step 10 — Aggregate results
+## Step 11 — Aggregate results
 
 Write `verification/W3-sweep-summary.R` that:
-- Loads all 60 W3-sweep cache files.
-- Builds one tidy data frame: (pattern, mech, N, M, cong, engine, oracle_rate, uncorr_rate, corrected_rate, SB_rate, W3A_gap, W3B_gap, W3C_concordance).
+- Loads all 60 main-sweep W3 cache files PLUS the 6 H3b rate-experiment files.
+- Builds one tidy data frame: (pattern, mech, N, rate, M, cong, engine, oracle_rate, uncorr_rate, corrected_rate, SB_rate, W3A_gap, W3B_gap, W3C_concordance).
 - Outputs a CSV `verification/cache/W3-sweep-summary.csv`.
 - Prints a per-factor margins table (mean W3-A across cells holding one factor fixed at each level).
 - Saves marginal effect plots if helpful for the manuscript.
@@ -172,9 +182,9 @@ Repeat for W1 sweep.
 
 ---
 
-## Step 11 — Evaluate hypotheses
+## Step 12 — Evaluate hypotheses
 
-For each H1–H6 in todo/005 §1:
+For each H1–H6 and H3b in todo/005 §1:
 - Compute the empirical test.
 - Compare to pass criterion.
 - Mark PASS / FAIL / OBSERVATIONAL.
@@ -183,37 +193,37 @@ Write a brief summary (markdown or comment block in W3-sweep-summary.R) reportin
 
 ---
 
-## Step 12 — Update todo/005 version history
+## Step 13 — Update todo/005 version history
 
 Add a "Sweep complete" entry with the date, summary of which hypotheses passed/failed/were observational, and pointer to the summary CSV.
 
 ---
 
-## Step 13 — Update IDEAS.md
+## Step 14 — Update IDEAS.md
 
 Add a new "Comprehensive sweep results (2026-MM-DD)" section after the existing empirical-update section. Summarize the sweep findings in 2-3 paragraphs:
-- What was tested (60 cells, 5 factors).
+- What was tested (60 main cells + 6 H3b rate cells + 2 W2 spot checks, 6 factors total).
 - Which hypotheses passed.
 - Where the framework's safety margin is (uncongeniality breakdown, MNAR behavior).
 - Implications for §3/§4/§5 of the manuscript.
 
 ---
 
-## Step 14 — Commit and push
+## Step 15 — Commit and push
 
 One commit covering the sweep:
-- New files: `verification/W1-sweep.R`, `verification/W3-sweep.R`, `verification/W3-sweep-summary.R`, `verification/00-test-ampute-vs-apply-mar.R`, `verification/cache/W1-sweep-*.rds`, `verification/cache/W3-sweep-*.rds`, `verification/cache/W3-sweep-summary.csv`.
+- New files: `verification/W1-sweep.R`, `verification/W3-sweep.R`, `verification/W3-sweep-summary.R`, `verification/00-test-ampute-vs-apply-mar.R`, `verification/cache/W1-sweep-*.rds`, `verification/cache/W3-sweep-*.rds`, `verification/cache/W3-sweep-rate/*.rds`, `verification/cache/W3-sweep-summary.csv`.
 - Modified: `verification/00-setup.R` (added `apply_missingness_ampute`, modified `impute_mvn_amelia` to accept `empri`).
 - Modified: `todo/005-comprehensive-sweep-hypotheses.md` (version history updated).
 - Modified: `IDEAS.md` (new sweep-results section).
 
-Commit message should summarize: design (60 cells × R=2000), engine totals, hypothesis outcomes (e.g., "H1/H2-MAR/H3/H4/H6 pass; H5 informative; H2-MNAR observational"), key surprises if any.
+Commit message should summarize: design (60 main cells + 6 H3b rate cells × R=2000), engine totals, hypothesis outcomes (e.g., "H1/H2-MAR/H3/H3b/H4/H6 pass; H5 informative; H2-MNAR observational"), key surprises if any.
 
 Push to `origin/main`.
 
 ---
 
-## Step 15 — Hand back to user
+## Step 16 — Hand back to user
 
 Brief recap message:
 - Sweep is done, X of Y cells ran successfully.
@@ -231,9 +241,10 @@ Brief recap message:
 | Smoke run (step 6) | 5 min |
 | W1 sweep (step 7) | 15 min |
 | W3 sweep (step 8) | ~2.3 hours |
-| W2 spot-checks (step 9) | ~3 hours |
-| Aggregate + evaluate (steps 10-11) | 30 min |
-| Update docs + commit (steps 12-14) | 30 min |
+| H3b rate experiment (step 9) | ~20 min |
+| W2 spot-checks (step 10) | ~3 hours |
+| Aggregate + evaluate (steps 11-12) | 30 min |
+| Update docs + commit (steps 13-15) | 30 min |
 | **Total** | **~8 hours** |
 
 Realistic for one day's work in a fresh session. If anything overruns, the W3 sweep is the highest-priority and W2 spot-checks can be deferred.
