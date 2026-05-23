@@ -418,6 +418,15 @@ By signing off on this document, the user (marcus.waldman) commits to the predic
   - **W3-B MISS by 3-4pp**: corrected rule lands ~8-9pp behind oracle vs the 5pp target. Reflects finite-N residual noise in the MI-AIC criterion that the oracle doesn't have; would shrink with N. Not a directional failure of the framework, just a quantitative tightening question. **Paper consequence**: §5 headline holds (bias correction restores selection accuracy + directional prediction perfect); manuscript should note the residual gap to oracle and frame as "approaches oracle as N → ∞" honestly.
   - **Empirical RIV ordering matches the preregistered prediction**: tr(M_A) 1.91 < tr(M_C) 2.86 < tr(M_B) 3.08 < tr(M_D) 5.01. Validated pre-flight.
   - Caches at `verification/cache/W3-prod-{amelia,fiml}.rds`.
+- 2026-05-23 — **W3 SB refinement (Asparouhov-Muthen on the differential deviance vs M_D):** As a follow-up, added a fourth selection rule — apply Satorra-Bentler scaled-shifted to chi^2_MI(k) = 2[bar L_M(theta_D) − bar L_M(theta_k)], the deviance differential against the unrestricted M_D. With a_k = sqrt(2 df_k / (2 df_k + 4 tr_perp_k + 2 sum_lsq_perp_k)) and b_k = df_k(1 − a_k), use AIC_SB(k) = a_k * chi^2_MI(k) + b_k + 2 p_k for selection. R=1000 results:
+  ```
+                  FIML    Amelia
+  oracle         0.912   0.912
+  uncorrected    0.716   0.716
+  corrected      0.829   0.822    additive tr(RIV) correction
+  SB             0.835   0.829    + Asparouhov-Muthen variance scaling
+  ```
+  SB consistently improves over corrected by 0.6-0.7 pp at R=1000 — borderline-significant (MCSE ~1.2pp) but pattern is consistent across both engines. The bulk of the recovery from the +20pp MI loss comes from the first-moment correction (114 of 284 failures recovered, ~40%); SB squeezes another 6-7 of the residual 171-178 failures (~3% of remaining). All three correction-style rules' misclassifications go 100% to M_D (the directional prediction is unchanged). The user's intuition that SB on the differential deviance against the saturated reference would tighten the comparison is validated, just modestly.
 - 2026-05-23 — **W2 pilot finding (no amendment, observational note):** Pilot at R=200, M=50, δ ∈ {0, 1, 2, 3} for both engines, with full Chan (2022, AoS) SMI implementation for Amelia (Algorithm 2.1) and Satorra-Bentler scaled-shifted as added C5. Three findings refine the preregistered prediction:
   - **Bias correction restores Type I calibration, not power.** Under Amelia/Chan MC, raw rejection rates at α=0.05 are C2=0.040, C3=0.070, C5=0.065; C2 is the cleanest calibration (slightly conservative). Without bias correction (C3), the test over-rejects by ~40%.
   - **Size-adjusted power is essentially identical across C2/C3/C5** (within ~3 pp MCSE at R=200). The preregistered prediction `Power(C2) > Power(C3)` does not hold at nominal α (because C2 is more conservative) and is a wash after size adjustment. The bias correction's value is *calibration*, not power gain.

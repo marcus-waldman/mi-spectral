@@ -808,6 +808,27 @@ tr_riv_analytic_general <- function(theta, Y, R, free_indices) {
   return(sum(diag(solve(I_obs_sub, I_com_sub))) - length(free_indices))
 }
 
+# Sum-of-squared RIV eigenvalues on a sub-model's free parameters.
+#   sum_lambda_sq = tr(RIV^2) where RIV = I_obs^{-1} I_{mis|obs}
+#                 = tr((I_obs^{-1} I_com - I)^2)
+#                 = tr((I_obs^{-1} I_com)^2) - 2 tr(I_obs^{-1} I_com) + p
+# Returns the sum-of-squared eigenvalues of RIV on the specified subspace.
+# Also returns tr_RIV for convenience.
+riv_spectrum_analytic_general <- function(theta, Y, R, free_indices) {
+  N <- nrow(Y)
+  I_com_full <- fisher_info_com_mvn(theta, N)
+  I_obs_full <- fisher_info_obs_mvn(theta, Y, R)
+  I_com_sub  <- I_com_full[free_indices, free_indices]
+  I_obs_sub  <- I_obs_full[free_indices, free_indices]
+  p <- length(free_indices)
+  M <- solve(I_obs_sub, I_com_sub)
+  tr1 <- sum(diag(M))
+  tr2 <- sum(M * t(M))  # tr(M^2) = sum of elementwise products with transpose
+  tr_RIV <- tr1 - p
+  sum_lambda_sq <- tr2 - 2 * tr1 + p
+  return(list(tr_RIV = tr_RIV, sum_lambda_sq = sum_lambda_sq))
+}
+
 
 # Test device: complete-data LRT for sigma_{12} = 0.
 #

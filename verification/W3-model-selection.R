@@ -104,33 +104,76 @@ run_one_replicate_w3 <- function(r, cfg, engine, mu0, Sigma_truth) {
     }
   }
 
-  # --- tr(RIV) per candidate (analytic) ---
-  trRIV <- numeric(4); names(trRIV) <- W3_MODEL_NAMES
+  # --- tr(RIV) + sum_lambda_sq per candidate (analytic) ---
+  trRIV         <- numeric(4); names(trRIV)         <- W3_MODEL_NAMES
+  sum_lambda_sq <- numeric(4); names(sum_lambda_sq) <- W3_MODEL_NAMES
   for (k in W3_MODEL_NAMES) {
     theta_k <- list(mu = theta_obs_list[[k]]$mu,
                     Sigma = theta_obs_list[[k]]$Sigma)
-    trRIV[k] <- tr_riv_analytic_general(theta_k, mar$Y, mar$R, W3_FREE_IDX[[k]])
+    sp <- riv_spectrum_analytic_general(theta_k, mar$Y, mar$R, W3_FREE_IDX[[k]])
+    trRIV[k]         <- sp$tr_RIV
+    sum_lambda_sq[k] <- sp$sum_lambda_sq
   }
 
-  # --- Three selection rules ---
+  # --- SB-corrected differential deviance against the saturated M_D ---
+  # chi^2_MI(k)  = -2 bar L_M(theta_k) - (-2 bar L_M(theta_D))
+  #              = 2 [bar L_M(theta_D) - bar L_M(theta_k)]    (>= 0 for k subset D)
+  # tr_perp(k)   = tr_RIV(M_D) - tr_RIV(M_k)
+  # sum_lsq_perp = sum_lambda_sq(M_D) - sum_lambda_sq(M_k)    (leading-order
+  #                                                            block-subtraction
+  #                                                            approximation,
+  #                                                            MI-IC §13)
+  # a_k = sqrt(2 df_k / (2 df_k + 4 tr_perp + 2 sum_lsq_perp))
+  # b_k = df_k (1 - a_k)
+  # chi^2_SB(k) = a_k * chi^2_MI(k) + b_k
+  # AIC_SB(k)   = chi^2_SB(k) + 2 p_k   (rank against each other; common
+  #               constant -2 bar L_M(theta_D) drops out)
+  chi2_MI_per_k <- 2 * (barL["MD"] - barL)
+  trRIV_D       <- trRIV["MD"]
+  sum_lsq_D     <- sum_lambda_sq["MD"]
+  chi2_SB       <- numeric(4); names(chi2_SB) <- W3_MODEL_NAMES
+  for (k in W3_MODEL_NAMES) {
+    if (k == "MD") { chi2_SB[k] <- 0; next }
+    df_k          <- W3_NPAR["MD"] - W3_NPAR[k]
+    tr_perp_k     <- trRIV_D - trRIV[k]
+    sum_lsq_perp  <- max(sum_lsq_D - sum_lambda_sq[k], 0)
+    var_target    <- 2 * df_k
+    var_predicted <- var_target + 4 * tr_perp_k + 2 * sum_lsq_perp
+    if (var_predicted <= 0) {
+      chi2_SB[k] <- chi2_MI_per_k[k]
+    } else {
+      a_k <- sqrt(var_target / var_predicted)
+      b_k <- df_k * (1 - a_k)
+      chi2_SB[k] <- a_k * chi2_MI_per_k[k] + b_k
+    }
+  }
+
+  # --- Four selection rules ---
   AIC_oracle     <- -2 * ell_com + 2 * W3_NPAR
   AIC_uncorr     <- -2 * barL    + 2 * W3_NPAR
   AIC_corrected  <- -2 * barL    + 2 * W3_NPAR + trRIV
+  AIC_sb         <- chi2_SB      + 2 * W3_NPAR   # relative to M_D constant
 
   sel_oracle    <- names(which.min(AIC_oracle))
   sel_uncorr    <- names(which.min(AIC_uncorr))
   sel_corrected <- names(which.min(AIC_corrected))
+  sel_sb        <- names(which.min(AIC_sb))
 
   return(list(
     sel_oracle    = sel_oracle,
     sel_uncorr    = sel_uncorr,
     sel_corrected = sel_corrected,
+    sel_sb        = sel_sb,
     ell_com       = ell_com,
     barL          = barL,
     trRIV         = trRIV,
+    sum_lambda_sq = sum_lambda_sq,
+    chi2_MI_per_k = chi2_MI_per_k,
+    chi2_SB       = chi2_SB,
     AIC_oracle    = AIC_oracle,
     AIC_uncorr    = AIC_uncorr,
     AIC_corrected = AIC_corrected,
+    AIC_sb        = AIC_sb,
     miss1         = mean(mar$R[, 1]),
     miss2         = mean(mar$R[, 2])
   ))
@@ -181,14 +224,16 @@ tab_selection <- function(results, field) {
 oracle_rates    <- tab_selection(results, "sel_oracle")
 uncorr_rates    <- tab_selection(results, "sel_uncorr")
 corrected_rates <- tab_selection(results, "sel_corrected")
+sb_rates        <- tab_selection(results, "sel_sb")
 
-rates_table <- rbind(oracle = oracle_rates,
+rates_table <- rbind(oracle      = oracle_rates,
                      uncorrected = uncorr_rates,
-                     corrected   = corrected_rates)
+                     corrected   = corrected_rates,
+                     SB          = sb_rates)
 
 mcse_rate <- function(p, n) { return(sqrt(p * (1 - p) / n)) }
 mcse_true <- sapply(list(oracle = oracle_rates, uncorr = uncorr_rates,
-                          corrected = corrected_rates),
+                          corrected = corrected_rates, SB = sb_rates),
                     function(rr) { mcse_rate(rr[TRUE_MODEL], cfg$R) })
 
 # Average tr(RIV) by candidate model.
@@ -207,6 +252,8 @@ cat(sprintf("  uncorrected   : %.3f (MCSE %.3f)\n",
             uncorr_rates[TRUE_MODEL],    mcse_true["uncorr"]))
 cat(sprintf("  corrected     : %.3f (MCSE %.3f)\n",
             corrected_rates[TRUE_MODEL], mcse_true["corrected"]))
+cat(sprintf("  SB            : %.3f (MCSE %.3f)\n",
+            sb_rates[TRUE_MODEL],        mcse_true["SB"]))
 
 gap_co_un  <- corrected_rates[TRUE_MODEL] - uncorr_rates[TRUE_MODEL]
 gap_or_co  <- oracle_rates[TRUE_MODEL]    - corrected_rates[TRUE_MODEL]
