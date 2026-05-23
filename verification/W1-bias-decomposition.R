@@ -15,7 +15,8 @@
 #   Rscript W1-bias-decomposition.R pilot fiml            # pilot, fiml, 20 cores
 #   Rscript W1-bias-decomposition.R prod                  # prod, amelia, 20 cores
 #   Rscript W1-bias-decomposition.R prod amelia 8         # prod, amelia, 8 cores
-#   Rscript W1-bias-decomposition.R pilot fiml 1          # serial fallback
+#   Rscript W1-bias-decomposition.R prod fiml 20 500      # prod cfg with N=500
+#   Rscript W1-bias-decomposition.R prod fiml 20 1000     # prod cfg with N=1000
 #
 # Per-replicate seed governance: set.seed(20260522 + r) inside each worker
 # so X^(r) is bit-for-bit identical across engines, modes, and core counts.
@@ -26,10 +27,11 @@ suppressPackageStartupMessages({
   library(pbapply)
 })
 
-args    <- commandArgs(trailingOnly = TRUE)
-mode    <- if (length(args) >= 1) { args[1] } else { "pilot" }
-engine  <- if (length(args) >= 2) { args[2] } else { "amelia" }
-n_cores <- if (length(args) >= 3) { as.integer(args[3]) } else { 20 }
+args       <- commandArgs(trailingOnly = TRUE)
+mode       <- if (length(args) >= 1) { args[1] } else { "pilot" }
+engine     <- if (length(args) >= 2) { args[2] } else { "amelia" }
+n_cores    <- if (length(args) >= 3) { as.integer(args[3]) } else { 20 }
+N_override <- if (length(args) >= 4) { as.integer(args[4]) } else { NA }
 
 stopifnot(engine %in% c("amelia", "fiml"))
 
@@ -38,6 +40,7 @@ cfg <- switch(mode,
   prod  = list(N = 200, M = 200, R = 1000, burnin = 200, thin = 100),
   stop(sprintf("Unknown mode '%s'. Use 'pilot' or 'prod'.", mode))
 )
+if (!is.na(N_override)) { cfg$N <- N_override }
 
 cat(sprintf("\nW1 bias-decomposition  [mode=%s, engine=%s, cores=%d]\n",
             mode, engine, n_cores))
@@ -178,7 +181,8 @@ cat(sprintf("B (est.m.) %+8.4f (%.4f)    -1/2 tr(RIV) = %+7.4f    %+5.2f   [%+8.
             Bhat, mcse(rep_B), neg_half_trRIV, z_B, ci_B[1], ci_B[2],
             if (passB) { "PASS" } else { "FAIL" }))
 
-cache_path <- sprintf("verification/cache/W1-%s-%s.rds", mode, engine)
+cache_suffix <- if (!is.na(N_override)) { sprintf("-N%d", cfg$N) } else { "" }
+cache_path <- sprintf("verification/cache/W1-%s-%s%s.rds", mode, engine, cache_suffix)
 saveRDS(list(
   cfg = cfg, mode = mode, engine = engine, n_cores = n_cores,
   elapsed_total = elapsed_total,
