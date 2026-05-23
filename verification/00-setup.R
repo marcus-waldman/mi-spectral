@@ -657,6 +657,83 @@ lavaan_fit_mvn_fiml <- function(Y, constrained = FALSE) {
 
 
 # -----------------------------------------------------------------------------
+# Chan (2022, Ann. Stat.) SMI test (k = 1, Jackknife selection rule).
+#
+# Per the preregistration §0.3 Amendment 1 the imputation engine is Amelia.
+# This function implements Algorithm 2.1 of Chan (2022) for the k = 1 case
+# (one tested parameter), using the Jackknife selection rule (eq 3.9).
+#
+# Inputs:
+#   imps           : list of M completed datasets (matrices, all same shape).
+#   test_device    : function(X) -> scalar test statistic d_L(X). For our
+#                    LRT case, test_device is `lrt_sigma12_device` below.
+#   bias_correction: scalar to subtract from d^{1:m} before forming D_hat
+#                    (our paper's bias-correction differential). Default 0.
+#   N_mc           : number of MC draws for the reference distribution.
+#
+# Outputs (named list):
+#   D_hat   : test statistic in (2.3).
+#   r_hat   : OMI estimate (scalar, since k=1).
+#   p_value : Chan's MC p-value referring D_hat to D_hat distribution (5.1).
+#   d_1_to_m, d_singles, d_leave_outs, T_ell : diagnostics.
+#
+# Implementation notes:
+#   d^{1:m}   = d(X^{1:m}) / m, where X^{1:m} is the row-stacked m datasets.
+#   d^{-ell}  = d(X^{-ell}) / (m-1), leave-one-out stacked.
+#   d^{ell}   = d(X^ell), single-imputation.
+#   T_ell     = (m-1) d^{-ell} + d^{ell} - m d^{1:m}   (Jackknife SMI).
+#   r_hat     = mean_{ell} T_ell           (k=1 case: t_hat_1 = r_hat).
+#   D_hat     = (d^{1:m} - bias_correction) / (1 + (1+1/m) r_hat).
+#   D_hat_MC  = (1+(1+1/m) r_hat) G / (1 + (1+1/m) r_hat H),
+#               G ~ chi^2_1, H ~ chi^2_{m-1}/(m-1) independent.
+#
+# References:
+#   Chan, K. W. (2022) "General and Feasible Tests with Multiply-Imputed
+#   Datasets." Annals of Statistics 50(2). Algorithm 2.1, eq (2.3), (3.9),
+#   (4.5), (5.1).
+# -----------------------------------------------------------------------------
+
+chan_smi_test_k1 <- function(imps, test_device, bias_correction = 0,
+                             N_mc = 10000) {
+  m <- length(imps)
+  stopifnot(m >= 2)
+  # Per-imputation test statistics.
+  d_singles <- vapply(imps, test_device, numeric(1))
+  # Stacked-all (X^{1:m}).
+  X_all <- do.call(rbind, imps)
+  d_1_to_m <- test_device(X_all) / m
+  # Leave-one-out stacked statistics.
+  d_leave_outs <- numeric(m)
+  for (ell in seq_len(m)) {
+    X_minus_ell <- do.call(rbind, imps[-ell])
+    d_leave_outs[ell] <- test_device(X_minus_ell) / (m - 1)
+  }
+  # SMI statistics under Jackknife rule (eq 3.9).
+  T_ell <- (m - 1) * d_leave_outs + d_singles - m * d_1_to_m
+  t_hat_1 <- mean(T_ell)
+  r_hat <- max(t_hat_1, 0)  # truncate to keep the reference well-defined
+  # Test statistic (eq 2.3) with bias correction applied to numerator.
+  D_hat <- (d_1_to_m - bias_correction) / (1 + (1 + 1 / m) * r_hat)
+  # MC reference distribution (eq 5.1, k = 1).
+  G <- rchisq(N_mc, df = 1)
+  H <- rchisq(N_mc, df = m - 1) / (m - 1)
+  D_mc <- (1 + (1 + 1 / m) * r_hat) * G / (1 + (1 + 1 / m) * r_hat * H)
+  p_value <- mean(D_mc >= D_hat)
+  return(list(D_hat = D_hat, r_hat = r_hat, p_value = p_value,
+              d_1_to_m = d_1_to_m, d_singles = d_singles,
+              d_leave_outs = d_leave_outs, T_ell = T_ell))
+}
+
+
+# Test device: complete-data LRT for sigma_{12} = 0 via lavaan.
+lrt_sigma12_device <- function(X) {
+  fit_un <- lavaan_fit_mvn(X, constrained = FALSE)
+  fit_cn <- lavaan_fit_mvn(X, constrained = TRUE)
+  return(2 * (fit_un$logLik - fit_cn$logLik))
+}
+
+
+# -----------------------------------------------------------------------------
 # §0.1 default DGP fixtures
 # -----------------------------------------------------------------------------
 
