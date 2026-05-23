@@ -24,6 +24,9 @@ _site/
 *_files/
 *_cache/
 
+# Rendered proof-verification notebook (qmd + fixture are committed; HTML is not)
+manuscript/proof-verification-sympy.html
+
 # OS / editor
 .DS_Store
 Thumbs.db
