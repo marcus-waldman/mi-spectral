@@ -61,11 +61,15 @@ format_table <- function(tab, title) {
   }
 }
 
+args <- commandArgs(trailingOnly = TRUE)
+mode <- if (length(args) >= 1) { args[1] } else { "pilot" }
+stopifnot(mode %in% c("pilot", "prod"))
+
 for (engine in c("fiml", "amelia")) {
-  path <- file.path(cache_dir, sprintf("W2-pilot-%s.rds", engine))
+  path <- file.path(cache_dir, sprintf("W2-%s-%s.rds", mode, engine))
   if (!file.exists(path)) next
   cat(sprintf("\n========================================================\n"))
-  cat(sprintf(" %s pilot (path: %s)\n", toupper(engine), path))
+  cat(sprintf(" %s %s (path: %s)\n", toupper(engine), mode, path))
   cat(sprintf("========================================================\n"))
   px <- extract_pvals(path)
   sa <- size_adjust(px$pvals, alpha = 0.05)
