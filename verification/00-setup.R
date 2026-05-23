@@ -655,6 +655,21 @@ lavaan_fit_mvn_fiml <- function(Y, constrained = FALSE) {
   return(lavaan_to_theta(fit))
 }
 
+# Generic versions that accept any lavaan model string (used by W3).
+lavaan_fit_mvn_model <- function(X, mod) {
+  df <- as.data.frame(X)
+  colnames(df) <- sprintf("X%d", seq_len(ncol(df)))
+  fit <- lavaan::sem(mod, data = df)
+  return(lavaan_to_theta(fit))
+}
+
+lavaan_fit_mvn_fiml_model <- function(Y, mod) {
+  df <- as.data.frame(Y)
+  colnames(df) <- sprintf("X%d", seq_len(ncol(df)))
+  fit <- lavaan::sem(mod, data = df, missing = "fiml")
+  return(lavaan_to_theta(fit))
+}
+
 
 # -----------------------------------------------------------------------------
 # Chan (2022, Ann. Stat.) SMI test (k = 1, Jackknife selection rule).
@@ -722,6 +737,75 @@ chan_smi_test_k1 <- function(imps, test_device, bias_correction = 0,
   return(list(D_hat = D_hat, r_hat = r_hat, p_value = p_value,
               d_1_to_m = d_1_to_m, d_singles = d_singles,
               d_leave_outs = d_leave_outs, T_ell = T_ell))
+}
+
+
+# -----------------------------------------------------------------------------
+# W3 candidate-model lavaan strings (preregistration §3.1).
+#
+# Truth Sigma_0^W3 has sigma_13 = sigma_24 = 0.4 and all other off-diagonals
+# zero, so M_C below is true. (M_B and M_C have the same df = 10 but
+# different RIV exposure — load-bearing for W3's directional prediction.)
+# -----------------------------------------------------------------------------
+
+LAVAAN_MOD_MA <- "
+  X1 ~~ X1 + 0*X2 + 0*X3 + 0*X4
+  X2 ~~ X2 + 0*X3 + 0*X4
+  X3 ~~ X3 + 0*X4
+  X4 ~~ X4
+  X1 + X2 + X3 + X4 ~ 1
+"  # diagonal Sigma (8 free params)
+
+LAVAAN_MOD_MB <- "
+  X1 ~~ X1 + X2 + 0*X3 + 0*X4
+  X2 ~~ X2 + 0*X3 + 0*X4
+  X3 ~~ X3 + X4
+  X4 ~~ X4
+  X1 + X2 + X3 + X4 ~ 1
+"  # sigma_12 and sigma_34 free, cross-block = 0 (10 free params)
+
+LAVAAN_MOD_MC <- "
+  X1 ~~ X1 + 0*X2 + X3 + 0*X4
+  X2 ~~ X2 + 0*X3 + X4
+  X3 ~~ X3 + 0*X4
+  X4 ~~ X4
+  X1 + X2 + X3 + X4 ~ 1
+"  # sigma_13 and sigma_24 free, others = 0 (10 free params) — TRUE under Sigma_0^W3
+
+LAVAAN_MOD_MD <- LAVAAN_MOD_UN  # full unrestricted (14 free params)
+
+W3_MODELS <- list(MA = LAVAAN_MOD_MA, MB = LAVAAN_MOD_MB,
+                  MC = LAVAAN_MOD_MC, MD = LAVAAN_MOD_MD)
+
+# Free-parameter indices in the full 14-dim theta vector (mu_{1:4},
+# vech(Sigma)) for each candidate. vech order (column-major lower-tri,
+# offset by 4 for mu) gives the Sigma entries:
+#   pos 1=sigma_11, 2=sigma_21, 3=sigma_31, 4=sigma_41, 5=sigma_22,
+#   pos 6=sigma_32, 7=sigma_42, 8=sigma_33, 9=sigma_43, 10=sigma_44
+# +4 offset for the 4 mu entries -> full indices 5..14.
+W3_FREE_IDX <- list(
+  MA = c(1:4, 4 + c(1, 5, 8, 10)),                  # diag only
+  MB = c(1:4, 4 + c(1, 2, 5, 8, 9, 10)),            # +sigma_12, +sigma_34
+  MC = c(1:4, 4 + c(1, 3, 5, 7, 8, 10)),            # +sigma_13, +sigma_24
+  MD = 1:14                                          # full
+)
+
+W3_NPAR <- sapply(W3_FREE_IDX, length)  # 8, 10, 10, 14
+
+
+# -----------------------------------------------------------------------------
+# Generic analytic tr(RIV) for an arbitrary sub-model (free_indices in the
+# full 14-dim parameter space). Same construction as tr_riv_analytic and
+# tr_riv_analytic_constrained_sigma12 but for any model.
+# -----------------------------------------------------------------------------
+
+tr_riv_analytic_general <- function(theta, Y, R, free_indices) {
+  N <- nrow(Y)
+  I_com_full <- fisher_info_com_mvn(theta, N)
+  I_obs_full <- fisher_info_obs_mvn(theta, Y, R)
+  I_com_sub  <- I_com_full[free_indices, free_indices]
+  I_obs_sub  <- I_obs_full[free_indices, free_indices]
+  return(sum(diag(solve(I_obs_sub, I_com_sub))) - length(free_indices))
 }
 
 
