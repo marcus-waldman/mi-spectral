@@ -10,6 +10,7 @@
 suppressPackageStartupMessages({
   library(norm)
   library(mvtnorm)
+  library(numDeriv)
 })
 
 
@@ -135,6 +136,208 @@ impute_mvn <- function(Y, M, burnin = 200, thin = 100, em_fit = NULL) {
     imputed[[m]] <- norm::imp.norm(s, theta_state, Y)
   }
   return(imputed)
+}
+
+
+# -----------------------------------------------------------------------------
+# Alternate §0.6 primitive: impute_mvn_amelia(Y, M)
+#
+# Amelia II (Honaker, King, Blackwell) — EMB-based joint MVN imputation. For
+# each imputation: (i) bootstrap-resample the rows, (ii) run EM on the
+# bootstrap to convergence, (iii) draw missing values from the implied
+# conditional distribution.
+#
+# This is a parallel proper-MI engine to norm::da.norm. Switching between
+# them isolates "engine-specific behavior" vs "theory-level finding" when
+# the W1 prediction fails. Both target the same posterior in the asymptotic
+# limit; finite-sample differences inform engine diagnostics.
+# -----------------------------------------------------------------------------
+
+impute_mvn_amelia <- function(Y, M, ...) {
+  # Amelia warns / errors if too many rows are missing OR if the data is
+  # singular under bootstrap. Suppress non-essential output via p2s=0.
+  df <- as.data.frame(Y)
+  colnames(df) <- sprintf("V%d", seq_len(ncol(df)))
+  a_out <- Amelia::amelia(df, m = M, p2s = 0, ...)
+  imputed <- lapply(a_out$imputations, function(d) { return(as.matrix(d)) })
+  return(imputed)
+}
+
+
+# -----------------------------------------------------------------------------
+# Analytic FIML-marginalized Q-function
+#
+# Computes bar_Q_inf(theta_eval) under the FIML "imputation" where tilde_phi
+# = theta_obs deterministically for every observation. The integral
+# E_{Y^mis|Y^obs, theta_obs}[ell_com(theta_eval; Y^obs, Y^mis)] has closed
+# form because the inner expectation is a quadratic form in Y^mis under
+# Gaussianity.
+#
+# Per observation i with observed positions O_i and missing positions M_i,
+# under theta_obs the conditional is X_i^{M_i} | X_i^{O_i} ~ N(m_i, V_i):
+#   m_i = mu^{M_i}_obs + Sigma^{M_i,O_i}_obs (Sigma^{O_i,O_i}_obs)^{-1}
+#         (Y_i^{O_i} - mu^{O_i}_obs)
+#   V_i = Sigma^{M_i,M_i}_obs
+#         - Sigma^{M_i,O_i}_obs (Sigma^{O_i,O_i}_obs)^{-1} Sigma^{O_i,M_i}_obs
+# Building hat_X_i with observed entries Y_i^{O_i} and missing entries m_i,
+# and Vbar_i a p x p matrix with V_i in the (M_i, M_i) block:
+#   E[log phi(X_i; theta_eval)] = log phi(hat_X_i; theta_eval)
+#                               - 0.5 tr(Sigma_eval^{-1} Vbar_i)
+#
+# Sums over i. Output is the analytic bar_Q_inf at theta_eval under FIML
+# imputation parameter theta_obs.
+#
+# Connection to v4.5 line 218: with tilde_phi = theta_obs deterministically,
+# Cov(Delta_tilde_phi, theta_obs) = 0 trivially (because Delta_tilde_phi=0),
+# so Term 1 = tr(I_{mis|obs} Var(theta_obs)) = tr(RIV) — same prediction
+# as MI but computed without Monte Carlo over imputations.
+# -----------------------------------------------------------------------------
+
+barQ_fiml_analytic <- function(theta_eval, theta_obs, Y, R) {
+  N <- nrow(Y)
+  p <- ncol(Y)
+  Sigma_eval_inv <- solve(theta_eval$Sigma)
+  logdet_Sigma_eval <- as.numeric(determinant(theta_eval$Sigma, logarithm = TRUE)$modulus)
+  half_log2pi <- 0.5 * log(2 * pi)
+  total <- 0
+  # Group observations by missingness pattern for efficiency.
+  patterns <- apply(R, 1, function(row) { return(paste(row, collapse = "")) })
+  for (pat in unique(patterns)) {
+    rows <- which(patterns == pat)
+    R_pat <- R[rows[1], ]
+    Mi <- which(R_pat == 1)
+    Oi <- which(R_pat == 0)
+    Y_pat <- Y[rows, , drop = FALSE]
+    n_pat <- length(rows)
+    if (length(Mi) == 0) {
+      # Fully observed: no integration needed.
+      lp <- mvtnorm::dmvnorm(Y_pat, mean = theta_eval$mu,
+                             sigma = theta_eval$Sigma, log = TRUE)
+      total <- total + sum(lp)
+    } else if (length(Oi) == 0) {
+      # All missing: hat_X_i = mu_obs, V_i = Sigma_obs (whole matrix).
+      diff <- theta_obs$mu - theta_eval$mu
+      quad <- as.numeric(t(diff) %*% Sigma_eval_inv %*% diff)
+      tr_term <- sum(diag(Sigma_eval_inv %*% theta_obs$Sigma))
+      per_obs <- -p * half_log2pi - 0.5 * logdet_Sigma_eval - 0.5 * quad - 0.5 * tr_term
+      total <- total + n_pat * per_obs
+    } else {
+      # Partial. Conditional under theta_obs.
+      Sigma_OO <- theta_obs$Sigma[Oi, Oi, drop = FALSE]
+      Sigma_MO <- theta_obs$Sigma[Mi, Oi, drop = FALSE]
+      Sigma_MM <- theta_obs$Sigma[Mi, Mi, drop = FALSE]
+      Sigma_OO_inv <- solve(Sigma_OO)
+      reg <- Sigma_MO %*% Sigma_OO_inv  # |M| x |O|
+      cond_V <- Sigma_MM - reg %*% t(Sigma_MO)
+      # Trace term: tr(Sigma_eval^{-1} Vbar_i) with Vbar_i zero outside (M,M).
+      tr_term <- sum(diag(Sigma_eval_inv[Mi, Mi, drop = FALSE] %*% cond_V))
+      # Loop over observations in this pattern (each has its own cond mean).
+      for (i in rows) {
+        cond_m <- theta_obs$mu[Mi] +
+          as.numeric(reg %*% (Y[i, Oi] - theta_obs$mu[Oi]))
+        X_hat <- numeric(p)
+        X_hat[Oi] <- Y[i, Oi]
+        X_hat[Mi] <- cond_m
+        diff <- X_hat - theta_eval$mu
+        quad <- as.numeric(t(diff) %*% Sigma_eval_inv %*% diff)
+        total <- total + (-p * half_log2pi - 0.5 * logdet_Sigma_eval -
+                          0.5 * quad - 0.5 * tr_term)
+      }
+    }
+  }
+  return(total)
+}
+
+
+# -----------------------------------------------------------------------------
+# Observed-data log-likelihood for MVN with arbitrary missingness pattern
+#
+# ell_obs(theta; Y, R) = sum_i log p(Y_i^{O_i}; mu^{O_i}, Sigma^{O_i,O_i})
+# under MVN. Used for computing I_obs via numerical Hessian.
+# -----------------------------------------------------------------------------
+
+loglik_obs_mvn <- function(theta, Y, R) {
+  N <- nrow(Y)
+  patterns <- apply(R, 1, function(row) { return(paste(row, collapse = "")) })
+  total <- 0
+  for (pat in unique(patterns)) {
+    rows <- which(patterns == pat)
+    R_pat <- R[rows[1], ]
+    Oi <- which(R_pat == 0)
+    if (length(Oi) == 0) { next }
+    Y_pat <- Y[rows, Oi, drop = FALSE]
+    mu_O <- theta$mu[Oi]
+    Sigma_OO <- theta$Sigma[Oi, Oi, drop = FALSE]
+    lp <- mvtnorm::dmvnorm(Y_pat, mean = mu_O, sigma = Sigma_OO, log = TRUE)
+    total <- total + sum(lp)
+  }
+  return(total)
+}
+
+
+# -----------------------------------------------------------------------------
+# Complete-data MVN Fisher information (closed form)
+#
+# Block diagonal on theta = (mu, vech(Sigma)):
+#   I_mu(theta)        = N * Sigma^{-1}
+#   I_vechSigma(theta) = (N/2) * D_p' (Sigma^{-1} (x) Sigma^{-1}) D_p
+# Cross-block zero.
+# -----------------------------------------------------------------------------
+
+fisher_info_com_mvn <- function(theta, N) {
+  p <- length(theta$mu)
+  Sigma_inv <- solve(theta$Sigma)
+  Dp <- duplication_matrix(p)
+  K <- kronecker(Sigma_inv, Sigma_inv)
+  I_mu <- N * Sigma_inv
+  I_sig <- (N / 2) * t(Dp) %*% K %*% Dp
+  k <- p + p * (p + 1) / 2
+  I_com <- matrix(0, k, k)
+  I_com[seq_len(p), seq_len(p)] <- I_mu
+  I_com[(p + 1):k, (p + 1):k] <- I_sig
+  return(I_com)
+}
+
+
+# -----------------------------------------------------------------------------
+# Observed-data Fisher information via numerical Hessian
+#
+# I_obs(theta) = -d^2 ell_obs / d theta d theta', evaluated at theta_obs.
+# Uses numDeriv::hessian on the parameter vector with vec_to_theta unpacking.
+#
+# Reasonably fast (Hessian of length-14 parameter vector at a single point).
+# Symmetrize to clean up numerical noise.
+# -----------------------------------------------------------------------------
+
+fisher_info_obs_mvn <- function(theta_obs, Y, R) {
+  p <- length(theta_obs$mu)
+  loglik_obs_at_vec <- function(v) {
+    return(loglik_obs_mvn(vec_to_theta(v, p), Y, R))
+  }
+  v0 <- theta_to_vec(theta_obs)
+  H <- numDeriv::hessian(loglik_obs_at_vec, v0)
+  I_obs <- -(H + t(H)) / 2  # symmetrize and negate
+  return(I_obs)
+}
+
+
+# -----------------------------------------------------------------------------
+# Analytic tr(RIV) at the observed-data MLE
+#
+# tr(RIV) = tr(I_{mis|obs} I_obs^{-1})
+#         = tr((I_com - I_obs) I_obs^{-1})
+#         = tr(I_com I_obs^{-1}) - k
+# where k is the parameter dimension.
+# -----------------------------------------------------------------------------
+
+tr_riv_analytic <- function(theta_obs, Y, R) {
+  N <- nrow(Y)
+  p <- ncol(Y)
+  I_com <- fisher_info_com_mvn(theta_obs, N)
+  I_obs <- fisher_info_obs_mvn(theta_obs, Y, R)
+  k <- nrow(I_com)
+  tr_total <- sum(diag(solve(I_obs, I_com))) - k
+  return(list(tr_RIV = tr_total, I_com = I_com, I_obs = I_obs))
 }
 
 
