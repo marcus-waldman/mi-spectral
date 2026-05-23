@@ -130,6 +130,39 @@ check(riv_out$tr_RIV > 0, "tr(RIV) positive under missingness")
 cat(sprintf("    [info] sample tr(RIV) = %.3f at N=1000, M=5 (single replicate)\n",
             riv_out$tr_RIV))
 
+cat("\n--- fisher_info_obs_mvn (analytic expected Fisher info) ---\n")
+# Anchor checks that don't depend on numDeriv (which computes observed
+# Hessian, a different estimator that only agrees with expected Fisher info
+# in expectation, not realization-by-realization).
+#
+# Anchor 1: at 0% missingness, the per-pattern sum equals the closed-form
+# complete-data Fisher info exactly.
+N_fi <- 200
+X_fi <- gen_data(N = N_fi, mu = default_mu, Sigma = default_Sigma)
+R_zero <- matrix(0, N_fi, 4)
+theta_truth <- list(mu = default_mu, Sigma = default_Sigma)
+I_obs_nomis <- fisher_info_obs_mvn(theta_truth, X_fi, R_zero)
+I_com_truth <- fisher_info_com_mvn(theta_truth, N_fi)
+check(max(abs(I_obs_nomis - I_com_truth)) < 1e-9,
+      "at 0% missingness, analytic obs info == complete-data info")
+
+# Anchor 2: I_com - I_obs is positive semi-definite (missing information
+# can only ADD information to "complete"; it must be a PSD matrix).
+mar_fi <- apply_mar(X_fi)
+em_fi <- em_mvn(mar_fi$Y)
+theta_fi <- list(mu = em_fi$mu, Sigma = em_fi$Sigma)
+I_obs_partial <- fisher_info_obs_mvn(theta_fi, mar_fi$Y, mar_fi$R)
+I_com_partial <- fisher_info_com_mvn(theta_fi, N_fi)
+I_mis <- I_com_partial - I_obs_partial
+eigs_mis <- eigen(I_mis, symmetric = TRUE, only.values = TRUE)$values
+check(min(eigs_mis) > -1e-9,
+      sprintf("I_com - I_obs PSD (min eig %.2e)", min(eigs_mis)))
+
+# Anchor 3: tr(RIV) > 0 under missingness.
+tr_riv_val <- sum(diag(solve(I_obs_partial, I_com_partial))) - 14
+check(tr_riv_val > 0,
+      sprintf("analytic tr(RIV) = %.3f > 0 under MAR missingness", tr_riv_val))
+
 cat("\n--- lrt_complete (sanity) ---\n")
 # Nested: theta_null fixes sigma_12 = 0; theta_full is unrestricted MLE.
 theta_null_test <- theta_com_small
