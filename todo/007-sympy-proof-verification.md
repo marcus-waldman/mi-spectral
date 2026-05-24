@@ -4,6 +4,14 @@
 
 **Last updated:** 2026-05-23 (paused mid-sweep-execution session for future pickup).
 
+> **STATUS (2026-05-24): SUPERSEDED — integrated.** The Sympy verification now lives in
+> `manuscript/derivation.qmd` as "Appendix B — Machine-checked symbolic verification",
+> executed inline; the `[mc]` flags in the derivation link to its code listings
+> (`@lst-mc-*`). The standalone `manuscript/proof-verification-sympy.qmd` has been
+> retired. This file is retained as the build spec / provenance log. The fixture
+> `manuscript/proof-verification-fixture.json` (written by `verification/W1-sympy-fixture.R`)
+> is unchanged and remains the input.
+
 ---
 
 ## Step 0 — Resume context (read in this order)
@@ -29,7 +37,7 @@ py -c "import sympy; print(sympy.__version__)"
 
 Quarto with the Python kernel. Engine: `jupyter` for Quarto (`quarto check`).
 
-Output file: `manuscript/proof-verification-sympy.qmd`. Rendered HTML lives at `manuscript/proof-verification-sympy.html`, ignored by git. The `.qmd` itself is committed.
+Output file (as originally delivered, now **retired**): `manuscript/proof-verification-sympy.qmd`. Superseded — the verification was moved into `manuscript/derivation.qmd` Appendix B (see status banner above).
 
 ---
 

@@ -53,8 +53,9 @@ Three-layer reproducibility: `IDEAS.md` is *what we found and what it means*; `v
 ```
 manuscript/
   mi-spectral.qmd                        # Quarto stub for the JAIGP submission (in progress)
-  derivation.qmd                         # canonical sourced derivation (notation, ledger, tagged proof)
-  proof-verification-sympy.qmd           # Sympy + Quarto algebra-verification companion to W1 (per todo/007)
+  derivation.qmd                         # canonical sourced derivation (notation, ledger, tagged proof);
+                                         #   Appendix B = executable Sympy/NumPy verification (jupyter: python3)
+  proof-verification-fixture.json        # W1 replicate + cache read by derivation.qmd Appendix B (committed)
 
 verification/
   run_all.R                              # SINGLE ENTRYPOINT for the comprehensive sweep
@@ -141,8 +142,7 @@ Rscript verification/W3-model-selection.R <mode> <engine> [n_cores]
 **Render the manuscript / proof verification:**
 ```
 quarto render manuscript/mi-spectral.qmd
-quarto render manuscript/derivation.qmd
-quarto render manuscript/proof-verification-sympy.qmd
+quarto render manuscript/derivation.qmd   # executes Appendix B (needs sympy, numpy, the fixture json)
 ```
 
 **Sync the literature corpus** (Zotero BBT export → `literature/<citekey>.md`):

@@ -3,9 +3,9 @@
 # Read-only consumer of the W1 primitives (00-setup.R) + the W1-sweep prod
 # cache. Reproduces a single W1 replicate deterministically (the same seed
 # convention as W1-sweep.R) and dumps every load-bearing intermediate to a
-# JSON fixture that manuscript/proof-verification-sympy.qmd reads.
+# JSON fixture that manuscript/derivation.qmd (Appendix B) reads.
 #
-# The notebook reimplements I_com / I_obs / barQ_fiml / tr(RIV) in numpy and
+# Appendix B reimplements I_com / I_obs / barQ_fiml / tr(RIV) in numpy and
 # asserts machine-precision agreement against the values dumped here. That is
 # the gate that the symbolic construction equals the R code the simulations
 # actually ran. The cache aggregates (T_hat, MCSE, trRIV mean) anchor the
