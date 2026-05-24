@@ -58,11 +58,11 @@ $\theta = (\mu, \operatorname{vech}\Sigma)$ of dimension $k = p + p(p+1)/2$.
 
 ::: {.column-margin}
 **Convention.** Complete data $Y=(Y_{\text{obs}},Y_{\text{mis}})$ follows
-@schaferAnalysisIncompleteMultivariate1997 [`:1477`, where $\ell(\theta\mid Y)$,
-$\ell(\theta\mid Y_{\text{obs}})$, $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$ appear]
+@schaferAnalysisIncompleteMultivariate1997 <a href="#sec-src-schafer"><code>:1477</code></a>, where $\ell(\theta\mid Y)$,
+$\ell(\theta\mid Y_{\text{obs}})$, $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$ appear
 and @littleStatisticalAnalysisMissing2019. Meng's congeniality framework writes
 $Z_c=\{X,Y_{\text{inc}},I\}$, $Z_o=\{X,Y_{\text{obs}},I,R_{\text{inc}}\}$ with $X$ =
-always-observed covariates [@mengMultipleImputationInferencesUncongenial1994a, `:95`]
+always-observed covariates [@mengMultipleImputationInferencesUncongenial1994a] <a href="#sec-src-meng"><code>:95</code></a>
 — a different $X$, which is why we avoid the symbol. The verification code
 (`verification/00-setup.R`) labels the realized complete matrix `X`; that is our $Y$.
 Verbatim: @sec-src-schafer, @sec-src-little, @sec-src-meng.
@@ -90,8 +90,8 @@ $\hat\theta_{\text{obs}} = \arg\max_\theta \ell_{\text{obs}}$ (the FIML estimato
 
 ::: {.column-margin}
 **Source.** Observed-data MLE = maximizer of $\ell(\theta\mid Y_{\text{obs}})$ —
-@schaferAnalysisIncompleteMultivariate1997 [`:1510`, "$\hat\theta$ is now the
-observed-data MLE, the maximizer of $l(\theta\mid Y_{obs})$"]. Verbatim: @sec-src-schafer.
+@schaferAnalysisIncompleteMultivariate1997 <a href="#sec-src-schafer"><code>:1510</code></a>, "$\hat\theta$ is now the
+observed-data MLE, the maximizer of $l(\theta\mid Y_{obs})$". Verbatim: @sec-src-schafer.
 :::
 
 ### Information matrices {#sec-information}
@@ -101,7 +101,7 @@ $$ I_{\text{com}}(\theta) = -\,\mathbb{E}_{Y\sim\theta}\!\big[\partial^2\ell_{\t
 
 ::: {.column-margin}
 **Source.** Fisher information $I_\theta=\mathbb{E}_\theta[\dot\ell_\theta\dot\ell_\theta^\top]$ and
-curvature $P_\theta\ddot\ell_\theta=-I_\theta$ — @vaartAsymptoticStatistics1998a [`:2320`].
+curvature $P_\theta\ddot\ell_\theta=-I_\theta$ — @vaartAsymptoticStatistics1998a <a href="#sec-src-vaart"><code>:2320</code></a>.
 MVN closed form: D15. Verbatim: @sec-src-vaart.
 :::
 
@@ -111,8 +111,8 @@ $$ I_{\text{obs}}(\theta) = -\,\mathbb{E}_{Y_{\text{obs}}\sim\theta}\!\big[\part
 
 ::: {.column-margin}
 **Source.** Observed information $I_o=-\partial^2\ell(\theta\mid Y_{\text{obs}})/\partial\theta^2$ —
-@schaferAnalysisIncompleteMultivariate1997 [`:1489`]; we use its expectation (Fisher
-form, @vaartAsymptoticStatistics1998a [`:2320`]). For MVN, the pattern-mixture sum
+@schaferAnalysisIncompleteMultivariate1997 <a href="#sec-src-schafer"><code>:1489</code></a>; we use its expectation (Fisher
+form, @vaartAsymptoticStatistics1998a <a href="#sec-src-vaart"><code>:2320</code></a>). For MVN, the pattern-mixture sum
 (`fisher_info_obs_mvn`). Verbatim: @sec-src-schafer, @sec-src-vaart.
 :::
 
@@ -126,8 +126,8 @@ The missing information is positive semidefinite, $I_{\text{mis}\mid\text{obs}}\
 **Source.** Missing-information principle. Schafer establishes $I_c=I_o+I_m$
 *conditional on* $Y_{\text{obs}}$ via the EM decomposition
 $Q(\theta\mid\phi)=\ell_{\text{obs}}+H(\theta\mid\phi)$, with
-$I_c=-\partial^2 Q(\theta\mid\theta)/\partial\theta^2$ [`:1483`],
-$I_m=-\partial^2 H(\theta\mid\theta)/\partial\theta^2$ [`:1495`], eq (3.19) [`:1501`] —
+$I_c=-\partial^2 Q(\theta\mid\theta)/\partial\theta^2$ [<a href="#sec-src-schafer"><code>:1483</code></a>],
+$I_m=-\partial^2 H(\theta\mid\theta)/\partial\theta^2$ [<a href="#sec-src-schafer"><code>:1495</code></a>], eq (3.19) [<a href="#sec-src-schafer"><code>:1501</code></a>] —
 @schaferAnalysisIncompleteMultivariate1997. Taking $\mathbb{E}_{Y_{\text{obs}}}$ gives the
 identity for the Fisher informations D5-D6 (his conditional $I_c,I_o,I_m$ average to
 our $I_{\text{com}},I_{\text{obs}},I_{\text{mis}\mid\text{obs}}$).
@@ -143,10 +143,10 @@ $$ \mathrm{RIV}(\theta) := I_{\text{obs}}^{-1}\, I_{\text{mis}\mid\text{obs}}. $
 ::: {.column-margin}
 **Source (name, scalar form).** Rubin's relative increase in variance due to
 nonresponse $r_m = (1+m^{-1})B_m/\bar U_m$ —
-@rubinMultipleImputationNonresponse1987 [`:2194`]; with within
-$\bar U_m=\sum_l U_{*l}/m$ [`:2167`], between
-$B_m=\sum_l(\hat Q_{*l}-\bar Q_m)^{t}(\hat Q_{*l}-\bar Q_m)/(m-1)$ [`:2173`], total
-$T_m=\bar U_m+(1+m^{-1})B_m$ [`:2179`]. Verbatim: @sec-src-rubin1987.
+@rubinMultipleImputationNonresponse1987 <a href="#sec-src-rubin1987"><code>:2194</code></a>; with within
+$\bar U_m=\sum_l U_{*l}/m$ [<a href="#sec-src-rubin1987"><code>:2167</code></a>], between
+$B_m=\sum_l(\hat Q_{*l}-\bar Q_m)^{t}(\hat Q_{*l}-\bar Q_m)/(m-1)$ [<a href="#sec-src-rubin1987"><code>:2173</code></a>], total
+$T_m=\bar U_m+(1+m^{-1})B_m$ [<a href="#sec-src-rubin1987"><code>:2179</code></a>]. Verbatim: @sec-src-rubin1987.
 :::
 
 **Derived form** (used throughout). By D7 ($I_{\text{mis}\mid\text{obs}}=I_{\text{com}}-I_{\text{obs}}$),
@@ -156,9 +156,9 @@ $$ \mathrm{RIV} = I_{\text{obs}}^{-1}I_{\text{com}} - I_k, \qquad \operatorname{
 ::: {.column-margin}
 **Algebra** [ledger A1-A3]. Trace step by linearity
 $\operatorname{Tr}(A+B)=\operatorname{Tr}A+\operatorname{Tr}B$
-[@petersen2008matrix §1.1, `:183`] and $\operatorname{tr}(I_k)=k$ from
-$\operatorname{Tr}(A)=\sum_i A_{ii}$ [`:179`]; cyclicity
-$\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$ [`:182`]. Verbatim: @sec-src-petersen.
+[@petersen2008matrix §1.1] <a href="#sec-src-petersen"><code>:183</code></a> and $\operatorname{tr}(I_k)=k$ from
+$\operatorname{Tr}(A)=\sum_i A_{ii}$ [<a href="#sec-src-petersen"><code>:179</code></a>]; cyclicity
+$\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$ [<a href="#sec-src-petersen"><code>:182</code></a>]. Verbatim: @sec-src-petersen.
 :::
 
 ::: {.callout-note collapse="true" appearance="simple"}
@@ -175,7 +175,7 @@ Confirmed numerically in `proof-verification-sympy.qmd`.
 
 Schafer's **fraction of missing information / EM rate matrix** is
 $D = I_{\text{com}}^{-1}I_{\text{mis}\mid\text{obs}}$
-[@schaferAnalysisIncompleteMultivariate1997 eq (3.21), $D = I_c^{-1}(\hat\theta)I_m(\hat\theta)$, `:1517`].
+[@schaferAnalysisIncompleteMultivariate1997 eq (3.21), $D = I_c^{-1}(\hat\theta)I_m(\hat\theta)$] <a href="#sec-src-schafer"><code>:1517</code></a>.
 It shares $I_{\text{mis}\mid\text{obs}}$ with RIV but uses $I_{\text{com}}^{-1}$ on the left, not
 $I_{\text{obs}}^{-1}$. They relate by $D = (I_k+\mathrm{RIV})^{-1}\mathrm{RIV}$ (scalar:
 $\gamma = r/(1+r)$). Our headline $\operatorname{tr}(\mathrm{RIV})=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{com}})-k$
@@ -199,7 +199,7 @@ the proper-MI limit).
 
 $\bar Q_\infty$ here is the averaged *log-likelihood*. It is **not** Rubin's
 pooled point estimate $\bar Q_m = \sum_l \hat Q_{*l}/m$
-[@rubinMultipleImputationNonresponse1987 `:2161`], which averages complete-data
+[@rubinMultipleImputationNonresponse1987] <a href="#sec-src-rubin1987"><code>:2161</code></a>, which averages complete-data
 *estimates*. We reserve $\bar Q_\infty$ for the averaged log-likelihood throughout.
 :::
 
@@ -233,10 +233,10 @@ identities.
 ::: {.column-margin}
 **Source.** @mengMultipleImputationInferencesUncongenial1994a Definition 1:
 $[\hat\theta(Z_o),U(Z_o)]\simeq[E_f(\theta\mid Z_o),V_f(\theta\mid Z_o)]$
-[eq (2.3.1), `:103`] and
+[eq (2.3.1), <a href="#sec-src-meng"><code>:103</code></a>] and
 $[\hat\theta(Z_c),U(Z_c)]\simeq[E_f(\theta\mid Z_c),V_f(\theta\mid Z_c)]$
-[eq (2.3.2), `:109`]; Definition 2 adds
-$f(Y_{\text{mis}}\mid Z_o)=g(Y_{\text{mis}}\mid Z_o,A)$ [eq (2.3.3), `:121`].
+[eq (2.3.2), <a href="#sec-src-meng"><code>:109</code></a>]; Definition 2 adds
+$f(Y_{\text{mis}}\mid Z_o)=g(Y_{\text{mis}}\mid Z_o,A)$ [eq (2.3.3), <a href="#sec-src-meng"><code>:121</code></a>].
 Verbatim: @sec-src-meng.
 :::
 
@@ -249,9 +249,9 @@ $$ D_n \operatorname{vech}(A) = \operatorname{vec} A, \qquad \operatorname{vech}
 
 ::: {.column-margin}
 **Source.** @magnusMatrixDifferentialCalculus2019 Ch 3 §15, eq (23)
-$D_n\operatorname{vech}(A)=\operatorname{vec}A$ [`:1658`], $\operatorname{vech}$ definition [`:1652`],
+$D_n\operatorname{vech}(A)=\operatorname{vec}A$ [<a href="#sec-src-magnus"><code>:1658</code></a>], $\operatorname{vech}$ definition [<a href="#sec-src-magnus"><code>:1652</code></a>],
 inverse identity
-$(D_n'(A\otimes A)D_n)^{-1}=(D_n'D_n)^{-1}D_n'(A^{-1}\otimes A^{-1})D_n(D_n'D_n)^{-1}$ [`:1692`].
+$(D_n'(A\otimes A)D_n)^{-1}=(D_n'D_n)^{-1}D_n'(A^{-1}\otimes A^{-1})D_n(D_n'D_n)^{-1}$ [<a href="#sec-src-magnus"><code>:1692</code></a>].
 Verbatim: @sec-src-magnus.
 :::
 
@@ -264,7 +264,7 @@ $$ I_{\text{com}}(\theta) = \begin{pmatrix} N\Sigma^{-1} & 0 \\ 0 & \tfrac{N}{2}
 ::: {.column-margin}
 **Source.** @magnusMatrixDifferentialCalculus2019 MVN ML section: information for
 $\mu$ and $\operatorname{vech}(\Omega)$ as $n\Omega^{-1}$ and
-$\tfrac{n}{2}D_m'(\Omega^{-1}\otimes\Omega^{-1})D_m$ [`:1800`-`:1813`]
+$\tfrac{n}{2}D_m'(\Omega^{-1}\otimes\Omega^{-1})D_m$ [<a href="#sec-src-magnus"><code>:1800</code></a>-<a href="#sec-src-magnus"><code>:1813</code></a>]
 ($\Omega\!\leftrightarrow\!\Sigma$, $m\!\leftrightarrow\!p$, $n\!\leftrightarrow\!N$).
 $I_{\text{obs}}$ is the pattern-mixture sum of per-pattern marginal informations
 (`fisher_info_obs_mvn`, `verification/00-setup.R`); `[mc]` against this closed form
@@ -288,9 +288,9 @@ interchange, so $P_\theta\dot\ell_\theta=0$ (scores mean-zero) and
 $P_\theta\ddot\ell_\theta=-I_\theta$.
 
 ::: {.column-margin}
-**Source.** van der Vaart Thm 5.39 conditions [@vaartAsymptoticStatistics1998a, `:7388`];
-score identities [`:2320`]; Schafer's "sufficient regularity to interchange
-differentiation and integration" [@schaferAnalysisIncompleteMultivariate1997, `:1480`].
+**Source.** van der Vaart Thm 5.39 conditions [@vaartAsymptoticStatistics1998a] <a href="#sec-src-vaart"><code>:7388</code></a>;
+score identities [<a href="#sec-src-vaart"><code>:2320</code></a>]; Schafer's "sufficient regularity to interchange
+differentiation and integration" [@schaferAnalysisIncompleteMultivariate1997] <a href="#sec-src-schafer"><code>:1480</code></a>.
 Verbatim: @sec-src-vaart, @sec-src-schafer.
 :::
 
@@ -310,7 +310,7 @@ Verbatim: @sec-src-rubin1976, @sec-src-little.
 **R4 (congeniality).** `[cited]` = D13.
 
 ::: {.column-margin}
-**Source.** @mengMultipleImputationInferencesUncongenial1994a Def 1/2 [`:99`/`:118`].
+**Source.** @mengMultipleImputationInferencesUncongenial1994a Def 1/2 [<a href="#sec-src-meng"><code>:99</code></a>/<a href="#sec-src-meng"><code>:118</code></a>].
 Verbatim: @sec-src-meng.
 :::
 
@@ -318,7 +318,7 @@ Verbatim: @sec-src-meng.
 
 ::: {.column-margin}
 **Source.** @rubinMultipleImputationNonresponse1987; Meng cond. (c)
-[@mengMultipleImputationInferencesUncongenial1994a, `:506`].
+[@mengMultipleImputationInferencesUncongenial1994a] <a href="#sec-src-meng"><code>:506</code></a>.
 Verbatim: @sec-src-rubin1987, @sec-src-meng.
 :::
 
@@ -326,7 +326,7 @@ Verbatim: @sec-src-rubin1987, @sec-src-meng.
 $\operatorname{MSE}(\lambda\hat\theta(W_o)+(1-\lambda)\hat\theta(W_c))<\operatorname{MSE}(\hat\theta(W_c))$.
 
 ::: {.column-margin}
-**Source.** @mengMultipleImputationInferencesUncongenial1994a Def 5 [`:450`], cond. (a) [`:504`].
+**Source.** @mengMultipleImputationInferencesUncongenial1994a Def 5 [<a href="#sec-src-meng"><code>:450</code></a>], cond. (a) [<a href="#sec-src-meng"><code>:504</code></a>].
 Verbatim: @sec-src-meng.
 :::
 
@@ -342,26 +342,26 @@ finite-$M$ corrections are Rubin's.
 **A1 (trace linearity).** `[cited]` $\operatorname{Tr}(A+B)=\operatorname{Tr}A+\operatorname{Tr}B$.
 
 ::: {.column-margin}
-**Source.** Matrix Cookbook §1.1 [@petersen2008matrix, `:183`]. Verbatim: @sec-src-petersen.
+**Source.** Matrix Cookbook §1.1 [@petersen2008matrix] <a href="#sec-src-petersen"><code>:183</code></a>. Verbatim: @sec-src-petersen.
 :::
 
 **A2 (trace cyclicity).** `[cited]` $\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$, $\operatorname{Tr}(ABC)=\operatorname{Tr}(BCA)$.
 
 ::: {.column-margin}
-**Source.** [@petersen2008matrix §1.1, `:182`/`:184`]. Verbatim: @sec-src-petersen.
+**Source.** [@petersen2008matrix §1.1] <a href="#sec-src-petersen"><code>:182</code></a>/<a href="#sec-src-petersen"><code>:184</code></a>. Verbatim: @sec-src-petersen.
 :::
 
 **A3 ($\operatorname{tr}I_k=k$).** `[cited]` From $\operatorname{Tr}(A)=\sum_i A_{ii}$.
 
 ::: {.column-margin}
-**Source.** [@petersen2008matrix §1.1, `:179`]. Verbatim: @sec-src-petersen.
+**Source.** [@petersen2008matrix §1.1] <a href="#sec-src-petersen"><code>:179</code></a>. Verbatim: @sec-src-petersen.
 :::
 
 **A4 (vec / Kronecker).** `[cited]` $\operatorname{vec}(AXB)=(B^\top\!\otimes A)\operatorname{vec}X$;
 $\operatorname{Tr}(A^\top B)=\operatorname{vec}(A)^\top\operatorname{vec}(B)$.
 
 ::: {.column-margin}
-**Source.** [@petersen2008matrix §10.2.2, eq (520)/(521), `:3345`/`:3346`].
+**Source.** [@petersen2008matrix §10.2.2, eq (520)/(521)] <a href="#sec-src-petersen"><code>:3345</code></a>/<a href="#sec-src-petersen"><code>:3346</code></a>.
 Verbatim: @sec-src-petersen.
 :::
 
@@ -369,7 +369,7 @@ Verbatim: @sec-src-petersen.
 $(D_n'(A\otimes A)D_n)^{-1}=(D_n'D_n)^{-1}D_n'(A^{-1}\!\otimes A^{-1})D_n(D_n'D_n)^{-1}$.
 
 ::: {.column-margin}
-**Source.** Magnus-Neudecker §15 [@magnusMatrixDifferentialCalculus2019, `:1658`/`:1692`].
+**Source.** Magnus-Neudecker §15 [@magnusMatrixDifferentialCalculus2019] <a href="#sec-src-magnus"><code>:1658</code></a>/<a href="#sec-src-magnus"><code>:1692</code></a>.
 Verbatim: @sec-src-magnus.
 :::
 
@@ -377,7 +377,7 @@ Verbatim: @sec-src-magnus.
 $(A^{-1})^\top=(A^\top)^{-1}$, $\operatorname{Tr}(A)=\operatorname{Tr}(A^\top)$.
 
 ::: {.column-margin}
-**Source.** [@petersen2008matrix §1.1, `:181`]. (The symmetry `symmetric_reduce`
+**Source.** [@petersen2008matrix §1.1] <a href="#sec-src-petersen"><code>:181</code></a>. (The symmetry `symmetric_reduce`
 enforces in `proof-verification-sympy.qmd`.) Verbatim: @sec-src-petersen.
 :::
 
@@ -387,7 +387,7 @@ with mean $\mu^{(1)}+\Sigma_{12}\Sigma_{22}^{-1}(x^{(2)}-\mu^{(2)})$ and covaria
 $\Sigma_{11\cdot 2}=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}$.
 
 ::: {.column-margin}
-**Source.** Anderson §2.5.1 [@andersonIntroductionMultivariateStatistical2003, `:1582`/`:1595`].
+**Source.** Anderson §2.5.1 [@andersonIntroductionMultivariateStatistical2003] <a href="#sec-src-anderson"><code>:1582</code></a>/<a href="#sec-src-anderson"><code>:1595</code></a>.
 (Term A's FIML Q-function; matches `barQ_fiml_analytic`'s `cond_V`.) Verbatim: @sec-src-anderson.
 :::
 
@@ -397,7 +397,7 @@ $\mathbb{E}[\mathbb{E}(X\mid Y)]=\mathbb{E}X$; conditional expectation as $L^2$ 
 $\mathbb{E}[v^\top M v]=\operatorname{tr}(M\,\mathbb{E}[vv^\top])$ (via A2 + linearity).
 
 ::: {.column-margin}
-**Source.** van der Vaart Ch 11 [@vaartAsymptoticStatistics1998a, `:5147`/`:5161`/`:5170`].
+**Source.** van der Vaart Ch 11 [@vaartAsymptoticStatistics1998a] <a href="#sec-src-vaart"><code>:5147</code></a>/<a href="#sec-src-vaart"><code>:5161</code></a>/<a href="#sec-src-vaart"><code>:5170</code></a>.
 Verbatim: @sec-src-vaart.
 :::
 
@@ -415,8 +415,8 @@ $$ \sqrt{n}(\hat\theta_n-\theta_0)=\tfrac{1}{\sqrt n}\textstyle\sum_i I_{\theta_
 hence $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$, $\operatorname{Var}(\hat\theta_{\text{com}})=I_{\text{com}}^{-1}$.
 
 ::: {.column-margin}
-**Source.** van der Vaart Thm 5.39 [@vaartAsymptoticStatistics1998a, `:7388`/`:7393`;
-covariance $I_\theta^{-1}$ at `:4170`]. Verbatim: @sec-src-vaart.
+**Source.** van der Vaart Thm 5.39 [@vaartAsymptoticStatistics1998a] <a href="#sec-src-vaart"><code>:7388</code></a>/<a href="#sec-src-vaart"><code>:7393</code></a>;
+covariance $I_\theta^{-1}$ at <a href="#sec-src-vaart"><code>:4170</code></a>. Verbatim: @sec-src-vaart.
 :::
 
 **L3 (Fisher/Louis score identity).** `[cited+derived]` Differentiating the loglik
@@ -426,9 +426,9 @@ $U_{\text{obs}}=\mathbb{E}[U_{\text{com}}\mid Y_{\text{obs}}]$; hence by A8,
 $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=\operatorname{Var}(U_{\text{obs}})=I_{\text{obs}}$.
 
 ::: {.column-margin}
-**Source.** Schafer decomposition [@schaferAnalysisIncompleteMultivariate1997, `:944`],
-$Q/H$ [`:951`/`:964`], 2nd-derivative analog (3.19) [`:1501`]; score-mean-zero
-[@vaartAsymptoticStatistics1998a, `:2320`]. Verbatim: @sec-src-schafer, @sec-src-vaart.
+**Source.** Schafer decomposition [@schaferAnalysisIncompleteMultivariate1997] <a href="#sec-src-schafer"><code>:944</code></a>,
+$Q/H$ [<a href="#sec-src-schafer"><code>:951</code></a>/<a href="#sec-src-schafer"><code>:964</code></a>], 2nd-derivative analog (3.19) [<a href="#sec-src-schafer"><code>:1501</code></a>]; score-mean-zero
+[@vaartAsymptoticStatistics1998a] <a href="#sec-src-vaart"><code>:2320</code></a>. Verbatim: @sec-src-schafer, @sec-src-vaart.
 :::
 
 **L2 (variance of the estimator gap).** `[derived; mc]`
@@ -451,8 +451,8 @@ and $T_\infty=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$. 
 identification.)
 
 ::: {.column-margin}
-**Source.** @mengMultipleImputationInferencesUncongenial1994a Lemma 3 [`:486`], Main
-result [`:503`/`:511`]; @rubinMultipleImputationNonresponse1987 §4.
+**Source.** @mengMultipleImputationInferencesUncongenial1994a Lemma 3 [<a href="#sec-src-meng"><code>:486</code></a>], Main
+result [<a href="#sec-src-meng"><code>:503</code></a>/<a href="#sec-src-meng"><code>:511</code></a>]; @rubinMultipleImputationNonresponse1987 §4.
 Verbatim: @sec-src-meng, @sec-src-rubin1987.
 :::
 
@@ -508,7 +508,7 @@ The $\ell_{\text{obs}}$ parts cancel in $A$ (D9, D10), leaving
 
 ::: {.column-margin}
 **Source.** Complete-data factorization — @schaferAnalysisIncompleteMultivariate1997
-eq (3.2) [`:944`]. Verbatim: @sec-src-schafer.
+eq (3.2) [<a href="#sec-src-schafer"><code>:944</code></a>]. Verbatim: @sec-src-schafer.
 :::
 $$ A = \mathbb{E}\big[\,\mathbb{E}_{Y_{\text{mis}}\mid Y_{\text{obs}},\tilde\phi}[\ell_{\text{mis}\mid\text{obs}}(\hat\theta_{\text{obs}})] - \ell_{\text{mis}\mid\text{obs}}(\hat\theta_{\text{obs}})\,\big]. $$
 
