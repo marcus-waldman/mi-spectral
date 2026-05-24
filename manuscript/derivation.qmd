@@ -90,20 +90,24 @@ observed-data MLE, the maximizer of $l(\theta\mid Y_{obs})$"].
 
 ### Information matrices {#sec-information}
 
-**D5 (complete information).**
-$I_{\text{com}}(\theta) = -\,\partial^2 \bar Q(\theta\mid\theta)/\partial\theta^2$.
+**D5 (complete information).** The complete-data Fisher information,
+$$ I_{\text{com}}(\theta) = -\,\mathbb{E}_{Y\sim\theta}\!\big[\partial^2\ell_{\text{com}}(\theta;Y)/\partial\theta\,\partial\theta^\top\big] = \mathbb{E}\big[S_{\text{com}}(\theta)\,S_{\text{com}}(\theta)^\top\big]. $$
 
 ::: {.column-margin}
-**Source.** $I_c=-\partial^2 Q(\theta\mid\theta)/\partial\theta^2$ —
-@schaferAnalysisIncompleteMultivariate1997 [`:1483`].
+**Source.** Fisher information $I_\theta=\mathbb{E}_\theta[\dot\ell_\theta\dot\ell_\theta^\top]$ and
+curvature $P_\theta\ddot\ell_\theta=-I_\theta$ — @vaartAsymptoticStatistics1998a [`:2320`].
+MVN closed form: D15.
 :::
 
-**D6 (observed information).**
-$I_{\text{obs}}(\theta) = -\,\partial^2 \ell(\theta\mid Y_{\text{obs}})/\partial\theta^2$.
+**D6 (observed information).** The observed-data (expected) Fisher information, the
+asymptotic precision of $\hat\theta_{\text{obs}}$ (L1),
+$$ I_{\text{obs}}(\theta) = -\,\mathbb{E}_{Y_{\text{obs}}\sim\theta}\!\big[\partial^2\ell_{\text{obs}}(\theta;Y_{\text{obs}})/\partial\theta\,\partial\theta^\top\big]. $$
 
 ::: {.column-margin}
-**Source.** $I_o=-\partial^2 l(\theta\mid Y_{obs})/\partial\theta^2$ —
-@schaferAnalysisIncompleteMultivariate1997 [`:1489`].
+**Source.** Observed information $I_o=-\partial^2\ell(\theta\mid Y_{\text{obs}})/\partial\theta^2$ —
+@schaferAnalysisIncompleteMultivariate1997 [`:1489`]; we use its expectation (Fisher
+form, @vaartAsymptoticStatistics1998a [`:2320`]). For MVN, the pattern-mixture sum
+(`fisher_info_obs_mvn`).
 :::
 
 **D7 (missing information and the information identity).**
@@ -113,12 +117,16 @@ $$ I_{\text{com}}(\theta) = I_{\text{obs}}(\theta) + I_{\text{mis}\mid\text{obs}
 The missing information is positive semidefinite, $I_{\text{mis}\mid\text{obs}}\succeq 0$.
 
 ::: {.column-margin}
-**Source.** Schafer eq (3.19), $I_c=I_o+I_m$ —
-@schaferAnalysisIncompleteMultivariate1997 [`:1501`]; component
-$I_m=-\partial^2 H(\theta\mid\theta)/\partial\theta^2$ [`:1495`]. Our
-$(I_{\text{com}},I_{\text{obs}},I_{\text{mis}\mid\text{obs}})$ = his $(I_c,I_o,I_m)$.
-$I_{\text{mis}\mid\text{obs}}\succeq 0$ is `[machine-checked]` (min eig $\approx 0$ at the W1
-fixture, `proof-verification-sympy.qmd`).
+**Source.** Missing-information principle. Schafer establishes $I_c=I_o+I_m$
+*conditional on* $Y_{\text{obs}}$ via the EM decomposition
+$Q(\theta\mid\phi)=\ell_{\text{obs}}+H(\theta\mid\phi)$, with
+$I_c=-\partial^2 Q(\theta\mid\theta)/\partial\theta^2$ [`:1483`],
+$I_m=-\partial^2 H(\theta\mid\theta)/\partial\theta^2$ [`:1495`], eq (3.19) [`:1501`] —
+@schaferAnalysisIncompleteMultivariate1997. Taking $\mathbb{E}_{Y_{\text{obs}}}$ gives the
+identity for the Fisher informations D5-D6 (his conditional $I_c,I_o,I_m$ average to
+our $I_{\text{com}},I_{\text{obs}},I_{\text{mis}\mid\text{obs}}$).
+$I_{\text{mis}\mid\text{obs}}\succeq 0$ `[mc]` (min eig $\approx 0$ at the W1 fixture,
+`proof-verification-sympy.qmd`).
 :::
 
 ### The relative increase in variance (RIV) {#sec-riv}
