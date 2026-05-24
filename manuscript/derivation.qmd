@@ -13,6 +13,11 @@ format:
     grid:
       margin-width: 350px
     embed-resources: true
+    code-fold: false
+jupyter: python3
+execute:
+  warning: false
+  cache: false
 ---
 
 ## Purpose and how to read this {#sec-purpose}
@@ -25,9 +30,10 @@ distills and the companion MI-IC paper cites.
 pre-registered Monte-Carlo simulation (`verification/`) that estimates the bias terms
 $\mathbb{E}[A],\mathbb{E}[B],\mathbb{E}[T]$ across configurations and compares them to the
 analytic $\operatorname{tr}(\mathrm{RIV})$. The *fixture* is a single simulated dataset
-used for an exact, replicate-level cross-check. `proof-verification-sympy.qmd` is
-the Sympy companion that verifies the trace identities symbolically and the MVN
-instantiation numerically. A step so verified is flagged `[mc]` (machine-checked).
+used for an exact, replicate-level cross-check. The *symbolic verification*
+(@sec-verify, executed inline) checks the trace identities with Sympy and the MVN
+instantiation numerically against the load-bearing R code. A step so verified is
+flagged `[mc]` (machine-checked), linking to the appendix code listing that checks it.
 
 **Layout.** The main column carries the mathematics: each definition, its
 equation, and a citation. **Provenance lives in the right margin** — the source's
@@ -37,7 +43,7 @@ pointer survives re-pagination by `lit-sync`), and any our-notation-vs-source
 mapping. A reader follows the math in the column and audits in the margin.
 
 **Status flags.** `[cited]` — established in a source we hold and have read
-in-session; `[mc]` — machine-checked in `proof-verification-sympy.qmd`;
+in-session; `[mc]` — machine-checked in @sec-verify (links to the specific listing);
 `[derived]` — proved here from earlier entries.
 
 **Document stages.** (1) Notation and quantities; (2) the ledger (regularity
@@ -114,7 +120,7 @@ $$ I_{\text{com}}(\theta) = I_{\text{obs}}(\theta) + I_{\text{mis}\mid\text{obs}
 The missing information is positive semidefinite, $I_{\text{mis}\mid\text{obs}}\succeq 0$.
 
 ::: {.column-margin}
-**Source.** @schaferAnalysisIncompleteMultivariate1997, missing-information principle: Schafer establishes $I_c=I_o+I_m$ *conditional on* $Y_{\text{obs}}$ via the EM decomposition $Q(\theta\mid\phi)=\ell_{\text{obs}}+H(\theta\mid\phi)$, with $I_c=-\partial^2 Q(\theta\mid\theta)/\partial\theta^2$ [<a href="#sec-src-schafer"><code>:1483</code></a>], $I_m=-\partial^2 H(\theta\mid\theta)/\partial\theta^2$ [<a href="#sec-src-schafer"><code>:1495</code></a>], eq (3.19) [<a href="#sec-src-schafer"><code>:1501</code></a>]. Taking $\mathbb{E}_{Y_{\text{obs}}}$ gives the identity for the Fisher informations D5-D6 (his conditional $I_c,I_o,I_m$ average to our $I_{\text{com}},I_{\text{obs}},I_{\text{mis}\mid\text{obs}}$). $I_{\text{mis}\mid\text{obs}}\succeq 0$ `[mc]` (min eigenvalue $\approx 0$ on the fixture, `proof-verification-sympy.qmd`).
+**Source.** @schaferAnalysisIncompleteMultivariate1997, missing-information principle: Schafer establishes $I_c=I_o+I_m$ *conditional on* $Y_{\text{obs}}$ via the EM decomposition $Q(\theta\mid\phi)=\ell_{\text{obs}}+H(\theta\mid\phi)$, with $I_c=-\partial^2 Q(\theta\mid\theta)/\partial\theta^2$ [<a href="#sec-src-schafer"><code>:1483</code></a>], $I_m=-\partial^2 H(\theta\mid\theta)/\partial\theta^2$ [<a href="#sec-src-schafer"><code>:1495</code></a>], eq (3.19) [<a href="#sec-src-schafer"><code>:1501</code></a>]. Taking $\mathbb{E}_{Y_{\text{obs}}}$ gives the identity for the Fisher informations D5-D6 (his conditional $I_c,I_o,I_m$ average to our $I_{\text{com}},I_{\text{obs}},I_{\text{mis}\mid\text{obs}}$). $I_{\text{mis}\mid\text{obs}}\succeq 0$ `[mc]` (min eigenvalue $\approx 0$ on the fixture, @lst-mc-psd).
 :::
 
 ### The relative increase in variance (RIV) {#sec-riv}
@@ -140,7 +146,7 @@ Under congenial proper MI as $M\to\infty$: $\bar U_\infty = I_{\text{com}}^{-1}$
 (complete-data MLE variance) and $T_\infty = I_{\text{obs}}^{-1}$ (variance recovery;
 ledger lemma), so $B_\infty = I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$ and
 $$ r_\infty = B_\infty \bar U_\infty^{-1} = (I_{\text{obs}}^{-1}-I_{\text{com}}^{-1})I_{\text{com}} = I_{\text{obs}}^{-1}I_{\text{com}} - I_k = \mathrm{RIV}. $$
-Confirmed numerically in `proof-verification-sympy.qmd`.
+Confirmed numerically in @lst-mc-fisher.
 :::
 
 ::: {.callout-important}
@@ -164,7 +170,7 @@ the proper-MI limit).
 
 ::: {.column-margin}
 **Source.** Deterministic-FIML evaluation `barQ_fiml_analytic`
-(`verification/00-setup.R`), `[mc]` equal to this construction on the fixture.
+(`verification/00-setup.R`), `[mc]` equal to this construction on the fixture (@lst-mc-fiml).
 :::
 
 ::: {.callout-warning}
@@ -225,7 +231,7 @@ block-diagonal,
 $$ I_{\text{com}}(\theta) = \begin{pmatrix} N\Sigma^{-1} & 0 \\ 0 & \tfrac{N}{2}D_p'(\Sigma^{-1}\otimes\Sigma^{-1})D_p \end{pmatrix}. $$
 
 ::: {.column-margin}
-**Source.** @magnusMatrixDifferentialCalculus2019, MVN ML section: information for $\mu$ and $\operatorname{vech}(\Omega)$ as $n\Omega^{-1}$ and $\tfrac{n}{2}D_m'(\Omega^{-1}\otimes\Omega^{-1})D_m$ [<a href="#sec-src-magnus"><code>:1800</code></a>-<a href="#sec-src-magnus"><code>:1813</code></a>] ($\Omega\!\leftrightarrow\!\Sigma$, $m\!\leftrightarrow\!p$, $n\!\leftrightarrow\!N$). $I_{\text{obs}}$ is the pattern-mixture sum of per-pattern marginal informations (`fisher_info_obs_mvn`, `verification/00-setup.R`); `[mc]` against this closed form in `proof-verification-sympy.qmd`.
+**Source.** @magnusMatrixDifferentialCalculus2019, MVN ML section: information for $\mu$ and $\operatorname{vech}(\Omega)$ as $n\Omega^{-1}$ and $\tfrac{n}{2}D_m'(\Omega^{-1}\otimes\Omega^{-1})D_m$ [<a href="#sec-src-magnus"><code>:1800</code></a>-<a href="#sec-src-magnus"><code>:1813</code></a>] ($\Omega\!\leftrightarrow\!\Sigma$, $m\!\leftrightarrow\!p$, $n\!\leftrightarrow\!N$). $I_{\text{obs}}$ is the pattern-mixture sum of per-pattern marginal informations (`fisher_info_obs_mvn`, `verification/00-setup.R`); `[mc]` against this closed form in @lst-mc-fisher.
 :::
 
 ---
@@ -324,7 +330,7 @@ $(D_n'(A\otimes A)D_n)^{-1}=(D_n'D_n)^{-1}D_n'(A^{-1}\!\otimes A^{-1})D_n(D_n'D_
 $(A^{-1})^\top=(A^\top)^{-1}$, $\operatorname{Tr}(A)=\operatorname{Tr}(A^\top)$.
 
 ::: {.column-margin}
-**Source.** @petersen2008matrix, §1.1: $\operatorname{Tr}(A)=\operatorname{Tr}(A^\top)$ [<a href="#sec-src-petersen"><code>:181</code></a>]. (The symmetry `symmetric_reduce` enforces in `proof-verification-sympy.qmd`.)
+**Source.** @petersen2008matrix, §1.1: $\operatorname{Tr}(A)=\operatorname{Tr}(A^\top)$ [<a href="#sec-src-petersen"><code>:181</code></a>]. (The symmetry `symmetric_reduce` enforces; see @sec-verify-tracenorm.)
 :::
 
 **A7 (Gaussian conditional / Schur complement).** `[cited]` For $X\sim N(\mu,\Sigma)$
@@ -382,8 +388,7 @@ $\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})$ — produc
 $-\tfrac12 k$ (see D8 disambiguation and Term B).**
 
 ::: {.column-margin}
-**Source.** `[derived]` from L1, L3, A8; verified symbolically in
-`proof-verification-sympy.qmd` (Tier B).
+**Source.** `[derived]` from L1, L3, A8; verified symbolically (Tier B, @lst-mc-tierb).
 :::
 
 **L4 (MI variance recovery).** `[cited]` Under R4-R7, $\bar\theta_\infty$ is consistent
@@ -397,7 +402,7 @@ identification.)
 ## Stage 3 — The tagged derivation {#sec-derivation}
 
 Each step cites the ledger entries it invokes in `[...]`. `[mc]` marks a step
-machine-checked in `proof-verification-sympy.qmd`. Let $\theta_0$ denote the
+machine-checked in @sec-verify. Let $\theta_0$ denote the
 data-generating parameter, and $\tilde\phi$ the imputation parameter — $\phi$ (not
 $\theta$) marks it as the imputer's parameter, distinct from the analysis parameter
 even where the two spaces coincide under congeniality, and the tilde marks a
@@ -434,7 +439,7 @@ $$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}\operatorname{
 $$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}(I_{\text{obs}}^{-1}-I_{\text{com}}^{-1})\big)\ \text{[L2]}\ = -\tfrac12\big(\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{com}})-k\big)\ \text{[A1, A2, A3]}\ = -\tfrac12\operatorname{tr}(\mathrm{RIV})\ \text{[D8]}. $$ {#eq-termB}
 
 ::: {.column-margin}
-`[mc]` `proof-verification-sympy.qmd` §"Term B" (`B + tr(RIV)/2 == 0`).
+`[mc]` @lst-mc-termb (`B + tr(RIV)/2 == 0`).
 :::
 
 ### Term A $=+\operatorname{tr}(\mathrm{RIV})$ (imputation bias) {#sec-termA}
@@ -490,9 +495,9 @@ Hence
 $$ \mathbb{E}[A] = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\,I_{\text{obs}}^{-1}\big) + O(n^{-1}) = \operatorname{tr}(\mathrm{RIV}) + O(n^{-1})\ \text{[D7, D8]}. $$ {#eq-termA}
 
 ::: {.column-margin}
-`[mc]` `proof-verification-sympy.qmd` §"Term A" (`A - tr(RIV) == 0`) for the trace
+`[mc]` @lst-mc-terma (`A - tr(RIV) == 0`) for the trace
 identity; the MVN FIML instantiation of $\bar Q_\infty$ matches the R code to machine
-precision (§"Numerical cross-check").
+precision (@lst-mc-fiml).
 :::
 
 ### Combine: $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ {#sec-combine}
@@ -501,7 +506,7 @@ $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV})
 [D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. $\qquad\blacksquare$
 
 ::: {.column-margin}
-`[mc]` `proof-verification-sympy.qmd` (`T - tr(RIV)/2 == 0`).
+`[mc]` @lst-mc-combine (`T - tr(RIV)/2 == 0`).
 :::
 
 ::: {.callout-note}
@@ -511,14 +516,14 @@ hold *to leading order*; each carries an $O(n^{-1})$ correction (Term A's from t
 $(A)+(C)$ cancellation in A4). These per-term residuals are real at finite $n$ —
 the numerical witness sees the individual terms $\sim$10-20% off while their **sum**
 $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ holds within Monte-Carlo error, because the
-residuals cancel. The rigor stack: this tagged derivation (algebra), `proof-verification-sympy.qmd`
-(symbolic trace identities + MVN instantiation to machine precision), and the
+residuals cancel. The rigor stack: this tagged derivation (algebra), the inline symbolic
+verification (@sec-verify; trace identities + MVN instantiation to machine precision), and the
 pre-registered numerical witness (12 cells, two engines).
 :::
 
 ---
 
-## Appendix: verbatim source passages {#sec-sources}
+## Appendix A — Verbatim source passages {#sec-sources}
 
 Consolidated provenance audit, grouped by reference. Each entry reproduces — verbatim
 from the `literature/<citekey>.md` Mathpix conversions — the specific passages the
@@ -702,6 +707,426 @@ numbered block at `:3353`.
 > $\operatorname{vec}(\mathbf{A X B})=\left(\mathbf{B}^{T} \otimes \mathbf{A}\right) \operatorname{vec}(\mathbf{X})$ &nbsp; (520)
 
 > $\operatorname{Tr}\left(\mathbf{A}^{T} \mathbf{B}\right)=\operatorname{vec}(\mathbf{A})^{T} \operatorname{vec}(\mathbf{B})$ &nbsp; (521)
+
+---
+
+## Appendix B — Machine-checked symbolic verification {#sec-verify}
+
+The `[mc]` flags throughout Stages 1-3 link to the executable listings in this
+appendix. The code runs inline at render time (Sympy + NumPy); every identity is
+checked by reducing `lhs - rhs` to `0` (symbolic) or asserting a match to the
+load-bearing R code `verification/00-setup.R` (numeric, machine precision). This is
+the algebraic companion to the *numerical* witness W1 (`verification/W1-sweep.R`),
+which confirms $\mathbb{E}[T]\approx+\tfrac12\operatorname{tr}(\mathrm{RIV})$ at many
+concrete configurations; here we check the chain of identities that produces it.
+
+Scope: the trace bookkeeping that combines the asymptotic second-moment inputs into
+$+\tfrac12\operatorname{tr}(\mathrm{RIV})$ is **symbolic** (exact, parameterization-free);
+the MVN closed forms for $I_{\text{com}},I_{\text{obs}},\operatorname{tr}(\mathrm{RIV})$
+and the FIML Q-function are reimplemented in NumPy and checked **to machine precision**
+against the R code on a fixed replicate; and $\tfrac12\operatorname{tr}(\mathrm{RIV})$ is
+checked **within Monte-Carlo SE** of the W1 cache $\mathbb{E}[T]$. What Sympy does not
+prove are the second-moment inputs themselves (the asymptotic covariances L1-L4); those
+are likelihood asymptotics stated as load-bearing lemmas (Stage 2) and validated
+end-to-end by W1.
+
+```{python}
+import sympy as sp
+import numpy as np
+from sympy import MatMul, MatAdd, Identity, Trace, Transpose, S
+from sympy.matrices.expressions.matexpr import MatrixExpr, MatrixSymbol
+from numpy.linalg import inv, slogdet, eigvalsh
+from pathlib import Path
+import json
+
+print("sympy", sp.__version__, "| numpy", np.__version__)
+```
+
+### vech / duplication-matrix machinery {#sec-verify-vech}
+
+MVN running example: $X \sim \mathcal{N}_p(\mu, \Sigma)$, parameter
+$\theta = (\mu,\ \operatorname{vech}\Sigma)$ of dimension $k = p + p(p+1)/2$ (D1, D14).
+Sympy has no vech/duplication operator, so we build $D_p$ explicitly, mirroring
+`00-setup.R` (column-major lower triangle).
+
+```{python}
+def vech_index_table(p):
+    m = np.zeros((p, p), int); c = 0
+    for j in range(p):
+        for i in range(j, p):
+            c += 1; m[i, j] = c; m[j, i] = c
+    return m
+
+def duplication_matrix(p, sym=False):
+    kk = p * (p + 1) // 2
+    D = sp.zeros(p * p, kk) if sym else np.zeros((p * p, kk))
+    c = 0
+    for j in range(p):
+        for i in range(j, p):
+            D[j * p + i, c] = 1
+            if i != j:
+                D[i * p + j, c] = 1
+            c += 1
+    return D
+```
+
+### The trace normal form (load-bearing helper) {#sec-verify-tracenorm}
+
+Sympy's `Trace` does not auto-apply linearity, does not evaluate
+`Trace(Identity) = n`, and does not exploit cyclic invariance `Trace(AB) = Trace(BA)`;
+worse, `sympy.simplify` on a `Trace` hits a `signsimp`/`cancel` bug and raises. The
+helper below (i) expands matrix products inside each trace, (ii) splits `Trace` over
+sums, (iii) evaluates `Trace(c*I) = c*n`, and (iv) canonicalizes cyclic factor order so
+cyclically-equal traces collapse. Every symbolic identity is checked after `trace_normal`.
+
+```{python}
+def symmetric_reduce(expr):
+    """Treat every bare MatrixSymbol as symmetric: Transpose(X) -> X."""
+    return expr.replace(
+        lambda x: isinstance(x, Transpose) and isinstance(x.arg, MatrixSymbol),
+        lambda x: x.arg)
+
+def trace_normal(expr, n):
+    """Normal form for scalar Trace(MatMul) expressions (avoids sympy.simplify)."""
+    expr = sp.expand(symmetric_reduce(sp.expand(expr, trace=True)), trace=True)
+
+    def handle(t):
+        m = symmetric_reduce(sp.expand(t.arg))
+        if isinstance(m, MatAdd):
+            return sum(handle(Trace(a)) for a in m.args)
+        coeff = S.One
+        if isinstance(m, MatMul):
+            for a in m.args:
+                if not isinstance(a, MatrixExpr):
+                    coeff *= a
+            mats = [a for a in m.args
+                    if isinstance(a, MatrixExpr) and not isinstance(a, Identity)]
+            if not mats:
+                return coeff * n
+            rotations = [mats[i:] + mats[:i] for i in range(len(mats))]
+            best = min(rotations, key=lambda fs: tuple(sp.srepr(x) for x in fs))
+            return coeff * Trace(MatMul(*best))
+        if isinstance(m, Identity):
+            return coeff * n
+        return coeff * Trace(m)
+
+    return expr.replace(lambda x: isinstance(x, Trace), handle)
+```
+
+### Term-combination identities (abstract, exact) {#sec-verify-terms}
+
+Treat $I_{\text{com}}, I_{\text{obs}}$ as abstract symmetric positive-definite
+$n\times n$ matrices ($n=k$). The asymptotic second-moment inputs (Stage 2 lemmas
+L1-L4, proved there, not here) feed the trace bookkeeping. First, `tr(RIV)`
+(@eq-trriv) in normal form:
+
+```{python}
+#| label: lst-mc-trriv
+#| lst-cap: "tr(RIV) = tr(I_obs^-1 I_com) - n, in trace normal form (D8)."
+n = sp.Symbol('n', positive=True, integer=True)
+I_com = sp.MatrixSymbol('I_com', n, n)
+I_obs = sp.MatrixSymbol('I_obs', n, n)
+I_mis = I_com - I_obs                      # I_{mis|obs} := I_com - I_obs
+
+trRIV = trace_normal(Trace(I_obs.inv() * I_mis), n)
+print("tr(RIV)  =", trRIV)                  # = Trace(I_obs^{-1} I_com) - n
+```
+
+**Term A** $= +\operatorname{tr}(\mathrm{RIV})$ — plug L1 into L3, then cyclic invariance
+(@eq-termA):
+
+```{python}
+#| label: lst-mc-terma
+#| lst-cap: "Term A: A - tr(RIV) reduces to 0 (symbolic)."
+A = trace_normal(Trace(I_mis * I_obs.inv()), n)         # (L3) with (L1)
+assert sp.expand(A - trRIV) == 0
+print("A        =", A, "  -> A - tr(RIV) =", sp.expand(A - trRIV))
+```
+
+**Term B** $= -\tfrac12\operatorname{tr}(\mathrm{RIV})$ — plug L2 into L4; the $n$ ($=k$)
+terms cancel, leaving **no** dimension constant (@eq-termB; this is the cancellation the
+Term B / L2 disambiguation in the body warns about):
+
+```{python}
+#| label: lst-mc-termb
+#| lst-cap: "Term B: B + tr(RIV)/2 reduces to 0, no leftover -k/2 (symbolic)."
+B = trace_normal(sp.Rational(-1, 2) * Trace(I_com * (I_obs.inv() - I_com.inv())), n)
+assert sp.expand(B + trRIV / 2) == 0
+print("B        =", B, "  -> B + tr(RIV)/2 =", sp.expand(B + trRIV / 2))
+```
+
+**Combine** $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ (@eq-combine, @eq-theorem):
+
+```{python}
+#| label: lst-mc-combine
+#| lst-cap: "Combine: T = A + B = tr(RIV)/2, exact (symbolic)."
+T = trace_normal(A, n) + B
+assert sp.expand(T - trRIV / 2) == 0
+print("T = A+B  =", sp.expand(T))
+print("T - tr(RIV)/2 =", sp.expand(T - trRIV / 2), " <- exact zero")
+```
+
+### MVN Fisher-information closed forms (symbolic, $p=2$) {#sec-verify-mvn}
+
+Block structure of $I_{\text{com}}$ (D15): block-diagonal on $(\mu,\operatorname{vech}\Sigma)$
+with $I_\mu = N\Sigma^{-1}$ and $I_{\operatorname{vech}\Sigma} = \tfrac{N}{2}D_p^\top(\Sigma^{-1}\otimes\Sigma^{-1})D_p$.
+
+```{python}
+s11, s12, s22, Nsym = sp.symbols('sigma11 sigma12 sigma22 N', positive=True)
+Sig2 = sp.Matrix([[s11, s12], [s12, s22]])
+Sig2_inv = Sig2.inv()
+D2 = duplication_matrix(2, sym=True)
+I_mu_2 = Nsym * Sig2_inv
+I_sig_2 = sp.Rational(1, 2) * Nsym * D2.T * sp.Matrix(
+    sp.kronecker_product(Sig2_inv, Sig2_inv)) * D2
+I_sig_2 = sp.simplify(I_sig_2)   # safe here: ordinary Matrix, not Trace
+I_mu_2, I_sig_2
+```
+
+### NumPy reimplementations checked against R {#sec-verify-numpy}
+
+These mirror `fisher_info_com_mvn`, `fisher_info_obs_mvn`, `loglik_mvn`, and
+`barQ_fiml_analytic` in `verification/00-setup.R`. Matching the R outputs on a fixed
+replicate is the gate that the symbolic construction equals the code the W1 simulations
+actually ran.
+
+```{python}
+def fisher_com(mu, Sig, N):
+    p = len(mu); Si = inv(Sig); D = duplication_matrix(p)
+    kk = p + p * (p + 1) // 2; I = np.zeros((kk, kk))
+    I[:p, :p] = N * Si
+    I[p:, p:] = (N / 2) * D.T @ np.kron(Si, Si) @ D
+    return I
+
+def fisher_obs(Sig, R):
+    p = Sig.shape[0]; kk = p + p * (p + 1) // 2
+    vi = vech_index_table(p); I = np.zeros((kk, kk))
+    pats = {}
+    for r in range(R.shape[0]):
+        key = tuple(R[r].astype(int)); pats[key] = pats.get(key, 0) + 1
+    for key, npat in pats.items():
+        Oi = [i for i in range(p) if key[i] == 0]; q = len(Oi)
+        if q == 0:
+            continue
+        Sooi = inv(Sig[np.ix_(Oi, Oi)])
+        for a in range(q):
+            for b in range(q):
+                I[Oi[a], Oi[b]] += npat * Sooi[a, b]
+        Dq = duplication_matrix(q)
+        Isub = 0.5 * Dq.T @ np.kron(Sooi, Sooi) @ Dq
+        full = np.array([p + vi[Oi[a], Oi[b]] - 1
+                         for b in range(q) for a in range(b, q)])
+        I[np.ix_(full, full)] += npat * Isub
+    return I
+
+def loglik(mu, Sig, X):
+    Si = inv(Sig); _, ld = slogdet(Sig); hl = 0.5 * np.log(2 * np.pi); p = len(mu)
+    d = X - mu
+    return float(np.sum(-p * hl - 0.5 * ld - 0.5 * np.einsum('ij,jk,ik->i', d, Si, d)))
+
+def barQ_fiml(mu_e, Sig_e, mu_i, Sig_i, Y, R):
+    Np, p = Y.shape
+    Sei = inv(Sig_e); _, ld = slogdet(Sig_e); hl = 0.5 * np.log(2 * np.pi)
+    total = 0.0; pats = {}
+    for r in range(Np):
+        key = tuple(R[r].astype(int)); pats.setdefault(key, []).append(r)
+    for key, rows in pats.items():
+        Mi = [i for i in range(p) if key[i] == 1]
+        Oi = [i for i in range(p) if key[i] == 0]
+        if not Mi:                              # fully observed
+            for r in rows:
+                d = Y[r] - mu_e
+                total += -p * hl - 0.5 * ld - 0.5 * d @ Sei @ d
+        elif not Oi:                            # all missing
+            d = mu_i - mu_e; tr = np.trace(Sei @ Sig_i)
+            total += len(rows) * (-p * hl - 0.5 * ld - 0.5 * d @ Sei @ d - 0.5 * tr)
+        else:                                   # partial: Schur conditional
+            Sooi = inv(Sig_i[np.ix_(Oi, Oi)]); Smo = Sig_i[np.ix_(Mi, Oi)]
+            condV = Sig_i[np.ix_(Mi, Mi)] - Smo @ Sooi @ Smo.T
+            tr = np.trace(Sei[np.ix_(Mi, Mi)] @ condV)
+            for r in rows:
+                cm = mu_i[Mi] + Smo @ Sooi @ (Y[r, Oi] - mu_i[Oi])
+                Xh = np.zeros(p)
+                for o in Oi:
+                    Xh[o] = Y[r, o]
+                for jj, mm in enumerate(Mi):
+                    Xh[mm] = cm[jj]
+                d = Xh - mu_e
+                total += -p * hl - 0.5 * ld - 0.5 * d @ Sei @ d - 0.5 * tr
+    return total
+```
+
+The fixture `proof-verification-fixture.json` is one W1 replicate (N=500, non-monotone
+MAR) plus the `W1-sweep-prod` cell aggregates, emitted by `verification/W1-sympy-fixture.R`.
+
+```{python}
+cands = [Path("proof-verification-fixture.json"),
+         Path("manuscript/proof-verification-fixture.json")]
+fix = next(p for p in cands if p.exists())
+J = json.load(open(fix))
+
+def as_float(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return np.nan       # jsonlite serializes missing entries of Y as "NA"
+
+p, k, N = J["meta"]["p"], J["meta"]["k"], J["meta"]["N"]
+X = np.array(J["data"]["X"], float)
+Y = np.array([[as_float(v) for v in row] for row in J["data"]["Y"]])
+R = np.array(J["data"]["R"], float)
+mu_obs = np.array(J["theta_obs"]["mu"], float)
+Sig_obs = np.array(J["theta_obs"]["Sigma"], float)
+mu_com = np.array(J["theta_com"]["mu"], float)
+Sig_com = np.array(J["theta_com"]["Sigma"], float)
+I_com_R = np.array(J["fisher"]["I_com"], float)
+I_obs_R = np.array(J["fisher"]["I_obs"], float)
+sc = J["scalars"]; cache = J["cache"]
+print(f"replicate: p={p} k={k} N={N}, missing entries={int(np.isnan(Y).sum())}")
+```
+
+**Fisher information and tr(RIV) match R** (D15, @eq-trriv):
+
+```{python}
+#| label: lst-mc-fisher
+#| lst-cap: "MVN I_com, I_obs, tr(RIV) match 00-setup.R to machine precision (D15)."
+I_com_py = fisher_com(mu_obs, Sig_obs, N)
+I_obs_py = fisher_obs(Sig_obs, R)
+trRIV_py = float(np.trace(inv(I_obs_py) @ I_com_py) - k)
+
+err_com = np.max(np.abs(I_com_py - I_com_R))
+err_obs = np.max(np.abs(I_obs_py - I_obs_R))
+print(f"max|I_com_py - I_com_R| = {err_com:.2e}")
+print(f"max|I_obs_py - I_obs_R| = {err_obs:.2e}")
+print(f"tr(RIV) py = {trRIV_py:.12f}  | R = {sc['trRIV_replicate']:.12f}"
+      f"  | diff = {trRIV_py - sc['trRIV_replicate']:.2e}")
+assert err_com < 1e-8 and err_obs < 1e-8
+assert abs(trRIV_py - sc["trRIV_replicate"]) < 1e-8
+```
+
+**Information identity and $I_{\text{mis}\mid\text{obs}}\succeq 0$** (D7, @eq-info-identity):
+
+```{python}
+#| label: lst-mc-psd
+#| lst-cap: "Information identity holds and I_mis|obs is PSD at the fixture (D7)."
+I_mis_py = I_com_py - I_obs_py
+print("max|I_com - (I_obs + I_mis)| =",
+      f"{np.max(np.abs(I_com_py - (I_obs_py + I_mis_py))):.2e}")
+print("min eigenvalue of I_mis|obs  =", f"{eigvalsh(I_mis_py).min():.4e}  (>= 0)")
+assert eigvalsh(I_mis_py).min() > -1e-8
+```
+
+**FIML Q-function and the A / B / T decomposition match R** (D9, D10-D12):
+
+```{python}
+#| label: lst-mc-fiml
+#| lst-cap: "Analytic FIML Q-function and A/B/T match 00-setup.R (D9-D12)."
+barL_py = barQ_fiml(mu_obs, Sig_obs, mu_obs, Sig_obs, Y, R)
+ell_com_at_com_py = loglik(mu_com, Sig_com, X)
+ell_com_at_obs_py = loglik(mu_obs, Sig_obs, X)
+A_py = barL_py - ell_com_at_obs_py
+B_py = ell_com_at_obs_py - ell_com_at_com_py
+T_py = barL_py - ell_com_at_com_py
+
+for name, py, r in [("barL_obs", barL_py, sc["barL_obs"]),
+                    ("A_r", A_py, sc["A_r"]),
+                    ("B_r", B_py, sc["B_r"]),
+                    ("T_r", T_py, sc["T_r"])]:
+    print(f"{name:9s} py = {py:14.8f}  | R = {r:14.8f}  | diff = {py - r:.2e}")
+    assert abs(py - r) < 1e-6
+```
+
+**$\tfrac12\operatorname{tr}(\mathrm{RIV})$ within Monte-Carlo SE of $\mathbb{E}[T]$**
+(@eq-theorem against the W1 production cache):
+
+```{python}
+#| label: lst-mc-mcse
+#| lst-cap: "1/2 tr(RIV) sits within the MCSE band of the W1 cache E[T]."
+half_pred_rep = 0.5 * trRIV_py            # from this replicate's theta_obs
+half_pred_mc = cache["half_trRIV_pred"]   # 0.5 * MC-mean of analytic tr(RIV)
+T_hat, T_mcse = cache["T_hat"], cache["T_mcse"]
+lo, hi = T_hat - 1.96 * T_mcse, T_hat + 1.96 * T_mcse
+
+print(f"cache E[T]            = {T_hat:.4f}  +/- {T_mcse:.4f} (MCSE)")
+print(f"95% MCSE band         = [{lo:.4f}, {hi:.4f}]")
+print(f"1/2 tr(RIV) [MC mean] = {half_pred_mc:.4f}")
+print(f"1/2 tr(RIV) [replicate] = {half_pred_rep:.4f}")
+print(f"cache E[A] = {cache['A_hat']:.3f} +/- {cache['A_mcse']:.3f}"
+      f"  vs tr(RIV)_MC = {cache['trRIV_mean']:.3f}")
+print(f"cache E[B] = {cache['B_hat']:.3f} +/- {cache['B_mcse']:.3f}"
+      f"  vs -1/2 tr(RIV)_MC = {-half_pred_mc:.3f}")
+assert lo <= half_pred_mc <= hi
+print("\nGATE PASSED: 1/2 tr(RIV) lies within the MCSE band of E[T].")
+```
+
+### Term A mechanism: the conditional-variance penalty {#sec-verify-termA-mech}
+
+The $+\operatorname{tr}(\mathrm{RIV})$ of Term A (@sec-termA) enters the FIML Q-function
+through the per-observation conditional-variance penalty
+$-\tfrac12\operatorname{tr}(\Sigma_{\text{eval}}^{-1}\bar V_i)$, where for a partial
+pattern $V = \Sigma_{MM} - \Sigma_{MO}\Sigma_{OO}^{-1}\Sigma_{OM}$ is the Schur
+complement (A7). Shown symbolically for a 3-variable pattern, $X_1$ missing:
+
+```{python}
+syms = sp.symbols('s11 s12 s13 s22 s23 s33', positive=True)
+s11, s12, s13, s22, s23, s33 = syms
+Sig3 = sp.Matrix([[s11, s12, s13], [s12, s22, s23], [s13, s23, s33]])
+Mi, Oi = [0], [1, 2]
+Smm = Sig3[Mi, Mi]; Smo = Sig3[Mi, Oi]; Soo = Sig3[Oi, Oi]
+V = sp.simplify(Smm - Smo * Soo.inv() * Smo.T)     # Schur complement, scalar here
+print("conditional Var(X_1 | X_2, X_3) =")
+sp.pprint(V[0, 0])
+```
+
+The pattern-sum-to-$\operatorname{tr}(\mathrm{RIV})$ reduction is a conditional-expectation
+calculation Sympy does not carry out cleanly; it is verified numerically (`A_py` matches R
+to machine precision in @lst-mc-fiml, and the cache confirms $\mathbb{E}[A]\approx\operatorname{tr}(\mathrm{RIV})$).
+
+### Tier B — abstract generalization (MVN-free) {#sec-verify-tierB}
+
+The trace bookkeeping above used abstract `MatrixSymbol` objects with no MVN commitment,
+so $T = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ already holds for any regular likelihood
+given L1-L4. What remains MVN-free to verify is that the score-equation expansion delivers
+the covariance input L2 (@eq-varGap): the observed score is the conditional expectation of
+the complete-data score under MAR, so $\mathbb{E}[U_{\text{com}}U_{\text{obs}}^\top]=I_{\text{obs}}$.
+
+```{python}
+# (L2) from the efficient-estimator orthogonality, symbolically.
+Vobs = I_obs.inv()                                  # Var(theta_obs)        (L1)
+Vcom = I_com.inv()                                  # Var(theta_com)
+Cov_oc = (I_obs.inv() * I_obs * I_com.inv()).doit() # Cov(obs,com) = I_com^{-1}
+print("Cov(theta_obs, theta_com) =", Cov_oc, " (= I_com^{-1} = Var(theta_com))")
+Vdiff = symmetric_reduce(sp.MatAdd(Vobs, -Cov_oc, -Cov_oc.T, Vcom).doit())
+target = (I_obs.inv() - I_com.inv()).doit()
+print("Var(diff) - (I_obs^{-1} - I_com^{-1}) =", sp.expand(symmetric_reduce(Vdiff - target)))
+```
+
+Feeding the symbolic L2 straight back into Term B and recombining — no separately-asserted
+covariance, a pure consequence of the score relations (L2 @eq-varGap):
+
+```{python}
+#| label: lst-mc-tierb
+#| lst-cap: "Tier B: L2 derived from the score relations recombines to tr(RIV)/2 (MVN-free)."
+B_from_scores = trace_normal(sp.Rational(-1, 2) * Trace(I_com * Vdiff), n)
+A_from_L1 = trace_normal(Trace(I_mis * Vobs), n)
+T_B = trace_normal(A_from_L1, n) + B_from_scores
+assert sp.expand(T_B - trRIV / 2) == 0
+print("Tier B:  T = A + B =", sp.expand(T_B), " == tr(RIV)/2  [exact]")
+```
+
+### Verification summary {#sec-verify-summary}
+
+| Identity | Status | Listing |
+|---|---|---|
+| $\operatorname{tr}(\mathrm{RIV}) = \operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{com}}) - k$ | symbolic | @lst-mc-trriv |
+| Term A $= +\operatorname{tr}(\mathrm{RIV})$ (given L1, L3) | symbolic | @lst-mc-terma |
+| Term B $= -\tfrac12\operatorname{tr}(\mathrm{RIV})$ (given L2, L4) | symbolic | @lst-mc-termb |
+| $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ | symbolic | @lst-mc-combine |
+| MVN $I_{\text{com}}, I_{\text{obs}}, \operatorname{tr}(\mathrm{RIV})$ | numeric (machine precision) | @lst-mc-fisher |
+| Information identity, $I_{\text{mis}\mid\text{obs}}\succeq 0$ | numeric | @lst-mc-psd |
+| FIML Q-function, $A/B/T$ | numeric (machine precision) | @lst-mc-fiml |
+| $\tfrac12\operatorname{tr}(\mathrm{RIV})$ vs $\mathbb{E}[T]$ | within MCSE | @lst-mc-mcse |
+| Tier B (abstract, MVN-free): L2 from scores | symbolic | @lst-mc-tierb |
 
 ---
 
