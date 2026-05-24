@@ -1,8 +1,10 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 ## Scope
 
-**JAIGP theory paper.** A deviance-bias correction for the Q-function under congenial multiple imputation, with applications to likelihood-ratio model comparison and information-criterion-based model selection. **Reframed 2026-05-22** after reading Chan (2022, *Annals of Statistics*): the original "spectral chi-square correction" framing was preempted; the paper now sits upstream of Chan's test calibration as the deviance-numerator bias correction. See `IDEAS.md` (Reframing note + archive section) for the full provenance.
+**JAIGP theory paper.** A deviance-bias correction for the Q-function under congenial multiple imputation, with applications to likelihood-ratio model comparison and information-criterion-based model selection. **Reframed 2026-05-22** after reading Chan (2022, *Annals of Statistics*): the original "spectral chi-square correction" framing was preempted; the paper now sits upstream of Chan's test calibration as the deviance-numerator bias correction. See `IDEAS.md` (Reframing note + archive section) for the full provenance, including the 2026-05-23 comprehensive-sweep empirical landings.
 
 ## Out of scope
 
@@ -36,7 +38,7 @@ where the $+\text{tr}$ term is imputation bias and the $-\tfrac{1}{2}\text{tr}$ 
 
 2. **Information criteria (§5, headline empirical claim).** MI-AIC and MI-BIC consume $-2\bar Q_\infty$; the bias $-\text{tr}(\text{RIV})$ is **model-specific** (different candidate models have different RIVs). Uncorrected MI-AIC/BIC systematically favor models with **larger** RIV — the downward bias of $-2\bar Q_\infty$ scales with $\text{tr}(\text{RIV})$, making high-RIV candidates look artificially better than they would under complete data. Bias correction restores complete-data-equivalent model selection (same direction as Cavanaugh-Shumway's AICcd, which penalizes high-RIV models with $+2\text{tr}(\text{RIV})$ on top of $2q$).
 
-**Witness apparatus (W1/W2/W3).** Each application is paired with a pre-registered numerical witness (`todo/004-simulation-hypotheses.md`). Predictions written before simulations; framing modifies if reality differs.
+**Witness apparatus (W1/W2/W3).** Each application is paired with a pre-registered numerical witness (`todo/004-simulation-hypotheses.md`). Predictions written before simulations; framing modifies if reality differs. Extended robustness via the comprehensive sweep (`todo/005`, `todo/006`).
 
 ## Lineage
 
@@ -44,13 +46,125 @@ Rubin (1987) → Cavanaugh–Shumway (1998, AICcd for EM-based observed-data MLE
 
 Chan & Meng (2022) and Chan (2022) handle the reference distribution; we handle the bias of the numerator being referred to it. Both are necessary for complete-data inferential recovery under MI.
 
+## Repo layout
+
+Three-layer reproducibility: `IDEAS.md` is *what we found and what it means*; `verification/run_all.R` is *how to reproduce it*; per-phase `.rds` caches and summary CSVs are *the raw evidence*.
+
+```
+manuscript/
+  mi-spectral.qmd                        # Quarto stub for the JAIGP submission (in progress)
+  derivation.qmd                         # canonical sourced derivation (notation, ledger, tagged proof)
+  proof-verification-sympy.qmd           # Sympy + Quarto algebra-verification companion to W1 (per todo/007)
+
+verification/
+  run_all.R                              # SINGLE ENTRYPOINT for the comprehensive sweep
+  _modules/                              # phase functions sourced by run_all.R:
+                                         #   smoke-tests.R, w1-sweep.R, w3-sweep.R,
+                                         #   w3-rate.R, mnar-bias.R, aggregate.R
+  _legacy/                               # retired standalone sweep scripts (see _legacy/README.md
+                                         # for the old-file -> module mapping). Do NOT re-execute.
+  00-setup.R                             # shared primitives (MVN gen, MI engines, lavaan wrappers,
+                                         #   apply_missingness_ampute, mle_chol_sigma12 w/ par_init,
+                                         #   chan_smi_test_k1, analytic Fisher info / tr(RIV))
+  00-test-primitives.R                   # smoke tests for 00-setup primitives
+  W1-bias-decomposition.R                # ORIGINAL preregistered W1 (frozen at SHA ddc9037)
+  W2-lrt-power.R                         # ORIGINAL preregistered W2
+  W2-size-adjusted-power.R               # W2 post-hoc size-adjusted analysis
+  W3-model-selection.R                   # ORIGINAL preregistered W3
+  W1-sympy-fixture.R                     # JSON fixture writer for the Sympy notebook (todo/007)
+  cache/run_all-prod/phase{0..5}/        # canonical centralized-sweep outputs (RDS + summary CSV)
+  cache/W{1,3}-{pilot,prod}-*.rds        # preregistered W1/W2/W3 outputs
+
+literature/
+  <citekey>.md                           # CITATION-PROTECTED corpus — hook enforces existence + read
+  mi-spectral-better-bibTeX.bib          # BBT export from Zotero; source of truth for citekeys
+
+todo/
+  000-current-status.md                  # resume entrypoint
+  001-literature-and-hooks.md            # citation infrastructure (closed)
+  003-references-to-acquire.md           # living reference-proposal backlog
+  004-simulation-hypotheses.md           # preregistered W1/W2/W3 (frozen at SHA ddc9037)
+  005-comprehensive-sweep-hypotheses.md  # preregistered comprehensive sweep
+  006-comprehensive-sweep-execution.md   # closed (executed)
+  007-sympy-proof-verification.md        # open side artifact (Sympy verification spec)
+
+.claude/
+  hooks/check_citations.py               # PreToolUse hook: blocks @<citekey> writes if
+                                         #   literature/<citekey>.md absent. Bypass via @TODO:<slug>.
+  skills/lit-sync/                       # /lit-sync slash command (BBT -> literature/ bridge)
+
+scripts/
+  lit_sync.py                            # Zotero BBT -> literature/<citekey>.md sync (see skill)
+```
+
+**Module organization for `verification/run_all.R`.** Five phases, each in its own module under `_modules/`:
+
+| Phase | Module | What it does |
+|---|---|---|
+| 0 | smoke-tests.R | ampute-vs-apply_mar parity check + pre-flight tr(RIV) table (gates the rest) |
+| 1 | w1-sweep.R | 18 FIML cells (2 patterns × 3 mechs × 3 N), analytic Q-function + analytic tr(RIV) |
+| 2 | w3-sweep.R | 60 cells (2 patterns × 2 mechs × 3 N × 5 engine/M/cong slots), MI-AIC selection |
+| 3 | w3-rate.R | H3b rate side experiment (low-rate arm only; rate=60% deferred for Amelia stability) |
+| 4 | mnar-bias.R | Direct E[θ_obs − θ_truth] measurement under MAR / MNAR / MNAR_targeted |
+| 5 | aggregate.R | Combine summaries, evaluate H1/H2-MAR/H2-MNAR/H3/H3b/H4/H5/H6 against pass criteria |
+
+Originals (`W1-bias-decomposition.R`, `W2-lrt-power.R`, `W3-model-selection.R`) are the preregistered scripts cited at SHA ddc9037 and **not** routed through `run_all.R`. Touch them only for the preregistered cell or with an explicit preregistration amendment.
+
+## Commands
+
+R is at `C:\Program Files\R\R-4.5.1\bin\Rscript.exe`. The 20-core PSOCK cluster is the default parallelism on this Windows host.
+
+**Reproduce the full comprehensive sweep** (~3 hours on 20 cores, all 5 phases):
+```
+Rscript verification/run_all.R 2000 prod all 20
+```
+
+**Fast smoke run** of run_all.R (R=100, ~10 minutes, all phases):
+```
+Rscript verification/run_all.R 100 smoke all 20
+```
+
+**Run individual phases** (comma-separated):
+```
+Rscript verification/run_all.R <R> <out_suffix> "1,4,5" <n_cores>
+```
+Outputs land in `verification/cache/run_all-<out_suffix>/phase{0..5}/`.
+
+**Preregistered W1/W2/W3 originals** (todo/004; only for reproducing the SHA ddc9037 results, not for new analysis):
+```
+Rscript verification/W1-bias-decomposition.R <mode> <engine> [n_cores] [N_override]
+Rscript verification/W2-lrt-power.R <mode> <engine> [n_cores]
+Rscript verification/W3-model-selection.R <mode> <engine> [n_cores]
+```
+`mode` is `pilot` or `prod`; `engine` is `fiml` or `amelia`.
+
+**Render the manuscript / proof verification:**
+```
+quarto render manuscript/mi-spectral.qmd
+quarto render manuscript/derivation.qmd
+quarto render manuscript/proof-verification-sympy.qmd
+```
+
+**Sync the literature corpus** (Zotero BBT export → `literature/<citekey>.md`):
+```
+py scripts/lit_sync.py
+```
+Or invoke `/lit-sync` as a slash command.
+
+**Smoke-test the primitives** (independent of the sweep):
+```
+Rscript verification/00-test-primitives.R
+```
+
 ## Related repos
 
 - `~/git-repositories/MI-IC` — companion SEM methodology paper; v4.5 derivation, `miicsem` package, and SEM simulations live there. JAIGP paper is cited from there.
 
 ## Citation discipline (load-bearing)
 
-**Any citation in `manuscript/` must reference a paper whose markdown copy exists at `literature/<citekey>.md` AND has been read in the current session.** Reliance on training-weight knowledge of cited papers is prohibited. The acquisition workflow and enforcement hook are specified in `todo/001-literature-and-hooks.md`.
+**Any citation in `manuscript/` must reference a paper whose markdown copy exists at `literature/<citekey>.md` AND has been read in the current session.** Reliance on training-weight knowledge of cited papers is prohibited. The acquisition workflow and enforcement hook are specified in `todo/001-literature-and-hooks.md`. The `PreToolUse` hook at `.claude/hooks/check_citations.py` blocks Edit/Write/MultiEdit on `manuscript/` files when an unbacked `@<citekey>` appears.
+
+**Bypass**: `@TODO:<slug>` is allowed as a drafting placeholder (the hook explicitly skips these).
 
 Rationale: AI-assisted derivations fail in review when citations are hallucinated. The only defense is acquiring actual PDFs and reading them locally before claiming what they say.
 
