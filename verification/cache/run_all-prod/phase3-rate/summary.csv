@@ -1,0 +1,4 @@
+"cell_id","pattern","mech","N","M","empri_frac","prop","elapsed_sec","n_ok","n_err","pi_oracle","pi_uncorrected","pi_corrected","pi_SB","W3A","W3B","W3C","W3C_n_miscl"
+"amelia_non_monotone_MAR_N200_M200_cong_rate20","non_monotone","MAR",200,200,0,0.2,182.528231859207,2000,0,0.9065,0.8185,0.861,0.8645,0.0425,0.0455,1,363
+"amelia_non_monotone_MAR_N500_M200_cong_rate20","non_monotone","MAR",500,200,0,0.2,240.377225160599,2000,0,0.898,0.8155,0.8615,0.8645,0.046,0.0365,1,369
+"amelia_non_monotone_MAR_N1000_M200_cong_rate20","non_monotone","MAR",1000,200,0,0.2,355.129806995392,2000,0,0.899,0.8275,0.8745,0.876,0.047,0.0245,1,345

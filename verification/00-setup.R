@@ -95,6 +95,138 @@ apply_mar <- function(X, a1 = -0.5, b1 = 0.4, a2 = -0.5, b2 = 0.4) {
 
 
 # -----------------------------------------------------------------------------
+# Comprehensive-sweep missingness: mice::ampute wrapper (todo/006 Step 2).
+#
+# Standardizes missingness generation across MAR/MNAR × non_monotone/monotone
+# patterns using the canonical mice::ampute() amputation tool (Schouten,
+# Lugtig, Vink 2018). Returns the same list(Y, R) format as apply_mar so it
+# drops into existing W1/W3 scripts.
+#
+# Convention note: mice::ampute encodes patterns with 0=missing, 1=observed
+# (opposite of our R-mask, where 1=missing). We translate internally.
+#
+# Marginal-rate targeting (`prop` argument):
+#   non_monotone: X_1 and X_2 each have marginal missingness ~= prop;
+#                 X_3, X_4 always observed.
+#   monotone    : X_4 (deepest variable) has marginal missingness ~= prop;
+#                 X_3 ~= 2/3 * prop; X_2 ~= 1/3 * prop; X_1 always observed.
+#                 [Confirmed user design choice 2026-05-23 — todo/006 §1.5.]
+#
+# Internally, mice::ampute's `prop` is the proportion of incomplete cases.
+# With equal-frequency patterns and our pattern matrices we have:
+#   non_monotone: P(X_j missing) = (2/3) * prop_amp for j in {1,2}.
+#                 To hit target marginal `prop` -> prop_amp = 1.5 * prop.
+#   monotone    : P(X_4 missing) = prop_amp. So prop_amp = prop.
+#
+# Weights (driving variables):
+#   MAR  + non_monotone: X_1 missingness driven by X_3, X_2 by X_4
+#                        (preserves apply_mar's intent).
+#   MAR  + monotone    : pattern k driven by the deepest still-observed
+#                        variable in that pattern.
+#   MNAR + non_monotone: each pattern driven by its own missing variables.
+#   MNAR + monotone    : each pattern driven by its own missing variables.
+#
+# type = "RIGHT" (high values are more likely to be amputed, matching the
+# positive coefficient in apply_mar's probit a + b * X with b > 0).
+# -----------------------------------------------------------------------------
+
+apply_missingness_ampute <- function(X, prop = 0.40,
+                                     mech = c("MAR", "MNAR", "MNAR_targeted"),
+                                     pattern_type = c("non_monotone", "monotone")) {
+  mech         <- match.arg(mech)
+  pattern_type <- match.arg(pattern_type)
+  N <- nrow(X)
+  p <- ncol(X)
+  stopifnot(p == 4)
+
+  if (pattern_type == "non_monotone") {
+    # Three patterns (mice convention 1=observed, 0=missing):
+    #   p1: only X_1 missing
+    #   p2: only X_2 missing
+    #   p3: both X_1 and X_2 missing
+    patterns_mat <- rbind(c(0, 1, 1, 1),
+                          c(1, 0, 1, 1),
+                          c(0, 0, 1, 1))
+    freqs <- c(1, 1, 1) / 3
+    # P(X_j missing) = (2/3) * prop_amp for j in {1,2}. Hit target marginal
+    # `prop` via prop_amp = 1.5 * prop.
+    prop_amp <- 1.5 * prop
+    if (prop_amp > 1) {
+      stop(sprintf("Non-monotone target prop=%.3f requires ampute prop=%.3f > 1.",
+                   prop, prop_amp))
+    }
+    if (mech == "MAR") {
+      weights_mat <- rbind(c(0, 0, 1, 0),  # p1 (X_1 missing) driven by X_3
+                           c(0, 0, 0, 1),  # p2 (X_2 missing) driven by X_4
+                           c(0, 0, 1, 1))  # p3 (both missing) driven by X_3+X_4
+    } else if (mech == "MNAR") {
+      weights_mat <- rbind(c(1, 0, 0, 0),  # p1 driven by X_1 itself
+                           c(0, 1, 0, 0),  # p2 driven by X_2 itself
+                           c(1, 1, 0, 0))  # p3 driven by X_1+X_2
+    } else {  # MNAR_targeted — designed to disrupt the W3 truth's
+      # load-bearing cross-block correlations (sigma_13, sigma_24).
+      # Weights span (X_j, the partner variable) so the missingness
+      # selection truncates the joint distribution along the typical
+      # positive-correlation diagonal, biasing the correlation estimate
+      # toward zero. See todo/006 / IDEAS.md "MNAR refined finding".
+      weights_mat <- rbind(c(1, 0, 1, 0),  # p1 (X_1 missing) driven by X_1 + X_3 (targets sigma_13)
+                           c(0, 1, 0, 1),  # p2 (X_2 missing) driven by X_2 + X_4 (targets sigma_24)
+                           c(1, 1, 1, 1))  # p3 (both missing) driven by all four
+    }
+  } else {  # monotone
+    # Three patterns (mice convention 1=observed, 0=missing):
+    #   p1: only X_4 missing
+    #   p2: X_3 and X_4 missing
+    #   p3: X_2, X_3, X_4 missing
+    patterns_mat <- rbind(c(1, 1, 1, 0),
+                          c(1, 1, 0, 0),
+                          c(1, 0, 0, 0))
+    freqs <- c(1, 1, 1) / 3
+    # P(X_4 missing) = prop_amp (all patterns ampute X_4).
+    prop_amp <- prop
+    if (mech == "MAR") {
+      weights_mat <- rbind(c(0, 0, 1, 0),  # p1 (X_4 missing) driven by X_3
+                           c(0, 1, 0, 0),  # p2 (X_3,X_4 missing) driven by X_2
+                           c(1, 0, 0, 0))  # p3 (X_2,X_3,X_4 missing) driven by X_1
+    } else if (mech == "MNAR") {
+      weights_mat <- rbind(c(0, 0, 0, 1),  # p1 driven by X_4 itself
+                           c(0, 0, 1, 1),  # p2 driven by X_3+X_4
+                           c(0, 1, 1, 1))  # p3 driven by X_2+X_3+X_4
+    } else {  # MNAR_targeted — drives missingness with the partner of
+      # each load-bearing off-block correlation under the W3 truth:
+      # p1 (X_4 missing): driven by X_2 + X_4 to truncate sigma_24.
+      # p2 (X_3, X_4 missing): driven by X_1 + X_3 + X_2 + X_4, hitting
+      #   both sigma_13 (via X_1+X_3) and sigma_24 (via X_2+X_4).
+      # p3 (X_2, X_3, X_4 missing): driven by all four, broadest hit.
+      weights_mat <- rbind(c(0, 1, 0, 1),
+                           c(1, 1, 1, 1),
+                           c(1, 1, 1, 1))
+    }
+  }
+
+  # mice::ampute only accepts MCAR/MAR/MNAR. Our internal label
+  # MNAR_targeted dispatches a different `weights_mat` (above) but ampute
+  # is told MNAR — the targeting is encoded in which variables appear in
+  # the weights matrix for each pattern, not in ampute's mech string.
+  ampute_mech <- if (mech == "MNAR_targeted") { "MNAR" } else { mech }
+  df <- as.data.frame(X)
+  colnames(df) <- sprintf("X%d", seq_len(p))
+  amp_out <- mice::ampute(data = df,
+                          prop = prop_amp,
+                          patterns = patterns_mat,
+                          freq = freqs,
+                          mech = ampute_mech,
+                          weights = weights_mat,
+                          type = "RIGHT",
+                          bycases = TRUE)
+  Y <- as.matrix(amp_out$amp)
+  dimnames(Y) <- NULL
+  R <- matrix(as.numeric(is.na(Y)), nrow = N, ncol = p)
+  return(list(Y = Y, R = R))
+}
+
+
+# -----------------------------------------------------------------------------
 # §0.6 primitive: em_mvn(Y)
 #
 # Observed-data MLE under MVN. Wraps norm::em.norm. Returns
@@ -153,12 +285,20 @@ impute_mvn <- function(Y, M, burnin = 200, thin = 100, em_fit = NULL) {
 # limit; finite-sample differences inform engine diagnostics.
 # -----------------------------------------------------------------------------
 
-impute_mvn_amelia <- function(Y, M, ...) {
+impute_mvn_amelia <- function(Y, M, empri = 0, ...) {
   # Amelia warns / errors if too many rows are missing OR if the data is
   # singular under bootstrap. Suppress non-essential output via p2s=0.
+  #
+  # `empri` is the Bayesian ridge prior on the imputation-model Sigma
+  # (in units of "equivalent prior observations"). empri = 0 (default)
+  # is the unconstrained Wishart — congenial with our unrestricted MVN
+  # analysis model. empri > 0 shrinks Sigma toward diagonal, producing
+  # an *uncongenial* imputation relative to the analysis model; the
+  # comprehensive sweep (todo/005 §0.5) uses empri = 0.5 * N for the
+  # "uncongenial Amelia" condition.
   df <- as.data.frame(Y)
   colnames(df) <- sprintf("V%d", seq_len(ncol(df)))
-  a_out <- Amelia::amelia(df, m = M, p2s = 0, ...)
+  a_out <- Amelia::amelia(df, m = M, p2s = 0, empri = empri, ...)
   imputed <- lapply(a_out$imputations, function(d) { return(as.matrix(d)) })
   return(imputed)
 }
@@ -712,16 +852,39 @@ chan_smi_test_k1 <- function(imps, test_device, bias_correction = 0,
                              N_mc = 10000) {
   m <- length(imps)
   stopifnot(m >= 2)
-  # Per-imputation test statistics.
+  # Detect whether the test_device supports the warm-start protocol
+  # (i.e. has par_init / return_state arguments). If so, warm-start the
+  # leave-one-out fits from the stacked-all optimum (Step 1.5 of todo/006:
+  # the LOO datasets are (m-1)/m the size of stacked-all and have nearly
+  # identical sample covariance, so the stacked-all tau is an excellent
+  # initializer that typically converges in a few BFGS iterations).
+  device_args <- names(formals(test_device))
+  warmable <- ("par_init" %in% device_args) && ("return_state" %in% device_args)
+  # Per-imputation test statistics. Singles use data-derived init: each is
+  # on N rows (vs (m-1)*N or m*N for the stacked variants), so warm-starting
+  # from stacked-all may not help.
   d_singles <- vapply(imps, test_device, numeric(1))
   # Stacked-all (X^{1:m}).
   X_all <- do.call(rbind, imps)
-  d_1_to_m <- test_device(X_all) / m
-  # Leave-one-out stacked statistics.
+  if (warmable) {
+    fit_all <- test_device(X_all, return_state = TRUE)
+    d_1_to_m <- fit_all$stat / m
+    warm_state <- fit_all$state
+  } else {
+    d_1_to_m <- test_device(X_all) / m
+    warm_state <- NULL
+  }
+  # Leave-one-out stacked statistics. Warm-start each from the stacked-all
+  # optimum when supported.
   d_leave_outs <- numeric(m)
   for (ell in seq_len(m)) {
     X_minus_ell <- do.call(rbind, imps[-ell])
-    d_leave_outs[ell] <- test_device(X_minus_ell) / (m - 1)
+    if (warmable) {
+      d_leave_outs[ell] <- test_device(X_minus_ell, par_init = warm_state) /
+        (m - 1)
+    } else {
+      d_leave_outs[ell] <- test_device(X_minus_ell) / (m - 1)
+    }
   }
   # SMI statistics under Jackknife rule (eq 3.9).
   T_ell <- (m - 1) * d_leave_outs + d_singles - m * d_1_to_m
@@ -845,7 +1008,7 @@ riv_spectrum_analytic_general <- function(theta, Y, R, free_indices) {
 # Benchmark: ~40x faster per call than lavaan_fit_mvn with default settings.
 # -----------------------------------------------------------------------------
 
-mle_chol_sigma12 <- function(X) {
+mle_chol_sigma12 <- function(X, par_init = NULL) {
   N <- nrow(X)
   p <- ncol(X)
   stopifnot(p == 4)
@@ -870,12 +1033,10 @@ mle_chol_sigma12 <- function(X) {
 
   neg_loglik_raw <- function(tau) {
     L <- build_L(tau)
-    # log|Sigma| = 2 * sum(log diag(L)) = 2 * sum(tau on diag positions)
     logdet_2 <- 2 * sum(tau[diag_idx])
-    # Sigma^{-1} via Cholesky.
     Sigma_inv <- tryCatch(chol2inv(t(L)), error = function(e) { return(NULL) })
     if (is.null(Sigma_inv)) { return(1e10) }
-    quad <- sum(Sigma_inv * S)  # = tr(Sigma^{-1} S) since S is symmetric
+    quad <- sum(Sigma_inv * S)
     return(logdet_2 + quad)
   }
 
@@ -883,8 +1044,7 @@ mle_chol_sigma12 <- function(X) {
     L <- build_L(tau)
     L_inv <- tryCatch(solve(L), error = function(e) { return(NULL) })
     if (is.null(L_inv)) { return(rep(0, 9)) }
-    Sigma_inv <- crossprod(L_inv)  # L^{-T} L^{-1}
-    # grad of (log|Sigma| + tr(Sigma^{-1} S)) wrt full L matrix.
+    Sigma_inv <- crossprod(L_inv)
     G <- 2 * (t(L_inv) - Sigma_inv %*% S %*% Sigma_inv %*% L)
     grad <- numeric(9)
     grad[1] <- G[1, 1] * L[1, 1]
@@ -899,23 +1059,28 @@ mle_chol_sigma12 <- function(X) {
     return(grad)
   }
 
-  # Starting Cholesky from sample covariance with sigma_12 zeroed.
-  S_init <- S; S_init[1, 2] <- 0; S_init[2, 1] <- 0
-  L_init <- tryCatch(t(chol(S_init)), error = function(e) {
-    diag(sqrt(diag(S) + 1e-6))
-  })
-  par_init <- c(log(max(L_init[1, 1], 1e-3)),
-                log(max(L_init[2, 2], 1e-3)),
-                L_init[3, 1], L_init[3, 2], log(max(L_init[3, 3], 1e-3)),
-                L_init[4, 1], L_init[4, 2], L_init[4, 3],
-                log(max(L_init[4, 4], 1e-3)))
+  # Starting point: if par_init supplied, use it (warm start); else derive
+  # from sample covariance with sigma_12 zeroed out.
+  if (is.null(par_init)) {
+    S_init <- S; S_init[1, 2] <- 0; S_init[2, 1] <- 0
+    L_init <- tryCatch(t(chol(S_init)), error = function(e) {
+      diag(sqrt(diag(S) + 1e-6))
+    })
+    par_init <- c(log(max(L_init[1, 1], 1e-3)),
+                  log(max(L_init[2, 2], 1e-3)),
+                  L_init[3, 1], L_init[3, 2], log(max(L_init[3, 3], 1e-3)),
+                  L_init[4, 1], L_init[4, 2], L_init[4, 3],
+                  log(max(L_init[4, 4], 1e-3)))
+  } else {
+    stopifnot(length(par_init) == 9)
+  }
   opt <- stats::optim(par_init, neg_loglik_raw, gr = neg_loglik_grad,
                       method = "BFGS",
                       control = list(reltol = 1e-10, maxit = 200))
   L_hat <- build_L(opt$par)
   Sigma_hat <- tcrossprod(L_hat)
   ll <- -N / 2 * (p * log(2 * pi) + opt$value)
-  return(list(mu = mu_hat, Sigma = Sigma_hat, logLik = ll,
+  return(list(mu = mu_hat, Sigma = Sigma_hat, logLik = ll, tau = opt$par,
               converged = opt$convergence == 0, iters = opt$counts[1]))
 }
 
@@ -925,11 +1090,23 @@ mle_chol_sigma12 <- function(X) {
 # Unconstrained: closed-form MLE (microseconds).
 # Constrained:  mle_chol_sigma12 (custom Cholesky optim with analytic
 #               gradient) instead of lavaan — ~40x faster per call.
-lrt_sigma12_device <- function(X) {
+#
+# Warm-start protocol (Step 1.5 of todo/006):
+#   par_init     : optional length-9 Cholesky-tau vector to seed the
+#                  constrained-fit optimizer (skips data-derived init).
+#   return_state : if TRUE, returns list(stat = ..., state = tau) so the
+#                  fitted tau can be passed back as par_init to subsequent
+#                  related fits (e.g., chan_smi_test_k1's LOO fits warm-
+#                  starting from the stacked-all fit).
+lrt_sigma12_device <- function(X, par_init = NULL, return_state = FALSE) {
   theta_un <- mle_complete_mvn(X)
   ll_un <- loglik_mvn(theta_un, X)
-  fit_cn <- mle_chol_sigma12(X)
-  return(2 * (ll_un - fit_cn$logLik))
+  fit_cn <- mle_chol_sigma12(X, par_init = par_init)
+  stat <- 2 * (ll_un - fit_cn$logLik)
+  if (return_state) {
+    return(list(stat = stat, state = fit_cn$tau))
+  }
+  return(stat)
 }
 
 

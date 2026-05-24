@@ -1,15 +1,17 @@
 # Current status — read this when resuming
 
-**Last updated:** 2026-05-22 end of session.
+**Last updated:** 2026-05-23 (comprehensive sweep complete).
 
 **Project:** JAIGP theory paper on deviance-bias correction for the Q-function under congenial multiple imputation, with applications to LRT model comparison and information-criterion model selection.
 
 ## How to resume
 
 1. Read this file.
-2. Read `IDEAS.md` — has the "Reframing note (2026-05-22)" at top explaining the major mid-session pivot. The archive section at the bottom preserves the original spectral-correction conception (do not draft from it).
+2. Read `IDEAS.md` — the "Comprehensive sweep results (2026-05-23)" section near the bottom has the freshest empirical landings: 60-cell W3 sweep + 18-cell W1 sweep + H3b rate arm + Phase 4 parameter-bias measurement, all run via the centralized `verification/run_all.R`. The "Reframing note (2026-05-22)" at top explains the major mid-session pivot.
 3. Read `CLAUDE.md` Scope + Core contribution sections.
-4. Skim the most recent todo file you haven't addressed (probably `todo/004-simulation-hypotheses.md` once it's written; otherwise the next-action section below).
+4. The active work item is **manuscript drafting** — all empirical witnesses are now in. Open side artifacts: `todo/007-sympy-proof-verification.md` (Sympy/Quarto algebra-verification companion to W1, pickup-able cold).
+
+**Reproducing the empirical evidence**: `Rscript verification/run_all.R 2000 prod all 20`. Single command, ~3 hours on 20 cores, all 5 phases. Outputs at `verification/cache/run_all-prod/phase{0,1,2,3,4,5}/`.
 
 ## What happened this session
 
@@ -79,7 +81,10 @@ verification/
 - `todo/001-literature-and-hooks.md` — closed (Phase 1 corpus acquisition)
 - `todo/002-verification-implementation.md` — Chan-Meng reading queue, mostly closed
 - `todo/003-references-to-acquire.md` — living reference backlog
-- `todo/004-simulation-hypotheses.md` — *(next to write)*
+- `todo/004-simulation-hypotheses.md` — closed (W1/W2/W3 preregistered at SHA ddc9037; results in IDEAS.md)
+- `todo/005-comprehensive-sweep-hypotheses.md` — closed (sweep complete 2026-05-23; H3b partial)
+- `todo/006-comprehensive-sweep-execution.md` — closed (executed)
+- `todo/007-sympy-proof-verification.md` — open side artifact (Sympy/Quarto algebra-verification notebook spec; pickup-able cold)
 
 ## External issues filed
 
