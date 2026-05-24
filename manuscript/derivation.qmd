@@ -18,10 +18,16 @@ format:
 ## Purpose and how to read this {#sec-purpose}
 
 This is the canonical, human-readable derivation of the Q-function deviance-bias
-decomposition. It is the source of truth for the theory; the manuscript §3
-distills from it, and MI-IC's v4.5 derivation cites it. Its machine-checked
-algebra companion is `proof-verification-sympy.qmd`; its numerical witness is W1
-(`verification/W1-sweep.R`).
+decomposition — the source of truth for the theory, which the manuscript §3
+distills and the companion MI-IC paper cites.
+
+**Verification artifacts referenced below.** *W1* is the pre-registered numerical
+witness: a Monte-Carlo simulation that estimates the bias terms
+$\mathbb{E}[A],\mathbb{E}[B],\mathbb{E}[T]$ across configurations and compares them to the
+analytic $\operatorname{tr}(\mathrm{RIV})$. The *fixture* is a single simulated dataset
+used for an exact, replicate-level cross-check. `proof-verification-sympy.qmd` is
+the Sympy companion that verifies the trace identities symbolically and the MVN
+instantiation numerically. A step so verified is flagged `[mc]` (machine-checked).
 
 **Layout.** The main column carries the mathematics: each definition, its
 equation, and a citation. **Provenance lives in the right margin** — the source's
@@ -30,13 +36,12 @@ own equation/theorem number, the reproduced source equation, the
 pointer survives re-pagination by `lit-sync`), and any our-notation-vs-source
 mapping. A reader follows the math in the column and audits in the margin.
 
-**Status flags** (used in the ledger and margins): `[cited]` — established in a
-source we hold and have read in-session; `[machine-checked]` — verified in
-`proof-verification-sympy.qmd`; `[derived]` — proved here from earlier entries.
+**Status flags.** `[cited]` — established in a source we hold and have read
+in-session; `[mc]` — machine-checked in `proof-verification-sympy.qmd`;
+`[derived]` — proved here from earlier entries.
 
-**Document stages.** (1) Notation and quantities — below. (2) The ledger
-(regularity conditions, algebraic axioms, lemmas). (3) The tagged derivation.
-Stages 2-3 are stubs pending review of Stage 1.
+**Document stages.** (1) Notation and quantities; (2) the ledger (regularity
+conditions, algebraic axioms, lemmas); (3) the tagged derivation.
 
 ---
 
@@ -113,7 +118,7 @@ form, @vaartAsymptoticStatistics1998a [`:2320`]). For MVN, the pattern-mixture s
 **D7 (missing information and the information identity).**
 $I_{\text{mis}\mid\text{obs}}(\theta) := I_{\text{com}}(\theta) - I_{\text{obs}}(\theta)$,
 so
-$$ I_{\text{com}}(\theta) = I_{\text{obs}}(\theta) + I_{\text{mis}\mid\text{obs}}(\theta). $$
+$$ I_{\text{com}}(\theta) = I_{\text{obs}}(\theta) + I_{\text{mis}\mid\text{obs}}(\theta). $$ {#eq-info-identity}
 The missing information is positive semidefinite, $I_{\text{mis}\mid\text{obs}}\succeq 0$.
 
 ::: {.column-margin}
@@ -125,13 +130,14 @@ $I_m=-\partial^2 H(\theta\mid\theta)/\partial\theta^2$ [`:1495`], eq (3.19) [`:1
 @schaferAnalysisIncompleteMultivariate1997. Taking $\mathbb{E}_{Y_{\text{obs}}}$ gives the
 identity for the Fisher informations D5-D6 (his conditional $I_c,I_o,I_m$ average to
 our $I_{\text{com}},I_{\text{obs}},I_{\text{mis}\mid\text{obs}}$).
-$I_{\text{mis}\mid\text{obs}}\succeq 0$ `[mc]` (min eig $\approx 0$ at the W1 fixture,
+$I_{\text{mis}\mid\text{obs}}\succeq 0$ `[mc]` (min eigenvalue $\approx 0$ on the fixture,
 `proof-verification-sympy.qmd`).
 :::
 
 ### The relative increase in variance (RIV) {#sec-riv}
 
-**D8 (RIV — definition).** $\mathrm{RIV}(\theta) := I_{\text{obs}}^{-1}\, I_{\text{mis}\mid\text{obs}}$.
+**D8 (RIV — definition).**
+$$ \mathrm{RIV}(\theta) := I_{\text{obs}}^{-1}\, I_{\text{mis}\mid\text{obs}}. $$ {#eq-riv}
 
 ::: {.column-margin}
 **Source (name, scalar form).** Rubin's relative increase in variance due to
@@ -144,7 +150,7 @@ $T_m=\bar U_m+(1+m^{-1})B_m$ [`:2179`].
 
 **Derived form** (used throughout). By D7 ($I_{\text{mis}\mid\text{obs}}=I_{\text{com}}-I_{\text{obs}}$),
 matrix distributivity, and $I_{\text{obs}}^{-1}I_{\text{obs}}=I_k$,
-$$ \mathrm{RIV} = I_{\text{obs}}^{-1}I_{\text{com}} - I_k, \qquad \operatorname{tr}(\mathrm{RIV}) = \operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{com}}) - k. $$
+$$ \mathrm{RIV} = I_{\text{obs}}^{-1}I_{\text{com}} - I_k, \qquad \operatorname{tr}(\mathrm{RIV}) = \operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{com}}) - k. $$ {#eq-trriv}
 
 ::: {.column-margin}
 **Algebra** [ledger A1-A3]. Trace step by linearity
@@ -155,12 +161,12 @@ $\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$ [`:182`].
 :::
 
 ::: {.callout-note collapse="true" appearance="simple"}
-## Identification: RIV equals Rubin's $r_\infty$ `[derived; machine-checked]`
+## Identification: RIV equals Rubin's $r_\infty$ `[derived; mc]`
 Under congenial proper MI as $M\to\infty$: $\bar U_\infty = I_{\text{com}}^{-1}$
 (complete-data MLE variance) and $T_\infty = I_{\text{obs}}^{-1}$ (variance recovery;
 ledger lemma), so $B_\infty = I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$ and
 $$ r_\infty = B_\infty \bar U_\infty^{-1} = (I_{\text{obs}}^{-1}-I_{\text{com}}^{-1})I_{\text{com}} = I_{\text{obs}}^{-1}I_{\text{com}} - I_k = \mathrm{RIV}. $$
-Numerically confirmed against the W1 cache in `proof-verification-sympy.qmd`.
+Confirmed numerically against W1 in `proof-verification-sympy.qmd`.
 :::
 
 ::: {.callout-important}
@@ -184,8 +190,7 @@ the proper-MI limit).
 
 ::: {.column-margin}
 **Source.** Deterministic-FIML evaluation `barQ_fiml_analytic`
-(`verification/00-setup.R`), `[machine-checked]` equal to this construction at the
-W1 fixture.
+(`verification/00-setup.R`), `[mc]` equal to this construction on the fixture.
 :::
 
 ::: {.callout-warning}
@@ -210,11 +215,11 @@ $$
 $$
 T := A + B = \bar Q_\infty(\hat\theta_{\text{obs}}) - \ell_{\text{com}}(\hat\theta_{\text{com}})
 \quad(\text{total deviance bias}).
-$$
+$$ {#eq-decomp}
 
 ::: {.column-margin}
-**Source.** This work; operationalized in `verification/W1-sweep.R` (`T_r`, `A_r`,
-`B_r`). The theorem (Stage 3): $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$,
+**Source.** This work; operationalized in the W1 simulation (`verification/`).
+The theorem (Stage 3): $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$,
 $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$, $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})$.
 :::
 
@@ -259,8 +264,8 @@ $\mu$ and $\operatorname{vech}(\Omega)$ as $n\Omega^{-1}$ and
 $\tfrac{n}{2}D_m'(\Omega^{-1}\otimes\Omega^{-1})D_m$ [`:1800`-`:1813`]
 ($\Omega\!\leftrightarrow\!\Sigma$, $m\!\leftrightarrow\!p$, $n\!\leftrightarrow\!N$).
 $I_{\text{obs}}$ is the pattern-mixture sum of per-pattern marginal informations
-(`fisher_info_obs_mvn`, `verification/00-setup.R`); `[machine-checked]` against this
-closed form in `proof-verification-sympy.qmd`.
+(`fisher_info_obs_mvn`, `verification/00-setup.R`); `[mc]` against this closed form
+in `proof-verification-sympy.qmd`.
 :::
 
 ---
@@ -270,7 +275,7 @@ closed form in `proof-verification-sympy.qmd`.
 The registry of everything the derivation *assumes or invokes*; Stage 3 tags each
 proof step with the entries below. Unlike the narrative — where provenance sits in
 the margin — the ledger *is* the provenance registry, so each entry carries its
-source inline. Status flags: `[cited]`, `[machine-checked]`, `[derived]`.
+source inline. Status flags: `[cited]`, `[mc]`, `[derived]`.
 
 ### Regularity conditions (R) {#sec-reg}
 
@@ -356,8 +361,8 @@ $U_{\text{obs}}=\mathbb{E}[U_{\text{com}}\mid Y_{\text{obs}}]$; hence by A8,
 $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=\operatorname{Var}(U_{\text{obs}})=I_{\text{obs}}$.
 — Schafer decomposition [@schaferAnalysisIncompleteMultivariate1997, `:944`], $Q/H$ [`:951`/`:964`], 2nd-derivative analog (3.19) [`:1501`]; score-mean-zero [@vaartAsymptoticStatistics1998a, `:2320`].
 
-**L2 (variance of the estimator gap).** `[derived; machine-checked]`
-$$ \operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}}) = I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}. $$
+**L2 (variance of the estimator gap).** `[derived; mc]`
+$$ \operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}}) = I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}. $$ {#eq-varGap}
 *Proof.* By L1, $\hat\theta_\bullet-\theta_0\approx I_\bullet^{-1}U_\bullet$; by L3,
 $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=I_{\text{obs}}$, so
 $\operatorname{Cov}(\hat\theta_{\text{obs}},\hat\theta_{\text{com}})=I_{\text{obs}}^{-1}I_{\text{obs}}I_{\text{com}}^{-1}=I_{\text{com}}^{-1}$;
@@ -379,13 +384,13 @@ machine-checked in `proof-verification-sympy.qmd`. Let $\theta_0$ denote the
 data-generating parameter, $\tilde\phi$ the imputation parameter (a posterior
 draw under proper MI; $\hat\theta_{\text{obs}}$ deterministically under FIML), and
 $S,\, \mathcal{J}$ the score and observed information. The detailed second-order
-bookkeeping follows the companion derivation `mi_deviance_bias_derivation_v4.qmd`
-(MI-IC), translated here to general-likelihood notation.
+bookkeeping follows the companion MI-IC derivation, translated here to
+general-likelihood notation.
 
 ### Theorem {#sec-thm}
 
 **Theorem (Q-function deviance bias).** Under R1-R7, to leading order
-$$ \mathbb{E}[T] = \mathbb{E}\big[\bar Q_\infty(\hat\theta_{\text{obs}}) - \ell_{\text{com}}(\hat\theta_{\text{com}};Y)\big] = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + O(n^{-1}), $$
+$$ \mathbb{E}[T] = \mathbb{E}\big[\bar Q_\infty(\hat\theta_{\text{obs}}) - \ell_{\text{com}}(\hat\theta_{\text{com}};Y)\big] = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + O(n^{-1}), $$ {#eq-theorem}
 decomposing (D10-D12) as $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ (imputation
 bias) and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ (estimation
 mismatch). The deviance-scale statement multiplies by 2.
@@ -407,7 +412,7 @@ asymptotically unbiased for $\theta_0$, so $\mathbb{E}[\cdot\,(\cdot)^\top]$ is 
 $$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})\big)+O(n^{-3/2}). $$
 
 **B4.** Substitute L2, then reduce the trace:
-$$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}(I_{\text{obs}}^{-1}-I_{\text{com}}^{-1})\big)\ \text{[L2]}\ = -\tfrac12\big(\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{com}})-k\big)\ \text{[A1, A2, A3]}\ = -\tfrac12\operatorname{tr}(\mathrm{RIV})\ \text{[D8]}. $$
+$$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}(I_{\text{obs}}^{-1}-I_{\text{com}}^{-1})\big)\ \text{[L2]}\ = -\tfrac12\big(\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{com}})-k\big)\ \text{[A1, A2, A3]}\ = -\tfrac12\operatorname{tr}(\mathrm{RIV})\ \text{[D8]}. $$ {#eq-termB}
 `[mc]` `proof-verification-sympy.qmd` §"Term B" (`B + tr(RIV)/2 == 0`).
 
 ### Term A $=+\operatorname{tr}(\mathrm{RIV})$ (imputation bias) {#sec-termA}
@@ -445,23 +450,23 @@ contributions cancel — $(A)$ pairs the bias of $\tilde\phi$ with the entropy
 gradient, $(C)$ the curvature of the conditional cross-entropy with $\operatorname{Var}(\tilde\phi)$,
 linked through the information geometry of $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$:
 $$ (A)+(C) = O(n^{-1}). $$
-Verified exactly in the normal and exponential models (companion v4 §Step 7). To
-leading order only the main piece $(B)$ survives:
+Verified exactly in the normal and exponential models (companion MI-IC derivation).
+To leading order only the main piece $(B)$ survives:
 $A = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})\big)+O(n^{-1})$ [A2, A8].
 
 **A5.** Under congenial proper imputation the imputation parameter satisfies
 $\tilde\phi=\hat\theta_{\text{obs}}+\Delta\tilde\phi$ with $\operatorname{Cov}(\Delta\tilde\phi,\hat\theta_{\text{obs}})=0$ [R4, R5],
 so $\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ [L1].
 Hence
-$$ \mathbb{E}[A] = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\,I_{\text{obs}}^{-1}\big) + O(n^{-1}) = \operatorname{tr}(\mathrm{RIV}) + O(n^{-1})\ \text{[D7, D8]}. $$
+$$ \mathbb{E}[A] = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\,I_{\text{obs}}^{-1}\big) + O(n^{-1}) = \operatorname{tr}(\mathrm{RIV}) + O(n^{-1})\ \text{[D7, D8]}. $$ {#eq-termA}
 `[mc]` `proof-verification-sympy.qmd` §"Term A" (`A - tr(RIV) == 0`) for the trace
 identity; the MVN FIML instantiation of $\bar Q_\infty$ matches the R code to machine
 precision (§"Numerical cross-check").
 
 ### Combine: $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ {#sec-combine}
 
-$$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + O(n^{-1}) $$
-[D10-D12]. `[mc]` `proof-verification-sympy.qmd` (`T - tr(RIV)/2 == 0`). $\qquad\blacksquare$
+$$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + O(n^{-1}) $$ {#eq-combine}
+[D10-D12], combining the Term A and Term B results. `[mc]` `proof-verification-sympy.qmd` (`T - tr(RIV)/2 == 0`). $\qquad\blacksquare$
 
 ::: {.callout-note}
 ## Leading order, finite-sample residual, and the verification stack
@@ -469,8 +474,8 @@ The identities $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$ and $\mathbb{E}[
 hold *to leading order*; each carries an $O(n^{-1})$ correction (Term A's from the
 $(A)+(C)$ cancellation in A4). These per-term residuals are real at finite $n$ —
 witness W1 sees the individual terms $\sim$10-20% off while their **sum**
-$\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ holds within MCSE, because the residuals
-cancel. The rigor stack: this tagged derivation (algebra), `proof-verification-sympy.qmd`
+$\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ holds within Monte-Carlo error, because the
+residuals cancel. The rigor stack: this tagged derivation (algebra), `proof-verification-sympy.qmd`
 (symbolic trace identities + MVN instantiation to machine precision), and W1
 (pre-registered numerical witness across 12 cells, two engines).
 :::
