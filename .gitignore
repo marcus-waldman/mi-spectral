@@ -26,6 +26,7 @@ _site/
 
 # Rendered proof-verification notebook (qmd + fixture are committed; HTML is not)
 manuscript/proof-verification-sympy.html
+manuscript/derivation.html
 
 # OS / editor
 .DS_Store
