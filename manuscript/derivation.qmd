@@ -586,7 +586,7 @@ and drop the quoted text.
 
 ### Schafer (1997) — Analysis of Incomplete Multivariate Data {#sec-src-schafer}
 
-@schaferAnalysisIncompleteMultivariate1997. Invoked by D1, D4, D6, D7, R1, L3, Term A step A1.
+[@schaferAnalysisIncompleteMultivariate1997]. Invoked by D1, D4, D6, D7, R1, L3, Term A step A1.
 
 **Complete-data likelihood factorization, eq (3.2)** [`:944`].
 
@@ -626,7 +626,7 @@ D8 disambiguation; this is *not* RIV.
 
 ### Magnus & Neudecker (2019) — Matrix Differential Calculus {#sec-src-magnus}
 
-@magnusMatrixDifferentialCalculus2019. Invoked by D14, D15, A5.
+[@magnusMatrixDifferentialCalculus2019]. Invoked by D14, D15, A5.
 
 **Half-vectorization** [`:1652`] (here for $3\times3$ symmetric $A$).
 
@@ -649,7 +649,7 @@ D8 disambiguation; this is *not* RIV.
 
 ### van der Vaart (1998) — Asymptotic Statistics {#sec-src-vaart}
 
-@vaartAsymptoticStatistics1998a. Invoked by D5, D6, R1, R2, A8, A9, L1, L3.
+[@vaartAsymptoticStatistics1998a]. Invoked by D5, D6, R1, R2, A8, A9, L1, L3.
 
 **Score identities** [`:2320`].
 
@@ -670,7 +670,7 @@ the joint full/null-restricted form at `:7392`-`:7393` underpins L3's score cova
 
 ### Meng (1994) — Multiple-Imputation Inferences with Uncongenial Sources of Input {#sec-src-meng}
 
-@mengMultipleImputationInferencesUncongenial1994a. Invoked by D1, D13, R4, R5, R6, L4.
+[@mengMultipleImputationInferencesUncongenial1994a]. Invoked by D1, D13, R4, R5, R6, L4.
 Complete data $Z_{c}=\{X, Y_{inc}, I\}$, observed data $Z_{o}=\{X, Y_{obs}, I, R_{inc}\}$ [`:95`].
 
 **Definition 1 (congeniality), eqs (2.3.1)-(2.3.2)** [`:102`-`:110`].
@@ -694,7 +694,7 @@ Complete data $Z_{c}=\{X, Y_{inc}, I\}$, observed data $Z_{o}=\{X, Y_{obs}, I, R
 
 ### Rubin (1987) — Multiple Imputation for Nonresponse in Surveys {#sec-src-rubin1987}
 
-@rubinMultipleImputationNonresponse1987. Invoked by D8, R5, R7, L4, and the D9 notation-clash callout.
+[@rubinMultipleImputationNonresponse1987]. Invoked by D8, R5, R7, L4, and the D9 notation-clash callout.
 
 **Pooled estimate and the variance components** [`:2161`, `:2167`, `:2173`, `:2179`].
 
@@ -706,7 +706,7 @@ Complete data $Z_{c}=\{X, Y_{inc}, I\}$, observed data $Z_{o}=\{X, Y_{obs}, I, R
 
 ### Rubin (1976) — Inference and Missing Data {#sec-src-rubin1976}
 
-@rubinInferenceMissingData1976b. Invoked by D2, R3 (ignorability).
+[@rubinInferenceMissingData1976b]. Invoked by D2, R3 (ignorability).
 
 **Ignorability for likelihood / Bayesian inference (abstract)** [`:39`].
 
@@ -714,7 +714,7 @@ Complete data $Z_{c}=\{X, Y_{inc}, I\}$, observed data $Z_{o}=\{X, Y_{obs}, I, R
 
 ### Little & Rubin (2019) — Statistical Analysis with Missing Data, 3rd ed. {#sec-src-little}
 
-@littleStatisticalAnalysisMissing2019. Invoked by D1, D2, R3.
+[@littleStatisticalAnalysisMissing2019]. Invoked by D1, D2, R3.
 
 **MAR definition** [`:438`-`:444`].
 
@@ -726,7 +726,7 @@ Complete data $Z_{c}=\{X, Y_{inc}, I\}$, observed data $Z_{o}=\{X, Y_{obs}, I, R
 
 ### Anderson (2003) — An Introduction to Multivariate Statistical Analysis {#sec-src-anderson}
 
-@andersonIntroductionMultivariateStatistical2003. Invoked by A7 (Gaussian conditional / Schur complement).
+[@andersonIntroductionMultivariateStatistical2003]. Invoked by A7 (Gaussian conditional / Schur complement).
 
 **Conditional covariance (Schur complement)** [`:1582`].
 
@@ -738,7 +738,7 @@ Complete data $Z_{c}=\{X, Y_{inc}, I\}$, observed data $Z_{o}=\{X, Y_{obs}, I, R
 
 ### Petersen & Pedersen — The Matrix Cookbook {#sec-src-petersen}
 
-@petersen2008matrix. Invoked by A1-A4, A6, and the @eq-trriv trace reduction.
+[@petersen2008matrix]. Invoked by A1-A4, A6, and the @eq-trriv trace reduction.
 
 **§1.1 Trace** [`:177`-`:187`]. In our Mathpix conversion this section is a single
 unnumbered aligned display, so the Cookbook's own inline equation numbers are **not**
