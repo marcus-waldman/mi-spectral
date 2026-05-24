@@ -22,6 +22,15 @@ from pathlib import Path
 
 PATTERN = re.compile(r"(?<!\w)@(?!TODO:)([A-Za-z][A-Za-z0-9_:\-]+)")
 
+# Quarto cross-reference prefixes (@eq-foo, @fig-bar, @sec-baz, ...) are not
+# bibliographic citekeys — they reference equations/figures/tables/sections/
+# theorem-environments within the document. Skip them so crossrefs don't trip
+# the citation check. (BBT citekeys here are camelCase with no early hyphen,
+# so matching "<prefix>-" is unambiguous.)
+CROSSREF_PREFIX = re.compile(
+    r"^(eq|fig|tbl|sec|lst|thm|lem|cor|prp|cnj|def|exm|exr|sol|rem)-"
+)
+
 
 def main() -> int:
     raw = sys.stdin.read()
@@ -68,6 +77,8 @@ def main() -> int:
     seen = set()
     for m in PATTERN.finditer(new_content):
         citekey = m.group(1)
+        if CROSSREF_PREFIX.match(citekey):
+            continue  # Quarto crossref, not a citation
         if citekey in seen:
             continue
         seen.add(citekey)

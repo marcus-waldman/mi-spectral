@@ -466,7 +466,7 @@ precision (§"Numerical cross-check").
 ### Combine: $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ {#sec-combine}
 
 $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + O(n^{-1}) $$ {#eq-combine}
-[D10-D12], combining the Term A and Term B results. `[mc]` `proof-verification-sympy.qmd` (`T - tr(RIV)/2 == 0`). $\qquad\blacksquare$
+[D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. `[mc]` `proof-verification-sympy.qmd` (`T - tr(RIV)/2 == 0`). $\qquad\blacksquare$
 
 ::: {.callout-note}
 ## Leading order, finite-sample residual, and the verification stack
