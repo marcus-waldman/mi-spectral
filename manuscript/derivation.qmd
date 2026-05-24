@@ -21,8 +21,8 @@ This is the canonical, human-readable derivation of the Q-function deviance-bias
 decomposition — the source of truth for the theory, which the manuscript §3
 distills and the companion MI-IC paper cites.
 
-**Verification artifacts referenced below.** *W1* is the pre-registered numerical
-witness: a Monte-Carlo simulation that estimates the bias terms
+**Verification artifacts referenced below.** The *numerical witness* is a
+pre-registered Monte-Carlo simulation (`verification/`) that estimates the bias terms
 $\mathbb{E}[A],\mathbb{E}[B],\mathbb{E}[T]$ across configurations and compares them to the
 analytic $\operatorname{tr}(\mathrm{RIV})$. The *fixture* is a single simulated dataset
 used for an exact, replicate-level cross-check. `proof-verification-sympy.qmd` is
@@ -80,11 +80,11 @@ R-entries, not definitions.
 ### Likelihoods and estimators {#sec-likelihoods}
 
 **D3 (complete-data log-likelihood and MLE).**
-$\ell_{\text{com}}(\theta; Y) = \sum_i \log \phi(Y_i; \mu,\Sigma)$;
+$\ell_{\text{com}}(\theta; Y) = \sum_i \log f_{\mathcal{N}}(Y_i; \mu,\Sigma)$;
 $\hat\theta_{\text{com}} = \arg\max_\theta \ell_{\text{com}}(\theta; Y)$.
 
 **D4 (observed-data log-likelihood and MLE).**
-$\ell_{\text{obs}}(\theta; Y_{\text{obs}}) = \sum_i \log \phi(Y_{i,\text{obs}}; \mu_{O_i},\Sigma_{O_iO_i})$;
+$\ell_{\text{obs}}(\theta; Y_{\text{obs}}) = \sum_i \log f_{\mathcal{N}}(Y_{i,\text{obs}}; \mu_{O_i},\Sigma_{O_iO_i})$;
 $\hat\theta_{\text{obs}} = \arg\max_\theta \ell_{\text{obs}}$ (the FIML estimator).
 
 ::: {.column-margin}
@@ -166,7 +166,7 @@ Under congenial proper MI as $M\to\infty$: $\bar U_\infty = I_{\text{com}}^{-1}$
 (complete-data MLE variance) and $T_\infty = I_{\text{obs}}^{-1}$ (variance recovery;
 ledger lemma), so $B_\infty = I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$ and
 $$ r_\infty = B_\infty \bar U_\infty^{-1} = (I_{\text{obs}}^{-1}-I_{\text{com}}^{-1})I_{\text{com}} = I_{\text{obs}}^{-1}I_{\text{com}} - I_k = \mathrm{RIV}. $$
-Confirmed numerically against W1 in `proof-verification-sympy.qmd`.
+Confirmed numerically in `proof-verification-sympy.qmd`.
 :::
 
 ::: {.callout-important}
@@ -218,7 +218,7 @@ T := A + B = \bar Q_\infty(\hat\theta_{\text{obs}}) - \ell_{\text{com}}(\hat\the
 $$ {#eq-decomp}
 
 ::: {.column-margin}
-**Source.** This work; operationalized in the W1 simulation (`verification/`).
+**Source.** This work; operationalized in the numerical witness (`verification/`).
 The theorem (Stage 3): $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$,
 $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$, $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})$.
 :::
@@ -273,93 +273,151 @@ in `proof-verification-sympy.qmd`.
 ## Stage 2 — The ledger (R / A / L) {#sec-ledger}
 
 The registry of everything the derivation *assumes or invokes*; Stage 3 tags each
-proof step with the entries below. Unlike the narrative — where provenance sits in
-the margin — the ledger *is* the provenance registry, so each entry carries its
-source inline. Status flags: `[cited]`, `[mc]`, `[derived]`.
+proof step with the entries below. As in Stage 1, the statement and status flag
+sit in the column and provenance (source, equation/theorem number, `md:line`)
+sits in the margin. Status flags: `[cited]`, `[mc]`, `[derived]`.
 
 ### Regularity conditions (R) {#sec-reg}
 
 **R1 (regular model).** `[cited]` Complete-data model differentiable in quadratic
 mean, Lipschitz log-density, consistent MLE; differentiation and integration
 interchange, so $P_\theta\dot\ell_\theta=0$ (scores mean-zero) and
-$P_\theta\ddot\ell_\theta=-I_\theta$. — van der Vaart Thm 5.39 conditions
-[@vaartAsymptoticStatistics1998a, `:7388`]; score identities [`:2320`]; Schafer's
-"sufficient regularity to interchange differentiation and integration"
-[@schaferAnalysisIncompleteMultivariate1997, `:1480`].
+$P_\theta\ddot\ell_\theta=-I_\theta$.
+
+::: {.column-margin}
+**Source.** van der Vaart Thm 5.39 conditions [@vaartAsymptoticStatistics1998a, `:7388`];
+score identities [`:2320`]; Schafer's "sufficient regularity to interchange
+differentiation and integration" [@schaferAnalysisIncompleteMultivariate1997, `:1480`].
+:::
 
 **R2 (nonsingular information).** `[cited]` $I_{\text{com}},I_{\text{obs}}\succ 0$.
-— van der Vaart §5.5 [@vaartAsymptoticStatistics1998a].
 
-**R3 (ignorability).** `[cited]` MAR with parameters distinct from $\theta$. —
-@rubinInferenceMissingData1976b; @littleStatisticalAnalysisMissing2019.
+::: {.column-margin}
+**Source.** van der Vaart §5.5 [@vaartAsymptoticStatistics1998a].
+:::
 
-**R4 (congeniality).** `[cited]` = D13. —
-@mengMultipleImputationInferencesUncongenial1994a Def 1/2 [`:99`/`:118`].
+**R3 (ignorability).** `[cited]` MAR with parameters distinct from $\theta$.
 
-**R5 (properness).** `[cited]` Second-moment proper imputation. —
-@rubinMultipleImputationNonresponse1987; Meng cond. (c)
+::: {.column-margin}
+**Source.** @rubinInferenceMissingData1976b; @littleStatisticalAnalysisMissing2019.
+:::
+
+**R4 (congeniality).** `[cited]` = D13.
+
+::: {.column-margin}
+**Source.** @mengMultipleImputationInferencesUncongenial1994a Def 1/2 [`:99`/`:118`].
+:::
+
+**R5 (properness).** `[cited]` Second-moment proper imputation.
+
+::: {.column-margin}
+**Source.** @rubinMultipleImputationNonresponse1987; Meng cond. (c)
 [@mengMultipleImputationInferencesUncongenial1994a, `:506`].
+:::
 
 **R6 (self-efficiency).** `[cited]` No $\lambda$ makes
 $\operatorname{MSE}(\lambda\hat\theta(W_o)+(1-\lambda)\hat\theta(W_c))<\operatorname{MSE}(\hat\theta(W_c))$.
-— @mengMultipleImputationInferencesUncongenial1994a Def 5 [`:450`], cond. (a) [`:504`].
+
+::: {.column-margin}
+**Source.** @mengMultipleImputationInferencesUncongenial1994a Def 5 [`:450`], cond. (a) [`:504`].
+:::
 
 **R7 ($M\to\infty$).** `[cited]` Infinite-imputation idealization ($\bar Q_\infty,T_\infty$);
-finite-$M$ corrections are Rubin's. — @rubinMultipleImputationNonresponse1987.
+finite-$M$ corrections are Rubin's.
+
+::: {.column-margin}
+**Source.** @rubinMultipleImputationNonresponse1987.
+:::
 
 ### Algebraic axioms and properties (A) {#sec-alg}
 
 **A1 (trace linearity).** `[cited]` $\operatorname{Tr}(A+B)=\operatorname{Tr}A+\operatorname{Tr}B$.
-— Matrix Cookbook §1.1 [@petersen2008matrix, `:183`].
+
+::: {.column-margin}
+**Source.** Matrix Cookbook §1.1 [@petersen2008matrix, `:183`].
+:::
 
 **A2 (trace cyclicity).** `[cited]` $\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$, $\operatorname{Tr}(ABC)=\operatorname{Tr}(BCA)$.
-— [@petersen2008matrix §1.1, `:182`/`:184`].
+
+::: {.column-margin}
+**Source.** [@petersen2008matrix §1.1, `:182`/`:184`].
+:::
 
 **A3 ($\operatorname{tr}I_k=k$).** `[cited]` From $\operatorname{Tr}(A)=\sum_i A_{ii}$.
-— [@petersen2008matrix §1.1, `:179`].
+
+::: {.column-margin}
+**Source.** [@petersen2008matrix §1.1, `:179`].
+:::
 
 **A4 (vec / Kronecker).** `[cited]` $\operatorname{vec}(AXB)=(B^\top\!\otimes A)\operatorname{vec}X$;
 $\operatorname{Tr}(A^\top B)=\operatorname{vec}(A)^\top\operatorname{vec}(B)$.
-— [@petersen2008matrix §10.2.2, `:3345`/`:3346`].
+
+::: {.column-margin}
+**Source.** [@petersen2008matrix §10.2.2, `:3345`/`:3346`].
+:::
 
 **A5 (duplication matrix).** `[cited]` = D14; plus
 $(D_n'(A\otimes A)D_n)^{-1}=(D_n'D_n)^{-1}D_n'(A^{-1}\!\otimes A^{-1})D_n(D_n'D_n)^{-1}$.
-— Magnus-Neudecker §15 [@magnusMatrixDifferentialCalculus2019, `:1658`/`:1692`].
+
+::: {.column-margin}
+**Source.** Magnus-Neudecker §15 [@magnusMatrixDifferentialCalculus2019, `:1658`/`:1692`].
+:::
 
 **A6 (symmetry / inverse-transpose).** `[cited]` Information matrices are symmetric,
 $(A^{-1})^\top=(A^\top)^{-1}$, $\operatorname{Tr}(A)=\operatorname{Tr}(A^\top)$.
-— [@petersen2008matrix §1.1, `:181`]. (The symmetry `symmetric_reduce` enforces in
-`proof-verification-sympy.qmd`.)
+
+::: {.column-margin}
+**Source.** [@petersen2008matrix §1.1, `:181`]. (The symmetry `symmetric_reduce`
+enforces in `proof-verification-sympy.qmd`.)
+:::
 
 **A7 (Gaussian conditional / Schur complement).** `[cited]` For $X\sim N(\mu,\Sigma)$
 partitioned $(X^{(1)},X^{(2)})$, the conditional $X^{(1)}\mid X^{(2)}=x^{(2)}$ is normal
 with mean $\mu^{(1)}+\Sigma_{12}\Sigma_{22}^{-1}(x^{(2)}-\mu^{(2)})$ and covariance
 $\Sigma_{11\cdot 2}=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}$.
-— Anderson §2.5.1 [@andersonIntroductionMultivariateStatistical2003, `:1582`/`:1595`].
+
+::: {.column-margin}
+**Source.** Anderson §2.5.1 [@andersonIntroductionMultivariateStatistical2003, `:1582`/`:1595`].
 (Term A's FIML Q-function; matches `barQ_fiml_analytic`'s `cond_V`.)
+:::
 
 **A8 (expectation identities).** `[cited]` Linearity of $\mathbb{E}$; iterated expectation
 $\mathbb{E}[\mathbb{E}(X\mid Y)]=\mathbb{E}X$; conditional expectation as $L^2$ projection
 (residual orthogonality); quadratic-form expectation
 $\mathbb{E}[v^\top M v]=\operatorname{tr}(M\,\mathbb{E}[vv^\top])$ (via A2 + linearity).
-— van der Vaart Ch 11 [@vaartAsymptoticStatistics1998a, `:5147`/`:5161`/`:5170`].
+
+::: {.column-margin}
+**Source.** van der Vaart Ch 11 [@vaartAsymptoticStatistics1998a, `:5147`/`:5161`/`:5170`].
+:::
 
 **A9 (second-order Taylor).** `[cited]` $f(\theta_1)-f(\theta_0)=\nabla f(\theta_0)^\top\delta+\tfrac12\delta^\top\nabla^2 f(\theta_0)\delta+o(\|\delta\|^2)$, $\delta=\theta_1-\theta_0$.
-— van der Vaart §5.5 (score linearization) [@vaartAsymptoticStatistics1998a].
+
+::: {.column-margin}
+**Source.** van der Vaart §5.5 (score linearization) [@vaartAsymptoticStatistics1998a].
+:::
 
 ### Lemmas (L) {#sec-lem}
 
 **L1 (MLE asymptotic linearity and normality).** `[cited]` Under R1-R2,
 $$ \sqrt{n}(\hat\theta_n-\theta_0)=\tfrac{1}{\sqrt n}\textstyle\sum_i I_{\theta_0}^{-1}\dot\ell_{\theta_0}(X_i)+o_P(1)\;\rightsquigarrow\;N(0,I_{\theta_0}^{-1}), $$
 hence $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$, $\operatorname{Var}(\hat\theta_{\text{com}})=I_{\text{com}}^{-1}$.
-— van der Vaart Thm 5.39 [@vaartAsymptoticStatistics1998a, `:7388`/`:7393`; covariance $I_\theta^{-1}$ at `:4170`].
+
+::: {.column-margin}
+**Source.** van der Vaart Thm 5.39 [@vaartAsymptoticStatistics1998a, `:7388`/`:7393`;
+covariance $I_\theta^{-1}$ at `:4170`].
+:::
 
 **L3 (Fisher/Louis score identity).** `[cited+derived]` Differentiating the loglik
 decomposition $\ell(\theta\mid Y)=\ell(\theta\mid Y_{\text{obs}})+\log P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)+c$
 once and taking $\mathbb{E}[\cdot\mid Y_{\text{obs}}]$ (conditional score mean-zero, R1) gives
 $U_{\text{obs}}=\mathbb{E}[U_{\text{com}}\mid Y_{\text{obs}}]$; hence by A8,
 $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=\operatorname{Var}(U_{\text{obs}})=I_{\text{obs}}$.
-— Schafer decomposition [@schaferAnalysisIncompleteMultivariate1997, `:944`], $Q/H$ [`:951`/`:964`], 2nd-derivative analog (3.19) [`:1501`]; score-mean-zero [@vaartAsymptoticStatistics1998a, `:2320`].
+
+::: {.column-margin}
+**Source.** Schafer decomposition [@schaferAnalysisIncompleteMultivariate1997, `:944`],
+$Q/H$ [`:951`/`:964`], 2nd-derivative analog (3.19) [`:1501`]; score-mean-zero
+[@vaartAsymptoticStatistics1998a, `:2320`].
+:::
 
 **L2 (variance of the estimator gap).** `[derived; mc]`
 $$ \operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}}) = I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}. $$ {#eq-varGap}
@@ -367,23 +425,33 @@ $$ \operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}}) = I_{\tex
 $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=I_{\text{obs}}$, so
 $\operatorname{Cov}(\hat\theta_{\text{obs}},\hat\theta_{\text{com}})=I_{\text{obs}}^{-1}I_{\text{obs}}I_{\text{com}}^{-1}=I_{\text{com}}^{-1}$;
 then $\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})=I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}-I_{\text{com}}^{-1}+I_{\text{com}}^{-1}$.
-Verified symbolically in `proof-verification-sympy.qmd` (Tier B). **This is the lemma
-whose misuse — substituting $\operatorname{Var}(\hat\theta_{\text{obs}})$ for
+**This is the lemma whose misuse — substituting $\operatorname{Var}(\hat\theta_{\text{obs}})$ for
 $\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})$ — produces the spurious
 $-\tfrac12 k$ (see D8 disambiguation and Term B).**
 
+::: {.column-margin}
+**Source.** `[derived]` from L1, L3, A8; verified symbolically in
+`proof-verification-sympy.qmd` (Tier B).
+:::
+
 **L4 (MI variance recovery).** `[cited]` Under R4-R7, $\bar\theta_\infty$ is consistent
-and $T_\infty=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$.
-— @mengMultipleImputationInferencesUncongenial1994a Lemma 3 [`:486`], Main result [`:503`/`:511`];
-@rubinMultipleImputationNonresponse1987 §4. (Anchors the D8 RIV identification.)
+and $T_\infty=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$. (Anchors the D8 RIV
+identification.)
+
+::: {.column-margin}
+**Source.** @mengMultipleImputationInferencesUncongenial1994a Lemma 3 [`:486`], Main
+result [`:503`/`:511`]; @rubinMultipleImputationNonresponse1987 §4.
+:::
 
 ## Stage 3 — The tagged derivation {#sec-derivation}
 
 Each step cites the ledger entries it invokes in `[...]`. `[mc]` marks a step
 machine-checked in `proof-verification-sympy.qmd`. Let $\theta_0$ denote the
-data-generating parameter, $\tilde\phi$ the imputation parameter (a posterior
-draw under proper MI; $\hat\theta_{\text{obs}}$ deterministically under FIML), and
-$S,\, \mathcal{J}$ the score and observed information. The detailed second-order
+data-generating parameter, and $\tilde\phi$ the imputation parameter — $\phi$ (not
+$\theta$) marks it as the imputer's parameter, distinct from the analysis parameter
+even where the two spaces coincide under congeniality, and the tilde marks a
+posterior *draw* (it collapses to the point value $\hat\theta_{\text{obs}}$ under FIML).
+$S,\, \mathcal{J}$ denote the score and observed information. The detailed second-order
 bookkeeping follows the companion MI-IC derivation, translated here to
 general-likelihood notation.
 
@@ -413,15 +481,22 @@ $$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}\operatorname{
 
 **B4.** Substitute L2, then reduce the trace:
 $$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}(I_{\text{obs}}^{-1}-I_{\text{com}}^{-1})\big)\ \text{[L2]}\ = -\tfrac12\big(\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{com}})-k\big)\ \text{[A1, A2, A3]}\ = -\tfrac12\operatorname{tr}(\mathrm{RIV})\ \text{[D8]}. $$ {#eq-termB}
+
+::: {.column-margin}
 `[mc]` `proof-verification-sympy.qmd` §"Term B" (`B + tr(RIV)/2 == 0`).
+:::
 
 ### Term A $=+\operatorname{tr}(\mathrm{RIV})$ (imputation bias) {#sec-termA}
 
 **A1.** Factor the complete-data log-likelihood
 $\ell_{\text{com}}(\theta;Y)=\ell_{\text{obs}}(\theta;Y_{\text{obs}})+\ell_{\text{mis}\mid\text{obs}}(\theta)$,
-$\ell_{\text{mis}\mid\text{obs}}(\theta):=\log P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$
-[@schaferAnalysisIncompleteMultivariate1997, eq (3.2), `:944`]. The $\ell_{\text{obs}}$
-parts cancel in $A$ (D9, D10), leaving
+$\ell_{\text{mis}\mid\text{obs}}(\theta):=\log P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$.
+The $\ell_{\text{obs}}$ parts cancel in $A$ (D9, D10), leaving
+
+::: {.column-margin}
+**Source.** Complete-data factorization — @schaferAnalysisIncompleteMultivariate1997
+eq (3.2) [`:944`].
+:::
 $$ A = \mathbb{E}\big[\,\mathbb{E}_{Y_{\text{mis}}\mid Y_{\text{obs}},\tilde\phi}[\ell_{\text{mis}\mid\text{obs}}(\hat\theta_{\text{obs}})] - \ell_{\text{mis}\mid\text{obs}}(\hat\theta_{\text{obs}})\,\big]. $$
 
 **A2.** By iterated expectation over the true completion $Y_{\text{mis}}\sim\theta_0$ [A8],
@@ -450,34 +525,45 @@ contributions cancel — $(A)$ pairs the bias of $\tilde\phi$ with the entropy
 gradient, $(C)$ the curvature of the conditional cross-entropy with $\operatorname{Var}(\tilde\phi)$,
 linked through the information geometry of $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$:
 $$ (A)+(C) = O(n^{-1}). $$
-Verified exactly in the normal and exponential models (companion MI-IC derivation).
 To leading order only the main piece $(B)$ survives:
 $A = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})\big)+O(n^{-1})$ [A2, A8].
+
+::: {.column-margin}
+**Source.** $(A)+(C)=O(n^{-1})$ verified exactly in the normal and exponential
+models — companion MI-IC derivation.
+:::
 
 **A5.** Under congenial proper imputation the imputation parameter satisfies
 $\tilde\phi=\hat\theta_{\text{obs}}+\Delta\tilde\phi$ with $\operatorname{Cov}(\Delta\tilde\phi,\hat\theta_{\text{obs}})=0$ [R4, R5],
 so $\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ [L1].
 Hence
 $$ \mathbb{E}[A] = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\,I_{\text{obs}}^{-1}\big) + O(n^{-1}) = \operatorname{tr}(\mathrm{RIV}) + O(n^{-1})\ \text{[D7, D8]}. $$ {#eq-termA}
+
+::: {.column-margin}
 `[mc]` `proof-verification-sympy.qmd` §"Term A" (`A - tr(RIV) == 0`) for the trace
 identity; the MVN FIML instantiation of $\bar Q_\infty$ matches the R code to machine
 precision (§"Numerical cross-check").
+:::
 
 ### Combine: $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ {#sec-combine}
 
 $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + O(n^{-1}) $$ {#eq-combine}
-[D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. `[mc]` `proof-verification-sympy.qmd` (`T - tr(RIV)/2 == 0`). $\qquad\blacksquare$
+[D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. $\qquad\blacksquare$
+
+::: {.column-margin}
+`[mc]` `proof-verification-sympy.qmd` (`T - tr(RIV)/2 == 0`).
+:::
 
 ::: {.callout-note}
 ## Leading order, finite-sample residual, and the verification stack
 The identities $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$ and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})$
 hold *to leading order*; each carries an $O(n^{-1})$ correction (Term A's from the
 $(A)+(C)$ cancellation in A4). These per-term residuals are real at finite $n$ —
-witness W1 sees the individual terms $\sim$10-20% off while their **sum**
+the numerical witness sees the individual terms $\sim$10-20% off while their **sum**
 $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ holds within Monte-Carlo error, because the
 residuals cancel. The rigor stack: this tagged derivation (algebra), `proof-verification-sympy.qmd`
-(symbolic trace identities + MVN instantiation to machine precision), and W1
-(pre-registered numerical witness across 12 cells, two engines).
+(symbolic trace identities + MVN instantiation to machine precision), and the
+pre-registered numerical witness (12 cells, two engines).
 :::
 
 ---
