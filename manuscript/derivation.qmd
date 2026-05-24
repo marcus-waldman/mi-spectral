@@ -65,6 +65,7 @@ $Z_c=\{X,Y_{\text{inc}},I\}$, $Z_o=\{X,Y_{\text{obs}},I,R_{\text{inc}}\}$ with $
 always-observed covariates [@mengMultipleImputationInferencesUncongenial1994a, `:95`]
 — a different $X$, which is why we avoid the symbol. The verification code
 (`verification/00-setup.R`) labels the realized complete matrix `X`; that is our $Y$.
+Verbatim: @sec-src-schafer, @sec-src-little, @sec-src-meng.
 :::
 
 **D2 (missingness).** Response indicator $R$ ($1=$ missing); each row splits the
@@ -74,7 +75,7 @@ R-entries, not definitions.
 
 ::: {.column-margin}
 **Source.** Ignorability — @rubinInferenceMissingData1976b;
-@littleStatisticalAnalysisMissing2019.
+@littleStatisticalAnalysisMissing2019. Verbatim: @sec-src-rubin1976, @sec-src-little.
 :::
 
 ### Likelihoods and estimators {#sec-likelihoods}
@@ -90,7 +91,7 @@ $\hat\theta_{\text{obs}} = \arg\max_\theta \ell_{\text{obs}}$ (the FIML estimato
 ::: {.column-margin}
 **Source.** Observed-data MLE = maximizer of $\ell(\theta\mid Y_{\text{obs}})$ —
 @schaferAnalysisIncompleteMultivariate1997 [`:1510`, "$\hat\theta$ is now the
-observed-data MLE, the maximizer of $l(\theta\mid Y_{obs})$"].
+observed-data MLE, the maximizer of $l(\theta\mid Y_{obs})$"]. Verbatim: @sec-src-schafer.
 :::
 
 ### Information matrices {#sec-information}
@@ -101,7 +102,7 @@ $$ I_{\text{com}}(\theta) = -\,\mathbb{E}_{Y\sim\theta}\!\big[\partial^2\ell_{\t
 ::: {.column-margin}
 **Source.** Fisher information $I_\theta=\mathbb{E}_\theta[\dot\ell_\theta\dot\ell_\theta^\top]$ and
 curvature $P_\theta\ddot\ell_\theta=-I_\theta$ — @vaartAsymptoticStatistics1998a [`:2320`].
-MVN closed form: D15.
+MVN closed form: D15. Verbatim: @sec-src-vaart.
 :::
 
 **D6 (observed information).** The observed-data (expected) Fisher information, the
@@ -112,7 +113,7 @@ $$ I_{\text{obs}}(\theta) = -\,\mathbb{E}_{Y_{\text{obs}}\sim\theta}\!\big[\part
 **Source.** Observed information $I_o=-\partial^2\ell(\theta\mid Y_{\text{obs}})/\partial\theta^2$ —
 @schaferAnalysisIncompleteMultivariate1997 [`:1489`]; we use its expectation (Fisher
 form, @vaartAsymptoticStatistics1998a [`:2320`]). For MVN, the pattern-mixture sum
-(`fisher_info_obs_mvn`).
+(`fisher_info_obs_mvn`). Verbatim: @sec-src-schafer, @sec-src-vaart.
 :::
 
 **D7 (missing information and the information identity).**
@@ -131,7 +132,7 @@ $I_m=-\partial^2 H(\theta\mid\theta)/\partial\theta^2$ [`:1495`], eq (3.19) [`:1
 identity for the Fisher informations D5-D6 (his conditional $I_c,I_o,I_m$ average to
 our $I_{\text{com}},I_{\text{obs}},I_{\text{mis}\mid\text{obs}}$).
 $I_{\text{mis}\mid\text{obs}}\succeq 0$ `[mc]` (min eigenvalue $\approx 0$ on the fixture,
-`proof-verification-sympy.qmd`).
+`proof-verification-sympy.qmd`). Verbatim: @sec-src-schafer.
 :::
 
 ### The relative increase in variance (RIV) {#sec-riv}
@@ -145,7 +146,7 @@ nonresponse $r_m = (1+m^{-1})B_m/\bar U_m$ —
 @rubinMultipleImputationNonresponse1987 [`:2194`]; with within
 $\bar U_m=\sum_l U_{*l}/m$ [`:2167`], between
 $B_m=\sum_l(\hat Q_{*l}-\bar Q_m)^{t}(\hat Q_{*l}-\bar Q_m)/(m-1)$ [`:2173`], total
-$T_m=\bar U_m+(1+m^{-1})B_m$ [`:2179`].
+$T_m=\bar U_m+(1+m^{-1})B_m$ [`:2179`]. Verbatim: @sec-src-rubin1987.
 :::
 
 **Derived form** (used throughout). By D7 ($I_{\text{mis}\mid\text{obs}}=I_{\text{com}}-I_{\text{obs}}$),
@@ -157,7 +158,7 @@ $$ \mathrm{RIV} = I_{\text{obs}}^{-1}I_{\text{com}} - I_k, \qquad \operatorname{
 $\operatorname{Tr}(A+B)=\operatorname{Tr}A+\operatorname{Tr}B$
 [@petersen2008matrix §1.1, `:183`] and $\operatorname{tr}(I_k)=k$ from
 $\operatorname{Tr}(A)=\sum_i A_{ii}$ [`:179`]; cyclicity
-$\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$ [`:182`].
+$\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$ [`:182`]. Verbatim: @sec-src-petersen.
 :::
 
 ::: {.callout-note collapse="true" appearance="simple"}
@@ -236,6 +237,7 @@ $[\hat\theta(Z_o),U(Z_o)]\simeq[E_f(\theta\mid Z_o),V_f(\theta\mid Z_o)]$
 $[\hat\theta(Z_c),U(Z_c)]\simeq[E_f(\theta\mid Z_c),V_f(\theta\mid Z_c)]$
 [eq (2.3.2), `:109`]; Definition 2 adds
 $f(Y_{\text{mis}}\mid Z_o)=g(Y_{\text{mis}}\mid Z_o,A)$ [eq (2.3.3), `:121`].
+Verbatim: @sec-src-meng.
 :::
 
 ### vech and the duplication matrix {#sec-vech}
@@ -250,6 +252,7 @@ $$ D_n \operatorname{vech}(A) = \operatorname{vec} A, \qquad \operatorname{vech}
 $D_n\operatorname{vech}(A)=\operatorname{vec}A$ [`:1658`], $\operatorname{vech}$ definition [`:1652`],
 inverse identity
 $(D_n'(A\otimes A)D_n)^{-1}=(D_n'D_n)^{-1}D_n'(A^{-1}\otimes A^{-1})D_n(D_n'D_n)^{-1}$ [`:1692`].
+Verbatim: @sec-src-magnus.
 :::
 
 ### MVN instantiation of the information matrices {#sec-mvn-info}
@@ -265,7 +268,7 @@ $\tfrac{n}{2}D_m'(\Omega^{-1}\otimes\Omega^{-1})D_m$ [`:1800`-`:1813`]
 ($\Omega\!\leftrightarrow\!\Sigma$, $m\!\leftrightarrow\!p$, $n\!\leftrightarrow\!N$).
 $I_{\text{obs}}$ is the pattern-mixture sum of per-pattern marginal informations
 (`fisher_info_obs_mvn`, `verification/00-setup.R`); `[mc]` against this closed form
-in `proof-verification-sympy.qmd`.
+in `proof-verification-sympy.qmd`. Verbatim: @sec-src-magnus.
 :::
 
 ---
@@ -288,24 +291,27 @@ $P_\theta\ddot\ell_\theta=-I_\theta$.
 **Source.** van der Vaart Thm 5.39 conditions [@vaartAsymptoticStatistics1998a, `:7388`];
 score identities [`:2320`]; Schafer's "sufficient regularity to interchange
 differentiation and integration" [@schaferAnalysisIncompleteMultivariate1997, `:1480`].
+Verbatim: @sec-src-vaart, @sec-src-schafer.
 :::
 
 **R2 (nonsingular information).** `[cited]` $I_{\text{com}},I_{\text{obs}}\succ 0$.
 
 ::: {.column-margin}
-**Source.** van der Vaart §5.5 [@vaartAsymptoticStatistics1998a].
+**Source.** van der Vaart §5.5 [@vaartAsymptoticStatistics1998a]. Verbatim: @sec-src-vaart.
 :::
 
 **R3 (ignorability).** `[cited]` MAR with parameters distinct from $\theta$.
 
 ::: {.column-margin}
 **Source.** @rubinInferenceMissingData1976b; @littleStatisticalAnalysisMissing2019.
+Verbatim: @sec-src-rubin1976, @sec-src-little.
 :::
 
 **R4 (congeniality).** `[cited]` = D13.
 
 ::: {.column-margin}
 **Source.** @mengMultipleImputationInferencesUncongenial1994a Def 1/2 [`:99`/`:118`].
+Verbatim: @sec-src-meng.
 :::
 
 **R5 (properness).** `[cited]` Second-moment proper imputation.
@@ -313,6 +319,7 @@ differentiation and integration" [@schaferAnalysisIncompleteMultivariate1997, `:
 ::: {.column-margin}
 **Source.** @rubinMultipleImputationNonresponse1987; Meng cond. (c)
 [@mengMultipleImputationInferencesUncongenial1994a, `:506`].
+Verbatim: @sec-src-rubin1987, @sec-src-meng.
 :::
 
 **R6 (self-efficiency).** `[cited]` No $\lambda$ makes
@@ -320,13 +327,14 @@ $\operatorname{MSE}(\lambda\hat\theta(W_o)+(1-\lambda)\hat\theta(W_c))<\operator
 
 ::: {.column-margin}
 **Source.** @mengMultipleImputationInferencesUncongenial1994a Def 5 [`:450`], cond. (a) [`:504`].
+Verbatim: @sec-src-meng.
 :::
 
 **R7 ($M\to\infty$).** `[cited]` Infinite-imputation idealization ($\bar Q_\infty,T_\infty$);
 finite-$M$ corrections are Rubin's.
 
 ::: {.column-margin}
-**Source.** @rubinMultipleImputationNonresponse1987.
+**Source.** @rubinMultipleImputationNonresponse1987. Verbatim: @sec-src-rubin1987.
 :::
 
 ### Algebraic axioms and properties (A) {#sec-alg}
@@ -334,26 +342,27 @@ finite-$M$ corrections are Rubin's.
 **A1 (trace linearity).** `[cited]` $\operatorname{Tr}(A+B)=\operatorname{Tr}A+\operatorname{Tr}B$.
 
 ::: {.column-margin}
-**Source.** Matrix Cookbook §1.1 [@petersen2008matrix, `:183`].
+**Source.** Matrix Cookbook §1.1 [@petersen2008matrix, `:183`]. Verbatim: @sec-src-petersen.
 :::
 
 **A2 (trace cyclicity).** `[cited]` $\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$, $\operatorname{Tr}(ABC)=\operatorname{Tr}(BCA)$.
 
 ::: {.column-margin}
-**Source.** [@petersen2008matrix §1.1, `:182`/`:184`].
+**Source.** [@petersen2008matrix §1.1, `:182`/`:184`]. Verbatim: @sec-src-petersen.
 :::
 
 **A3 ($\operatorname{tr}I_k=k$).** `[cited]` From $\operatorname{Tr}(A)=\sum_i A_{ii}$.
 
 ::: {.column-margin}
-**Source.** [@petersen2008matrix §1.1, `:179`].
+**Source.** [@petersen2008matrix §1.1, `:179`]. Verbatim: @sec-src-petersen.
 :::
 
 **A4 (vec / Kronecker).** `[cited]` $\operatorname{vec}(AXB)=(B^\top\!\otimes A)\operatorname{vec}X$;
 $\operatorname{Tr}(A^\top B)=\operatorname{vec}(A)^\top\operatorname{vec}(B)$.
 
 ::: {.column-margin}
-**Source.** [@petersen2008matrix §10.2.2, `:3345`/`:3346`].
+**Source.** [@petersen2008matrix §10.2.2, eq (520)/(521), `:3345`/`:3346`].
+Verbatim: @sec-src-petersen.
 :::
 
 **A5 (duplication matrix).** `[cited]` = D14; plus
@@ -361,6 +370,7 @@ $(D_n'(A\otimes A)D_n)^{-1}=(D_n'D_n)^{-1}D_n'(A^{-1}\!\otimes A^{-1})D_n(D_n'D_
 
 ::: {.column-margin}
 **Source.** Magnus-Neudecker §15 [@magnusMatrixDifferentialCalculus2019, `:1658`/`:1692`].
+Verbatim: @sec-src-magnus.
 :::
 
 **A6 (symmetry / inverse-transpose).** `[cited]` Information matrices are symmetric,
@@ -368,7 +378,7 @@ $(A^{-1})^\top=(A^\top)^{-1}$, $\operatorname{Tr}(A)=\operatorname{Tr}(A^\top)$.
 
 ::: {.column-margin}
 **Source.** [@petersen2008matrix §1.1, `:181`]. (The symmetry `symmetric_reduce`
-enforces in `proof-verification-sympy.qmd`.)
+enforces in `proof-verification-sympy.qmd`.) Verbatim: @sec-src-petersen.
 :::
 
 **A7 (Gaussian conditional / Schur complement).** `[cited]` For $X\sim N(\mu,\Sigma)$
@@ -378,7 +388,7 @@ $\Sigma_{11\cdot 2}=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}$.
 
 ::: {.column-margin}
 **Source.** Anderson §2.5.1 [@andersonIntroductionMultivariateStatistical2003, `:1582`/`:1595`].
-(Term A's FIML Q-function; matches `barQ_fiml_analytic`'s `cond_V`.)
+(Term A's FIML Q-function; matches `barQ_fiml_analytic`'s `cond_V`.) Verbatim: @sec-src-anderson.
 :::
 
 **A8 (expectation identities).** `[cited]` Linearity of $\mathbb{E}$; iterated expectation
@@ -388,12 +398,14 @@ $\mathbb{E}[v^\top M v]=\operatorname{tr}(M\,\mathbb{E}[vv^\top])$ (via A2 + lin
 
 ::: {.column-margin}
 **Source.** van der Vaart Ch 11 [@vaartAsymptoticStatistics1998a, `:5147`/`:5161`/`:5170`].
+Verbatim: @sec-src-vaart.
 :::
 
 **A9 (second-order Taylor).** `[cited]` $f(\theta_1)-f(\theta_0)=\nabla f(\theta_0)^\top\delta+\tfrac12\delta^\top\nabla^2 f(\theta_0)\delta+o(\|\delta\|^2)$, $\delta=\theta_1-\theta_0$.
 
 ::: {.column-margin}
 **Source.** van der Vaart §5.5 (score linearization) [@vaartAsymptoticStatistics1998a].
+Verbatim: @sec-src-vaart.
 :::
 
 ### Lemmas (L) {#sec-lem}
@@ -404,7 +416,7 @@ hence $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$, $\opera
 
 ::: {.column-margin}
 **Source.** van der Vaart Thm 5.39 [@vaartAsymptoticStatistics1998a, `:7388`/`:7393`;
-covariance $I_\theta^{-1}$ at `:4170`].
+covariance $I_\theta^{-1}$ at `:4170`]. Verbatim: @sec-src-vaart.
 :::
 
 **L3 (Fisher/Louis score identity).** `[cited+derived]` Differentiating the loglik
@@ -416,7 +428,7 @@ $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=\operatorname{Var}(U_{\text{o
 ::: {.column-margin}
 **Source.** Schafer decomposition [@schaferAnalysisIncompleteMultivariate1997, `:944`],
 $Q/H$ [`:951`/`:964`], 2nd-derivative analog (3.19) [`:1501`]; score-mean-zero
-[@vaartAsymptoticStatistics1998a, `:2320`].
+[@vaartAsymptoticStatistics1998a, `:2320`]. Verbatim: @sec-src-schafer, @sec-src-vaart.
 :::
 
 **L2 (variance of the estimator gap).** `[derived; mc]`
@@ -441,6 +453,7 @@ identification.)
 ::: {.column-margin}
 **Source.** @mengMultipleImputationInferencesUncongenial1994a Lemma 3 [`:486`], Main
 result [`:503`/`:511`]; @rubinMultipleImputationNonresponse1987 §4.
+Verbatim: @sec-src-meng, @sec-src-rubin1987.
 :::
 
 ## Stage 3 — The tagged derivation {#sec-derivation}
@@ -495,7 +508,7 @@ The $\ell_{\text{obs}}$ parts cancel in $A$ (D9, D10), leaving
 
 ::: {.column-margin}
 **Source.** Complete-data factorization — @schaferAnalysisIncompleteMultivariate1997
-eq (3.2) [`:944`].
+eq (3.2) [`:944`]. Verbatim: @sec-src-schafer.
 :::
 $$ A = \mathbb{E}\big[\,\mathbb{E}_{Y_{\text{mis}}\mid Y_{\text{obs}},\tilde\phi}[\ell_{\text{mis}\mid\text{obs}}(\hat\theta_{\text{obs}})] - \ell_{\text{mis}\mid\text{obs}}(\hat\theta_{\text{obs}})\,\big]. $$
 
@@ -565,6 +578,193 @@ residuals cancel. The rigor stack: this tagged derivation (algebra), `proof-veri
 (symbolic trace identities + MVN instantiation to machine precision), and the
 pre-registered numerical witness (12 cells, two engines).
 :::
+
+---
+
+## Appendix: verbatim source passages {#sec-sources}
+
+Consolidated provenance audit, grouped by reference. Each entry reproduces — verbatim
+from the `literature/<citekey>.md` Mathpix conversions — the specific passages the
+derivation invokes, tagged with the source's own equation/theorem number and the
+`literature/<citekey>.md` line. The margin provenance blocks in Stages 1-3 keep a short
+snippet as a re-pagination-stable anchor and link here (`@sec-src-<key>`) for the full
+text.
+
+**Fair-use flag (not a blocker).** The excerpts below are short equation/definition
+fragments reproduced for an internal audit document. For the JAIGP submission, keep them
+to minimal equation/definition excerpts (fair use); if the venue or a reviewer objects to
+verbatim reproduction, trim each entry to its equation/theorem number plus line reference
+and drop the quoted text.
+
+### Schafer (1997) — Analysis of Incomplete Multivariate Data {#sec-src-schafer}
+
+@schaferAnalysisIncompleteMultivariate1997. Invoked by D1, D4, D6, D7, R1, L3, Term A step A1.
+
+**Complete-data likelihood factorization, eq (3.2)** [`:944`].
+
+> $l(\theta \mid Y)=l\left(\theta \mid Y_{obs}\right)+\log P\left(Y_{mis} \mid Y_{obs}, \theta\right)+c$
+
+where (line 947) "$l(\theta/Y)=\log P(Y \mid \theta)$ denotes the complete-data log
+likelihood, $l(\theta/Y_{obs})$ ... the observed-data loglikelihood, and $c$ an arbitrary
+constant."
+
+**EM decomposition of the Q-function** [`:952`, `:958`, `:964`].
+
+> $Q\left(\theta \mid \theta^{(t)}\right)=l\left(\theta \mid Y_{obs}\right)+H\left(\theta \mid \theta^{(t)}\right)+c$
+
+with $Q(\theta\mid\theta^{(t)})=\int l(\theta\mid Y)\,P(Y_{mis}\mid Y_{obs},\theta^{(t)})\,dY_{mis}$
+and $H(\theta\mid\theta^{(t)})=\int \log P(Y_{mis}\mid Y_{obs},\theta)\,P(Y_{mis}\mid Y_{obs},\theta^{(t)})\,dY_{mis}$.
+
+**Missing-information principle and the information identity, eq (3.19)** [`:1480`-`:1501`].
+
+> (line 1480) "the complete information is equal to the observed information plus the
+> missing information ... called the missing information principle by Orchard and Woodbury
+> (1972)"
+
+with $I_c(\theta)=-\partial^2 Q(\theta\mid\theta)/\partial\theta^2$ [`:1483`],
+$I_o(\theta)=-\partial^2 l(\theta\mid Y_{obs})/\partial\theta^2$ [`:1489`],
+$I_m(\theta)=-\partial^2 H(\theta\mid\theta)/\partial\theta^2$ [`:1495`], so
+
+> $I_c(\theta)=I_o(\theta)+I_m(\theta)$ &nbsp; (3.19) [`:1501`]
+
+**Observed-data MLE** [`:1510`].
+
+> "where $\hat\theta$ is now the observed-data MLE, the maximizer of $l(\theta\mid Y_{obs})$."
+
+**EM rate matrix (fraction of missing information), eq (3.21)** [`:1517`] — cited for the
+D8 disambiguation; this is *not* RIV.
+
+> $D=I_c^{-1}(\hat\theta)\, I_m(\hat\theta)$
+
+### Magnus & Neudecker (2019) — Matrix Differential Calculus {#sec-src-magnus}
+
+@magnusMatrixDifferentialCalculus2019. Invoked by D14, D15, A5.
+
+**Half-vectorization** [`:1652`] (here for $3\times3$ symmetric $A$).
+
+> $\operatorname{vech}(A)=\left(a_{11}, a_{21}, a_{31}, a_{22}, a_{32}, a_{33}\right)^{\prime}$
+
+**Duplication matrix, eq (23)** [`:1658`], and its inverse [`:1664`].
+
+> $D_{n} \operatorname{vech}(A)=\operatorname{vec} A \quad\left(A=A^{\prime}\right)$
+
+> $\operatorname{vech}(A)=\left(D_{n}^{\prime} D_{n}\right)^{-1} D_{n}^{\prime} \operatorname{vec} A \quad\left(A=A^{\prime}\right)$
+
+**Inverse of $D_n'(A\otimes A)D_n$** [`:1692`].
+
+> $\left(D_{n}^{\prime}(A \otimes A) D_{n}\right)^{-1}=\left(D_{n}^{\prime} D_{n}\right)^{-1} D_{n}^{\prime}\left(A^{-1} \otimes A^{-1}\right) D_{n}\left(D_{n}^{\prime} D_{n}\right)^{-1}$
+
+**MVN information matrix for $(\mu,\operatorname{vech}\Omega)$** [`:1804`-`:1811`]
+($\Omega\!\leftrightarrow\!\Sigma$, $m\!\leftrightarrow\!p$, $n\!\leftrightarrow\!N$ in our D15).
+
+> $\mathcal{F}=n\begin{pmatrix}\Omega^{-1} & 0 \\ 0 & \frac{1}{2} D_{m}^{\prime}\left(\Omega^{-1} \otimes \Omega^{-1}\right) D_{m}\end{pmatrix}$
+
+### van der Vaart (1998) — Asymptotic Statistics {#sec-src-vaart}
+
+@vaartAsymptoticStatistics1998a. Invoked by D5, D6, R1, R2, A8, A9, L1, L3.
+
+**Score identities** [`:2320`].
+
+> "$P_{\theta} \dot{\ell}_{\theta}=0$ (scores have mean zero), and $P_{\theta} \ddot{\ell}_{\theta}=-I_{\theta}$ (the curvature of the likelihood is equal to minus the Fisher information)."
+
+**MLE asymptotic normality** [`:2325`].
+
+> $\sqrt{n}\left(\hat{\theta}_{n}-\theta\right) \rightsquigarrow N\left(0, I_{\theta}^{-1}\right)$
+
+**MLE linear (influence-function) expansion, Theorem 5.39** [`:4170`, `:7388`-`:7393`];
+the joint full/null-restricted form at `:7392`-`:7393` underpins L3's score covariance.
+
+> $\sqrt{n}\left(\hat{\theta}_{n}-\theta\right)=\frac{1}{\sqrt{n}} \sum_{i=1}^{n} I_{\theta}^{-1} \dot{\ell}_{\theta}\left(X_{i}\right)+o_{P_{\theta}}(1)$
+
+**Conditional expectation as $L^2$ projection (Ch 11)** [`:5161`, `:5170`].
+
+> (line 5161) "the conditional expectation is the unique measurable function $E(X \mid Y)$ of $Y$ that satisfies the orthogonality relation $\mathrm{E}(X-\mathrm{E}(X \mid Y)) g(Y)=0$"; (line 5170, Example 11.3) "$\mathrm{EX}=E E(X \mid Y)$ ... 'the expectation of a conditional expectation is the expectation.'"
+
+### Meng (1994) — Multiple-Imputation Inferences with Uncongenial Sources of Input {#sec-src-meng}
+
+@mengMultipleImputationInferencesUncongenial1994a. Invoked by D1, D13, R4, R5, R6, L4.
+Complete data $Z_{c}=\{X, Y_{inc}, I\}$, observed data $Z_{o}=\{X, Y_{obs}, I, R_{inc}\}$ [`:95`].
+
+**Definition 1 (congeniality), eqs (2.3.1)-(2.3.2)** [`:102`-`:110`].
+
+> $\left[\widehat{\theta}\left(Z_{o}\right), U\left(Z_{o}\right)\right] \simeq\left[E_{f}\left[\theta \mid Z_{o}\right], V_{f}\left[\theta \mid Z_{o}\right]\right]$ &nbsp; (2.3.1)
+
+> $\left[\widehat{\theta}\left(Z_{c}\right), U\left(Z_{c}\right)\right] \simeq\left[E_{f}\left[\theta \mid Z_{c}\right], V_{f}\left[\theta \mid Z_{c}\right]\right]$ &nbsp; (2.3.2)
+
+**Definition 2 (congeniality to an imputation model), eq (2.3.3)** [`:120`].
+
+> $f\left(Y_{mis} \mid Z_{o}\right)=g\left(Y_{mis} \mid Z_{o}, A\right)$
+
+**Definition 5 (self-efficiency)** [`:450`].
+
+> "A statistical estimation procedure $\widehat{\theta}(\cdot)$ ... is said to be self-efficient ... if there is no $\lambda \in(-\infty, \infty)$ such that the mean-squared error of $\lambda \hat{\theta}\left(W_{o}\right)+(1-\lambda) \hat{\theta}\left(W_{c}\right)$ is less than that of $\widehat{\theta}\left(W_{c}\right)$."
+
+**Lemma 3 and Main result (variance recovery / efficiency)** [`:486`, `:503`-`:511`]; conditions
+(a) self-efficiency and (c) "second-moment proper" imputation [`:504`, `:506`].
+
+> "(i) The repeated-imputation estimator is consistent for $\theta$, and is at least as efficient as the analyst's incomplete-data estimator."
+
+### Rubin (1987) — Multiple Imputation for Nonresponse in Surveys {#sec-src-rubin1987}
+
+@rubinMultipleImputationNonresponse1987. Invoked by D8, R5, R7, L4, and the D9 notation-clash callout.
+
+**Pooled estimate and the variance components** [`:2161`, `:2167`, `:2173`, `:2179`].
+
+> $\bar{Q}_{m}=\sum_{l=1}^{m} \hat{Q}_{* l} / m$ ; &nbsp; $\bar{U}_{m}=\sum_{l=1}^{m} U_{* l} / m$ ; &nbsp; $B_{m}=\sum_{l=1}^{m}\left(\hat{Q}_{* l}-\bar{Q}_{m}\right)^{t}\left(\hat{Q}_{* l}-\bar{Q}_{m}\right) /(m-1)$ ; &nbsp; $T_{m}=\bar{U}_{m}+\left(1+m^{-1}\right) B_{m}$
+
+**Relative increase in variance due to nonresponse** [`:2194`] (named at `:2191`).
+
+> $r_{m}=\left(1+m^{-1}\right) B_{m} / \bar{U}_{m}$
+
+### Rubin (1976) — Inference and Missing Data {#sec-src-rubin1976}
+
+@rubinInferenceMissingData1976b. Invoked by D2, R3 (ignorability).
+
+**Ignorability for likelihood / Bayesian inference (abstract)** [`:39`].
+
+> "When making direct-likelihood or Bayesian inferences about $\theta$, it is appropriate to ignore the process that causes missing data if the missing data are missing at random and the parameter of the missing data process is 'distinct' from $\theta$."
+
+### Little & Rubin (2019) — Statistical Analysis with Missing Data, 3rd ed. {#sec-src-little}
+
+@littleStatisticalAnalysisMissing2019. Invoked by D1, D2, R3.
+
+**MAR definition** [`:438`-`:444`].
+
+> "missingness depends on $y_{i}$ only through the observed components $y_{(0)i}$ ... The missingness mechanism is then called missing at random (MAR)."
+
+**Ignorability — Definition 6.4 and Theorem 6.1A(a)** [`:3263`, `:3277`].
+
+> (Def 6.4) "The missingness mechanism is called ignorable if inferences for $\theta$ based on the ignorable likelihood ... are the same as inferences ... based on the full likelihood"; (Thm 6.1A(a), parameter distinctness) "the joint parameter space $(\theta, \psi)$ ... is the product of the parameter space $\Omega_{\theta}$ of $\theta$ and the parameter space $\Omega_{\psi}$ of $\psi$."
+
+### Anderson (2003) — An Introduction to Multivariate Statistical Analysis {#sec-src-anderson}
+
+@andersonIntroductionMultivariateStatistical2003. Invoked by A7 (Gaussian conditional / Schur complement).
+
+**Conditional covariance (Schur complement)** [`:1582`].
+
+> $\Sigma_{11 \cdot 2}=\Sigma_{11}-\Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21}$
+
+**Conditional mean** [`:1598`]; the $q$-variate normal conditional density $f(x^{(1)} \mid x^{(2)})$ has this mean and covariance $\Sigma_{11\cdot2}$ [`:1595`].
+
+> $\mathscr{E}\left(X^{(1)} \mid x^{(2)}\right)=\mu^{(1)}+\Sigma_{12} \Sigma_{22}^{-1}\left(x^{(2)}-\mu^{(2)}\right)$
+
+### Petersen & Pedersen — The Matrix Cookbook {#sec-src-petersen}
+
+@petersen2008matrix. Invoked by A1-A4, A6, and the @eq-trriv trace reduction.
+
+**§1.1 Trace** [`:177`-`:187`]. In our Mathpix conversion this section is a single
+unnumbered aligned display, so the Cookbook's own inline equation numbers are **not**
+recoverable from the file; these trace identities are therefore cited by section + line.
+
+> $\operatorname{Tr}(\mathbf{A})=\sum_{i} A_{ii}$ [`:179`]; &nbsp; $\operatorname{Tr}(\mathbf{A})=\operatorname{Tr}(\mathbf{A}^{T})$ [`:181`]; &nbsp; $\operatorname{Tr}(\mathbf{A B})=\operatorname{Tr}(\mathbf{B A})$ [`:182`]; &nbsp; $\operatorname{Tr}(\mathbf{A}+\mathbf{B})=\operatorname{Tr}(\mathbf{A})+\operatorname{Tr}(\mathbf{B})$ [`:183`]; &nbsp; $\operatorname{Tr}(\mathbf{A B C})=\operatorname{Tr}(\mathbf{B C A})=\operatorname{Tr}(\mathbf{C A B})$ [`:184`]
+
+**§10.2.2 vec-operator, eqs (520)-(521)** [`:3345`-`:3346`]. Equation numbers confirmed
+in-file: the vec rule is cited as "Eq 520" at `:3692`, and "Eq. 524" closes the same
+numbered block at `:3353`.
+
+> $\operatorname{vec}(\mathbf{A X B})=\left(\mathbf{B}^{T} \otimes \mathbf{A}\right) \operatorname{vec}(\mathbf{X})$ &nbsp; (520)
+
+> $\operatorname{Tr}\left(\mathbf{A}^{T} \mathbf{B}\right)=\operatorname{vec}(\mathbf{A})^{T} \operatorname{vec}(\mathbf{B})$ &nbsp; (521)
 
 ---
 
