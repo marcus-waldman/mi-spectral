@@ -33,7 +33,7 @@ analytic $\operatorname{tr}(\mathrm{RIV})$. The *fixture* is a single simulated 
 used for an exact, replicate-level cross-check. The *symbolic verification*
 (@sec-verify, executed inline) checks the trace identities with Sympy and the MVN
 instantiation numerically against the load-bearing R code. A step so verified is
-flagged `[mc]` (machine-checked), linking to the appendix code listing that checks it.
+flagged `[mc]` in the margin (machine-checked), linking to the appendix code listing that checks it.
 
 **Layout.** The main column carries the mathematics: each definition, its
 equation, and a citation. **Provenance lives in the right margin** — the source's
@@ -42,9 +42,12 @@ own equation/theorem number, the reproduced source equation, the
 pointer survives re-pagination by `lit-sync`), and any our-notation-vs-source
 mapping. A reader follows the math in the column and audits in the margin.
 
-**Status flags.** `[cited]` — established in a source we hold and have read
-in-session; `[mc]` — machine-checked in @sec-verify (links to the specific listing);
-`[derived]` — proved here from earlier entries.
+**Status lives in the margin.** A margin **Source.** block means the statement is
+established in a source we hold and have read in-session; the margin additionally tags
+`[mc]` — machine-checked in @sec-verify, linking to the specific listing — and
+`[derived]` — proved here from earlier entries. The main column carries only the
+mathematics and the ledger cross-references (`[D8]`, `[A1, A2, A3]`, …) naming the
+entries each step invokes.
 
 **Document stages.** (1) Notation and quantities; (2) the ledger (regularity
 conditions, algebraic axioms, lemmas); (3) the tagged derivation.
@@ -141,7 +144,7 @@ $$ \mathrm{RIV} = I_{\text{obs}}^{-1}I_{\text{com}} - I_k, \qquad \operatorname{
 :::
 
 ::: {.callout-note collapse="true" appearance="simple"}
-## Identification: RIV equals Rubin's $r_\infty$ `[derived; mc]`
+## Identification: RIV equals Rubin's $r_\infty$
 Under congenial proper MI as $M\to\infty$: $\bar U_\infty = I_{\text{com}}^{-1}$
 (complete-data MLE variance) and $T_\infty = I_{\text{obs}}^{-1}$ (variance recovery;
 ledger lemma), so $B_\infty = I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$ and
@@ -239,13 +242,13 @@ $$ I_{\text{com}}(\theta) = \begin{pmatrix} N\Sigma^{-1} & 0 \\ 0 & \tfrac{N}{2}
 ## Stage 2 — The ledger (R / A / L) {#sec-ledger}
 
 The registry of everything the derivation *assumes or invokes*; Stage 3 tags each
-proof step with the entries below. As in Stage 1, the statement and status flag
-sit in the column and provenance (source, equation/theorem number, `md:line`)
-sits in the margin. Status flags: `[cited]`, `[mc]`, `[derived]`.
+proof step with the entries below. As in Stage 1, the statement sits in
+the column and provenance (source, equation/theorem number, `md:line`, and any
+`[mc]`/`[derived]` status) sits in the margin.
 
 ### Regularity conditions (R) {#sec-reg}
 
-**R1 (regular model).** `[cited]` Complete-data model differentiable in quadratic
+**R1 (regular model).** Complete-data model differentiable in quadratic
 mean, Lipschitz log-density, consistent MLE; differentiation and integration
 interchange, so $P_\theta\dot\ell_\theta=0$ (scores mean-zero) and
 $P_\theta\ddot\ell_\theta=-I_\theta$.
@@ -254,38 +257,38 @@ $P_\theta\ddot\ell_\theta=-I_\theta$.
 **Source.** @vaartAsymptoticStatistics1998a, Thm 5.39: regularity conditions [<a href="#sec-src-vaart"><code>:7388</code></a>] and score identities [<a href="#sec-src-vaart"><code>:2320</code></a>]; @schaferAnalysisIncompleteMultivariate1997, <a href="#sec-src-schafer"><code>:1480</code></a>: "sufficient regularity to interchange differentiation and integration".
 :::
 
-**R2 (nonsingular information).** `[cited]` $I_{\text{com}},I_{\text{obs}}\succ 0$.
+**R2 (nonsingular information).** $I_{\text{com}},I_{\text{obs}}\succ 0$.
 
 ::: {.column-margin}
 **Source.** @vaartAsymptoticStatistics1998a, §5.5: nonsingular Fisher information $I_{\text{com}},I_{\text{obs}}\succ 0$ (see @sec-src-vaart).
 :::
 
-**R3 (ignorability).** `[cited]` MAR with parameters distinct from $\theta$.
+**R3 (ignorability).** MAR with parameters distinct from $\theta$.
 
 ::: {.column-margin}
 **Source.** @rubinInferenceMissingData1976b, <a href="#sec-src-rubin1976"><code>:39</code></a> and @littleStatisticalAnalysisMissing2019, <a href="#sec-src-little"><code>:3263</code></a>: ignorability (MAR + distinct parameters).
 :::
 
-**R4 (congeniality).** `[cited]` = D13.
+**R4 (congeniality).** = D13.
 
 ::: {.column-margin}
 **Source.** @mengMultipleImputationInferencesUncongenial1994a, Defs 1-2: congeniality [<a href="#sec-src-meng"><code>:99</code></a>/<a href="#sec-src-meng"><code>:118</code></a>].
 :::
 
-**R5 (properness).** `[cited]` Second-moment proper imputation.
+**R5 (properness).** Second-moment proper imputation.
 
 ::: {.column-margin}
 **Source.** @rubinMultipleImputationNonresponse1987 and @mengMultipleImputationInferencesUncongenial1994a, cond. (c), <a href="#sec-src-meng"><code>:506</code></a>: second-moment proper imputation.
 :::
 
-**R6 (self-efficiency).** `[cited]` No $\lambda$ makes
+**R6 (self-efficiency).** No $\lambda$ makes
 $\operatorname{MSE}(\lambda\hat\theta(W_o)+(1-\lambda)\hat\theta(W_c))<\operatorname{MSE}(\hat\theta(W_c))$.
 
 ::: {.column-margin}
 **Source.** @mengMultipleImputationInferencesUncongenial1994a, Def 5: self-efficiency [<a href="#sec-src-meng"><code>:450</code></a>], cond. (a) [<a href="#sec-src-meng"><code>:504</code></a>].
 :::
 
-**R7 ($M\to\infty$).** `[cited]` Infinite-imputation idealization ($\bar Q_\infty,T_\infty$);
+**R7 ($M\to\infty$).** Infinite-imputation idealization ($\bar Q_\infty,T_\infty$);
 finite-$M$ corrections are Rubin's.
 
 ::: {.column-margin}
@@ -294,46 +297,46 @@ finite-$M$ corrections are Rubin's.
 
 ### Algebraic axioms and properties (A) {#sec-alg}
 
-**A1 (trace linearity).** `[cited]` $\operatorname{Tr}(A+B)=\operatorname{Tr}A+\operatorname{Tr}B$.
+**A1 (trace linearity).** $\operatorname{Tr}(A+B)=\operatorname{Tr}A+\operatorname{Tr}B$.
 
 ::: {.column-margin}
 **Source.** @petersen2008matrix, §1.1: $\operatorname{Tr}(A+B)=\operatorname{Tr}A+\operatorname{Tr}B$ [<a href="#sec-src-petersen"><code>:183</code></a>].
 :::
 
-**A2 (trace cyclicity).** `[cited]` $\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$, $\operatorname{Tr}(ABC)=\operatorname{Tr}(BCA)$.
+**A2 (trace cyclicity).** $\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$, $\operatorname{Tr}(ABC)=\operatorname{Tr}(BCA)$.
 
 ::: {.column-margin}
 **Source.** @petersen2008matrix, §1.1: $\operatorname{Tr}(AB)=\operatorname{Tr}(BA)$ [<a href="#sec-src-petersen"><code>:182</code></a>], $\operatorname{Tr}(ABC)=\operatorname{Tr}(BCA)$ [<a href="#sec-src-petersen"><code>:184</code></a>].
 :::
 
-**A3 ($\operatorname{tr}I_k=k$).** `[cited]` From $\operatorname{Tr}(A)=\sum_i A_{ii}$.
+**A3 ($\operatorname{tr}I_k=k$).** From $\operatorname{Tr}(A)=\sum_i A_{ii}$.
 
 ::: {.column-margin}
 **Source.** @petersen2008matrix, §1.1: $\operatorname{Tr}(A)=\sum_i A_{ii}$ [<a href="#sec-src-petersen"><code>:179</code></a>].
 :::
 
-**A4 (vec / Kronecker).** `[cited]` $\operatorname{vec}(AXB)=(B^\top\!\otimes A)\operatorname{vec}X$;
+**A4 (vec / Kronecker).** $\operatorname{vec}(AXB)=(B^\top\!\otimes A)\operatorname{vec}X$;
 $\operatorname{Tr}(A^\top B)=\operatorname{vec}(A)^\top\operatorname{vec}(B)$.
 
 ::: {.column-margin}
 **Source.** @petersen2008matrix, §10.2.2: $\operatorname{vec}(AXB)=(B^\top\!\otimes A)\operatorname{vec}X$ (eq (520)) [<a href="#sec-src-petersen"><code>:3345</code></a>], $\operatorname{Tr}(A^\top B)=\operatorname{vec}(A)^\top\operatorname{vec}(B)$ (eq (521)) [<a href="#sec-src-petersen"><code>:3346</code></a>].
 :::
 
-**A5 (duplication matrix).** `[cited]` = D14; plus
+**A5 (duplication matrix).** = D14; plus
 $(D_n'(A\otimes A)D_n)^{-1}=(D_n'D_n)^{-1}D_n'(A^{-1}\!\otimes A^{-1})D_n(D_n'D_n)^{-1}$.
 
 ::: {.column-margin}
 **Source.** @magnusMatrixDifferentialCalculus2019, §15: duplication matrix [<a href="#sec-src-magnus"><code>:1658</code></a>] and its inverse identity [<a href="#sec-src-magnus"><code>:1692</code></a>].
 :::
 
-**A6 (symmetry / inverse-transpose).** `[cited]` Information matrices are symmetric,
+**A6 (symmetry / inverse-transpose).** Information matrices are symmetric,
 $(A^{-1})^\top=(A^\top)^{-1}$, $\operatorname{Tr}(A)=\operatorname{Tr}(A^\top)$.
 
 ::: {.column-margin}
 **Source.** @petersen2008matrix, §1.1: $\operatorname{Tr}(A)=\operatorname{Tr}(A^\top)$ [<a href="#sec-src-petersen"><code>:181</code></a>]. (The symmetry `symmetric_reduce` enforces; see @sec-verify-tracenorm.)
 :::
 
-**A7 (Gaussian conditional / Schur complement).** `[cited]` For $X\sim N(\mu,\Sigma)$
+**A7 (Gaussian conditional / Schur complement).** For $X\sim N(\mu,\Sigma)$
 partitioned $(X^{(1)},X^{(2)})$, the conditional $X^{(1)}\mid X^{(2)}=x^{(2)}$ is normal
 with mean $\mu^{(1)}+\Sigma_{12}\Sigma_{22}^{-1}(x^{(2)}-\mu^{(2)})$ and covariance
 $\Sigma_{11\cdot 2}=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}$.
@@ -342,7 +345,7 @@ $\Sigma_{11\cdot 2}=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}$.
 **Source.** @andersonIntroductionMultivariateStatistical2003, §2.5.1: Gaussian conditional / Schur complement [<a href="#sec-src-anderson"><code>:1582</code></a>/<a href="#sec-src-anderson"><code>:1595</code></a>]. (Term A's FIML Q-function; matches `barQ_fiml_analytic`'s `cond_V`.)
 :::
 
-**A8 (expectation identities).** `[cited]` Linearity of $\mathbb{E}$; iterated expectation
+**A8 (expectation identities).** Linearity of $\mathbb{E}$; iterated expectation
 $\mathbb{E}[\mathbb{E}(X\mid Y)]=\mathbb{E}X$; conditional expectation as $L^2$ projection
 (residual orthogonality); quadratic-form expectation
 $\mathbb{E}[v^\top M v]=\operatorname{tr}(M\,\mathbb{E}[vv^\top])$ (via A2 + linearity).
@@ -351,7 +354,7 @@ $\mathbb{E}[v^\top M v]=\operatorname{tr}(M\,\mathbb{E}[vv^\top])$ (via A2 + lin
 **Source.** @vaartAsymptoticStatistics1998a, Ch 11: conditional expectation as $L^2$ projection [<a href="#sec-src-vaart"><code>:5147</code></a>/<a href="#sec-src-vaart"><code>:5161</code></a>/<a href="#sec-src-vaart"><code>:5170</code></a>].
 :::
 
-**A9 (second-order Taylor).** `[cited]` $f(\theta_1)-f(\theta_0)=\nabla f(\theta_0)^\top\delta+\tfrac12\delta^\top\nabla^2 f(\theta_0)\delta+o(\|\delta\|^2)$, $\delta=\theta_1-\theta_0$.
+**A9 (second-order Taylor).** $f(\theta_1)-f(\theta_0)=\nabla f(\theta_0)^\top\delta+\tfrac12\delta^\top\nabla^2 f(\theta_0)\delta+o(\|\delta\|^2)$, $\delta=\theta_1-\theta_0$.
 
 ::: {.column-margin}
 **Source.** @vaartAsymptoticStatistics1998a, §5.5: score linearization (see @sec-src-vaart).
@@ -359,7 +362,7 @@ $\mathbb{E}[v^\top M v]=\operatorname{tr}(M\,\mathbb{E}[vv^\top])$ (via A2 + lin
 
 ### Lemmas (L) {#sec-lem}
 
-**L1 (MLE asymptotic linearity and normality).** `[cited]` Under R1-R2,
+**L1 (MLE asymptotic linearity and normality).** Under R1-R2,
 $$ \sqrt{n}(\hat\theta_n-\theta_0)=\tfrac{1}{\sqrt n}\textstyle\sum_i I_{\theta_0}^{-1}\dot\ell_{\theta_0}(X_i)+o_P(1)\;\rightsquigarrow\;N(0,I_{\theta_0}^{-1}), $$
 hence $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$, $\operatorname{Var}(\hat\theta_{\text{com}})=I_{\text{com}}^{-1}$.
 
@@ -367,7 +370,7 @@ hence $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$, $\opera
 **Source.** @vaartAsymptoticStatistics1998a, Thm 5.39: linear expansion [<a href="#sec-src-vaart"><code>:7388</code></a>/<a href="#sec-src-vaart"><code>:7393</code></a>], covariance $I_\theta^{-1}$ [<a href="#sec-src-vaart"><code>:4170</code></a>].
 :::
 
-**L3 (Fisher/Louis score identity).** `[cited+derived]` Differentiating the loglik
+**L3 (Fisher/Louis score identity).** Differentiating the loglik
 decomposition $\ell(\theta\mid Y)=\ell(\theta\mid Y_{\text{obs}})+\log P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)+c$
 once and taking $\mathbb{E}[\cdot\mid Y_{\text{obs}}]$ (conditional score mean-zero, R1) gives
 $U_{\text{obs}}=\mathbb{E}[U_{\text{com}}\mid Y_{\text{obs}}]$; hence by A8,
@@ -377,7 +380,7 @@ $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=\operatorname{Var}(U_{\text{o
 **Source.** @schaferAnalysisIncompleteMultivariate1997, loglik decomposition: $\ell(\theta\mid Y)=\ell_{\text{obs}}+\log P$ [<a href="#sec-src-schafer"><code>:944</code></a>], $Q/H$ [<a href="#sec-src-schafer"><code>:951</code></a>/<a href="#sec-src-schafer"><code>:964</code></a>], 2nd-derivative analog (3.19) [<a href="#sec-src-schafer"><code>:1501</code></a>]; @vaartAsymptoticStatistics1998a, <a href="#sec-src-vaart"><code>:2320</code></a>: score-mean-zero.
 :::
 
-**L2 (variance of the estimator gap).** `[derived; mc]`
+**L2 (variance of the estimator gap).**
 $$ \operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}}) = I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}. $$ {#eq-varGap}
 *Proof.* By L1, $\hat\theta_\bullet-\theta_0\approx I_\bullet^{-1}U_\bullet$; by L3,
 $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=I_{\text{obs}}$, so
@@ -391,7 +394,7 @@ $-\tfrac12 k$ (see D8 disambiguation and Term B).**
 **Source.** `[derived]` from L1, L3, A8; verified symbolically (Tier B, @lst-mc-tierb).
 :::
 
-**L4 (MI variance recovery).** `[cited]` Under R4-R7, $\bar\theta_\infty$ is consistent
+**L4 (MI variance recovery).** Under R4-R7, $\bar\theta_\infty$ is consistent
 and $T_\infty=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$. (Anchors the D8 RIV
 identification.)
 
@@ -401,7 +404,7 @@ identification.)
 
 ## Stage 3 — The tagged derivation {#sec-derivation}
 
-Each step cites the ledger entries it invokes in `[...]`. `[mc]` marks a step
+Each step cites the ledger entries it invokes in `[...]`. A margin `[mc]` marks a step
 machine-checked in @sec-verify. Let $\theta_0$ denote the
 data-generating parameter, and $\tilde\phi$ the imputation parameter — $\phi$ (not
 $\theta$) marks it as the imputer's parameter, distinct from the analysis parameter
@@ -480,12 +483,61 @@ contributions cancel — $(A)$ pairs the bias of $\tilde\phi$ with the entropy
 gradient, $(C)$ the curvature of the conditional cross-entropy with $\operatorname{Var}(\tilde\phi)$,
 linked through the information geometry of $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$:
 $$ (A)+(C) = O(n^{-1}). $$
-To leading order only the main piece $(B)$ survives:
+The mechanism and its closed-form verification are spelled out in the cancellation
+lemma immediately below. To leading order only the main piece $(B)$ survives:
 $A = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})\big)+O(n^{-1})$ [A2, A8].
 
 ::: {.column-margin}
-**Source.** $(A)+(C)=O(n^{-1})$ verified exactly in the normal and exponential
-models — companion MI-IC derivation.
+`[derived]` Mechanism + two closed-form families in the lemma below; closed forms
+computed in the companion MI-IC derivation (v4, Steps 6-7) and reproduced here so this
+document is self-contained. The per-term $O(n^{-1})$ residual is what the numerical
+witness reports as the finite-$n$ wobble in $A$, $B$ individually (note after @eq-combine).
+:::
+
+::: {.callout-note collapse="true"}
+## Lemma (the $(A)+(C)$ cancellation)
+
+Let $f_0(\phi):=\mathbb{E}_{Y_{\text{mis}}\sim\phi}\big[\ell_{\text{mis}\mid\text{obs}}(\theta_0)\big]$ be the
+conditional **cross-entropy** — the expected missing-data log-density evaluated at the
+truth $\theta_0$, over completions drawn from $\phi$. With $\delta:=\tilde\phi-\theta_0$,
+pieces $(A)$ and $(C)$ are exactly the first- and second-order terms of the Taylor
+expansion of $f_0$ about $\theta_0$ [A9]:
+$$ (A)+(C) = \mathbb{E}[\delta^\top\nabla f_0(\theta_0)] + \tfrac12\mathbb{E}[\delta^\top\nabla^2 f_0(\theta_0)\delta] + O(n^{-3/2}), $$
+with $\nabla f_0(\theta_0)=\alpha$ (the entropy gradient of A3) and
+$\nabla^2 f_0(\theta_0)=H_{\phi\phi}$.
+
+**Curvature identity** [R1, A8]. Differentiating
+$\nabla f_0(\phi)=\mathbb{E}_\phi[\ell_{\text{mis}\mid\text{obs}}(\theta_0)\,S_{\text{mis}\mid\text{obs}}(\phi)]$
+once more under the integral (R1) and using $\nabla_\phi S_{\text{mis}\mid\text{obs}}=-\mathcal{J}_{\text{mis}\mid\text{obs}}$:
+$$ H_{\phi\phi} = \mathbb{E}_{\theta_0}\!\big[\ell_{\text{mis}\mid\text{obs}}(\theta_0)\,(S_{\text{mis}\mid\text{obs}}S_{\text{mis}\mid\text{obs}}^\top - \mathcal{J}_{\text{mis}\mid\text{obs}})\big],\qquad \mathcal{J}_{\text{mis}\mid\text{obs}}=-\nabla^2_\phi\log P(Y_{\text{mis}}\mid Y_{\text{obs}},\phi). $$
+
+**Order counting.** Under proper MI centered at $\hat\theta_{\text{obs}}$ [R5, L1],
+$\mathbb{E}[\delta]=\mathbb{E}[\hat\theta_{\text{obs}}-\theta_0]=O(n^{-1})$ (MLE bias) and
+$\operatorname{Var}(\delta)=I_{\text{obs}}^{-1}=O(n^{-1})$, while $\alpha=O(n)$ and
+$H_{\phi\phi}=O(n)$ (both extensive in $n_{\text{mis}}$). Hence
+$$ (A)=\mathbb{E}[\delta]^\top\alpha = O(1),\qquad (C)=\tfrac12\operatorname{tr}\!\big(H_{\phi\phi}\,I_{\text{obs}}^{-1}\big)+O(n^{-1}) = O(1) $$
+are two $O(1)$ pieces of opposite sign whose leading parts cancel through the structural
+pairing of the entropy gradient $\alpha=-\mathcal{E}'(\theta_0)$ and the cross-entropy
+curvature $H_{\phi\phi}$ over $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$.
+
+**Closed-form verification** (MLE imputation $\tilde\phi=\hat\theta_{\text{obs}}$;
+$n_{\text{obs}}$ observed, $n_{\text{mis}}$ missing):
+
+| Family | $(A)$ | $(C)=\tfrac12\operatorname{tr}(H_{\phi\phi}I_{\text{obs}}^{-1})$ | $(A)+(C)$ | Term A |
+|---|---|---|---|---|
+| $N(\mu,\sigma^2)$ | $+\,n_{\text{mis}}/(2n_{\text{obs}})$ | $-\,n_{\text{mis}}/(2n_{\text{obs}})$ | $0$ (exact) | $n_{\text{mis}}/(n_{\text{obs}}-2)=\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ |
+| $\text{Exp}(\lambda)$ | $+\,n_{\text{mis}}/(n_{\text{obs}}-1)$ | $-\,n_{\text{mis}}/n_{\text{obs}}$ | $n_{\text{mis}}/[n_{\text{obs}}(n_{\text{obs}}-1)]=O(n^{-1})$ | $n_{\text{mis}}/(n_{\text{obs}}-1)=\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ |
+
+**Scope (honest statement).** The two families are *exact closed-form* checks; the
+curvature and order-counting identities above supply the general mechanism, so the
+cancellation is **asserted** for any regular conditional family $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$
+[R1: differentiation under the integral, Bartlett identities] — it is **not** proved here
+as a closed theorem at that generality. Two pieces of independent support: (i) the FIML
+$A$ matches the R code to machine precision and the W1 cache gives
+$\mathbb{E}[A]\approx\operatorname{tr}(\mathrm{RIV})$ (@lst-mc-fiml, @lst-mc-mcse); (ii) the
+$O(n^{-1})$ per-term residual is exactly the finite-$n$ signature flagged after @eq-combine —
+$A$ and $B$ each run $\sim$10-20% off while $T=A+B$ holds within Monte-Carlo error,
+because the residuals cancel in the sum.
 :::
 
 **A5.** Under congenial proper imputation the imputation parameter satisfies
@@ -712,7 +764,7 @@ numbered block at `:3353`.
 
 ## Appendix B — Machine-checked symbolic verification {#sec-verify}
 
-The `[mc]` flags throughout Stages 1-3 link to the executable listings in this
+The margin `[mc]` flags throughout Stages 1-3 link to the executable listings in this
 appendix. The code runs inline at render time (Sympy + NumPy); every identity is
 checked by reducing `lhs - rhs` to `0` (symbolic) or asserting a match to the
 load-bearing R code `verification/00-setup.R` (numeric, machine precision). This is
