@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**Open issues:** [#1](https://github.com/marcus-waldman/mi-spectral/issues/1) — W3 (IC) SB arm applies the scaled-shift to the uncorrected deviance; intended to wrap the bias correction. Auxiliary arm only; headline results unaffected. See `todo/000-current-status.md`.
+
 ## Scope
 
 **JAIGP theory paper.** A deviance-bias correction for the Q-function under congenial multiple imputation, with applications to likelihood-ratio model comparison and information-criterion-based model selection. **Reframed 2026-05-22** after reading Chan (2022, *Annals of Statistics*): the original "spectral chi-square correction" framing was preempted; the paper now sits upstream of Chan's test calibration as the deviance-numerator bias correction. See `IDEAS.md` (Reframing note + archive section) for the full provenance, including the 2026-05-23 comprehensive-sweep empirical landings.

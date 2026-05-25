@@ -1,6 +1,6 @@
 # Current status — read this when resuming
 
-**Last updated:** 2026-05-23 (comprehensive sweep complete).
+**Last updated:** 2026-05-25 (manuscript `mi-spectral.qmd` full draft underway; see Open issues).
 
 **Project:** JAIGP theory paper on deviance-bias correction for the Q-function under congenial multiple imputation, with applications to LRT model comparison and information-criterion model selection.
 
@@ -12,6 +12,10 @@
 4. The active work item is **manuscript drafting** — all empirical witnesses are now in. Open side artifacts: `todo/007-sympy-proof-verification.md` (Sympy/Quarto algebra-verification companion to W1, pickup-able cold).
 
 **Reproducing the empirical evidence**: `Rscript verification/run_all.R 2000 prod all 20`. Single command, ~3 hours on 20 cores, all 5 phases. Outputs at `verification/cache/run_all-prod/phase{0,1,2,3,4,5}/`.
+
+## Open issues
+
+- **[#1](https://github.com/marcus-waldman/mi-spectral/issues/1) — W3 (IC) SB arm applies the scaled-shift to the *uncorrected* differential deviance; intended design is to wrap the bias correction** (mirror W2's `a·(d_L − bias_corr) + b`). One-line fix in `verification/W3-model-selection.R` and `verification/_modules/w3-sweep.R` (`chi2_SB[k] = a_k * (chi2_MI_per_k[k] - tr_perp_k) + b_k`), then re-run W3 and update §6's SB number. **Auxiliary arm only** — the preregistered oracle/uncorrected/corrected headline and the 100% directional concordance are unaffected. Flagged in `manuscript/mi-spectral.qmd` §6 with a draft-note callout.
 
 ## What happened this session
 
