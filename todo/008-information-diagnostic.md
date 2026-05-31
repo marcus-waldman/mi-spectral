@@ -200,6 +200,34 @@ under MAR). The theorem holds cleanly: `E[T] = +½ tr(RIV)` against the correct 
   block-diagonal form; it carries a selection-induced mean–covariance cross term" a known result
   (Kenward–Molenberghs / FIML-information literature) or novel? Determines footnote vs contribution.
 
+### LIT CHECK RESOLVED — it is Kenward & Molenberghs (1998) §3.2 (2026-05-31)
+
+Read `literature/kenwardLikelihoodBasedFrequentist1998.md` in-session. **The cross term is not
+novel** — it is K&M (1998) §3.2 "Bivariate Gaussian Data" almost verbatim:
+
+- Their **naive** information `i_N` (expectation under the MCAR/naive framework) = our
+  block-diagonal `fisher_info_obs_mvn`; their **unconditional** `i_U` (expectation accounting for
+  the mechanism) = the correct expected info with the cross term; their **observed** `i_O` =
+  `observed_info_obs_mvn`.
+- Eqs (8)–(11): the mean × (co)variance cross-terms of `i_U` "**do not all vanish, and the
+  orthogonality of mean and variance-covariance parameters is lost under the MAR mechanism**";
+  they vanish **iff** `α_0 = α_1 = 0`, i.e. **MCAR** (our MCAR control).
+- Their selection shift `E_{Y|R}(Y_{i2} − μ_2) = β·α_1`, `β = σ_12 σ_11⁻¹` (logistic mechanism) is
+  the structural twin of our `E[X_k | R1=1] ∝ Σ_{k3}·(inverse-Mills shift)` (probit mechanism).
+- Abstract: "the classical expected information matrix is biased and the use of the observed
+  information matrix is recommended." §5: "provided the observed information matrix is used,
+  conventional likelihood based frequentist inference is applicable in the MAR setting."
+- §4 (rats example) separately notes the off-diagonal block "has expectation zero but is likely
+  to depart from this in small samples" — the Efron–Hinkley **small-sample** face, distinct from
+  the structural MAR term. So K&M cover both; ours is the structural (MAR) one.
+
+**Consequence:** the one-RIV resolution is now grounded, not novel-but-shaky. **Cite K&M (1998)**
+for "define the RIV with the observed-data information under MAR" and move on. The paper's
+contribution stays downstream (deviance-bias decomposition A=+tr RIV, B=−½tr RIV, T=+½tr RIV and
+its IC/LRT applications), with the RIV correctly defined via the **observed** information. No
+contribution claim on the information point. Two-RIV / Efron–Hinkley framing in derivation.qmd
+is retired; K&M is the citation that replaces it.
+
 ## References (acquired this session — see todo/003)
 
 - `efronAssessingAccuracyMaximum1978` — observed vs expected Fisher information
