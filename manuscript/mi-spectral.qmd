@@ -121,31 +121,13 @@ The direction matches the complete-data discrepancy correction of
 @claeskensconsentinoVariableSelectionIncomplete2008, both of which add a positive
 trace penalty to discourage exactly this.
 
-## Relation to existing work {#sec-intro-lineage}
-
-The result sits *upstream* of the MI test-calibration literature. Meng and Rubin's
-combining rule for likelihood-ratio tests [@mengPerformingLikelihoodRatio1992b], its
-refinement by @chanMultipleImprovementsMultiple2022, and Chan's general stacked-MI
-tests [@chanGeneralFeasibleTests2022] all concern how to *calibrate the reference
-distribution* of an MI test statistic, taking the statistic's numerator as given. We
-address the *bias of that numerator*. The two are complementary: calibration makes
-the reference distribution right; the present correction makes the statistic referred
-to it centered. Both are needed to recover complete-data inference under MI.
-
-On the model-selection side, @cavanaughAkaikeInformationCriterion1998a (AICcd) and
-@claeskensconsentinoVariableSelectionIncomplete2008 correct the analogous
-complete-data discrepancy under EM-based estimation — a parallel line with a
-different target estimator but the same RIV machinery. The connection is in fact
-term-by-term: AICcd targets the complete-data discrepancy at the observed-data (EM)
-MLE — the same $\hat\theta_{\text{obs}}$ pivot as our imputation-bias term — so it
-carries a $+\operatorname{tr}(\mathrm{RIV})$-type penalty but no analogue of the
-estimation-mismatch term, which is precisely the extra price MI pays for targeting
-$\hat\theta_{\text{com}}$ instead of $\hat\theta_{\text{obs}}$.
-
 ## Road map {#sec-intro-roadmap}
 
-@sec-verification describes how the derivation was checked — the procedure we used to
-keep an AI-assisted derivation honest, and the evidence a reader can audit.
+@sec-background sets the result against the literature it builds on — Rubin's
+combining rules and the fraction of missing information, Meng's congeniality, the
+test-calibration line running from Meng and Rubin through Chan, and the complete-data
+discrepancy corrections of the model-selection literature. @sec-verification describes
+how an AI-assisted derivation was checked and what evidence a reader can audit.
 @sec-setup fixes notation: the model and missingness, the two estimators, the
 information matrices and RIV, and the Q-function. @sec-theorem states the
 deviance-bias theorem, reads off its two mechanisms, sketches the proof, and points
@@ -153,76 +135,181 @@ to the full derivation. @sec-lrt develops the likelihood-ratio application and
 @sec-ic the information-criterion application, each paired with the corresponding
 Monte Carlo evidence. @sec-discussion discusses scope and open directions.
 
-# Verification: keeping an AI-assisted derivation honest {#sec-verification}
+# Background {#sec-background}
 
-This paper was derived in collaboration with a large language model (see
-@sec-provenance). That fact creates a specific obligation. AI systems fail in a
-characteristic way — fluently, confidently, and wrong — and a derivation produced this
-way is worthless to a reader who cannot tell a real theorem from a plausible-sounding
-one. We do not ask the reader to extend trust. Instead we describe the procedure that
-constrains the derivation at each point where it could go wrong, and we make the
-underlying evidence available to inspect. The aim of this section is to make that
-procedure visible, because most of it is ordinarily invisible.
+The result belongs to a chain of work on multiple imputation that has, over forty
+years, made the method behave like the complete-data analysis it imitates. This
+section follows that chain far enough to locate precisely what is left undone — the
+question the rest of the paper answers.
 
-The organizing idea is **triangulation under defense-in-depth**: nothing load-bearing
-rests on a single artifact, and the central identity is reached by independent routes
-that would have to fail in agreement for the conclusion to be wrong. Concretely, each
-distinct way the derivation could be wrong is met by a control aimed at that channel.
+## The combining rules and the fraction of missing information {#sec-bg-rubin}
 
-**Citations cannot be fabricated.** The most common failure of an AI-assisted
-manuscript is a citation that does not say what it is claimed to say, or does not
-exist. We close this channel two ways. Mechanically, a pre-write check refuses to save
-any change to the manuscript that contains a citation key with no corresponding local
-copy of the cited paper; a deliberate placeholder syntax is the only bypass, and it
-cannot be mistaken for a real citation. The check enforces that a local copy *exists*.
-On top of that mechanism we impose a procedural rule that the author must have read
-the local copy in the working session before citing it — reliance on the model's
-training-weight memory of a paper is prohibited. References move through an explicit
-pipeline (proposed, acquired, read-and-verified, cited), and only verified references
-are eligible to appear in the text.
+Multiple imputation owes its appeal to a clean division of labor
+[@rubinMultipleImputationNonresponse1987]. An imputer, who may hold information and
+judgment the analyst lacks, draws each missing entry several times from a model for
+the missing data given the observed; the analyst then runs an ordinary complete-data
+analysis on each completed data set and combines the results by simple arithmetic. For
+a scalar estimand, Rubin's rule takes the multiple-imputation point estimate to be the
+average of the completed-data estimates and its variance to be the average
+within-imputation variance plus a between-imputation inflation,
+$T = \bar U + (1 + m^{-1}) B$, so that the extra uncertainty from having imputed rather
+than observed is carried explicitly [@rubinMultipleImputationNonresponse1987]. The
+ratio of the between term to the within term — which Rubin names the *relative increase
+in variance due to nonresponse* — and the closely related *fraction of missing
+information* summarize how much the missingness costs
+[@rubinMultipleImputationNonresponse1987; @schaferAnalysisIncompleteMultivariate1997].
+These are the nuisance quantity of the entire subject: no statement about MI inference
+can avoid them, and the matrix form of the relative increase in variance, RIV, is the
+object in which this paper's bias is written.
 
-**Source content is pinned, not paraphrased from memory.** Every external claim is
-tied to a verbatim quotation from the cited source, carrying the source's own equation
-or theorem number and a pointer into the local copy. The full derivation document
-reproduces the cited passages in an appendix, so a reader can check each borrowed
-result against the original wording rather than against our summary of it.
+## Congeniality {#sec-bg-congeniality}
 
-**The central identity is checked four independent ways.** The bias
-$+\tfrac12\operatorname{tr}(\mathrm{RIV})$ is established by (i) a pen-and-paper proof
-(@sec-theorem and the appendix derivation); (ii) an independent *symbolic* check in a
-computer-algebra system, which verifies the trace and matrix identities exactly rather
-than to within rounding; (iii) an independent numerical reimplementation in a second
-language, cross-checked against the original implementation, so an error in either code
-base would surface as a disagreement; and (iv) a Monte Carlo study that estimates the
-imputation-bias term, the estimation-mismatch term, and their sum across many
-configurations and compares them with the analytic half-trace. These routes share no
-common machinery; a mistake that survived all four agreeing on the same number is far
-less likely than one that slips past any single check.
+The division of labor is not free. Rubin's rules recover valid inference only when the
+imputer's model and the analyst's procedure are compatible — *congenial*, in
+@mengMultipleImputationInferencesUncongenial1994a's sense. Congeniality asks that there
+exist a single Bayesian model whose posterior reproduces the analyst's complete-data
+and observed-data answers and whose predictive distribution for the missing data is the
+one the imputer used. When no such model exists the two parties are *uncongenial*, and
+the combining rules can misstate the variance even when the imputation model is
+correctly specified — the discrepancy that drove Fay's well-known critique of the method
+[@mengMultipleImputationInferencesUncongenial1994a]. Congeniality is the condition under
+which MI behaves like the complete-data analysis it stands in for; it is the regime this
+paper works in, and we return to its boundary — where our identity also fails — in
+@sec-discussion.
 
-**Predictions were registered before the data were seen.** The hypotheses for the
-Monte Carlo study were written down and frozen at a fixed version of the code *before*
-the simulations were run, with the explicit rule that the framing would change if the
-results disagreed. This is what separates evidence from storytelling, and it is worth
-being concrete about the outcome: the predictions did not all pass. Of eight
-pre-registered claims, several were confirmed, several returned as merely observational,
-and one — a secondary prediction about the relative size of the bias across two
-missingness patterns — failed outright. We report the failure rather than quietly
-revising the prediction to fit. The confirmatory core is solid: the simulated
-Q-function bias tracks $+\tfrac12\operatorname{tr}(\mathrm{RIV})$ under congenial,
-missing-at-random imputation, and — as the theory's scope requires — departs from it
-precisely when congeniality is violated. The full record, including the miss, appears
-with the applications in @sec-lrt and @sec-ic.
+## Calibrating the reference distribution of an MI test {#sec-bg-testing}
 
-**The work is attributable.** An ORCID-verified human author directed the research
-questions, validated the empirical implications, made all scoping decisions, and
-audited the derivation; the model generated derivations and exposition in iterative
-dialogue. Provenance is documented in @sec-provenance, consistent with the norms of
-the target venue.
+The first MI hypothesis tests inherited the combining-rule logic. For a likelihood-ratio
+test, @mengPerformingLikelihoodRatio1992b proposed averaging the completed-data
+log-likelihood-ratio statistics, deflating the average by an estimate of the average
+fraction of missing information, and referring the result to an $F$ distribution. The
+construction is convenient — it needs only completed-data test statistics — but its
+reference distribution assumes the fraction of missing information is the same for every
+component of the parameter (*equal fractions of missing information*), an assumption the
+later literature describes as almost always violated in practice yet kept for its
+tractability.
 
-None of these controls is novel on its own. What we claim is that, taken together and
-applied to an AI-assisted derivation, they convert the reasonable question — *how do I
-know this is not machine-generated nonsense?* — into something a reader can settle by
-inspection rather than by trust.
+@chanMultipleImprovementsMultiple2022 showed the Meng–Rubin statistic carries several
+defects: it can come out negative while being referred to an $F$ distribution, it is not
+invariant to reparametrization, and its fraction-of-missing-information estimator is
+inconsistent under the alternative, so its power need not increase with the discrepancy
+from the null. Their remedy is a single reordering of operations — maximize the *average*
+of the $m$ completed-data log-likelihoods rather than average their maximizers. This is
+the construction the present paper's likelihood-ratio numerator adopts (@sec-lrt): it
+restores positivity, invariance, and monotone power and supplies a consistent
+missing-information estimate, though it still rests on equal fractions of missing
+information.
+
+@chanGeneralFeasibleTests2022 removed that last assumption. Working from a stacked-data
+construction, Chan showed that the exact null distribution of an MI test depends on the
+*whole spectrum* of missing-information eigenvalues — the odds of missing information
+$r_1,\dots,r_k$, not merely their average — and gave a Monte Carlo recipe that calibrates
+against that spectrum without assuming equality and without requiring an infinite number
+of imputations. This is the most general MI test calibration available and the canonical
+reference for it.
+
+Two points deserve drawing out. First, the eigenvalues that drive Chan's reference
+distribution are exactly the eigenvalues of RIV: the odds of missing information $r_j$
+are RIV's eigenvalues, so $\operatorname{tr}(\mathrm{RIV}) = \sum_j r_j$ — this paper's
+scalar bias quantity is the same spectrum, summed. The two literatures are written in
+one language. Second, and decisively for what follows, every advance in this line
+concerns the *reference distribution*: given a test numerator, what should it be compared
+against? None asks whether the numerator — the averaged log-likelihood-ratio itself — is
+centered on the complete-data quantity it is meant to estimate.
+
+## Correcting model-selection criteria for missing information {#sec-bg-ic}
+
+A parallel line attacks model *selection* rather than testing.
+@cavanaughAkaikeInformationCriterion1998a observed that when incomplete data are fitted
+by the EM algorithm, the natural target for model selection is the *complete-data*
+Kullback–Leibler discrepancy — the separation between fitted and generating models on the
+complete data — rather than its observed-data analogue. Their criterion, AICcd, estimates
+this by $-2Q(\hat\theta\mid\hat\theta) + 2\operatorname{tr}(I_{oc}I_o^{-1})$, where $Q$ is
+the EM objective (the imputation-averaged complete-data log-likelihood) and the trace
+penalty exceeds the ordinary $2d$ by exactly twice the missing-information content. That
+extra penalty exists to charge a candidate model back for the fit it is otherwise
+credited with over the missing data — the same distortion this paper finds in MI
+information criteria (@sec-ic). @claeskensconsentinoVariableSelectionIncomplete2008
+carried the idea to regression with incomplete covariates, deriving an EM-based AIC that
+does not require the model to be correctly specified and that separates the response
+model from the covariate model within the EM objective.
+
+There is a crucial difference of *target*, flagged in @sec-intro-result and made precise
+by the applications. AICcd corrects the complete-data discrepancy at the EM — that is,
+the *observed-data* — maximizer $\hat\theta_{\text{obs}}$, the same pivot as this paper's
+imputation-bias term. Multiple imputation, by contrast, targets the *complete-data*
+maximizer $\hat\theta_{\text{com}}$. That difference of pivot is exactly the second of our
+two bias mechanisms, and it is why the MI correction is not simply AICcd transplanted.
+
+## The gap this paper addresses {#sec-bg-gap}
+
+Two mature literatures thus surround the MI Q-function without quite touching the present
+question. The test-calibration line, from @mengPerformingLikelihoodRatio1992b to
+@chanGeneralFeasibleTests2022, gets the reference distribution right but takes the
+numerator as given. The complete-data-discrepancy line, from
+@cavanaughAkaikeInformationCriterion1998a to
+@claeskensconsentinoVariableSelectionIncomplete2008, corrects a selection criterion but
+at the observed-data pivot, under EM rather than imputation. Neither asks what this paper
+asks: evaluated at the observed-data estimator and measured against the complete-data
+gold standard, is the imputation-averaged log-likelihood itself biased, and what does
+that bias do to everything built on it? Both surrounding literatures run on the same
+missing-information machinery, RIV, so the answer is already written in their language —
+only the question is new.
+
+# How the derivation and its claims were checked {#sec-verification}
+
+This paper was derived in collaboration with a large language model (@sec-provenance),
+and the checks described here were built around the way such models fail — producing
+mathematics that is fluent and confident whether or not it is correct
+[@TODO:llm-math-reliability]. We group the checks by the kind of claim they protect,
+because a deductive claim and an empirical one fail in different ways and call for
+different safeguards.
+
+**Deductive claims — the theorem.** The bias identity is true or false by proof; the
+timing of any prediction is irrelevant to it, and what it needs is independent
+confirmation of the algebra. The identity was derived by hand (@sec-theorem and the
+appendix derivation), then checked two further ways that share no machinery with the
+hand derivation or with each other: a symbolic re-derivation in a computer-algebra
+system, which verifies the matrix and trace identities exactly rather than to within
+rounding, and a numerical re-implementation in a second language, cross-checked against
+the original. A mistake in any one route would surface as disagreement with the others.
+
+**Empirical claims — the simulations.** Whether the half-trace actually appears at
+realistic sample sizes, with real imputation engines, and in the regime where the most
+delicate step of the proof is asserted rather than closed (@sec-theorem-sketch) is not
+settled by the proof; it is measured. Here the ordinary safeguard against a result
+tuned to its hypothesis applies, with added force in this setting, since a model can
+produce a wrong derivation together with simulation code that appears to confirm it from
+the same source. The simulation predictions were therefore written down and frozen at a
+fixed version of the code before any data were generated [@TODO:preregistration], with
+the rule that the framing would change if the results disagreed. They did not all pass:
+of eight pre-registered claims, several were confirmed, several returned as merely
+observational, and one — a secondary prediction about the relative size of the bias
+across two missingness patterns — failed outright. We report the miss rather than
+revising the prediction to fit. The confirmatory core held: the simulated bias tracks
+$+\tfrac12\operatorname{tr}(\mathrm{RIV})$ under congenial, missing-at-random imputation,
+and departs from it — as the theory's scope requires — when congeniality is broken. The
+full record appears with the applications in @sec-lrt and @sec-ic.
+
+**Citations.** A distinct failure mode is the citation that does not exist or does not
+say what it is claimed to. Every citation in this manuscript points to a paper whose
+local copy was read in the working session: a pre-write check refuses any citation key
+without a corresponding local copy, and each borrowed result is tied to a verbatim
+passage carrying the source's own equation or theorem number, reproduced in the
+derivation document's appendix so a reader can check it against the original wording.
+Reliance on the model's training-weight memory of a paper is not permitted.
+
+**Reproducibility and attribution.** The derivation, the code, and the cached simulation
+outputs are layered so that each can be regenerated from the one beneath it
+[@TODO:reproducible-research]. An ORCID-verified human author directed the research
+questions, validated the empirical implications, made all scoping decisions, and audited
+the derivation; the model produced derivations and exposition in iterative dialogue.
+Provenance is documented in @sec-provenance.
+
+Each of these is standard practice somewhere — independent re-derivation in computer
+algebra, pre-registration in experimental work, layered reproducibility in computational
+science. What is specific here is applying all of them to a single AI-assisted
+derivation, so that its claims can be re-checked rather than taken on faith.
 
 # Setup and notation {#sec-setup}
 
