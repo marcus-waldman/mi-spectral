@@ -136,8 +136,17 @@ marginal missing rate, toggling only the selection (`apply_mar` b=0 ⇒ MCAR vs 
 
 Under MCAR the gap and cross block → 0 (observed → expected, standard theory holds); under MAR
 both persist, flat. So `fisher_info_obs_mvn` is the correct expected info under MCAR but
-**incomplete under MAR** (omits the selection-induced cross term). Analytic `E[r_P]` closed form
-still pending (to complete the info matrix), but the mechanism is no longer a hypothesis.
+**incomplete under MAR** (omits the selection-induced cross term).
+
+**Analytic confirmation (2026-05-31).** `apply_mar` sets R1=1 (X1 missing) iff `S1 := V1 − b·X3 < a`
+(`V1~N(0,1)` indep), so selection is on a Gaussian correlated with the data through `−b·X3`. The
+selected-Gaussian moment gives the per-pattern mean shift in closed form:
+`E[Xₖ | R1=1] = (b·Σₖ₃ / √(1+b²)) · λ(a/√(1+b²))`, `λ(z)=φ(z)/Φ(z)` (inverse Mills). Validated vs
+empirical (N=4×10⁶) to 3 decimals: MAR (a=−0.5, b=0.4) → [X1,X2,X3,X4] = [0.124, 0, 0.414, 0.207]
+(empirical [0.124, 0.000, 0.415, 0.208]); MCAR (b=0) → 0. The shift is `∝ b·(Σ-coupling)·λ` —
+nonzero under MAR, exactly 0 under MCAR — confirming `E[r_P] ≠ 0` under MAR and hence the genuine
+cross term in `E[−∂²ℓ_obs]`. (Two-selection patterns P1/P2/P3 use the bivariate-selection analog;
+not yet written out, but the single-selection result establishes the mechanism + closed form.)
 
 **Implications — OPEN, do NOT write into manuscript/derivation until resolved:**
 - The "expected RIV" benchmark used throughout W1 (`fisher_info_obs_mvn`) may be an
