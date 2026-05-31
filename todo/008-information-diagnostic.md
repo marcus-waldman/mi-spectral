@@ -65,6 +65,79 @@ Phase 6 is MAR cells only (congenial regime), 2 patterns × N∈{200,500,1000,20
 info-equality on a capped subset (score_cap=600). Self-contained verdicts; aggregate (phase 5)
 folds the `INFO` row into `phase5/verdicts.md` when both run.
 
+## Rate-of-decay study (phase 7, design — settled 2026-05-31)
+
+Turns the "the expected-vs-sample (Efron–Hinkley) gap closes *slowly*, not as a clean
+O(n⁻¹)" claim (derivation.qmd `@eq-combine` note + Appendix C) from **eyeballed** into
+**fitted**.
+
+**Estimand.** The decay exponent `b` in `gap(N) = tr_samp(N) − tr_exp(N) ≈ c·N^b`
+(`b = −1` ⇒ O(1/n); `b = −1/2` ⇒ O(1/√n)).
+
+**Design.**
+- **Fixed log-spaced N grid** (~10 points, 200 → 10⁴): `round(exp(seq(log(200), log(1e4), length=10)))`.
+  Log- not linear-spacing: the regressor is `log N`, so even spacing in `log N` balances
+  leverage; uniform-in-N starves the small-N end. **Fixed grid, not per-rep random N**, so we
+  can **average per N before logging** — this avoids (i) the Jensen bias `E[log|ρ|] ≠ log E[ρ]`
+  (which is N-dependent and would tilt the slope) and (ii) the `log` of near-zero/negative
+  single-rep remainders. Per-rep random log-uniform is statistically ≈ an equi-spaced grid for
+  the slope anyway (same `Var(log N)` per total reps), with no offsetting benefit here.
+- **R reps per N** → precise per-N mean + MCSE.
+- **WLS log-log:** `log(mean_gap_N) ~ log(N)`, weights `(mean_gap / MCSE)²` (delta-method
+  precision of the log mean; per-N MCSE is heteroskedastic in N). Slope = `b`, with 95% CI.
+- **Target the gap** (positive, low-variance, analytic ⇒ `log` well-defined). A/B/T remainders
+  are reported per N descriptively but **not** rate-fit (A/T are MCSE-limited, sd ∝ √N, and
+  cross zero ⇒ `log|·|` unstable).
+- **Engine: FIML / analytic** — the gap needs only the FIML fit `θ̂_obs` +
+  `tr_riv_analytic` (expected) + `tr_riv_observed_general` (observed); no imputations, no
+  numerical derivatives, so a long grid + large R is cheap. Both patterns, MAR.
+
+**Output.** Per-(pattern, N) means + MCSE for `tr_exp, tr_samp, gap, A, B, T`; per-pattern
+fitted gap exponent `b` + CI. Module `_modules/w1-rate-decay.R`, run_all **phase 7**.
+
+### Result + UNEXPECTED finding (run 2026-05-31, R=2000, N=200..10⁴, extended to 3×10⁵)
+
+Fitted gap-decay exponents: non_monotone `b = −0.066` (95% CI [−0.098, −0.033]), monotone
+`b = −0.027` ([−0.043, −0.010]). But the gap does **not** decay to zero — it **plateaus** at a
+nonzero constant (~0.557 non_monotone, ~0.443 monotone), flat across N = 10⁴ → 3×10⁵
+(0.554 → 0.549; O(1/√n) would have driven it to ~0.18). The tiny exponents are a small-N
+transient + a nonzero asymptote, **not** a power-law decay to zero.
+
+**Not expected.** The observed-data MVN likelihood is correctly specified, so its observed
+information should → its expected information and the gap → 0. It doesn't.
+
+**Localization** (observed vs expected info, block-wise, mean over 20 reps):
+
+| N | mean_rel | cov_rel | cross_rel |
+|---|---|---|---|
+| 1000 | 0.000 | 0.023 | 0.068 |
+| 10000 | 0.000 | 0.012 | 0.065 |
+| 100000 | 0.000 | 0.009 | 0.065 |
+
+mean block identical; cov block → 0; the **mean × vech-Σ cross block is persistent (~6.5%, flat,
+O(n))** — it is the entire gap.
+
+**Mechanism (hypothesis — needs analytic confirmation).** `fisher_info_obs_mvn` is
+**block-diagonal**: it sets the mean–covariance cross block to 0. Under **MAR**, missingness
+depends on observed values, so within each pattern the observed-variable means are
+systematically shifted from the marginal means ⇒ the per-pattern residual sum
+`r_P = Σ(yᵢ^O − μ_O)` has **nonzero expectation** (O(n), not an O(√n) fluctuation — hence the
+flat `cross_rel`). That `E[r_P] ≠ 0` puts a genuine cross term in `E[−∂²ℓ_obs]` that the
+block-diagonal form omits; it should vanish under **MCAR** (`E[r_P]=0`). `observed_info_obs_mvn`
+(validated vs numerical Hessian to 5e-7) includes it.
+
+**Implications — OPEN, do NOT write into manuscript/derivation until resolved:**
+- The "expected RIV" benchmark used throughout W1 (`fisher_info_obs_mvn`) may be an
+  **incomplete** observed-data information under MAR (missing the cross term). The
+  observed-information RIV is the cross-inclusive one, and **B tracks it** (B = −4.08 ≈ −½·8.18
+  at N=10⁴, not −½·7.63).
+- This may reframe the two-RIV story (derivation.qmd two-RIV callout + Appendix C) from
+  "Efron–Hinkley observed-vs-expected, vanishing as n→∞" to "`fisher_info_obs_mvn` omits a real
+  MAR cross term." **The committed derivation edits (09291e0) are under review.**
+- Resolution path: (1) derive `E[r_P]` under the MAR mechanism analytically (confirm ≠0 under
+  MAR, =0 under MCAR); (2) decide which information the theorem's RIV should use; (3) re-examine
+  the earlier "A→expected, B→sample" split (A may have tracked the incomplete benchmark).
+
 ## References (acquired this session — see todo/003)
 
 - `efronAssessingAccuracyMaximum1978` — observed vs expected Fisher information

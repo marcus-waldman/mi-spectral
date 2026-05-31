@@ -15,6 +15,8 @@
 #   5. Aggregation + hypothesis evaluation + markdown verdicts
 #   6. W1 information diagnostic (expected-vs-sample RIV; exploratory, todo/008)
 #      [runs before phase 5 so aggregate can fold it in]
+#   7. Rate-of-decay fit: WLS log-log of the E-H gap over a log-spaced N grid
+#      (fitted decay exponent; exploratory, todo/008)
 #
 # Usage:
 #   Rscript verification/run_all.R <R> <out_suffix> [phases] [n_cores]
@@ -41,6 +43,7 @@ source("verification/_modules/w3-sweep.R")
 source("verification/_modules/w3-rate.R")
 source("verification/_modules/mnar-bias.R")
 source("verification/_modules/w1-information-diagnostic.R")
+source("verification/_modules/w1-rate-decay.R")
 source("verification/_modules/aggregate.R")
 
 suppressPackageStartupMessages({
@@ -60,7 +63,7 @@ phases_arg <- if (length(args) >= 3) args[3] else "all"
 n_cores    <- if (length(args) >= 4) as.integer(args[4]) else 20
 
 phases <- if (phases_arg == "all") {
-  c(0, 1, 2, 3, 4, 5, 6)
+  c(0, 1, 2, 3, 4, 5, 6, 7)
 } else {
   as.integer(strsplit(phases_arg, ",")[[1]])
 }
@@ -131,6 +134,10 @@ if (5 %in% phases) {
                  bias_dir = file.path(base_dir, "phase4-mnar-bias"),
                  info_dir = file.path(base_dir, "phase6-info"),
                  out_dir  = file.path(base_dir, "phase5"))
+}
+
+if (7 %in% phases) {
+  run_w1_rate_decay(R_per_cell, cl, out_dir = file.path(base_dir, "phase7-rate-decay"))
 }
 
 elapsed <- as.numeric(difftime(Sys.time(), t_master, units = "secs"))
