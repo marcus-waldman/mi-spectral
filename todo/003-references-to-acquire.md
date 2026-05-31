@@ -116,6 +116,22 @@ $\mathcal{J}$/sandwich version. The derivation must say which information sits i
 | **Burnham, K. P. & Anderson, D. R.** *Model Selection and Multimodel Inference* (2nd ed.). Springer. | acquired (`literature/burnhamModelSelectionMultimodel2010.md`) | Textbook TIC discussion; secondary/optional given Konishi–Kitagawa is the primary anchor. | §5 (optional) | Low | Acquired + indexed. Cite only if a textbook-level TIC reference is wanted alongside KK. (litrev key year 2010; verify edition/year if cited.) |
 | **Takeuchi, K. (1976).** "Distribution of informational statistics and a criterion of model fitting." *Suri-Kagaku* 153, 12–18 (in Japanese). | **superseded — not acquired** | Origin of TIC. | — | — | Hard to obtain (Japanese, 1976). Cite via Konishi–Kitagawa (1996, verified) instead; keep Takeuchi as a historical-origin mention only. |
 
+## Observed-data information under MAR carries a mechanism-induced cross term (proposed 2026-05-31)
+
+Surfaced via the rate-of-decay study (todo/008): the observed-vs-"expected" RIV gap does **not**
+decay (it plateaus under MAR, vanishes under MCAR). Localized to a mean–covariance cross block
+that our `fisher_info_obs_mvn` (block-diagonal, as-if-MCAR) omits. MCAR control + analytic
+selected-Gaussian moment (`E[Xₖ|R1=1] ∝ b·Σₖ₃·inverse-Mills`) confirm: under MAR the selection
+shifts per-pattern observed means, so `E[−∂²ℓ_obs]` has a real cross term. The decisive A-vs-RIV
+check then showed **A and B both track the observed-data RIV** — one RIV, not two. **This retires
+the Efron–Hinkley "finite-sample observed-vs-expected" interpretation** in the 2026-05-30 section
+above: the gap is structural (MAR mechanism), not a vanishing finite-sample effect. `efron…1978`
+stays in `literature/` but is no longer the right anchor for the W1 remainder.
+
+| Proposed citation | Status | Claim it supports | Where it would land | Priority | Notes |
+|---|---|---|---|---|---|
+| **Kenward, M. G. & Molenberghs, G. (1998).** "Likelihood Based Frequentist Inference When Data Are Missing at Random." *Statistical Science* 13(3), 236–247. DOI: 10.1214/ss/1028905886 | **proposed — HIGH (user lit check 2026-05-31)** | Canonical result that under MAR the **expected** information depends on the missingness mechanism, so the mechanism-free (block-diagonal) expected info is inappropriate and the **observed** information should be used. If confirmed, our MVN cross-term is a concrete instantiation → cite-and-extend, not a standalone contribution. | §setup (which information defines RIV); the retired two-RIV/Appendix C reframing; Discussion | **High — read before reframing** | Decides footnote-vs-contribution. Acquire via Zotero → migrate → index → lit-sync. Approx. cite — verify vol/pages/DOI against the actual text. |
+
 ## Recently rejected (kept as a record so we don't re-propose)
 
 - **2026-05-22 — Wood, A. T. A. (1989).** "An F approximation to the distribution of a linear combination of chi-squared variables." *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`. Reason: We're sticking with χ² reference (not F), so the F-approximation is not load-bearing. Citation lineage for the scaled-shifted moment-matching form is already covered by Satterthwaite (1946) + Satorra-Bentler (2010) + Asparouhov-Muthén (2006). Imhof (1961) + Davies (1980) cover the exact reference distribution. Full text was also not freely available, which would have been a small acquisition cost — combined with non-load-bearing status → reject. Re-propose only if we change framing to F-reference.
@@ -128,4 +144,4 @@ $\mathcal{J}$/sandwich version. The derivation must say which information sits i
 
 ---
 
-*Last updated: 2026-05-30*
+*Last updated: 2026-05-31*
