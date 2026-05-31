@@ -5,6 +5,14 @@ battery as **Phase 6** of `verification/run_all.R`
 (`_modules/w1-information-diagnostic.R`, output `cache/run_all-<suffix>/phase6-info/`).
 Surfaced 2026-05-30/31 while interrogating the W1 finite-sample remainder.
 
+> **⚠ SUPERSEDED (2026-05-31).** The "two finite-sample RIVs (A→expected, B→sample)" framing
+> in **"What it establishes"** below (and its "headline numbers") is **retired**. The rate
+> study + MCAR control + analytic `E[r_P]` + the decisive A-vs-RIV check established that there
+> is **ONE correct RIV** — the observed-data RIV with the MAR cross term — and both A and B
+> track it. The apparent split was an artifact of grading against `fisher_info_obs_mvn`, which
+> is **block-diagonal (as-if-MCAR) and incomplete under MAR**. Read the **"UNEXPECTED finding"**
+> section onward as the current understanding; the top sections are kept only as the trail.
+
 ## What it establishes
 
 The W1 theorem's per-term identities (`E[A]=+tr(RIV)`, `E[B]=-½tr(RIV)`) hold to leading
@@ -159,6 +167,38 @@ not yet written out, but the single-selection result establishes the mechanism +
 - Resolution path: (1) derive `E[r_P]` under the MAR mechanism analytically (confirm ≠0 under
   MAR, =0 under MCAR); (2) decide which information the theorem's RIV should use; (3) re-examine
   the earlier "A→expected, B→sample" split (A may have tracked the incomplete benchmark).
+
+### DECISIVE A-vs-RIV check — it is ONE RIV (2026-05-31)
+
+Does `E[A]` track the correct/observed RIV (`tr_samp`) or the incomplete block-diagonal one
+(`tr_exp` = `fisher_info_obs_mvn`)? High-R Rao-Blackwellized A, ampute non_monotone MAR 40%,
+R=12000:
+
+| N | E[A_rb] (MCSE) | E[A_noisy] | tr_exp | tr_samp | A_rb − tr_exp | A_rb − tr_samp |
+|---|---|---|---|---|---|---|
+| 200 | 8.734 (0.101) | 8.726 | 7.707 | 8.561 | **+1.027 (≈10σ)** | +0.173 (1.7σ) |
+| 1000 | 7.968 (0.190) | 8.316 | 7.646 | 8.253 | +0.322 | −0.285 |
+
+At N=200 (tight MCSE, gap 0.85) A is **~10σ from `tr_exp`** and consistent with **`tr_samp`**;
+at N=1000 (looser MCSE) A straddles `tr_samp` (A_noisy 8.316 ≈ tr_samp 8.253). So **A tracks the
+correct observed-information RIV, not the block-diagonal one** — and B already tracked `tr_samp`.
+
+**Resolution — there is ONE RIV.** Both `A = +tr(RIV)` and `B = −½tr(RIV)` calibrate to the same
+**correct observed-data RIV** `I_obs⁻¹ I_mis`, with the **cross-inclusive** `I_obs =
+observed_info_obs_mvn` (= `tr_samp`). The earlier "A→expected / B→sample" two-RIV split was an
+**artifact** of grading against `fisher_info_obs_mvn` (block-diagonal = as-if-MCAR = incomplete
+under MAR). The theorem holds cleanly: `E[T] = +½ tr(RIV)` against the correct RIV.
+
+**Consequences for the paper (pending lit check on novelty):**
+- The RIV in the theorem and the IC correction must use the **observed-data information**
+  (`tr_riv_observed_general`), not the block-diagonal `tr_riv_analytic` / `fisher_info_obs_mvn`.
+- The two-RIV callout (`#sec-two-rivs`) + Appendix C "Efron–Hinkley observed-vs-expected"
+  framing in `derivation.qmd` (commit 09291e0) is **retired** — no two RIVs, no finite-sample
+  E–H gap; one correct RIV, and the block-diagonal form is just the wrong (MCAR-only) information.
+- W1's "expected RIV" benchmark (block-diagonal) should be re-pointed to the observed-data RIV.
+- **Open (→ lit check):** is "the observed-data information under MAR ≠ the per-pattern
+  block-diagonal form; it carries a selection-induced mean–covariance cross term" a known result
+  (Kenward–Molenberghs / FIML-information literature) or novel? Determines footnote vs contribution.
 
 ## References (acquired this session — see todo/003)
 
