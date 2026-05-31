@@ -126,6 +126,19 @@ flat `cross_rel`). That `E[r_P] ≠ 0` puts a genuine cross term in `E[−∂²�
 block-diagonal form omits; it should vanish under **MCAR** (`E[r_P]=0`). `observed_info_obs_mvn`
 (validated vs numerical Hessian to 5e-7) includes it.
 
+**MCAR control CONFIRMS the mechanism (2026-05-31).** Same non-monotone pattern + same ~31%
+marginal missing rate, toggling only the selection (`apply_mar` b=0 ⇒ MCAR vs b=0.4 ⇒ MAR):
+
+| mech | N | gap | cross_rel |
+|---|---|---|---|
+| MCAR | 1000 / 10000 / 100000 | 0.035 / 0.005 / −0.002 | 0.014 / 0.004 / 0.001 |
+| MAR  | 1000 / 10000 / 100000 | 0.540 / 0.483 / 0.494 | 0.059 / 0.059 / 0.057 |
+
+Under MCAR the gap and cross block → 0 (observed → expected, standard theory holds); under MAR
+both persist, flat. So `fisher_info_obs_mvn` is the correct expected info under MCAR but
+**incomplete under MAR** (omits the selection-induced cross term). Analytic `E[r_P]` closed form
+still pending (to complete the info matrix), but the mechanism is no longer a hypothesis.
+
 **Implications — OPEN, do NOT write into manuscript/derivation until resolved:**
 - The "expected RIV" benchmark used throughout W1 (`fisher_info_obs_mvn`) may be an
   **incomplete** observed-data information under MAR (missing the cross term). The
