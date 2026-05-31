@@ -189,6 +189,26 @@ observed_info_obs_mvn` (= `tr_samp`). The earlier "A→expected / B→sample" tw
 **artifact** of grading against `fisher_info_obs_mvn` (block-diagonal = as-if-MCAR = incomplete
 under MAR). The theorem holds cleanly: `E[T] = +½ tr(RIV)` against the correct RIV.
 
+### Lemma revalidation against the observed-data info (2026-05-31)
+
+The end-to-end theorem is confirmed against the observed-data RIV (A-vs-RIV check above), but the
+*intermediate* lemmas L1/L2/L3 had only been graded against the naive block-diagonal info. Re-tested
+each directly against the cross-inclusive observed info (`/tmp/lemma_check.R`, ampute non_monotone
+MAR 40%, R=8000):
+
+| N | L1 `tr(O·Var[obs])` | L1naive `tr(E·Var[obs])` | L3 `tr(Ic·Cov[obs,com])` | L2 `tr(Ic·Var[gap])` | RIV_obs | RIV_naive | sanity `tr(Ic·Var[com])` |
+|---|---|---|---|---|---|---|---|
+| 500 | 14.50 | 14.76 | 14.55 | 8.61 | 8.23 | 7.69 | 14.56 |
+| 2000 | 14.07 | 14.34 | 14.09 | 8.33 | 8.18 | 7.64 | 14.09 |
+
+At N=2000 clean relations sit at the sanity baseline 14.09 (the complete-data `Var(θ̂_com)=I_com⁻¹`
+check). **L1** (14.07) and **L3** (14.09) match it → `Var(θ̂_obs)=O_obs⁻¹` and
+`Cov(θ̂_obs,θ̂_com)=I_com⁻¹` hold with the **observed** info; the naive L1 (14.34) is off. **L2**
+(8.33) matches RIV_obs (8.18, residual ≈0.14 finite-n), not RIV_naive (7.64). Residuals scale ~1/n
+(sanity 0.56→0.09, L2 0.37→0.14 from N=500→2000), consistent with the theorem's O(1/n) remainder. So
+the asymptotic inputs L1/L2/L3 — not just the end-to-end theorem — are simulation-confirmed against
+the cross-inclusive observed information.
+
 **Consequences for the paper (pending lit check on novelty):**
 - The RIV in the theorem and the IC correction must use the **observed-data information**
   (`tr_riv_observed_general`), not the block-diagonal `tr_riv_analytic` / `fisher_info_obs_mvn`.

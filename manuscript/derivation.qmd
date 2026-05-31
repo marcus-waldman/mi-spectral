@@ -628,13 +628,13 @@ $$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}(I_{\text{obs}
 `[mc]` @lst-mc-termb (`B + tr(RIV)/2 == 0`).
 :::
 
-**Finite-$n$ (which RIV).** Term B consumes the variance of the estimator *gap* (L2). That
-variance's leading identity $I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$ is finite-sample
-*inflated*, so $\mathbb{E}[B]$ in fact tracks $-\tfrac12$ the **sample / observed** RIV
-$\operatorname{tr}\!\big(I_{\text{com}}\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})\big)$,
-the larger of the two (@sec-riv). Empirically
-$\operatorname{tr}(I_{\text{com}}\widehat{\operatorname{Var}}(\text{gap}))\approx 6.0$ vs the
-expected $5.5$ at $n=2000$ (`phase6-info/`); the gap closes only as $n\to\infty$.
+**Which information.** Term B consumes the variance of the estimator *gap* (L2),
+$\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})=I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$,
+where $I_{\text{obs}}$ is the observed-data information (@sec-riv). Graded against the **naive**
+block-diagonal information the gap variance looked $\approx 10\%$ inflated
+($\operatorname{tr}(I_{\text{com}}\widehat{\operatorname{Var}}(\text{gap}))\approx 6.0$ vs $5.5$ at
+$n=2000$, `phase6-info/`); graded against the observed-data information it is the single
+$\operatorname{tr}(\mathrm{RIV})$, with no residual gap (note after @eq-combine).
 
 ### Term A $=+\operatorname{tr}(\mathrm{RIV})$ (imputation bias) {#sec-termA}
 
@@ -743,12 +743,11 @@ identity; the MVN FIML instantiation of $\bar Q_\infty$ matches the R code to ma
 precision (@lst-mc-fiml).
 :::
 
-**Finite-$n$ (which RIV).** Term A consumes
-$\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ (L1), which the observed
-information tracks well even at finite $n$
-($\operatorname{tr}(\hat I_{\text{obs}}\widehat{\operatorname{Var}}(\hat\theta_{\text{obs}}))\approx k$),
-so $\mathbb{E}[A]$ tracks the **expected** RIV — unlike Term B, whose gap variance is inflated
-(@sec-riv; note after @eq-combine).
+**Which information.** Term A consumes
+$\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ (L1), with $I_{\text{obs}}$ the
+observed-data information; the high-$R$ diagnostic confirms $\mathbb{E}[A]$ tracks
+$\operatorname{tr}(\mathrm{RIV})$ on this same observed-data information — the single RIV Term B
+also calibrates to (@sec-riv; note after @eq-combine).
 
 ### Combine: $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ {#sec-combine}
 
