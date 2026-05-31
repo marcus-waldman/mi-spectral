@@ -262,6 +262,46 @@ $\gamma = r/(1+r)$). Our headline $\operatorname{tr}(\mathrm{RIV})=\operatorname
 lives specifically on the $I_{\text{obs}}^{-1}$ side; a reader who substitutes $D$ gets the wrong quantity.
 :::
 
+::: {.callout-important}
+## Two informations, two RIVs: expected vs sample (observed) {#sec-two-rivs}
+
+The theorem uses the **expected** Fisher informations of D5-D6, so its
+$\operatorname{tr}(\mathrm{RIV})=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$
+is the **expected-information RIV**. Two informations sit behind it. The
+**expected (curvature) information** $-\mathbb{E}[\partial^2\ell]$ and the **score variance**
+$\mathbb{E}[SS^\top]$ coincide under correct specification — the second Bartlett identity, or
+*information equality* — which is why D5 writes
+$I_{\text{com}}=-\mathbb{E}[\partial^2\ell]=\mathbb{E}[S_{\text{com}}S_{\text{com}}^\top]$ as one
+object [@pawitanAllLikelihoodStatistical2013, §13.6: "assuming the model is correct we get
+$\mathcal{J}=\mathcal{I}$, and the formula reduces to ... the 'naive' variance"], <a href="#sec-src-pawitan"><code>:14699</code></a>. Their
+inequality *under misspecification* is exactly what turns AIC's penalty $k$ into Takeuchi's
+$\operatorname{tr}(\mathcal{J}\mathcal{I}^{-1})$ (TIC/GIC)
+[@pawitanAllLikelihoodStatistical2013; @konishiGeneralisedInformationCriteria1996], <a href="#sec-src-pawitan"><code>:14707</code></a>, <a href="#sec-src-konishi"><code>:90</code></a>.
+
+That misspecification regime is **not** ours: the analysis model is correctly specified, so
+information equality holds — confirmed numerically,
+$\operatorname{tr}(\hat{\mathcal{J}}\,I_{\text{obs}}^{-1})\approx k$ across cells
+(`run_all.R` phase 6, `verification/cache/run_all-prod/phase6-info/`). What still diverges at
+finite $n$ is the **expected vs observed** information: the actual sampling variance of an MLE
+is better described by the *observed* information than by its expectation
+[@efronAssessingAccuracyMaximum1978], <a href="#sec-src-efron"><code>:99</code></a>. Equivalently there is a second RIV — the
+**sample / operational RIV**, Rubin's between/within $r_\infty$ (callout above), equal to
+$\operatorname{tr}\!\big(I_{\text{com}}\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})\big)$
+at the *realized* finite-$n$ gap variance. This is the observed-information flavor, and the
+quantity the information-criterion correction (manuscript §5) actually subtracts.
+
+The two RIVs coincide as $n\to\infty$ (Efron-Hinkley) but differ at realistic $n$: in the MVN
+running example the sample RIV exceeds the expected RIV by $\sim$10% at $n\le 2000$ and the gap
+closes slowly. The two deviance-bias terms attach to *different* RIVs at finite $n$ — Term A to
+the expected RIV, Term B to the sample RIV — analyzed in the note after @eq-combine.
+
+**Symbol caution.** The proof below writes $\mathcal{J}$ for the *observed information* (the
+negative Hessian $-\partial^2\ell/\partial\theta\partial\theta^\top$ at the estimate), the
+EM/Louis convention. This is **not** Pawitan's $\mathcal{J}$ (the score variance
+$\mathbb{E}[SS^\top]$); under correct specification both reduce to $I$, so the body's
+$\mathcal{J}\to_p I$ steps are unaffected.
+:::
+
 ### The MI Q-function and the deviance-bias split {#sec-qfun}
 
 We can now name the object the theorem is about, and the bias attributed to it.
@@ -480,6 +520,11 @@ $\operatorname{Cov}(\hat\theta_{\text{obs}},\hat\theta_{\text{com}})=I_{\text{ob
 then $\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})=I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}-I_{\text{com}}^{-1}+I_{\text{com}}^{-1}$.
 The variance is of the *gap*, not of $\hat\theta_{\text{obs}}$ alone — the distinction that
 keeps Term B at $-\tfrac12\operatorname{tr}(\mathrm{RIV})$ rather than a spurious $-\tfrac12 k$.
+This identity is exact only to leading order: it rests on
+$\operatorname{Cov}(\hat\theta_{\text{obs}},\hat\theta_{\text{com}})=I_{\text{com}}^{-1}$ (via L3),
+which holds asymptotically. At finite $n$ the realized gap variance is *larger*, so Term B in
+fact tracks the **sample** RIV rather than the expected one — see the finite-$n$ note after
+@eq-combine and the two-RIV callout in @sec-riv.
 
 ::: {.column-margin}
 **Source.** `[derived]` from L1, L3, A8; verified symbolically (Tier B, @lst-mc-tierb).
@@ -501,7 +546,10 @@ parameter and $\tilde\phi$ the imputation parameter — the symbol $\phi$ rather
 $\theta$ marks it as the imputer's, distinct from the analysis parameter even where the two
 spaces coincide under congeniality, and the tilde marks a posterior *draw* (which collapses
 to the point value $\hat\theta_{\text{obs}}$ under FIML). We write $S$ for the score and
-$\mathcal{J}$ for the observed information.
+$\mathcal{J}$ for the observed information (the negative Hessian at the estimate) — *not* the
+score-variance $\mathcal{J}$ of @pawitanAllLikelihoodStatistical2013 (<a href="#sec-src-pawitan"><code>:14618</code></a>); under correct
+specification both reduce to the expected information $I$ (see the two-RIV callout in
+@sec-riv), so the $\mathcal{J}\to_p I$ steps below are unaffected.
 
 ### Theorem {#sec-thm}
 
@@ -510,6 +558,12 @@ $$ \mathbb{E}[T] = \mathbb{E}\big[\bar Q_\infty(\hat\theta_{\text{obs}}) - \ell_
 decomposing (D10-D12) as $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ (imputation
 bias) and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ (estimation
 mismatch). The deviance-scale statement multiplies by 2.
+
+Here $\mathrm{RIV}$ is the **expected-information** RIV (D8). The statement is asymptotic: the
+leading constants are exact, but at finite $n$ Term A and Term B calibrate to *different*
+RIVs (expected vs sample/observed), so the approach to the leading constants is governed by
+the Efron–Hinkley expected-vs-sample gap rather than a uniform $O(n^{-1})$ — see the two-RIV
+callout (@sec-riv) and the finite-$n$ note after @eq-combine.
 
 ### Proof strategy {#sec-strategy}
 
@@ -564,6 +618,14 @@ $$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}(I_{\text{obs}
 `[mc]` @lst-mc-termb (`B + tr(RIV)/2 == 0`).
 :::
 
+**Finite-$n$ (which RIV).** Term B consumes the variance of the estimator *gap* (L2). That
+variance's leading identity $I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$ is finite-sample
+*inflated*, so $\mathbb{E}[B]$ in fact tracks $-\tfrac12$ the **sample / observed** RIV
+$\operatorname{tr}\!\big(I_{\text{com}}\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})\big)$,
+the larger of the two (@sec-riv). Empirically
+$\operatorname{tr}(I_{\text{com}}\widehat{\operatorname{Var}}(\text{gap}))\approx 6.0$ vs the
+expected $5.5$ at $n=2000$ (`phase6-info/`); the gap closes only as $n\to\infty$.
+
 ### Term A $=+\operatorname{tr}(\mathrm{RIV})$ (imputation bias) {#sec-termA}
 
 **A1.** Factor the complete-data log-likelihood
@@ -609,8 +671,8 @@ $A = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\operatorname{Cov}(\til
 ::: {.column-margin}
 `[derived]` Mechanism + two closed-form families in the lemma below; closed forms
 computed in the companion MI-IC derivation (v4, Steps 6-7) and reproduced here so this
-document is self-contained. The per-term $O(n^{-1})$ residual is what the Monte Carlo
-study reports as the finite-$n$ wobble in $A$, $B$ individually (note after @eq-combine).
+document is self-contained. The finite-$n$ behaviour of $A$ and $B$ — each attaching to a
+*different* RIV (expected vs sample) — is analyzed in the note after @eq-combine.
 :::
 
 ::: {.callout-note collapse="true"}
@@ -653,10 +715,10 @@ cancellation is **asserted** for any regular conditional family $P(Y_{\text{mis}
 [R1: differentiation under the integral, Bartlett identities] — it is **not** proved here
 as a closed theorem at that generality. Two pieces of independent support: (i) the FIML
 $A$ matches the R code to machine precision and the W1 cache gives
-$\mathbb{E}[A]\approx\operatorname{tr}(\mathrm{RIV})$ (@lst-mc-fiml, @lst-mc-mcse); (ii) the
-$O(n^{-1})$ per-term residual is exactly the finite-$n$ signature flagged after @eq-combine —
-$A$ and $B$ each run $\sim$10-20% off while $T=A+B$ holds within Monte-Carlo error,
-because the residuals cancel in the sum.
+$\mathbb{E}[A]\approx\operatorname{tr}(\mathrm{RIV})$ against the expected-information RIV
+(@lst-mc-fiml, @lst-mc-mcse); (ii) the high-$R$ diagnostic (`run_all.R` phase 6) confirms this
+at $n\le 2000$, with the finite-$n$ behaviour of $A$, $B$, $T$ — and why they attach to
+different RIVs — analyzed in the note after @eq-combine.
 :::
 
 **A5.** Under congenial proper imputation the imputation parameter satisfies
@@ -671,6 +733,13 @@ identity; the MVN FIML instantiation of $\bar Q_\infty$ matches the R code to ma
 precision (@lst-mc-fiml).
 :::
 
+**Finite-$n$ (which RIV).** Term A consumes
+$\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ (L1), which the observed
+information tracks well even at finite $n$
+($\operatorname{tr}(\hat I_{\text{obs}}\widehat{\operatorname{Var}}(\hat\theta_{\text{obs}}))\approx k$),
+so $\mathbb{E}[A]$ tracks the **expected** RIV — unlike Term B, whose gap variance is inflated
+(@sec-riv; note after @eq-combine).
+
 ### Combine: $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ {#sec-combine}
 
 $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + O(n^{-1}) $$ {#eq-combine}
@@ -681,16 +750,33 @@ $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV})
 :::
 
 ::: {.callout-note}
-## Leading order, finite-sample residual, and the verification stack
-The identities $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$ and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})$
-hold *to leading order*; each carries an $O(n^{-1})$ correction (Term A's from the
-$(A)+(C)$ cancellation in A4). These per-term residuals are real at finite $n$ —
-the Monte Carlo study sees the individual terms $\sim$10-20% off while their **sum**
-$\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ holds within Monte-Carlo error, because the
-residuals cancel. Three layers of evidence stand behind the result: this proof (the
-algebra), the inline symbolic verification (@sec-verify; trace identities and the normal
-instantiation to machine precision), and the pre-registered Monte Carlo study (12 cells,
-two imputation engines).
+## Leading order vs finite-$n$: the two terms attach to different RIVs
+$\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$ and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})$
+hold *to leading order* against the **expected-information** RIV (D5-D6, D8). At finite $n$ the
+two terms calibrate to *different* RIVs (@sec-riv):
+
+- **Term A** is governed by $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ (L1),
+  which the observed information tracks well even at finite $n$, so $A$ tracks the **expected** RIV.
+- **Term B** is governed by $\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})$ (L2),
+  whose asymptotic identity $I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$ is finite-sample *inflated*,
+  so $B$ tracks the larger **sample / observed** RIV (Efron-Hinkley,
+  @efronAssessingAccuracyMaximum1978, <a href="#sec-src-efron"><code>:113</code></a>).
+
+Hence
+$\mathbb{E}[T]-\tfrac12\operatorname{tr}(\mathrm{RIV})_{\text{exp}}
+=\big(\mathbb{E}[A]-\operatorname{tr}(\mathrm{RIV})_{\text{exp}}\big)
+-\tfrac12\big(\mathrm{RIV}_{\text{samp}}-\mathrm{RIV}_{\text{exp}}\big)$:
+at finite $n$, $T$ sits *below* $\tfrac12\operatorname{tr}(\mathrm{RIV})$ by about half the
+expected-vs-sample gap, vanishing only as that (Efron-Hinkley) gap closes — empirically
+**slowly**, not as a clean $O(n^{-1})$. Each term is $+O(n^{-1})$ against *its own* RIV
+(e.g. $\mathbb{E}[B]+\tfrac12\operatorname{tr}(\mathrm{RIV})_{\text{samp}}\to0$ cleanly); it is
+the *cross-discrepancy* between the two RIVs that is slow. The earlier reading — that the
+per-term residuals cancel so $T$ holds — was a Monte-Carlo artifact of insufficient precision,
+corrected by the high-$R$ runs (`run_all.R` phase 6; `todo/008`).
+
+Three layers of evidence: this proof (the algebra), the inline symbolic verification
+(@sec-verify), and the pre-registered + diagnostic Monte Carlo study (`verification/`,
+including the phase-6 information diagnostic).
 :::
 
 ---
@@ -894,6 +980,58 @@ numbered block at `:3353`.
 > $\operatorname{vec}(\mathbf{A X B})=\left(\mathbf{B}^{T} \otimes \mathbf{A}\right) \operatorname{vec}(\mathbf{X})$ &nbsp; (520)
 
 > $\operatorname{Tr}\left(\mathbf{A}^{T} \mathbf{B}\right)=\operatorname{vec}(\mathbf{A})^{T} \operatorname{vec}(\mathbf{B})$ &nbsp; (521)
+
+### Efron & Hinkley (1978) — Observed versus Expected Fisher Information {#sec-src-efron}
+
+[@efronAssessingAccuracyMaximum1978]. Invoked by the two-RIV callout in @sec-riv and the finite-$n$ note after
+@eq-combine: the *observed* information, not its expectation, tracks the finite-sample variance
+of the MLE — the basis for the **sample/observed** RIV that Term B attaches to.
+
+**Observed vs expected Fisher information** [`:99`].
+
+> "The quantity $I(x)$ is aptly called the observed Fisher information by some writers, as distinguished from $\mathscr{I}_{\theta}$, the expected Fisher information. This last name is useful even though $E\left(\mathscr{J}_{\theta}\right) \neq \mathscr{I}_{\theta}$ in general."
+
+**The MLE's variance is the reciprocal of the *observed* information** [`:107`–`:113`].
+
+> "Approximation (1•2), one over the expected Fisher information, would presumably never be applied in practice ... the conditional variance $(1\cdot4)$ is a corresponding property of the observed likelihood: $(1\cdot4)$ is equal to the reciprocal of the observed Fisher information $I(x)$."
+
+**Observed information = negative Hessian** [`:224`].
+
+> "the observed Fisher information $I(x)=-\ddot{l}_{\theta}$"
+
+### Pawitan (2001) — In All Likelihood (Ch. 13, robustness) {#sec-src-pawitan}
+
+[@pawitanAllLikelihoodStatistical2013]. Invoked by the two-RIV callout in @sec-riv and the §sec-derivation
+notation note: the score-variance $\mathcal{J}$ vs expected-Hessian $\mathcal{I}$ distinction,
+information equality under correct specification, and the TIC penalty
+$\operatorname{tr}(\mathcal{J}\mathcal{I}^{-1})$.
+
+**$\mathcal{J}$ (score variance), $\mathcal{I}$ (expected Hessian); equal under the true model** [`:14618`, `:14624`, `:14627`].
+
+> $\mathcal{J} \equiv E\left(\partial\log f_{\theta}/\partial\theta\right)\left(\partial\log f_{\theta}/\partial\theta'\right)\big|_{\theta_0}$ [`:14618`]; &nbsp; $\mathcal{I} \equiv -E\,\partial^{2}\log f_{\theta}/\partial\theta\partial\theta'\big|_{\theta_0}$ [`:14624`]; &nbsp; "These two matrices are the same if $f_{\theta_{0}}(x)$ is the true model." [`:14627`]
+
+**Sandwich variance (Theorem 13.2) and information equality** [`:14632`, `:14699`].
+
+> $\sqrt{n}(\widehat{\theta}-\theta_{0}) \xrightarrow{d} N(0, \mathcal{I}^{-1}\mathcal{J}\mathcal{I}^{-1})$ [`:14632`]; &nbsp; "Assuming the model is correct we get $\mathcal{J}=\mathcal{I}$, and the formula reduces to the usual inverse Fisher information $\mathcal{I}^{-1}$ ... the 'naive' variance formula." [`:14699`]
+
+**Trace corollary $\operatorname{tr}(\mathcal{J}\mathcal{I}^{-1})$ (the TIC penalty)** [`:14707`]; the §13.6 AIC derivation restates $\mathcal{J}_{k}$ at [`:14977`].
+
+> $E\left\{n(\widehat{\theta}-\theta_{0})'\mathcal{I}(\widehat{\theta}-\theta_{0})\right\} \to \operatorname{trace}\left(\mathcal{I}\mathcal{I}^{-1}\mathcal{J}\mathcal{I}^{-1}\right) = \operatorname{trace}\left(\mathcal{J}\mathcal{I}^{-1}\right)$
+
+### Konishi & Kitagawa (1996) — Generalised Information Criteria {#sec-src-konishi}
+
+[@konishiGeneralisedInformationCriteria1996]. Invoked by the two-RIV callout in @sec-riv: the TIC/GIC
+generalization of AIC's penalty *under misspecification* — the misspecification face of the
+$\mathcal{J}$-vs-$\mathcal{I}$ distinction, contrasted with our correctly-specified,
+finite-sample case.
+
+**Theorem 2.1 — bias under possible misspecification** [`:80`–`:90`].
+
+> "Suppose that the parametric family of distributions does not necessarily contain the true distribution ... the asymptotic bias of the log likelihood ... $E_{G}\left\{\eta(X_{n};\hat{G})-\eta(X_{n};G)\right\}=\frac{1}{n} b_{1}(G)+o(1/n)$" [`:80`–`:84`], with $b_{1}(G)=\operatorname{tr}\left\{\int T^{(1)}(z;G)\,\partial\log f(z\mid\theta)/\partial\theta'\big|_{T(G)}\,dG(z)\right\}$ [`:90`].
+
+**GIC = bias-corrected log-likelihood (a trace penalty)** [`:100`–`:101`].
+
+> $\operatorname{GIC}(X_{n};\hat{G}) := -2\sum_{\alpha}\log f(X_{\alpha}\mid\hat{\theta}) + \frac{2}{n}\sum_{\alpha}\operatorname{tr}\left\{T^{(1)}(X_{\alpha};\hat{G})\,\partial\log f(X_{\alpha}\mid\theta)/\partial\theta'\big|_{\hat{\theta}}\right\}$
 
 ---
 
