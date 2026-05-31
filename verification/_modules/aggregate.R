@@ -10,7 +10,7 @@ fmt_pct <- function(x, digits = 3) {
 
 run_aggregate <- function(out_suffix,
                           w1_dir, w3_dir, rate_dir, bias_dir,
-                          out_dir) {
+                          out_dir, info_dir = NULL) {
   if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
   cat(sprintf("\n== Phase 5: Aggregate + evaluate hypotheses ==\n\n"))
   w1   <- read.csv(file.path(w1_dir,   "summary.csv"), stringsAsFactors = FALSE)
@@ -164,6 +164,20 @@ run_aggregate <- function(out_suffix,
   }
   verdicts$H6 <- list(pass = H6_pass,
                        detail = sprintf("max |FIML - Amelia cong M=200| W3-A gap = %.3f", max_gap))
+
+  # INFO: phase-6 information diagnostic (exploratory; folded in if present).
+  if (!is.null(info_dir) && file.exists(file.path(info_dir, "summary.csv"))) {
+    info <- read.csv(file.path(info_dir, "summary.csv"), stringsAsFactors = FALSE)
+    k = length(default_mu) + length(default_mu) * (length(default_mu) + 1) / 2
+    verdicts$INFO <- list(
+      pass = "observational (exploratory; todo/008)",
+      detail = sprintf(
+        "info-eq tr(J I^-1)~k=%d in [%.1f,%.1f] (correct spec => E-H not TIC); A->expected RIV (max|A-tr_exp|=%.2f vs max|A-tr_samp|=%.2f); B->sample RIV (max|B+tr_samp/2|=%.2f vs max|B+tr_exp/2|=%.2f); tr_samp-tr_exp in [%.2f,%.2f]",
+        k, min(info$info_eq, na.rm = TRUE), max(info$info_eq, na.rm = TRUE),
+        max(abs(info$A_minus_exp)), max(abs(info$A_prop - info$tr_samp)),
+        max(abs(info$B_plus_half_samp)), max(abs(info$B + 0.5 * info$tr_exp)),
+        min(info$tr_samp - info$tr_exp), max(info$tr_samp - info$tr_exp)))
+  }
 
   # Print + persist verdicts.
   cat("\n\n-- Hypothesis verdicts --\n\n")

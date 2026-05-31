@@ -13,6 +13,8 @@
 #   3. H3b rate side experiment (low-rate arm; rate=60% deferred)
 #   4. MNAR parameter bias measurement (3 mechs incl. MNAR_targeted)
 #   5. Aggregation + hypothesis evaluation + markdown verdicts
+#   6. W1 information diagnostic (expected-vs-sample RIV; exploratory, todo/008)
+#      [runs before phase 5 so aggregate can fold it in]
 #
 # Usage:
 #   Rscript verification/run_all.R <R> <out_suffix> [phases] [n_cores]
@@ -30,6 +32,7 @@
 #     phase3-rate/      <cell-id>.rds + summary.csv
 #     phase4-mnar-bias/ <cell-id>.rds + summary.csv
 #     phase5/           verdicts.md + combined.csv
+#     phase6-info/      <cell-id>.rds + summary.csv
 
 source("verification/00-setup.R")
 source("verification/_modules/smoke-tests.R")
@@ -37,6 +40,7 @@ source("verification/_modules/w1-sweep.R")
 source("verification/_modules/w3-sweep.R")
 source("verification/_modules/w3-rate.R")
 source("verification/_modules/mnar-bias.R")
+source("verification/_modules/w1-information-diagnostic.R")
 source("verification/_modules/aggregate.R")
 
 suppressPackageStartupMessages({
@@ -56,7 +60,7 @@ phases_arg <- if (length(args) >= 3) args[3] else "all"
 n_cores    <- if (length(args) >= 4) as.integer(args[4]) else 20
 
 phases <- if (phases_arg == "all") {
-  c(0, 1, 2, 3, 4, 5)
+  c(0, 1, 2, 3, 4, 5, 6)
 } else {
   as.integer(strsplit(phases_arg, ",")[[1]])
 }
@@ -112,12 +116,20 @@ if (4 %in% phases) {
   run_mnar_bias(R_per_cell, cl, out_dir = file.path(base_dir, "phase4-mnar-bias"))
 }
 
+# Phase 6 runs before phase 5 so a full "all" run lets aggregate fold in the
+# information diagnostic. It is self-contained (own summary + verdicts) when run
+# alone.
+if (6 %in% phases) {
+  run_w1_info_diagnostic(R_per_cell, cl, out_dir = file.path(base_dir, "phase6-info"))
+}
+
 if (5 %in% phases) {
   run_aggregate(out_suffix = out_suffix,
                  w1_dir   = file.path(base_dir, "phase1-w1"),
                  w3_dir   = file.path(base_dir, "phase2-w3"),
                  rate_dir = file.path(base_dir, "phase3-rate"),
                  bias_dir = file.path(base_dir, "phase4-mnar-bias"),
+                 info_dir = file.path(base_dir, "phase6-info"),
                  out_dir  = file.path(base_dir, "phase5"))
 }
 
