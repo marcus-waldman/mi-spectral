@@ -203,7 +203,7 @@ asymptotic precision of $\hat\theta_{\text{obs}}$ (Lemma L1) — is
 $$ I_{\text{obs}}(\theta) = -\,\mathbb{E}_{Y_{\text{obs}}\sim\theta}\!\big[\partial^2\ell_{\text{obs}}(\theta;Y_{\text{obs}})/\partial\theta\,\partial\theta^\top\big]. $$
 
 ::: {.column-margin}
-**Source.** @schaferAnalysisIncompleteMultivariate1997, <a href="#sec-src-schafer"><code>:1489</code></a>: observed information $I_o=-\partial^2\ell(\theta\mid Y_{\text{obs}})/\partial\theta^2$; we use its expectation, the Fisher form (@vaartAsymptoticStatistics1998a, <a href="#sec-src-vaart"><code>:2320</code></a>). For MVN, the pattern-mixture sum (`fisher_info_obs_mvn`).
+**Source.** @schaferAnalysisIncompleteMultivariate1997, <a href="#sec-src-schafer"><code>:1489</code></a>: observed information $I_o=-\partial^2\ell(\theta\mid Y_{\text{obs}})/\partial\theta^2$; we use its expectation, the Fisher form (@vaartAsymptoticStatistics1998a, <a href="#sec-src-vaart"><code>:2320</code></a>), taken **unconditionally** over $(Y,R)$ — see @sec-riv. For MVN the naive (MCAR) form is the pattern-mixture sum (`fisher_info_obs_mvn`); under MAR $I_{\text{obs}}$ carries an extra mean–covariance cross term (Appendix C) and is estimated by the observed information.
 :::
 
 **D7 (missing information and the information identity).** Their difference is the missing
@@ -263,37 +263,48 @@ lives specifically on the $I_{\text{obs}}^{-1}$ side; a reader who substitutes $
 :::
 
 ::: {.callout-important}
-## Two informations, two RIVs: expected vs sample (observed) {#sec-two-rivs}
+## The information behind the RIV: use the observed-data information {#sec-two-rivs}
 
-The theorem uses the **expected** Fisher informations of D5-D6, so its
-$\operatorname{tr}(\mathrm{RIV})=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$
-is the **expected-information RIV**. Two informations sit behind it. The
-**expected (curvature) information** $-\mathbb{E}[\partial^2\ell]$ and the **score variance**
-$\mathbb{E}[SS^\top]$ coincide under correct specification — the second Bartlett identity, or
-*information equality* — which is why D5 writes
-$I_{\text{com}}=-\mathbb{E}[\partial^2\ell]=\mathbb{E}[S_{\text{com}}S_{\text{com}}^\top]$ as one
-object [@pawitanAllLikelihoodStatistical2013, §13.6: "assuming the model is correct we get
-$\mathcal{J}=\mathcal{I}$, and the formula reduces to ... the 'naive' variance"], <a href="#sec-src-pawitan"><code>:14699</code></a>. Their
-inequality *under misspecification* is exactly what turns AIC's penalty $k$ into Takeuchi's
+The RIV's denominator is the observed-data information $I_{\text{obs}}=-\mathbb{E}[\partial^2\ell_{\text{obs}}]$
+(D6), and one subtlety decides what it equals under MAR. The expectation must be taken
+**unconditionally** — over the joint law of $(Y,R)$, with the missingness mechanism included —
+because under MAR the response pattern $R$ is *not* ancillary for $\theta$
+[@kenwardLikelihoodBasedFrequentist1998, §2], <a href="#sec-src-kenward"><code>:89</code></a>. Taking the
+expectation as if each pattern's observed block were a fresh marginal sample — the **naive**
+expectation, valid only under MCAR — gives a different, biased information: "the expected
+information ... is wrong because the expectation is taken under MCAR"
+[@kenwardLikelihoodBasedFrequentist1998], <a href="#sec-src-kenward"><code>:60</code></a>.
+
+For the MVN the difference is explicit. The naive expectation makes $I_{\text{obs}}$ block-diagonal
+in $(\mu,\Sigma)$ — the familiar mean/covariance orthogonality — and is exactly what
+`fisher_info_obs_mvn` computes. Under MAR, selection on the observed values shifts each pattern's
+observed mean off the marginal, and the unconditional information picks up a non-zero
+mean–covariance **cross term**, so "the orthogonality of mean and variance-covariance parameters
+is lost under the MAR mechanism," vanishing iff the mechanism is MCAR
+[@kenwardLikelihoodBasedFrequentist1998, §3.2], <a href="#sec-src-kenward"><code>:374</code></a> (Appendix C
+gives the cross term in closed form). Because the unconditional information needs the
+usually-unknown mechanism, the standing recommendation — which we adopt — is to estimate
+$I_{\text{obs}}$ by the **observed** information $-\partial^2\ell_{\text{obs}}/\partial\theta\partial\theta^\top$,
+which is consistent and needs no mechanism model: "provided the observed information matrix is
+used, conventional likelihood based frequentist inference is applicable in the MAR setting"
+[@kenwardLikelihoodBasedFrequentist1998, §5], <a href="#sec-src-kenward"><code>:544</code></a>. So there is a
+**single** RIV, $\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$, evaluated with
+the observed-data information; both deviance-bias terms calibrate to it (note after @eq-combine).
+
+**A separate axis — score variance vs curvature — does not bite here.** The expected (curvature)
+information $-\mathbb{E}[\partial^2\ell]$ and the score variance $\mathbb{E}[SS^\top]$ coincide
+under correct specification — the second Bartlett identity, or *information equality* — which is
+why D5 writes $I_{\text{com}}=-\mathbb{E}[\partial^2\ell]=\mathbb{E}[S_{\text{com}}S_{\text{com}}^\top]$
+as one object [@pawitanAllLikelihoodStatistical2013, §13.6: "assuming the model is correct we get
+$\mathcal{J}=\mathcal{I}$, and the formula reduces to ... the 'naive' variance"], <a href="#sec-src-pawitan"><code>:14699</code></a>.
+Their inequality *under misspecification* is what turns AIC's penalty $k$ into Takeuchi's
 $\operatorname{tr}(\mathcal{J}\mathcal{I}^{-1})$ (TIC/GIC)
-[@pawitanAllLikelihoodStatistical2013; @konishiGeneralisedInformationCriteria1996], <a href="#sec-src-pawitan"><code>:14707</code></a>, <a href="#sec-src-konishi"><code>:90</code></a>.
-
-That misspecification regime is **not** ours: the analysis model is correctly specified, so
-information equality holds — confirmed numerically,
-$\operatorname{tr}(\hat{\mathcal{J}}\,I_{\text{obs}}^{-1})\approx k$ across cells
-(`run_all.R` phase 6, `verification/cache/run_all-prod/phase6-info/`). What still diverges at
-finite $n$ is the **expected vs observed** information: the actual sampling variance of an MLE
-is better described by the *observed* information than by its expectation
-[@efronAssessingAccuracyMaximum1978], <a href="#sec-src-efron"><code>:99</code></a>. Equivalently there is a second RIV — the
-**sample / operational RIV**, Rubin's between/within $r_\infty$ (callout above), equal to
-$\operatorname{tr}\!\big(I_{\text{com}}\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})\big)$
-at the *realized* finite-$n$ gap variance. This is the observed-information flavor, and the
-quantity the information-criterion correction (manuscript §5) actually subtracts.
-
-The two RIVs coincide as $n\to\infty$ (Efron-Hinkley) but differ at realistic $n$: in the MVN
-running example the sample RIV exceeds the expected RIV by $\sim$10% at $n\le 2000$ and the gap
-closes slowly. The two deviance-bias terms attach to *different* RIVs at finite $n$ — Term A to
-the expected RIV, Term B to the sample RIV — analyzed in the note after @eq-combine.
+[@pawitanAllLikelihoodStatistical2013; @konishiGeneralisedInformationCriteria1996], <a href="#sec-src-pawitan"><code>:14707</code></a>, <a href="#sec-src-konishi"><code>:90</code></a>
+— a regime that is **not** ours: the analysis model is correctly specified, so information
+equality holds, confirmed numerically with $\operatorname{tr}(\hat{\mathcal{J}}\,I_{\text{obs}}^{-1})\approx k$
+across cells (`run_all.R` phase 6, `verification/cache/run_all-prod/phase6-info/`). That axis is
+about misspecification; the MAR distinction above is about *which sampling distribution* the
+expectation is taken over, and it is the one that matters here.
 
 **Symbol caution.** The proof below writes $\mathcal{J}$ for the *observed information* (the
 negative Hessian $-\partial^2\ell/\partial\theta\partial\theta^\top$ at the estimate), the
@@ -522,9 +533,8 @@ The variance is of the *gap*, not of $\hat\theta_{\text{obs}}$ alone — the dis
 keeps Term B at $-\tfrac12\operatorname{tr}(\mathrm{RIV})$ rather than a spurious $-\tfrac12 k$.
 This identity is exact only to leading order: it rests on
 $\operatorname{Cov}(\hat\theta_{\text{obs}},\hat\theta_{\text{com}})=I_{\text{com}}^{-1}$ (via L3),
-which holds asymptotically. At finite $n$ the realized gap variance is *larger*, so Term B in
-fact tracks the **sample** RIV rather than the expected one — see the finite-$n$ note after
-@eq-combine and the two-RIV callout in @sec-riv.
+which holds asymptotically with an $O(n^{-1})$ remainder. Evaluated with the observed-data
+information $I_{\text{obs}}$ (@sec-riv), it gives the single RIV that Term B calibrates to.
 
 ::: {.column-margin}
 **Source.** `[derived]` from L1, L3, A8; verified symbolically (Tier B, @lst-mc-tierb).
@@ -548,8 +558,8 @@ spaces coincide under congeniality, and the tilde marks a posterior *draw* (whic
 to the point value $\hat\theta_{\text{obs}}$ under FIML). We write $S$ for the score and
 $\mathcal{J}$ for the observed information (the negative Hessian at the estimate) — *not* the
 score-variance $\mathcal{J}$ of @pawitanAllLikelihoodStatistical2013 (<a href="#sec-src-pawitan"><code>:14618</code></a>); under correct
-specification both reduce to the expected information $I$ (see the two-RIV callout in
-@sec-riv), so the $\mathcal{J}\to_p I$ steps below are unaffected.
+specification both reduce to the expected information $I$ (see @sec-riv), so the
+$\mathcal{J}\to_p I$ steps below are unaffected.
 
 ### Theorem {#sec-thm}
 
@@ -559,11 +569,11 @@ decomposing (D10-D12) as $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})+O(n^{-1
 bias) and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ (estimation
 mismatch). The deviance-scale statement multiplies by 2.
 
-Here $\mathrm{RIV}$ is the **expected-information** RIV (D8). The statement is asymptotic: the
-leading constants are exact, but at finite $n$ Term A and Term B calibrate to *different*
-RIVs (expected vs sample/observed), so the approach to the leading constants is governed by
-the Efron–Hinkley expected-vs-sample gap rather than a uniform $O(n^{-1})$ — see the two-RIV
-callout (@sec-riv) and the finite-$n$ note after @eq-combine.
+Here $\mathrm{RIV}=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ (D8) is
+evaluated with the **observed-data** information $I_{\text{obs}}$ — the unconditional expectation
+that, under MAR, carries the mean–covariance cross term and is estimated by the observed
+information (@sec-riv). Both Term A and Term B calibrate to this single RIV, and the approach
+to the leading constants is $O(n^{-1})$.
 
 ### Proof strategy {#sec-strategy}
 
@@ -715,10 +725,10 @@ cancellation is **asserted** for any regular conditional family $P(Y_{\text{mis}
 [R1: differentiation under the integral, Bartlett identities] — it is **not** proved here
 as a closed theorem at that generality. Two pieces of independent support: (i) the FIML
 $A$ matches the R code to machine precision and the W1 cache gives
-$\mathbb{E}[A]\approx\operatorname{tr}(\mathrm{RIV})$ against the expected-information RIV
-(@lst-mc-fiml, @lst-mc-mcse); (ii) the high-$R$ diagnostic (`run_all.R` phase 6) confirms this
-at $n\le 2000$, with the finite-$n$ behaviour of $A$, $B$, $T$ — and why they attach to
-different RIVs — analyzed in the note after @eq-combine.
+$\mathbb{E}[A]\approx\operatorname{tr}(\mathrm{RIV})$ (@lst-mc-fiml, @lst-mc-mcse); (ii) the
+high-$R$ diagnostic (`run_all.R` phase 6) confirms, graded against the observed-data RIV
+(@sec-riv), that both $A$ and $B$ calibrate to the single $\operatorname{tr}(\mathrm{RIV})$ —
+see the note after @eq-combine.
 :::
 
 **A5.** Under congenial proper imputation the imputation parameter satisfies
@@ -750,29 +760,22 @@ $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV})
 :::
 
 ::: {.callout-note}
-## Leading order vs finite-$n$: the two terms attach to different RIVs
+## Both terms calibrate to the single observed-data RIV
 $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$ and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})$
-hold *to leading order* against the **expected-information** RIV (D5-D6, D8). At finite $n$ the
-two terms calibrate to *different* RIVs (@sec-riv):
+hold to $O(n^{-1})$ against **one** RIV — the observed-data RIV of @sec-riv, with
+$I_{\text{obs}}$ the unconditional information (estimated by the observed information). Term A is
+governed by $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ (L1) and Term B by
+$\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})=I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$
+(L2); both reduce to the same $\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$.
 
-- **Term A** is governed by $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ (L1),
-  which the observed information tracks well even at finite $n$, so $A$ tracks the **expected** RIV.
-- **Term B** is governed by $\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})$ (L2),
-  whose asymptotic identity $I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$ is finite-sample *inflated*,
-  so $B$ tracks the larger **sample / observed** RIV (Efron-Hinkley,
-  @efronAssessingAccuracyMaximum1978, <a href="#sec-src-efron"><code>:113</code></a>).
-
-Hence
-$\mathbb{E}[T]-\tfrac12\operatorname{tr}(\mathrm{RIV})_{\text{exp}}
-=\big(\mathbb{E}[A]-\operatorname{tr}(\mathrm{RIV})_{\text{exp}}\big)
--\tfrac12\big(\mathrm{RIV}_{\text{samp}}-\mathrm{RIV}_{\text{exp}}\big)$:
-at finite $n$, $T$ sits *below* $\tfrac12\operatorname{tr}(\mathrm{RIV})$ by about half the
-expected-vs-sample gap, vanishing only as that (Efron-Hinkley) gap closes — empirically
-**slowly**, not as a clean $O(n^{-1})$. Each term is $+O(n^{-1})$ against *its own* RIV
-(e.g. $\mathbb{E}[B]+\tfrac12\operatorname{tr}(\mathrm{RIV})_{\text{samp}}\to0$ cleanly); it is
-the *cross-discrepancy* between the two RIVs that is slow. The earlier reading — that the
-per-term residuals cancel so $T$ holds — was a Monte-Carlo artifact of insufficient precision,
-corrected by the high-$R$ runs (`run_all.R` phase 6; `todo/008`).
+A high-$R$ diagnostic confirms this directly: graded against the observed-data RIV, both
+$\mathbb{E}[A]-\operatorname{tr}(\mathrm{RIV})$ and $\mathbb{E}[B]+\tfrac12\operatorname{tr}(\mathrm{RIV})$
+are small and consistent with $O(n^{-1})$ (`run_all.R` phase 6; `todo/008`). The earlier reading —
+that the two terms attach to *different* (expected vs sample) RIVs with a slowly closing gap — was
+an artifact of grading the bias against the **naive**, block-diagonal information
+(`fisher_info_obs_mvn`), which is the MCAR form and omits the MAR cross term (@sec-riv,
+Appendix C; [@kenwardLikelihoodBasedFrequentist1998]). Against the correct observed-data
+information there is a single RIV and no residual gap.
 
 Three layers of evidence: this proof (the algebra), the inline symbolic verification
 (@sec-verify), and the pre-registered + diagnostic Monte Carlo study (`verification/`,
@@ -983,9 +986,10 @@ numbered block at `:3353`.
 
 ### Efron & Hinkley (1978) — Observed versus Expected Fisher Information {#sec-src-efron}
 
-[@efronAssessingAccuracyMaximum1978]. Invoked by the two-RIV callout in @sec-riv and the finite-$n$ note after
-@eq-combine: the *observed* information, not its expectation, tracks the finite-sample variance
-of the MLE — the basis for the **sample/observed** RIV that Term B attaches to.
+[@efronAssessingAccuracyMaximum1978]. Secondary support for preferring the observed information:
+the *observed* information, not its expectation, tracks the finite-sample variance of the MLE. The
+MAR-specific reason — that the *unconditional* expected information itself departs from the naive
+form — is @kenwardLikelihoodBasedFrequentist1998 (@sec-src-kenward).
 
 **Observed vs expected Fisher information** [`:99`].
 
@@ -999,9 +1003,31 @@ of the MLE — the basis for the **sample/observed** RIV that Term B attaches to
 
 > "the observed Fisher information $I(x)=-\ddot{l}_{\theta}$"
 
+### Kenward & Molenberghs (1998) — Likelihood Inference When Data Are MAR {#sec-src-kenward}
+
+[@kenwardLikelihoodBasedFrequentist1998]. Invoked by @sec-riv, D6, and Appendix C: under MAR
+the unconditional expected information differs from the naive (MCAR) form, the mean–covariance
+orthogonality is lost, and the observed information should be used.
+
+**Under MAR the response pattern is not ancillary** [`:89`].
+
+> "under the MAR mechanism $\mathbf{r}$ is not an ancillary statistic for $\boldsymbol{\theta}$ ... we are not justified in restricting the sample space from that associated with the pair ( $\mathbf{Y}, \mathbf{R}$ )."
+
+**The naive (MCAR) expected information is biased** [`:60`].
+
+> "The expected information in these papers is wrong because the expectation is taken under MCAR, in which the missing value mechanism is independent of the distribution of the outcome data."
+
+**MVN: the mean–covariance cross term, vanishing iff MCAR** [`:374`].
+
+> "In contrast to the naive information these cross-terms do not all vanish, and the orthogonality of mean and variance-covariance parameters is lost under the MAR mechanism. ... the necessary and sufficient condition for the terms in (9) and (10) to be equal to zero is that $\alpha_{0}=\alpha_{1}=0$, the condition defining, as expected, an MCAR mechanism."
+
+**Recommendation: use the observed information** [`:38`, `:544`].
+
+> (abstract) "it is shown that the classical expected information matrix is biased and the use of the observed information matrix is recommended." (§5) "provided the observed information matrix is used, conventional likelihood based frequentist inference is applicable in the MAR setting."
+
 ### Pawitan (2001) — In All Likelihood (Ch. 13, robustness) {#sec-src-pawitan}
 
-[@pawitanAllLikelihoodStatistical2013]. Invoked by the two-RIV callout in @sec-riv and the §sec-derivation
+[@pawitanAllLikelihoodStatistical2013]. Invoked by @sec-riv and the @sec-derivation
 notation note: the score-variance $\mathcal{J}$ vs expected-Hessian $\mathcal{I}$ distinction,
 information equality under correct specification, and the TIC penalty
 $\operatorname{tr}(\mathcal{J}\mathcal{I}^{-1})$.
@@ -1020,10 +1046,9 @@ $\operatorname{tr}(\mathcal{J}\mathcal{I}^{-1})$.
 
 ### Konishi & Kitagawa (1996) — Generalised Information Criteria {#sec-src-konishi}
 
-[@konishiGeneralisedInformationCriteria1996]. Invoked by the two-RIV callout in @sec-riv: the TIC/GIC
+[@konishiGeneralisedInformationCriteria1996]. Invoked by @sec-riv: the TIC/GIC
 generalization of AIC's penalty *under misspecification* — the misspecification face of the
-$\mathcal{J}$-vs-$\mathcal{I}$ distinction, contrasted with our correctly-specified,
-finite-sample case.
+$\mathcal{J}$-vs-$\mathcal{I}$ distinction, contrasted with our correctly-specified case.
 
 **Theorem 2.1 — bias under possible misspecification** [`:80`–`:90`].
 
@@ -1455,14 +1480,15 @@ print("Tier B:  T = A + B =", sp.expand(T_B), " == tr(RIV)/2  [exact]")
 
 ---
 
-## Appendix C — Observed information and the sample RIV {#sec-appendix-c}
+## Appendix C — The observed-data information under MAR {#sec-appendix-c}
 
-Term B tracks the **sample / observed** RIV (the two-RIV callout in @sec-riv): its governing
-variance is the realized finite-$n$ variance of the estimator gap, which the *observed*
-information describes better than the expected information
-[@efronAssessingAccuracyMaximum1978], <a href="#sec-src-efron"><code>:107</code></a>. This
-appendix gives that observed information in closed form for the MVN under missingness, so the
-sample RIV is computable analytically — no imputations, no numerical differentiation.
+The RIV's denominator is the observed-data information $I_{\text{obs}}$ (@sec-riv), which
+under MAR is *not* the block-diagonal naive form: the unconditional expectation carries a
+mean–covariance cross term [@kenwardLikelihoodBasedFrequentist1998, §3.2], <a href="#sec-src-kenward"><code>:374</code></a>,
+and is estimated by the observed information $-\partial^2\ell_{\text{obs}}/\partial\theta\partial\theta^\top$.
+This appendix gives that observed information in closed form for the MVN under missingness — so the
+RIV is computable analytically, with no imputations and no numerical differentiation — and shows
+exactly where the cross term comes from.
 
 **Observed information.** The observed information is the realized negative Hessian
 $\mathcal{J}_{\text{obs}}(\theta;Y)=-\partial^2\ell_{\text{obs}}/\partial\theta\,\partial\theta^\top$,
@@ -1486,29 +1512,40 @@ $$
 \end{aligned}
 $$
 summed over patterns and embedded in the full index set exactly as in `fisher_info_obs_mvn`.
-Substituting $\mathbb{E}[r_P]=0$ and $\mathbb{E}[M_P]=n_PS$ zeroes the cross block and collapses
-the $\operatorname{vech}$ block to $\tfrac{n_P}{2}D_q^\top(S^{-1}\!\otimes S^{-1})D_q$ — i.e.
-recovers the expected information $I_{\text{obs}}$ of D15. `[mc]` `observed_info_obs_mvn` matches
-a numerical Hessian of $\ell_{\text{obs}}$ to machine precision
-(`verification/00-test-primitives.R`).
+Taking expectations, $\mathbb{E}[M_P]=n_PS$ collapses the $\operatorname{vech}$ block to
+$\tfrac{n_P}{2}D_q^\top(S^{-1}\!\otimes S^{-1})D_q$, and the cross block is governed by
+$\mathbb{E}[r_P]$. Setting $\mathbb{E}[r_P]=0$ zeroes it and recovers the block-diagonal
+$I_{\text{obs}}$ of D15 (`fisher_info_obs_mvn`) — but **$\mathbb{E}[r_P]=0$ holds only under MCAR.**
+`[mc]` `observed_info_obs_mvn` matches a numerical Hessian of $\ell_{\text{obs}}$ to machine
+precision (`verification/00-test-primitives.R`).
 
-**Sample RIV and the term-specific correction.** The sample / observed RIV is
+**The cross term under MAR.** Under MAR the missingness depends on the observed values, so each
+pattern's observed mean is selected away from the marginal and $\mathbb{E}[r_P]\neq 0$. For the
+running example's mechanism — coordinate $j$ made missing with probability $\Phi(a+b\,y_{\text{sel}})$,
+equivalently selection on a Gaussian $S_{\text{sel}}=V-b\,y_{\text{sel}}$ with $V\sim N(0,1)$
+independent — the selected-Gaussian moment gives, per selected coordinate,
+$$ \mathbb{E}[\,y_k-\mu_k \mid \text{selected}\,] \;=\; \frac{b\,\Sigma_{k,\text{sel}}}{\sqrt{1+b^2}}\;
+\lambda\!\Big(\tfrac{a}{\sqrt{1+b^2}}\Big), \qquad \lambda(z)=\phi(z)/\Phi(z) $$
+(the inverse Mills ratio). The shift is $\propto b\,(\Sigma\text{-coupling})$ — non-zero under MAR,
+exactly zero under MCAR ($b=0$) — so $\mathbb{E}[r_P]\neq0$ and the cross block
+$(\mathbb{E}[r_P]^\top S^{-1}\!\otimes S^{-1})D_q$ survives in the unconditional $I_{\text{obs}}$. This
+is the MVN, probit-mechanism instance of @kenwardLikelihoodBasedFrequentist1998, §3.2, whose
+logistic-mechanism bivariate version has the same structure
+$\mathbb{E}[y_2-\mu_2\mid r]=\beta\alpha_1$, $\beta=\sigma_{12}\sigma_{11}^{-1}$, <a href="#sec-src-kenward"><code>:374</code></a>.
+`[mc]` validated against $4\times10^6$ draws (MAR shift $\approx[0.124,0,0.414,0.207]$ matching the
+closed form; MCAR shift $0$); the cross-block contribution to $\operatorname{tr}(\mathrm{RIV})$ does
+not decay with $n$ (`todo/008`).
+
+**The RIV and the IC correction.** The (single) RIV is
 $\operatorname{tr}(\mathcal{J}_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ — the observed
-$\mathcal{J}_{\text{obs}}$ in place of the expected $I_{\text{obs}}$, with the expected
-$I_{\text{com}}$ — running $\approx 10\%$ above the expected RIV at $n\le 2000$ and closing as
-$n\to\infty$. Since Term A calibrates to the expected RIV and Term B to this sample RIV (note
-after @eq-combine), the derivation-consistent deviance correction is the term-specific
-$2\,\mathbb{E}[A]+2\,\mathbb{E}[B]=2\operatorname{tr}(\mathrm{RIV})_{\text{exp}}-\operatorname{tr}(\mathrm{RIV})_{\text{samp}}$,
-rather than a single $\operatorname{tr}(\mathrm{RIV})$ (the `termspec` arm in
-`verification/_modules/w3-sweep.R`).
-
-**Level vs selection.** This correction matters wherever the bias *level* matters — the
-deviance-bias estimate itself and likelihood-ratio test calibration. For information-criterion
-model *selection* it is, empirically, a wash: the expected-vs-sample gap is roughly
-proportional across candidate models, so it nearly cancels in the $\arg\min$, leaving the
-single-$\operatorname{tr}(\mathrm{RIV})$ and term-specific corrections indistinguishable for
-selection (`w3-sweep.R`). The residual gap to the oracle is finite-sample MI-AIC noise, not the
-RIV mismatch.
+information $\mathcal{J}_{\text{obs}}$ above in place of the naive block-diagonal $I_{\text{obs}}$,
+the quantity `tr_riv_observed_general` computes. The information-criterion correction (manuscript
+§5) subtracts this per candidate model. For model *selection* specifically, using the naive
+block-diagonal information instead is, empirically, close to a wash: the naive-vs-unconditional gap
+is roughly proportional across candidate models, so it nearly cancels in the $\arg\min$
+(`w3-sweep.R`); the residual gap to the oracle is finite-sample MI-AIC noise. The correction is not
+optional, however, for the bias *level* — the deviance-bias estimate itself and likelihood-ratio
+test calibration — where the cross term must be carried.
 
 ---
 
