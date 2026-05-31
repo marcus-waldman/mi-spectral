@@ -1455,6 +1455,63 @@ print("Tier B:  T = A + B =", sp.expand(T_B), " == tr(RIV)/2  [exact]")
 
 ---
 
+## Appendix C — Observed information and the sample RIV {#sec-appendix-c}
+
+Term B tracks the **sample / observed** RIV (the two-RIV callout in @sec-riv): its governing
+variance is the realized finite-$n$ variance of the estimator gap, which the *observed*
+information describes better than the expected information
+[@efronAssessingAccuracyMaximum1978], <a href="#sec-src-efron"><code>:107</code></a>. This
+appendix gives that observed information in closed form for the MVN under missingness, so the
+sample RIV is computable analytically — no imputations, no numerical differentiation.
+
+**Observed information.** The observed information is the realized negative Hessian
+$\mathcal{J}_{\text{obs}}(\theta;Y)=-\partial^2\ell_{\text{obs}}/\partial\theta\,\partial\theta^\top$,
+the quantity whose expectation is $I_{\text{obs}}$ (D6). It is the second differential
+$-d^2\ell$ *before* the expectation that yields the Fisher information
+[@magnusMatrixDifferentialCalculus2019, Ch 15 §3, §6], <a href="#sec-src-magnus"><code>:1800</code></a>;
+the component derivatives (of $\log|S|$ and of the quadratic form) are
+[@petersen2008matrix, §2.4.4], <a href="#sec-src-petersen"><code>:510</code></a>, the Gaussian
+second derivative carrying the residual structure $S^{-1}ee^\top S^{-1}-S^{-1}$
+[<a href="#sec-src-petersen"><code>:2013</code></a>].
+
+Per missingness pattern $P$ (observed set $O$, $n_P$ observations, $S=\Sigma_{OO}$,
+$q=|O|$, $D_q$ the duplication matrix), with residual sum $r_P=\sum_{i\in P}(y_i^O-\mu_O)$ and
+cross-product $M_P=\sum_{i\in P}(y_i^O-\mu_O)(y_i^O-\mu_O)^\top$, the pattern's contribution to
+$\mathcal{J}_{\text{obs}}$ in $(\mu,\operatorname{vech}\Sigma)$ coordinates is, blockwise,
+$$
+\begin{aligned}
+\text{mean}:\quad & n_P\,S^{-1} \quad(\text{data-free; equals the expected-info block}),\\
+\text{mean}\times\operatorname{vech}:\quad & (r_P^\top S^{-1}\otimes S^{-1})\,D_q \quad(\propto r_P),\\
+\operatorname{vech}\times\operatorname{vech}:\quad & D_q^\top\!\Big[-\tfrac{n_P}{2}(S^{-1}\!\otimes S^{-1})+\tfrac12\big((S^{-1}M_PS^{-1}\otimes S^{-1})+(S^{-1}\otimes S^{-1}M_PS^{-1})\big)\Big]D_q,
+\end{aligned}
+$$
+summed over patterns and embedded in the full index set exactly as in `fisher_info_obs_mvn`.
+Substituting $\mathbb{E}[r_P]=0$ and $\mathbb{E}[M_P]=n_PS$ zeroes the cross block and collapses
+the $\operatorname{vech}$ block to $\tfrac{n_P}{2}D_q^\top(S^{-1}\!\otimes S^{-1})D_q$ — i.e.
+recovers the expected information $I_{\text{obs}}$ of D15. `[mc]` `observed_info_obs_mvn` matches
+a numerical Hessian of $\ell_{\text{obs}}$ to machine precision
+(`verification/00-test-primitives.R`).
+
+**Sample RIV and the term-specific correction.** The sample / observed RIV is
+$\operatorname{tr}(\mathcal{J}_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ — the observed
+$\mathcal{J}_{\text{obs}}$ in place of the expected $I_{\text{obs}}$, with the expected
+$I_{\text{com}}$ — running $\approx 10\%$ above the expected RIV at $n\le 2000$ and closing as
+$n\to\infty$. Since Term A calibrates to the expected RIV and Term B to this sample RIV (note
+after @eq-combine), the derivation-consistent deviance correction is the term-specific
+$2\,\mathbb{E}[A]+2\,\mathbb{E}[B]=2\operatorname{tr}(\mathrm{RIV})_{\text{exp}}-\operatorname{tr}(\mathrm{RIV})_{\text{samp}}$,
+rather than a single $\operatorname{tr}(\mathrm{RIV})$ (the `termspec` arm in
+`verification/_modules/w3-sweep.R`).
+
+**Level vs selection.** This correction matters wherever the bias *level* matters — the
+deviance-bias estimate itself and likelihood-ratio test calibration. For information-criterion
+model *selection* it is, empirically, a wash: the expected-vs-sample gap is roughly
+proportional across candidate models, so it nearly cancels in the $\arg\min$, leaving the
+single-$\operatorname{tr}(\mathrm{RIV})$ and term-specific corrections indistinguishable for
+selection (`w3-sweep.R`). The residual gap to the oracle is finite-sample MI-AIC noise, not the
+RIV mismatch.
+
+---
+
 ### References {.unnumbered}
 
 ::: {#refs}

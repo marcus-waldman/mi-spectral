@@ -994,6 +994,83 @@ riv_spectrum_analytic_general <- function(theta, Y, R, free_indices) {
 
 
 # -----------------------------------------------------------------------------
+# OBSERVED information of the missing-data MVN observed-data log-likelihood
+# (the realized negative Hessian, NOT its expectation fisher_info_obs_mvn).
+#
+# This is the finite-sample, data-dependent information of Efron & Hinkley
+# (1978): the expected info understates the realized curvature on the estimator
+# gap, and the resulting "sample / observed RIV" tr(I_obs^{obs,-1} I_mis) is the
+# quantity Term B of the deviance bias tracks (see derivation.qmd Appendix C).
+#
+# Per missingness pattern P (observed set O, q vars, n_P obs, S = Sigma_OO,
+# Si = S^{-1}), with residual sum r = sum_i (y_i^O - mu_O) and residual
+# cross-product M = sum_i (y_i^O - mu_O)(.)^T, the negative-Hessian blocks are:
+#   mean        : n_P Si                                  (= expected; data-free)
+#   mean x vech : (r^T Si  (x)  Si) D_q                   (data-dep; E[r]=0)
+#   vech x vech : D_q' { -(n_P/2)(Si (x) Si)
+#                        + 1/2[(Si M Si (x) Si)+(Si (x) Si M Si)] } D_q
+# Taking E[r]=0, E[M]=n_P S recovers fisher_info_obs_mvn (the expected info,
+# D15). Verified against a numerical Hessian to machine precision in
+# 00-test-primitives.R.
+# -----------------------------------------------------------------------------
+
+observed_info_obs_mvn <- function(theta, Y, R) {
+  p = length(theta$mu)
+  k = p + p * (p + 1) / 2
+  patterns <- apply(R, 1, function(row) { return(paste(row, collapse = "")) })
+  vech_idx <- vech_index_table(p)
+  H <- matrix(0, k, k)
+  for (pat in unique(patterns)) {
+    rows <- which(patterns == pat)
+    n_pat = length(rows)
+    Oi <- which(R[rows[1], ] == 0)
+    q = length(Oi)
+    if (q == 0) { next }
+    Sigma_OO <- theta$Sigma[Oi, Oi, drop = FALSE]
+    Si <- solve(Sigma_OO)
+    ec <- sweep(Y[rows, Oi, drop = FALSE], 2, theta$mu[Oi], FUN = "-")  # n_pat x q
+    r <- colSums(ec)
+    M <- crossprod(ec)
+    Dq <- duplication_matrix(q)
+    # mean block
+    H[Oi, Oi] <- H[Oi, Oi] + n_pat * Si
+    # full-vech indices for entries with both indices observed
+    sub_count = 0
+    full_idx <- numeric(q * (q + 1) / 2)
+    for (b in seq_len(q)) {
+      for (a in b:q) {
+        sub_count = sub_count + 1
+        full_idx[sub_count] <- p + vech_idx[Oi[a], Oi[b]]
+      }
+    }
+    # vech(Sigma) block (data-dependent via M)
+    SiMSi <- Si %*% M %*% Si
+    cov_vec <- -0.5 * n_pat * kronecker(Si, Si) +
+      0.5 * (kronecker(SiMSi, Si) + kronecker(Si, SiMSi))
+    H[full_idx, full_idx] <- H[full_idx, full_idx] + t(Dq) %*% cov_vec %*% Dq
+    # mean x vech(Sigma) cross block (data-dependent via residual sum r)
+    cross <- kronecker(t(r) %*% Si, Si) %*% Dq
+    H[Oi, full_idx] <- H[Oi, full_idx] + cross
+    H[full_idx, Oi] <- H[full_idx, Oi] + t(cross)
+  }
+  return(H)
+}
+
+# Sample / observed RIV for a sub-model: tr(I_obs^{obs,-1} I_com) - |free|, with
+# the OBSERVED info (Hessian) for I_obs and the expected complete info for I_com.
+# Mirror of tr_riv_analytic_general (which uses the expected I_obs). This is the
+# Term-B RIV; tr_riv_analytic_general is the Term-A (expected) RIV.
+tr_riv_observed_general <- function(theta, Y, R, free_indices) {
+  N = nrow(Y)
+  I_com_full <- fisher_info_com_mvn(theta, N)
+  I_obs_full <- observed_info_obs_mvn(theta, Y, R)
+  I_com_sub  <- I_com_full[free_indices, free_indices]
+  I_obs_sub  <- I_obs_full[free_indices, free_indices]
+  return(sum(diag(solve(I_obs_sub, I_com_sub))) - length(free_indices))
+}
+
+
+# -----------------------------------------------------------------------------
 # Custom constrained MLE for sigma_{12} = 0: Cholesky parameterization
 # (L[2,1] = 0 forces the constraint) with analytic gradient.
 #

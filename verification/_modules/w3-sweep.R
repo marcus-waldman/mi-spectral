@@ -58,12 +58,15 @@ run_one_w3 <- function(r, cell, mu0, Sigma_truth) {
   }
   trRIV         <- numeric(4); names(trRIV)         <- W3_MODEL_NAMES
   sum_lambda_sq <- numeric(4); names(sum_lambda_sq) <- W3_MODEL_NAMES
+  trRIV_obs     <- numeric(4); names(trRIV_obs)     <- W3_MODEL_NAMES
   for (k in W3_MODEL_NAMES) {
     theta_k <- list(mu = theta_obs_list[[k]]$mu,
                     Sigma = theta_obs_list[[k]]$Sigma)
     sp <- riv_spectrum_analytic_general(theta_k, mar$Y, mar$R, W3_FREE_IDX[[k]])
-    trRIV[k]         <- sp$tr_RIV
+    trRIV[k]         <- sp$tr_RIV                                       # expected-info RIV (Term A)
     sum_lambda_sq[k] <- sp$sum_lambda_sq
+    trRIV_obs[k]     <- tr_riv_observed_general(theta_k, mar$Y, mar$R,  # observed/sample RIV (Term B)
+                                                W3_FREE_IDX[[k]])
   }
   chi2_MI_per_k <- 2 * (barL["MD"] - barL)
   trRIV_D <- trRIV["MD"]; sum_lsq_D <- sum_lambda_sq["MD"]
@@ -86,14 +89,20 @@ run_one_w3 <- function(r, cell, mu0, Sigma_truth) {
   AIC_oracle    <- -2 * ell_com + 2 * W3_NPAR
   AIC_uncorr    <- -2 * barL    + 2 * W3_NPAR
   AIC_corrected <- -2 * barL    + 2 * W3_NPAR + trRIV
+  # Derivation-consistent (term-specific): the deviance bias is 2T = 2A + 2B,
+  # with Term A on the expected-info RIV and Term B on the observed/sample RIV,
+  # so the correction is 2*tr_exp - tr_samp per model (vs a single tr_exp, which
+  # over-corrects by the expected-vs-sample gap). See derivation.qmd Appendix C.
+  AIC_termspec  <- -2 * barL    + 2 * W3_NPAR + (2 * trRIV - trRIV_obs)
   AIC_sb        <- chi2_SB      + 2 * W3_NPAR
   return(list(
     error = NA_character_,
     sel_oracle    = names(which.min(AIC_oracle)),
     sel_uncorr    = names(which.min(AIC_uncorr)),
     sel_corrected = names(which.min(AIC_corrected)),
+    sel_termspec  = names(which.min(AIC_termspec)),
     sel_sb        = names(which.min(AIC_sb)),
-    trRIV = trRIV
+    trRIV = trRIV, trRIV_obs = trRIV_obs
   ))
 }
 
@@ -173,17 +182,21 @@ run_w3_sweep <- function(R_per_cell, cl, out_dir,
     rt <- rbind(oracle = tab("sel_oracle"),
                 uncorrected = tab("sel_uncorr"),
                 corrected = tab("sel_corrected"),
+                termspec = tab("sel_termspec"),
                 SB = tab("sel_sb"))
     miscl <- sapply(ok, `[[`, "sel_uncorr")
     miscl <- miscl[miscl != TRUE_MODEL]
     W3C <- if (length(miscl) > 0) mean(miscl == "MD") else NA_real_
     W3A <- rt["corrected", TRUE_MODEL] - rt["uncorrected", TRUE_MODEL]
     W3B <- rt["oracle", TRUE_MODEL] - rt["corrected", TRUE_MODEL]
+    W3D <- rt["oracle", TRUE_MODEL] - rt["termspec", TRUE_MODEL]   # term-specific gap to oracle
     saveRDS(list(cell = cell, R_per_cell = R_per_cell, elapsed_sec = elapsed,
                  results = results, rates_table = rt),
             file = file.path(out_dir, sprintf("%s.rds", cell$id)))
-    cat(sprintf("%5.1fs ok=%4d err=%2d  W3A=%+.3f W3C=%.3f\n",
-                elapsed, length(ok), n_err, W3A, W3C))
+    cat(sprintf("%5.1fs ok=%4d err=%2d  W3A=%+.3f W3C=%.3f  pi[corr/ts/orc]=%.3f/%.3f/%.3f\n",
+                elapsed, length(ok), n_err, W3A, W3C,
+                rt["corrected", TRUE_MODEL], rt["termspec", TRUE_MODEL],
+                rt["oracle", TRUE_MODEL]))
     rows[[i]] <- data.frame(
       cell_id = cell$id, pattern = cell$pattern, mech = cell$mech,
       N = cell$N, engine = cell$engine, M = cell$M,
@@ -192,9 +205,11 @@ run_w3_sweep <- function(R_per_cell, cl, out_dir,
       pi_oracle = rt["oracle", TRUE_MODEL],
       pi_uncorrected = rt["uncorrected", TRUE_MODEL],
       pi_corrected = rt["corrected", TRUE_MODEL],
+      pi_termspec = rt["termspec", TRUE_MODEL],
       pi_SB = rt["SB", TRUE_MODEL],
       W3A_corr_minus_uncorr = W3A,
       W3B_oracle_minus_corr = W3B,
+      W3D_oracle_minus_termspec = W3D,
       W3C_high_RIV_frac = W3C,
       W3C_n_miscl = length(miscl),
       stringsAsFactors = FALSE

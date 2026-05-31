@@ -163,6 +163,31 @@ tr_riv_val <- sum(diag(solve(I_obs_partial, I_com_partial))) - 14
 check(tr_riv_val > 0,
       sprintf("analytic tr(RIV) = %.3f > 0 under MAR missingness", tr_riv_val))
 
+cat("\n--- observed_info_obs_mvn (analytic observed info = numerical Hessian) ---\n")
+set.seed(20260522 + 7)
+X_oi <- gen_data(500, default_mu, default_Sigma)
+mar_oi <- apply_mar(X_oi)
+fit_oi <- lavaan_fit_mvn_fiml(mar_oi$Y, constrained = FALSE)
+theta_oi <- list(mu = fit_oi$mu, Sigma = fit_oi$Sigma)
+H_analytic <- observed_info_obs_mvn(theta_oi, mar_oi$Y, mar_oi$R)
+check(isSymmetric(round(H_analytic, 8)), "observed info matrix symmetric")
+if (requireNamespace("numDeriv", quietly = TRUE)) {
+  H_numeric <- -numDeriv::hessian(
+    function(v) { return(loglik_obs_mvn(vec_to_theta(v, 4), mar_oi$Y, mar_oi$R)) },
+    theta_to_vec(theta_oi))
+  rel = max(abs(H_analytic - H_numeric)) / max(abs(H_numeric))
+  check(rel < 1e-4,
+        sprintf("observed info matches numerical Hessian (rel err = %.1e)", rel))
+} else {
+  cat("    [skip] numDeriv not installed; analytic-vs-numerical check skipped\n")
+}
+I_com_oi <- fisher_info_com_mvn(theta_oi, 500)
+tr_obs = sum(diag(solve(H_analytic, I_com_oi))) - 14
+tr_exp = sum(diag(solve(fisher_info_obs_mvn(theta_oi, mar_oi$Y, mar_oi$R), I_com_oi))) - 14
+check(tr_obs > 0, sprintf("observed/sample tr(RIV) = %.3f > 0", tr_obs))
+cat(sprintf("    [info] sample/observed RIV = %.3f vs expected RIV = %.3f (Efron-Hinkley gap)\n",
+            tr_obs, tr_exp))
+
 cat("\n--- lrt_complete (sanity) ---\n")
 # Nested: theta_null fixes sigma_12 = 0; theta_full is unrestricted MLE.
 theta_null_test <- theta_com_small
