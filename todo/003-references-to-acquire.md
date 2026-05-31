@@ -60,6 +60,62 @@ theorem's hard content (L2, L3).
 | **Magnus, J. R. & Neudecker, H. (2019).** *Matrix Differential Calculus with Applications in Statistics and Econometrics*, 3rd ed. Wiley. citekey `magnusMatrixDifferentialCalculus2019` | **VERIFIED (acquired 2026-05-23)** | Duplication-matrix / `vech` identities and the MVN Fisher-information closed form via matrix calculus (ledger A8). | §3 (MVN instantiation); appendix ledger | Medium | **Search 2026-05-23 (re-checked broadly):** `petersen2008matrix` (Matrix Cookbook) HAS `vec` (full vectorization, Sec 10.2.2) + Kronecker/trace identities, but NOT `vech` (half-vec) or the duplication matrix `D_p` (no index entry; every "vec" hit is full vectorization). `anderson...2003` likewise lacks it (its 6 "duplication" hits are all the gamma-function formula). So the Cookbook covers A3-A5 (vec/Kronecker/trace) but not (Anderson's 6 "duplication" hits are all the gamma-function duplication formula). Needed ONLY IF the manuscript presents the MVN Fisher info in explicit `vech`/duplication form. The abstract theorem is parameterization-free and never touches `vech`; the MVN closed form is already verified numerically (Sympy notebook). Decision pending the §3 framing fork (explicit `vech` vs coordinate-free matrix form citing Anderson). **RESOLVED 2026-05-23 -> Option A (explicit `vech`).** Migrated (litrev) -> Mathpix-converted (47-pp excerpt) -> lit-synced to `literature/magnusMatrixDifferentialCalculus2019.md` -> read in-session. Confirmed: Ch 3 SS15 defines `vech` + duplication matrix `D_n` (`D_n vech(A)=vec A`, eq 23) and `(D_n'(A(x)A)D_n)^{-1}`; the MVN section derives the information matrix for `mu, vech(Omega)` as `n Omega^{-1}` and `(n/2) D_m'(Omega^{-1}(x)Omega^{-1})D_m` -- identical to our `fisher_info_com_mvn`. Eligible for `@magnusMatrixDifferentialCalculus2019`. |
 | **Orchard, T. & Woodbury, M. A. (1972).** "A Missing Information Principle: Theory and Applications." *Proc. 6th Berkeley Symp.* | **proposed** | Original missing-information principle. | §3 / ledger provenance footnote | Low | Likely subsumed by Louis (1982) + Little-Rubin (2019). Acquire only if we want the primary-source attribution. |
 
+## Methods/credibility references (proposed 2026-05-25)
+
+Surfaced while discussing an IMRAD restructure: the manuscript needs an explicit
+**Background** (demonstrated command of the lineage) and a **Methods** section that
+houses the current §2 verification material *descriptively* rather than defensively.
+For Methods to read as principled rather than idiosyncratic, the verification choices
+(pre-registration, reproducibility layering, CAS check of LLM-generated algebra) should
+sit in an established literature. None of the three veins below is in `literature/` yet;
+all are training-weight proposals, **not citeable** until acquired + read in-session.
+Citations are approximate and must be checked against the actual text.
+
+| Proposed citation | Status | Claim it supports | Where it would land | Priority | Notes |
+|---|---|---|---|---|---|
+| **Nosek, B. A., Ebersole, C. R., DeHaven, A. C. & Mellor, D. T. (2018).** "The preregistration revolution." *PNAS* 115(11), 2600–2606. | **proposed** | Grounds the "hypotheses frozen at SHA ddc9037 before simulation" claim in an established norm rather than an idiosyncratic choice — separates evidence from storytelling. | Methods (verification subsection); current §2 "predictions registered before data" paragraph | High | Approx. cite from training knowledge — verify authors/volume/pages. Pre-registration is the load-bearing norm for the W1/W2/W3 apparatus. |
+| **Peng, R. D. (2011).** "Reproducible research in computational science." *Science* 334(6060), 1226–1227. | **proposed** | Grounds the three-layer reproducibility (IDEAS.md / run_all.R / caches) and the second-language re-implementation as recognized practice. | Methods (reproducibility subsection) | Medium | Canonical short citation for computational reproducibility. Verify before citing. |
+| **AI-assisted-math / proof-verification reference (specific paper TBD)** — candidate veins: formal proof assistants (Lean/mathlib), or recent LLM mathematical-reliability work (e.g. a FrontierMath-style benchmark or an LLM-hallucination-in-reasoning study). | **proposed — needs scoping** | *The* load-bearing citation: justifies *why* an AI-assisted derivation specifically requires the CAS/symbolic check and the four-route triangulation. Turns the verification section from idiosyncratic to principled. | Methods (why-verify framing); current §2 opening | High | No specific paper chosen yet — needs a Consensus/Semantic Scholar pass to pick the right anchor. JAIGP audience makes this the citation most likely to be scrutinized. Acquire deliberately. |
+
+## Finite-sample observed-vs-expected information (proposed 2026-05-30)
+
+Surfaced while diagnosing the W1 finite-sample remainder (why $\hat B + \tfrac12\operatorname{tr}(\mathrm{RIV})$
+sits ~10% from zero and does not visibly decay over $N=200\dots2000$). The
+`verification/_scratch_b_diagnostic.R` triangulation showed three measurements of $\operatorname{tr}(\mathrm{RIV})$
+at $N=500$ split into two camps: closed-form **expected**-information $=5.62$ vs.
+numerical-Hessian **observed** $=6.13$ and Rubin between/within **sample-based** $=6.20$.
+The $\hat B$ term tracks the observed/sample value, not the expected one — the classic
+Efron–Hinkley distinction. This is now load-bearing for the W1 evidence (it reconciles
+the theorem's expected-info $\mathrm{RIV}=I_{\text{obs}}^{-1}I_{\text{mis}}$ with the
+sample-based $\mathrm{RIV}$ the operational correction actually subtracts).
+
+| Proposed citation | Status | Claim it supports | Where it would land | Priority | Notes |
+|---|---|---|---|---|---|
+| **Efron, B. & Hinkley, D. V. (1978).** "Assessing the accuracy of the maximum likelihood estimator: Observed versus expected Fisher information." *Biometrika* 65(3), 457–487. | **verified (read in-session 2026-05-31; citekey `efronAssessingAccuracyMaximum1978`)** | The finite-sample W1 remainder: $\hat B$ tracks observed/sample-based $\operatorname{tr}(\mathrm{RIV})$ (≈6.2 at $N=500$), not expected-information (5.62); the ~10% gap is observed-vs-expected information. Grounds benchmarking the bias terms against the sample-based (Rubin between/within) $\operatorname{tr}(\mathrm{RIV})$ and reconciling it with the theorem's expected-info statement. | §3 (W1 numerical confirmation, finite-sample remainder); Methods/Discussion note on expected-info RIV (theorem) vs sample RIV (correction) | Medium–High | Surfaced 2026-05-30 via `_scratch_b_diagnostic.R`. Decomposition: the remainder is ~entirely the variance-identity term (ledger L2); Taylor + evaluation-point pieces vanish cleanly. Training-weight proposal — verify exact volume/pages before citing. Relates to the Hausman/L2 row above (the $\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})=I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$ identity, which holds only asymptotically — Efron–Hinkley explains the finite-sample deviation). |
+
+## Information-matrix distinction: J (score-variance) vs I (expected Hessian) (proposed 2026-05-31)
+
+Surfaced when the user pointed to Pawitan's AIC derivation (§13.6, "Robustness of
+likelihood specification"), which gives the penalty as $\operatorname{trace}(\mathcal{J}_k\mathcal{I}_k^{-1})$
+with $\mathcal{J}=E[UU']$ (score variance / outer product) and $\mathcal{I}=-E[\partial^2\ell]$
+(expected negative Hessian). Under correct specification $\mathcal{J}=\mathcal{I}$ (info
+equality) and the trace = $k$ (ordinary AIC); under misspecification it is TIC. This is
+the precise framework for our 2026-05-30/31 finding: B's $-\tfrac12\operatorname{tr}(\mathrm{RIV})$
+weights the estimator-gap variance by the **curvature** $\mathcal{I}_{\text{com}}$ but we
+substituted the **expected-information** gap variance $I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$
+(an implicit $\mathcal{J}=\mathcal{I}$ assumption), whereas the gap's *actual* variance is the
+sandwich/score-variance ($\mathcal{J}$-flavored) object — exactly the expected-RIV (5.5) vs
+sample/observed-RIV (6.1) split. Our `fisher_info_{com,obs}_mvn` compute the $\mathcal{I}$
+(expected-Hessian) version only; Rubin between/within and the numerical Hessian give the
+$\mathcal{J}$/sandwich version. The derivation must say which information sits in each slot.
+
+| Proposed citation | Status | Claim it supports | Where it would land | Priority | Notes |
+|---|---|---|---|---|---|
+| **Pawitan, Y. (2001).** *In All Likelihood: Statistical Modelling and Inference Using Likelihood.* Oxford University Press. (§3.5 Lindsey AIC; §13.6 robustness, eq. for $\operatorname{trace}(\mathcal{J}_k\mathcal{I}_k^{-1})$ and (13.4).) | **verified (read in-session 2026-05-31; citekey `pawitanAllLikelihoodStatistical2013`)** | The $\mathcal{J}$ vs $\mathcal{I}$ distinction and $E[n(\hat\theta-\theta_0)'\mathcal{I}(\hat\theta-\theta_0)]\approx\operatorname{tr}(\mathcal{J}\mathcal{I}^{-1})$ — the framework clarifying which information enters tr(RIV); connects our IC application to TIC. | §setup (define both informations), §3.3 (expected-vs-sample RIV), §5 (IC↔TIC) | **High** | Verified in `literature/pawitanAllLikelihoodStatistical2013.md` §13.6: $\mathcal{J}\equiv E(UU')$ (L14618), sandwich $\mathcal{I}^{-1}\mathcal{J}\mathcal{I}^{-1}$ (L14696), **"model correct ⇒ $\mathcal{J}=\mathcal{I}$, reduces to $\mathcal{I}^{-1}$ naive"** (L14699), $\operatorname{trace}(\mathcal{J}\mathcal{I}^{-1})$ (L14707). Pawitan's $\mathcal{I}$=expected Hessian, $\mathcal{J}$=score variance — note convention (opposite of some texts). (Acquired edition is the 2013 printing → year in citekey.) |
+| **Konishi, S. & Kitagawa, G. (1996).** "Generalised information criteria in model selection." *Biometrika* 83(4), 875–890. | **verified (read in-session 2026-05-31; citekey `konishiGeneralisedInformationCriteria1996`)** | TIC/GIC anchor: GIC = bias-corrected log-likelihood when "the parametric family does not necessarily contain the true distribution" (Thm 2.1) — the misspecification generalization of AIC's $k$ to a $\operatorname{tr}(\mathcal{J}\mathcal{I}^{-1})$-type penalty. | §5 (IC↔TIC lineage) | **High** | Chosen TIC anchor (accessible substitute for Takeuchi 1976). In `literature/`. |
+| **Burnham, K. P. & Anderson, D. R.** *Model Selection and Multimodel Inference* (2nd ed.). Springer. | acquired (`literature/burnhamModelSelectionMultimodel2010.md`) | Textbook TIC discussion; secondary/optional given Konishi–Kitagawa is the primary anchor. | §5 (optional) | Low | Acquired + indexed. Cite only if a textbook-level TIC reference is wanted alongside KK. (litrev key year 2010; verify edition/year if cited.) |
+| **Takeuchi, K. (1976).** "Distribution of informational statistics and a criterion of model fitting." *Suri-Kagaku* 153, 12–18 (in Japanese). | **superseded — not acquired** | Origin of TIC. | — | — | Hard to obtain (Japanese, 1976). Cite via Konishi–Kitagawa (1996, verified) instead; keep Takeuchi as a historical-origin mention only. |
+
 ## Recently rejected (kept as a record so we don't re-propose)
 
 - **2026-05-22 — Wood, A. T. A. (1989).** "An F approximation to the distribution of a linear combination of chi-squared variables." *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`. Reason: We're sticking with χ² reference (not F), so the F-approximation is not load-bearing. Citation lineage for the scaled-shifted moment-matching form is already covered by Satterthwaite (1946) + Satorra-Bentler (2010) + Asparouhov-Muthén (2006). Imhof (1961) + Davies (1980) cover the exact reference distribution. Full text was also not freely available, which would have been a small acquisition cost — combined with non-load-bearing status → reject. Re-propose only if we change framing to F-reference.
@@ -72,4 +128,4 @@ theorem's hard content (L2, L3).
 
 ---
 
-*Last updated: 2026-05-23*
+*Last updated: 2026-05-30*
