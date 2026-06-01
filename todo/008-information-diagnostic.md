@@ -252,6 +252,26 @@ its IC/LRT applications), with the RIV correctly defined via the **observed** in
 contribution claim on the information point. Two-RIV / Efron–Hinkley framing in derivation.qmd
 is retired; K&M is the citation that replaces it.
 
+### Implemented across the apparatus (2026-05-31)
+
+The one-RIV resolution is now carried by every component (no part left on the retired framing):
+
+- **derivation.qmd** — D6, `#sec-riv`, theorem, `@eq-combine`, Appendix C rewritten; inline Appendix B
+  checks (`@lst-mc-obsinfo`, `@lst-mc-crossterm`); renders clean.
+- **`verification/lemma-revalidation.R`** — committed, runnable lemma traces vs the observed info.
+- **phase 6** (`w1-information-diagnostic.R` + `aggregate.R`) — reframed to `tr_obs`, lemma traces,
+  one-RIV verdicts; prod cache re-run R=2000.
+- **phase 2 W3** (`w3-sweep.R`) — IC correction re-pointed: `AIC_corrected = -2 barL + 2 q + trRIV_obs`
+  (the observed-data RIV) **replacing the naive `trRIV`**, and the `termspec` arm
+  (`2 trRIV - trRIV_obs`, built on the retired two-RIV split) removed.
+
+**Preregistration note.** The phase-2 W3 corrected arm is part of the comprehensive sweep (todo/005).
+Changing its RIV from the naive block-diagonal `trRIV` to the observed-data `trRIV_obs` is a
+**documented correction of which information enters the RIV** — the naive form is incomplete under
+MAR (K&M 1998), so the original used the wrong information; this is an error correction, not a
+results-driven amendment. The uncorrected and oracle arms are unchanged; `W3C` (high-RIV-favoring of
+the uncorrected criterion) is unchanged. Re-run R=2000 prod refreshes `pi_corrected`, `W3A`, `W3B`.
+
 ## References (acquired this session — see todo/003)
 
 - `efronAssessingAccuracyMaximum1978` — observed vs expected Fisher information
