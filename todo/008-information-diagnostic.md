@@ -272,6 +272,47 @@ MAR (K&M 1998), so the original used the wrong information; this is an error cor
 results-driven amendment. The uncorrected and oracle arms are unchanged; `W3C` (high-RIV-favoring of
 the uncorrected criterion) is unchanged. Re-run R=2000 prod refreshes `pi_corrected`, `W3A`, `W3B`.
 
+## Term A does NOT cancel under MAR — `(A)+(C) ≠ O(1/n)` (2026-05-31)
+
+Trying to **prove** the `(A)+(C)` cancellation (audit Item 2; derivation.qmd Term A lemma asserts
+`(A)+(C)=O(1/n)` for general regular families) surfaced that it is **mechanism-dependent**. Derived
++ confirmed for the bivariate monotone MVN (`verification/term-a-mar-diagnostic.R`, study S1):
+
+$$(A)+(C) \;=\; \frac{n_{\text{mis}}}{n_{\text{obs}}}\Big[1 - \tfrac12\operatorname{tr}(Q_{\text{mis}}Q_{\text{obs}}^{-1})\Big]
+\;=\; \frac{n_{\text{mis}}}{n_{\text{obs}}} - \tfrac12\operatorname{tr}(M_{\text{mis}}M_{\text{obs}}^{-1}),$$
+
+where `M_·` are the conditioning-variable design moments `Σ[1,X2][1,X2]ᵀ` over the missing / observed
+units. **`= 0` iff `Q_mis = Q_obs`, i.e. iff MCAR.** Under MAR the missing and observed units have
+different conditioning-variable distributions, so it is a **nonzero O(1) constant** (not O(1/n)).
+
+S1 (bivariate monotone, N=800, R=8000; `P(X1 miss|X2)=Φ(−0.4+b·X2)`):
+
+| b | tr(RIV_obs) | n_mis/n_obs + tr(M_mis M_obs⁻¹) | E[A]−tr_obs (measured) | analytic (A)+(C) |
+|---|---|---|---|---|
+| 0.0 (MCAR) | 1.587 | 1.587 | −0.04 | −0.00 |
+| 0.2 | 1.661 | 1.661 | −0.03 | −0.03 |
+| 0.4 | 1.871 | 1.871 | −0.15 | −0.11 |
+| 0.8 | 2.590 | 2.590 | −0.39 | −0.38 |
+
+Confirmed three ways: (i) the RIV decomposition `tr(RIV_obs)=n_mis/n_obs+tr(M_mis M_obs⁻¹)` is exact
+at every b; (ii) measured `E[A]−tr_obs` matches the analytic `(A)+(C)` across b; (iii) it scales
+from ~0 (MCAR) up with selection strength b. Mechanism: `(A)=n_mis/n_obs` (entropy gradient ×
+residual-variance MLE bias `−2v₀/n_obs`); `(C)=−½tr(M_mis M_obs⁻¹)` (cross-entropy curvature ×
+`Var(β̂)=v₀M_obs⁻¹`); they cancel only when `M_mis/n_mis = M_obs/n_obs` (MCAR).
+
+**Implication — UNDER REVIEW (load-bearing).** `E[A]=tr(RIV_obs)+(A)+(C)`, so under MAR
+`E[A]≠tr(RIV_obs)`, and `E[T]=½tr(RIV_obs)+(A)+(C)`. **The theorem `E[T]=½tr(RIV)` is exact under
+MCAR but carries an O(1) Term-A correction under MAR** — the paper's core regime. This is distinct
+from the K&M cross term (which is *in* `I_obs`/the RIV); this is an *additional* Term-A imputation
+bias beyond `tr(RIV)`. Term B is unaffected (it tracks `−½tr(RIV_obs)` cleanly). The derivation.qmd
+Term A lemma ("(A)+(C)=O(1/n) for any regular conditional family") is **wrong under MAR** and needs
+revisiting once the magnitude in the paper's regime is known.
+
+**Open — S2 (running):** how big is `(A)+(C)` in the 4-variate W1 MAR regime (selection on one of
+three conditioning variables → `Q_mis≈Q_obs` in most directions → likely small/diluted, which is
+why the W1/phase-6 sims read as `E[T]≈½tr(RIV)`). Determines whether this is a footnote caveat or a
+material correction to the headline result. `verification/term-a-mar-diagnostic.R` study S2.
+
 ## References (acquired this session — see todo/003)
 
 - `efronAssessingAccuracyMaximum1978` — observed vs expected Fisher information
