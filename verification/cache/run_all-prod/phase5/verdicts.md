@@ -1,6 +1,6 @@
 # Comprehensive sweep verdicts (run_all out_suffix = prod)
 
-Generated 2026-05-31 13:22:11
+Generated 2026-05-31 18:32:27
 
 | Hypothesis | Verdict | Detail |
 |---|---|---|
@@ -12,4 +12,4 @@ Generated 2026-05-31 13:22:11
 | H4 | PASS | all MAR+cong cells satisfy W3-A(M=200) >= W3-A(M=20) - 0.02 |
 | H5 | observational | median W3-A: cong=+0.117 uncong=+0.046; median W3-C: cong=1.000 uncong=1.000 |
 | H6 | PASS | max |FIML - Amelia cong M=200| W3-A gap = 0.012 |
-| INFO | observational (exploratory; todo/008) | info-eq tr(J I^-1)~k=14 in [13.9,14.5] (correct spec => E-H not TIC); A->expected RIV (max|A-tr_exp|=0.75 vs max|A-tr_samp|=1.51); B->sample RIV (max|B+tr_samp/2|=0.32 vs max|B+tr_exp/2|=0.86); tr_samp-tr_exp in [0.51,1.09] |
+| INFO | observational (exploratory; todo/008) | ONE RIV (observed-data): E[A]~+tr_obs (max|A-tr_obs|=1.33), E[B]~-tr_obs/2 (max|B+tr_obs/2|=0.42); lemmas vs observed info L1 in [14.1,15.2] L3 in [13.8,14.2] (~k=14); info-eq tr(J O_obs^-1) in [13.9,14.5] (correct spec); naive RIV smaller: tr_obs-tr_exp in [0.45,0.87], Rubin tr_samp~tr_obs (max|tr_samp-tr_obs|=0.22) |
