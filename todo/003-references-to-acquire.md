@@ -145,6 +145,25 @@ the monotone scope.
 |---|---|---|---|---|---|
 | **Cox, D. R. & Snell, E. J. (1968).** "A General Definition of Residuals." *JRSS-B* 30(2), 248–275. | **proposed — CONDITIONAL** | General second-order (O(1/n)) MLE bias `E[δ]` — the `αᵀE[δ]` piece of `(A)+(C)`. | derivation.qmd Appendix C, **only if** Item 2 is pushed to the *general* MVN (the monotone case uses elementary normal-theory biases from Anderson/Little-Rubin instead). | Low (not needed for the scoped monotone derivation) | Bib has no cox/snell/cordeiro entry. Acquire only if we generalize beyond monotone. Cordeiro & Klein (1994) is an alternative matrix-form reference for the same `b₁` bias. Verify exact pages/vol before citing. |
 
+## Term-A MAR correction — novelty check (2026-05-31)
+
+The Term-A imputation/design-imbalance bias `(A)+(C) = (n_mis/n_obs)[1 − ½tr(Q_mis Q_obs⁻¹)]`
+(nonzero under MAR, zero under MCAR; todo/008) is a candidate **contribution** — a deviance/AIC
+correction beyond the RIV/FMI penalty. Consensus search (2026-05-31, saved verbatim at
+`literature/consensus-searches/AIC_bias_correction_multiple_imputation_MAR_2026-05-31.md`,
+queries: "AIC bias correction multiple imputation MAR expected log-likelihood" + alternates)
+found **no direct predecessor** — hits are (i) general AIC-as-bias-corrected-expected-loglik,
+(ii) structural/small-sample AIC refinements, (iii) *using* AIC/BIC to select the imputation model
+(the reverse problem). None has a bias depending on the missing-vs-observed covariate distribution.
+Supports novelty, **but the broad search missed the three closest candidates** — check these
+specifically before any novelty claim:
+
+| Proposed citation | Status | Claim it supports / role | Priority | Notes |
+|---|---|---|---|---|
+| **Shimodaira, H. (1994).** "A new criterion (RIC) for selecting models from partially observed data." (in *Selecting Models from Data: AI and Statistics IV*, Springer) | **proposed — HIGH (closest possible predecessor)** | Penalized expected-log-likelihood / AIC-type criterion for *partially observed* data — the most likely prior art for a Term-A-style correction. Must read before claiming novelty. | **High** | Not in bib; not surfaced by Consensus. Acquire via Zotero → migrate → index → lit-sync. Verify exact title/venue/pages. |
+| **Cavanaugh & Shumway (1998)** — `cavanaughAkaikeInformationCriterion1998a` (OWNED) | re-examine | AICcd (complete-data discrepancy, EM). **Re-read to check whether its correction is MCAR-implicit or already carries a MAR design-imbalance term** — decides whether our Term-A term is genuinely new vs a special case. | High | Owned in `literature/`; just needs an in-session re-read with this question. |
+| **Claeskens & Consentino (2008)** — `claeskensconsentinoVariableSelectionIncomplete2008` (OWNED) | re-examine | Missing-covariate AIC. Check whether the missing-covariate correction includes the design-imbalance term. | Medium | Owned; re-read with this lens. |
+
 ## Recently rejected (kept as a record so we don't re-propose)
 
 - **2026-05-22 — Wood, A. T. A. (1989).** "An F approximation to the distribution of a linear combination of chi-squared variables." *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`. Reason: We're sticking with χ² reference (not F), so the F-approximation is not load-bearing. Citation lineage for the scaled-shifted moment-matching form is already covered by Satterthwaite (1946) + Satorra-Bentler (2010) + Asparouhov-Muthén (2006). Imhof (1961) + Davies (1980) cover the exact reference distribution. Full text was also not freely available, which would have been a small acquisition cost — combined with non-load-bearing status → reject. Re-propose only if we change framing to F-reference.
