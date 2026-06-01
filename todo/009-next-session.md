@@ -58,6 +58,11 @@ gated on a careful read of that paper. Full record in `todo/008`; references in 
 
 ## NEXT SESSION — ordered todo
 
+> **UPDATE 2026-06-01:** Acquisition (item 2 below) is **DONE** — both PDFs copied MI-IC→MI-SPECTRAL
+> and lit-synced (no Mathpix re-pay): `literature/shimodairaInformationCriterionModel2017.md` and
+> `literature/shimodairahidetoshiImprovingPredictiveInference2000.md`, both citeable. **Item 1 (the
+> positioning read) is fully unblocked — start there, fresh.**
+
 1. **[GATE — do first] Full in-session read of Shimodaira & Maeda (2017)** (+ Shimodaira 2000
    covariate-shift). Settle the three positioning questions:
    - (a) Is our net `tr(RIV)` correction *identical* to their `AIC_{x;y}`? (If so, our novelty is
