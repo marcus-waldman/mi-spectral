@@ -4,16 +4,23 @@
 the **monotone branch is now fully derived (path b done) and integrated into `derivation.qmd`**.
 Approved plan: `~/.claude/plans/toasty-launching-hummingbird.md`. Nothing committed yet (commit when asked).
 
-## UPDATE (path b complete + manuscript integration)
+## UPDATE (path b complete + FULLY ANALYTIC + manuscript integration)
 - **Exact `(C)` via the pure cross-entropy curvature `H_φφ = ∇²_φ barQ(θ₀,φ)|_{θ₀}`** (imputation
   slot only; excludes the eval-obs cross block that gives `(B)main=tr(RIV)`), so `(C)=½tr(H_φφ I_obs⁻¹)`
-  with NO `−tr(RIV)`. Cross-checks: `∇_φ f₀ = α` (max diff 5e-4); decoupling error `C_coupled` vs
-  `C_decVar` tiny (~0.01–0.04, shrinking in N). `verification/scratch-AC-pathb.R`.
+  with NO `−tr(RIV)`. Cross-checks: `∇_φ f₀ = α` (max diff 5e-4); `C_coupled` vs `C_decVar` decoupling
+  tiny (`verification/scratch-AC-pathb.R`).
+- **`H_φφ` now DERIVED ANALYTICALLY (no finite differences).** At θ₀ the block-inverse identity
+  `(Σ₀⁻¹ē)_M=0` collapses the mean part to Gauss–Newton: per missing unit
+  `H_φφ = −J_dᵀ S₀⁻¹ J_d + ½ tr(S₀⁻¹ ∂²_Σ tr(S₀⁻¹S))`, `J_d=∂m_φ/∂φ` (μ-block I_M,−B det.; Σ-block
+  `G_a Σ_OO⁻¹ e_O`, `G_a=Δ_MO−BΔ_OO`). Expectations reduce to per-MISSING-pattern selected moments of
+  `e_O=y_O−μ₀,O` (`m1_P=E[e_O|P]`, `M2_P=E[e_O e_Oᵀ|P]`). **Validated vs finite-diff:** deterministic
+  μμ block to 0.2% (|H|~700–1300, max diff 1.4), `(C)` to 3e-3. `verification/scratch-hphi-analytic.R`.
 - **Headline value: `(A)+(C)_∞ ≈ −0.22`** for the 4-var monotone-MAR design — `(A)=α⊤b_Σ=+0.54`,
   `(C)=½tr(H_φφ I_obs⁻¹)=−0.76`; **N-stable** (−0.220/−0.223/−0.221 at N=300/800/1500), consistent
   with the high-R measured RB-A curve (scatters −0.12 to −0.27 at large N as MCSE grows).
-- **Reproducible artifact committed-worthy:** `verification/term-a-mar-closedform.R` — computes the
-  closed form for MAR (≈−0.22) and the **MCAR control (→0)**; MAR N=800 cell confirmed (−0.223).
+- **Reproducible artifact:** `verification/term-a-mar-closedform.R` — now **fully analytic** (α + b_Σ +
+  H_φφ from one cheap moment pass; no finite-diff, no per-rep MLE). Runs in ~1 min (was 17 min). Output:
+  MAR `(A)+(C)=−0.2208`, MCAR control `−0.0029≈0`.
 - **Manuscript integrated:** `derivation.qmd §sec-termA` "General-MVN closed form (monotone)" block
   replaces the old "deferred/empirical" text (the recursion, analytic `α`, the value −0.22, MCAR→0,
   scope = monotone-derived / non-monotone-empirical). Margin note + combine line updated. **Renders

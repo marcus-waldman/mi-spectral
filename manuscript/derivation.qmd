@@ -795,7 +795,16 @@ no $-\operatorname{tr}(\mathrm{RIV})$ correction enters here. The entropy gradie
 $$ \alpha_a = -\tfrac12\!\!\sum_{i:\text{mis}}\!\operatorname{tr}\!\big(S_{0,i}^{-1}\,\partial_a S_i\big),\quad \partial_a S_i=\Delta_{MM}-\Delta_{MO}B^\top-B\Delta_{OM}+B\Delta_{OO}B^\top,\ \ B=\Sigma_{MO}\Sigma_{OO}^{-1}, $$
 ($\partial_a$ the symmetric perturbation of $\Sigma$-coordinate $a$, $\Delta=\partial_a\Sigma$). It
 matches the finite-difference gradient to $3\times10^{-5}$, and $\nabla_\phi f_0=\alpha$ confirms
-$\mathcal H_\phi$ is the correct curvature.
+$\mathcal H_\phi$ is the correct curvature. At $\theta_0$ the block-inverse identity
+$(\Sigma_0^{-1}\bar e)_M=0$ (with $\bar e=(e_O;\,m_\phi-\mu_{0,M})$, $e_O=y_O-\mu_{0,O}$) collapses
+the mean part of $\mathcal H_\phi$ to a Gauss–Newton form, giving the explicit per-unit Hessian
+$$ \mathcal H_\phi=\sum_{i:\text{mis}}\Big[-(\partial_\phi m_i)^\top S_{0,i}^{-1}(\partial_\phi m_i)+\tfrac12\,\partial^2_\Sigma\operatorname{tr}\!\big(S_{0,i}^{-1}S_{\cdot,i}\big)\Big], $$
+with the conditional-mean Jacobian $\partial_\phi m_i$ ($\mu$-block $I_M,-B$ deterministic; $\Sigma$-block
+$G_a\Sigma_{OO}^{-1}e_O$, $G_a=\Delta_{MO}-B\Delta_{OO}$) and $\partial^2_\Sigma\operatorname{tr}$ the
+Schur second differential. Taking expectations, every block reduces to the per-pattern **selected
+moments** of $e_O$ ($\mathbb E[e_O\mid P]$, $\mathbb E[e_Oe_O^\top\mid P]$), so $\mathcal H_\phi$ — like
+$\alpha$ and $b_\Sigma$ — is analytic (no finite differences). It is validated against a
+finite-difference Hessian (deterministic $\mu$-block to $0.2\%$; $(C)$ to $3\times10^{-3}$).
 
 The one nonstandard ingredient is $\mathbb{E}[\delta]$, the **second-order FIML MLE bias of
 $\hat\Sigma$ under MAR**; only its $\Sigma$-block enters, since $\alpha$ is covariance-only. For a
