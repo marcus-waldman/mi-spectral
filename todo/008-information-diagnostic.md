@@ -155,6 +155,9 @@ empirical (N=4×10⁶) to 3 decimals: MAR (a=−0.5, b=0.4) → [X1,X2,X3,X4] = 
 nonzero under MAR, exactly 0 under MCAR — confirming `E[r_P] ≠ 0` under MAR and hence the genuine
 cross term in `E[−∂²ℓ_obs]`. (Two-selection patterns P1/P2/P3 use the bivariate-selection analog;
 not yet written out, but the single-selection result establishes the mechanism + closed form.)
+**Reproduced inline** in `manuscript/derivation.qmd` Appendix B at render: `@lst-mc-obsinfo`
+(observed info = realized $-$Hessian to 1.5e-6, carries the cross block, larger RIV) and
+`@lst-mc-crossterm` (the selected-Gaussian shift vs a seeded sim, MAR vs MCAR).
 
 **Implications — OPEN, do NOT write into manuscript/derivation until resolved:**
 - The "expected RIV" benchmark used throughout W1 (`fisher_info_obs_mvn`) may be an
@@ -193,8 +196,9 @@ under MAR). The theorem holds cleanly: `E[T] = +½ tr(RIV)` against the correct 
 
 The end-to-end theorem is confirmed against the observed-data RIV (A-vs-RIV check above), but the
 *intermediate* lemmas L1/L2/L3 had only been graded against the naive block-diagonal info. Re-tested
-each directly against the cross-inclusive observed info (`/tmp/lemma_check.R`, ampute non_monotone
-MAR 40%, R=8000):
+each directly against the cross-inclusive observed info (**`verification/lemma-revalidation.R`** —
+committed, reproducible; `Rscript verification/lemma-revalidation.R 8000 20`; ampute non_monotone
+MAR 40%):
 
 | N | L1 `tr(O·Var[obs])` | L1naive `tr(E·Var[obs])` | L3 `tr(Ic·Cov[obs,com])` | L2 `tr(Ic·Var[gap])` | RIV_obs | RIV_naive | sanity `tr(Ic·Var[com])` |
 |---|---|---|---|---|---|---|---|

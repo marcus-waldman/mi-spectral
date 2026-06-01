@@ -769,7 +769,8 @@ $\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})=I_{\text{ob
 
 A high-$R$ diagnostic confirms this directly: graded against the observed-data RIV, both
 $\mathbb{E}[A]-\operatorname{tr}(\mathrm{RIV})$ and $\mathbb{E}[B]+\tfrac12\operatorname{tr}(\mathrm{RIV})$
-are small and consistent with $O(n^{-1})$ (`run_all.R` phase 6; `todo/008`). The earlier reading —
+are small and consistent with $O(n^{-1})$, and the asymptotic inputs L1-L3 hold against that same
+information (`verification/lemma-revalidation.R`; also `run_all.R` phase 6; `todo/008`). The earlier reading —
 that the two terms attach to *different* (expected vs sample) RIVs with a slowly closing gap — was
 an artifact of grading the bias against the **naive**, block-diagonal information
 (`fisher_info_obs_mvn`), which is the MCAR form and omits the MAR cross term (@sec-riv,
@@ -1431,6 +1432,122 @@ The pattern-sum-to-$\operatorname{tr}(\mathrm{RIV})$ reduction is a conditional-
 calculation Sympy does not carry out cleanly; it is verified numerically (`A_py` matches R
 to machine precision in @lst-mc-fiml, and the cache confirms $\mathbb{E}[A]\approx\operatorname{tr}(\mathrm{RIV})$).
 
+### Observed information under MAR: the cross term (Appendix C) {#sec-verify-crossterm}
+
+Appendix C claims the observed information carries a mean $\times$ (co)variance **cross block**
+under MAR that the naive block-diagonal form omits, and that it is the selection-induced effect
+of @kenwardLikelihoodBasedFrequentist1998. Both halves are checked inline here. First the
+observed information in closed form (the realized negative Hessian, with per-pattern residual
+$r_P$ and cross-product $M_P$), validated against a finite-difference Hessian of
+$\ell_{\text{obs}}$ on the fixture replicate:
+
+```{python}
+def loglik_obs(mu, Sig, Y, R):
+    p = len(mu); hl = 0.5 * np.log(2 * np.pi); total = 0.0; pats = {}
+    for r in range(Y.shape[0]):
+        key = tuple(R[r].astype(int)); pats.setdefault(key, []).append(r)
+    for key, rows in pats.items():
+        Oi = [i for i in range(p) if key[i] == 0]; q = len(Oi)
+        if q == 0:
+            continue
+        S = Sig[np.ix_(Oi, Oi)]; Si = inv(S); _, ld = slogdet(S)
+        for r in rows:
+            d = Y[np.ix_([r], Oi)][0] - mu[Oi]
+            total += -q * hl - 0.5 * ld - 0.5 * (d @ Si @ d)
+    return total
+
+def observed_info_obs(mu, Sig, Y, R):
+    # Realized negative Hessian of l_obs -- the OBSERVED information (mirrors
+    # observed_info_obs_mvn in 00-setup.R): mean block n_P S^-1; mean x vech
+    # (r_P' S^-1 (x) S^-1) D_q (propto r_P); vech x vech with M_P.
+    p = len(mu); kk = p + p * (p + 1) // 2; vi = vech_index_table(p)
+    J = np.zeros((kk, kk)); pats = {}
+    for r in range(Y.shape[0]):
+        key = tuple(R[r].astype(int)); pats.setdefault(key, []).append(r)
+    for key, rows in pats.items():
+        Oi = [i for i in range(p) if key[i] == 0]; q = len(Oi)
+        if q == 0:
+            continue
+        S = Sig[np.ix_(Oi, Oi)]; Si = inv(S); nP = len(rows)
+        d = Y[np.ix_(rows, Oi)] - mu[Oi]                       # nP x q residuals
+        rP = d.sum(axis=0); MP = d.T @ d                        # q ; q x q
+        Dq = duplication_matrix(q)
+        full = np.array([p + vi[Oi[a], Oi[b]] - 1
+                         for b in range(q) for a in range(b, q)])
+        J[np.ix_(Oi, Oi)] += nP * Si                            # mean block
+        cross = np.kron((rP @ Si)[None, :], Si) @ Dq            # q x |vech|
+        J[np.ix_(Oi, full)] += cross
+        J[np.ix_(full, Oi)] += cross.T
+        SiMSi = Si @ MP @ Si
+        vv = Dq.T @ (-0.5 * nP * np.kron(Si, Si)
+                     + 0.5 * (np.kron(SiMSi, Si) + np.kron(Si, SiMSi))) @ Dq
+        J[np.ix_(full, full)] += vv
+    return J
+```
+
+```{python}
+#| label: lst-mc-obsinfo
+#| lst-cap: "Observed information = realized -Hessian of l_obs; carries a cross block the naive form omits; RIV is larger (Appendix C)."
+def pack(mu, Sig):
+    return np.concatenate([mu, [Sig[i, j] for j in range(p) for i in range(j, p)]])
+def unpack(th):
+    mu = th[:p]; Sig = np.zeros((p, p)); c = p
+    for j in range(p):
+        for i in range(j, p):
+            Sig[i, j] = Sig[j, i] = th[c]; c += 1
+    return mu, Sig
+th0 = pack(mu_obs, Sig_obs); hh = 1e-4
+def fobs(th):
+    mu_, Sig_ = unpack(th); return loglik_obs(mu_, Sig_, Y, R)
+Hfd = np.zeros((k, k))
+for a in range(k):
+    for b in range(a, k):
+        ea = np.zeros(k); ea[a] = hh; eb = np.zeros(k); eb[b] = hh
+        Hfd[a, b] = Hfd[b, a] = (fobs(th0 + ea + eb) - fobs(th0 + ea - eb)
+                                 - fobs(th0 - ea + eb) + fobs(th0 - ea - eb)) / (4 * hh * hh)
+O_obs_py = observed_info_obs(mu_obs, Sig_obs, Y, R)
+rel_fd = np.max(np.abs(O_obs_py - (-Hfd))) / np.max(np.abs(O_obs_py))
+cross_obs = np.max(np.abs(O_obs_py[:p, p:]))            # observed: mean x vech block
+cross_naive = np.max(np.abs(I_obs_py[:p, p:]))          # naive fisher_obs: block-diagonal
+scale = np.max(np.abs(np.diag(O_obs_py)))
+trRIV_obs = float(np.trace(inv(O_obs_py) @ I_com_py) - k)
+print(f"observed info vs -Hessian(l_obs): max rel diff = {rel_fd:.2e}")
+print(f"cross block  observed = {cross_obs:8.3f} ({cross_obs/scale:.3f} of diag)"
+      f"  |  naive = {cross_naive:.2e}")
+print(f"tr(RIV)  observed = {trRIV_obs:.4f}  |  naive = {trRIV_py:.4f}")
+assert rel_fd < 1e-3                                    # observed info IS the realized Hessian
+assert cross_naive < 1e-9                               # naive form is block-diagonal
+assert cross_obs > 0.01 * scale                         # observed form has a real cross block
+```
+
+The cross block is non-zero because, under MAR, selection on the observed values shifts each
+pattern's observed mean off the marginal, so $\mathbb{E}[r_P]\neq0$. The selected-Gaussian closed
+form (Appendix C) — non-zero under MAR, exactly zero under MCAR — against a seeded simulation:
+
+```{python}
+#| label: lst-mc-crossterm
+#| lst-cap: "Selection-induced mean shift E[r_P] matches the inverse-Mills closed form (MAR); vanishes under MCAR."
+import math
+rng = np.random.default_rng(20260531)
+mu0 = np.zeros(3)
+Sig0 = np.array([[1.0, 0.3, 0.5], [0.3, 1.0, 0.2], [0.5, 0.2, 1.0]])
+a_sel, b_sel, Nbig = -0.5, 0.4, 2_000_000
+Xs = rng.multivariate_normal(mu0, Sig0, size=Nbig)
+def Phi(z): return 0.5 * (1.0 + math.erf(z / math.sqrt(2.0)))
+def phi(z): return math.exp(-0.5 * z * z) / math.sqrt(2.0 * math.pi)
+for label, b in [("MAR ", b_sel), ("MCAR", 0.0)]:
+    V = rng.standard_normal(Nbig)                       # R=1 (coord 0 missing) iff V - b*X[:,2] < a
+    sel = (V - b * Xs[:, 2]) < a_sel
+    zc = a_sel / math.sqrt(1 + b * b); lam = phi(zc) / Phi(zc)
+    pred = (b * Sig0[:, 2] / math.sqrt(1 + b * b)) * lam       # E[X_k - mu_k | selected]
+    emp = Xs[sel].mean(axis=0) - mu0
+    print(f"{label}: shift empirical = {np.round(emp, 4)}  | closed form = {np.round(pred, 4)}")
+    if b == 0.0:
+        assert np.max(np.abs(emp)) < 5e-3                      # MCAR: no selection shift
+    else:
+        assert np.max(np.abs(emp - pred)) < 5e-3              # MAR: matches inverse-Mills form
+```
+
 ### Tier B — abstract generalization (MVN-free) {#sec-verify-tierB}
 
 The trace bookkeeping above used abstract `MatrixSymbol` objects with no MVN commitment,
@@ -1475,6 +1592,8 @@ print("Tier B:  T = A + B =", sp.expand(T_B), " == tr(RIV)/2  [exact]")
 | Information identity, $I_{\text{mis}\mid\text{obs}}\succeq 0$ | numeric | @lst-mc-psd |
 | FIML Q-function, $A/B/T$ | numeric (machine precision) | @lst-mc-fiml |
 | $\tfrac12\operatorname{tr}(\mathrm{RIV})$ vs $\mathbb{E}[T]$ | within MCSE | @lst-mc-mcse |
+| Observed info $=$ realized $-$Hessian; cross block (naive omits); larger RIV | numeric (FD, MAR fixture) | @lst-mc-obsinfo |
+| MAR cross term $\mathbb{E}[r_P]$ vs inverse-Mills closed form; MCAR $=0$ | numeric (seeded sim) | @lst-mc-crossterm |
 | Tier B (abstract, MVN-free): L2 from scores | symbolic | @lst-mc-tierb |
 
 ---
@@ -1515,8 +1634,9 @@ Taking expectations, $\mathbb{E}[M_P]=n_PS$ collapses the $\operatorname{vech}$ 
 $\tfrac{n_P}{2}D_q^\top(S^{-1}\!\otimes S^{-1})D_q$, and the cross block is governed by
 $\mathbb{E}[r_P]$. Setting $\mathbb{E}[r_P]=0$ zeroes it and recovers the block-diagonal
 $I_{\text{obs}}$ of D15 (`fisher_info_obs_mvn`) — but **$\mathbb{E}[r_P]=0$ holds only under MCAR.**
-`[mc]` `observed_info_obs_mvn` matches a numerical Hessian of $\ell_{\text{obs}}$ to machine
-precision (`verification/00-test-primitives.R`).
+`[mc]` the observed information equals the realized $-$Hessian of $\ell_{\text{obs}}$ (finite
+differences, @lst-mc-obsinfo here; numerical Hessian in `verification/00-test-primitives.R`), it
+carries a cross block the naive form omits, and its RIV is the larger one.
 
 **The cross term under MAR.** Under MAR the missingness depends on the observed values, so each
 pattern's observed mean is selected away from the marginal and $\mathbb{E}[r_P]\neq 0$. For the
@@ -1531,9 +1651,10 @@ $(\mathbb{E}[r_P]^\top S^{-1}\!\otimes S^{-1})D_q$ survives in the unconditional
 is the MVN, probit-mechanism instance of @kenwardLikelihoodBasedFrequentist1998, §3.2, whose
 logistic-mechanism bivariate version has the same structure
 $\mathbb{E}[y_2-\mu_2\mid r]=\beta\alpha_1$, $\beta=\sigma_{12}\sigma_{11}^{-1}$, <a href="#sec-src-kenward"><code>:374</code></a>.
-`[mc]` validated against $4\times10^6$ draws (MAR shift $\approx[0.124,0,0.414,0.207]$ matching the
-closed form; MCAR shift $0$); the cross-block contribution to $\operatorname{tr}(\mathrm{RIV})$ does
-not decay with $n$ (`todo/008`).
+`[mc]` the closed-form shift matches a seeded simulation under MAR and vanishes under MCAR
+(@lst-mc-crossterm here; the project mechanism against $4\times10^6$ draws, MAR shift
+$\approx[0.124,0,0.414,0.207]$, in `todo/008`); the cross-block contribution to
+$\operatorname{tr}(\mathrm{RIV})$ does not decay with $n$ (`todo/008`).
 
 **The RIV and the IC correction.** The (single) RIV is
 $\operatorname{tr}(\mathcal{J}_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ — the observed
