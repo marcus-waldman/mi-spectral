@@ -779,32 +779,64 @@ MAR confirms a material $O(1)$ residual (clean phase-8 sweep, $R{=}40\text{k}$,
 `_modules/term-a-mar-correction.R`: non-monotone $-0.34\,(n{=}800)\to-0.46\,(n{=}1500)$, monotone
 $-0.18\to-0.27$, growing toward the asymptote with $n$).
 
-**General-MVN structure (derived; asymptote value empirical).** The exact Term-A integrand is, per
-unit $i$ with missing block $M_i$ and conditional moments $m_{\theta,i},S_{\theta,i}$ under $\theta$,
+**General-MVN closed form (monotone).** The exact Term-A integrand is, per unit $i$ with missing
+block $M_i$ and conditional moments $m_{\theta,i},S_{\theta,i}$ under $\theta$,
 $$ A = \sum_{i:\,M_i\neq\varnothing}\tfrac12\Big[(m_{0,i}-m_{\hat\theta,i})^\top S_{\hat\theta,i}^{-1}(m_{0,i}-m_{\hat\theta,i}) + \operatorname{tr}(S_{\hat\theta,i}^{-1}S_{0,i}) - |M_i|\Big], $$
 verified line-by-line against `barQ_fiml_analytic` (it is exactly the Rao-Blackwellized
-$A_{\text{rb}}$). Taylor-expanding in $\delta=\hat\theta_{\text{obs}}-\theta_0$ gives
-$$ (A)+(C)=\alpha^\top\mathbb{E}[\delta]+\tfrac12\operatorname{tr}\!\big(\mathcal H\,I_{\text{obs}}^{-1}\big)-\operatorname{tr}(\mathrm{RIV}),\qquad \alpha=\nabla_\theta A|_{\theta_0},\ \ \mathcal H=\nabla^2_\theta A|_{\theta_0}, $$
-with $\alpha$ **supported only on the covariance parameters** ($\partial_\theta S_i=0$ for the means;
-confirmed numerically, $\max|\alpha_\mu|\approx2\times10^{-12}$). Both $\alpha,\mathcal H$ sum over the
-**missing** units' conditioning structure while $\mathbb{E}[\delta]$ (the MLE bias, $O(n^{-1})$) and
-$I_{\text{obs}}^{-1}$ come from the **observed** units — the imbalance that vanishes under MCAR. The
-per-replicate second-order Taylor reproduces $\mathbb{E}[A_{\text{rb}}]$ within MCSE
-(`verification/term-a-mar-general.R`), and the gradient–deviation covariance is negligible
-($\operatorname{tr}\operatorname{Cov}(g,\delta)=+0.002$, `term-a-mar-cov-check.R`), so the pieces
-split cleanly — at $n{=}800$ (non-monotone), $(A)=+0.49$, $(C)=-0.82$.
+$A_{\text{rb}}$). Let $f_0(\phi)=\sum_{i:\text{mis}}\mathbb{E}_{X_{M_i}\sim\phi}[\log p(X;\theta_0)]$
+be the conditional **cross-entropy** — the imputation slot of $A$ with the evaluation point held at
+$\theta_0$. Expanding $f_0$ to second order in $\delta=\hat\theta_{\text{obs}}-\theta_0$ gives the
+clean two-piece form
+$$ (A)+(C)=\underbrace{\alpha^\top\mathbb{E}[\delta]}_{(A)}+\underbrace{\tfrac12\operatorname{tr}\!\big(\mathcal H_\phi\,I_{\text{obs}}^{-1}\big)}_{(C)},\qquad \alpha=\nabla_\phi f_0|_{\theta_0},\ \ \mathcal H_\phi=\nabla^2_\phi f_0|_{\theta_0}, $$
+where $\mathcal H_\phi$ is the **cross-entropy curvature** (the imputation-slot Hessian); the
+*evaluation*-slot curvature of $A$ is what supplies the leading $\operatorname{tr}(\mathrm{RIV})$, so
+no $-\operatorname{tr}(\mathrm{RIV})$ correction enters here. The entropy gradient is
+**covariance-only** ($\partial S_i/\partial\mu=0\Rightarrow\alpha_\mu=0$), with closed form
+$$ \alpha_a = -\tfrac12\!\!\sum_{i:\text{mis}}\!\operatorname{tr}\!\big(S_{0,i}^{-1}\,\partial_a S_i\big),\quad \partial_a S_i=\Delta_{MM}-\Delta_{MO}B^\top-B\Delta_{OM}+B\Delta_{OO}B^\top,\ \ B=\Sigma_{MO}\Sigma_{OO}^{-1}, $$
+($\partial_a$ the symmetric perturbation of $\Sigma$-coordinate $a$, $\Delta=\partial_a\Sigma$). It
+matches the finite-difference gradient to $3\times10^{-5}$, and $\nabla_\phi f_0=\alpha$ confirms
+$\mathcal H_\phi$ is the correct curvature.
 
-**Scope (honest).** Verified: the MCAR cancellation, the covariance-only $\alpha$, the
-$(A)+(C)=\alpha^\top\mathbb{E}[\delta]+\tfrac12\operatorname{tr}(\mathcal H\,I_{\text{obs}}^{-1})-\operatorname{tr}(\mathrm{RIV})$ decomposition, the bivariate-monotone closed form, and the $(A)/(C)$
-split. *Deferred*: a **closed-form general-MVN asymptote value** — it turns on the $n$-dependence of
-the MLE bias and the per-unit moments, which a cheap per-unit extrapolation does not capture; the
-value is taken from the phase-8 sweep ($\lesssim-0.46$ non-monotone). Earlier versions asserted
-$(A)+(C)=O(n^{-1})$ "for any regular conditional family"; that holds **only under MCAR** (or no
-conditioning) and is **retracted** for MAR. Independent leading-order support that the *main* piece
-gives $\operatorname{tr}(\mathrm{RIV})$: the FIML $A$ matches the R code to machine precision
-(@lst-mc-fiml, @lst-mc-mcse), and the high-$R$ phase-6 diagnostic graded against the observed-data
-RIV (@sec-riv) shows $A$ and $B$ calibrate to the single $\operatorname{tr}(\mathrm{RIV})$ once the
-$(A)+(C)$ residual is accounted for (note after @eq-combine).
+The one nonstandard ingredient is $\mathbb{E}[\delta]$, the **second-order FIML MLE bias of
+$\hat\Sigma$ under MAR**; only its $\Sigma$-block enters, since $\alpha$ is covariance-only. For a
+**monotone** pattern the observed-data likelihood factors into a sequence of complete-data regressions
+of block $j$ on blocks $1{:}j{-}1$, each fit on the $r_j=f_j n$ units observed through step $j$
+[@andersonIntroductionMultivariateStatistical2003; @littleStatisticalAnalysisMissing2019;
+@schaferAnalysisIncompleteMultivariate1997]. Because each step's regression slope is conditionally
+unbiased given its predictors ($\operatorname{Cov}(\hat\beta_j,\hat\Sigma_{<j})=0$), the per-step
+biases combine **without cross-coupling** into a closed recursion for
+$b_\Sigma:=\lim_n n\,\mathbb{E}[\hat\Sigma_{\text{obs}}-\Sigma_0]$:
+$$ b_{11}=-\sigma_{11},\quad b_{j,P}=\beta_j\,b_{P,P},\quad b_{jj}=-\frac{j}{f_j}\sigma_{jj\cdot<j}+\beta_j\,b_{P,P}\,\beta_j^\top+\frac{\sigma_{jj\cdot<j}}{f_j}\operatorname{tr}\!\big(\Sigma_{PP}\,(\Sigma^{(j)}_{PP})^{-1}\big), $$
+$P=1{:}j{-}1$, $\beta_j=\Sigma_{j,P}\Sigma_{PP}^{-1}$, $\sigma_{jj\cdot<j}$ the step-$j$ residual
+variance, and $\Sigma^{(j)}_{PP}=\operatorname{Cov}(X_P\mid\text{observed through }j)$ the **selected**
+(design-imbalanced) predictor covariance. The first two terms are the classical regression-residual
+MLE bias and its recursive propagation through the sweep; the third is the design imbalance, which
+collapses to $(j{-}1)\sigma_{jj\cdot<j}/f_j$ — and the whole correction to **zero** — under MCAR,
+where $\Sigma^{(j)}_{PP}=\Sigma_{PP}$. (The exact small-sample bias of $\hat\Sigma$ under monotone
+missingness is classical (Hyodo, Shutoh, Seo & Pavlenko 2016; Kanda & Fujikoshi 1998 — pending
+acquisition, `todo/003`); this recursion is its $n\to\infty$ coefficient for the FIML estimator.)
+
+Assembling the three ingredients, the general-MVN $(A)+(C)$ asymptote is the $n$-independent constant
+$\alpha^\top b_\Sigma+\tfrac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{-1})$. For the
+four-variate monotone-MAR design (@sec-alg) it evaluates to
+$$ (A)+(C)_\infty=\underbrace{+0.54}_{\alpha^\top b_\Sigma}\ \underbrace{-0.76}_{\frac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{-1})}\ \approx\ -0.22, $$
+stable in $n$ ($-0.220,-0.223,-0.221$ at $n=300,800,1500$), with the **MCAR control returning
+$\approx0$** (the design-imbalance term vanishes) and the value consistent with the high-$R$ phase-8
+empirical surface (which scatters $\approx-0.15$ to $-0.27$ at large $n$ as its MCSE grows). Reproduced
+in `verification/term-a-mar-closedform.R`.
+
+**Scope (honest).** The closed form is derived for **monotone** MVN missingness, where the
+observed-data likelihood factors into complete-data regressions. For **non-monotone** patterns there
+is no such factorization, and the $\hat\Sigma$ bias requires the general second-order
+(Cox–Snell / Cordeiro–Klein) machinery (Cox & Snell 1968; Cordeiro & Klein 1994 — pending
+acquisition, `todo/003`); the non-monotone asymptote is therefore reported **empirically**
+(phase-8, $\approx-0.46$). An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular
+conditional family"; that holds **only under MCAR** and is **retracted** for MAR. Independent
+leading-order support that the *main* piece gives $\operatorname{tr}(\mathrm{RIV})$: the FIML $A$
+matches the R code to machine precision (@lst-mc-fiml, @lst-mc-mcse), and the high-$R$ phase-6
+diagnostic graded against the observed-data RIV (@sec-riv) shows $A$ and $B$ calibrate to the single
+$\operatorname{tr}(\mathrm{RIV})$ once the $(A)+(C)$ residual is accounted for (note after
+@eq-combine).
 :::
 
 **A5.** Under congenial proper imputation the imputation parameter satisfies
@@ -817,10 +849,10 @@ $O(1)$ design-imbalance term of A4 under MAR.
 
 ::: {.column-margin}
 `[mc]` @lst-mc-terma (`A - tr(RIV) == 0`) for the **leading-order** trace
-identity; the $(A)+(C)$ design-imbalance term is separate, verified empirically (phase-8 +
-`term-a-mar-general.R`/`-cov-check.R`) with a closed-form general-MVN value deferred (see the lemma
-Scope). The MVN FIML instantiation of $\bar Q_\infty$ matches the R code to machine precision
-(@lst-mc-fiml).
+identity; the $(A)+(C)$ design-imbalance term is separate, with the closed-form general-MVN
+(**monotone**) value derived and verified in `verification/term-a-mar-closedform.R`
+($\approx-0.22$, MCAR control $\approx0$) and the non-monotone value empirical (phase-8). The MVN
+FIML instantiation of $\bar Q_\infty$ matches the R code to machine precision (@lst-mc-fiml).
 :::
 
 **Which information.** Term A consumes
@@ -835,7 +867,8 @@ also calibrates to (@sec-riv; note after @eq-combine).
 $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] + O(n^{-1}) $$ {#eq-combine}
 [D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. Under MCAR
 $(A)+(C)=0$ and $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$; under MAR the
-design-imbalance term remains (bivariate-monotone form in A4; general-MVN form open, Phase 3a). $\qquad\blacksquare$
+design-imbalance term remains — derived in closed form for the general **monotone** MVN (@sec-termA,
+$\approx-0.22$ for the four-variate design), with the non-monotone value empirical. $\qquad\blacksquare$
 
 ::: {.column-margin}
 `[mc]` @lst-mc-combine (`T - tr(RIV)/2 == 0`), the **leading-order** identity (MCAR, or before

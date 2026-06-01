@@ -44,6 +44,7 @@ proposed ──► queued ──► acquired ──► verified ──► cited
 | `claeskensconsentinoVariableSelectionIncomplete2008` | acquired (literature/) | Anchor citation for the block-diagonal decomposition of RIV under $(β, α)$ when $X$ has missingness | Discussion (§10), one sentence on the missing-covariates extension | Medium | Zotero key U3F5HN8W (also in MI-IC); markdown synced; in MI-SPECTRAL RAG. Not yet read in-session. |
 | `consentinoclaeskensOrderSelectionTests2010` | **verified (cold-read 2026-05-22)** | Adjacent prior MI-testing work — omnibus order-selection lack-of-fit testing. **NOT a competitor for our headline.** They use Meng-Rubin's scalar-r F-reference as-is; no EFMI/anisotropy treatment; "order" in their sense ≠ our spectral order. | §7 Related Work, one sentence | Medium | Zotero key 9U4662KK; markdown synced; in RAG. Cited in body as adjacent literature; doesn't preempt any C1–C3 claim. |
 | **Honaker, J., King, G. & Blackwell, M. (2011).** "Amelia II: A Program for Missing Data." *Journal of Statistical Software* 45(7), 1–47. | **proposed** | Canonical citation for the EMB (Expectation-Maximization with Bootstrapping) imputation algorithm used as the primary MI engine in `verification/`. Replaces `norm::da.norm` (Schafer 1997) after W1 pilot revealed `norm` was delivering systematically different posterior draws (Term 1 ~5× too small). | §3 (W1 implementation), §4 (W2 implementation), §5 (W3 implementation), §6 (Methods / Simulation Design) | High | Pilot validated 2026-05-22; engine swap committed at the corresponding pre-registration amendment. Need PDF acquisition + lit-sync before any `@honakerAmeliaIIProgram2011` citation in `manuscript/`. |
+| **Anderson, T. W. (1957).** "Maximum likelihood estimates for a multivariate normal distribution when some observations are missing." *Journal of the American Statistical Association* 52(278), 200–203. | **proposed** | Primary source for the closed-form MLE of $(\mu,\Sigma)$ under a **monotone/nested** ("missing observations") MVN pattern via the factored marginal × conditional likelihood — the construction underlying the per-step-regression decomposition needed for the **monotone** branch of $b_\Sigma = \lim n\,E[\hat\Sigma_{\text{obs}}-\Sigma]$ in (A)+(C). Anderson's textbook (owned) cites this exact paper for Problem 4.48 ("Missing observations") but gives **no estimator-bias result** — only the MLE construction. | §3 / Term-A derivation (monotone $b_\Sigma$ branch); Background lineage on monotone-pattern MLE | Medium | Surfaced 2026-06-01 while auditing Anderson 3rd ed for a reusable second-order Sigma-MLE bias under missing data. Textbook has only the exact complete-data result $E[\hat\Sigma]=\frac{N-1}{N}\Sigma$ (Thm 3.3.2) and CR bound; the monotone case is delegated to this 1957 paper as a "find the MLE" exercise. Acquire only if the monotone $b_\Sigma$ branch needs a primary citation for the factored-likelihood MLE; the *bias* itself is not in either source and must be derived. |
 
 ## Derivation-ledger references (proposed 2026-05-23)
 
@@ -143,7 +144,7 @@ the monotone scope.
 
 | Proposed citation | Status | Claim it supports | Where it would land | Priority | Notes |
 |---|---|---|---|---|---|
-| **Cox, D. R. & Snell, E. J. (1968).** "A General Definition of Residuals." *JRSS-B* 30(2), 248–275. | **proposed — CONDITIONAL** | General second-order (O(1/n)) MLE bias `E[δ]` — the `αᵀE[δ]` piece of `(A)+(C)`. | derivation.qmd Appendix C, **only if** Item 2 is pushed to the *general* MVN (the monotone case uses elementary normal-theory biases from Anderson/Little-Rubin instead). | Low (not needed for the scoped monotone derivation) | Bib has no cox/snell/cordeiro entry. Acquire only if we generalize beyond monotone. Cordeiro & Klein (1994) is an alternative matrix-form reference for the same `b₁` bias. Verify exact pages/vol before citing. |
+| **Cox, D. R. & Snell, E. J. (1968).** "A General Definition of Residuals." *JRSS-B* 30(2), 248–275. | **proposed — fork reached** (was CONDITIONAL; see the 2026-06-01 `b_Σ` pass below) | General second-order (O(1/n)) MLE bias `E[δ]` — the `αᵀE[δ]` piece of `(A)+(C)`. | derivation.qmd general-MVN `(A)+(C)`, **only if** scope is pushed to the *general non-monotone* MVN (the monotone case reuses Hyodo/Kanda–Fujikoshi closed forms instead). | High if general-scope, else defer | Vol/pages confirmed 2026-06-01. The general non-monotone `b_Σ` has **no published formula**; Cordeiro & Klein (1994) gives the matrix/vec form valid under non-independence; Patriota & Lemonte (2008) is the MVN execution template. Full reuse-vs-derive log in the 2026-06-01 section below. |
 
 ## Term-A MAR correction — novelty check (2026-05-31)
 
@@ -214,6 +215,42 @@ penalty-correctness fix.
 | **Wang, Naisyin & Robins, J. M. (1998).** "Large-sample theory for parametric multiple imputation procedures." *Biometrika* 85(4), 935–948. **DOI 10.1093/biomet/85.4.935**. | **proposed**; **DOI verified via litrev Semantic Scholar + S2 Graph API 2026-06-01** | Proper-vs-improper MI large-sample variance; the posterior-draw (Rubin) layer beyond the EM plug-in `barQ_∞`. |
 | **Nielsen, Søren Feodor (2003).** "Proper and Improper Multiple Imputation." *International Statistical Review* 71(3), 593–607. **DOI 10.1111/j.1751-5823.2003.tb00214.x**. | **proposed**; **DOI verified via litrev Semantic Scholar + Crossref 2026-06-01** | Canonical proper-vs-improper MI distinction; grounds "the `½tr(RIV)` result transfers EM→proper MI." (Nielsen 2000 *Bernoulli* already cited by Claeskens–Consentino.) |
 
+## (A)+(C) closed form: second-order MVN covariance MLE-bias `b_Σ` literature pass (2026-06-01)
+
+Resolves the "don't reinvent the wheel" search for `b_Σ = lim n·E[Σ̂_obs − Σ_0]` (the Σ-block
+second-order FIML MLE bias under missing data; only the Σ-block matters because the entropy gradient
+`α` is covariance-only). 9-agent litrev/consensus/web/owned-corpus pass (todo/010 task).
+**Verdict: monotone = REUSE; general non-monotone = DERIVE (no published formula exists).**
+
+**Monotone branch — reusable closed forms exist:**
+
+| Proposed citation | Status | Role for `b_Σ` | Priority | Notes |
+|---|---|---|---|---|
+| **Hyodo, M., Shutoh, N., Seo, T. & Pavlenko, T. (2016).** "Estimation of the large covariance matrix with two-step monotone missing data." *Comm. Stat. — Theory & Methods.* | **read in-session (TR version) — ACQUIRE published for citekey** | Explicit 2-step monotone MLE of every Σ-block (Anderson–Olkin form) AND an exactly-unbiased estimator (Lemma 2.1) with explicit divisors ⇒ `b_Σ = lim N·(MLE − unbiased)` blockwise. Confirms the per-step regression-residual-variance bias hypothesis against printed divisors. | **High** | Read in-session as the openly-available Hiroshima Stat TR13-05 PDF (cached: `…/131f54f1-…/tool-results/webfetch-1780337704981-idje1s.pdf`). For `@cite` need the **published** Comm. Stat. version synced to `literature/`. MCAR-monotone; MAR = light pattern-conditional adaptation (per-step sizes + design moments become pattern-conditional = the `Q_mis≠Q_obs` imbalance). |
+| **Kanda, T. & Fujikoshi, Y. (1998).** "Some Basic Properties of the MLEs for a Multivariate Normal Distribution with Monotone Missing Data." *Amer. J. Math. & Mgmt. Sci.* 18(1–2), 161–190. DOI 10.1080/01966324.1998.10737458 | **proposed — HIGH** | EXACT bias of Σ̂ for k=2,3-step monotone (on Σ̂ directly — the abstract distinguishes this from the transformed Δ used only for the general-k construction); asymptotic expansions for general k. | High | Paywalled (Tandfonline), not readable in-session; Hyodo et al. (read) supplies the equivalent closed forms meanwhile. |
+| **Anderson, T. W. & Olkin, I. (1985).** "Maximum-likelihood estimation of the parameters of a multivariate normal distribution." *Lin. Alg. Appl.* 70, 147–171. | **proposed — Medium** | Primary source of the explicit 2-step monotone MLE construction (the estimator whose bias we take). | Medium | Pairs with Kanda–Fujikoshi (bias) and Anderson (1957) (factorization origin). |
+| **Tsukada, S. (2014, two-step; 2019, three-step).** Unbiased estimator for a covariance matrix under monotone incomplete sampling. *Comm. Stat. — Theory & Methods* / *Lin. Alg. Appl.* | **proposed — Medium** | Independent corroboration: Σ MLE biased under monotone, UBE derived ⇒ bias = MLE − UBE; k-step pattern. | Medium | Corroborates Hyodo; secondary. |
+
+Owned + already sufficient for the monotone scaffold (no acquisition): L&R (2019) §7.4.2 sweep
+factorization; Schafer (1997) §6.5 `φ_j` regression factorization; Anderson (2003) Thm 3.3.2
+complete-data baseline `E[Σ̂]=((N−1)/N)Σ`; Pawitan (2013) §5.2 `b₁/n+…` form + normal-variance
+`−σ²/n`; Magnus (2019) §18.6/18.15/18.16 — confirms `α` and `𝓗` are fully mechanical (no gap).
+
+**General non-monotone branch — NO published formula; DERIVE via Cox–Snell machinery:**
+
+| Proposed citation | Status | Role | Priority | Notes |
+|---|---|---|---|---|
+| **Cox, D. R. & Snell, E. J. (1968).** JRSS-B 30(2), 248–275. DOI 10.1111/j.2517-6161.1968.tb00724.x | **proposed — fork now reached (was CONDITIONAL above)** | The general O(1/n) MLE-bias engine (cumulant form). Apply to the observed-data FIML MVN log-likelihood (does not factor under non-monotone). | High (if general scope) | vol/pages confirmed. |
+| **Cordeiro, G. M. & Klein, R. (1994).** "Bias correction in ARMA models." *Stat. & Prob. Lett.* 19(3), 169–176. DOI 10.1016/0167-7152(94)90100-7 | **proposed — High (if general)** | The matrix/vec form of Cox–Snell **valid under non-independence** — the right tool since non-monotone observed-data contributions are pattern-mixed (heterogeneous), not iid. | High | The practical workhorse for the general-branch derivation. |
+| **Patriota, A. G. & Lemonte, A. J. (2008).** "Bias correction in a multivariate normal regression model with general parameterization." *Stat. & Prob. Lett.* | **proposed — High** | Closest concrete TEMPLATE: second-order biases of MLEs in a general MVN model with shared (μ,Σ) parameters, executed via weighted-least-squares regressions. Complete-data; adapt to the FIML observed-data score/info. | High | The "how to execute Cox–Snell for the MVN" template. |
+| **Cordeiro, G. M. & McCullagh, P. (1991).** JRSS-B 53(3), 629–643. DOI 10.1111/j.2517-6161.1991.tb01852.x | **proposed — Medium** | Matrix `b₁` (supplementary-weighted-regression) template; GLM-specific, structural model only. | Medium | Authority for the matrix-form bias representation. |
+| **`mle.tools` (Mazucheli, Menezes & Nadarajah, 2017).** *R Journal.* `coxsnell.bc()`. | **proposed — Low** | Numerical cross-check of a derived `b_Σ` against the Cox–Snell formula. | Low | Validation only. |
+| **"Expectations and Variances of MLEs of the MVN Parameters with Missing Data"** (authors/year unresolved; S2 paperId `96e04824eb867caf238d86ae471634d18a14f3f9`). | **proposed — INVESTIGATE** | Title literally promises `E[Σ̂]` under missing data = `b_Σ`. If its missingness is **general** (not just monotone) and it states the closed form, it could upgrade the general branch DERIVE→REUSE. | High to triage | S2 metadata returned null; resolve authors/year + acquire to verify monotone-vs-general before relying on it. |
+
+**Correctly excluded (information-not-bias trap):** Kenward–Molenberghs (1998, owned), Hocking–Smith
+(1968), Touloumi (2003), Tan (2014), Hyodo's shrinkage angle — all about the asymptotic
+variance/information of the estimators, not `E[Σ̂]−Σ`.
+
 ## Recently rejected (kept as a record so we don't re-propose)
 
 - **2026-05-22 — Wood, A. T. A. (1989).** "An F approximation to the distribution of a linear combination of chi-squared variables." *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`. Reason: We're sticking with χ² reference (not F), so the F-approximation is not load-bearing. Citation lineage for the scaled-shifted moment-matching form is already covered by Satterthwaite (1946) + Satorra-Bentler (2010) + Asparouhov-Muthén (2006). Imhof (1961) + Davies (1980) cover the exact reference distribution. Full text was also not freely available, which would have been a small acquisition cost — combined with non-load-bearing status → reject. Re-propose only if we change framing to F-reference.
@@ -226,4 +263,4 @@ penalty-correctness fix.
 
 ---
 
-*Last updated: 2026-05-31*
+*Last updated: 2026-06-01*
