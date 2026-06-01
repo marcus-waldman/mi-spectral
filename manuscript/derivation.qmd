@@ -56,8 +56,11 @@ overstates the fit by $\operatorname{tr}(\mathrm{RIV})$. The second is **estimat
 mismatch**: MI's estimand is $\hat\theta_{\text{com}}$, whereas $\bar Q_\infty$ is centered
 at the observed-data maximizer $\hat\theta_{\text{obs}}$, and the gap between them costs
 $\tfrac12\operatorname{tr}(\mathrm{RIV})$. The two do not cancel — they leave a net upward
-bias of half the trace. The result holds for any regular likelihood fit on congenially
-imputed data; we instantiate it throughout for the multivariate normal.
+bias of half the trace. This $\tfrac12\operatorname{tr}(\mathrm{RIV})$ is **exact under MCAR** and
+holds for any regular likelihood fit on congenially imputed data; we instantiate it throughout
+for the multivariate normal. **Under MAR** Term A carries one further $O(1)$ piece — a
+**design-imbalance** term $(A)+(C)$, nonzero exactly when the missing and observed units have
+different conditioning-variable distributions and zero under MCAR — developed in @sec-termA.
 
 ### Why it matters {#sec-intro-why}
 
@@ -75,10 +78,15 @@ distorting power and ranking even when the reference distribution is correctly c
 - **Information criteria.** MI-AIC and MI-BIC are built from $-2\bar Q_\infty$, so each
 candidate model carries a bias $-\operatorname{tr}(\mathrm{RIV})$ that is *model-specific* —
 RIV depends on the model. Left uncorrected, the criteria systematically favor higher-RIV
-models; correcting the numerator restores complete-data-equivalent selection, in the same
-direction as the complete-data discrepancy correction of
-[@cavanaughAkaikeInformationCriterion1998a] and the missing-data AIC of
-[@claeskensconsentinoVariableSelectionIncomplete2008].
+models; adding $\operatorname{tr}(\mathrm{RIV})$ to the deviance restores complete-data-equivalent
+selection. The corrected criterion **coincides with the missing-data information criterion
+$\mathrm{AIC}_{x;y}$ of [@shimodairaInformationCriterionModel2017]**, whose penalty is *half* that
+of the earlier complete-data-discrepancy criteria — AICcd
+[@cavanaughAkaikeInformationCriterion1998a] (and the related PDIO) carry
+$2\operatorname{tr}(\mathrm{RIV})$ and over-penalize, while the missing-covariate AIC of
+[@claeskensconsentinoVariableSelectionIncomplete2008] targets a different (adjusted-likelihood)
+discrepancy. What is new here is not that penalty but its imputation/estimation decomposition, the
+MAR design-imbalance correction $(A)+(C)$, and the extension to proper MI (@sec-intro-lineage).
 
 ### Relation to existing work {#sec-intro-lineage}
 
@@ -89,16 +97,30 @@ stacked-MI tests [@chanGeneralFeasibleTests2022] all concern how to *calibrate t
 reference distribution* of an MI test statistic, taking the statistic's numerator as
 given. We address the *bias of that numerator*. The two are complementary: calibration
 makes the reference distribution right; the present correction makes the statistic
-referred to it centered. On the model-selection side, Cavanaugh and Shumway's AICcd
-[@cavanaughAkaikeInformationCriterion1998a] and Claeskens and Consentino's missing-data
-AIC [@claeskensconsentinoVariableSelectionIncomplete2008] correct the analogous
-complete-data discrepancy under EM-based estimation — a parallel line with a different
-target estimator but the same RIV machinery. The link is in fact term-by-term: AICcd
-targets the complete-data discrepancy at the observed-data (EM) MLE — the same
-$\hat\theta_{\text{obs}}$ pivot as our Term A — so it carries an imputation-bias penalty in
-$\operatorname{tr}(\mathrm{RIV})$ but no analogue of Term B, and our estimation-mismatch
-term $-\tfrac12\operatorname{tr}(\mathrm{RIV})$ is exactly the additional price of MI
-targeting $\hat\theta_{\text{com}}$ rather than $\hat\theta_{\text{obs}}$.
+referred to it centered. On the model-selection side, the complete-data-discrepancy criteria
+PDIO and AICcd [@cavanaughAkaikeInformationCriterion1998a] attach a $2\operatorname{tr}(\mathrm{RIV})$
+missing-data penalty to the complete-data deviance under EM-based estimation;
+[@shimodairaInformationCriterionModel2017] showed this *doubles* the correct value and derived
+$\mathrm{AIC}_{x;y}$ with the *halved* penalty $\operatorname{tr}(\mathrm{RIV})$. Our net correction
+reproduces exactly that $\operatorname{tr}(\mathrm{RIV})$ — so as a penalty the headline IC result is
+**not new: it is $\mathrm{AIC}_{x;y}$.** What *is* new is threefold: (i) the decomposition of that
+penalty into an imputation-bias term $+\operatorname{tr}(\mathrm{RIV})$ and an estimation-mismatch
+term $-\tfrac12\operatorname{tr}(\mathrm{RIV})$ (MI's target is $\hat\theta_{\text{com}}$, not the EM
+pivot $\hat\theta_{\text{obs}}$); (ii) the **MAR design-imbalance correction** $(A)+(C)$, which lies
+beyond the i.i.d. fixed-pattern setting of [@shimodairaInformationCriterionModel2017] — itself named
+there (§8) as the open "missingness $\times$ covariate-shift" direction, the covariate-shift machinery
+being [@shimodairahidetoshiImprovingPredictiveInference2000]; and (iii) the extension from the
+deterministic EM Q-function to **proper multiple imputation**. Claeskens and Consentino's
+missing-covariate AIC [@claeskensconsentinoVariableSelectionIncomplete2008] targets a different
+(EM-adjusted-likelihood) discrepancy with a Takeuchi-type penalty, and so sits outside this line.
+A third route — Hens, Aerts and Molenberghs's weighted AIC
+[@hensModelSelectionIncomplete2006a] — reaches the same complete-data-equivalent target by
+inverse-probability (Horvitz–Thompson) reweighting of the complete cases rather than a deviance
+correction: it needs estimated selection probabilities, keeps the penalty at $2q$, and explicitly
+leaves a bias-corrected *imputation*-based criterion — the gap the present $(A)+(C)$ term fills —
+as open. The design-imbalance bias it diagnoses (its complete-case discrepancy shifts by
+$\operatorname{Cov}(y,\pi)/\mathbb{E}[\pi]$ under MAR) is the same phenomenon $(A)+(C)$ captures
+intrinsically within MI.
 
 ### Road map {#sec-intro-roadmap}
 
@@ -564,16 +586,32 @@ $\mathcal{J}\to_p I$ steps below are unaffected.
 ### Theorem {#sec-thm}
 
 **Theorem (Q-function deviance bias).** Under R1-R7, to leading order
-$$ \mathbb{E}[T] = \mathbb{E}\big[\bar Q_\infty(\hat\theta_{\text{obs}}) - \ell_{\text{com}}(\hat\theta_{\text{com}};Y)\big] = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + O(n^{-1}), $$ {#eq-theorem}
-decomposing (D10-D12) as $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ (imputation
-bias) and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ (estimation
+$$ \mathbb{E}[T] = \mathbb{E}\big[\bar Q_\infty(\hat\theta_{\text{obs}}) - \ell_{\text{com}}(\hat\theta_{\text{com}};Y)\big] = +\tfrac12\operatorname{tr}(\mathrm{RIV}) \;+\; [(A)+(C)] \;+\; O(n^{-1}), $$ {#eq-theorem}
+decomposing (D10-D12) as $\mathbb{E}[A]=\operatorname{tr}(\mathrm{RIV})+[(A)+(C)]+O(n^{-1})$
+(imputation bias) and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ (estimation
 mismatch). The deviance-scale statement multiplies by 2.
+
+The term $(A)+(C)$ is a **design-imbalance** correction carried by Term A (@sec-termA): it
+**vanishes under MCAR** (missing and observed units share a conditioning-variable distribution),
+recovering the clean $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ that holds for any
+regular likelihood, and is a nonzero $O(1)$ under **MAR**. Its general-MVN *structure* is derived
+in @sec-termA — $(A)+(C)=\alpha^\top\mathbb{E}[\delta]+\tfrac12\operatorname{tr}(\mathcal H\,I_{\text{obs}}^{-1})-\operatorname{tr}(\mathrm{RIV})$, with the entropy gradient $\alpha$ supported only on
+the covariance parameters — and for the bivariate monotone MVN it has the closed form
+$$ (A)+(C) = \tfrac{n_{\text{mis}}}{n_{\text{obs}}}\Big[1-\tfrac12\operatorname{tr}\!\big(Q_{\text{mis}}Q_{\text{obs}}^{-1}\big)\Big], $$
+$Q_{\text{mis}},Q_{\text{obs}}$ the conditioning-variable second-moment matrices of the missing vs
+observed units, so $(A)+(C)=0$ iff $Q_{\text{mis}}=Q_{\text{obs}}$ (MCAR). The general-MVN
+*asymptote value* is measured, not yet closed-form: the committed phase-8 sweep
+(`verification/run_all.R` phase 8, `_modules/term-a-mar-correction.R`; $R{=}40\text{k}$) gives, at the
+observed-data RIV, a material negative $O(1)$ that grows toward its limit with $n$ — non-monotone
+$-0.34\,(n{=}800)\to-0.46\,(n{=}1500)$, monotone $-0.18\to-0.27$ — i.e. an asymptote $\lesssim-0.46$
+($\approx-0.5$ / $\approx-0.3$), up to $\approx 10\%$ of $\tfrac12\operatorname{tr}(\mathrm{RIV})$.
 
 Here $\mathrm{RIV}=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ (D8) is
 evaluated with the **observed-data** information $I_{\text{obs}}$ — the unconditional expectation
 that, under MAR, carries the mean–covariance cross term and is estimated by the observed
-information (@sec-riv). Both Term A and Term B calibrate to this single RIV, and the approach
-to the leading constants is $O(n^{-1})$.
+information (@sec-riv). Both Term A and Term B calibrate to this single RIV; the design-imbalance
+$(A)+(C)$ is *additional* to it (it is the part of Term A beyond $\operatorname{tr}(\mathrm{RIV})$,
+not a re-grading of the information).
 
 ### Proof strategy {#sec-strategy}
 
@@ -599,11 +637,13 @@ spurious $-\tfrac12 k$; the lemma is stated precisely to forestall it.
 completions drawn from the imputation model rather than the truth, and a second-order
 expansion in the imputation parameter $\tilde\phi$ yields three pieces. The leading
 cross-term gives $+\operatorname{tr}(\mathrm{RIV})$; the remaining two — an entropy-gradient
-term and a cross-entropy-curvature term, each $O(1)$ — cancel to $O(n^{-1})$. That
-cancellation is the subtle step (an earlier shortcut wrongly set one piece to zero), and
-we isolate and prove it as a lemma inside the Term A argument.
+term $(A)$ and a cross-entropy-curvature term $(C)$, each $O(1)$ — cancel **only when the
+missing and observed units share a conditioning-variable distribution** (MCAR). Under MAR
+their sum is a nonzero $O(1)$ design-imbalance term $(A)+(C)$, which we isolate as a lemma
+inside the Term A argument. (An earlier shortcut wrongly set one piece to zero; a second
+wrongly asserted the cancellation in general — both corrected below.)
 
-Summing, $\mathbb{E}[T] = \operatorname{tr}(\mathrm{RIV}) - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV})$.
+Summing, $\mathbb{E}[T] = \operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + [(A)+(C)]$, the design-imbalance term vanishing under MCAR.
 
 ### Term B $=-\tfrac12\operatorname{tr}(\mathrm{RIV})$ (estimation mismatch) {#sec-termB}
 
@@ -669,24 +709,26 @@ varies the *sampling* distribution. The two are different functions — an earli
 shortcut that set $\alpha=0$ was wrong (v4.1 correction).
 :::
 
-**A4 (cancellation).** Pieces $(A)$ and $(C)$ are each $O(1)$ but their leading
-contributions cancel — $(A)$ pairs the bias of $\tilde\phi$ with the entropy
-gradient, $(C)$ the curvature of the conditional cross-entropy with $\operatorname{Var}(\tilde\phi)$,
-linked through the information geometry of $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$:
-$$ (A)+(C) = O(n^{-1}). $$
-The mechanism and its closed-form verification are spelled out in the cancellation
-lemma immediately below. To leading order only the main piece $(B)$ survives:
-$A = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})\big)+O(n^{-1})$.
+**A4 (the $(A)+(C)$ term).** Pieces $(A)$ and $(C)$ are each $O(1)$ — $(A)$ pairs the bias of
+$\tilde\phi$ with the entropy gradient, $(C)$ the curvature of the conditional cross-entropy with
+$\operatorname{Var}(\tilde\phi)$, linked through the information geometry of
+$P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$. Their **leading parts cancel iff the missing and
+observed units share a conditioning-variable distribution**:
+$$ (A)+(C) = \begin{cases} O(n^{-1}) & \text{MCAR } (Q_{\text{mis}}=Q_{\text{obs}}),\\[2pt] \tfrac{n_{\text{mis}}}{n_{\text{obs}}}\big[1-\tfrac12\operatorname{tr}(Q_{\text{mis}}Q_{\text{obs}}^{-1})\big]+O(n^{-1}) & \text{MAR (bivariate monotone).} \end{cases} $$
+The MAR case is a nonzero $O(1)$ **design-imbalance** correction; the mechanism, the closed-form
+MCAR cases, and the MAR formula are in the lemma below. So the main piece $(B)$ gives the leading
+$\operatorname{tr}(\mathrm{RIV})$, plus this design-imbalance term:
+$A = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})\big)+[(A)+(C)]+O(n^{-1})$.
 
 ::: {.column-margin}
 `[derived]` Mechanism + two closed-form families in the lemma below; closed forms
 computed in the companion MI-IC derivation (v4, Steps 6-7) and reproduced here so this
-document is self-contained. The finite-$n$ behaviour of $A$ and $B$ — each attaching to a
-*different* RIV (expected vs sample) — is analyzed in the note after @eq-combine.
+document is self-contained. $A$ and $B$ both calibrate to the single observed-data RIV (note after
+@eq-combine), now augmented by the $(A)+(C)$ design-imbalance term under MAR (@sec-termA lemma).
 :::
 
 ::: {.callout-note collapse="true"}
-## Lemma (the $(A)+(C)$ cancellation)
+## Lemma (the $(A)+(C)$ term: MCAR cancellation, MAR design-imbalance)
 
 Let $f_0(\phi):=\mathbb{E}_{Y_{\text{mis}}\sim\phi}\big[\ell_{\text{mis}\mid\text{obs}}(\theta_0)\big]$ be the
 conditional **cross-entropy** — the expected missing-data log-density evaluated at the
@@ -707,59 +749,104 @@ $\mathbb{E}[\delta]=\mathbb{E}[\hat\theta_{\text{obs}}-\theta_0]=O(n^{-1})$ (MLE
 $\operatorname{Var}(\delta)=I_{\text{obs}}^{-1}=O(n^{-1})$, while $\alpha=O(n)$ and
 $H_{\phi\phi}=O(n)$ (both extensive in $n_{\text{mis}}$). Hence
 $$ (A)=\mathbb{E}[\delta]^\top\alpha = O(1),\qquad (C)=\tfrac12\operatorname{tr}\!\big(H_{\phi\phi}\,I_{\text{obs}}^{-1}\big)+O(n^{-1}) = O(1) $$
-are two $O(1)$ pieces of opposite sign whose leading parts cancel through the structural
-pairing of the entropy gradient $\alpha=-\mathcal{E}'(\theta_0)$ and the cross-entropy
-curvature $H_{\phi\phi}$ over $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$.
+are two $O(1)$ pieces of opposite sign. $(A)$ pairs the entropy gradient
+$\alpha=-\mathcal{E}'(\theta_0)$ with the MLE bias of $\tilde\phi$ (scaling with
+$1/n_{\text{obs}}$); $(C)$ pairs the cross-entropy curvature $H_{\phi\phi}$ with
+$\operatorname{Var}(\tilde\phi)$ (scaling with the inverse design moment $Q_{\text{obs}}^{-1}$),
+over $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$. Writing $Q_{\text{obs}},Q_{\text{mis}}$ for the
+conditioning-variable second-moment matrices over the observed vs missing units, their leading
+parts cancel **iff the per-unit design moments match**,
+$Q_{\text{mis}}/n_{\text{mis}}=Q_{\text{obs}}/n_{\text{obs}}$ — i.e. under MCAR. When they differ
+(MAR) the residual is the nonzero $O(1)$ design-imbalance term
+$$ (A)+(C) = \tfrac{n_{\text{mis}}}{n_{\text{obs}}}-\tfrac12\operatorname{tr}\!\big(M_{\text{mis}}M_{\text{obs}}^{-1}\big) = \tfrac{n_{\text{mis}}}{n_{\text{obs}}}\big[1-\tfrac12\operatorname{tr}(Q_{\text{mis}}Q_{\text{obs}}^{-1})\big]+O(n^{-1}), $$
+with $M_\bullet=\sum_{\text{units}}[1,X_2][1,X_2]^\top=n_\bullet Q_\bullet$, derived in closed form
+for the bivariate monotone MVN.
 
-**Closed-form verification** (MLE imputation $\tilde\phi=\hat\theta_{\text{obs}}$;
+**Closed-form checks.** With no conditioning structure the family is MCAR-equivalent and
+$(A)+(C)$ cancels to leading order (MLE imputation $\tilde\phi=\hat\theta_{\text{obs}}$;
 $n_{\text{obs}}$ observed, $n_{\text{mis}}$ missing):
 
-| Family | $(A)$ | $(C)=\tfrac12\operatorname{tr}(H_{\phi\phi}I_{\text{obs}}^{-1})$ | $(A)+(C)$ | Term A |
-|---|---|---|---|---|
-| $N(\mu,\sigma^2)$ | $+\,n_{\text{mis}}/(2n_{\text{obs}})$ | $-\,n_{\text{mis}}/(2n_{\text{obs}})$ | $0$ (exact) | $n_{\text{mis}}/(n_{\text{obs}}-2)=\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ |
-| $\text{Exp}(\lambda)$ | $+\,n_{\text{mis}}/(n_{\text{obs}}-1)$ | $-\,n_{\text{mis}}/n_{\text{obs}}$ | $n_{\text{mis}}/[n_{\text{obs}}(n_{\text{obs}}-1)]=O(n^{-1})$ | $n_{\text{mis}}/(n_{\text{obs}}-1)=\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ |
+| Family (no conditioning ⇒ MCAR) | $(A)$ | $(C)=\tfrac12\operatorname{tr}(H_{\phi\phi}I_{\text{obs}}^{-1})$ | $(A)+(C)$ |
+|---|---|---|---|
+| $N(\mu,\sigma^2)$ | $+\,n_{\text{mis}}/(2n_{\text{obs}})$ | $-\,n_{\text{mis}}/(2n_{\text{obs}})$ | $0$ (exact) |
+| $\text{Exp}(\lambda)$ | $+\,n_{\text{mis}}/(n_{\text{obs}}-1)$ | $-\,n_{\text{mis}}/n_{\text{obs}}$ | $n_{\text{mis}}/[n_{\text{obs}}(n_{\text{obs}}-1)]=O(n^{-1})$ |
 
-**Scope (honest statement).** The two families are *exact closed-form* checks; the
-curvature and order-counting identities above supply the general mechanism, so the
-cancellation is **asserted** for any regular conditional family $P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)$
-[R1: differentiation under the integral, Bartlett identities] — it is **not** proved here
-as a closed theorem at that generality. Two pieces of independent support: (i) the FIML
-$A$ matches the R code to machine precision and the W1 cache gives
-$\mathbb{E}[A]\approx\operatorname{tr}(\mathrm{RIV})$ (@lst-mc-fiml, @lst-mc-mcse); (ii) the
-high-$R$ diagnostic (`run_all.R` phase 6) confirms, graded against the observed-data RIV
-(@sec-riv), that both $A$ and $B$ calibrate to the single $\operatorname{tr}(\mathrm{RIV})$ —
-see the note after @eq-combine.
+A univariate $N(\mu,\sigma^2)$ *cannot* be MAR — there is no second variable to select on — so
+these are necessarily the cancelling cases. Under MAR **with** conditioning the cancellation fails
+by the design-imbalance amount above: the bivariate-monotone formula matches the simulation across
+selection strength $b$ (`verification/term-a-mar-diagnostic.R`, study S1), and the 4-variate ampute
+MAR confirms a material $O(1)$ residual (clean phase-8 sweep, $R{=}40\text{k}$,
+`_modules/term-a-mar-correction.R`: non-monotone $-0.34\,(n{=}800)\to-0.46\,(n{=}1500)$, monotone
+$-0.18\to-0.27$, growing toward the asymptote with $n$).
+
+**General-MVN structure (derived; asymptote value empirical).** The exact Term-A integrand is, per
+unit $i$ with missing block $M_i$ and conditional moments $m_{\theta,i},S_{\theta,i}$ under $\theta$,
+$$ A = \sum_{i:\,M_i\neq\varnothing}\tfrac12\Big[(m_{0,i}-m_{\hat\theta,i})^\top S_{\hat\theta,i}^{-1}(m_{0,i}-m_{\hat\theta,i}) + \operatorname{tr}(S_{\hat\theta,i}^{-1}S_{0,i}) - |M_i|\Big], $$
+verified line-by-line against `barQ_fiml_analytic` (it is exactly the Rao-Blackwellized
+$A_{\text{rb}}$). Taylor-expanding in $\delta=\hat\theta_{\text{obs}}-\theta_0$ gives
+$$ (A)+(C)=\alpha^\top\mathbb{E}[\delta]+\tfrac12\operatorname{tr}\!\big(\mathcal H\,I_{\text{obs}}^{-1}\big)-\operatorname{tr}(\mathrm{RIV}),\qquad \alpha=\nabla_\theta A|_{\theta_0},\ \ \mathcal H=\nabla^2_\theta A|_{\theta_0}, $$
+with $\alpha$ **supported only on the covariance parameters** ($\partial_\theta S_i=0$ for the means;
+confirmed numerically, $\max|\alpha_\mu|\approx2\times10^{-12}$). Both $\alpha,\mathcal H$ sum over the
+**missing** units' conditioning structure while $\mathbb{E}[\delta]$ (the MLE bias, $O(n^{-1})$) and
+$I_{\text{obs}}^{-1}$ come from the **observed** units — the imbalance that vanishes under MCAR. The
+per-replicate second-order Taylor reproduces $\mathbb{E}[A_{\text{rb}}]$ within MCSE
+(`verification/term-a-mar-general.R`), and the gradient–deviation covariance is negligible
+($\operatorname{tr}\operatorname{Cov}(g,\delta)=+0.002$, `term-a-mar-cov-check.R`), so the pieces
+split cleanly — at $n{=}800$ (non-monotone), $(A)=+0.49$, $(C)=-0.82$.
+
+**Scope (honest).** Verified: the MCAR cancellation, the covariance-only $\alpha$, the
+$(A)+(C)=\alpha^\top\mathbb{E}[\delta]+\tfrac12\operatorname{tr}(\mathcal H\,I_{\text{obs}}^{-1})-\operatorname{tr}(\mathrm{RIV})$ decomposition, the bivariate-monotone closed form, and the $(A)/(C)$
+split. *Deferred*: a **closed-form general-MVN asymptote value** — it turns on the $n$-dependence of
+the MLE bias and the per-unit moments, which a cheap per-unit extrapolation does not capture; the
+value is taken from the phase-8 sweep ($\lesssim-0.46$ non-monotone). Earlier versions asserted
+$(A)+(C)=O(n^{-1})$ "for any regular conditional family"; that holds **only under MCAR** (or no
+conditioning) and is **retracted** for MAR. Independent leading-order support that the *main* piece
+gives $\operatorname{tr}(\mathrm{RIV})$: the FIML $A$ matches the R code to machine precision
+(@lst-mc-fiml, @lst-mc-mcse), and the high-$R$ phase-6 diagnostic graded against the observed-data
+RIV (@sec-riv) shows $A$ and $B$ calibrate to the single $\operatorname{tr}(\mathrm{RIV})$ once the
+$(A)+(C)$ residual is accounted for (note after @eq-combine).
 :::
 
 **A5.** Under congenial proper imputation the imputation parameter satisfies
 $\tilde\phi=\hat\theta_{\text{obs}}+\Delta\tilde\phi$ with $\operatorname{Cov}(\Delta\tilde\phi,\hat\theta_{\text{obs}})=0$ [R4, R5],
 so $\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ [L1].
-Hence
-$$ \mathbb{E}[A] = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\,I_{\text{obs}}^{-1}\big) + O(n^{-1}) = \operatorname{tr}(\mathrm{RIV}) + O(n^{-1})\ \text{[D7, D8]}. $$ {#eq-termA}
+Hence, carrying the design-imbalance term of A4,
+$$ \mathbb{E}[A] = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\,I_{\text{obs}}^{-1}\big) + [(A)+(C)] + O(n^{-1}) = \operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] + O(n^{-1})\ \text{[D7, D8]}, $$ {#eq-termA}
+with $(A)+(C)=0$ under MCAR (so $\mathbb{E}[A]=\operatorname{tr}(\mathrm{RIV})$) and the nonzero
+$O(1)$ design-imbalance term of A4 under MAR.
 
 ::: {.column-margin}
-`[mc]` @lst-mc-terma (`A - tr(RIV) == 0`) for the trace
-identity; the MVN FIML instantiation of $\bar Q_\infty$ matches the R code to machine
-precision (@lst-mc-fiml).
+`[mc]` @lst-mc-terma (`A - tr(RIV) == 0`) for the **leading-order** trace
+identity; the $(A)+(C)$ design-imbalance term is separate, verified empirically (phase-8 +
+`term-a-mar-general.R`/`-cov-check.R`) with a closed-form general-MVN value deferred (see the lemma
+Scope). The MVN FIML instantiation of $\bar Q_\infty$ matches the R code to machine precision
+(@lst-mc-fiml).
 :::
 
 **Which information.** Term A consumes
 $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ (L1), with $I_{\text{obs}}$ the
 observed-data information; the high-$R$ diagnostic confirms $\mathbb{E}[A]$ tracks
-$\operatorname{tr}(\mathrm{RIV})$ on this same observed-data information — the single RIV Term B
+$\operatorname{tr}(\mathrm{RIV})$ on this same observed-data information **up to the $(A)+(C)$
+design-imbalance term** (zero under MCAR, $O(1)$ under MAR) — the single RIV being the one Term B
 also calibrates to (@sec-riv; note after @eq-combine).
 
-### Combine: $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ {#sec-combine}
+### Combine: $T = A + B = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + [(A)+(C)]$ {#sec-combine}
 
-$$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + O(n^{-1}) $$ {#eq-combine}
-[D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. $\qquad\blacksquare$
+$$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] + O(n^{-1}) $$ {#eq-combine}
+[D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. Under MCAR
+$(A)+(C)=0$ and $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$; under MAR the
+design-imbalance term remains (bivariate-monotone form in A4; general-MVN form open, Phase 3a). $\qquad\blacksquare$
 
 ::: {.column-margin}
-`[mc]` @lst-mc-combine (`T - tr(RIV)/2 == 0`).
+`[mc]` @lst-mc-combine (`T - tr(RIV)/2 == 0`), the **leading-order** identity (MCAR, or before
+adding the $(A)+(C)$ term).
 :::
 
 ::: {.callout-note}
 ## Both terms calibrate to the single observed-data RIV
+This callout concerns *which information defines the RIV* — a separate matter from the $(A)+(C)$
+term (@sec-termA), which is an additional Term-A correction, not a re-grading of the RIV. Setting
+$(A)+(C)$ aside (it is $0$ under MCAR), the leading constants
 $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$ and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})$
 hold to $O(n^{-1})$ against **one** RIV — the observed-data RIV of @sec-riv, with
 $I_{\text{obs}}$ the unconditional information (estimated by the observed information). Term A is
@@ -1551,8 +1638,9 @@ for label, b in [("MAR ", b_sel), ("MCAR", 0.0)]:
 ### Tier B — abstract generalization (MVN-free) {#sec-verify-tierB}
 
 The trace bookkeeping above used abstract `MatrixSymbol` objects with no MVN commitment,
-so $T = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ already holds for any regular likelihood
-given L1-L4. What remains MVN-free to verify is that the score-equation expansion delivers
+so the **leading-order** $T = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ already holds for any
+regular likelihood given L1-L4 (under MAR, add the design-imbalance $(A)+(C)$ of @sec-termA, which
+is $0$ under MCAR). What remains MVN-free to verify is that the score-equation expansion delivers
 the covariance input L2 (@eq-varGap): the observed score is the conditional expectation of
 the complete-data score under MAR, so $\mathbb{E}[U_{\text{com}}U_{\text{obs}}^\top]=I_{\text{obs}}$.
 

@@ -10,7 +10,7 @@ fmt_pct <- function(x, digits = 3) {
 
 run_aggregate <- function(out_suffix,
                           w1_dir, w3_dir, rate_dir, bias_dir,
-                          out_dir, info_dir = NULL) {
+                          out_dir, info_dir = NULL, terma_dir = NULL) {
   if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
   cat(sprintf("\n== Phase 5: Aggregate + evaluate hypotheses ==\n\n"))
   w1   <- read.csv(file.path(w1_dir,   "summary.csv"), stringsAsFactors = FALSE)
@@ -178,6 +178,25 @@ run_aggregate <- function(out_suffix,
         min(info$info_eq, na.rm = TRUE), max(info$info_eq, na.rm = TRUE),
         min(info$tr_obs - info$tr_exp), max(info$tr_obs - info$tr_exp),
         max(abs(info$tr_samp - info$tr_obs), na.rm = TRUE)))
+  }
+
+  # TERMA: phase-8 Term-A MAR design-imbalance (A)+(C) (exploratory; todo/008).
+  if (!is.null(terma_dir) && file.exists(file.path(terma_dir, "summary.csv"))) {
+    ta <- read.csv(file.path(terma_dir, "summary.csv"), stringsAsFactors = FALSE)
+    s1 <- ta[ta$study == "S1", ]
+    s2 <- ta[ta$study == "S2", ]
+    mcar_rem       <- s1$rem_meas[abs(s1$b) < 1e-9]                 # MCAR control: ~0
+    s1_closed_gap  <- max(abs(s1$rem_meas - s1$rem_ana))            # closed-form match
+    riv_decomp_gap <- max(abs(s1$tr_obs - s1$riv_ana))             # RIV decomposition exact
+    s2_big <- s2[s2$N == max(s2$N), ]                              # MAR O(1) at largest N
+    verdicts$TERMA <- list(
+      pass = "observational (exploratory; todo/008)",
+      detail = sprintf(
+        "MCAR control (S1 b=0) rem=%+.3f (~0); S1 closed-form max|meas-ana|=%.3f; RIV-decomp max|tr_obs-(n_mis/n_obs+trMM)|=%.3f; MAR (A)+(C) at N=%d: %s",
+        if (length(mcar_rem) == 1) mcar_rem else NA,
+        s1_closed_gap, riv_decomp_gap, max(s2$N),
+        paste(sprintf("%s=%+.3f(%.3f)", s2_big$pattern, s2_big$rem_meas, s2_big$rem_meas_mcse),
+              collapse = ", ")))
   }
 
   # Print + persist verdicts.

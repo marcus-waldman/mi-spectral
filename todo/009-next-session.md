@@ -8,6 +8,31 @@ gated on a careful read of that paper. Full record in `todo/008`; references in 
 
 ---
 
+## UPDATE 2026-06-01 (this session) — positioning settled, plan approved, Phase 1 done
+
+Read Shimodaira–Maeda (2017) + Shimodaira (2000) in full. **Verdict:** the net `tr(RIV)` IC penalty is
+**precedented** (= their `AIC_{x;y}`; cite, don't claim). **Novel slices:** (1) the Term-A MAR `(A)+(C)`
+design-imbalance correction; (2) the congenial **proper-MI** generalization (posterior draws / finite M /
+impute-once-select-many — beyond their EM Q-function); (3) the LRT/Chan application. Approved 5-phase plan
+(`~/.claude/plans/jaunty-squishing-breeze.md`): de-risk → truth-repair derivation → derive new content →
+reproducible verification → manuscript + MI-IC coordination.
+
+**Phase 1 novelty gate — DONE → Branch A.** Re-read Cavanaugh–Shumway (1998) + Claeskens–Consentino (2008):
+**neither carries `(A)+(C)`** (C-S: assumes it away + MCAR sims, penalty `2tr(RIV)`; C-C: targets the
+adjusted-likelihood KL, penalty `tr(JI⁻¹)`→`p`, clean O(1/n)). Full verdict table in `todo/003`
+(Phase-1 verdict section). **Gate CLOSED 2026-06-01:** Hens–Aerts–Molenberghs (2006) acquired
+(migrate→index→lit-sync→read in full; `hensModelSelectionIncomplete2006a`) → **does NOT carry `(A)+(C)`**
+(complete-case IPW route, penalty `2K`; its imputation-based variant uses the naive `2K` = the uncorrected
+MI-AIC). **Branch A confirmed; `(A)+(C)` novel** vs all five predecessors. MI-IC already uses 1×`tr(RIV)`
+(no penalty bug; citation/coordination only).
+
+**Phase 2 DONE** (derivation.qmd truth-repair: theorem now `½tr(RIV)+[(A)+(C)]`, MCAR-exact/MAR-O(1); S-M
+2017 cited; rendered clean, Appendix-B asserts pass). Wang–Robins(1998)+Nielsen(2003) synced/citeable
+(`wangLargesampleTheoryParametric1998`, `nielsenProperImproperMultiple2003`) — read when starting Phase 3b.
+**Next: Phase 4 (reproducible phase-8 module) and/or Phase 3 (general-MVN `(A)+(C)` + proper-MI term).**
+
+---
+
 ## STATE — what is DONE and committed
 
 **One-RIV resolution (settled, implemented, committed).**

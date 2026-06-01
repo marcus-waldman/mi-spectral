@@ -44,6 +44,7 @@ source("verification/_modules/w3-rate.R")
 source("verification/_modules/mnar-bias.R")
 source("verification/_modules/w1-information-diagnostic.R")
 source("verification/_modules/w1-rate-decay.R")
+source("verification/_modules/term-a-mar-correction.R")
 source("verification/_modules/aggregate.R")
 
 suppressPackageStartupMessages({
@@ -63,7 +64,7 @@ phases_arg <- if (length(args) >= 3) args[3] else "all"
 n_cores    <- if (length(args) >= 4) as.integer(args[4]) else 20
 
 phases <- if (phases_arg == "all") {
-  c(0, 1, 2, 3, 4, 5, 6, 7)
+  c(0, 1, 2, 3, 4, 5, 6, 7, 8)
 } else {
   as.integer(strsplit(phases_arg, ",")[[1]])
 }
@@ -126,14 +127,21 @@ if (6 %in% phases) {
   run_w1_info_diagnostic(R_per_cell, cl, out_dir = file.path(base_dir, "phase6-info"))
 }
 
+# Phase 8 also runs before phase 5 so a full run lets aggregate fold in the Term-A
+# MAR design-imbalance verdict. Self-contained (own summary) when run alone.
+if (8 %in% phases) {
+  run_term_a_mar(R_per_cell, cl, out_dir = file.path(base_dir, "phase8-terma-mar"))
+}
+
 if (5 %in% phases) {
   run_aggregate(out_suffix = out_suffix,
-                 w1_dir   = file.path(base_dir, "phase1-w1"),
-                 w3_dir   = file.path(base_dir, "phase2-w3"),
-                 rate_dir = file.path(base_dir, "phase3-rate"),
-                 bias_dir = file.path(base_dir, "phase4-mnar-bias"),
-                 info_dir = file.path(base_dir, "phase6-info"),
-                 out_dir  = file.path(base_dir, "phase5"))
+                 w1_dir    = file.path(base_dir, "phase1-w1"),
+                 w3_dir    = file.path(base_dir, "phase2-w3"),
+                 rate_dir  = file.path(base_dir, "phase3-rate"),
+                 bias_dir  = file.path(base_dir, "phase4-mnar-bias"),
+                 info_dir  = file.path(base_dir, "phase6-info"),
+                 terma_dir = file.path(base_dir, "phase8-terma-mar"),
+                 out_dir   = file.path(base_dir, "phase5"))
 }
 
 if (7 %in% phases) {

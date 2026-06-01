@@ -182,6 +182,38 @@ result, not just the Term-A MAR term.
 2. Is the **Term-A MAR `(A)+(C)` design-imbalance term** within Shimodaira–Maeda's framework (looks fixed-pattern/iid → maybe MCAR-implicit) or genuinely beyond it? Shimodaira (2000) covariate-shift is where it might already live.
 3. MI-IC cites `@shimodaira1994` (PDIO, `2tr(RIV)`) — does it position against the **2017** halved result? Both papers' framing may need updating.
 
+## Phase-1 novelty gate — VERDICT (2026-06-01, full in-session reads)
+
+Read in full in-session: Shimodaira–Maeda (2017), Shimodaira (2000), Cavanaugh–Shumway (1998),
+Claeskens–Consentino (2008). Question: is the **Term-A MAR `(A)+(C)`** design-imbalance term
+(`(n_mis/n_obs)[1−½tr(Q_mis Q_obs⁻¹)]`, 0 iff MCAR) precedented?
+
+**Branch A (proceed) — no owned predecessor carries `(A)+(C)`:**
+
+| Paper | Status now | Verdict |
+|---|---|---|
+| `shimodairaInformationCriterionModel2017` | **verified** | Net `tr(RIV)` penalty = their `AIC_{x;y}` (precedent — cite, don't claim). Their "O(1) Q-deviance bias" is the *imputation-estimation* effect in an i.i.d. fixed-pattern setup with no MCAR/MAR switch — cannot form `Q_mis≠Q_obs`. §8 names "combine a missing mechanism with covariate shift (Shimodaira 2000)" as **future work** = our slot. |
+| `shimodairahidetoshiImprovingPredictiveInference2000` | **verified** | Covariate-shift `q0≠q1` + IPW reweighting is the *conceptual home*, but covariates fully observed, no missing-data instantiation, no `(A)+(C)`. |
+| `cavanaughAkaikeInformationCriterion1998a` | **re-examined** | Targets complete-data discrepancy (like us); penalty **`2tr(RIV)`** (doubled). Derivation **assumes the term away** via `Q(θ_o\|θ̂)≈Q(θ_o\|θ_o)` (eqs 3.15–3.16); sims are **MCAR** (fixed discard probs) ⇒ `(A)+(C)=0`. Neither derives nor could observe it. |
+| `claeskensconsentinoVariableSelectionIncomplete2008` | **re-examined** | Targets the EM-**adjusted**-likelihood KL (`f̃=exp Q`), not complete-data divergence; penalty `tr(JI⁻¹)`→`p` (NO `tr(RIV)`); bias is clean **O(1/n)** TIC optimism. MAR sim *does* have covariate-dependent missingness, but `(A)+(C)` doesn't enter their target. Flag the Q-vs-L entropy distinction as unresolved future work (App., near eq A.2). |
+
+**Conclusion:** `(A)+(C)` is novel vs all four. Proceed (Branch A). MI-IC already implements 1×`tr(RIV)`
+(`compute_ic.R:37`) but doesn't cite Shimodaira–Maeda 2017 — citation/shared-finding coordination, not a
+penalty-correctness fix.
+
+**Residual gate item (acquire before the final novelty claim):**
+
+| Paper | Status | Why it's the last gate |
+|---|---|---|
+| **Hens, N., Aerts, M. & Molenberghs, G. (2006).** "Model selection for incomplete and design-based samples." *Statistics in Medicine* 25, 2502–2520. **DOI 10.1002/sim.2559** (PMID 16596577). | **VERIFIED — read in-session 2026-06-01; GATE CLOSED → Branch A confirmed** (citekey `hensModelSelectionIncomplete2006a`) | **Does NOT carry `(A)+(C)`.** Complete-case + IPW (Horvitz–Thompson) reweighted AIC: `AIC_W = -2Σ(δ_i/π_i)log f + 2K`. Same *goal* (model best describing the hypothetically complete data, §6) and they diagnose the same MAR selection-imbalance bias (CC-KL minimum shifts by `Cov(y_i,π_i)/E{π_i}`, eqs 10–11), but the *mechanism* is reweighting (needs estimated π_i), penalty stays `2K` — **no `tr(RIV)`, no closed-form deviance term**. §6 names "explicit imputation-based AIC" as an *obvious alternative / topic of current research* and uses the **naive `2K`** for it (= the uncorrected MI-AIC our framework corrects). → **Cite as the IPW alternative route + the paper that flagged the imputation-IC gap we fill; `(A)+(C)` is novel.** |
+
+**New proposals — proper-MI generalization layer (Phase 3b):**
+
+| Paper | Status | Claim it supports |
+|---|---|---|
+| **Wang, Naisyin & Robins, J. M. (1998).** "Large-sample theory for parametric multiple imputation procedures." *Biometrika* 85(4), 935–948. **DOI 10.1093/biomet/85.4.935**. | **proposed**; **DOI verified via litrev Semantic Scholar + S2 Graph API 2026-06-01** | Proper-vs-improper MI large-sample variance; the posterior-draw (Rubin) layer beyond the EM plug-in `barQ_∞`. |
+| **Nielsen, Søren Feodor (2003).** "Proper and Improper Multiple Imputation." *International Statistical Review* 71(3), 593–607. **DOI 10.1111/j.1751-5823.2003.tb00214.x**. | **proposed**; **DOI verified via litrev Semantic Scholar + Crossref 2026-06-01** | Canonical proper-vs-improper MI distinction; grounds "the `½tr(RIV)` result transfers EM→proper MI." (Nielsen 2000 *Bernoulli* already cited by Claeskens–Consentino.) |
+
 ## Recently rejected (kept as a record so we don't re-propose)
 
 - **2026-05-22 — Wood, A. T. A. (1989).** "An F approximation to the distribution of a linear combination of chi-squared variables." *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`. Reason: We're sticking with χ² reference (not F), so the F-approximation is not load-bearing. Citation lineage for the scaled-shifted moment-matching form is already covered by Satterthwaite (1946) + Satorra-Bentler (2010) + Asparouhov-Muthén (2006). Imhof (1961) + Davies (1980) cover the exact reference distribution. Full text was also not freely available, which would have been a small acquisition cost — combined with non-load-bearing status → reject. Re-propose only if we change framing to F-reference.
