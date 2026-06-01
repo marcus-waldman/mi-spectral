@@ -822,8 +822,8 @@ variance, and $\Sigma^{(j)}_{PP}=\operatorname{Cov}(X_P\mid\text{observed throug
 MLE bias and its recursive propagation through the sweep; the third is the design imbalance, which
 collapses to $(j{-}1)\sigma_{jj\cdot<j}/f_j$ — and the whole correction to **zero** — under MCAR,
 where $\Sigma^{(j)}_{PP}=\Sigma_{PP}$. (The exact small-sample bias of $\hat\Sigma$ under monotone
-missingness is classical (Hyodo, Shutoh, Seo & Pavlenko 2016; Kanda & Fujikoshi 1998 — pending
-acquisition, `todo/003`); this recursion is its $n\to\infty$ coefficient for the FIML estimator.)
+missingness is classical [@hyodoestimation; @kandaBasicPropertiesMles1998]; this recursion is its
+$n\to\infty$ coefficient for the FIML estimator.)
 
 Assembling the three ingredients, the general-MVN $(A)+(C)$ asymptote is the $n$-independent constant
 $\alpha^\top b_\Sigma+\tfrac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{-1})$. For the
@@ -837,8 +837,8 @@ in `verification/term-a-mar-closedform.R`.
 **Scope (honest).** The closed form is derived for **monotone** MVN missingness, where the
 observed-data likelihood factors into complete-data regressions. For **non-monotone** patterns there
 is no such factorization, and the $\hat\Sigma$ bias requires the general second-order
-(Cox–Snell / Cordeiro–Klein) machinery (Cox & Snell 1968; Cordeiro & Klein 1994 — pending
-acquisition, `todo/003`); the non-monotone asymptote is therefore reported **empirically**
+(Cox–Snell / Cordeiro–Klein) machinery [@coxGeneralDefinitionResiduals1968; @cordeiroBiasCorrectionARMA1994];
+the non-monotone asymptote is therefore reported **empirically**
 (phase-8, $\approx-0.46$). An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular
 conditional family"; that holds **only under MCAR** and is **retracted** for MAR. Independent
 leading-order support that the *main* piece gives $\operatorname{tr}(\mathrm{RIV})$: the FIML $A$

@@ -226,8 +226,8 @@ second-order FIML MLE bias under missing data; only the Σ-block matters because
 
 | Proposed citation | Status | Role for `b_Σ` | Priority | Notes |
 |---|---|---|---|---|
-| **Hyodo, M., Shutoh, N., Seo, T. & Pavlenko, T. (2016).** "Estimation of the large covariance matrix with two-step monotone missing data." *Comm. Stat. — Theory & Methods.* | **read in-session (TR version) — ACQUIRE published for citekey** | Explicit 2-step monotone MLE of every Σ-block (Anderson–Olkin form) AND an exactly-unbiased estimator (Lemma 2.1) with explicit divisors ⇒ `b_Σ = lim N·(MLE − unbiased)` blockwise. Confirms the per-step regression-residual-variance bias hypothesis against printed divisors. | **High** | Read in-session as the openly-available Hiroshima Stat TR13-05 PDF (cached: `…/131f54f1-…/tool-results/webfetch-1780337704981-idje1s.pdf`). For `@cite` need the **published** Comm. Stat. version synced to `literature/`. MCAR-monotone; MAR = light pattern-conditional adaptation (per-step sizes + design moments become pattern-conditional = the `Q_mis≠Q_obs` imbalance). |
-| **Kanda, T. & Fujikoshi, Y. (1998).** "Some Basic Properties of the MLEs for a Multivariate Normal Distribution with Monotone Missing Data." *Amer. J. Math. & Mgmt. Sci.* 18(1–2), 161–190. DOI 10.1080/01966324.1998.10737458 | **proposed — HIGH** | EXACT bias of Σ̂ for k=2,3-step monotone (on Σ̂ directly — the abstract distinguishes this from the transformed Δ used only for the general-k construction); asymptotic expansions for general k. | High | Paywalled (Tandfonline), not readable in-session; Hyodo et al. (read) supplies the equivalent closed forms meanwhile. |
+| **Hyodo, M., Shutoh, N., Seo, T. & Pavlenko, T.** "Estimation of the large covariance matrix with two-step monotone missing data." (`hyodoestimation`) | **cited** (2026-06-01, `§sec-termA`) | Explicit 2-step monotone MLE of every Σ-block (Anderson–Olkin form) AND an exactly-unbiased estimator (Lemma 2.1) with explicit divisors ⇒ `b_Σ = lim N·(MLE − unbiased)` blockwise. Confirms the per-step regression-residual-variance bias hypothesis against printed divisors. | **High** | Synced + **verified in-session 2026-06-01**: `literature/hyodoestimation.md` Sec. 2 carries the Anderson–Olkin MLE + Lemma 2.1 unbiased pair with explicit divisors. (Synced markdown is the Hiroshima TR13-05 version; same Sec-2 content as the published Comm. Stat. paper.) |
+| **Kanda, T. & Fujikoshi, Y. (1998).** "Some Basic Properties of the MLEs for a Multivariate Normal Distribution with Monotone Missing Data." *Amer. J. Math. & Mgmt. Sci.* 18(1–2), 161–190. DOI 10.1080/01966324.1998.10737458 (`kandaBasicPropertiesMles1998`) | **cited** (2026-06-01, `§sec-termA`) | EXACT bias of Σ̂ for k=2,3-step monotone (on Σ̂ directly — the abstract distinguishes this from the transformed Δ used only for the general-k construction); asymptotic expansions for general k. | High | Synced + **verified in-session 2026-06-01**: `literature/kandaBasicPropertiesMles1998.md` Theorem 2.2 gives the exact `E[Σ̂]` bias (k=2); abstract confirms k=2,3. |
 | **Anderson, T. W. & Olkin, I. (1985).** "Maximum-likelihood estimation of the parameters of a multivariate normal distribution." *Lin. Alg. Appl.* 70, 147–171. | **proposed — Medium** | Primary source of the explicit 2-step monotone MLE construction (the estimator whose bias we take). | Medium | Pairs with Kanda–Fujikoshi (bias) and Anderson (1957) (factorization origin). |
 | **Tsukada, S. (2014, two-step; 2019, three-step).** Unbiased estimator for a covariance matrix under monotone incomplete sampling. *Comm. Stat. — Theory & Methods* / *Lin. Alg. Appl.* | **proposed — Medium** | Independent corroboration: Σ MLE biased under monotone, UBE derived ⇒ bias = MLE − UBE; k-step pattern. | Medium | Corroborates Hyodo; secondary. |
 
@@ -240,9 +240,9 @@ complete-data baseline `E[Σ̂]=((N−1)/N)Σ`; Pawitan (2013) §5.2 `b₁/n+…
 
 | Proposed citation | Status | Role | Priority | Notes |
 |---|---|---|---|---|
-| **Cox, D. R. & Snell, E. J. (1968).** JRSS-B 30(2), 248–275. DOI 10.1111/j.2517-6161.1968.tb00724.x | **proposed — fork now reached (was CONDITIONAL above)** | The general O(1/n) MLE-bias engine (cumulant form). Apply to the observed-data FIML MVN log-likelihood (does not factor under non-monotone). | High (if general scope) | vol/pages confirmed. |
-| **Cordeiro, G. M. & Klein, R. (1994).** "Bias correction in ARMA models." *Stat. & Prob. Lett.* 19(3), 169–176. DOI 10.1016/0167-7152(94)90100-7 | **proposed — High (if general)** | The matrix/vec form of Cox–Snell **valid under non-independence** — the right tool since non-monotone observed-data contributions are pattern-mixed (heterogeneous), not iid. | High | The practical workhorse for the general-branch derivation. |
-| **Patriota, A. G. & Lemonte, A. J. (2008).** "Bias correction in a multivariate normal regression model with general parameterization." *Stat. & Prob. Lett.* | **proposed — High** | Closest concrete TEMPLATE: second-order biases of MLEs in a general MVN model with shared (μ,Σ) parameters, executed via weighted-least-squares regressions. Complete-data; adapt to the FIML observed-data score/info. | High | The "how to execute Cox–Snell for the MVN" template. |
+| **Cox, D. R. & Snell, E. J. (1968).** JRSS-B 30(2), 248–275. DOI 10.1111/j.2517-6161.1968.tb00724.x (`coxGeneralDefinitionResiduals1968`) | **cited** (2026-06-01, `§sec-termA` scope note) | The general O(1/n) MLE-bias engine (cumulant form). Apply to the observed-data FIML MVN log-likelihood (does not factor under non-monotone). | High (if general scope) | Synced + **verified in-session 2026-06-01**: the canonical second-order MLE-bias formula (reproduced as eq. (1) in Cordeiro–Klein 1994). |
+| **Cordeiro, G. M. & Klein, R. (1994).** "Bias correction in ARMA models." *Stat. & Prob. Lett.* 19(3), 169–176. DOI 10.1016/0167-7152(94)90100-7 (`cordeiroBiasCorrectionARMA1994`) | **cited** (2026-06-01, `§sec-termA` scope note) | The matrix/vec form of Cox–Snell **valid under non-independence** — the right tool since non-monotone observed-data contributions are pattern-mixed (heterogeneous), not iid. | High | Synced + **verified in-session 2026-06-01**: general matrix formula for second-order MLE bias of structured-covariance (non-iid) models, depending on V, V⁻¹ and first/second derivatives. |
+| **Patriota, A. G. & Lemonte, A. J. (2008).** "Bias correction in a multivariate normal regression model with general parameterization." *Stat. & Prob. Lett.* (`patriotaBiasCorrectionMultivariate2009`) | **acquired** (`literature/patriotaBiasCorrectionMultivariate2009.md`, 2026-06-01) | Closest concrete TEMPLATE: second-order biases of MLEs in a general MVN model with shared (μ,Σ) parameters, executed via weighted-least-squares regressions. Complete-data; adapt to the FIML observed-data score/info. | High | The "how to execute Cox–Snell for the MVN" template. Synced; not yet read in-session — needed for the non-monotone Phase D derivation. |
 | **Cordeiro, G. M. & McCullagh, P. (1991).** JRSS-B 53(3), 629–643. DOI 10.1111/j.2517-6161.1991.tb01852.x | **proposed — Medium** | Matrix `b₁` (supplementary-weighted-regression) template; GLM-specific, structural model only. | Medium | Authority for the matrix-form bias representation. |
 | **`mle.tools` (Mazucheli, Menezes & Nadarajah, 2017).** *R Journal.* `coxsnell.bc()`. | **proposed — Low** | Numerical cross-check of a derived `b_Σ` against the Cox–Snell formula. | Low | Validation only. |
 | **"Expectations and Variances of MLEs of the MVN Parameters with Missing Data"** (authors/year unresolved; S2 paperId `96e04824eb867caf238d86ae471634d18a14f3f9`). | **proposed — INVESTIGATE** | Title literally promises `E[Σ̂]` under missing data = `b_Σ`. If its missingness is **general** (not just monotone) and it states the closed form, it could upgrade the general branch DERIVE→REUSE. | High to triage | S2 metadata returned null; resolve authors/year + acquire to verify monotone-vs-general before relying on it. |
@@ -250,6 +250,30 @@ complete-data baseline `E[Σ̂]=((N−1)/N)Σ`; Pawitan (2013) §5.2 `b₁/n+…
 **Correctly excluded (information-not-bias trap):** Kenward–Molenberghs (1998, owned), Hocking–Smith
 (1968), Touloumi (2003), Tan (2014), Hyodo's shrinkage angle — all about the asymptotic
 variance/information of the estimators, not `E[Σ̂]−Σ`.
+
+### Verbatim claim-check for the four `§sec-termA` `@cite`s (in-session read 2026-06-01)
+
+Recorded so the claim attribution is auditable (CLAUDE.md citation discipline). Each quote is the exact
+backing passage from the synced `literature/<citekey>.md`.
+
+- **`hyodoestimation`** — claim: *explicit 2-step monotone MLE (Anderson–Olkin form) + exactly-unbiased
+  estimator.* Sec. 2: "From Anderson and Olkin (1985), we can express the MLE's μ̂ and Σ̂ as follows …
+  $\hat\Sigma_{11}=\frac1N(W_{11}^{(1)}+W^{(2)})$, $\hat\Sigma_{12}=\hat\Sigma_{11}(W_{11}^{(1)})^{-1}W_{12}^{(1)}$,
+  $\hat\Sigma_{22}=\frac1{N_1}W_{22\cdot1}^{(1)}+\hat\Sigma_{21}\hat\Sigma_{11}^{-1}\hat\Sigma_{12}$."
+  Lemma 2.1: "Let $\hat\Sigma_1$ and $\hat\Sigma_2$ be defined as … Then $\mathrm{E}[\hat\Sigma_1]=\mathrm{E}[\hat\Sigma_2]=\Sigma$"
+  (with explicit divisor $b_1=\frac1{N_1-p_1-1}(1-\frac{p_1}{N-1}-\frac{N_2p_1}{(N-1)(N_1-p_1-2)})$).
+- **`kandaBasicPropertiesMles1998`** — claim: *exact bias of Σ̂ for k=2,3.* Abstract: "For $k=2$ and 3,
+  we obtain the exact means and variances of $\hat\mu$ and the exact bias of $\hat\Sigma$." Theorem 2.2(i):
+  "$\mathrm{E}[\hat\Sigma]=\frac{N-1}{N}\Sigma+\begin{pmatrix}O&O\\O&\frac{b_0}{N}\Sigma_{22\cdot1}\end{pmatrix}$,
+  $(N_1>p_1+2)$, where $b_0=-\frac{N_2\{N_1-(p_1+1)(p_1+2)\}}{N_1(N_1-p_1-2)}$."
+- **`coxGeneralDefinitionResiduals1968`** — claim: *general O(1/n) MLE-bias engine (cumulant form).*
+  §3, eq. (20): "$b_s\equiv E(\hat\beta_s-\beta_s)=\frac12 I^{rs}I^{tu}(K_{rtu}+2J_{t,ru})$ … which is
+  of order $n^{-1}$" (with $I_{rs}=E(-V_{rs}^{(.)})$, $J_{r,st}=E\{\sum U_r^{(j)}V_{st}^{(j)}\}$,
+  $K_{rst}=E(W_{rst}^{(.)})$). Read from the Cox–Snell source directly, not via Cordeiro–Klein's reproduction.
+- **`cordeiroBiasCorrectionARMA1994`** — claim: *matrix/vec form of Cox–Snell valid under non-independence.*
+  Abstract: "We give a general matrix formula for computing the bias of the exact unconditional maximum
+  likelihood estimate in ARMA models … up to order $1/n$." §2: "(1) continues to be valid for
+  non-independent observations provided that all $k$'s are $\mathrm{O}(n)$, as is the case for ARMA models."
 
 ## Recently rejected (kept as a record so we don't re-propose)
 
