@@ -164,6 +164,24 @@ specifically before any novelty claim:
 | **Cavanaugh & Shumway (1998)** — `cavanaughAkaikeInformationCriterion1998a` (OWNED) | re-examine | AICcd (complete-data discrepancy, EM). **Re-read to check whether its correction is MCAR-implicit or already carries a MAR design-imbalance term** — decides whether our Term-A term is genuinely new vs a special case. | High | Owned in `literature/`; just needs an in-session re-read with this question. |
 | **Claeskens & Consentino (2008)** — `claeskensconsentinoVariableSelectionIncomplete2008` (OWNED) | re-examine | Missing-covariate AIC. Check whether the missing-covariate correction includes the design-imbalance term. | Medium | Owned; re-read with this lens. |
 
+## Shimodaira prior art — found in MI-IC database, flips the novelty picture (2026-05-31)
+
+The broad Consensus search (above) missed the actual predecessor cluster, which IS in the MI-IC
+litrev database (`mcp__litrev__search_papers`). Read via RAG passages — **needs full read + sync to
+`literature/` before any contribution claim.** These bear on the novelty of the *whole* deviance-bias
+result, not just the Term-A MAR term.
+
+| Proposed citation | Status | Why it matters | Priority | Notes |
+|---|---|---|---|---|
+| **Shimodaira, H. & Maeda, H. (2017).** "An information criterion for model selection with missing data via complete-data divergence." *Ann. Inst. Statist. Math.* (citekey in MI-IC: `shimodairaInformationCriterionModel2017`) | **proposed — CRITICAL** | Shows PDIO/AICcd penalty `2·tr(RIV)` is **biased**; correct penalty (weaker assumption) is **halved to `tr(RIV)`** = our net correction. Their strong assumption (22) `q̂_x = p_{z\|y}(θ̂_y)q̂_y` **is FIML imputation (our barQ)**. Our core IC result may coincide with their `AIC_{x;y}`. | **Critical — read fully** | In MI-IC database/bib, NOT in mi-spectral `literature/`. Sync (Zotero→migrate→index→lit-sync) + read. |
+| **Shimodaira, H. (2000).** "Improving predictive inference under covariate shift by weighting the log-likelihood function." *J. Stat. Plan. Inf.* (`shimodairahidetoshiImprovingPredictiveInference2000`) | **proposed — HIGH** | Covariate shift (observed vs population covariate distribution) = structurally our `Q_mis≠Q_obs` Term-A imbalance. Possible home for the MAR term. | High | In MI-IC db. Sync + read. |
+| **Hens, N., Aerts, M. & Molenberghs, G. (2006).** weighting complete cases by inverse selection probabilities for IC under missingness (via Claeskens–Consentino 2008) | **proposed — Medium** | Horvitz–Thompson-style correction for the selection/design imbalance — another route to the MAR term. | Medium | Find exact cite via Claeskens–Consentino (owned). |
+
+**Positioning questions to settle from the full reads (affects mi-spectral AND MI-IC):**
+1. Is our net `tr(RIV)` correction identical to Shimodaira–Maeda's `AIC_{x;y}`? If so, our novelty is the *decomposition* (Term A/B), the *K&M observed-info RIV under MAR*, and the *MI/posterior-draw* generality — not the penalty.
+2. Is the **Term-A MAR `(A)+(C)` design-imbalance term** within Shimodaira–Maeda's framework (looks fixed-pattern/iid → maybe MCAR-implicit) or genuinely beyond it? Shimodaira (2000) covariate-shift is where it might already live.
+3. MI-IC cites `@shimodaira1994` (PDIO, `2tr(RIV)`) — does it position against the **2017** halved result? Both papers' framing may need updating.
+
 ## Recently rejected (kept as a record so we don't re-propose)
 
 - **2026-05-22 — Wood, A. T. A. (1989).** "An F approximation to the distribution of a linear combination of chi-squared variables." *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`. Reason: We're sticking with χ² reference (not F), so the F-approximation is not load-bearing. Citation lineage for the scaled-shifted moment-matching form is already covered by Satterthwaite (1946) + Satorra-Bentler (2010) + Asparouhov-Muthén (2006). Imhof (1961) + Davies (1980) cover the exact reference distribution. Full text was also not freely available, which would have been a small acquisition cost — combined with non-load-bearing status → reject. Re-propose only if we change framing to F-reference.

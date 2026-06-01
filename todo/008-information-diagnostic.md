@@ -308,10 +308,35 @@ bias beyond `tr(RIV)`. Term B is unaffected (it tracks `−½tr(RIV_obs)` cleanl
 Term A lemma ("(A)+(C)=O(1/n) for any regular conditional family") is **wrong under MAR** and needs
 revisiting once the magnitude in the paper's regime is known.
 
-**Open — S2 (running):** how big is `(A)+(C)` in the 4-variate W1 MAR regime (selection on one of
-three conditioning variables → `Q_mis≈Q_obs` in most directions → likely small/diluted, which is
-why the W1/phase-6 sims read as `E[T]≈½tr(RIV)`). Determines whether this is a footnote caveat or a
-material correction to the headline result. `verification/term-a-mar-diagnostic.R` study S2.
+**S2 RESULT (2026-05-31, R=60000, `term-a-mar-diagnostic.R`) — material, not negligible.**
+4-variate ampute MAR, `E[A]−tr_obs`:
+
+| pattern | N=300 | N=800 |
+|---|---|---|
+| non_monotone | −0.015 (0.051) | −0.311 (0.076) |
+| monotone | −0.077 (0.034) | −0.211 (0.052) |
+
+The asymptotic O(1) constant is **~−0.3 (non_monotone), ~−0.2 (monotone)** — confirmed by the
+independent remainder-rate run (non_monotone `E[A]−tr_obs`: 1.71→0.26→−0.14→−0.33→−0.34 across
+n=60→1200, converging to −0.34). There is a **positive finite-n transient** that offsets it at
+small N (≈0 at N=300), which is why the W1/phase-6/W3 sweeps (N=200–2000) read as `E[T]≈½tr(RIV)` —
+the effect is masked at small N and emerges at larger N. So my "diluted/negligible" hypothesis was
+wrong: the Term-A MAR bias is material (~8% of ½tr(RIV) at N≥800), with a finite-n transient.
+
+### NOVELTY — likely PRECEDENTED by Shimodaira–Maeda (2017) (2026-05-31)
+
+The broad Consensus search found no predecessor, but the **MI-IC litrev database does** (the
+user's pointer; `mcp__litrev__search_papers`). **Shimodaira & Maeda (2017)**, "An information
+criterion for model selection with missing data via complete-data divergence," shows PDIO/AICcd's
+penalty `2·tr(RIV)` is **biased** and the correct (weaker-assumption) penalty is **halved to
+`tr(RIV)`** = our net deviance correction. Their strong assumption (22), `q̂_x = p_{z|y}(θ̂_y)q̂_y`
+(impute with the fitted conditional), **is FIML imputation (our `barQ`)**. So our *core* IC result
+may coincide with their `AIC_{x;y}`; our distinct angles would be the Term A/B decomposition, the
+K&M observed-info RIV under MAR, and the MI/posterior-draw generality. Whether the **Term-A MAR
+`(A)+(C)` term** is within their (fixed-pattern/iid, possibly MCAR-implicit) framework or beyond it
+— and whether Shimodaira (2000) covariate-shift already covers the `Q_mis≠Q_obs` imbalance — needs
+a **full read of Shimodaira–Maeda (2017) + Shimodaira (2000)** (sync to `literature/`; see todo/003).
+**Affects both mi-spectral and MI-IC.** Contribution claims under review until positioned.
 
 ## References (acquired this session — see todo/003)
 
