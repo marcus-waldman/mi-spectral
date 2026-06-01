@@ -172,11 +172,12 @@ run_aggregate <- function(out_suffix,
     verdicts$INFO <- list(
       pass = "observational (exploratory; todo/008)",
       detail = sprintf(
-        "info-eq tr(J I^-1)~k=%d in [%.1f,%.1f] (correct spec => E-H not TIC); A->expected RIV (max|A-tr_exp|=%.2f vs max|A-tr_samp|=%.2f); B->sample RIV (max|B+tr_samp/2|=%.2f vs max|B+tr_exp/2|=%.2f); tr_samp-tr_exp in [%.2f,%.2f]",
-        k, min(info$info_eq, na.rm = TRUE), max(info$info_eq, na.rm = TRUE),
-        max(abs(info$A_minus_exp)), max(abs(info$A_prop - info$tr_samp)),
-        max(abs(info$B_plus_half_samp)), max(abs(info$B + 0.5 * info$tr_exp)),
-        min(info$tr_samp - info$tr_exp), max(info$tr_samp - info$tr_exp)))
+        "ONE RIV (observed-data): E[A]~+tr_obs (max|A-tr_obs|=%.2f), E[B]~-tr_obs/2 (max|B+tr_obs/2|=%.2f); lemmas vs observed info L1 in [%.1f,%.1f] L3 in [%.1f,%.1f] (~k=%d); info-eq tr(J O_obs^-1) in [%.1f,%.1f] (correct spec); naive RIV smaller: tr_obs-tr_exp in [%.2f,%.2f], Rubin tr_samp~tr_obs (max|tr_samp-tr_obs|=%.2f)",
+        max(abs(info$A_minus_obs)), max(abs(info$B_plus_half_obs)),
+        min(info$L1_trace), max(info$L1_trace), min(info$L3_trace), max(info$L3_trace), k,
+        min(info$info_eq, na.rm = TRUE), max(info$info_eq, na.rm = TRUE),
+        min(info$tr_obs - info$tr_exp), max(info$tr_obs - info$tr_exp),
+        max(abs(info$tr_samp - info$tr_obs), na.rm = TRUE)))
   }
 
   # Print + persist verdicts.
