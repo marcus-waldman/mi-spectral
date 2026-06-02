@@ -734,7 +734,9 @@ $A = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\operatorname{Cov}(\til
 ::: {.column-margin}
 `[derived]` Mechanism + two closed-form families in the lemma below; closed forms
 computed in the companion MI-IC derivation (v4, Steps 6-7) and reproduced here so this
-document is self-contained. $A$ and $B$ both calibrate to the single observed-data RIV (note after
+document is self-contained; the bivariate-monotone $(A)+(C)$ closed form is independently
+re-derived by a second computer-algebra system (Wolfram) in
+`verification/cas-wolfram/verify_term_ac.py`. $A$ and $B$ both calibrate to the single observed-data RIV (note after
 @eq-combine), now augmented by the $(A)+(C)$ design-imbalance term under MAR (@sec-termA lemma).
 :::
 
