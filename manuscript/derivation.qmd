@@ -1097,9 +1097,19 @@ demanding cells — the non-monotone MAR design with as few as $N=200$ observati
 approximation is weakest — the sample RIV reproduces the observed-data RIV to within about $2$–$3\%$,
 with no widening of the gap as $N$ grows, and the information-criterion model selection agrees between
 full-information maximum likelihood and the bootstrap-imputed analysis to within $0.011$. The
-proper-imputation results reported here are therefore insensitive to this choice of sampler, and the
-slower data-augmentation scheme is not required (`run_all.R` phases 5–6,
-`verification/cache/run_all-prod/`).
+proper-imputation results reported here are therefore insensitive to this choice of sampler for the
+designs studied (`run_all.R` phases 5–6, `verification/cache/run_all-prod/`).
+
+This robustness is empirical, and we scope it as such. The bootstrap sampler is only *approximately*
+Bayesian: it propagates parameter uncertainty by resampling rather than by drawing from the exact
+observed-data posterior, and such resampling rests on large-sample arguments whose small-sample
+behaviour is, in Little and Rubin's assessment, less assured than the Bayesian alternative
+[@littleStatisticalAnalysisMissing2019, §5.5]. Proper data augmentation
+[@schaferAnalysisIncompleteMultivariate1997] removes that approximation at the cost of a Markov chain.
+We observe no resulting discrepancy on the designs examined — including the small-$N$, non-monotone
+cells where the approximation is most exposed — but this does not establish engine-independence beyond
+them, and a fully Bayesian sampler remains the conservative choice when the fraction of missing
+information is large.
 :::
 
 ---
