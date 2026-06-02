@@ -1089,10 +1089,10 @@ Three layers of evidence: this proof (the algebra), the inline symbolic verifica
 including the phase-6 information diagnostic).
 
 **Robustness to the imputation engine.** The sample RIV in that diagnostic is built from the
-imputations actually drawn — here by a fast bootstrap-based sampler whose imputation posterior is only
-an asymptotic approximation. The exact alternative is data augmentation, a Markov chain Monte Carlo
+imputations actually drawn — here by the EMB sampler, expectation–maximization run on bootstrap
+resamples [@honakerAmeliaIIProgram2011], whose imputation posterior is only an asymptotic approximation. The exact alternative is data augmentation, a Markov chain Monte Carlo
 scheme whose draws follow the observed-data posterior at any sample size
-[@schaferAnalysisIncompleteMultivariate1997], but at much higher computational cost. On the most
+[@Tanner01061987; @schaferAnalysisIncompleteMultivariate1997], but at much higher computational cost. On the most
 demanding cells — the non-monotone MAR design with as few as $N=200$ observations, where the bootstrap
 approximation is weakest — the sample RIV reproduces the observed-data RIV to within about $2$–$3\%$,
 with no widening of the gap as $N$ grows, and the information-criterion model selection agrees between
@@ -1105,7 +1105,8 @@ Bayesian: it propagates parameter uncertainty by resampling rather than by drawi
 observed-data posterior, and such resampling rests on large-sample arguments whose small-sample
 behaviour is, in Little and Rubin's assessment, less assured than the Bayesian alternative
 [@littleStatisticalAnalysisMissing2019, §5.5]. Proper data augmentation
-[@schaferAnalysisIncompleteMultivariate1997] removes that approximation at the cost of a Markov chain.
+[@Tanner01061987; @schaferAnalysisIncompleteMultivariate1997] removes that approximation at the cost
+of a Markov chain.
 We observe no resulting discrepancy on the designs examined — including the small-$N$, non-monotone
 cells where the approximation is most exposed — but this does not establish engine-independence beyond
 them, and a fully Bayesian sampler remains the conservative choice when the fraction of missing
