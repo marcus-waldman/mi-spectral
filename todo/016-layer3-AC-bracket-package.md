@@ -16,6 +16,30 @@ bottom (★ GRADING KEY — REMOVE BEFORE SENDING ★; the runner hard-truncates
 
 ---
 
+## ✅ RESOLVED 2026-06-02 (todo/018 + todo/019) — flag closed
+
+The open flag below ("recompute the analytic (A)+(C) with the realized/selected observed information
+... do NOT trust the committed −0.22-leading-order wording until settled") is **closed**. Resolution
+(todo/018):
+- **Convention settled from the literature** (Step 0): Kenward & Molenberghs (1998) — under MAR use the
+  **observed (realized)** information; the naive expected info is biased; the difference is **0 iff
+  MCAR**. So the reported `(A)+(C)` is the realized `−0.34 → −0.46`; `−0.22` is the naive-convention
+  leading-order approximation.
+- **Realized-information term `Δ_KM` derived in closed form, two independent ways that AGREE**
+  (`verification/term-ac-realized-info.R` + `todo/019` blind GPT-5.5): `Δ_KM = tr(I_N⁻¹ I_com) −
+  tr(E[I_O]⁻¹ I_com)`, carried by the per-pattern selected moments (cross block ∝ selection shift
+  `E[e_O|P]`, Σ block ∝ `M2_P − Σ_OO`); `O(1)` under MAR (`≈ −0.55` non-mono, `≈ −0.44` mono,
+  `n`-stable; analytic build vs MC realized Hessian to `1e-11`), `0` under MCAR. The earlier Mode-B
+  `O(1/n)` call is **wrong** — confirmed by an independent blind GPT-5.5 run that gets `O(1)`.
+- **Confirmed vs empirical** (lavaan paired gap, `n=800/1500/3000`): `−0.627 → −0.582 → −0.569`,
+  converging onto the analytic asymptote `−0.55`. So the realized `(A)+(C)` is NOT a finite-`n`
+  artifact (Q3 resolved); the manuscript `@sec-termA` is upgraded from "not yet settled" to the
+  confirmed statement (`85ad410` → this session).
+
+Below is the original (now-superseded) outcome, kept for provenance.
+
+---
+
 ## GRADING OUTCOME (run 2026-06-02, gpt-5.5, reasoning_effort=high)
 
 Responses: `verification/cache/layer3-gpt-5.5-ac-mode{A,B}.md`. Both high quality and on-target.

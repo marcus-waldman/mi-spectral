@@ -1,7 +1,42 @@
 # Todo 018 — Reconcile the (A)+(C) value: realized vs expected observed information
 
-**Status:** Plan (2026-06-02). Execute in a **fresh session**. Continues todo/015–016; sibling of
-todo/017 (different axis — see §7).
+**Status: ✅ DONE (2026-06-02).** Continues todo/015–016; sibling of todo/017 (different axis — see §7).
+
+## ✅ OUTCOME — the (A)+(C) value is SETTLED
+
+- **Step 0 (convention, from the literature):** Kenward & Molenberghs (1998),
+  `literature/kenwardLikelihoodBasedFrequentist1998.md`, §3.2 + §5 + abstract — under MAR the
+  **observed (realized)** information is the principled choice; the naive expected (population Σ_OO,
+  pattern-fixed) info is **biased**, with cross-terms **0 iff MCAR**. ⇒ the reported `(A)+(C)` is the
+  **realized** `−0.34→−0.46`; `−0.22` is a leading-order approximation (right sign/order, undershoots).
+- **Step 1 / WAY 1 (Claude analytic, `verification/term-ac-realized-info.R`):** realized-information
+  term `Δ_KM = tr(I_N⁻¹ I_com) − tr(E[I_O]⁻¹ I_com)`, closed form from the per-pattern selected moments
+  (μ×Σ cross block ∝ selection shift `m1_P`, Σ block ∝ `M2_P−Σ_OO`); analytic `E[I_O]` vs MC realized
+  Hessian to `1e-11`; `Δ_KM ≈ −0.55` (non-mono) / `−0.44` (mono), **n-stable** (O(1)); MCAR control →0.
+- **Step 1b / WAY 2 (blind GPT-5.5, `todo/019`, `cache/layer3-gpt-5.5-acinfo-mode{A,B}.md`):** off the
+  Claude lineage, independently returns the **same** ΔI block structure, the same closed form `D =
+  tr(J_N⁻¹ J_com) − tr(J_O⁻¹ J_com)`, **O(1)** under MAR (Mode B explicitly rejects the O(1/n)
+  off-ramp — the todo/016 blind spot, not repeated), 0-iff-MCAR, and spontaneously the K&M
+  observed-info recommendation. **The two ways AGREE.**
+- **Step 2 (lavaan, n=800/1500/3000, `cache/rem-realized-expected-lavaan-n3000-log.txt`):** paired gap
+  `−0.627→−0.582→−0.569` converges onto the analytic asymptote `−0.55` ⇒ O(1), **not finite-n** (Q3
+  resolved). Self-consistent: `(A)+(C)_realized = (A)+(C)_naive[+0.1→+0.3] + Δ_KM[−0.6]` reproduces
+  `−0.34→−0.46`.
+- **Step 3 (Louis cross-term):** `tr(C I_obs⁻¹) = RIV` is **exact under the realized convention** (C =
+  selected missing info; committed RIV uses realized I_obs) — the lemma caveat was sign-fixed (it had
+  said "holds under expected"; it holds under realized).
+- **Step 4 (manuscript):** `@sec-termA` + `@sec-combine` upgraded from "not yet settled" to the
+  confirmed realized-convention statement; `quarto render` exit-0; `/derivation-audit` PASS (0
+  blockers); `todo/016` open flag closed. Committed on main.
+
+**GOTCHA recorded:** the plan's `−0.22 + Δ ≈ −0.46` arithmetic does NOT hold — `−0.22` is a
+mixed-convention leading-order approx to the *realized* value, not the clean naive value; the
+self-consistent decomposition uses the measured naive `+0.1→+0.3`, not `−0.22`. See
+[[project-nonmonotone-coxsnell]].
+
+---
+
+*Original plan below (executed).*
 
 **One-line goal.** Pin down the **numerical value** of the MAR design-imbalance term `(A)+(C)`, which
 this session found to be **information-convention-dependent and currently unresolved**. Decide which

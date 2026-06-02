@@ -1,0 +1,33 @@
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+
+==================== REALIZED-INFORMATION TERM Delta_KM = tr_exp - tr_real ====================
+theta0 = default_mu/default_Sigma; ampute prop=0.40; k=14; R_mom=2000 (deterministic, single-proc)
+Step 0 (K&M 1998): realized observed info is the principled MAR convention; naive expected biased; 0 iff MCAR.
+Committed lavaan paired gap (tr_exp - tr_real): non-mono -0.63(800) -> -0.58(1500); empirical (A)+(C) -0.34 -> -0.46.
+
+-- MAR  non-monotone --
+  MAR  non-monotone  N= 800 | tr_exp(naive)=+7.6319  tr_real(realized)=+8.1888  Delta_KM=-0.5569  [|I_U-I_mc|=3.5e-11]
+  MAR  non-monotone  N=1500 | tr_exp(naive)=+7.6248  tr_real(realized)=+8.1499  Delta_KM=-0.5251  [|I_U-I_mc|=1.3e-10]
+  MAR  non-monotone  N=3000 | tr_exp(naive)=+7.6270  tr_real(realized)=+8.1777  Delta_KM=-0.5508  [|I_U-I_mc|=1.5e-10]
+
+-- MCAR non-monotone --
+  MCAR non-monotone  N= 800 | tr_exp(naive)=+7.6034  tr_real(realized)=+7.6295  Delta_KM=-0.0261  [|I_U-I_mc|=2.1e-11]
+  MCAR non-monotone  N=1500 | tr_exp(naive)=+7.6185  tr_real(realized)=+7.6095  Delta_KM=+0.0089  [|I_U-I_mc|=4.0e-11]
+  MCAR non-monotone  N=3000 | tr_exp(naive)=+7.6137  tr_real(realized)=+7.6129  Delta_KM=+0.0008  [|I_U-I_mc|=8.7e-11]
+
+-- MAR  monotone --
+  MAR  monotone      N= 800 | tr_exp(naive)=+5.2518  tr_real(realized)=+5.6916  Delta_KM=-0.4398  [|I_U-I_mc|=2.9e-11]
+  MAR  monotone      N=1500 | tr_exp(naive)=+5.2528  tr_real(realized)=+5.6908  Delta_KM=-0.4380  [|I_U-I_mc|=1.0e-10]
+  MAR  monotone      N=3000 | tr_exp(naive)=+5.2466  tr_real(realized)=+5.6836  Delta_KM=-0.4370  [|I_U-I_mc|=2.4e-10]
+
+-- MCAR monotone --
+  MCAR monotone      N= 800 | tr_exp(naive)=+5.2450  tr_real(realized)=+5.2412  Delta_KM=+0.0038  [|I_U-I_mc|=3.0e-11]
+  MCAR monotone      N=1500 | tr_exp(naive)=+5.2441  tr_real(realized)=+5.2443  Delta_KM=-0.0002  [|I_U-I_mc|=7.5e-11]
+  MCAR monotone      N=3000 | tr_exp(naive)=+5.2494  tr_real(realized)=+5.2501  Delta_KM=-0.0007  [|I_U-I_mc|=1.1e-10]
+
+Reading: Delta_KM is the realized-information term (K&M observed-minus-naive info bias).
+  MAR  => Delta_KM ~ -0.6 (O(1)), reproducing the lavaan paired gap.
+  MCAR => Delta_KM ~ 0 (K&M necessary-and-sufficient).
+  (A)+(C)_realized = (A)+(C)_naive + Delta_KM ; naive-convention value measured at theta-hat by lavaan (rem_exp).
+===============================================================================================

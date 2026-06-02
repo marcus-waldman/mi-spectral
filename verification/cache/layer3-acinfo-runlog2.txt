@@ -1,0 +1,11 @@
+Model: gpt-5.5   reasoning_effort: medium   package: todo/019-layer3-acinfo-package.md
+Mode A prompt: 3538 chars   Mode B prompt: 3889 chars
+Grading key excluded from both prompts (hard-truncated at the banner).
+
+--- calling gpt-5.5 [modeA] ---
+  saved -> verification/cache/layer3-gpt-5.5-acinfo-modeA.md  (12003 chars)
+
+--- calling gpt-5.5 [modeB] ---
+  saved -> verification/cache/layer3-gpt-5.5-acinfo-modeB.md  (9808 chars)
+
+Done. Both responses saved for grading against the §key in todo/013b.
