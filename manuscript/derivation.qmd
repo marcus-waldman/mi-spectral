@@ -342,14 +342,48 @@ $\mathcal{J}\to_p I$ steps are unaffected.
 We can now name the object the theorem is about, and the bias attributed to it.
 
 **D9 (MI Q-function).** Multiple imputation does not maximize $\ell_{\text{obs}}$ directly; it
-averages the complete-data log-likelihood over imputed completions. In the
-infinite-imputation limit this average is
-$$ \bar Q_\infty(\theta) := \lim_{M\to\infty}\frac1M\sum_{l=1}^M \ell_{\text{com}}(\theta; Y_{\text{obs}}, Y_{\text{mis}}^{(l)}) = \mathbb{E}_{Y_{\text{mis}}\mid Y_{\text{obs}}}\!\big[\ell_{\text{com}}(\theta)\big], $$
-the EM/Meng Q-function in the proper-MI limit.
+averages the complete-data log-likelihood over completions drawn from the analyst's *fitted*
+imputation model. Write $\tilde\phi$ for the imputation parameter — under congenial proper MI a
+draw from the imputation posterior fit to $Y_{\text{obs}}$, centered at $\hat\theta_{\text{obs}}$
+(the symbol $\phi$ rather than $\theta$ marks it as the imputer's; see @sec-derivation). Each
+completion is $\tilde Y_{\text{mis}}^{(l)} \sim P(\,\cdot \mid Y_{\text{obs}}, \tilde\phi^{(l)})$,
+and in the infinite-imputation limit
+$$ \bar Q_\infty(\theta) := \lim_{M\to\infty}\frac1M\sum_{l=1}^M \ell_{\text{com}}\big(\theta; Y_{\text{obs}}, \tilde Y_{\text{mis}}^{(l)}\big) = \mathbb{E}_{\tilde\phi}\,\mathbb{E}_{Y_{\text{mis}}\mid Y_{\text{obs}},\,\tilde\phi}\!\big[\ell_{\text{com}}(\theta)\big]. $$
+This is the EM/Meng Q-function $Q(\theta\mid\hat\theta_{\text{obs}})$ in the proper-MI limit: the
+inner expectation conditions on the *fitted* $\tilde\phi\approx\hat\theta_{\text{obs}}$, exactly as
+the EM E-step conditions $Q(\theta\mid\theta^{(t)})$ on the current iterate — **not** on the
+unknown truth $\theta_0$.
 
 ::: {.column-margin}
-**Source.** Deterministic-FIML evaluation `barQ_fiml_analytic`
-(`verification/00-setup.R`), `[mc]` equal to this construction on the fixture (@lst-mc-fiml).
+**Source.** Deterministic-FIML evaluation `barQ_fiml_analytic`$(\cdot,\hat\theta_{\text{obs}})$
+(`verification/00-setup.R`) conditions the completion at the fitted $\hat\theta_{\text{obs}}$;
+`[mc]` equal to this construction on the fixture (@lst-mc-fiml). The fitted-vs-oracle distinction
+(callout below) is checked in `verification/rederivation-L0-fitted-vs-oracle.R`.
+:::
+
+::: {.callout-important}
+## $\bar Q_\infty$ is the *fitted* predictive, not the oracle conditional expectation
+
+It is tempting to write $\bar Q_\infty(\theta)=\mathbb{E}[\ell_{\text{com}}(\theta)\mid Y_{\text{obs}}]$,
+the genuine conditional expectation under the data-generating law. That is **wrong**, and the slip
+is not cosmetic: it flips the sign of the headline. The genuine conditional expectation averages
+$Y_{\text{mis}}$ over the *true* law $P(\cdot\mid Y_{\text{obs}},\theta_0)$; $\bar Q_\infty$ averages
+over the *fitted* imputation law $P(\cdot\mid Y_{\text{obs}},\tilde\phi)$ with
+$\tilde\phi\approx\hat\theta_{\text{obs}}$. The two agree only if $\tilde\phi=\theta_0$, which it is
+not — the analyst imputes from a model fit to the data, not from an oracle. The gap between them
+**is** the imputation bias Term A (@sec-termA), $+\operatorname{tr}(\mathrm{RIV})$.
+
+The distinction is decisive because $\hat\theta_{\text{obs}}$ is a function of $Y_{\text{obs}}$
+alone. Were $\bar Q_\infty$ the oracle conditional expectation, iterated expectation (the tower
+property) would give
+$$ \mathbb{E}\big[\,\mathbb{E}[\ell_{\text{com}}(\hat\theta_{\text{obs}})\mid Y_{\text{obs}}] - \ell_{\text{com}}(\hat\theta_{\text{obs}})\,\big] = 0, $$
+so Term A would vanish and the deviance bias would collapse to $-\tfrac12\operatorname{tr}(\mathrm{RIV})$.
+Term A is instead $+\operatorname{tr}(\mathrm{RIV})$ precisely because the completions are drawn at
+the fitted $\tilde\phi$, not at $\theta_0$. This is confirmed directly: imputing from the true
+$\theta_0$ drives $\mathbb{E}[A]\to 0$ and the total to $-\tfrac12\operatorname{tr}(\mathrm{RIV})$,
+while imputing from the fitted $\hat\theta_{\text{obs}}$ — deterministic FIML and proper MI alike —
+gives $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$ and the total $+\tfrac12\operatorname{tr}(\mathrm{RIV})$
+(`verification/rederivation-L0-fitted-vs-oracle.R`).
 :::
 
 ::: {.callout-warning}
@@ -701,7 +735,10 @@ $$ A = \mathbb{E}\big[\,\mathbb{E}_{Y_{\text{mis}}\mid Y_{\text{obs}},\tilde\phi
 
 **A2.** By iterated expectation over the true completion $Y_{\text{mis}}\sim\theta_0$,
 $$ A = \mathbb{E}_{Y_{\text{obs}}}\big[\,\mathbb{E}_{\tilde\phi}[\ell_{\text{mis}\mid\text{obs}}(\hat\theta_{\text{obs}})] - \mathbb{E}_{\theta_0}[\ell_{\text{mis}\mid\text{obs}}(\hat\theta_{\text{obs}})]\,\big], $$
-the discrepancy between averaging the missing-data log-density under $\tilde\phi$ versus the truth $\theta_0$.
+the discrepancy between averaging the missing-data log-density under the *fitted* $\tilde\phi$
+versus the truth $\theta_0$. These two inner expectations would cancel were $\tilde\phi=\theta_0$
+(the oracle case, whence $\mathbb{E}[A]=0$ by the tower property — @sec-qfun); $A$ is nonzero
+precisely because the imputations use $\tilde\phi\approx\hat\theta_{\text{obs}}\neq\theta_0$.
 
 **A3.** Second-order Taylor in $\tilde\phi$ about $\theta_0$, using the score-function
 identity $\partial_\phi\mathbb{E}_\phi[g]\big|_{\theta_0}=\mathbb{E}_{\theta_0}[g\,S_{\text{mis}\mid\text{obs}}]$
