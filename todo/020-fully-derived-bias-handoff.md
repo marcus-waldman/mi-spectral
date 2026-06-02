@@ -1,0 +1,142 @@
+# Todo 020 — Handoff: get the bias derivation to "fully derived / fully pinned"
+
+**Status:** Handoff (2026-06-02). Execute in a **fresh session**. Continues todo/018 (which *settled
+the convention* and derived the realized-information correction). This is the residual gap between
+"settled in convention + mechanism" and "fully derived value." **W1–W3 applications and the
+Satorra–Bentler re-evaluation are explicitly DEFERRED** (see §6).
+
+**One-line goal.** Close the three *soft legs* of the MAR design-imbalance term `(A)+(C)` so the
+reported bias is either a closed-form number or a tightly-pinned one — without re-opening the parts
+that are already solid (the headline `½tr(RIV)`, the convention, and the `Δ_KM` mechanism).
+
+---
+
+## 0. Where we are (read this first)
+
+The deviance bias decomposes as `E[T] = +½tr(RIV) + [(A)+(C)]`. Two very different confidence tiers:
+
+**TIER 1 — `½tr(RIV)` — DONE (derived + strongly multi-sourced). Do not re-open.**
+- Term B `−½tr(RIV)`: elementary Taylor; θ̂_com-target bulletproof.
+- Term A `tr(RIV)`: machine-checked vs FIML code (`A − tr(RIV) == 0`); leading order.
+- Combine: re-derived via the entropy–Hessian split `∇²C_n = H_φ + I_mis|obs`, **2 CAS + MC**
+  (C2/Δ_n reconciliation, closed; [[project_c2_deltan_reconciliation]]).
+- `tr(RIV)` is **computable in closed form** (Appendix C, observed info with cross block).
+
+**TIER 2 — `(A)+(C)` MAR term — structure + convention + mechanism DONE; VALUE still soft.**
+- Structure derived (α, H_φ, general-`p` Cox–Snell `b_Σ` — `b_Σ` is 2-CAS + MC verified).
+- Convention **settled** (todo/018): observed/realized information (K&M 1998); `0` iff MCAR.
+- `Δ_KM` (realized−naive RIV gap) **derived analytically** (`verification/term-ac-realized-info.R`):
+  `−0.55` non-mono / `−0.44` mono, **flat in N** (O(1)), MCAR→0, analytic `E[I_O]` vs realized Hessian
+  to `1e-11`; **block structure + O(1) order cross-checked blind off-lineage** (GPT-5.5, todo/019).
+
+**The THREE SOFT LEGS this todo closes:**
+1. The reported `(A)+(C)_realized = −0.34→−0.46` is **empirical** (R=40k, `_modules/term-a-mar-correction.R`),
+   not a from-first-principles number. The leading-order analytic assembly `−0.22` undershoots it ~2×.
+2. The naive leg `(A)+(C)_naive ≈ +0.1→+0.3` is **anchored** (= committed_realized − gap) and
+   high-variance to measure directly (rem_exp se ≈ 0.4–0.8 at R=2000).
+3. The realized **asymptote is not pinned** to one number (lavaan gap `−0.627→−0.582→−0.569` still
+   approaching the analytic `−0.55`; the realized value itself is "still increasing" at n=1500).
+
+## 1. DECISION FIRST (do not skip — may make most of §2 unnecessary)
+
+**Is the exact `(A)+(C)` value load-bearing for the paper's claims?** Appendix C already records that
+for model *selection* the naive-vs-observed information gap "nearly cancels in the arg-min" (roughly
+proportional across candidate models), and the headline is `½tr(RIV)` (solid, computable). So the
+exact `(A)+(C)` magnitude matters for the **bias level** and **LRT calibration**, **not** for the IC
+model-selection headline.
+
+Decide (with the user) one of:
+- **(a) Scope it out:** declare "`(A)+(C)` structure derived, convention settled (K&M), magnitude an
+  empirically-characterized `O(1)`; exact value not load-bearing for the IC headline." Then §2 is a
+  *nice-to-have*, not a blocker, and "fully" is essentially already met for the headline. **Cheapest.**
+- **(b) Pin it (Route 1):** tighten the empirical realized asymptote so the reported number has a tight
+  CI. "Fully pinned," not "fully derived." Moderate compute.
+- **(c) Derive it (Route 2):** derive the higher-order term the `−0.22` Taylor misses → a closed-form
+  realized `(A)+(C)`. "Fully derived." Hard analytic; cross-model-check it.
+
+Recommend asking the user (a) vs (b)/(c) before spending analytic effort. Default lean: (a) for the
+paper + (b) as a one-off pin for the record.
+
+## 2. Routes to close the value (cheapest-first, if (b)/(c) chosen)
+
+**Route 1 — pin the realized asymptote empirically (cheap, "fully pinned").**
+Re-run the phase-8 non-monotone `(A)+(C)_realized = E[A_rb] − tr(RIV^O)` at higher R and more N
+(n=3000, 6000) to nail the asymptote with a tight CI. The RB statistic `A_rb` is low-variance; the
+remainder `rem` is high-variance (MCSE ≈ 0.65·√(n/R)), so use **large R** and the **paired** structure
+where possible. Use **few cores** (segfault gotcha). Files: `_modules/term-a-mar-correction.R` (the
+committed empirical), `scratch-rem-realized-expected-lavaan.R` (the paired diagnostic).
+
+**Route 2 — derive the higher-order term (the real "fully derived").**
+The `−0.22` assembly is the second-order Taylor of `E[A_rb] − tr(RIV)` at θ₀; it undershoots the
+realized `−0.46` by ≈ 0.24. The missing piece is the **higher-order `E[A_rb]` curvature** (third-order
+Taylor / the θ̂-vs-θ₀ offset / the realized-information curvature the population-moment assembly omits).
+Derive it (Cox–Snell-style next order on `barQ_fiml_analytic`, or the realized-information correction
+applied to `E[A_rb]` itself, not just to the RIV). Then `(A)+(C)_realized = E[A_rb]_analytic −
+tr(RIV^O)_analytic` (the latter already in hand from `term-ac-realized-info.R`/Appendix C). **Cross-check
+blind off-lineage** (mirror todo/019). This is the only route that yields a closed-form number.
+
+**Route 3 — derive the naive leg, use `realized = naive + Δ_KM`.**
+If `(A)+(C)_naive = E[A_rb] − tr(RIV^N)` has a cleaner closed form (naive info is block-diagonal,
+population moments), derive it; then add the already-analytic `Δ_KM`. **Caveat:** `E[A_rb]` is the same
+hard object regardless of which RIV is subtracted, so Route 3 does *not* obviously dodge the
+higher-order `E[A_rb]` problem of Route 2 — confirm before banking on it.
+
+## 3. Secondary item — verify (do NOT rebuild) the fitted-vs-oracle exposition
+
+The 2026-06-01 concern ([[project_fitted_vs_oracle_sign]]: 8/9 blind re-derivations read D9's literal
+`E[ℓ_com|Y_obs]` as `−½` via the tower property; the fitted `Q̄_∞` gives `+½`) **appears already
+addressed**: there is a dedicated callout "`Q̄_∞` is the *fitted* predictive, not the oracle conditional
+expectation" (`manuscript/derivation.qmd` `@sec-qfun`, ~lines 368–389) + the D9 notation-clash note +
+`verification/rederivation-L0-fitted-vs-oracle.R`. **Task:** read that callout and the script, confirm
+they fully neutralize the `−½`-via-tower misreading, and either downgrade the memory note to "resolved"
+or list the precise residual wording gap. Likely a 20-minute verification, not a derivation.
+
+## 4. Confirmed facts to carry in (verified; do not re-litigate)
+
+- Convention: observed/realized info (K&M 1998); `0` iff MCAR. Reported `(A)+(C)` = realized `−0.34→−0.46`.
+- `Δ_KM` analytic: `−0.55` non-mono / `−0.44` mono, flat in N; MCAR→0; build vs MC `1e-11`. Closed form
+  `tr(I_N⁻¹ I_com) − tr(E[I_O]⁻¹ I_com)`; blocks: μμ=0, cross ∝ `E[e_O|P]`, Σ ∝ `M2_P−Σ_OO`.
+- Naive leg (anchored, high-variance): `+0.29(n=800)/+0.13(n=1500)`.
+- lavaan paired gap: `−0.627/−0.582/−0.569` at n=800/1500/3000 (low-variance; the trustworthy carrier).
+- `−0.22` = mixed-convention leading-order approximation to the *realized* value (NOT the naive value;
+  **do NOT reassert `−0.22 + Δ_KM = −0.46`** — that is the recorded GOTCHA).
+- `b_Σ` general-`p`: derived + 2-CAS + MC.
+
+## 5. Gotchas
+
+- **Heavy parallel R segfaults under contention** — Route 1 uses few cores; prefer analytic/deterministic.
+- **`em_mvn` is unreliable for non-monotone** — use lavaan FIML or da.norm.
+- **`rem` is high-variance**; use the **paired** info-gap and anchor to the committed `−0.34/−0.46`.
+- **The `−0.22 + Δ = −0.46` arithmetic does NOT hold** (the convention-tangle gotcha; see §4).
+- For any cross-model packet: hard-strip the grading key, dry-run `extract_modes`, verify blind.
+
+## 6. DEFERRED (explicitly out of scope for this todo — later session)
+
+- **W1 / W2 / W3 application evidence** (the LRT and IC empirical witnesses, `run_all.R`).
+- **Re-evaluating the Satorra–Bentler scaled-correction material** (test calibration; the
+  `asparouhovRobustChiSquare2006` / `satorraEnsuringPositivenessScaled2010` thread) — this sits with
+  Chan (2022) test-calibration territory, downstream of the numerator bias. Revisit with W1–W3.
+- The open W3 (IC) SB-arm bug (CLAUDE.md open issue #1; auxiliary arm, headline unaffected).
+
+## 7. Files / pointers
+
+- Δ_KM (WAY-1): `verification/term-ac-realized-info.R` (+ `cache/term-ac-realized-info-log.txt`).
+- `−0.22` assembly: `verification/term-a-mar-closedform.R` (mono), `verify_term_ac_nonmonotone_4v.R` (non-mono + FD).
+- Empirical realized (authoritative): `_modules/term-a-mar-correction.R` (R=40k, `−0.34/−0.46`).
+- Paired gap / rem: `verification/scratch-rem-realized-expected-lavaan.R` (+ n3000 log).
+- `b_Σ` general-`p`: `verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`.
+- Manuscript: `@sec-termA` (the upgraded prose), Appendix C (`#sec-appendix-c`, observed info closed
+  form), `@sec-qfun` fitted-vs-oracle callout.
+- Convention thread: todo/018 (settled), todo/019 (blind GPT-5.5), todo/016 (closed).
+- Commits: `d37183b` (todo/018 resolution), `5803c00` (editorial corrections).
+- Memory: [[project-nonmonotone-coxsnell]], [[project_fitted_vs_oracle_sign]], [[project_c2_deltan_reconciliation]].
+
+## 8. Definition of done
+
+Either (a) a user-approved scope decision that the exact `(A)+(C)` value is not load-bearing (with the
+manuscript wording matched to that), **or** (b)/(c) a pinned/derived realized `(A)+(C)` value with its
+soft legs eliminated (naive leg derived or replaced; asymptote pinned), cross-checked; PLUS a confirmed
+verdict on the fitted-vs-oracle exposition. `quarto render` exit-0; `/derivation-audit` 0 BLOCKER.
+W1–W3 + Satorra–Bentler remain deferred.
+
+*Handoff 2026-06-02. Continues the todo/015–019 (A)+(C) thread.*
