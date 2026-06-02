@@ -28,7 +28,8 @@ N=200/800, R up to 2e5, 20 cores). Evidence:
   `Δ_n=0 ⟹ E[T_fiml]=0` as predicted, and the `H_φφ=−I_mis|obs` derivation makes the
   entropy-dependence explicit. Kept `+½tr(RIV)` as the headline (per author intent: the regime the
   paper uses) rather than promoting `E[T]=Δ_n`. **Still open:** the full symbolic identity
-  `Δ_n = ½tr(RIV)+(A)+(C)` for unknown-Σ MVN (optional; would unify the bookkeeping).
+  `Δ_n = ½tr(RIV)+(A)+(C)` for unknown-Σ MVN (optional; would unify the bookkeeping) — planned in
+  `todo/017-c2-deltan-entropy-reconciliation.md`.
 - **C4 (BvM / self-efficiency assumptions) — UNTOUCHED.** Not addressed this session; still open
   (see below). Independent of C1/C3.
 
