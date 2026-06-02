@@ -647,29 +647,25 @@ the covariance parameters — and for the bivariate monotone MVN it has the clos
 $$ (A)+(C) = \tfrac{n_{\text{mis}}}{n_{\text{obs}}}\Big[1-\tfrac12\operatorname{tr}\!\big(Q_{\text{mis}}Q_{\text{obs}}^{-1}\big)\Big], $$
 $Q_{\text{mis}},Q_{\text{obs}}$ the conditioning-variable second-moment matrices of the missing vs
 observed units, so $(A)+(C)=0$ iff $Q_{\text{mis}}=Q_{\text{obs}}$ (MCAR). For the general-MVN
-**monotone** case the asymptote is itself closed-form: @sec-termA evaluates the $n$-independent
-constant to $(A)+(C)_\infty\approx-0.22$ ($+0.54$ from the entropy-gradient piece
-$\alpha^\top\mathbb{E}[\delta]$, $-0.76$ from $\tfrac12\operatorname{tr}(\mathcal H\,I_{\text{obs}}^{-1})$;
-stable in $n$ at $-0.220,-0.223,-0.221$ for $n=300,800,1500$), with the **MCAR control returning
-$\approx0$**, reproduced in `verification/term-a-mar-closedform.R`. For **non-monotone** patterns the
-observed-data likelihood does not factor; its covariance-MLE bias $b_\Sigma$ is instead derived from
-the general second-order (Cox–Snell) bias of the MLE, confirmed for the bivariate non-monotone design
-by two computer-algebra systems and direct Monte-Carlo (@sec-termA,
-`verification/cas-wolfram/verify_term_ac_nonmonotone.py`), with the assembled $(A)+(C)$ tracing
-$\approx0$ (MCAR) to $\approx-0.10$ as selection strengthens. The same $b_\Sigma$ now follows at
-**general $p$** — including the four-variate phase-8 ampute design ($k{=}14$;
-`verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`), where it reduces exactly to the
-bivariate value, meets the score and information identities to machine precision, and recovers the
-complete-data bias $-\sigma$ on the always-observed block. Feeding it through the same assembly gives
-a leading-order asymptote $(A)+(C)_\infty\approx-0.22$ ($+0.78$ entropy-gradient, $-1.00$ curvature)
-— the **same constant as the monotone design** — with the MCAR control $\approx0$ and the value
-confirmed independently by finite-differencing the analytic $\bar Q$
-(`verification/verify_term_ac_nonmonotone_4v.R`). The committed four-variate phase-8 remainder
-(`verification/run_all.R` phase 8, `_modules/term-a-mar-correction.R`; $R{=}40\text{k}$: $-0.34$ at
-$n{=}800\to-0.46$ at $n{=}1500$, still increasing) lies **beyond** this leading-order constant — a
-higher-order, finite-$n$ (realized-information) offset of the same kind seen in the bivariate
-($-0.10$ assembled vs $-0.07$ measured) and monotone ($-0.22$ vs $-0.27$) cases, not a shortfall of
-$b_\Sigma$, which is nearly selection-invariant.
+**monotone** case a leading-order analytic *approximation* (expected information) gives the
+$n$-independent constant $\alpha^\top\mathbb{E}[\delta]+\tfrac12\operatorname{tr}(\mathcal H\,I_{\text{obs}}^{-1})\approx-0.22$
+(`verification/term-a-mar-closedform.R`, with the **MCAR control returning $\approx0$**). For
+**non-monotone** patterns the observed-data likelihood does not factor; its covariance-MLE bias
+$b_\Sigma$ is instead derived from the general second-order (Cox–Snell) bias of the MLE — confirmed for
+the bivariate design by two computer-algebra systems and direct Monte-Carlo, and now carried to
+**general $p$** including the four-variate phase-8 ampute design ($k{=}14$;
+`verification/cas-wolfram/verify_term_ac_nonmonotone{,_genp}.py`), where it reduces exactly to the
+bivariate value, meets the score/information identities to machine precision, and recovers the
+complete-data bias $-\sigma$ on the always-observed block. **The numerical value of $(A)+(C)$ is,
+however, not yet settled.** The same leading-order analytic approximation gives $\approx-0.22$ for the
+four-variate design, but it does **not** reproduce the empirically measured value, which subtracts the
+*realized* (K&M) observed information: the committed phase-8 remainder is $-0.18\to-0.27$ (monotone)
+and $-0.34\to-0.46$ (non-monotone) over $n=800,1500$, both increasing. The $O(1)$ analytic–empirical
+gap is a realized-vs-expected (selected-vs-population) information effect under MAR — **not** a
+finite-$n$ artifact and **not** a $b_\Sigma$ shortfall ($b_\Sigma$ is derived and nearly
+selection-invariant) — and is **under active investigation** (`todo/016`); we report the empirical
+values and a complete analytic reconciliation remains open. What is firm: $(A)+(C)$ is a nonzero
+$O(1)$ under MAR and **vanishes under MCAR** (controls $\approx0$ throughout).
 
 Here $\mathrm{RIV}=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ (D8) is
 evaluated with the **observed-data** information $I_{\text{obs}}$ — the unconditional expectation
@@ -880,7 +876,9 @@ by the design-imbalance amount above: the bivariate-monotone formula matches the
 selection strength $b$ (`verification/term-a-mar-diagnostic.R`, study S1), and the 4-variate ampute
 MAR confirms a material $O(1)$ residual (clean phase-8 sweep, $R{=}40\text{k}$,
 `_modules/term-a-mar-correction.R`: non-monotone $-0.34\,(n{=}800)\to-0.46\,(n{=}1500)$, monotone
-$-0.18\to-0.27$, growing with $n$ beyond the $\approx-0.22$ leading-order constant).
+$-0.18\to-0.27$, both increasing with $n$). The analytic leading-order *approximation* (expected
+information) gives $\approx-0.22$ but does **not** reproduce these realized-information values; the
+$O(1)$ gap is open (see "Value: not yet settled" below).
 
 **General-MVN closed form (monotone).** The exact Term-A integrand is, per unit $i$ with missing
 block $M_i$ and conditional moments $m_{\theta,i},S_{\theta,i}$ under $\theta$,
@@ -892,8 +890,12 @@ $\theta_0$. Expanding $f_0$ to second order in $\delta=\hat\theta_{\text{obs}}-\
 clean two-piece form
 $$ (A)+(C)=\underbrace{\alpha^\top\mathbb{E}[\delta]}_{(A)}+\underbrace{\tfrac12\operatorname{tr}\!\big(\mathcal H_\phi\,I_{\text{obs}}^{-1}\big)}_{(C)},\qquad \alpha=\nabla_\phi f_0|_{\theta_0},\ \ \mathcal H_\phi=\nabla^2_\phi f_0|_{\theta_0}, $$
 where $\mathcal H_\phi$ is the **cross-entropy curvature** (the imputation-slot Hessian); the
-*evaluation*-slot curvature of $A$ is what supplies the leading $\operatorname{tr}(\mathrm{RIV})$, so
-no $-\operatorname{tr}(\mathrm{RIV})$ correction enters here. The entropy gradient is
+*evaluation*-slot curvature of $A$ supplies the leading $\operatorname{tr}(\mathrm{RIV})$, so to this
+order no $-\operatorname{tr}(\mathrm{RIV})$ correction enters. *(Caveat: this exact cancellation holds
+under the **expected**-information convention; the empirical remainder subtracts the **realized**
+observed information, and under MAR the eval–impute cross-curvature trace then differs from
+$\operatorname{tr}(\mathrm{RIV})$ by an $O(1)$ selected-vs-population amount — the unreconciled gap
+noted above; `todo/016`.)* The entropy gradient is
 **covariance-only** ($\partial S_i/\partial\mu=0\Rightarrow\alpha_\mu=0$), with closed form
 $$ \alpha_a = -\tfrac12\!\!\sum_{i:\text{mis}}\!\operatorname{tr}\!\big(S_{0,i}^{-1}\,\partial_a S_i\big),\quad \partial_a S_i=\Delta_{MM}-\Delta_{MO}B^\top-B\Delta_{OM}+B\Delta_{OO}B^\top,\ \ B=\Sigma_{MO}\Sigma_{OO}^{-1}, $$
 ($\partial_a$ the symmetric perturbation of $\Sigma$-coordinate $a$, $\Delta=\partial_a\Sigma$). It
@@ -928,15 +930,24 @@ where $\Sigma^{(j)}_{PP}=\Sigma_{PP}$. (The exact small-sample bias of $\hat\Sig
 missingness is classical [@hyodoestimation; @kandaBasicPropertiesMles1998]; this recursion is its
 $n\to\infty$ coefficient for the FIML estimator.)
 
-Assembling the three ingredients, the general-MVN $(A)+(C)$ asymptote is the $n$-independent constant
-$\alpha^\top b_\Sigma+\tfrac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{-1})$. For the
-four-variate monotone-MAR design (@sec-alg) it evaluates to
-$$ (A)+(C)_\infty=\underbrace{+0.54}_{\alpha^\top b_\Sigma}\ \underbrace{-0.76}_{\frac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{-1})}\ \approx\ -0.22, $$
-stable in $n$ ($-0.220,-0.223,-0.221$ at $n=300,800,1500$), with the **MCAR control returning
-$\approx0$** (the design-imbalance term vanishes) and the leading-order constant that the high-$R$
-phase-8 empirical surface sits beyond ($-0.18$ at $n{=}800\to-0.27$ at $n{=}1500$, still increasing)
-through a higher-order, finite-$n$ (realized-information) offset — the same offset carried by the
-non-monotone case below. Reproduced in `verification/term-a-mar-closedform.R`.
+Assembling the three ingredients, the leading-order $(A)+(C)$ *approximation* (expected information)
+is the $n$-independent constant $\alpha^\top b_\Sigma+\tfrac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{-1})$.
+For the four-variate monotone-MAR design (@sec-alg) it evaluates to
+$$ (A)+(C)_{\text{approx}}=\underbrace{+0.54}_{\alpha^\top b_\Sigma}\ \underbrace{-0.76}_{\frac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{-1})}\ \approx\ -0.22, $$
+with the **MCAR control returning $\approx0$** (the design-imbalance term vanishes;
+`verification/term-a-mar-closedform.R`).
+
+**Value: not yet settled.** This $\approx-0.22$ is an *expected*-information approximation and does
+**not** reproduce the empirically measured $(A)+(C)$, which subtracts the *realized* (K&M) observed
+information and runs $-0.18\to-0.27$ (monotone) and $-0.34\to-0.46$ (non-monotone) over $n=800,1500$,
+both increasing. A clean lavaan-FIML decomposition shows the realized-minus-expected information trace
+is itself an $O(1)$ quantity under MAR (paired estimate $\approx0.6$ for the four-variate design,
+roughly $n$-stable) — a **selected-vs-population** effect, not a finite-$n$ artifact — so the $-0.22$
+approximation is missing an $O(1)$ realized-information term. Reconciling it (and deciding which
+information convention the reported $(A)+(C)$ should use) is **under active investigation**
+(`todo/016`); pending that, we report the empirical values and treat the analytic $-0.22$ as a
+lower-bound-magnitude approximation only. What is firm and convention-independent: $(A)+(C)$ is a
+nonzero $O(1)$ under MAR and vanishes under MCAR.
 
 **Scope.** The closed-form recursion above is for **monotone** MVN missingness, where the
 observed-data likelihood factors into complete-data regressions. For **non-monotone** patterns it
@@ -962,12 +973,14 @@ $A_{\text{rb}}-\operatorname{tr}(\mathrm{RIV})$ remainder corroborating its sign
 MCAR control returning $\approx0$ (`verification/verify_term_ac_nonmonotone.R`). The same Cox–Snell
 $b_\Sigma$ is now carried to **general $p$**, including the four-variate phase-8 ampute design
 ($k{=}14$; `verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`), where it reduces exactly to
-the bivariate value and passes the score/information identities; the four-variate assembly then lands
-the leading-order $(A)+(C)_\infty\approx-0.22$ — the monotone constant — confirmed by
-finite-differencing the analytic $\bar Q$ (`verification/verify_term_ac_nonmonotone_4v.R`). The
-committed phase-8 remainder ($-0.46$ at $n{=}1500$, still increasing) sits **beyond** this
-leading-order constant through the same leading-order-vs-realized-information gap, not a shortfall of
-$b_\Sigma$. An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular
+the bivariate value and passes the score/information identities. The four-variate assembly's
+leading-order *approximation* (expected information) gives $\approx-0.22$
+(`verification/verify_term_ac_nonmonotone_4v.R`), but — as in the monotone case — this does **not**
+reproduce the empirically measured remainder ($-0.34\to-0.46$, realized/K&M information, increasing in
+$n$); the $O(1)$ analytic–empirical gap is the realized-vs-expected (selected-vs-population)
+information effect under MAR (`todo/016`), **not** a $b_\Sigma$ shortfall ($b_\Sigma$ is derived and
+nearly selection-invariant). The numerical $(A)+(C)$ is therefore reported empirically pending an
+analytic reconciliation. An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular
 conditional family"; that holds **only under MCAR** and is **retracted** for MAR. Independent
 leading-order support that the *main* piece gives $\operatorname{tr}(\mathrm{RIV})$: the FIML $A$
 matches the R code to machine precision (@lst-mc-fiml, @lst-mc-mcse), and the high-$R$ phase-6
@@ -996,16 +1009,15 @@ $\mathbb{E}[A]$. See the scope remark after the theorem.)
 
 ::: {.column-margin}
 `[mc]` @lst-mc-terma (`A - tr(RIV) == 0`) for the **leading-order** trace
-identity; the $(A)+(C)$ design-imbalance term is separate, with the closed-form general-MVN
-(**monotone**) value derived and verified in `verification/term-a-mar-closedform.R`
-($\approx-0.22$, MCAR control $\approx0$). The **non-monotone** $b_\Sigma$ is now derived via Cox–Snell
-and confirmed by two computer-algebra systems plus direct Monte-Carlo
+identity; the $(A)+(C)$ design-imbalance term is separate. The **non-monotone** $b_\Sigma$ is derived
+via Cox–Snell, confirmed by two computer-algebra systems plus direct Monte-Carlo
 (`verification/cas-wolfram/verify_term_ac_nonmonotone{,_sympy}.py`,
-`verification/verify_term_ac_nonmonotone.R`) and extended to general $p$: the four-variate phase-8
-design assembles to the leading-order $(A)+(C)_\infty\approx-0.22$ (the monotone constant;
-`verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`,
-`verification/verify_term_ac_nonmonotone_4v.R`), with the empirical $-0.46$ beyond it via the
-leading-order-vs-realized-information gap. The MVN FIML instantiation of $\bar Q_\infty$ matches the R
+`verification/verify_term_ac_nonmonotone.R`) and extended to general $p$ (`..._genp.py`, `..._4v.R`).
+The $(A)+(C)$ **value**, however, is information-convention-sensitive and **not yet settled**: a
+leading-order analytic approximation (expected information) gives $\approx-0.22$, but the empirically
+measured remainder (realized/K&M information) is $-0.18\to-0.27$ (monotone) and $-0.34\to-0.46$
+(non-monotone) and increasing; the $O(1)$ gap is under investigation (`todo/016`). Firm: $(A)+(C)$ is
+$O(1)$ under MAR, $\approx0$ under MCAR. The MVN FIML instantiation of $\bar Q_\infty$ matches the R
 code to machine precision (@lst-mc-fiml).
 :::
 
@@ -1021,9 +1033,10 @@ also calibrates to (@sec-riv; note after @eq-combine).
 $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] + O(n^{-1}) $$ {#eq-combine}
 [D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. Under MCAR
 $(A)+(C)=0$ and $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$; under MAR the
-design-imbalance term remains — derived for the general **monotone** MVN in closed form and, via the
-general-$p$ Cox–Snell $b_\Sigma$, for the **non-monotone** four-variate design too (@sec-termA, both
-$\approx-0.22$ at leading order). $\qquad\blacksquare$
+design-imbalance term remains — a nonzero $O(1)$ whose structure is derived (entropy gradient,
+cross-entropy curvature, and the now general-$p$ Cox–Snell $b_\Sigma$) but whose numerical value is
+information-convention-sensitive and currently reported empirically pending an analytic reconciliation
+(@sec-termA; `todo/016`). $\qquad\blacksquare$
 
 ::: {.column-margin}
 `[mc]` @lst-mc-combine (`T - tr(RIV)/2 == 0`), the **leading-order** identity (MCAR, or before
