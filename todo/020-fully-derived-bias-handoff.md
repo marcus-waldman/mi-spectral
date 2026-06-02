@@ -24,9 +24,22 @@ needs an off-lineage check — which I initially skipped (wrongly). Blind packet
 distinct from todo/019's convention-gap check): Mode A derives the order of the second-order Taylor
 remainder `R_n` of the imputation-bias functional; Mode B red-teams "R_n=O(n⁻¹), so the empirical
 departure is finite-sample noise" against the sign-bouncing MC mean. Blind-check PASS (key hard-stripped,
-no leak terms). Launched gpt-5.5 `--effort xhigh --timeout 86400` backgrounded. **PENDING** — grade
-against the todo/021 key (bar: `R_n=O(n⁻¹)`, second-order value is the asymptote; ESCALATE if it finds a
-genuine `O(1)`/`O(n^{-1/2})` higher-order term → −0.46 partly real, revisit the manuscript reframing).
+no leak terms). Launched gpt-5.5 `--effort xhigh --timeout 86400` backgrounded.
+
+**Cross-model RESULT (todo/021 GRADING OUTCOME): full agreement — `R_n=O(n⁻¹)`, second-order `−0.22`
+is the asymptote, empirical departure is heavy-tailed MC noise; escalation NOT hit (Mode A explicitly
+rejected the `O(n⁻¹/²)` off-ramp; Mode B independently proposed the paired Taylor-control estimator).**
+
+**EMPIRICAL CAPSTONE — control-variate pin (`scratch-coupling-surrogate-cv.R`, the decisive test):**
+pairing each replicate's `A_rb` against its decoupled 2nd-order Taylor (population coeffs) cancels the
+`√n` noise; decoupled sanity ✓ (−0.222/−0.220/−0.220); the residual coupling = `+0.157/+0.074/+0.045`
+at n=800/1500/3000 (`n·coupling ≈ 125/111/135` ⇒ **O(1/n), POSITIVE**), so `(A)+(C) = −0.22 + 124/n →
+−0.22`. An **O(1)** coupling (which would make the value `−0.46`) is **RULED OUT**. ⇒ **asymptote is
+−0.22**; the empirical `−0.34→−0.46` is a finite-n + right-tail-skew artifact (direct mean sits below
+the true value, per Mode B). The paired diagnostic (`scratch-higherorder-paired-diag.R`) independently
+gives 3rd-order remainder `O(1/n)` (n·rbar ≈ 75). **Net: −0.22 confirmed three ways (CV + cross-check +
+paired-sim); my mid-session "reversal" toward −0.46 was an over-reaction to a noisy `mean(taylor2)` and
+was never committed.** The committed manuscript (−0.22-leaning, heavy-tailed-empirical) is correct.
 
 **What stays robust (closed-form / precise):** Δ_KM (realized−naive RIV gap) = −0.55 flat
 (−0.5685/−0.5593 at n=3000/6000, se ~8e-4; analytic vs MC realized info to 1e-10; MCAR→0; monotone

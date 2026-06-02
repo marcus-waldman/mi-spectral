@@ -21,6 +21,39 @@ is on the MODEL axis.
 
 ---
 
+## GRADING OUTCOME (run 2026-06-02, gpt-5.5, reasoning_effort=xhigh)
+
+Responses: `verification/cache/layer3-gpt-5.5-higherorder-mode{A,B}.md`. **Full agreement on every
+load-bearing point; escalation trigger NOT hit.** Blind/off-lineage, both modes independently:
+
+- **Second-order form (identical).** Mode A derived `∇A_RB(θ₀)=α`, `∇²A_RB(θ₀)=2 I_mis|obs + H_φ`
+  (via the same Bartlett identity `∂_ψφ F = I_mis|obs`), and `(A)+(C) = α^⊤E[δ] + ½tr(H_φ I_obs⁻¹) + R_n`
+  — matching the WAY-1 total-derivative form exactly.
+- **`R_n = O(n⁻¹)` (the key claim, confirmed).** Both modes expanded the *signed* third moment
+  `E[δ^{⊗3}] = E[η^{⊗3}] + 3 Sym(b⊗Σ) + b^{⊗3} = O(n⁻²)` and got every omitted term `O(n⁻¹)` or
+  smaller (`T_n=O(n)`·`O(n⁻²)`; bias×curvature; 4th-order `O(n)`·`E‖δ‖⁴=O(n⁻²)`). **Mode A explicitly
+  rejected the `O(n⁻¹/²)` off-ramp** ("a crude absolute third-moment bound could give O(n⁻¹/²), but the
+  *expectation* of the third-order term is O(n⁻¹)") — the exact escalation trigger, correctly defused.
+- **Asymptote (identical).** "No additional non-vanishing `O(1)` higher-order term survives" — the
+  second-order value is the `n→∞` limit.
+- **Empirical departure = MC noise (identical).** `Var(α^⊤δ)=α^⊤I_obs⁻¹α=O(n)` ⇒ `sd(X_n)≍c√n`,
+  `MCSE≍c√(n/B)`; "apparent differences of only a few tenths can easily be Monte Carlo noise"; the
+  sign-bounce across `n` "is not reliable evidence of real nonmonotone asymptotic behavior." Mode B
+  also flagged the **right-skew** subtlety (rare right-tail datasets pull the mean up; if under-sampled
+  the mean "can look too negative") and confirmed MCAR `→0` is consistent.
+- **(Bonus, spontaneous.)** Mode B *independently proposed the paired Taylor-control estimator*
+  `D_r = X_r − Q_{2,r}` with `E[D_r]=O(n⁻¹)`, `sd(D_r)=O(n⁻¹/²)`, "the decisive estimator" — the same
+  design as `verification/scratch-higherorder-paired-diag.R`. Its prediction: `D̂_n → 0` at `O(n⁻¹)`
+  confirms the second-order claim; if it stabilizes away from 0, that signals an implementation/modeling
+  mismatch (NOT a third-order effect). This is the running empirical capstone.
+
+**Net / disposition.** The reframing's analytic half — "remainder `O(n⁻¹)`, second-order `−0.22` is the
+asymptote, the `−0.46/−0.35` is heavy-tailed sampling noise" — is now **confirmed two independent ways
+(WAY-1 Claude total-derivative + WAY-2 blind GPT-5.5 xhigh)**. No divergence; nothing to escalate. The
+paired simulation is the empirical confirmation (`D̂_n → 0` predicted).
+
+---
+
 ## MODE A — blind re-derivation (paste from here to the Mode-A end marker)
 
 > You are a mathematical statistician. Solve the following self-contained problem from scratch, using

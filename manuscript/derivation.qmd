@@ -677,7 +677,15 @@ Monte-Carlo estimate is imprecise and **untrended**: $-0.34,-0.46,-0.29,+0.17$ a
 $n=800,1500,3000,6000$ (standard errors $0.09,0.13,0.25,0.35$; inverse-variance pooled
 $\approx-0.35\pm0.07$), broadly consistent with the $-0.22$ leading order and showing no real growth
 with $n$ (`verification/scratch-rem-realized-expected-lavaan.R`,
-`verification/scratch-rem-distribution-diag.R`). What is firm: $(A)+(C)$ is a nonzero $O(1)$ under MAR,
+`verification/scratch-rem-distribution-diag.R`). A variance-reduced estimator settles the asymptote:
+pairing each replicate's $A_{\mathrm{rb}}$ against its *decoupled* second-order Taylor (population
+coefficients) cancels the $\sqrt n$ noise and isolates the higher-order remainder, which is a
+**positive $O(1/n)$** (coefficient $\approx124/n$; standard error $<0.013$; the third-order piece is
+separately $O(1/n)$ by the same pairing). Hence the direct estimate equals the $-0.22$ leading order
+plus an $O(1/n)$ finite-sample correction, **confirming $-0.22$ as the $n\to\infty$ value** and a blind
+off-lineage cross-derivation of the same $O(1/n)$ remainder order; the more-negative direct sample
+means are a finite-$n$ and right-tail-skew artifact (`verification/scratch-coupling-surrogate-cv.R`,
+`verification/scratch-higherorder-paired-diag.R`). What is firm: $(A)+(C)$ is a nonzero $O(1)$ under MAR,
 **vanishes under MCAR** (controls $\approx0$ throughout), and — because it enters model *comparison*
 and likelihood-ratio numerators only through a difference across candidates, a paired contrast that
 cancels the heavy tail — is far more precisely estimable as a differential than as a standalone value.
