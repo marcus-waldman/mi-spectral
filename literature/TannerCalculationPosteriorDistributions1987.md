@@ -1,5 +1,5 @@
 ---
-citekey: Tanner01061987
+citekey: TannerCalculationPosteriorDistributions1987
 item_type: article
 authors: 'Tanner, Martin A. and Wong, Wing Hung'
 year: 1987
@@ -14,7 +14,7 @@ eprint: 'https://www.tandfonline.com/doi/pdf/10.1080/01621459.1987.10478458'
 source_pdf: 'C:\Users\marcu\Google Drive\Literature\MI-SPECTRAL\Tanner01061987.pdf'
 pdf_sha256: 059730717273dba532e160bef1fb3b4b3f72fc41f945b8e992c76e2be42c78e1
 converted_via: mcp__litrev__convert_pdf (Mathpix)
-last_synced: 2026-06-02T14:52:29Z
+last_synced: 2026-06-02T15:04:49Z
 ---
 The Calculation of Posterior Distributions by Data Augmentation
 Author(s): Martin A. Tanner and Wing Hung Wong
