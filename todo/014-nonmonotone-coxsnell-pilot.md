@@ -1,6 +1,55 @@
 # Todo 014 — Non-monotone `(A)+(C)` via Cox–Snell: scoped pilot
 
-**Status:** Draft (2026-06-01). Plan; to be executed in a fresh session.
+**Status:** **EXECUTED 2026-06-01** — bivariate pilot complete; all verification gates pass.
+The non-monotone `b_Σ` (the one open ingredient) is **derived and verified**; only the 4-variate
+quantitative scaling to phase-8's `−0.46` remains (stretch goal, not a gate). Details below.
+
+## EXECUTION RESULTS (2026-06-01)
+
+**Mechanism (coherent non-monotone MAR).** A multinomial-logit attempt failed the zero-score gate
+(`9e-3`, both CAS) because a shared denominator makes `P(miss1|x)` depend on `x1` ⇒ MNAR. The fix is
+an **additive half-sigmoid**: `P(miss1|x)=½σ(a+b·x2)`, `P(miss2|x)=½σ(a+b·x1)`, `P(complete)` the
+remainder — each pattern's probability depends only on its observed block (genuine MAR), the ½ caps
+keep `P(complete)∈[0,1]`, and `Σ_P P=1` pointwise ⇒ exact zero-score. (The zero-score gate *caught*
+the MNAR bug — worth keeping in mind for the 4-variate.)
+
+**Deliverables (committed).**
+- `verification/cas-wolfram/verify_term_ac_nonmonotone.py` — Wolfram: exact symbolic U/V/W, Cox–Snell
+  eq.(20) `b_s=½ I^{rs}I^{tu}(K_{rtu}+2J_{t,ru})`, expectations via NIntegrate moment table.
+- `verification/cas-wolfram/verify_term_ac_nonmonotone_sympy.py` — independent SymPy engine
+  (exact derivs + tensor Gauss–Hermite), sweeps selection strength `b∈{0,.4,.8,1.2,1.6}`.
+- `verification/cas-wolfram/_wolfram.py` — shared kernel-discovery/retry helper.
+- `verification/verify_term_ac_nonmonotone.R` — monotone-reduction recursion gate, direct-MC gate,
+  `(A)+(C)` assembly (reuses the pattern-general `alpha/H_phi/I_obs` of `term-a-mar-closedform.R`).
+
+**Gates (all pass).**
+- *Two-CAS:* Wolfram NIntegrate ≡ SymPy Gauss–Hermite to `~1e-9` on `b_Σ`, all scenarios.
+- *Internal identities:* zero-score `E[U]=0` and Bartlett `E[UUᵀ]=I` to `1e-9`–`1e-15`.
+- *MCAR control:* `(A)+(C) ≈ −0.0005 ≈ 0`.
+- *Monotone reduction* (drop the X2-missing group): `b_Σ` reduces **exactly** —
+  `b_{σ22}=−1.000`, `b_{σ12}=−0.500`; the verified bivariate-monotone recursion reproduces
+  `b_{σ11}` to `3.6e-4`.
+- *Direct MC* (`n·E[Σ̂−Σ]`, R=80k): all three components within MC error of the CAS `b_Σ`
+  (e.g. `n·b_{σ11}=−1.19` analytic vs `−1.21±0.16` at n=800).
+
+**`(A)+(C)` (bivariate, `θ0=(0,0;[[1,.5],[.5,1]])`).** Grows monotonically with selection:
+`b=0→−0.0005` (MCAR), `0.4→−0.014`, `0.8→−0.045`, `1.2→−0.077`, `1.6→−0.103` (assembled
+leading-order); the direct `A_rb−tr(RIV)` remainder corroborates sign/order (`≈−0.07`, same
+leading-order-vs-realized-info gap as the *monotone* case: analytic `−0.22` vs empirical `−0.15..−0.27`).
+`b_Σ` itself is nearly insensitive to `b` (`s11≈−1.19` throughout) — the design imbalance enters
+almost entirely through the selected moments in `α/H_phi/I_obs`, not `b_Σ`.
+
+**Manuscript.** `@sec-termA` non-monotone branch changed "reported empirically (no closed form)" →
+"`b_Σ` derived via Cox–Snell, two-CAS + MC verified (bivariate); 4-variate phase-8 value the remaining
+mechanical target." Cache: `verification/cache/coxsnell-nonmonotone-bsigma{,-sympy}.json`,
+`term-ac-nonmonotone-verify.rds`.
+
+**Open / next.** Scale `b_Σ` to the 4-variate ampute design (k=14; 4-D quadrature with the
+mice-ampute weights) to reproduce `−0.46`. Stretch goal — see §3.
+
+---
+
+**Original plan (2026-06-01).**
 
 **Goal.** Replace the manuscript's *empirical* non-monotone `(A)+(C)` asymptote (phase-8 2-point
 extrapolation, `≲−0.46`) with a **derived closed (or semi-closed) form**, by computing the general

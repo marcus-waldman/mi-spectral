@@ -15,7 +15,7 @@ cross-model conceptual check of the premises that no computer-algebra system can
 |---|---|---|
 | Penalty value `tr(RIV)` | CAS-exact algebra (SymPy **and** Wolfram, commit `3977bdd`); MC W1 within MCSE; **external convergence** with Shimodaira–Maeda 2017 `AIC_{x;y}` derived by a different route | **High** (multi-source) |
 | **Decomposition** `+tr(RIV)` / `−½tr(RIV)` | our own SymPy + Wolfram + MC only — one methodological lineage | **Single-source** |
-| **MAR `(A)+(C)`** design-imbalance | bivariate closed form imported from MI-IC v4 (Steps 6-7); general monotone `≈−0.22` analytic; non-monotone is a 2-point empirical extrapolation | **Thin** (consistency-checked, not independently re-derived) |
+| **MAR `(A)+(C)`** design-imbalance | bivariate-monotone closed form independently re-derived in Wolfram (`d2ba31c`); general monotone `≈−0.22` analytic; **non-monotone `b_Σ` now derived via Cox–Snell, two-CAS + MC verified (bivariate, 2026-06-01)** — 4-variate `−0.46` is the remaining quantitative target | **Medium** (bivariate triangulated; 4-variate pending) |
 | **Proper-MI** extension (R4–R7) | claimed; witnesses are FIML/EM; posterior-draw layer (Wang–Robins, Nielsen) not yet verified | **Thin** |
 | Foundations **L1, L3, L4** | cited classical asymptotics; only validated end-to-end by MC | **Cited, not re-derived** |
 
@@ -80,10 +80,13 @@ Force distinct routes and check they land in the same place:
 - **DONE:** SymPy (Appendix B, in-doc) + Wolfram companion (`verification/cas-wolfram/verify_traces.py`,
   commit `3977bdd`) — the trace algebra and the MVN Magnus duplication-matrix inversion, two
   independent CAS implementations.
-- **TODO-A:** independent Wolfram re-derivation of the **bivariate `(A)+(C)`** (reconstruct MI-IC
-  v4 Steps 6-7 in Wolfram) — turns today's consistency check into real verification.
-- **TODO-B:** the **non-monotone `(A)+(C)`** via Cox–Snell / Cordeiro–Klein — closes the 2-point
-  extrapolation with a closed form.
+- **TODO-A [DONE, `d2ba31c`]:** independent Wolfram re-derivation of the **bivariate `(A)+(C)`** —
+  `verification/cas-wolfram/verify_term_ac.py`.
+- **TODO-B [DONE (bivariate), 2026-06-01]:** the **non-monotone `b_Σ`** via Cox–Snell — derived and
+  verified by two CAS (Wolfram NIntegrate ≡ SymPy Gauss–Hermite, `~1e-9`), exact monotone reduction,
+  direct MC, and the score/Bartlett identities (`verify_term_ac_nonmonotone{,_sympy}.py`,
+  `verify_term_ac_nonmonotone.R`; todo/014). `(A)+(C)` traces `0` (MCAR) → `−0.10` (strong selection).
+  *Remaining:* mechanical scaling-up of `b_Σ` to the 4-variate ampute design to reproduce phase-8 `−0.46`.
 - **PASS:** symbolic reduction to 0; any nonzero residual is a real finding.
 
 ### Layer 3 — Cross-model adversarial  [API budget; scoped tight]

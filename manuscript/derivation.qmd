@@ -645,11 +645,16 @@ constant to $(A)+(C)_\infty\approx-0.22$ ($+0.54$ from the entropy-gradient piec
 $\alpha^\top\mathbb{E}[\delta]$, $-0.76$ from $\tfrac12\operatorname{tr}(\mathcal H\,I_{\text{obs}}^{-1})$;
 stable in $n$ at $-0.220,-0.223,-0.221$ for $n=300,800,1500$), with the **MCAR control returning
 $\approx0$**, reproduced in `verification/term-a-mar-closedform.R`. For **non-monotone** patterns the
-observed-data likelihood does not factor, so the asymptote is reported **empirically**: the committed
-phase-8 sweep (`verification/run_all.R` phase 8, `_modules/term-a-mar-correction.R`; $R{=}40\text{k}$)
-gives, at the observed-data RIV, a material negative $O(1)$ that grows toward its limit with $n$
-($-0.34$ at $n{=}800\to-0.46$ at $n{=}1500$, an asymptote $\lesssim-0.46$ hedged from two
-still-increasing points), up to $\approx 10\%$ of $\tfrac12\operatorname{tr}(\mathrm{RIV})$.
+observed-data likelihood does not factor; its covariance-MLE bias $b_\Sigma$ is instead derived from
+the general second-order (Cox–Snell) bias of the MLE, confirmed for the bivariate non-monotone design
+by two computer-algebra systems and direct Monte-Carlo (@sec-termA,
+`verification/cas-wolfram/verify_term_ac_nonmonotone.py`), with the assembled $(A)+(C)$ tracing
+$\approx0$ (MCAR) to $\approx-0.10$ as selection strengthens. The committed four-variate phase-8 sweep
+(`verification/run_all.R` phase 8, `_modules/term-a-mar-correction.R`; $R{=}40\text{k}$) gives, at the
+observed-data RIV, a material negative $O(1)$ that grows toward its limit with $n$ ($-0.34$ at
+$n{=}800\to-0.46$ at $n{=}1500$, an asymptote $\lesssim-0.46$ hedged from two still-increasing points),
+up to $\approx 10\%$ of $\tfrac12\operatorname{tr}(\mathrm{RIV})$; reproducing that value from
+$b_\Sigma$ at the ampute design is a mechanical scaling-up that remains to be carried out.
 
 Here $\mathrm{RIV}=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ (D8) is
 evaluated with the **observed-data** information $I_{\text{obs}}$ — the unconditional expectation
@@ -884,12 +889,30 @@ $\approx0$** (the design-imbalance term vanishes) and the value consistent with 
 empirical surface (which scatters $\approx-0.15$ to $-0.27$ at large $n$ as its MCSE grows). Reproduced
 in `verification/term-a-mar-closedform.R`.
 
-**Scope (honest).** The closed form is derived for **monotone** MVN missingness, where the
-observed-data likelihood factors into complete-data regressions. For **non-monotone** patterns there
-is no such factorization, and the $\hat\Sigma$ bias requires the general second-order
-(Cox–Snell / Cordeiro–Klein) machinery [@coxGeneralDefinitionResiduals1968; @cordeiroBiasCorrectionARMA1994];
-the non-monotone asymptote is therefore reported **empirically**
-(phase-8, $\approx-0.46$). An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular
+**Scope.** The closed-form recursion above is for **monotone** MVN missingness, where the
+observed-data likelihood factors into complete-data regressions. For **non-monotone** patterns it
+does not factor, so $b_\Sigma$ has no such recursion; it instead follows from the general second-order
+(Cox–Snell) bias of the maximum-likelihood estimate
+[@coxGeneralDefinitionResiduals1968; @cordeiroBiasCorrectionARMA1994], evaluated from the first three
+derivatives of the (non-factoring) observed-data log-likelihood — the multivariate-normal recipe of
+@patriotaBiasCorrectionMultivariate2009, adapted to the pattern-mixed observed-data score. For the
+minimal bivariate non-monotone design — complete / $X_1$-missing / $X_2$-missing units under an
+additive half-sigmoid MAR mechanism — this $b_\Sigma$ is now **derived** and independently confirmed
+by two computer-algebra systems that agree to $\sim10^{-9}$ (Wolfram adaptive quadrature and SymPy
+Gauss–Hermite, `verification/cas-wolfram/verify_term_ac_nonmonotone{,_sympy}.py`). It satisfies the
+score ($\mathbb{E}[U]=0$) and information ($\mathbb{E}[UU^\top]=\mathcal I$) identities to machine
+precision, reduces **exactly** to the monotone closed form when the $X_2$-missing group is removed
+($b_{\sigma_{22}}=-\sigma_{22}$, $b_{\sigma_{12}}=-\sigma_{12}$, and the regression-residual recursion
+for $b_{\sigma_{11}}$), and matches a direct Monte-Carlo measurement of $n\,\mathbb{E}[\hat\Sigma-\Sigma]$
+in every component within Monte-Carlo error (e.g. $b_{\sigma_{11}}=-1.19$ analytic vs $-1.21\pm0.16$
+at $n{=}800$). Assembling $(A)+(C)=\alpha^\top b_\Sigma+\tfrac12\operatorname{tr}(\mathcal H_\phi
+I_{\text{obs}}^{-1})$ with this $b_\Sigma$ then gives a nonzero $O(1)$ design-imbalance that grows from
+$\approx0$ under MCAR to $\approx-0.10$ as selection strengthens, with the direct
+$A_{\text{rb}}-\operatorname{tr}(\mathrm{RIV})$ remainder corroborating its sign and order
+($\approx-0.07$, the leading-order-vs-realized-information gap matching the monotone case) and the
+MCAR control returning $\approx0$ (`verification/verify_term_ac_nonmonotone.R`). What remains is the
+mechanical scaling-up of this $b_\Sigma$ to the four-variate ampute design to reproduce the specific
+phase-8 value ($\approx-0.46$). An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular
 conditional family"; that holds **only under MCAR** and is **retracted** for MAR. Independent
 leading-order support that the *main* piece gives $\operatorname{tr}(\mathrm{RIV})$: the FIML $A$
 matches the R code to machine precision (@lst-mc-fiml, @lst-mc-mcse), and the high-$R$ phase-6
@@ -910,8 +933,12 @@ $O(1)$ design-imbalance term of A4 under MAR.
 `[mc]` @lst-mc-terma (`A - tr(RIV) == 0`) for the **leading-order** trace
 identity; the $(A)+(C)$ design-imbalance term is separate, with the closed-form general-MVN
 (**monotone**) value derived and verified in `verification/term-a-mar-closedform.R`
-($\approx-0.22$, MCAR control $\approx0$) and the non-monotone value empirical (phase-8). The MVN
-FIML instantiation of $\bar Q_\infty$ matches the R code to machine precision (@lst-mc-fiml).
+($\approx-0.22$, MCAR control $\approx0$). The **non-monotone** $b_\Sigma$ is now derived via Cox–Snell
+and confirmed by two computer-algebra systems plus direct Monte-Carlo
+(`verification/cas-wolfram/verify_term_ac_nonmonotone{,_sympy}.py`,
+`verification/verify_term_ac_nonmonotone.R`); the four-variate phase-8 value ($\approx-0.46$) is the
+remaining quantitative target. The MVN FIML instantiation of $\bar Q_\infty$ matches the R code to
+machine precision (@lst-mc-fiml).
 :::
 
 **Which information.** Term A uses
