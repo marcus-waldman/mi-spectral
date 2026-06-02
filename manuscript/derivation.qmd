@@ -656,12 +656,20 @@ observed-data likelihood does not factor; its covariance-MLE bias $b_\Sigma$ is 
 the general second-order (Cox–Snell) bias of the MLE, confirmed for the bivariate non-monotone design
 by two computer-algebra systems and direct Monte-Carlo (@sec-termA,
 `verification/cas-wolfram/verify_term_ac_nonmonotone.py`), with the assembled $(A)+(C)$ tracing
-$\approx0$ (MCAR) to $\approx-0.10$ as selection strengthens. The committed four-variate phase-8 sweep
-(`verification/run_all.R` phase 8, `_modules/term-a-mar-correction.R`; $R{=}40\text{k}$) gives, at the
-observed-data RIV, a material negative $O(1)$ that grows toward its limit with $n$ ($-0.34$ at
-$n{=}800\to-0.46$ at $n{=}1500$, an asymptote $\lesssim-0.46$ hedged from two still-increasing points),
-up to $\approx 10\%$ of $\tfrac12\operatorname{tr}(\mathrm{RIV})$; reproducing that value from
-$b_\Sigma$ at the ampute design is a mechanical scaling-up that remains to be carried out.
+$\approx0$ (MCAR) to $\approx-0.10$ as selection strengthens. The same $b_\Sigma$ now follows at
+**general $p$** — including the four-variate phase-8 ampute design ($k{=}14$;
+`verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`), where it reduces exactly to the
+bivariate value, meets the score and information identities to machine precision, and recovers the
+complete-data bias $-\sigma$ on the always-observed block. Feeding it through the same assembly gives
+a leading-order asymptote $(A)+(C)_\infty\approx-0.22$ ($+0.78$ entropy-gradient, $-1.00$ curvature)
+— the **same constant as the monotone design** — with the MCAR control $\approx0$ and the value
+confirmed independently by finite-differencing the analytic $\bar Q$
+(`verification/verify_term_ac_nonmonotone_4v.R`). The committed four-variate phase-8 remainder
+(`verification/run_all.R` phase 8, `_modules/term-a-mar-correction.R`; $R{=}40\text{k}$: $-0.34$ at
+$n{=}800\to-0.46$ at $n{=}1500$, still increasing) lies **beyond** this leading-order constant — a
+higher-order, finite-$n$ (realized-information) offset of the same kind seen in the bivariate
+($-0.10$ assembled vs $-0.07$ measured) and monotone ($-0.22$ vs $-0.27$) cases, not a shortfall of
+$b_\Sigma$, which is nearly selection-invariant.
 
 Here $\mathrm{RIV}=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ (D8) is
 evaluated with the **observed-data** information $I_{\text{obs}}$ — the unconditional expectation
@@ -872,7 +880,7 @@ by the design-imbalance amount above: the bivariate-monotone formula matches the
 selection strength $b$ (`verification/term-a-mar-diagnostic.R`, study S1), and the 4-variate ampute
 MAR confirms a material $O(1)$ residual (clean phase-8 sweep, $R{=}40\text{k}$,
 `_modules/term-a-mar-correction.R`: non-monotone $-0.34\,(n{=}800)\to-0.46\,(n{=}1500)$, monotone
-$-0.18\to-0.27$, growing toward the asymptote with $n$).
+$-0.18\to-0.27$, growing with $n$ beyond the $\approx-0.22$ leading-order constant).
 
 **General-MVN closed form (monotone).** The exact Term-A integrand is, per unit $i$ with missing
 block $M_i$ and conditional moments $m_{\theta,i},S_{\theta,i}$ under $\theta$,
@@ -925,9 +933,10 @@ $\alpha^\top b_\Sigma+\tfrac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{
 four-variate monotone-MAR design (@sec-alg) it evaluates to
 $$ (A)+(C)_\infty=\underbrace{+0.54}_{\alpha^\top b_\Sigma}\ \underbrace{-0.76}_{\frac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{-1})}\ \approx\ -0.22, $$
 stable in $n$ ($-0.220,-0.223,-0.221$ at $n=300,800,1500$), with the **MCAR control returning
-$\approx0$** (the design-imbalance term vanishes) and the value consistent with the high-$R$ phase-8
-empirical surface (which scatters $\approx-0.15$ to $-0.27$ at large $n$ as its MCSE grows). Reproduced
-in `verification/term-a-mar-closedform.R`.
+$\approx0$** (the design-imbalance term vanishes) and the leading-order constant that the high-$R$
+phase-8 empirical surface sits beyond ($-0.18$ at $n{=}800\to-0.27$ at $n{=}1500$, still increasing)
+through a higher-order, finite-$n$ (realized-information) offset — the same offset carried by the
+non-monotone case below. Reproduced in `verification/term-a-mar-closedform.R`.
 
 **Scope.** The closed-form recursion above is for **monotone** MVN missingness, where the
 observed-data likelihood factors into complete-data regressions. For **non-monotone** patterns it
@@ -950,9 +959,15 @@ I_{\text{obs}}^{-1})$ with this $b_\Sigma$ then gives a nonzero $O(1)$ design-im
 $\approx0$ under MCAR to $\approx-0.10$ as selection strengthens, with the direct
 $A_{\text{rb}}-\operatorname{tr}(\mathrm{RIV})$ remainder corroborating its sign and order
 ($\approx-0.07$, the leading-order-vs-realized-information gap matching the monotone case) and the
-MCAR control returning $\approx0$ (`verification/verify_term_ac_nonmonotone.R`). What remains is the
-mechanical scaling-up of this $b_\Sigma$ to the four-variate ampute design to reproduce the specific
-phase-8 value ($\approx-0.46$). An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular
+MCAR control returning $\approx0$ (`verification/verify_term_ac_nonmonotone.R`). The same Cox–Snell
+$b_\Sigma$ is now carried to **general $p$**, including the four-variate phase-8 ampute design
+($k{=}14$; `verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`), where it reduces exactly to
+the bivariate value and passes the score/information identities; the four-variate assembly then lands
+the leading-order $(A)+(C)_\infty\approx-0.22$ — the monotone constant — confirmed by
+finite-differencing the analytic $\bar Q$ (`verification/verify_term_ac_nonmonotone_4v.R`). The
+committed phase-8 remainder ($-0.46$ at $n{=}1500$, still increasing) sits **beyond** this
+leading-order constant through the same leading-order-vs-realized-information gap, not a shortfall of
+$b_\Sigma$. An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular
 conditional family"; that holds **only under MCAR** and is **retracted** for MAR. Independent
 leading-order support that the *main* piece gives $\operatorname{tr}(\mathrm{RIV})$: the FIML $A$
 matches the R code to machine precision (@lst-mc-fiml, @lst-mc-mcse), and the high-$R$ phase-6
@@ -979,9 +994,12 @@ identity; the $(A)+(C)$ design-imbalance term is separate, with the closed-form 
 ($\approx-0.22$, MCAR control $\approx0$). The **non-monotone** $b_\Sigma$ is now derived via Cox–Snell
 and confirmed by two computer-algebra systems plus direct Monte-Carlo
 (`verification/cas-wolfram/verify_term_ac_nonmonotone{,_sympy}.py`,
-`verification/verify_term_ac_nonmonotone.R`); the four-variate phase-8 value ($\approx-0.46$) is the
-remaining quantitative target. The MVN FIML instantiation of $\bar Q_\infty$ matches the R code to
-machine precision (@lst-mc-fiml).
+`verification/verify_term_ac_nonmonotone.R`) and extended to general $p$: the four-variate phase-8
+design assembles to the leading-order $(A)+(C)_\infty\approx-0.22$ (the monotone constant;
+`verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`,
+`verification/verify_term_ac_nonmonotone_4v.R`), with the empirical $-0.46$ beyond it via the
+leading-order-vs-realized-information gap. The MVN FIML instantiation of $\bar Q_\infty$ matches the R
+code to machine precision (@lst-mc-fiml).
 :::
 
 **Which information.** Term A uses
@@ -996,8 +1014,9 @@ also calibrates to (@sec-riv; note after @eq-combine).
 $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] - \tfrac12\operatorname{tr}(\mathrm{RIV}) = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] + O(n^{-1}) $$ {#eq-combine}
 [D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. Under MCAR
 $(A)+(C)=0$ and $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$; under MAR the
-design-imbalance term remains — derived in closed form for the general **monotone** MVN (@sec-termA,
-$\approx-0.22$ for the four-variate design), with the non-monotone value empirical. $\qquad\blacksquare$
+design-imbalance term remains — derived for the general **monotone** MVN in closed form and, via the
+general-$p$ Cox–Snell $b_\Sigma$, for the **non-monotone** four-variate design too (@sec-termA, both
+$\approx-0.22$ at leading order). $\qquad\blacksquare$
 
 ::: {.column-margin}
 `[mc]` @lst-mc-combine (`T - tr(RIV)/2 == 0`), the **leading-order** identity (MCAR, or before

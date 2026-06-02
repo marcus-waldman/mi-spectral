@@ -1,6 +1,37 @@
 # Todo 015 — General-`p` non-monotone `b_Σ` via Cox–Snell; reach the 4-variate phase-8 `−0.46`
 
-**Status:** Draft (2026-06-01). Plan; execute in a **fresh session**. Sibling of todo/014.
+**Status:** **EXECUTED 2026-06-02.** Sibling of todo/014.
+
+## Outcome (2026-06-02)
+
+**General-`p` Cox–Snell `b_Σ` derived and validated** (`verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`):
+arbitrary `p`, arbitrary non-monotone pattern set, per-dimension Gauss–Hermite. Gates all pass —
+**p=2 reduction reproduces the committed bivariate `b_Σ` to `1.5e-13`**; zero-score/Bartlett `~1e-15`
+at p=3,4; exact structural checks (always-observed block → complete-data `−σ`; monotone reduction →
+`−σ_pp`; `σ_ij=0` → `b=0`); GH-converged (per-dim `[10,10,26,26]` ≡ uniform 20). 4-variate phase-8
+`b_Σ` (fractions 0.4/0.2/0.2/0.2): `s11=s22=−1.391, s21=−0.722, s33=s44=−1.0, s43=−0.5, s31=s42=−0.3`.
+`b_Σ` is **nearly selection-invariant** at fixed fractions (additive sweep: `s11` `−1.391→−1.362` over
+`b=0→1.2`).
+
+**KEY FINDING — `b_Σ` is NOT the missing piece for `−0.46`.** Feeding the derived `b_Σ` through the
+pattern-general assembly (`verification/verify_term_ac_nonmonotone_4v.R`, reusing
+`term-a-mar-closedform.R`'s `alpha_expected`/`hphi_expected`) gives the **leading-order
+`(A)+(C)_∞ ≈ −0.22`** (A=+0.78, C=−1.00) — the *same* constant as the monotone design — confirmed two
+independent ways (analytic α/H_φ **and** finite-differencing the analytic `barQ`), with MCAR control
+→ 0. The committed phase-8 empirical remainder (`−0.34@800 → −0.46@1500`, still increasing) lies
+**beyond** this leading-order constant. The offset is a **higher-order (finite-n / realized-information)
+gap**, the same kind already present in the monotone (`−0.22` vs `−0.27`) and bivariate (`−0.10` vs
+`−0.07`) cases — *not* a `b_Σ` shortfall. A cross eval-impute-curvature "bracket" candidate for the
+gap was investigated but is dominated by single-dataset sampling noise (±0.3) and did not cleanly
+reproduce the empirical; pinning the gap is **open higher-order theory**, not a mechanical scale-up.
+
+**Disposition (user decision, honest reframe):** manuscript `@sec-termA` updated — `b_Σ` now stated as
+derived at general `p` incl. the 4-variate phase-8 design, leading-order `(A)+(C)_∞≈−0.22` (parallel to
+monotone), empirical `−0.46` reframed as the realized-information gap (not a target for `b_Σ`).
+`todo/013` TODO-B updated. `quarto render manuscript/derivation.qmd` exit-0.
+
+---
+*Original plan below (2026-06-01).*
 
 **Goal.** Generalize the (verified) **bivariate** non-monotone Cox–Snell `b_Σ` to **general `p`**
 (arbitrary non-monotone pattern set), validate it reduces to the committed `p=2` result, then point it

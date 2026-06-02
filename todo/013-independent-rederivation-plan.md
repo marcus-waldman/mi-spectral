@@ -15,7 +15,7 @@ cross-model conceptual check of the premises that no computer-algebra system can
 |---|---|---|
 | Penalty value `tr(RIV)` | CAS-exact algebra (SymPy **and** Wolfram, commit `3977bdd`); MC W1 within MCSE; **external convergence** with Shimodaira–Maeda 2017 `AIC_{x;y}` derived by a different route | **High** (multi-source) |
 | **Decomposition** `+tr(RIV)` / `−½tr(RIV)` | our own SymPy + Wolfram + MC only — one methodological lineage | **Single-source** |
-| **MAR `(A)+(C)`** design-imbalance | bivariate-monotone closed form independently re-derived in Wolfram (`d2ba31c`); general monotone `≈−0.22` analytic; **non-monotone `b_Σ` now derived via Cox–Snell, two-CAS + MC verified (bivariate, 2026-06-01)** — 4-variate `−0.46` is the remaining quantitative target | **Medium** (bivariate triangulated; 4-variate pending) |
+| **MAR `(A)+(C)`** design-imbalance | bivariate-monotone closed form independently re-derived in Wolfram (`d2ba31c`); general monotone `≈−0.22` analytic; **non-monotone `b_Σ` derived via Cox–Snell at general `p` incl. 4-variate phase-8 (k=14), 2026-06-02** — assembles to leading-order `(A)+(C)_∞≈−0.22` (= monotone); empirical `−0.46` is a higher-order (realized-information) gap, not a `b_Σ` shortfall | **Medium** (triangulated; finite-n gap open) |
 | **Proper-MI** extension (R4–R7) | claimed; witnesses are FIML/EM; posterior-draw layer (Wang–Robins, Nielsen) not yet verified | **Thin** |
 | Foundations **L1, L3, L4** | cited classical asymptotics; only validated end-to-end by MC | **Cited, not re-derived** |
 
@@ -82,11 +82,19 @@ Force distinct routes and check they land in the same place:
   independent CAS implementations.
 - **TODO-A [DONE, `d2ba31c`]:** independent Wolfram re-derivation of the **bivariate `(A)+(C)`** —
   `verification/cas-wolfram/verify_term_ac.py`.
-- **TODO-B [DONE (bivariate), 2026-06-01]:** the **non-monotone `b_Σ`** via Cox–Snell — derived and
-  verified by two CAS (Wolfram NIntegrate ≡ SymPy Gauss–Hermite, `~1e-9`), exact monotone reduction,
-  direct MC, and the score/Bartlett identities (`verify_term_ac_nonmonotone{,_sympy}.py`,
-  `verify_term_ac_nonmonotone.R`; todo/014). `(A)+(C)` traces `0` (MCAR) → `−0.10` (strong selection).
-  *Remaining:* mechanical scaling-up of `b_Σ` to the 4-variate ampute design to reproduce phase-8 `−0.46`.
+- **TODO-B [DONE, general-`p`, 2026-06-02]:** the **non-monotone `b_Σ`** via Cox–Snell — derived and
+  verified by two CAS (bivariate, `~1e-9`), exact monotone reduction, direct MC, and the score/Bartlett
+  identities (todo/014), then **generalized to arbitrary `p`** (`verify_term_ac_nonmonotone_genp.py`):
+  p=2 reduction to the committed bivariate value `1.5e-13`; machine-precision score/info identities and
+  exact structural checks (always-observed block → complete-data `−σ`; monotone reduction → `−σ_pp`) at
+  p=3,4; GH-converged. At the 4-variate phase-8 ampute design (k=14) it assembles to the **leading-order
+  `(A)+(C)_∞≈−0.22`** — the *same* constant as monotone — confirmed two ways (analytic α/H_φ and
+  finite-differencing `barQ`; `verify_term_ac_nonmonotone_4v.R`), MCAR control → 0.
+  *Finding (todo/015):* `b_Σ` is NOT the missing piece for the empirical `−0.46`. The phase-8 remainder
+  (`−0.34→−0.46`, still increasing) lies *beyond* the leading-order constant via a higher-order
+  (finite-n / realized-information) gap — also present in the monotone (`−0.22` vs `−0.27`) and bivariate
+  (`−0.10` vs `−0.07`) cases. Reconciling it is open higher-order theory, not a mechanical scale-up;
+  manuscript reframed accordingly.
 - **PASS:** symbolic reduction to 0; any nonzero residual is a real finding.
 
 ### Layer 3 — Cross-model adversarial  [API budget; scoped tight]

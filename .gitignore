@@ -6,6 +6,12 @@
 *.Rcheck/
 *.tar.gz
 
+# Python
+__pycache__/
+*.pyc
+# Regenerable symbolic-derivative speedup cache (deterministic; hash-keyed -> may mask code changes)
+verification/cache/genp-derivs-*.pkl
+
 # Quarto / LaTeX build artifacts
 _freeze/
 _site/
