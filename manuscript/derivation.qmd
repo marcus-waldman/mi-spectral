@@ -74,11 +74,16 @@ paper; both are developed in the manuscript, not here.
 - **Likelihood-ratio model comparison.** The MI likelihood-ratio numerator
 $\hat d_L = 2[\bar Q_\infty(\hat\psi^*) - \bar Q_\infty(\hat\psi_0^*)]$ — where $\hat\psi^*$
 maximizes the averaged log-likelihood, in the sense of
-[@chanMultipleImprovementsMultiple2022] — inherits a *differential* bias
-$\operatorname{tr}(\mathrm{RIV}(\hat\psi^*)) - \operatorname{tr}(\mathrm{RIV}(\hat\psi_0^*))$.
-It vanishes under the null but not under local alternatives or non-nested comparison,
-distorting power and ranking even when the reference distribution is correctly calibrated
-[@chanGeneralFeasibleTests2022].
+[@chanMultipleImprovementsMultiple2022] — inherits each model's deviance-scale bias
+$\operatorname{tr}(\mathrm{RIV}) + 2[(A)+(C)]$, hence a *differential* bias
+$[\operatorname{tr}(\mathrm{RIV}(\hat\psi^*)) - \operatorname{tr}(\mathrm{RIV}(\hat\psi_0^*))] + 2[(A{+}C)_{\hat\psi^*} - (A{+}C)_{\hat\psi_0^*}]$.
+The $\operatorname{tr}(\mathrm{RIV})$ part vanishes under the null but not under local alternatives or
+non-nested comparison; the $(A)+(C)$ part is the MAR design-imbalance contribution (zero under MCAR).
+Both distort power and ranking even when the reference distribution is correctly calibrated
+[@chanGeneralFeasibleTests2022]. Each is a *differential* across candidate fits on the same data — a
+paired contrast that cancels the heavy-tailed sampling noise of the standalone $(A)+(C)$ magnitude
+(@sec-termA), so the comparison-relevant correction is precisely estimable even where the absolute
+$(A)+(C)$ is not.
 - **Information criteria.** MI-AIC and MI-BIC are built from $-2\bar Q_\infty$, so each
 candidate model carries a bias $-\operatorname{tr}(\mathrm{RIV})$ that is *model-specific* —
 RIV depends on the model. Left uncorrected, the criteria systematically favor higher-RIV
@@ -656,18 +661,26 @@ the bivariate design by two computer-algebra systems and direct Monte-Carlo, and
 **general $p$** including the four-variate phase-8 ampute design ($k{=}14$;
 `verification/cas-wolfram/verify_term_ac_nonmonotone{,_genp}.py`), where it reduces exactly to the
 bivariate value, meets the score/information identities to machine precision, and recovers the
-complete-data bias $-\sigma$ on the always-observed block. **The numerical value of $(A)+(C)$ is
-settled to the observed-information convention.** A leading-order analytic approximation gives
-$\approx-0.22$ for the four-variate design (right sign and $O(1)$ order); the principled value uses the
-*realized* (observed) information [@kenwardLikelihoodBasedFrequentist1998], biased otherwise under MAR,
-and is the empirically measured remainder $-0.18\to-0.27$ (monotone) and $-0.34\to-0.46$ (non-monotone)
-over $n=800,1500$. The naive expected-information convention would instead give $\approx+0.1\to+0.3$,
-differing from the realized value by the $O(1)$ **realized-information correction** $\Delta_{\mathrm{KM}}$
-($\approx-0.55$ non-monotone, the observed-minus-naive RIV gap), derived in closed form in @sec-termA
-(its block structure and $O(1)$ order independently cross-checked off-lineage) — **not** a finite-$n$
-artifact and **not** a $b_\Sigma$ shortfall ($b_\Sigma$ is derived and nearly selection-invariant). What
-is firm: $(A)+(C)$ is a nonzero $O(1)$ under MAR and
-**vanishes under MCAR** (controls $\approx0$ throughout).
+complete-data bias $-\sigma$ on the always-observed block. **The information *convention* for
+$(A)+(C)$ is settled; its exact magnitude is an $O(1)$ that direct Monte Carlo does not pin sharply.**
+The convention is the *realized* (observed) information [@kenwardLikelihoodBasedFrequentist1998] —
+which under MAR carries the mean–covariance cross term, is biased otherwise, and differs from the
+naive expected information by the $O(1)$ **realized-information correction** $\Delta_{\mathrm{KM}}$
+($\approx-0.55$ non-monotone, the observed-minus-naive RIV gap; derived in closed form in @sec-termA,
+its block structure and $O(1)$ order independently cross-checked off-lineage, exactly $0$ under MCAR,
+and itself an ultra-precise *paired* contrast — Monte-Carlo standard error $<10^{-3}$). The
+leading-order ($\delta$-method) analytic value is $\approx-0.22$ for the four-variate design (right
+sign and $O(1)$ order; MCAR control $\approx0$). The exact magnitude, by contrast, is the *mean* of a
+heavy-tailed statistic — the per-replicate remainder $A_{\mathrm{rb}}-\operatorname{tr}(\mathrm{RIV})$
+has standard deviation $\propto\sqrt n$ and a long right tail (from over-fitted draws) — so its direct
+Monte-Carlo estimate is imprecise and **untrended**: $-0.34,-0.46,-0.29,+0.17$ across
+$n=800,1500,3000,6000$ (standard errors $0.09,0.13,0.25,0.35$; inverse-variance pooled
+$\approx-0.35\pm0.07$), broadly consistent with the $-0.22$ leading order and showing no real growth
+with $n$ (`verification/scratch-rem-realized-expected-lavaan.R`,
+`verification/scratch-rem-distribution-diag.R`). What is firm: $(A)+(C)$ is a nonzero $O(1)$ under MAR,
+**vanishes under MCAR** (controls $\approx0$ throughout), and — because it enters model *comparison*
+and likelihood-ratio numerators only through a difference across candidates, a paired contrast that
+cancels the heavy tail — is far more precisely estimable as a differential than as a standalone value.
 
 Here $\mathrm{RIV}=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ (D8) is
 evaluated with the **observed-data** information $I_{\text{obs}}$ — the unconditional expectation
@@ -877,13 +890,12 @@ these are necessarily the cancelling cases. Under MAR **with** conditioning the 
 by the design-imbalance amount above: the bivariate-monotone formula matches the simulation across
 selection strength $b$ (`verification/term-a-mar-diagnostic.R`, study S1), and the 4-variate ampute
 MAR confirms a material $O(1)$ residual (clean phase-8 sweep, $R{=}40\text{k}$,
-`_modules/term-a-mar-correction.R`: non-monotone $-0.34\,(n{=}800)\to-0.46\,(n{=}1500)$, monotone
-$-0.18\to-0.27$, both increasing with $n$). A leading-order analytic approximation gives $\approx-0.22$
-(right sign and order); the **reported** value uses the realized (observed) information of
-@kenwardLikelihoodBasedFrequentist1998 — the principled MAR convention — and is the empirical
-$-0.34\to-0.46$. The realized RIV exceeds the naive one by the $O(1)$ **realized-information
-correction** $\Delta_{\mathrm{KM}}$ (the observed-minus-naive information gap), derived in closed form
-below.
+`_modules/term-a-mar-correction.R`: non-monotone sample means $-0.34\,(n{=}800),-0.46\,(n{=}1500)$,
+monotone $-0.18,-0.27$ — $O(1)$ in size, but heavy-tailed and imprecise, see below). A leading-order
+analytic approximation gives $\approx-0.22$ (right sign and order); the **reported** convention is the
+realized (observed) information of @kenwardLikelihoodBasedFrequentist1998 — the principled MAR choice.
+The realized RIV exceeds the naive one by the $O(1)$ **realized-information correction**
+$\Delta_{\mathrm{KM}}$ (the observed-minus-naive information gap), derived in closed form below.
 
 **General-MVN closed form (monotone).** The exact Term-A integrand is, per unit $i$ with missing
 block $M_i$ and conditional moments $m_{\theta,i},S_{\theta,i}$ under $\theta$,
@@ -904,7 +916,7 @@ $I_{\text{com}}-I_{\text{obs}}^{O}$ is exactly that selected missing information
 $\operatorname{tr}(\mathcal C\,I_{\text{obs}}^{O,-1})=\operatorname{tr}(\mathrm{RIV})$ is **exact under
 the realized (observed-information) convention**. The naive expected-information RIV is the *smaller*
 one (Appendix C), and differs from it by the $O(1)$ correction $\Delta_{\mathrm{KM}}$ below; that
-convention difference separates the measured naive value $+0.1\to+0.3$ from the realized $-0.34\to-0.46$. The entropy gradient is
+convention difference separates the (noisy) measured naive value $\approx+0.1\to+0.3$ from the realized $\approx-0.3$, a shift of $\Delta_{\mathrm{KM}}\approx-0.55$. The entropy gradient is
 **covariance-only** ($\partial S_i/\partial\mu=0\Rightarrow\alpha_\mu=0$), with closed form
 $$ \alpha_a = -\tfrac12\!\!\sum_{i:\text{mis}}\!\operatorname{tr}\!\big(S_{0,i}^{-1}\,\partial_a S_i\big),\quad \partial_a S_i=\Delta_{MM}-\Delta_{MO}B^\top-B\Delta_{OM}+B\Delta_{OO}B^\top,\ \ B=\Sigma_{MO}\Sigma_{OO}^{-1}, $$
 ($\partial_a$ the symmetric perturbation of $\Sigma$-coordinate $a$, $\Delta=\partial_a\Sigma$). It
@@ -944,8 +956,8 @@ $n$-independent constant $\alpha^\top b_\Sigma+\tfrac12\operatorname{tr}(\mathca
 For the four-variate monotone-MAR design (@sec-alg) it evaluates to
 $$ (A)+(C)_{\text{approx}}=\underbrace{+0.54}_{\alpha^\top b_\Sigma}\ \underbrace{-0.76}_{\frac12\operatorname{tr}(\mathcal H_\phi I_{\text{obs}}^{-1})}\ \approx\ -0.22, $$
 with the **MCAR control returning $\approx0$** (`verification/term-a-mar-closedform.R`) — the correct
-sign and $O(1)$ order of the realized value, undershooting its magnitude (a second-order assembly that
-carries population moments misses higher-order realized-information curvature).
+sign and $O(1)$ order, and (per the convention discussion below) consistent with the heavy-tailed
+direct estimate to within its Monte-Carlo error.
 
 **Value: settled to the observed-information convention.** Which information enters the RIV is not a
 free choice. Under MAR the principled object is the **observed** (realized) information: the naive
@@ -954,8 +966,13 @@ the classical Kenward–Molenberghs recommendation — "provided the observed in
 conventional likelihood based frequentist inference is applicable in the MAR setting"
 [@kenwardLikelihoodBasedFrequentist1998, §5], <a href="#sec-src-kenward"><code>:544</code></a>. The
 paper's RIV (@sec-riv, Appendix C) and the empirically measured $(A)+(C)$ both use it, so the
-**reported value is the realized one**, $-0.34\to-0.46$ (non-monotone) and $-0.18\to-0.27$ (monotone)
-over $n=800,1500$.
+**reported value is the realized one** — an $O(1)$ whose *direct* Monte-Carlo estimate is heavy-tailed
+and imprecise: the per-replicate remainder has standard deviation $\propto\sqrt n$ and a long
+right tail, so its sample mean is untrended and only loosely determined (non-monotone
+$-0.34,-0.46,-0.29,+0.17$ at $n=800,1500,3000,6000$, inverse-variance pooled $\approx-0.35\pm0.07$;
+monotone $-0.18,-0.27$), broadly consistent with the $-0.22$ leading order. What *is* sharply pinned —
+because it is a *paired* contrast that cancels that sampling noise — is the convention gap
+$\Delta_{\mathrm{KM}}$ below.
 
 ::: {.column-margin}
 `[derived]` Realized-information correction $\Delta_{\mathrm{KM}}$ in closed form: the analytic
@@ -988,13 +1005,15 @@ by exactly $\Delta_{\mathrm{KM}}$,
 $$ (A)+(C)_{\text{realized}}=(A)+(C)_{\text{naive}}+\Delta_{\mathrm{KM}}, $$
 where $(A)+(C)_{\text{naive}}=\mathbb{E}[A_{\text{rb}}]-\operatorname{tr}(\mathrm{RIV}^{N})\approx+0.1\to+0.3$
 is the expected-information-convention value — the anchored, higher-variance leg (the low-variance
-carriers are the paired gap and the analytic $\Delta_{\mathrm{KM}}$). The realized value is the
-empirical $-0.34\to-0.46$; naive and realized are tied by $\Delta_{\mathrm{KM}}$ as a near-identity (they
-share $A_{\text{rb}}$, so $\mathrm{rem}_{\text{real}}\equiv\mathrm{rem}_{\text{exp}}+\mathrm{gap}$), so the
-genuine independent check is the analytic $\Delta_{\mathrm{KM}}\approx-0.55$ against the measured paired
-gap $\approx-0.58$. What is firm:
-$(A)+(C)$ is a nonzero $O(1)$ under MAR, vanishes under MCAR, and equals the realized value
-$-0.34\to-0.46$ under the principled observed-information convention.
+carriers are the paired gap and the analytic $\Delta_{\mathrm{KM}}$). The realized value is an
+$O(1)\approx-0.3$ (heavy-tailed and imprecise — see above); naive and realized are tied by
+$\Delta_{\mathrm{KM}}$ as a near-identity (they share $A_{\text{rb}}$, so
+$\mathrm{rem}_{\text{real}}\equiv\mathrm{rem}_{\text{exp}}+\mathrm{gap}$), so the genuine
+precise check is the analytic $\Delta_{\mathrm{KM}}\approx-0.55$ against the measured paired
+gap $\approx-0.56$ (se $<10^{-3}$). What is firm:
+$(A)+(C)$ is a nonzero $O(1)$ under MAR, vanishes under MCAR, and its realized−naive convention gap
+$\Delta_{\mathrm{KM}}\approx-0.55$ is pinned in closed form under the principled
+observed-information convention.
 
 **Scope.** The closed-form recursion above is for **monotone** MVN missingness, where the
 observed-data likelihood factors into complete-data regressions. For **non-monotone** patterns it
@@ -1022,12 +1041,13 @@ $b_\Sigma$ is now carried to **general $p$**, including the four-variate phase-8
 ($k{=}14$; `verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`), where it reduces exactly to
 the bivariate value and passes the score/information identities. The four-variate assembly's
 leading-order approximation gives $\approx-0.22$ (`verification/verify_term_ac_nonmonotone_4v.R`; right
-sign and order); the **reported** value uses the realized (observed) information of
-@kenwardLikelihoodBasedFrequentist1998 and is the empirically measured remainder $-0.34\to-0.46$. The
-realized RIV exceeds the naive one by the $O(1)$ realized-information correction
-$\Delta_{\mathrm{KM}}\approx-0.55$ (non-monotone, the observed-minus-naive information gap), the
-selected-vs-population information effect under MAR, derived in closed form (@sec-termA; its block
-structure and $O(1)$ order independently cross-checked off-lineage); it is **not** a $b_\Sigma$ shortfall
+sign and order); the **reported** convention is the realized (observed) information of
+@kenwardLikelihoodBasedFrequentist1998, and the value is an $O(1)\approx-0.3$ whose direct estimate is
+heavy-tailed and imprecise (@sec-termA). The realized RIV exceeds the naive one by the $O(1)$
+realized-information correction $\Delta_{\mathrm{KM}}\approx-0.55$ (non-monotone, the
+observed-minus-naive information gap), the selected-vs-population information effect under MAR, derived
+in closed form (@sec-termA; its block structure and $O(1)$ order independently cross-checked
+off-lineage) and itself sharply pinned as a paired contrast; it is **not** a $b_\Sigma$ shortfall
 ($b_\Sigma$ is derived and nearly selection-invariant). An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular conditional
 family"; that holds **only under MCAR** and is **retracted** for MAR. Independent
 leading-order support that the *main* piece gives $\operatorname{tr}(\mathrm{RIV})$: the FIML $A$
@@ -1061,12 +1081,11 @@ identity; the $(A)+(C)$ design-imbalance term is separate. The **non-monotone** 
 via Cox–Snell, confirmed by two computer-algebra systems plus direct Monte-Carlo
 (`verification/cas-wolfram/verify_term_ac_nonmonotone{,_sympy}.py`,
 `verification/verify_term_ac_nonmonotone.R`) and extended to general $p$ (`..._genp.py`, `..._4v.R`).
-The $(A)+(C)$ **value** is settled to the observed-information convention
+The $(A)+(C)$ information **convention** is settled to the observed information
 [@kenwardLikelihoodBasedFrequentist1998]: a leading-order approximation gives $\approx-0.22$ (right
-sign and order), and the **reported** realized value is the empirically measured remainder,
-$-0.18\to-0.27$ (monotone) and $-0.34\to-0.46$ (non-monotone). The realized RIV exceeds the naive one
-by the $O(1)$ realized-information correction $\Delta_{\mathrm{KM}}$ ($\approx-0.55$ non-monotone),
-derived two ways (@sec-termA). Firm: $(A)+(C)$ is $O(1)$ under MAR, $\approx0$ under MCAR. The MVN FIML instantiation of $\bar Q_\infty$ matches the R
+sign and order); the exact magnitude is a heavy-tailed, imprecise $O(1)\approx-0.3$ (@sec-termA). What
+is sharply pinned is the realized−naive information gap $\Delta_{\mathrm{KM}}\approx-0.55$
+(non-monotone), derived two ways (@sec-termA). Firm: $(A)+(C)$ is $O(1)$ under MAR, $\approx0$ under MCAR. The MVN FIML instantiation of $\bar Q_\infty$ matches the R
 code to machine precision (@lst-mc-fiml).
 :::
 
@@ -1083,11 +1102,13 @@ $$ \mathbb{E}[T] = \mathbb{E}[A]+\mathbb{E}[B] = \operatorname{tr}(\mathrm{RIV})
 [D10-D12], combining the Term A (@eq-termA) and Term B (@eq-termB) results. Under MCAR
 $(A)+(C)=0$ and $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$; under MAR the
 design-imbalance term remains — a nonzero $O(1)$ whose structure is derived (entropy gradient,
-cross-entropy curvature, and the now general-$p$ Cox–Snell $b_\Sigma$) and whose numerical value is
-settled to the observed-information convention [@kenwardLikelihoodBasedFrequentist1998]: the realized
-$-0.34\to-0.46$, with the realized-vs-naive information gap $\Delta_{\mathrm{KM}}$ derived in closed
-form (@sec-termA), its block structure and $O(1)$ order independently cross-checked by a blind
-off-lineage model. $\qquad\blacksquare$
+cross-entropy curvature, and the now general-$p$ Cox–Snell $b_\Sigma$) and whose information
+convention is settled to the realized (observed) information
+[@kenwardLikelihoodBasedFrequentist1998]. Its leading-order value is $\approx-0.22$; the exact
+magnitude is the mean of a heavy-tailed statistic, not sharply pinnable by direct Monte Carlo
+($\approx-0.3$, untrended; @sec-termA). What is precise is the realized-vs-naive information gap
+$\Delta_{\mathrm{KM}}\approx-0.55$, derived in closed form (@sec-termA), its block structure and
+$O(1)$ order independently cross-checked by a blind off-lineage model. $\qquad\blacksquare$
 
 ::: {.column-margin}
 `[mc]` @lst-mc-combine (`T - tr(RIV)/2 == 0`), the **leading-order** identity (MCAR, or before

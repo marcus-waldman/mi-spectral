@@ -1,9 +1,43 @@
 # Todo 020 — Handoff: get the bias derivation to "fully derived / fully pinned"
 
-**Status:** Handoff (2026-06-02). Execute in a **fresh session**. Continues todo/018 (which *settled
-the convention* and derived the realized-information correction). This is the residual gap between
-"settled in convention + mechanism" and "fully derived value." **W1–W3 applications and the
-Satorra–Bentler re-evaluation are explicitly DEFERRED** (see §6).
+**Status:** ✅ EXECUTED (2026-06-02). Continues todo/018. **W1–W3 applications and the
+Satorra–Bentler re-evaluation remained DEFERRED** (see §6).
+
+## ✅ OUTCOME (2026-06-02)
+
+**Decision gate revised mid-session (user correction): the exact `(A)+(C)` value IS load-bearing** —
+directly for the LRT bias level/calibration (it is also one of the paper's three named contributions),
+so scoping it out was wrong. Pivoted to pinning/deriving it.
+
+**Headline finding — the value is heavy-tailed, not precisely pinnable; the prior "−0.34→−0.46
+increasing" was MC noise.** The per-replicate remainder `A_rb − tr(RIV)` is heavy-tailed/right-skewed
+with sd ∝ √n (median ≈ −1.2 vs mean ≈ −0.3, range ±90). The realized `(A)+(C)` mean **bounces**
+`−0.34, −0.46, −0.29, +0.17` across n=800/1500/3000/6000 (se 0.09–0.35; pooled ≈ −0.35±0.07) — untrended,
+**broadly consistent with the 2nd-order analytic −0.22** within ~1–2 se. The 2nd-order −0.22 was
+re-derived cleanly (total-derivative `∇²A_RB = 2 I_mis|obs + H_φ`; eval-point accounted; higher orders
+O(1/n)). So **route (c) closed-form is moot** — no precise target to derive toward.
+
+**What stays robust (closed-form / precise):** Δ_KM (realized−naive RIV gap) = −0.55 flat
+(−0.5685/−0.5593 at n=3000/6000, se ~8e-4; analytic vs MC realized info to 1e-10; MCAR→0; monotone
+−0.44). Convention settled (K&M observed info). `(A)+(C)` is O(1) under MAR, →0 under MCAR.
+
+**LRT (the load-bearing point):** the intro bullet OMITTED the differential `2[(A+C)1−(A+C)0]`; now
+carried (`@sec-thm`/`@sec-combine`/intro). Key: the LRT uses a **paired differential** across candidate
+models, which cancels the heavy tail ⇒ **precisely estimable even though the standalone value isn't**.
+(Empirical LRT-differential experiment deferred — W2 territory, §6.)
+
+**fitted-vs-oracle (secondary):** verified, RESOLVED — `rederivation-L0-fitted-vs-oracle.R` confirms
+FITTED `E[T]=+½tr(RIV)` (ratio 0.985), ORACLE `−½` (the tower misreading), C2 `Δ_n≈T_fitted`. The
+`@sec-qfun` callout neutralizes it; memory note marked resolved.
+
+**Artifacts:** `verification/scratch-rem-distribution-diag.R` (NEW, heavy-tail diagnostic);
+`scratch-rem-realized-expected-lavaan.R` (n3000/6000 pin); `term-ac-realized-info.R` (Δ_KM n→6000).
+Manuscript render exit-0. **Supersedes todo/018's "realized −0.34→−0.46 settled" value claim** (the
+convention settlement + Δ_KM stand). See [[project-nonmonotone-coxsnell]] (REFINED), [[project_fitted_vs_oracle_sign]] (RESOLVED).
+
+---
+
+*Original handoff plan below (executed).*
 
 **One-line goal.** Close the three *soft legs* of the MAR design-imbalance term `(A)+(C)` so the
 reported bias is either a closed-form number or a tightly-pinned one — without re-opening the parts
