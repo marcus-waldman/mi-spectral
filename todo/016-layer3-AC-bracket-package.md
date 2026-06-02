@@ -44,19 +44,33 @@ caveat* that `Δ` cancels when the RIV uses the selected (Louis) missing informa
   @1500). GPT-5.5 Mode B §4 dismissed this as O(1/n) — **incorrectly**; under MAR selection it
   looks O(1).
 
-**Caveat / unresolved.** The realized-vs-expected check used `em_mvn` fits, which for this
-non-monotone design are *unreliable* (its absolute `rem` came out +0.06/+0.53, opposite sign to the
-committed lavaan −0.34/−0.46), so the absolute magnitude bookkeeping is NOT closed. Only the paired
-info-gap (−0.6) and `B_cov` (−0.02) are trustworthy. A clean **lavaan-FIML** re-measurement (with
-variance control) is needed to decide whether `rem_expected ≈ −0.22` and the realized-info term
-accounts for the rest, or whether a further effect remains.
+**Lavaan re-measurement result (2026-06-02, `verification/scratch-rem-realized-expected-lavaan.R`,
+`cache/rem-realized-expected-lavaan.rds`).** Redid the realized-vs-expected check with **lavaan
+FIML** (em_mvn was unreliable here). Lavaan reproduces the committed `rem_real` sign within MCSE
+(pipeline validated). The paired info-gap is pinned (±0.006): `tr_exp − tr_real = −0.63 (n=800),
+−0.58 (n=1500)`, matching the em-based gap (robust). Anchoring `rem_exp = committed_rem_real − gap`:
 
-**Net.** The adversarial check **corroborates and refines** the honest reframe rather than reversing
-it: the leading-order (A)+(C) with *expected* information is ≈ −0.22 (the named extra terms are tiny
-or cancel); the empirical −0.46 is an information-side effect tied to *realized* observed information
-under MAR — so the manuscript's "(realized-information)" attribution is vindicated, but its
-"finite-$n$" wording is likely imprecise (the effect looks O(1)). **Disposition:** keep the reframe;
-flag a clean lavaan follow-up to pin the realized-information term before any further manuscript edit.
+| convention | n=800 | n=1500 |
+|---|---|---|
+| **realized** info (K&M; = empirical) | −0.336 | −0.456 |
+| **expected** Fisher info | **+0.29** | **+0.13** |
+
+So **(A)+(C) swings ~0.6 with the information convention**, and the analytic **−0.22 matches NEITHER
+column** → **OUTCOME (b): a residual is revealed.** The likely resolution: my analytic −0.22 is the
+*expected/population-information* value, while the manuscript's RIV and the empirical −0.46 use the
+*realized/selected (K&M-standard)* observed information, which carries an extra **O(1) MAR term ≈ −0.6**
+(the selected-vs-population second moments in the realized Hessian; zero under MCAR). i.e. **−0.46 is
+plausibly the correct (A)+(C) under the K&M convention**, NOT a finite-n artifact — which **contradicts
+the committed reframe** (`446d1a4`, which called −0.46 a "finite-$n$ (realized-information) offset" and
+−0.22 "the leading order").
+
+**Net / disposition (UPDATED).** The honest reframe's specifics are now **in question** — the −0.22
+is the wrong information convention for the manuscript's K&M RIV. **Next step (todo):** recompute the
+analytic (A)+(C) with the **realized/selected** observed information consistently (pinning the θ₀-vs-θ̂
+piece) and confirm it reproduces ≈ −0.46; if it does, correct `@sec-termA` to "−0.46 = realized-info
+(A)+(C); −0.22 = expected-info contrast." **Do NOT trust the committed −0.22-leading-order wording
+until this is settled.** (Caveat: asymptotes are 2-point extrapolations; the gap's slight shrink
+−0.63→−0.58 leaves the realized-info (A)+(C) limit uncertain — possibly more negative than −0.46.)
 
 ---
 
