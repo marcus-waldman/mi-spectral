@@ -976,9 +976,16 @@ $\operatorname{tr}(\mathrm{RIV})$ once the $(A)+(C)$ residual is accounted for (
 @eq-combine).
 :::
 
-**A5.** Under congenial proper imputation the imputation parameter satisfies
-$\tilde\phi=\hat\theta_{\text{obs}}+\Delta\tilde\phi$ with $\operatorname{Cov}(\Delta\tilde\phi,\hat\theta_{\text{obs}})=0$ [R4, R5],
-so $\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ [L1].
+**A5.** The cross-term needs the imputer's draws centered at $\hat\theta_{\text{obs}}$ with the
+observed-data covariance. Under congeniality [R4] the imputer's posterior is the Bayesian posterior
+for $\theta\mid Y_{\text{obs}}$, which by Bernstein–von Mises under regularity [R1;
+@vaartAsymptoticStatistics1998a, §10.2] is asymptotically $N(\hat\theta_{\text{obs}},I_{\text{obs}}^{-1})$.
+This supplies the **posterior alignment** $\mathbb{E}[\tilde\phi\mid Y_{\text{obs}}]=\hat\theta_{\text{obs}}+o_P(n^{-1/2})$
+and, writing $\tilde\phi=\hat\theta_{\text{obs}}+\Delta\tilde\phi$, the posterior-draw orthogonality
+$\operatorname{Cov}(\Delta\tilde\phi,\hat\theta_{\text{obs}})=0$, so
+$\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$
+[L1]. Properness [R5] alone does not fix this centering — it is the congeniality/BvM alignment that
+does; likewise the matching $T_\infty=I_{\text{obs}}^{-1}$ (L4) rests on self-efficiency [R6], not R5.
 Hence, carrying the design-imbalance term of A4,
 $$ \mathbb{E}[A] = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\,I_{\text{obs}}^{-1}\big) + [(A)+(C)] + O(n^{-1}) = \operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] + O(n^{-1})\ \text{[D7, D8]}, $$ {#eq-termA}
 with $(A)+(C)=0$ under MCAR (so $\mathbb{E}[A]=\operatorname{tr}(\mathrm{RIV})$) and the nonzero
