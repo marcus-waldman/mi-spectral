@@ -43,7 +43,7 @@ load-bearing point; escalation trigger NOT hit.** Blind/off-lineage, both modes 
   the mean "can look too negative") and confirmed MCAR `→0` is consistent.
 - **(Bonus, spontaneous.)** Mode B *independently proposed the paired Taylor-control estimator*
   `D_r = X_r − Q_{2,r}` with `E[D_r]=O(n⁻¹)`, `sd(D_r)=O(n⁻¹/²)`, "the decisive estimator" — the same
-  design as `verification/scratch-higherorder-paired-diag.R`. Its prediction: `D̂_n → 0` at `O(n⁻¹)`
+  design as `verification/term-ac-higherorder-paired.R`. Its prediction: `D̂_n → 0` at `O(n⁻¹)`
   confirms the second-order claim; if it stabilizes away from 0, that signals an implementation/modeling
   mismatch (NOT a third-order effect). This is the running empirical capstone.
 

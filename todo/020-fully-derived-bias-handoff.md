@@ -30,13 +30,13 @@ no leak terms). Launched gpt-5.5 `--effort xhigh --timeout 86400` backgrounded.
 is the asymptote, empirical departure is heavy-tailed MC noise; escalation NOT hit (Mode A explicitly
 rejected the `O(n⁻¹/²)` off-ramp; Mode B independently proposed the paired Taylor-control estimator).**
 
-**EMPIRICAL CAPSTONE — control-variate pin (`scratch-coupling-surrogate-cv.R`, the decisive test):**
+**EMPIRICAL CAPSTONE — control-variate pin (`term-ac-controlvariate-pin.R`, the decisive test):**
 pairing each replicate's `A_rb` against its decoupled 2nd-order Taylor (population coeffs) cancels the
 `√n` noise; decoupled sanity ✓ (−0.222/−0.220/−0.220); the residual coupling = `+0.157/+0.074/+0.045`
 at n=800/1500/3000 (`n·coupling ≈ 125/111/135` ⇒ **O(1/n), POSITIVE**), so `(A)+(C) = −0.22 + 124/n →
 −0.22`. An **O(1)** coupling (which would make the value `−0.46`) is **RULED OUT**. ⇒ **asymptote is
 −0.22**; the empirical `−0.34→−0.46` is a finite-n + right-tail-skew artifact (direct mean sits below
-the true value, per Mode B). The paired diagnostic (`scratch-higherorder-paired-diag.R`) independently
+the true value, per Mode B). The paired diagnostic (`term-ac-higherorder-paired.R`) independently
 gives 3rd-order remainder `O(1/n)` (n·rbar ≈ 75). **Net: −0.22 confirmed three ways (CV + cross-check +
 paired-sim); my mid-session "reversal" toward −0.46 was an over-reaction to a noisy `mean(taylor2)` and
 was never committed.** The committed manuscript (−0.22-leaning, heavy-tailed-empirical) is correct.
@@ -54,8 +54,8 @@ models, which cancels the heavy tail ⇒ **precisely estimable even though the s
 FITTED `E[T]=+½tr(RIV)` (ratio 0.985), ORACLE `−½` (the tower misreading), C2 `Δ_n≈T_fitted`. The
 `@sec-qfun` callout neutralizes it; memory note marked resolved.
 
-**Artifacts:** `verification/scratch-rem-distribution-diag.R` (NEW, heavy-tail diagnostic);
-`scratch-rem-realized-expected-lavaan.R` (n3000/6000 pin); `term-ac-realized-info.R` (Δ_KM n→6000).
+**Artifacts:** `verification/term-ac-rem-distribution.R` (NEW, heavy-tail diagnostic);
+`term-ac-rivgap-lavaan.R` (n3000/6000 pin); `term-ac-realized-info.R` (Δ_KM n→6000).
 Manuscript render exit-0. **Supersedes todo/018's "realized −0.34→−0.46 settled" value claim** (the
 convention settlement + Δ_KM stand). See [[project-nonmonotone-coxsnell]] (REFINED), [[project_fitted_vs_oracle_sign]] (RESOLVED).
 
@@ -122,7 +122,7 @@ Re-run the phase-8 non-monotone `(A)+(C)_realized = E[A_rb] − tr(RIV^O)` at hi
 (n=3000, 6000) to nail the asymptote with a tight CI. The RB statistic `A_rb` is low-variance; the
 remainder `rem` is high-variance (MCSE ≈ 0.65·√(n/R)), so use **large R** and the **paired** structure
 where possible. Use **few cores** (segfault gotcha). Files: `_modules/term-a-mar-correction.R` (the
-committed empirical), `scratch-rem-realized-expected-lavaan.R` (the paired diagnostic).
+committed empirical), `term-ac-rivgap-lavaan.R` (the paired diagnostic).
 
 **Route 2 — derive the higher-order term (the real "fully derived").**
 The `−0.22` assembly is the second-order Taylor of `E[A_rb] − tr(RIV)` at θ₀; it undershoots the
@@ -191,7 +191,7 @@ or list the precise residual wording gap. Likely a 20-minute verification, not a
 - Δ_KM (WAY-1): `verification/term-ac-realized-info.R` (+ `cache/term-ac-realized-info-log.txt`).
 - `−0.22` assembly: `verification/term-a-mar-closedform.R` (mono), `verify_term_ac_nonmonotone_4v.R` (non-mono + FD).
 - Empirical realized (authoritative): `_modules/term-a-mar-correction.R` (R=40k, `−0.34/−0.46`).
-- Paired gap / rem: `verification/scratch-rem-realized-expected-lavaan.R` (+ n3000 log).
+- Paired gap / rem: `verification/term-ac-rivgap-lavaan.R` (+ n3000 log).
 - `b_Σ` general-`p`: `verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py`.
 - Manuscript: `@sec-termA` (the upgraded prose), Appendix C (`#sec-appendix-c`, observed info closed
   form), `@sec-qfun` fitted-vs-oracle callout.

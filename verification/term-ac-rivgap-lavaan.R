@@ -1,4 +1,4 @@
-# scratch-rem-realized-expected-lavaan.R  [todo/016 follow-up]
+# term-ac-rivgap-lavaan.R  [todo/016 follow-up]
 #
 # Clean lavaan-FIML re-measurement of the phase-8 non-monotone (A)+(C) remainder, decomposing
 # it into the analytic leading-order (EXPECTED information) + a realized-information term.

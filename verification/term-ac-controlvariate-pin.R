@@ -1,4 +1,4 @@
-# scratch-coupling-surrogate-cv.R  [todo/020 -- DECISIVE pin of (A)+(C); analytic-surrogate control variate]
+# term-ac-controlvariate-pin.R  [todo/020 -- DECISIVE pin of (A)+(C); analytic-surrogate control variate]
 #
 # Settles: is the full (A)+(C) = E[A_rb - tr(RIV)] equal to the DECOUPLED analytic value (~ -0.22),
 # or does a genuine O(1) coefficient-fit COUPLING (dropped by the decoupled assembly, because A_rb,i is
@@ -16,7 +16,7 @@
 #          coupling ~ 0 => -0.22 is correct (reframing OK).
 # SANITY: decoupled_analytic must be ~ -0.22; mean(ac_full) [noisy] must ~ (A)+(C)_full within MCSE.
 #
-# Usage: Rscript verification/scratch-coupling-surrogate-cv.R [R_main] [R_mom] [cores] [Ns]
+# Usage: Rscript verification/term-ac-controlvariate-pin.R [R_main] [R_mom] [cores] [Ns]
 
 source("verification/00-setup.R")
 suppressPackageStartupMessages({ library(parallel); library(jsonlite) })

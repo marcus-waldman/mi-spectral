@@ -68,7 +68,7 @@ caveat* that `Δ` cancels when the RIV uses the selected (Louis) missing informa
   @1500). GPT-5.5 Mode B §4 dismissed this as O(1/n) — **incorrectly**; under MAR selection it
   looks O(1).
 
-**Lavaan re-measurement result (2026-06-02, `verification/scratch-rem-realized-expected-lavaan.R`,
+**Lavaan re-measurement result (2026-06-02, `verification/term-ac-rivgap-lavaan.R`,
 `cache/rem-realized-expected-lavaan.rds`).** Redid the realized-vs-expected check with **lavaan
 FIML** (em_mvn was unreliable here). Lavaan reproduces the committed `rem_real` sign within MCSE
 (pipeline validated). The paired info-gap is pinned (±0.006): `tr_exp − tr_real = −0.63 (n=800),

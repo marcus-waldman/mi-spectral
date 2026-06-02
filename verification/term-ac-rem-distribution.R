@@ -1,4 +1,4 @@
-# scratch-rem-distribution-diag.R  [todo/020 -- theory-vs-empirics tension]
+# term-ac-rem-distribution.R  [todo/020 -- theory-vs-empirics tension]
 #
 # Question: the SECOND-ORDER theory robustly gives (A)+(C)_realized ~ -0.22 (assembly + FD,
 # eval-point fully accounted via the total-derivative form grad^2 A_RB = 2 I_mis|obs + H_phi),
@@ -12,9 +12,9 @@
 #   mean / median / 10%-trimmed mean / sd / IQR / min / max,
 #   the correlation of rem_real with tr_real (does extreme tr_real drive extreme rem?),
 #   and the mean after dropping the most extreme tr_real draws (winsor/trim on tr_real).
-# Same seeds + primitives as _modules/term-a-mar-correction.R / scratch-rem-realized-expected-lavaan.R.
+# Same seeds + primitives as _modules/term-a-mar-correction.R / term-ac-rivgap-lavaan.R.
 #
-# Usage: Rscript verification/scratch-rem-distribution-diag.R [R] [cores] [Ns]
+# Usage: Rscript verification/term-ac-rem-distribution.R [R] [cores] [Ns]
 
 source("verification/00-setup.R")
 suppressPackageStartupMessages({ library(parallel) })

@@ -1,4 +1,4 @@
-# scratch-higherorder-paired-diag.R  [todo/020 -- decisive better simulation]
+# term-ac-higherorder-paired.R  [todo/020 -- decisive better simulation]
 #
 # QUESTION. Is the realized (A)+(C) = E[A_rb - tr(RIV)] captured by its second-order
 # (delta-method) value (~ -0.22), with the leading correction O(1/n) -- so the raw MC mean's
@@ -23,7 +23,7 @@
 #   rbar_n -> const != 0                       => genuine O(1) higher-order term; value ~ -0.22 + const.
 # Built-in check: mean(taylor2 - tr_obs) should land near the known 2nd-order -0.22 (validates FD).
 #
-# Usage: Rscript verification/scratch-higherorder-paired-diag.R [R] [cores] [Ns] [h]
+# Usage: Rscript verification/term-ac-higherorder-paired.R [R] [cores] [Ns] [h]
 
 source("verification/00-setup.R")
 suppressPackageStartupMessages({ library(parallel) })

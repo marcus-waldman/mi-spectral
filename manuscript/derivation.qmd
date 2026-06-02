@@ -676,16 +676,16 @@ has standard deviation $\propto\sqrt n$ and a long right tail (from over-fitted 
 Monte-Carlo estimate is imprecise and **untrended**: $-0.34,-0.46,-0.29,+0.17$ across
 $n=800,1500,3000,6000$ (standard errors $0.09,0.13,0.25,0.35$; inverse-variance pooled
 $\approx-0.35\pm0.07$), broadly consistent with the $-0.22$ leading order and showing no real growth
-with $n$ (`verification/scratch-rem-realized-expected-lavaan.R`,
-`verification/scratch-rem-distribution-diag.R`). A variance-reduced estimator settles the asymptote:
+with $n$ (`verification/term-ac-rivgap-lavaan.R`,
+`verification/term-ac-rem-distribution.R`). A variance-reduced estimator settles the asymptote:
 pairing each replicate's $A_{\mathrm{rb}}$ against its *decoupled* second-order Taylor (population
 coefficients) cancels the $\sqrt n$ noise and isolates the higher-order remainder, which is a
 **positive $O(1/n)$** (coefficient $\approx124/n$; standard error $<0.013$; the third-order piece is
 separately $O(1/n)$ by the same pairing). Hence the direct estimate equals the $-0.22$ leading order
 plus an $O(1/n)$ finite-sample correction, **confirming $-0.22$ as the $n\to\infty$ value** and a blind
 off-lineage cross-derivation of the same $O(1/n)$ remainder order; the more-negative direct sample
-means are a finite-$n$ and right-tail-skew artifact (`verification/scratch-coupling-surrogate-cv.R`,
-`verification/scratch-higherorder-paired-diag.R`). What is firm: $(A)+(C)$ is a nonzero $O(1)$ under MAR,
+means are a finite-$n$ and right-tail-skew artifact (`verification/term-ac-controlvariate-pin.R`,
+`verification/term-ac-higherorder-paired.R`). What is firm: $(A)+(C)$ is a nonzero $O(1)$ under MAR,
 **vanishes under MCAR** (controls $\approx0$ throughout), and — because it enters model *comparison*
 and likelihood-ratio numerators only through a difference across candidates, a paired contrast that
 cancels the heavy tail — is far more precisely estimable as a differential than as a standalone value.
@@ -1006,7 +1006,7 @@ the selected moments (no fitting), it is $n$-stable at $\approx-0.55$ (non-monot
 (monotone), with the MCAR control $\to0$ (`verification/term-ac-realized-info.R`); a paired lavaan-FIML
 measurement at the fit returns the same gap, approaching $\approx-0.55$ as $n$ grows
 ($-0.627,-0.582,-0.569$ at $n=800,1500,3000$; the residual at $-0.569$ being the
-$\hat\theta$-vs-$\theta_0$ offset; `verification/scratch-rem-realized-expected-lavaan.R`).
+$\hat\theta$-vs-$\theta_0$ offset; `verification/term-ac-rivgap-lavaan.R`).
 
 Switching from the (biased) naive to the (principled) observed information therefore shifts $(A)+(C)$
 by exactly $\Delta_{\mathrm{KM}}$,

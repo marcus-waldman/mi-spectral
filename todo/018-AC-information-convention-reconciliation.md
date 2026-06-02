@@ -124,7 +124,7 @@ agreement; a disagreement is the signal to investigate (as todo/016's B_cov catc
 packet is blind + key-stripped before sending (the `extract_modes` dry-run check in todo/016).
 
 **Step 2 — confirm vs empirical (lavaan, paired, low-variance).** Reuse
-`scratch-rem-realized-expected-lavaan.R` (the working diagnostic). Confirm the analytic realized-info
+`term-ac-rivgap-lavaan.R` (the working diagnostic). Confirm the analytic realized-info
 `(A)+(C)` matches the empirical −0.34→−0.46 across n, and resolve Q3 (asymptote vs growing) by adding
 n=3000 (gap is precise; anchor rem_real to committed). **Run with FEW cores** (see §5).
 
@@ -147,7 +147,7 @@ derived (this *delivers* the original −0.46 target). Update the monotone passa
 
 - **`em_mvn` is unreliable for the non-monotone design** (opposite-sign `rem` vs lavaan). Use **lavaan
   FIML** (or da.norm) for fits. `scratch-realized-vs-expected.R` uses em_mvn — treat as untrustworthy;
-  `scratch-rem-realized-expected-lavaan.R` is the good one.
+  `term-ac-rivgap-lavaan.R` is the good one.
 - **Heavy parallel R segfaults under contention** (a 20-core job crashed while todo/017 ran
   concurrently). Use **few cores** and prefer **analytic/deterministic** computation (Step 1) over big
   parallel MC.
@@ -165,7 +165,7 @@ derived (this *delivers* the original −0.46 target). Update the monotone passa
 - `b_Σ`: `verification/cas-wolfram/verify_term_ac_nonmonotone_genp.py` (+ genp4.json cache).
 - Empirical (authoritative): `_modules/term-a-mar-correction.R` (committed −0.34/−0.46);
   caches `cache/run_all-*/phase8-terma-mar/summary.csv`.
-- Realized-vs-expected diagnostic: `verification/scratch-rem-realized-expected-lavaan.R`
+- Realized-vs-expected diagnostic: `verification/term-ac-rivgap-lavaan.R`
   (+ `cache/rem-realized-expected-lavaan.rds`); `scratch-bcov-check.R` (B_cov).
 - Info objects: `observed_info_obs_mvn` (realized Hessian, selected M2) vs `fisher_info_obs_mvn`
   (expected, Σ_OO) in `verification/00-setup.R`.
