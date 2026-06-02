@@ -95,6 +95,8 @@ def main():
     model = "gpt-5.5"
     effort = "high"
     key_file = None
+    pkg = PKG
+    tag_suffix = ""
     argv = sys.argv[1:]
     i = 0
     while i < len(argv):
@@ -103,6 +105,12 @@ def main():
             i += 2
         elif argv[i] == "--effort":
             effort = argv[i + 1]
+            i += 2
+        elif argv[i] == "--package":
+            pkg = argv[i + 1]
+            i += 2
+        elif argv[i] == "--tag":
+            tag_suffix = argv[i + 1]   # disambiguate output filenames across packages
             i += 2
         else:
             model = argv[i]
@@ -113,17 +121,17 @@ def main():
         print("No API key. Set OPENAI_API_KEY in the environment or pass --key-file PATH.")
         print("(Do NOT pass the key on the command line.)")
         return 2
-    if not os.path.exists(PKG):
-        print(f"Package not found: {PKG}")
+    if not os.path.exists(pkg):
+        print(f"Package not found: {pkg}")
         return 2
 
     try:
-        mode_a, mode_b = extract_modes(PKG)
+        mode_a, mode_b = extract_modes(pkg)
     except Exception as e:
         print(f"Package parse error: {e}")
         return 2
 
-    print(f"Model: {model}   reasoning_effort: {effort}")
+    print(f"Model: {model}   reasoning_effort: {effort}   package: {pkg}")
     print(f"Mode A prompt: {len(mode_a)} chars   Mode B prompt: {len(mode_b)} chars")
     print("Grading key excluded from both prompts (hard-truncated at the banner).\n")
 
@@ -138,7 +146,7 @@ def main():
         except Exception as e:
             print(f"API error ({type(e).__name__}): {e}")
             return 3
-        outpath = f"verification/cache/layer3-{model}-{tag}.md"
+        outpath = f"verification/cache/layer3-{model}{tag_suffix}-{tag}.md"
         with open(outpath, "w", encoding="utf-8") as fh:
             fh.write(f"# Layer-3 {tag} response — model={model}\n\n{results[tag]}\n")
         print(f"  saved -> {outpath}  ({len(results[tag])} chars)\n")
