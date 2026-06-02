@@ -17,6 +17,17 @@ with sd ∝ √n (median ≈ −1.2 vs mean ≈ −0.3, range ±90). The realize
 re-derived cleanly (total-derivative `∇²A_RB = 2 I_mis|obs + H_φ`; eval-point accounted; higher orders
 O(1/n)). So **route (c) closed-form is moot** — no precise target to derive toward.
 
+**Cross-model check (added on reflection — standing directive).** The "higher orders are O(1/n) ⇒
+−0.22 is the asymptote, −0.46 is heavy-tailed noise" conclusion is a *fresh, load-bearing analytic
+claim* (it contradicts the prior "open higher-order theory" stance), so per the cross-model protocol it
+needs an off-lineage check — which I initially skipped (wrongly). Blind packet built (`todo/021`,
+distinct from todo/019's convention-gap check): Mode A derives the order of the second-order Taylor
+remainder `R_n` of the imputation-bias functional; Mode B red-teams "R_n=O(n⁻¹), so the empirical
+departure is finite-sample noise" against the sign-bouncing MC mean. Blind-check PASS (key hard-stripped,
+no leak terms). Launched gpt-5.5 `--effort xhigh --timeout 86400` backgrounded. **PENDING** — grade
+against the todo/021 key (bar: `R_n=O(n⁻¹)`, second-order value is the asymptote; ESCALATE if it finds a
+genuine `O(1)`/`O(n^{-1/2})` higher-order term → −0.46 partly real, revisit the manuscript reframing).
+
 **What stays robust (closed-form / precise):** Δ_KM (realized−naive RIV gap) = −0.55 flat
 (−0.5685/−0.5593 at n=3000/6000, se ~8e-4; analytic vs MC realized info to 1e-10; MCAR→0; monotone
 −0.44). Convention settled (K&M observed info). `(A)+(C)` is O(1) under MAR, →0 under MCAR.
