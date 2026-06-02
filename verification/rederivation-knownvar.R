@@ -130,6 +130,11 @@ run_one <- function(r, N, mc_draws = 0) {
   I_com_mu <- N * Sig0inv
   trRIV = sum(diag(solve(fit$I_obs_mu, I_com_mu))) - p
 
+  # Boundary anchor (todo/017 C2): with Sigma known/fixed, C_n depends only on
+  # the (fixed) Sigma, so Delta_n = C_n(theta_obs) - C_n(theta0) = 0 identically.
+  Delta_n = cond_entropy_Cn(theta_obs, mar$R) -
+    cond_entropy_Cn(list(mu = mu0, Sigma = Sigma0), mar$R)
+
   out <- list(
     A_fiml   = barQ_fiml - ell_com_at_obs,
     A_proper = barQ_proper - ell_com_at_obs,
@@ -137,6 +142,7 @@ run_one <- function(r, N, mc_draws = 0) {
     T_fiml   = barQ_fiml - ell_com_at_com,
     T_proper = barQ_proper - ell_com_at_com,
     Cn       = Cn,
+    Delta_n  = Delta_n,
     trRIV    = trRIV
   )
 
@@ -180,6 +186,7 @@ B   <- grab("B")
 T_f <- grab("T_fiml")
 T_p <- grab("T_proper")
 Cn  <- grab("Cn")
+dn  <- grab("Delta_n")
 tr  <- grab("trRIV")
 mcse <- function(x) { return(sd(x) / sqrt(length(x))) }
 mtr = mean(tr)
@@ -203,6 +210,9 @@ cat(sprintf("E[T_proper] = %+.4f (SE %.4f)   pred -1/2 trRIV = %+.4f   ratio T/(
 
 cat(sprintf("E[C_n] (FIML-proper gap) = %+.4f (SE %.4f)   pred +1/2 trRIV = %+.4f   ratio = %.3f\n",
             mean(Cn), mcse(Cn), 0.5 * mtr, mean(Cn) / (0.5 * mtr)))
+
+cat(sprintf("E[Delta_n] (entropy plug-in bias) = %+.2e (max|.| %.1e)   pred 0  [known-scale boundary anchor: C_n is Sigma-free, todo/017 C2]\n",
+            mean(dn), max(abs(dn))))
 
 cat("\n--- DISCRIMINATING CHECK vs +1/2 trRIV (the universality claim) ---\n")
 cat(sprintf("FIML   E[T]/(+1/2 trRIV) = %+.3f   proper E[T]/(+1/2 trRIV) = %+.3f   (universal headline would be ~ +1.0)\n",

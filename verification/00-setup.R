@@ -537,6 +537,47 @@ tr_riv_analytic <- function(theta_obs, Y, R) {
 
 
 # -----------------------------------------------------------------------------
+# Conditional-entropy object C_n(theta)  (todo/017 C2 reconciliation)
+#
+# C_n(theta) = sum_i E_theta[ log p(Y_mis,i | Y_obs,i, theta) | Y_obs,i ]
+#            = -1/2 sum_i [ |M_i| log(2 pi e) + log|Sigma_{M|O,i}(theta)| ],
+# the (negative) conditional entropy of the missing block given the observed
+# block. Depends on theta only through the conditional (Schur) covariance
+# Sigma_{M|O,i}, and only through the pattern R (not the realized Y). The
+# conditional-entropy plug-in bias is Delta_n = E[ C_n(theta_obs) - C_n(theta0) ].
+#
+# Claim (C2, confirmed analytically + two CAS + MC): Delta_n = 1/2 tr(RIV) + (A)+(C)
+# = E[T_fitted], via the entropy-Hessian split grad^2 C_n = H_phi + I_{mis|obs}
+# (verification/cas-wolfram/verify_term_ac{,_sympy}.py). For a KNOWN scale C_n is
+# theta-free (Sigma fixed) so Delta_n = 0 -- the boundary anchor.
+# -----------------------------------------------------------------------------
+
+cond_entropy_Cn <- function(theta, R) {
+  Sigma <- theta$Sigma
+  log2pie = log(2 * pi) + 1
+  patterns <- apply(R, 1, function(row) { return(paste(row, collapse = "")) })
+  total = 0
+  for (pat in unique(patterns)) {
+    rows <- which(patterns == pat)
+    n_pat = length(rows)
+    Mi <- which(R[rows[1], ] == 1)
+    Oi <- which(R[rows[1], ] == 0)
+    if (length(Mi) == 0) { next }
+    if (length(Oi) == 0) {
+      cond_V <- Sigma[Mi, Mi, drop = FALSE]
+    } else {
+      Soo_inv <- solve(Sigma[Oi, Oi, drop = FALSE])
+      cond_V <- Sigma[Mi, Mi, drop = FALSE] -
+        Sigma[Mi, Oi, drop = FALSE] %*% Soo_inv %*% Sigma[Oi, Mi, drop = FALSE]
+    }
+    logdetV = as.numeric(determinant(cond_V, logarithm = TRUE)$modulus)
+    total = total + n_pat * (-0.5) * (length(Mi) * log2pie + logdetV)
+  }
+  return(total)
+}
+
+
+# -----------------------------------------------------------------------------
 # Analytic tr(RIV) for the sigma_{12} = 0 constrained MVN model
 #
 # Under the constraint, the free parameter vector is the 13-dim subset of the

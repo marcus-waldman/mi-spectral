@@ -83,6 +83,78 @@ Module[{b0, b1, s2, c0, c1, sf, x, m0, mphi, g, sub0, aC0, aC1, aS,
 """
 
 
+# ---------------------------------------------------------------------------
+# C2 reconciliation (todo/017): the conditional-entropy plug-in bias Delta_n
+# equals 1/2 tr(RIV) + (A)+(C), so E[T] = Delta_n -- the manuscript's
+# (A)/(B-main)/(C) split and the entropy story are one total, regrouped.
+#
+# One bivariate seed surface, draw at phi, evaluate at psi (X1 | X2 = x):
+#   F(phi,psi) = E_{X1 ~ N(m_phi,v_phi)}[ log N(X1; m_psi, v_psi) ]
+# in the FULL natural (mu1,mu2,s11,s12,s22) parametrization (m,v functions of
+# the joint params; covariance enters the conditional mean via beta=s12/s22).
+# Three slices: f0(phi)=F(phi,th0) [cross-entropy], g0(psi)=F(th0,psi)
+# [expected loglik], C_n(th)=F(th,th) [neg. conditional entropy].
+#
+# DERIVED by Wolfram here, symbolic in x:
+#   (I1) grad C_n(th0) = alpha           (entropy grad = cross-entropy grad; alpha_mu=0)
+#   (I2) hess C_n(th0) = H_phi + I_F      (entropy-Hessian split -- the key new identity)
+#        via H_phi=d2_phiphi F, I_F=-d2_psipsi F, Bartlett d2_phipsi F = +I_F
+#   (Isserlis) the mu-block of H_phi + I_F is zero  -> H_phi|mu = -I_F|mu
+# Assembling Delta_n = alpha.E[delta] + 1/2 tr((H_phi+I_F) Iobs^-1) gives
+#   Delta_n = (A) + (C) + 1/2 tr(RIV)        [asserted with generic Iobs^-1, E[delta]]
+WL_DELTAN = r"""
+Module[{m1,m2,s11,s12,s22, A1,A2,P11,P12,P22, D1,D2,Q11,Q12,Q22, x,
+        cm, cv, mphi,vphi,mpsi,vpsi, F, phi0,psi0,sub0, phiv,psiv,thv,
+        alpha,Hphi,IF,MIX, Cn,Csub,gradCn,hessCn,
+        chkI1,chkAmu,chkBart,chkSplit,chkIss, V,g,Deltan,tA,tC,hRIV,chkScalar},
+  cm[u1_,u2_,a_,b_,c_] := u1 + (b/c)(x - u2);   (* conditional mean of X1|X2=x *)
+  cv[a_,b_,c_] := a - b^2/c;                      (* conditional variance *)
+  mphi = cm[A1,A2,P11,P12,P22]; vphi = cv[P11,P12,P22];   (* draw slot phi *)
+  mpsi = cm[D1,D2,Q11,Q12,Q22]; vpsi = cv[Q11,Q12,Q22];   (* eval slot psi *)
+  F = -(1/2) Log[2 Pi vpsi] - (1/(2 vpsi))((mphi - mpsi)^2 + vphi);
+  phi0 = {A1->m1,A2->m2,P11->s11,P12->s12,P22->s22};
+  psi0 = {D1->m1,D2->m2,Q11->s11,Q12->s12,Q22->s22};
+  sub0 = Join[phi0, psi0];
+  phiv = {A1,A2,P11,P12,P22}; psiv = {D1,D2,Q11,Q12,Q22}; thv = {m1,m2,s11,s12,s22};
+
+  alpha = Table[D[F, phiv[[r]]] /. sub0, {r,5}];                       (* cross-entropy gradient *)
+  Hphi  = Table[D[F, phiv[[r]], phiv[[s]]] /. sub0, {r,5},{s,5}];      (* cross-entropy curvature *)
+  IF    = Table[-D[F, psiv[[r]], psiv[[s]]] /. sub0, {r,5},{s,5}];     (* conditional Fisher info *)
+  MIX   = Table[D[F, phiv[[r]], psiv[[s]]] /. sub0, {r,5},{s,5}];      (* mixed (Bartlett) *)
+
+  Csub = {A1->m1,A2->m2,P11->s11,P12->s12,P22->s22, D1->m1,D2->m2,Q11->s11,Q12->s12,Q22->s22};
+  Cn = F /. Csub;                                  (* C_n(theta) = F(theta,theta) *)
+  gradCn = Table[D[Cn, thv[[r]]], {r,5}];
+  hessCn = Table[D[Cn, thv[[r]], thv[[s]]], {r,5},{s,5}];
+
+  chkI1    = Simplify[gradCn - alpha];                          (* (I1) grad C_n = alpha *)
+  chkAmu   = Simplify[{alpha[[1]], alpha[[2]]}];                (* alpha_mu = 0 *)
+  chkBart  = Simplify[MIX - IF];                                (* mixed = +I_F (Bartlett) *)
+  chkSplit = Simplify[hessCn - (Hphi + IF)];                    (* (I2) hess C_n = H_phi + I_F *)
+  chkIss   = Simplify[Hphi[[1;;2,1;;2]] + IF[[1;;2,1;;2]]];     (* Isserlis: mu-block cancels *)
+
+  (* scalar assembly with generic Iobs^-1 (V symmetric) and MLE bias E[delta]=g *)
+  V = Table[Symbol["v" <> ToString[Min[i,j]] <> ToString[Max[i,j]]], {i,5},{j,5}];
+  g = Table[Symbol["g" <> ToString[i]], {i,5}];
+  tA   = alpha . g;                                             (* (A) = alpha^T E[delta] *)
+  tC   = (1/2) Tr[Hphi . V];                                    (* (C) = 1/2 tr(H_phi Iobs^-1) *)
+  hRIV = (1/2) Tr[IF . V];                                      (* 1/2 tr(RIV) = 1/2 tr(I_F Iobs^-1) *)
+  Deltan = alpha . g + (1/2) Tr[(Hphi + IF) . V];              (* Delta_n (Taylor) *)
+  chkScalar = Simplify[Deltan - (hRIV + tA + tC)];             (* Delta_n - [1/2 tr(RIV)+(A)+(C)] *)
+
+  {
+    Total[Abs[Flatten[chkI1]]],     (* 0  : (I1) gradient identity *)
+    Total[Abs[Flatten[chkAmu]]],    (* 0  : alpha is covariance-only *)
+    Total[Abs[Flatten[chkBart]]],   (* 0  : Bartlett, mixed block = +I_F *)
+    Total[Abs[Flatten[chkSplit]]],  (* 0  : (I2) entropy-Hessian split *)
+    Total[Abs[Flatten[chkIss]]],    (* 0  : Isserlis mu-block cancellation *)
+    Simplify[chkScalar],            (* 0  : Delta_n = 1/2 tr(RIV)+(A)+(C) *)
+    Simplify[alpha[[5]]]            (* != 0 sanity: sigma22 entropy-gradient component *)
+  }
+]
+"""
+
+
 def discover_kernel():
     r"""Locate the Wolfram kernel binary (see verify_traces.py for the why)."""
     env = os.environ.get("WOLFRAM_KERNEL")
@@ -138,6 +210,7 @@ def main():
     try:
         print(f"Wolfram kernel: {session.evaluate(wlexpr('$Version'))}\n")
         aC0, aC1, aS, hmean, termA, ac, mcar = session.evaluate(wlexpr(WL))
+        dI1, dAmu, dBart, dSplit, dIss, dScalar, aS22 = session.evaluate(wlexpr(WL_DELTAN))
     finally:
         session.terminate()
 
@@ -156,7 +229,22 @@ def main():
         ok = ok and passed
         print(f"[{'PASS' if passed else 'FAIL'}] {label}   (Wolfram -> {val})")
 
-    print("\nWolfram CAS:", "(A)+(C) BIVARIATE CLOSED FORM RE-DERIVED" if ok
+    print("\n--- C2 reconciliation: Delta_n = 1/2 tr(RIV) + (A)+(C)  (todo/017) ---")
+    deltan_checks = [
+        ("(I1)  grad C_n(th0) = alpha  (entropy grad = cross-entropy grad) == 0", "zero", dI1),
+        ("      alpha is covariance-only (alpha_mu = 0)                    == 0", "zero", dAmu),
+        ("(Bart) mixed d2_phipsi F = +I_F                                  == 0", "zero", dBart),
+        ("(I2)  hess C_n(th0) = H_phi + I_F  [entropy-Hessian split]       == 0", "zero", dSplit),
+        ("(Iss) H_phi + I_F mu-block = 0  (known-scale Isserlis identity)  == 0", "zero", dIss),
+        ("[scalar] Delta_n - [1/2 tr(RIV) + (A) + (C)]                     == 0", "zero", dScalar),
+    ]
+    for label, kind, val in deltan_checks:
+        passed = (val == 0)
+        ok = ok and passed
+        print(f"[{'PASS' if passed else 'FAIL'}] {label}   (Wolfram -> {val})")
+    print(f"       sanity: entropy gradient alpha_sigma22 (nonzero) -> {aS22}")
+
+    print("\nWolfram CAS:", "(A)+(C) RE-DERIVED + Delta_n = 1/2 tr(RIV)+(A)+(C) CONFIRMED" if ok
           else "MISMATCH -- investigate")
     return 0 if ok else 1
 

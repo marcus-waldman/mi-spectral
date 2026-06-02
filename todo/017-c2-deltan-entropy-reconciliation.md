@@ -1,8 +1,38 @@
 # Todo 017 — C2: reconcile the `Δ_n` conditional-entropy framing with the `(A)+(C)` decomposition
 
-**Status:** Open (2026-06-01). Plan; execute in a fresh session. Detailed continuation of conjecture
-**C2** in `todo/015-chat-conjectures-reconciliation.md` (C1 + C3 + C4 are closed; see that file's
-Resolution log). **Optional** — the `+½tr(RIV)` headline does not depend on this; it is a unification
+**Status: CLOSED — CONFIRMED (2026-06-02).** The identity holds; `+½tr(RIV)` kept as headline (author
+intent); a one-paragraph reconciliation remark added to `manuscript/derivation.qmd` (collapsed callout
+after `@sec-combine`). Continuation of conjecture **C2** in `todo/015` (C1+C3+C4 closed).
+
+## Resolution log (2026-06-02)
+
+**`E[T] = Δ_n` and `Δ_n = ½tr(RIV) + (A)+(C)` — CONFIRMED**, two CAS (exact, symbolic) + MC.
+
+- **The proof** is the entropy-Hessian split `∇²C_n(θ₀) = H_φ + I_mis|obs` (chain rule on
+  `C_n(θ)=F(θ,θ)`, `F(φ,ψ)=E_{Y_mis~φ}[log p(Y_mis|Y_obs,ψ)]`: sampling-slot Hessian `H_φ`,
+  eval-slot `−I_mis|obs`, mixed `+I_mis|obs` by Bartlett) together with `∇C_n(θ₀)=α`. Taylor-expanding
+  `Δ_n` sends 1st order → `(A)=αᵀE[δ]`, 2nd order → `½tr(H_φ I_obs⁻¹)+½tr(RIV) = (C)+½tr(RIV)`. So
+  `Δ_n = ½tr(RIV)+(A)+(C)`, and since `E[T]=½tr(RIV)+(A)+(C)` (@eq-combine), `E[T]=Δ_n`. Full write-up:
+  `verification/cache/c2-deltan-derivation-2026-06-02.md`.
+- **CAS.** `verify_term_ac.py` (Wolfram) + `verify_term_ac_sympy.py` (SymPy): (I1) `∇C_n=α`, α
+  covariance-only; (I2) the split; Bartlett; Isserlis mu-block; scalar `Δ_n−[½tr(RIV)+(A)+(C)]=0` —
+  all `→0`, symbolic in `x`, full 5-param natural `(μ,Σ)`.
+- **MC.** `rederivation-L0-fitted-vs-oracle.R` (R=4000): paired `E[T_fitted−Δ_n] = +0.013 (SE .126)`
+  at N=200, `+0.271 (SE .255)` at N=800; `E[Δ_n]/(½trRIV) = 0.980/0.989`. `E[Δ_n]` is cleaner than
+  `E[T_fitted]` and pins `½tr(RIV)+(A)+(C)`.
+- **Boundary anchor.** `rederivation-knownvar.R`: `E[Δ_n]=0` exactly (C_n is Σ-free for known scale).
+  The known-scale Isserlis identity `H_φφ=−I_mis|obs` is now a *corollary* of (I2)'s μ-block, unifying
+  the Scope callout (C1) and the `(A)+(C)` story.
+- **C2b (convention-free) — settled.** The full normalized unknown-Σ MVN density has no θ-free,
+  `Y_mis`-dependent additive constant (every `Y`-quadratic carries `Σ⁻¹`), so `T` is well-defined and
+  convention-free. The known-variance kernel `−½σ⁻²Σy²` is the contrast (θ-free + `Y`-dependent), whose
+  inclusion shifts `E[A]` by the entropy term — the same `Δ_n=0` boundary.
+
+Original plan retained below for provenance.
+
+---
+
+**Optional** — the `+½tr(RIV)` headline does not depend on this; it is a unification
 that would pre-empt a referee asking whether the manuscript's `+tr/−½tr` split is the same object as
 the entropy-bias story.
 

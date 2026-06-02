@@ -1030,6 +1030,38 @@ $\approx-0.22$ at leading order). $\qquad\blacksquare$
 adding the $(A)+(C)$ term).
 :::
 
+::: {.callout-note collapse="true"}
+## Remark: the net bias is the conditional-entropy plug-in bias
+
+The same total has a second, more compact reading that ties the pieces together. Let
+$C_n(\theta)=\sum_i\mathbb{E}_\theta[\log P(Y_{\text{mis},i}\mid Y_{\text{obs},i},\theta)\mid Y_{\text{obs},i}]$
+be the (negative) conditional entropy of the missing block given the observed block; for the
+multivariate normal $C_n(\theta)=-\tfrac12\sum_i[\,|M_i|\log 2\pi e+\log|\Sigma_{M\mid O,i}(\theta)|\,]$,
+a function of $\Sigma$ alone. Evaluating this entropy at the estimate rather than the truth incurs the
+**plug-in bias** $\Delta_n=\mathbb{E}[C_n(\hat\theta_{\text{obs}})-C_n(\theta_0)]$, and to leading order
+$$ \mathbb{E}[T]=\Delta_n=+\tfrac12\operatorname{tr}(\mathrm{RIV})+[(A)+(C)]+O(n^{-1}), $$
+so the conditional-entropy story and the $(A)/(B\text{-main})/(C)$ split of @sec-termA are the *same*
+bias, regrouped. The bridge is a single identity for the entropy curvature at the truth,
+$$ \nabla^2 C_n(\theta_0)=\underbrace{H_{\phi\phi}}_{\text{cross-entropy curvature}}+\underbrace{I_{\text{mis}\mid\text{obs}}}_{\text{conditional information}}, $$
+read off by the chain rule from $C_n(\theta)=F(\theta,\theta)$, where
+$F(\phi,\psi)=\mathbb{E}_{Y_{\text{mis}}\sim\phi}[\log P(Y_{\text{mis}}\mid Y_{\text{obs}},\psi)]$ has
+sampling-slot Hessian $H_{\phi\phi}$, evaluation-slot Hessian $-I_{\text{mis}\mid\text{obs}}$, and mixed
+block $+I_{\text{mis}\mid\text{obs}}$ (Bartlett). Taylor-expanding $\Delta_n$ in
+$\hat\theta_{\text{obs}}-\theta_0$ then sends its first-order part to $(A)=\alpha^\top\mathbb{E}[\delta]$
+(since $\nabla C_n(\theta_0)=\alpha$) and its second-order part to
+$\tfrac12\operatorname{tr}(H_{\phi\phi}I_{\text{obs}}^{-1})+\tfrac12\operatorname{tr}(\mathrm{RIV})=(C)+\tfrac12\operatorname{tr}(\mathrm{RIV})$.
+This unifies the scope cases of @sec-thm: with an estimated covariance
+$\Delta_n=\tfrac12\operatorname{tr}(\mathrm{RIV})+[(A)+(C)]$, whereas for a known scale $C_n$ is
+parameter-free, $\Delta_n=0$, and the $\mu$-block of the very same split *is* the Isserlis identity
+$H_{\phi\phi}=-I_{\text{mis}\mid\text{obs}}$ used there. The reading is also unambiguous: the full
+normalized normal density carries no parameter-free, $Y_{\text{mis}}$-dependent additive constant
+(every $Y$-quadratic enters through $\Sigma^{-1}$), so $T$ — and with it $\Delta_n$ — is convention-free.
+We keep $+\tfrac12\operatorname{tr}(\mathrm{RIV})$ as the headline; $\mathbb{E}[T]=\Delta_n$ is recorded
+as a consistency check, confirmed symbolically by two computer-algebra systems and by direct Monte
+Carlo (`verification/cas-wolfram/verify_term_ac{,_sympy}.py`,
+`verification/rederivation-L0-fitted-vs-oracle.R`).
+:::
+
 ::: {.callout-note}
 ## Both terms calibrate to the single observed-data RIV
 This callout concerns *which information defines the RIV* — a separate matter from the $(A)+(C)$
@@ -1055,6 +1087,19 @@ information there is a single RIV and no residual gap.
 Three layers of evidence: this proof (the algebra), the inline symbolic verification
 (@sec-verify), and the pre-registered + diagnostic Monte Carlo study (`verification/`,
 including the phase-6 information diagnostic).
+
+**Robustness to the imputation engine.** The sample RIV in that diagnostic is built from the
+imputations actually drawn — here by a fast bootstrap-based sampler whose imputation posterior is only
+an asymptotic approximation. The exact alternative is data augmentation, a Markov chain Monte Carlo
+scheme whose draws follow the observed-data posterior at any sample size
+[@schaferAnalysisIncompleteMultivariate1997], but at much higher computational cost. On the most
+demanding cells — the non-monotone MAR design with as few as $N=200$ observations, where the bootstrap
+approximation is weakest — the sample RIV reproduces the observed-data RIV to within about $2$–$3\%$,
+with no widening of the gap as $N$ grows, and the information-criterion model selection agrees between
+full-information maximum likelihood and the bootstrap-imputed analysis to within $0.011$. The
+proper-imputation results reported here are therefore insensitive to this choice of sampler, and the
+slower data-augmentation scheme is not required (`run_all.R` phases 5–6,
+`verification/cache/run_all-prod/`).
 :::
 
 ---

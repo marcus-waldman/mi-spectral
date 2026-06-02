@@ -1,7 +1,7 @@
 # Todo 015 — Reconcile the Layer-3 (GPT-5.5) conjectures against evidence
 
 **Status:** C1 + C3 **CONFIRMED and applied** to `manuscript/derivation.qmd` (2026-06-01); C2
-mechanism corroborated (full analytic identity still open); C4 untouched. See the Resolution log
+**CONFIRMED and reconciled** (2026-06-02, `todo/017`); C4 untouched. See the Resolution log
 below. These were **conjectures** raised by the cross-model adversarial check (Layer 3 of
 `todo/013`); each needed reconciliation + evidence before any derivation change.
 
@@ -24,12 +24,14 @@ N=200/800, R up to 2e5, 20 cores). Evidence:
   (ratio 1.000, SE 2e-4), validated analytically + by a built-in MC spot-check of the analytic
   proper `barQ`. **Applied:** scope callout + softened the `00-setup.R` `barQ_fiml_analytic`
   "same prediction as MI" comment.
-- **C2 (Δ_n entropy reframing) — mechanism CORROBORATED, not adopted as primary.** Known-var
-  `Δ_n=0 ⟹ E[T_fiml]=0` as predicted, and the `H_φφ=−I_mis|obs` derivation makes the
-  entropy-dependence explicit. Kept `+½tr(RIV)` as the headline (per author intent: the regime the
-  paper uses) rather than promoting `E[T]=Δ_n`. **Still open:** the full symbolic identity
-  `Δ_n = ½tr(RIV)+(A)+(C)` for unknown-Σ MVN (optional; would unify the bookkeeping) — planned in
-  `todo/017-c2-deltan-entropy-reconciliation.md`.
+- **C2 (Δ_n entropy reframing) — CONFIRMED and reconciled (2026-06-02), not adopted as primary.**
+  The full symbolic identity `Δ_n = ½tr(RIV)+(A)+(C)` (hence `E[T]=Δ_n`) is proved via the
+  entropy-Hessian split `∇²C_n=H_φ+I_mis|obs` and confirmed by two CAS + MC (paired
+  `E[T_fitted−Δ_n]≈0`; known-var `Δ_n=0`). `H_φφ=−I_mis|obs` is now a corollary of the split's μ-block.
+  **Kept `+½tr(RIV)` as the headline** (author intent); added a one-paragraph reconciliation remark to
+  `derivation.qmd` (after `@sec-combine`). C2b settled (no θ-free floating constant for normalized
+  unknown-Σ MVN ⟹ `T` convention-free). Closed in `todo/017`;
+  evidence `verification/cache/c2-deltan-derivation-2026-06-02.md`.
 - **C4 (BvM / self-efficiency assumptions) — UNTOUCHED.** Not addressed this session; still open
   (see below). Independent of C1/C3.
 

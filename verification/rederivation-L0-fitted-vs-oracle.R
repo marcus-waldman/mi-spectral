@@ -33,6 +33,12 @@ mu0 <- default_mu
 Sigma0 <- default_Sigma
 theta_true <- list(mu = mu0, Sigma = Sigma0)
 
+# Conditional-entropy object C_n(theta) and the plug-in bias Delta_n (todo/017 C2):
+# Delta_n = E[ C_n(theta_obs) - C_n(theta0) ] = 1/2 tr(RIV) + (A)+(C) = E[T_fitted]
+# (entropy-Hessian split grad^2 C_n = H_phi + I_mis|obs; two CAS in
+# verification/cas-wolfram/verify_term_ac{,_sympy}.py). cond_entropy_Cn is a
+# shared primitive in 00-setup.R; the known-variance script is the Delta_n -> 0 anchor.
+
 # ---- (1) Dump the committed W1 caches for cross-reference --------------------
 cat("=== Committed W1 caches (engine=fiml) ===\n")
 for (f in c("W1-prod-fiml.rds", "W1-prod-fiml-N500.rds",
@@ -63,12 +69,15 @@ run_one <- function(r, N) {
   barQ_fitted = barQ_fiml_analytic(theta_obs, theta_obs, mar$Y, mar$R)
   barQ_oracle = barQ_fiml_analytic(theta_obs, theta_true, mar$Y, mar$R)
   trRIV = tr_riv_analytic(theta_obs, mar$Y, mar$R)$tr_RIV
+  # Conditional-entropy plug-in bias Delta_n = C_n(theta_obs) - C_n(theta0) (C2).
+  Delta_n = cond_entropy_Cn(theta_obs, mar$R) - cond_entropy_Cn(theta_true, mar$R)
   return(list(
     A_fitted = barQ_fitted - ell_com_at_obs,
     A_oracle = barQ_oracle - ell_com_at_obs,
     B        = ell_com_at_obs - ell_com_at_com,
     T_fitted = barQ_fitted - ell_com_at_com,
     T_oracle = barQ_oracle - ell_com_at_com,
+    Delta_n  = Delta_n,
     trRIV    = trRIV
   ))
 }
@@ -90,6 +99,7 @@ A_o <- grab("A_oracle")
 B   <- grab("B")
 T_f <- grab("T_fitted")
 T_o <- grab("T_oracle")
+dn  <- grab("Delta_n")
 tr  <- grab("trRIV")
 mcse <- function(x) { return(sd(x) / sqrt(length(x))) }
 mtr = mean(tr)
@@ -102,6 +112,13 @@ cat(sprintf("E[A_fitted] = %+.4f (SE %.4f)   target +trRIV    = %+.4f   ratio A/
             mean(A_f), mcse(A_f), mtr, mean(A_f) / mtr))
 cat(sprintf("E[T_fitted] = %+.4f (SE %.4f)   target +1/2 trRIV = %+.4f   ratio T/(1/2 trRIV) = %.3f\n\n",
             mean(T_f), mcse(T_f), 0.5 * mtr, mean(T_f) / (0.5 * mtr)))
+cat("--- C2: conditional-entropy plug-in bias Delta_n   [todo/017; should equal E[T_fitted]] ---\n")
+cat(sprintf("E[Delta_n]  = %+.4f (SE %.4f)   E[T_fitted]      = %+.4f   ratio Delta_n/T_fitted = %.3f\n",
+            mean(dn), mcse(dn), mean(T_f), mean(dn) / mean(T_f)))
+cat(sprintf("paired E[T_fitted - Delta_n] = %+.5f (SE %.5f)   [target 0; both = 1/2 trRIV + (A)+(C)]\n",
+            mean(T_f - dn), mcse(T_f - dn)))
+cat(sprintf("E[Delta_n]/(1/2 trRIV) = %.3f   ((A)+(C) design-imbalance = E[Delta_n] - 1/2 trRIV = %+.4f)\n\n",
+            mean(dn) / (0.5 * mtr), mean(dn) - 0.5 * mtr))
 cat("--- ORACLE imputation  P(.|Y_obs, theta_TRUE)  [solvers' tower-property Term A] ---\n")
 cat(sprintf("E[A_oracle] = %+.4f (SE %.4f)   target 0          (ratio A/trRIV = %.3f)\n",
             mean(A_o), mcse(A_o), mean(A_o) / mtr))

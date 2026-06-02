@@ -1,0 +1,28 @@
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+Warning message:
+package 'pbapply' was built under R version 4.5.2 
+=== Committed W1 caches (engine=fiml) ===
+W1-prod-fiml.rds           N=200   trRIV=5.565 | Ahat=+6.414 (=1.15*trRIV) | Bhat=-3.328 (=-0.60*trRIV) | That=+3.087 (=0.55*trRIV) | passA=FALSE passB=FALSE passT=TRUE
+W1-prod-fiml-N500.rds      N=500   trRIV=5.530 | Ahat=+4.963 (=0.90*trRIV) | Bhat=-3.201 (=-0.58*trRIV) | That=+1.762 (=0.32*trRIV) | passA=TRUE passB=FALSE passT=TRUE
+W1-prod-fiml-N1000.rds     N=1000  trRIV=5.515 | Ahat=+3.897 (=0.71*trRIV) | Bhat=-3.032 (=-0.55*trRIV) | That=+0.865 (=0.16*trRIV) | passA=FALSE passB=FALSE passT=FALSE
+W1-prod-fiml-N2000.rds     N=2000  trRIV=5.523 | Ahat=+5.116 (=0.93*trRIV) | Bhat=-3.077 (=-0.56*trRIV) | That=+2.038 (=0.37*trRIV) | passA=TRUE passB=FALSE passT=TRUE
+
+=== Controlled experiment: N=200, R=4000, cores=20 ===
+
+mean tr(RIV) = 5.5523
+
+E[B]        = -3.3397 (SE 0.0357)   target -1/2 trRIV = -2.7762   ratio B/(-1/2 trRIV) = 1.203
+
+--- FITTED imputation  P(.|Y_obs, theta_obs)   [repo / manuscript Term A] ---
+E[A_fitted] = +6.0741 (SE 0.1896)   target +trRIV    = +5.5523   ratio A/trRIV       = 1.094
+E[T_fitted] = +2.7345 (SE 0.1722)   target +1/2 trRIV = +2.7762   ratio T/(1/2 trRIV) = 0.985
+
+--- C2: conditional-entropy plug-in bias Delta_n   [todo/017; should equal E[T_fitted]] ---
+E[Delta_n]  = +2.7215 (SE 0.1169)   E[T_fitted]      = +2.7345   ratio Delta_n/T_fitted = 0.995
+paired E[T_fitted - Delta_n] = +0.01299 (SE 0.12633)   [target 0; both = 1/2 trRIV + (A)+(C)]
+E[Delta_n]/(1/2 trRIV) = 0.980   ((A)+(C) design-imbalance = E[Delta_n] - 1/2 trRIV = -0.0547)
+
+--- ORACLE imputation  P(.|Y_obs, theta_TRUE)  [solvers' tower-property Term A] ---
+E[A_oracle] = -0.0468 (SE 0.1369)   target 0          (ratio A/trRIV = -0.008)
+E[T_oracle] = -3.3865 (SE 0.1276)   target -1/2 trRIV = -2.7762   ratio T/(-1/2 trRIV)= 1.220
