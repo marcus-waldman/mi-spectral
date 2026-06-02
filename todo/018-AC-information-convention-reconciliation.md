@@ -6,8 +6,11 @@ todo/017 (different axis — see §7).
 **One-line goal.** Pin down the **numerical value** of the MAR design-imbalance term `(A)+(C)`, which
 this session found to be **information-convention-dependent and currently unresolved**. Decide which
 observed-information convention the reported `(A)+(C)` should use, derive the missing **realized-
-information term** in closed form, confirm it reproduces the empirical, and then **upgrade `@sec-termA`**
-from its current honest "value not yet settled" status to a settled statement.
+information term** in closed form — **derived two independent ways: (i) here with Claude (analytic,
+from the selected moments), and (ii) blind via GPT-5.5 through the API (Layer-3 cross-model, as in
+todo/016)** — confirm it reproduces the empirical, and then **upgrade `@sec-termA`** from its current
+honest "value not yet settled" status to a settled statement. Cross-model agreement is the bar (the
+b_Σ work and todo/016 showed a single lineage can share a blind spot).
 
 ---
 
@@ -70,10 +73,20 @@ definition (observed vs expected info) in `literature/`. If K&M/Rubin RIV is the
 right — proceed to derive it (Step 1). If expected, then −0.22 is correct and the empirical −0.46 is a
 realized-info finite-sample diagnostic to report separately.
 
-**Step 1 — derive the realized-information term (analytic, no MC).** Extend the `term-a-mar-closedform.R`
-assembly to compute the realized-info correction from the per-pattern selected `M2_P` (already in
-`est_moments`). Target: `(A)+(C)_realized = −0.22 + Δ_realized ≈ −0.46`. This is pure matrix algebra
-on quantities the assembly has — fast, deterministic, no segfault risk.
+**Step 1 — derive the realized-information term (analytic, no MC) — WAY 1 (Claude).** Extend the
+`term-a-mar-closedform.R` assembly to compute the realized-info correction from the per-pattern
+selected `M2_P` (already in `est_moments`). Target: `(A)+(C)_realized = −0.22 + Δ_realized ≈ −0.46`.
+This is pure matrix algebra on quantities the assembly has — fast, deterministic, no segfault risk.
+
+**Step 1b — independent derivation via GPT-5.5 — WAY 2 (cross-model).** Build a focused Layer-3
+packet (mirror `todo/016`: blind Mode A + red-team Mode B, grading key hard-stripped) asking GPT-5.5
+to derive *from scratch* the `O(1)` realized-vs-expected (selected-vs-population) observed-information
+contribution to `E[A_rb] − tr(RIV)` for the pattern-mixture MVN under MAR. **Blind it:** do NOT leak
+−0.22 / −0.46 / Claude's closed form / the `M2_P` route. Run via
+`py verification/run_layer3_openai.py gpt-5.5 --package todo/0XX-... --tag -acinfo` (the runner
+hard-truncates at the GRADING KEY banner). **Cross-check:** Claude's Δ (Step 1) ≡ GPT-5.5's, to
+agreement; a disagreement is the signal to investigate (as todo/016's B_cov catch showed). Verify the
+packet is blind + key-stripped before sending (the `extract_modes` dry-run check in todo/016).
 
 **Step 2 — confirm vs empirical (lavaan, paired, low-variance).** Reuse
 `scratch-rem-realized-expected-lavaan.R` (the working diagnostic). Confirm the analytic realized-info
@@ -138,15 +151,18 @@ derived (this *delivers* the original −0.46 target). Update the monotone passa
 1. Read this + todo/016 "GRADING OUTCOME" + `[[project-nonmonotone-coxsnell]]`.
 2. **Step 0**: read the K&M 1998 RIV definition in `literature/` — observed or expected info? (decides
    which value is correct).
-3. **Step 1**: derive the realized-information term analytically from the selected moments; check
-   `−0.22 + Δ ≈ −0.46`.
-4. Confirm (Step 2, lavaan, few cores), reconcile the cross-term (Step 3), then rewrite `@sec-termA`.
+3. **Step 1 (Way 1)**: derive the realized-information term analytically from the selected moments;
+   check `−0.22 + Δ ≈ −0.46`.
+4. **Step 1b (Way 2)**: build the blind GPT-5.5 packet, verify it's key-stripped, run it, cross-check
+   GPT-5.5's Δ against Claude's.
+5. Confirm (Step 2, lavaan, few cores), reconcile the cross-term (Step 3), then rewrite `@sec-termA`.
 
 ## Definition of done
 
-A settled, *derived* `(A)+(C)` value with its information convention justified from the literature, the
-realized-information term in closed form reproducing the empirical −0.34→−0.46 (and its monotone
-counterpart), `@sec-termA` upgraded from "not yet settled" to the confirmed statement (render exit-0,
-derivation-audit clean), and `todo/016`'s open flag closed.
+A settled, *derived* `(A)+(C)` value with its information convention justified from the literature; the
+realized-information term in closed form **derived two independent ways (Claude analytic + GPT-5.5
+blind) that agree**, reproducing the empirical −0.34→−0.46 (and its monotone counterpart);
+`@sec-termA` upgraded from "not yet settled" to the confirmed statement (render exit-0,
+derivation-audit clean); and `todo/016`'s open flag closed.
 
 *Plan 2026-06-02. Continues the todo/015–016 (A)+(C) thread.*
