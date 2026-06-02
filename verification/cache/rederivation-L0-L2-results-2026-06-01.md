@@ -97,3 +97,51 @@ expectation **is exactly Term A's `+tr(RIV)`** — i.e. the gap is the result, s
 not assert it away. Add a one-line lemma: `θ̂_obs` is `Y_obs`-measurable, so the *oracle* object
 `E[ℓ_com(θ̂_obs)|Y_obs] − ℓ_com(θ̂_obs)` has mean 0 by the tower property; Term A is nonzero
 precisely because the imputations use `φ̂ ≠ θ0`. This pre-empts the most natural referee objection.
+
+## Layer 3 — cross-model adversarial (GPT-5.5, reasoning_effort=xhigh) [executed 2026-06-01]
+
+Ran the `todo/013b` packet against GPT-5.5 (FrontierMath leader, June 2026) via
+`verification/run_layer3_openai.py` — a different model family, fully off the Claude lineage.
+Raw responses: `verification/cache/layer3-gpt-5.5-mode{A,B}.md`.
+
+**Mode B (red-team) — the headline Layer-3 win.** GPT-5.5 *spontaneously* named the D9
+fitted-vs-oracle ambiguity as "the weakest premise," independently reproducing the tower-property
+argument verbatim: under the literal `Q̄_∞ = E[ℓ_com|Y_obs]`, Term A = 0 ⇒ headline is
+`−½tr(RIV)`, not `+½`. **This is independent cross-model confirmation of the Layer-0/1 finding and
+validates the D9 fix.** It also re-derived `E[B] = −½tr(RIV)` with `Cov(θ̂_obs,θ̂_com)=I_com⁻¹` and
+flagged the `−½k` trap exactly as the manuscript does. The `−½` premise is now triangulated across
+Claude (9/9), the CAS, the experiment, *and* an independent model family.
+
+**New finding GPT-5.5 surfaced that the free layers missed — convention-dependence + non-universality.**
+Even with the fitted definition pinned, GPT-5.5 shows `E[A] = +tr(RIV)` is **not invariant to
+θ-free, Y-dependent additive constants** in the log-likelihood. It decomposes
+`E[A] = ½tr(RIV) [KL term] + Δ_n [conditional-entropy plug-in bias]`, giving
+`E[T] = E[A] + E[B] = Δ_n` (the two `½tr(RIV)` halves **cancel**). Then:
+- `Δ_n = 0` when the conditional entropy does not depend on the estimated parameters — e.g.
+  **known-variance MVN (mean only): `E[T] = 0`, not `+½tr(RIV)`.** Confirmed by hand (FIML→0,
+  proper→`−½tr(RIV)`) and by GPT-5.5's own normal-mean check.
+- `Δ_n ≈ +½tr(RIV)` for the **unknown-(μ,Σ) MVN** (covariance estimated) — matching the manuscript
+  and the experiment.
+
+So `E[T] = Δ_n` reconciles with the manuscript's `½tr(RIV)+(A)+(C)` **iff** `Δ_n = ½tr(RIV)+(A)+(C)`
+— i.e. GPT-5.5 lumps the whole bias into one conditional-entropy object, and argues the "+½tr(RIV)"
+is **not an intrinsic RIV penalty** but the entropy plug-in bias, RIV-sized only when (co)variance
+is estimated. **The manuscript's "`+½tr(RIV)` for *any* regular likelihood fit" is therefore an
+overreach: it fails (gives 0 or `−½`) for known-variance / mean-only models.**
+
+GPT-5.5 also flagged that the Term-A cross-term needs more than "proper MI": specifically
+`E_imp(φ̃|Y_obs)=θ̂_obs+o_p(n^{-1/2})` (a Bernstein–von Mises posterior-alignment condition) and a
+self-efficient/congenial setup for `T_∞=I_obs⁻¹` — properness alone is insufficient. The MAR
+`(A)+(C)` it accepts as plausibly `O(1)` and confirms the bivariate-monotone MCAR cancellation
+algebra, but calls it model-specific, not a general MAR theorem.
+
+**Layer-3 verdict.** PASS on the `−½` and the D9 fix (independently confirmed). ESCALATE the new
+finding: the headline's **universality and its `+tr/−½tr` decomposition are convention-dependent**
+(kernel vs full density; estimated-variance vs known-variance). This is the highest-value finding of
+the whole exercise and the cross-model layer is exactly what surfaced it.
+
+**Decisive adjudicating test (proposed, not yet run):** measure `E[A]`, `E[B]`, `E[T]` for a
+**known-variance** model (estimate the mean only, Σ fixed), FIML and proper. Prediction: `E[T] → 0`
+(FIML) / `−½tr(RIV)` (proper), *not* `+½tr(RIV)`. If confirmed, the theorem must be restated as
+holding for models with parameter-dependent conditional entropy (covariance estimation), not "any
+regular likelihood."
