@@ -32,7 +32,7 @@ AI-assisted derivation, target venue JAIGP (Journal for AI Generated Papers). Pr
 
 **Theorem.** Under congenial proper MI with the complete-data MLE as the target, the Q-function deviance bias decomposes as
 $$\text{Bias}[\bar Q_\infty(\hat\theta_{\text{obs}})] = +\text{tr}(\text{RIV}) - \tfrac{1}{2}\text{tr}(\text{RIV}) = +\tfrac{1}{2}\text{tr}(\text{RIV}),$$
-where the $+\text{tr}$ term is imputation bias and the $-\tfrac{1}{2}\text{tr}$ term is estimation mismatch (MI's target is $\hat\theta_{\text{com}}$, not $\hat\theta_{\text{obs}}$). General for any regular likelihood model fit on congenially imputed data.
+where the $+\text{tr}$ term is imputation bias and the $-\tfrac{1}{2}\text{tr}$ term is estimation mismatch (MI's target is $\hat\theta_{\text{com}}$, not $\hat\theta_{\text{obs}}$). Holds for any regular likelihood model fit on congenially imputed data **that estimates a scale or covariance** (so the conditional missing-data entropy depends on the estimated parameters; MVN with estimated Σ throughout) — a known-scale, location-only fit collapses to 0 (FIML) / $-\tfrac12\text{tr(RIV)}$ (proper MI). Under MAR there is an additional $O(1)$ design-imbalance term $(A)+(C)$ (0 under MCAR; sign + order firm, absolute value not independently pinned).
 
 **Two applications:**
 
