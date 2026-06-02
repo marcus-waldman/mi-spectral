@@ -2,6 +2,14 @@
 
 **Last updated:** 2026-05-25 (manuscript `mi-spectral.qmd` full draft underway; see Open issues).
 
+**Latest (2026-06-02):** the deviance-bias *derivation + correction* is settled and adversarially
+audited (todo/015–021). The headline `+½tr(RIV)`, its `+tr/−½tr` split, the scope fencing, the
+`(A)+(C)` structure/convention/`Δ_KM`, and the honest "absolute `(A)+(C)` value not independently
+pinned" wording are LOCKED — do not re-open. **Next session = the empirical application layer:
+`todo/022-applications-w1w3-handoff.md`** (W1–W3 witnesses + the audit's flagged items: preregistered
+H1 diff-criterion FAIL, W2 LRT-differential measurement, W3 "restores"→partial-recovery wording, the
+SB-arm bug #1, proper-MI engine-independence, and the deferred Satorra–Bentler/Chan-2022 re-eval).
+
 **Project:** JAIGP theory paper on deviance-bias correction for the Q-function under congenial multiple imputation, with applications to LRT model comparison and information-criterion model selection.
 
 ## How to resume
