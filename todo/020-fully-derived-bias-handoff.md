@@ -73,7 +73,9 @@ Taylor / the θ̂-vs-θ₀ offset / the realized-information curvature the popul
 Derive it (Cox–Snell-style next order on `barQ_fiml_analytic`, or the realized-information correction
 applied to `E[A_rb]` itself, not just to the RIV). Then `(A)+(C)_realized = E[A_rb]_analytic −
 tr(RIV^O)_analytic` (the latter already in hand from `term-ac-realized-info.R`/Appendix C). **Cross-check
-blind off-lineage** (mirror todo/019). This is the only route that yields a closed-form number.
+blind off-lineage — REQUIRED (user directive): GPT-5.5, `--effort xhigh`, `--timeout 86400` (24h; now
+the runner default), launched BACKGROUNDED** (mirror todo/019; protocol in §5). This is the only route
+that yields a closed-form number.
 
 **Route 3 — derive the naive leg, use `realized = naive + Δ_KM`.**
 If `(A)+(C)_naive = E[A_rb] − tr(RIV^N)` has a cleaner closed form (naive info is block-diagonal,
@@ -108,7 +110,15 @@ or list the precise residual wording gap. Likely a 20-minute verification, not a
 - **`em_mvn` is unreliable for non-monotone** — use lavaan FIML or da.norm.
 - **`rem` is high-variance**; use the **paired** info-gap and anchor to the committed `−0.34/−0.46`.
 - **The `−0.22 + Δ = −0.46` arithmetic does NOT hold** (the convention-tangle gotcha; see §4).
-- For any cross-model packet: hard-strip the grading key, dry-run `extract_modes`, verify blind.
+- **Cross-model protocol (REQUIRED for any analytic derivation — user directive).** Independent model
+  = **GPT-5.5**; **`reasoning_effort=xhigh`**; **24h timeout** (`--timeout 86400`, now the runner
+  default — the prior `high` run timed out at the old hard-coded 1800s cap, so this is load-bearing);
+  launch the runner **BACKGROUNDED** (xhigh reasoning takes hours; backgrounded survives across turns
+  and notifies on completion). Build the packet (Mode A blind + Mode B red-team), **hard-strip the
+  grading key**, **dry-run `extract_modes`** and token-scan for leakage, verify blind BEFORE sending.
+  Runner: `verification/run_layer3_openai.py` (supports `--effort`/`--timeout`/`--package`/`--tag`).
+  Caveat: a single 24h HTTPS request may be fragile (idle-connection resets); if it drops, consider the
+  OpenAI async/background API rather than one long urllib call.
 
 ## 6. DEFERRED (explicitly out of scope for this todo — later session)
 

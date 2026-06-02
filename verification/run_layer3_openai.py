@@ -12,9 +12,11 @@ banner before doing anything else, so the key cannot be sent even by accident.
 Key handling: reads OPENAI_API_KEY from the environment, or from a file via
 --key-file. Never pass the key on the command line (it lands in shell history).
 
-Run:    py verification/run_layer3_openai.py [model] [--key-file PATH]
-        e.g.  py verification/run_layer3_openai.py o3
-Out:    verification/cache/layer3-<model>-modeA.md , -modeB.md  (raw responses)
+Run:    py verification/run_layer3_openai.py [model] [--effort xhigh] [--timeout SECONDS]
+                [--package PATH] [--tag SUFFIX] [--key-file PATH]
+        e.g.  py verification/run_layer3_openai.py gpt-5.5 --effort xhigh --package todo/0XX.md --tag -foo
+        For long xhigh runs, launch BACKGROUNDED (survives across turns); default timeout is 24h.
+Out:    verification/cache/layer3-<model><tag>-modeA.md , -modeB.md  (raw responses)
 Exit:   0 ok; 2 setup/missing; 3 API error.
 """
 import json
@@ -76,7 +78,7 @@ def extract_modes(pkg_path):
     return mode_a, mode_b
 
 
-def call(model, prompt, key, effort):
+def call(model, prompt, key, effort, timeout_s):
     body = {"model": model, "messages": [{"role": "user", "content": prompt}]}
     if effort and effort != "none":
         body["reasoning_effort"] = effort
@@ -86,7 +88,10 @@ def call(model, prompt, key, effort):
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=1800) as resp:
+    # timeout_s is the socket READ timeout: how long to wait for the (non-streaming)
+    # response. For xhigh reasoning the model can think for hours, so default this very
+    # high (24h) and let --timeout override. Run it backgrounded so it survives across turns.
+    with urllib.request.urlopen(req, timeout=timeout_s) as resp:
         out = json.loads(resp.read().decode("utf-8"))
     return out["choices"][0]["message"]["content"]
 
@@ -97,6 +102,7 @@ def main():
     key_file = None
     pkg = PKG
     tag_suffix = ""
+    timeout_s = 86400              # default 24h socket read timeout (xhigh reasoning runs long)
     argv = sys.argv[1:]
     i = 0
     while i < len(argv):
@@ -104,7 +110,10 @@ def main():
             key_file = argv[i + 1]
             i += 2
         elif argv[i] == "--effort":
-            effort = argv[i + 1]
+            effort = argv[i + 1]   # minimal|low|medium|high|xhigh (passed through to the API)
+            i += 2
+        elif argv[i] == "--timeout":
+            timeout_s = int(argv[i + 1])   # socket read timeout in seconds
             i += 2
         elif argv[i] == "--package":
             pkg = argv[i + 1]
@@ -131,7 +140,7 @@ def main():
         print(f"Package parse error: {e}")
         return 2
 
-    print(f"Model: {model}   reasoning_effort: {effort}   package: {pkg}")
+    print(f"Model: {model}   reasoning_effort: {effort}   timeout: {timeout_s}s   package: {pkg}")
     print(f"Mode A prompt: {len(mode_a)} chars   Mode B prompt: {len(mode_b)} chars")
     print("Grading key excluded from both prompts (hard-truncated at the banner).\n")
 
@@ -139,7 +148,7 @@ def main():
     for tag, prompt in (("modeA", mode_a), ("modeB", mode_b)):
         print(f"--- calling {model} [{tag}] ---")
         try:
-            results[tag] = call(model, prompt, key, effort)
+            results[tag] = call(model, prompt, key, effort, timeout_s)
         except urllib.error.HTTPError as e:
             print(f"HTTP {e.code}: {e.read().decode('utf-8', 'replace')[:500]}")
             return 3
