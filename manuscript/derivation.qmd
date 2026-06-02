@@ -56,8 +56,9 @@ overstates the fit by $\operatorname{tr}(\mathrm{RIV})$. The second is **estimat
 mismatch**: MI's estimand is $\hat\theta_{\text{com}}$, whereas $\bar Q_\infty$ is centered
 at the observed-data maximizer $\hat\theta_{\text{obs}}$, and the gap between them costs
 $\tfrac12\operatorname{tr}(\mathrm{RIV})$. The two do not cancel — they leave a net upward
-bias of half the trace. This $\tfrac12\operatorname{tr}(\mathrm{RIV})$ is **exact under MCAR** and
-holds for any regular likelihood fit on congenially imputed data; we instantiate it throughout
+bias of half the trace. This $\tfrac12\operatorname{tr}(\mathrm{RIV})$ holds **to leading order
+under MCAR** (the design-imbalance term is $O(n^{-1})$) and for any regular likelihood fit on
+congenially imputed data; we instantiate it throughout
 for the multivariate normal. **Under MAR** Term A carries one further $O(1)$ piece — a
 **design-imbalance** term $(A)+(C)$, nonzero exactly when the missing and observed units have
 different conditioning-variable distributions and zero under MCAR — developed in @sec-termA.
@@ -107,8 +108,9 @@ reproduces exactly that $\operatorname{tr}(\mathrm{RIV})$ — so as a penalty th
 penalty into an imputation-bias term $+\operatorname{tr}(\mathrm{RIV})$ and an estimation-mismatch
 term $-\tfrac12\operatorname{tr}(\mathrm{RIV})$ (MI's target is $\hat\theta_{\text{com}}$, not the EM
 pivot $\hat\theta_{\text{obs}}$); (ii) the **MAR design-imbalance correction** $(A)+(C)$, which lies
-beyond the i.i.d. fixed-pattern setting of [@shimodairaInformationCriterionModel2017] — itself named
-there (§8) as the open "missingness $\times$ covariate-shift" direction, the covariate-shift machinery
+beyond the i.i.d. fixed-pattern setting of [@shimodairaInformationCriterionModel2017] — named
+there (§8) as future work in its concluding remarks ("combine a missing mechanism with other
+sampling mechanisms, such as the covariate-shift ... problem"), the covariate-shift machinery
 being [@shimodairahidetoshiImprovingPredictiveInference2000]; and (iii) the extension from the
 deterministic EM Q-function to **proper multiple imputation**. Claeskens and Consentino's
 missing-covariate AIC [@claeskensconsentinoVariableSelectionIncomplete2008] targets a different
@@ -117,7 +119,7 @@ A third route — Hens, Aerts and Molenberghs's weighted AIC
 [@hensModelSelectionIncomplete2006a] — reaches the same complete-data-equivalent target by
 inverse-probability (Horvitz–Thompson) reweighting of the complete cases rather than a deviance
 correction: it needs estimated selection probabilities, keeps the penalty at $2q$, and explicitly
-leaves a bias-corrected *imputation*-based criterion — the gap the present $(A)+(C)$ term fills —
+leaves an *imputation*-based criterion — which the present $(A)+(C)$ term bias-corrects —
 as open. The design-imbalance bias it diagnoses (its complete-case discrepancy shifts by
 $\operatorname{Cov}(y,\pi)/\mathbb{E}[\pi]$ under MAR) is the same phenomenon $(A)+(C)$ captures
 intrinsically within MI.
@@ -512,15 +514,18 @@ with line references in @sec-sources:
   $(D_n'(A\otimes A)D_n)^{-1}=(D_n'D_n)^{-1}D_n'(A^{-1}\!\otimes A^{-1})D_n(D_n'D_n)^{-1}$
   [@magnusMatrixDifferentialCalculus2019].
 - **Expectation.** Linearity, iterated expectation
-  $\mathbb{E}[\mathbb{E}(X\mid Y)]=\mathbb{E}X$, the $L^2$-projection characterization of
-  conditional expectation, and the quadratic-form identity
-  $\mathbb{E}[v^\top M v]=\operatorname{tr}(M\,\mathbb{E}[vv^\top])$
-  [@vaartAsymptoticStatistics1998a].
+  $\mathbb{E}[\mathbb{E}(X\mid Y)]=\mathbb{E}X$, and the $L^2$-projection characterization of
+  conditional expectation [@vaartAsymptoticStatistics1998a].
 - **Second-order Taylor expansion** [@vaartAsymptoticStatistics1998a].
 - **Gaussian conditional (Schur complement).** For the normal Q-function,
   $\Sigma_{11\cdot 2}=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}$ with conditional
   mean $\mu^{(1)}+\Sigma_{12}\Sigma_{22}^{-1}(x^{(2)}-\mu^{(2)})$
   [@andersonIntroductionMultivariateStatistical2003].
+- **Quadratic-form / score-covariance.** The quadratic-form identity
+  $\mathbb{E}[v^\top M v]=\operatorname{tr}(M\,\mathbb{E}[vv^\top])$
+  [@vaartAsymptoticStatistics1998a]; combined with the $L^2$-projection identity
+  $U_{\text{obs}}=\mathbb{E}[U_{\text{com}}\mid Y_{\text{obs}}]$ (L3), it gives the score-covariance
+  identity $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=\operatorname{Var}(U_{\text{obs}})$.
 
 ### Asymptotic lemmas {#sec-lem}
 
@@ -538,7 +543,8 @@ hence $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$, $\opera
 **L3 (Fisher/Louis score identity).** Differentiating the loglik
 decomposition $\ell(\theta\mid Y)=\ell(\theta\mid Y_{\text{obs}})+\log P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)+c$
 once and taking $\mathbb{E}[\cdot\mid Y_{\text{obs}}]$ (conditional score mean-zero, R1) gives
-$U_{\text{obs}}=\mathbb{E}[U_{\text{com}}\mid Y_{\text{obs}}]$; hence by A8,
+$U_{\text{obs}}=\mathbb{E}[U_{\text{com}}\mid Y_{\text{obs}}]$; hence by the score-covariance
+identity (@sec-alg),
 $\operatorname{Cov}(U_{\text{obs}},U_{\text{com}})=\operatorname{Var}(U_{\text{obs}})=I_{\text{obs}}$.
 
 ::: {.column-margin}
@@ -559,7 +565,7 @@ which holds asymptotically with an $O(n^{-1})$ remainder. Evaluated with the obs
 information $I_{\text{obs}}$ (@sec-riv), it gives the single RIV that Term B calibrates to.
 
 ::: {.column-margin}
-**Source.** `[derived]` from L1, L3, A8; verified symbolically (Tier B, @lst-mc-tierb).
+**Source.** `[derived]` from L1, L3, and the score-covariance identity (@sec-alg); verified symbolically (Tier B, @lst-mc-tierb).
 :::
 
 **L4 (MI variance recovery).** Under R4-R7, $\bar\theta_\infty$ is consistent
@@ -567,7 +573,7 @@ and $T_\infty=\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$. 
 identification.)
 
 ::: {.column-margin}
-**Source.** @mengMultipleImputationInferencesUncongenial1994a, Lemma 3 [<a href="#sec-src-meng"><code>:486</code></a>] and Main result [<a href="#sec-src-meng"><code>:503</code></a>/<a href="#sec-src-meng"><code>:511</code></a>]: variance recovery; also @rubinMultipleImputationNonresponse1987, §4 (see @sec-src-rubin1987).
+**Source.** The equality $T_\infty=\operatorname{Var}(\hat\theta_{\text{obs}})$ is the variance-recovery property of *congenial, proper* MI (R4): under congeniality the analyst's procedure is the observed-data MLE, and Rubin's proper-imputation variance is randomization-valid for the repeated-sampling variance of the complete-data statistic [@rubinMultipleImputationNonresponse1987, §4.2, conditions (4.2.1)-(4.2.2) and Result 4.1, <a href="#sec-src-rubin1987"><code>:3489</code></a>/<a href="#sec-src-rubin1987"><code>:3563</code></a>]; $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ then holds by regularity (L1). @mengMultipleImputationInferencesUncongenial1994a (Lemma 3 [<a href="#sec-src-meng"><code>:486</code></a>]; Main result [<a href="#sec-src-meng"><code>:503</code></a>/<a href="#sec-src-meng"><code>:511</code></a>]) gives the efficiency *dominance* — MI is at least as efficient as the analyst's incomplete-data estimator — with equality under congeniality.
 :::
 
 ## Main result and proof {#sec-derivation}
@@ -599,12 +605,17 @@ in @sec-termA — $(A)+(C)=\alpha^\top\mathbb{E}[\delta]+\tfrac12\operatorname{t
 the covariance parameters — and for the bivariate monotone MVN it has the closed form
 $$ (A)+(C) = \tfrac{n_{\text{mis}}}{n_{\text{obs}}}\Big[1-\tfrac12\operatorname{tr}\!\big(Q_{\text{mis}}Q_{\text{obs}}^{-1}\big)\Big], $$
 $Q_{\text{mis}},Q_{\text{obs}}$ the conditioning-variable second-moment matrices of the missing vs
-observed units, so $(A)+(C)=0$ iff $Q_{\text{mis}}=Q_{\text{obs}}$ (MCAR). The general-MVN
-*asymptote value* is measured, not yet closed-form: the committed phase-8 sweep
-(`verification/run_all.R` phase 8, `_modules/term-a-mar-correction.R`; $R{=}40\text{k}$) gives, at the
-observed-data RIV, a material negative $O(1)$ that grows toward its limit with $n$ — non-monotone
-$-0.34\,(n{=}800)\to-0.46\,(n{=}1500)$, monotone $-0.18\to-0.27$ — i.e. an asymptote $\lesssim-0.46$
-($\approx-0.5$ / $\approx-0.3$), up to $\approx 10\%$ of $\tfrac12\operatorname{tr}(\mathrm{RIV})$.
+observed units, so $(A)+(C)=0$ iff $Q_{\text{mis}}=Q_{\text{obs}}$ (MCAR). For the general-MVN
+**monotone** case the asymptote is itself closed-form: @sec-termA evaluates the $n$-independent
+constant to $(A)+(C)_\infty\approx-0.22$ ($+0.54$ from the entropy-gradient piece
+$\alpha^\top\mathbb{E}[\delta]$, $-0.76$ from $\tfrac12\operatorname{tr}(\mathcal H\,I_{\text{obs}}^{-1})$;
+stable in $n$ at $-0.220,-0.223,-0.221$ for $n=300,800,1500$), with the **MCAR control returning
+$\approx0$**, reproduced in `verification/term-a-mar-closedform.R`. For **non-monotone** patterns the
+observed-data likelihood does not factor, so the asymptote is reported **empirically**: the committed
+phase-8 sweep (`verification/run_all.R` phase 8, `_modules/term-a-mar-correction.R`; $R{=}40\text{k}$)
+gives, at the observed-data RIV, a material negative $O(1)$ that grows toward its limit with $n$
+($-0.34$ at $n{=}800\to-0.46$ at $n{=}1500$, an asymptote $\lesssim-0.46$ hedged from two
+still-increasing points), up to $\approx 10\%$ of $\tfrac12\operatorname{tr}(\mathrm{RIV})$.
 
 Here $\mathrm{RIV}=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ (D8) is
 evaluated with the **observed-data** information $I_{\text{obs}}$ — the unconditional expectation
@@ -668,7 +679,7 @@ $$ \mathbb{E}[B] = -\tfrac12\operatorname{tr}\!\big(I_{\text{com}}(I_{\text{obs}
 `[mc]` @lst-mc-termb (`B + tr(RIV)/2 == 0`).
 :::
 
-**Which information.** Term B consumes the variance of the estimator *gap* (L2),
+**Which information.** Term B is governed by the variance of the estimator *gap* (L2),
 $\operatorname{Var}(\hat\theta_{\text{obs}}-\hat\theta_{\text{com}})=I_{\text{obs}}^{-1}-I_{\text{com}}^{-1}$,
 where $I_{\text{obs}}$ is the observed-data information (@sec-riv). Graded against the **naive**
 block-diagonal information the gap variance looked $\approx 10\%$ inflated
@@ -864,7 +875,7 @@ identity; the $(A)+(C)$ design-imbalance term is separate, with the closed-form 
 FIML instantiation of $\bar Q_\infty$ matches the R code to machine precision (@lst-mc-fiml).
 :::
 
-**Which information.** Term A consumes
+**Which information.** Term A uses
 $\operatorname{Var}(\hat\theta_{\text{obs}})=I_{\text{obs}}^{-1}$ (L1), with $I_{\text{obs}}$ the
 observed-data information; the high-$R$ diagnostic confirms $\mathbb{E}[A]$ tracks
 $\operatorname{tr}(\mathrm{RIV})$ on this same observed-data information **up to the $(A)+(C)$
@@ -1063,6 +1074,15 @@ Complete data $Z_{c}=\{X, Y_{inc}, I\}$, observed data $Z_{o}=\{X, Y_{obs}, I, R
 
 > $r_{m}=\left(1+m^{-1}\right) B_{m} / \bar{U}_{m}$
 
+**Randomization-validity of the infinite-$m$ inference, §4.2 — conditions (4.2.1)-(4.2.2)** [`:3489`]
+**and Result 4.1** [`:3563`]. This is the variance-recovery property L4 invokes: under proper MI the
+infinite-$m$ variance estimator $T_\infty$ is valid for the repeated-sampling variance $T_0$ of the
+complete-data statistic.
+
+> $\left(\bar{Q}_{\infty} \mid X, Y\right) \sim N\left(Q, T_{0}\right)$ &nbsp; (4.2.1); &nbsp; $\left(T_{\infty} \mid X, Y\right) \sim\left(T_{0}, \ll T_{0}\right)$ &nbsp; (4.2.2), "where $Q=Q(X, Y)$ and $T_{0} \equiv T_{0}(X, Y)$ are fixed by the true values of $(X, Y)$ ... When (4.2.1) and (4.2.2) hold, we will say that the repeated-imputation inference is randomization-valid."
+
+> (Result 4.1) "If the Complete-Data Inference Is Randomization-Valid and the Multiple-Imputation Procedure Is Proper, Then the Infinite-$m$ Repeated-Imputation Inference Is Randomization-Valid under the Posited Response Mechanism."
+
 ### Rubin (1976) — Inference and Missing Data {#sec-src-rubin1976}
 
 [@rubinInferenceMissingData1976b]. Invoked by D2, R3 (ignorability).
@@ -1195,7 +1215,7 @@ The margin `[mc]` flags throughout the preceding sections link to the executable
 in this appendix. The code runs inline at render time (SymPy + NumPy); every identity is
 checked by reducing `lhs - rhs` to `0` (symbolic) or asserting a match to the R code
 `verification/00-setup.R` (numeric, to machine precision). This is the algebraic companion
-to the Monte Carlo study (`verification/W1-sweep.R`), which confirms
+to the Monte Carlo study (`verification/W1-bias-decomposition.R`), which confirms
 $\mathbb{E}[T]\approx+\tfrac12\operatorname{tr}(\mathrm{RIV})$ at many concrete
 configurations; here we check the chain of identities that produces it.
 
@@ -1308,6 +1328,7 @@ I_obs = sp.MatrixSymbol('I_obs', n, n)
 I_mis = I_com - I_obs                      # I_{mis|obs} := I_com - I_obs
 
 trRIV = trace_normal(Trace(I_obs.inv() * I_mis), n)
+assert sp.expand(trace_normal(Trace(I_obs.inv() * I_com), n) - n - trRIV) == 0
 print("tr(RIV)  =", trRIV)                  # = Trace(I_obs^{-1} I_com) - n
 ```
 
@@ -1544,7 +1565,7 @@ The $+\operatorname{tr}(\mathrm{RIV})$ of Term A (@sec-termA) enters the FIML Q-
 through the per-observation conditional-variance penalty
 $-\tfrac12\operatorname{tr}(\Sigma_{\text{eval}}^{-1}\bar V_i)$, where for a partial
 pattern $V = \Sigma_{MM} - \Sigma_{MO}\Sigma_{OO}^{-1}\Sigma_{OM}$ is the Schur
-complement (A7). Shown symbolically for a 3-variable pattern, $X_1$ missing:
+complement (@sec-alg). Shown symbolically for a 3-variable pattern, $X_1$ missing:
 
 ```{python}
 syms = sp.symbols('s11 s12 s13 s22 s23 s33', positive=True)
