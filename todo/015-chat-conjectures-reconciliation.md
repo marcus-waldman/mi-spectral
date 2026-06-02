@@ -1,9 +1,40 @@
 # Todo 015 — Reconcile the Layer-3 (GPT-5.5) conjectures against evidence
 
-**Status:** Open (2026-06-01). Handoff for a fresh session. These are **conjectures** raised by the
-cross-model adversarial check (Layer 3 of `todo/013`); each needs reconciliation + evidence before any
-derivation change. If a conjecture pans out, update `manuscript/derivation.qmd` as noted; if it
-doesn't, record why and close it.
+**Status:** C1 + C3 **CONFIRMED and applied** to `manuscript/derivation.qmd` (2026-06-01); C2
+mechanism corroborated (full analytic identity still open); C4 untouched. See the Resolution log
+below. These were **conjectures** raised by the cross-model adversarial check (Layer 3 of
+`todo/013`); each needed reconciliation + evidence before any derivation change.
+
+## Resolution log (2026-06-01)
+
+Built + ran the known-variance adjudicating experiment (`verification/rederivation-knownvar.R`;
+N=200/800, R up to 2e5, 20 cores). Evidence:
+`verification/cache/rederivation-knownvar-results-2026-06-01.md`.
+
+- **C1 (non-universality) — CONFIRMED.** Known-variance (mean-only) `E[T] ≈ 0` (FIML) /
+  `−½tr(RIV)` (proper); **neither is `+½tr(RIV)`**. Tightest run (N=200, R=2e5):
+  `E[A_fiml]/½trRIV=1.04`, `E[T_fiml]≈0`, `E[T_proper]/(−½trRIV)=0.96`, `E[B]/(−½trRIV)=0.997`.
+  Also derived analytically (matches the manuscript's own A3 pieces): with a known scale `α=0` so
+  `(A)=0`, but `H_φφ=−I_mis|obs` (Isserlis) so `(C)=−½tr(RIV)` survives uncancelled **even under
+  MCAR**, halving `E[A]` to `½tr(RIV)`. **Applied:** theorem (`@sec-thm`) + intro
+  (`@sec-intro-result`) + Tier B (`@sec-verify-tierB`) + A5 now scope the headline to models that
+  estimate a scale/covariance; new "Scope" callout after the theorem states the condition,
+  mechanism, evidence, and confirms the IC application (`@sec-intro-why`, estimated Σ) is in-regime.
+- **C3 (FIML ≠ proper) — CONFIRMED.** FIML and proper differ by **exactly** `C_n = ½tr(RIV)`
+  (ratio 1.000, SE 2e-4), validated analytically + by a built-in MC spot-check of the analytic
+  proper `barQ`. **Applied:** scope callout + softened the `00-setup.R` `barQ_fiml_analytic`
+  "same prediction as MI" comment.
+- **C2 (Δ_n entropy reframing) — mechanism CORROBORATED, not adopted as primary.** Known-var
+  `Δ_n=0 ⟹ E[T_fiml]=0` as predicted, and the `H_φφ=−I_mis|obs` derivation makes the
+  entropy-dependence explicit. Kept `+½tr(RIV)` as the headline (per author intent: the regime the
+  paper uses) rather than promoting `E[T]=Δ_n`. **Still open:** the full symbolic identity
+  `Δ_n = ½tr(RIV)+(A)+(C)` for unknown-Σ MVN (optional; would unify the bookkeeping).
+- **C4 (BvM / self-efficiency assumptions) — UNTOUCHED.** Not addressed this session; still open
+  (see below). Independent of C1/C3.
+
+Original conjecture text retained below for provenance.
+
+---
 
 ## Where the headline stands after Layers 0–3
 

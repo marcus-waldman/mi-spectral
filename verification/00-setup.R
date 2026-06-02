@@ -329,8 +329,14 @@ impute_mvn_amelia <- function(Y, M, empri = 0, ...) {
 #
 # Connection to v4.5 line 218: with tilde_phi = theta_obs deterministically,
 # Cov(Delta_tilde_phi, theta_obs) = 0 trivially (because Delta_tilde_phi=0),
-# so Term 1 = tr(I_{mis|obs} Var(theta_obs)) = tr(RIV) — same prediction
-# as MI but computed without Monte Carlo over imputations.
+# so the leading cross-term = tr(I_{mis|obs} Var(theta_obs)) = tr(RIV) — same
+# leading term as proper MI, computed without Monte Carlo over imputations.
+# NOTE (todo/015 C3): this deterministic FIML bar_Q omits proper MI's
+# posterior-draw imputation-variance term C_n. The two coincide to leading
+# order when a scale/covariance is estimated, but DIFFER off that regime:
+# for a known-variance mean-only fit, E[T_fiml]=0 vs E[T_proper]=-1/2 tr(RIV),
+# a gap of C_n = 1/2 tr(RIV) (verification/rederivation-knownvar.R). Do not
+# read deterministic FIML and proper MI as interchangeable in general.
 # -----------------------------------------------------------------------------
 
 barQ_fiml_analytic <- function(theta_eval, theta_obs, Y, R) {

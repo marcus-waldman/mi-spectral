@@ -57,9 +57,12 @@ mismatch**: MI's estimand is $\hat\theta_{\text{com}}$, whereas $\bar Q_\infty$ 
 at the observed-data maximizer $\hat\theta_{\text{obs}}$, and the gap between them costs
 $\tfrac12\operatorname{tr}(\mathrm{RIV})$. The two do not cancel — they leave a net upward
 bias of half the trace. This $\tfrac12\operatorname{tr}(\mathrm{RIV})$ holds **to leading order
-under MCAR** (the design-imbalance term is $O(n^{-1})$) and for any regular likelihood fit on
-congenially imputed data; we instantiate it throughout
-for the multivariate normal. **Under MAR** Term A carries one further $O(1)$ piece — a
+under MCAR** (the design-imbalance term is $O(n^{-1})$) for any regular likelihood **whose
+conditional missing-data entropy depends on the estimated parameters** — concretely, an estimated
+scale or covariance, as in the multivariate normal we instantiate throughout. That dependence is
+essential: with a *known* scale (a location-only fit) the conditional entropy is parameter-free and
+the net bias collapses to $\mathbb{E}[T]=0$ under FIML and $-\tfrac12\operatorname{tr}(\mathrm{RIV})$
+under proper MI (scope remark after the theorem). **Under MAR** Term A carries one further $O(1)$ piece — a
 **design-imbalance** term $(A)+(C)$, nonzero exactly when the missing and observed units have
 different conditioning-variable distributions and zero under MCAR — developed in @sec-termA.
 
@@ -625,7 +628,9 @@ $\mathcal{J}\to_p I$ steps below are unaffected.
 
 ### Theorem {#sec-thm}
 
-**Theorem (Q-function deviance bias).** Under R1-R7, to leading order
+**Theorem (Q-function deviance bias).** Under R1-R7, for a model that **estimates a scale or
+covariance** (so the conditional missing-data entropy depends on the estimated parameters — the
+multivariate normal with estimated $\Sigma$ throughout; scope remark below), to leading order
 $$ \mathbb{E}[T] = \mathbb{E}\big[\bar Q_\infty(\hat\theta_{\text{obs}}) - \ell_{\text{com}}(\hat\theta_{\text{com}};Y)\big] = +\tfrac12\operatorname{tr}(\mathrm{RIV}) \;+\; [(A)+(C)] \;+\; O(n^{-1}), $$ {#eq-theorem}
 decomposing (D10-D12) as $\mathbb{E}[A]=\operatorname{tr}(\mathrm{RIV})+[(A)+(C)]+O(n^{-1})$
 (imputation bias) and $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$ (estimation
@@ -634,7 +639,9 @@ mismatch). The deviance-scale statement multiplies by 2.
 The term $(A)+(C)$ is a **design-imbalance** correction carried by Term A (@sec-termA): it
 **vanishes under MCAR** (missing and observed units share a conditioning-variable distribution),
 recovering the clean $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ that holds for any
-regular likelihood, and is a nonzero $O(1)$ under **MAR**. Its general-MVN *structure* is derived
+regular likelihood **with an estimated scale or covariance** (the scope remark below; the headline is
+not universal — a known-scale, location-only fit gives $\mathbb{E}[T]=0$ under FIML), and is a nonzero
+$O(1)$ under **MAR**. Its general-MVN *structure* is derived
 in @sec-termA — $(A)+(C)=\alpha^\top\mathbb{E}[\delta]+\tfrac12\operatorname{tr}(\mathcal H\,I_{\text{obs}}^{-1})-\operatorname{tr}(\mathrm{RIV})$, with the entropy gradient $\alpha$ supported only on
 the covariance parameters — and for the bivariate monotone MVN it has the closed form
 $$ (A)+(C) = \tfrac{n_{\text{mis}}}{n_{\text{obs}}}\Big[1-\tfrac12\operatorname{tr}\!\big(Q_{\text{mis}}Q_{\text{obs}}^{-1}\big)\Big], $$
@@ -662,6 +669,39 @@ that, under MAR, carries the mean–covariance cross term and is estimated by th
 information (@sec-riv). Both Term A and Term B calibrate to this single RIV; the design-imbalance
 $(A)+(C)$ is *additional* to it (it is the part of Term A beyond $\operatorname{tr}(\mathrm{RIV})$,
 not a re-grading of the information).
+
+::: {.callout-note}
+## Scope: the headline needs an estimated scale
+
+The $+\tfrac12\operatorname{tr}(\mathrm{RIV})$ result is not universal over regular likelihoods. It
+requires the conditional missing-data entropy
+$\mathcal{E}(\theta)=-\mathbb{E}_\theta[\log P(Y_{\text{mis}}\mid Y_{\text{obs}},\theta)]$ to depend
+on the estimated parameters — equivalently, a nonzero entropy gradient $\alpha=-\mathcal{E}'$. For
+the multivariate normal this dependence lives entirely in the covariance ($\alpha_\mu=0$,
+$\alpha_\Sigma\neq0$; the warning in @sec-termA), so the headline is a statement about models that
+**estimate a scale or covariance** — the regime the paper instantiates and applies.
+
+When the scale is *known* and only a location is estimated the result changes. Then $\alpha=0$, so
+piece $(A)$ vanishes; but the cross-entropy curvature does not — for a fixed conditional covariance
+$V$ a fourth-moment (Isserlis) calculation gives $H_{\phi\phi}=-I_{\text{mis}\mid\text{obs}}$, so
+piece $(C)=\tfrac12\operatorname{tr}(H_{\phi\phi}I_{\text{obs}}^{-1})=-\tfrac12\operatorname{tr}(\mathrm{RIV})$
+**survives uncancelled, even under MCAR**. The imputation bias halves,
+$\mathbb{E}[A]=\operatorname{tr}(\mathrm{RIV})-\tfrac12\operatorname{tr}(\mathrm{RIV})=\tfrac12\operatorname{tr}(\mathrm{RIV})$,
+and with $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})$ the net bias collapses to
+$$ \mathbb{E}[T]_{\text{known scale}}=\begin{cases}0 & \text{deterministic FIML},\\[2pt]-\tfrac12\operatorname{tr}(\mathrm{RIV}) & \text{proper MI},\end{cases} $$
+the two arms differing by the posterior-draw imputation variance $C_n=\tfrac12\operatorname{tr}(\mathrm{RIV})$
+— so deterministic FIML and proper MI are **not** interchangeable for a known-scale fit.
+
+A known-variance experiment (estimate the mean, $\Sigma$ fixed) confirms every value to Monte-Carlo
+error (`verification/rederivation-knownvar.R`, $R=2\times10^5$:
+$\mathbb{E}[A_{\text{fiml}}]/\tfrac12\operatorname{tr}(\mathrm{RIV})=1.04$, $\mathbb{E}[T_{\text{fiml}}]\approx0$,
+$\mathbb{E}[T_{\text{proper}}]/(-\tfrac12\operatorname{tr}(\mathrm{RIV}))=0.96$,
+$C_n/\tfrac12\operatorname{tr}(\mathrm{RIV})=1.000$), against the estimated-covariance baseline
+$\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ (`verification/rederivation-L0-fitted-vs-oracle.R`).
+The information-criteria application (@sec-intro-why) compares multivariate-normal models with an
+estimated covariance and so sits squarely in the estimated-scale regime; the known-scale collapse
+affects only location-only fits with a fixed dispersion, which the applications do not use.
+:::
 
 ### Proof strategy {#sec-strategy}
 
@@ -927,7 +967,10 @@ so $\operatorname{Cov}(\tilde\phi,\hat\theta_{\text{obs}})=\operatorname{Var}(\h
 Hence, carrying the design-imbalance term of A4,
 $$ \mathbb{E}[A] = \operatorname{tr}\!\big(I_{\text{mis}\mid\text{obs}}\,I_{\text{obs}}^{-1}\big) + [(A)+(C)] + O(n^{-1}) = \operatorname{tr}(\mathrm{RIV}) + [(A)+(C)] + O(n^{-1})\ \text{[D7, D8]}, $$ {#eq-termA}
 with $(A)+(C)=0$ under MCAR (so $\mathbb{E}[A]=\operatorname{tr}(\mathrm{RIV})$) and the nonzero
-$O(1)$ design-imbalance term of A4 under MAR.
+$O(1)$ design-imbalance term of A4 under MAR. (The MCAR cancellation here is between two nonzero
+pieces and so uses $\alpha\neq0$ — an estimated scale; for a known-scale, location-only fit piece
+$(C)$ instead survives at $-\tfrac12\operatorname{tr}(\mathrm{RIV})$ even under MCAR, halving
+$\mathbb{E}[A]$. See the scope remark after the theorem.)
 
 ::: {.column-margin}
 `[mc]` @lst-mc-terma (`A - tr(RIV) == 0`) for the **leading-order** trace
@@ -1770,9 +1813,12 @@ for label, b in [("MAR ", b_sel), ("MCAR", 0.0)]:
 ### Tier B — abstract generalization (MVN-free) {#sec-verify-tierB}
 
 The trace bookkeeping above used abstract `MatrixSymbol` objects with no MVN commitment,
-so the **leading-order** $T = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ already holds for any
-regular likelihood given L1-L4 (under MAR, add the design-imbalance $(A)+(C)$ of @sec-termA, which
-is $0$ under MCAR). What remains MVN-free to verify is that the score-equation expansion delivers
+so the **leading-order** $T = +\tfrac12\operatorname{tr}(\mathrm{RIV})$ holds for any
+regular likelihood given L1-L4 **and an estimated scale** — the assumption behind Term A's
+$\operatorname{tr}(I_{\text{mis}\mid\text{obs}}V_{\text{obs}})$ input, which needs the entropy-gradient
+cancellation of @sec-termA and so requires $\alpha\neq0$. For a known-scale, location-only fit that
+input halves and $T=0$ (scope remark after the theorem). Under MAR, add the design-imbalance $(A)+(C)$
+of @sec-termA, which is $0$ under MCAR. What remains MVN-free to verify is that the score-equation expansion delivers
 the covariance input L2 (@eq-varGap): the observed score is the conditional expectation of
 the complete-data score under MAR, so $\mathbb{E}[U_{\text{com}}U_{\text{obs}}^\top]=I_{\text{obs}}$.
 
