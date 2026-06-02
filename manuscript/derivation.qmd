@@ -1217,7 +1217,10 @@ checked by reducing `lhs - rhs` to `0` (symbolic) or asserting a match to the R 
 `verification/00-setup.R` (numeric, to machine precision). This is the algebraic companion
 to the Monte Carlo study (`verification/W1-bias-decomposition.R`), which confirms
 $\mathbb{E}[T]\approx+\tfrac12\operatorname{tr}(\mathrm{RIV})$ at many concrete
-configurations; here we check the chain of identities that produces it.
+configurations; here we check the chain of identities that produces it. The symbolic trace
+identities and the MVN covariance-block (Magnus duplication-matrix) inversion are independently
+re-verified by a second computer-algebra system in `verification/cas-wolfram/verify_traces.py`
+(Wolfram), so these reductions do not rest on a single CAS implementation.
 
 Scope: the trace bookkeeping that combines the asymptotic second-moment inputs into
 $+\tfrac12\operatorname{tr}(\mathrm{RIV})$ is **symbolic** (exact, parameterization-free);
