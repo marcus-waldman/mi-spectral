@@ -664,8 +664,9 @@ and is the empirically measured remainder $-0.18\to-0.27$ (monotone) and $-0.34\
 over $n=800,1500$. The naive expected-information convention would instead give $\approx+0.1\to+0.3$,
 differing from the realized value by the $O(1)$ **realized-information correction** $\Delta_{\mathrm{KM}}$
 ($\approx-0.55$ non-monotone, the observed-minus-naive RIV gap), derived in closed form in @sec-termA
-two independent ways — **not** a finite-$n$ artifact and **not** a $b_\Sigma$ shortfall ($b_\Sigma$ is
-derived and nearly selection-invariant). What is firm: $(A)+(C)$ is a nonzero $O(1)$ under MAR and
+(its block structure and $O(1)$ order independently cross-checked off-lineage) — **not** a finite-$n$
+artifact and **not** a $b_\Sigma$ shortfall ($b_\Sigma$ is derived and nearly selection-invariant). What
+is firm: $(A)+(C)$ is a nonzero $O(1)$ under MAR and
 **vanishes under MCAR** (controls $\approx0$ throughout).
 
 Here $\mathrm{RIV}=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ (D8) is
@@ -903,7 +904,7 @@ $I_{\text{com}}-I_{\text{obs}}^{O}$ is exactly that selected missing information
 $\operatorname{tr}(\mathcal C\,I_{\text{obs}}^{O,-1})=\operatorname{tr}(\mathrm{RIV})$ is **exact under
 the realized (observed-information) convention**. The naive expected-information RIV is the *smaller*
 one (Appendix C), and differs from it by the $O(1)$ correction $\Delta_{\mathrm{KM}}$ below; that
-convention difference is the whole content of the $-0.22$ (naive) vs $-0.46$ (realized) separation. The entropy gradient is
+convention difference separates the measured naive value $+0.1\to+0.3$ from the realized $-0.34\to-0.46$. The entropy gradient is
 **covariance-only** ($\partial S_i/\partial\mu=0\Rightarrow\alpha_\mu=0$), with closed form
 $$ \alpha_a = -\tfrac12\!\!\sum_{i:\text{mis}}\!\operatorname{tr}\!\big(S_{0,i}^{-1}\,\partial_a S_i\big),\quad \partial_a S_i=\Delta_{MM}-\Delta_{MO}B^\top-B\Delta_{OM}+B\Delta_{OO}B^\top,\ \ B=\Sigma_{MO}\Sigma_{OO}^{-1}, $$
 ($\partial_a$ the symmetric perturbation of $\Sigma$-coordinate $a$, $\Delta=\partial_a\Sigma$). It
@@ -957,13 +958,14 @@ paper's RIV (@sec-riv, Appendix C) and the empirically measured $(A)+(C)$ both u
 over $n=800,1500$.
 
 ::: {.column-margin}
-`[derived]` Realized-information correction $\Delta_{\mathrm{KM}}$ in closed form, two independent ways
-that agree: (i) analytic, from the per-pattern selected moments
-(`verification/term-ac-realized-info.R`; the analytic $\mathbb{E}[I_{\text{obs}}^{O}]$ reproduces the
-realized Hessian to $10^{-11}$), and (ii) **blind, off the Claude lineage**, by a second model family
-(GPT-5.5), which independently returns the same $\Delta_{\mathrm{KM}}$ block structure and closed form,
-the same $O(1)$-under-MAR / $0$-under-MCAR order, and spontaneously the same Kenward–Molenberghs
-observed-information recommendation (`todo/019`). Transparent provenance per the authorship model.
+`[derived]` Realized-information correction $\Delta_{\mathrm{KM}}$ in closed form: the analytic
+derivation from the per-pattern selected moments (`verification/term-ac-realized-info.R`; the analytic
+$\mathbb{E}[I_{\text{obs}}^{O}]$ reproduces the realized Hessian to $10^{-11}$). A **blind, off-lineage**
+cross-check by a second model family (GPT-5.5) independently reproduces the $\Delta_{\mathrm{KM}}$
+**block structure** and the $O(1)$-under-MAR / $0$-under-MCAR **order** — the latter correcting a prior
+cross-model blind spot (an erroneous $O(n^{-1})$ call). The trace functional and the choice of reference
+were supplied in the prompt, not produced blind (`todo/019`). Transparent provenance per the authorship
+model.
 :::
 
 How much the convention matters is itself an $O(1)$ quantity — the **realized-information correction**
@@ -977,16 +979,20 @@ moment $\mathbb{E}[e_Oe_O^\top\mid P]-\Sigma_{OO}$ — both nonzero under MAR an
 MCAR**. So $\Delta_{\mathrm{KM}}$ is $O(1)$ under MAR and $0$ under MCAR. Evaluated in closed form from
 the selected moments (no fitting), it is $n$-stable at $\approx-0.55$ (non-monotone) and $\approx-0.44$
 (monotone), with the MCAR control $\to0$ (`verification/term-ac-realized-info.R`); a paired lavaan-FIML
-measurement at the fit returns the same gap and converges onto the analytic asymptote as $n$ grows
-($-0.627,-0.582,-0.569$ at $n=800,1500,3000\to-0.55$;
-`verification/scratch-rem-realized-expected-lavaan.R`).
+measurement at the fit returns the same gap, approaching $\approx-0.55$ as $n$ grows
+($-0.627,-0.582,-0.569$ at $n=800,1500,3000$; the residual at $-0.569$ being the
+$\hat\theta$-vs-$\theta_0$ offset; `verification/scratch-rem-realized-expected-lavaan.R`).
 
 Switching from the (biased) naive to the (principled) observed information therefore shifts $(A)+(C)$
 by exactly $\Delta_{\mathrm{KM}}$,
 $$ (A)+(C)_{\text{realized}}=(A)+(C)_{\text{naive}}+\Delta_{\mathrm{KM}}, $$
 where $(A)+(C)_{\text{naive}}=\mathbb{E}[A_{\text{rb}}]-\operatorname{tr}(\mathrm{RIV}^{N})\approx+0.1\to+0.3$
-is the expected-information-convention value (measured at the fit). The realized value is then the
-empirical $-0.34\to-0.46$ — e.g. $+0.13+(-0.58)=-0.45$ at $n=1500$ — reproduced. What is firm:
+is the expected-information-convention value — the anchored, higher-variance leg (the low-variance
+carriers are the paired gap and the analytic $\Delta_{\mathrm{KM}}$). The realized value is the
+empirical $-0.34\to-0.46$; naive and realized are tied by $\Delta_{\mathrm{KM}}$ as a near-identity (they
+share $A_{\text{rb}}$, so $\mathrm{rem}_{\text{real}}\equiv\mathrm{rem}_{\text{exp}}+\mathrm{gap}$), so the
+genuine independent check is the analytic $\Delta_{\mathrm{KM}}\approx-0.55$ against the measured paired
+gap $\approx-0.58$. What is firm:
 $(A)+(C)$ is a nonzero $O(1)$ under MAR, vanishes under MCAR, and equals the realized value
 $-0.34\to-0.46$ under the principled observed-information convention.
 
@@ -1020,9 +1026,9 @@ sign and order); the **reported** value uses the realized (observed) information
 @kenwardLikelihoodBasedFrequentist1998 and is the empirically measured remainder $-0.34\to-0.46$. The
 realized RIV exceeds the naive one by the $O(1)$ realized-information correction
 $\Delta_{\mathrm{KM}}\approx-0.55$ (non-monotone, the observed-minus-naive information gap), the
-selected-vs-population information effect under MAR, derived in closed form (@sec-termA) and confirmed
-two independent ways; it is **not** a $b_\Sigma$ shortfall ($b_\Sigma$ is derived and nearly
-selection-invariant). An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular conditional
+selected-vs-population information effect under MAR, derived in closed form (@sec-termA; its block
+structure and $O(1)$ order independently cross-checked off-lineage); it is **not** a $b_\Sigma$ shortfall
+($b_\Sigma$ is derived and nearly selection-invariant). An earlier version asserted $(A)+(C)=O(n^{-1})$ "for any regular conditional
 family"; that holds **only under MCAR** and is **retracted** for MAR. Independent
 leading-order support that the *main* piece gives $\operatorname{tr}(\mathrm{RIV})$: the FIML $A$
 matches the R code to machine precision (@lst-mc-fiml, @lst-mc-mcse), and the high-$R$ phase-6
@@ -1080,7 +1086,8 @@ design-imbalance term remains — a nonzero $O(1)$ whose structure is derived (e
 cross-entropy curvature, and the now general-$p$ Cox–Snell $b_\Sigma$) and whose numerical value is
 settled to the observed-information convention [@kenwardLikelihoodBasedFrequentist1998]: the realized
 $-0.34\to-0.46$, with the realized-vs-naive information gap $\Delta_{\mathrm{KM}}$ derived in closed
-form two independent ways (@sec-termA). $\qquad\blacksquare$
+form (@sec-termA), its block structure and $O(1)$ order independently cross-checked by a blind
+off-lineage model. $\qquad\blacksquare$
 
 ::: {.column-margin}
 `[mc]` @lst-mc-combine (`T - tr(RIV)/2 == 0`), the **leading-order** identity (MCAR, or before
