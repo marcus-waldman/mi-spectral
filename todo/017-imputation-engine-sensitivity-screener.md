@@ -149,3 +149,50 @@ engine-robust (optionally in the derivation). If **sensitive**: validated-DA re-
 load-bearing cells + a limitations section drafted in `manuscript/derivation.qmd`.
 
 *Plan 2026-06-02. Continues the todo/015–016 imputation/(A)+(C) thread.*
+
+---
+
+## VERDICT (2026-06-02) — NOT SENSITIVE. DA not run.
+
+**Step 0 settled it with zero new compute.** The committed `cache/run_all-prod/phase6-info/`
+diagnostic (commit `70923a3`, R=2000) **is** the paired Amelia-vs-analytic stress test Step 1
+nominated: same non-monotone MAR `default_Sigma` cells, N∈{200,500,1000,2000}, **congenial** Amelia
+(`impute_mvn_amelia` default `empri=0`), paired within replicate (one dataset → both the FIML
+observed-data RIV and the Amelia sample RIV), at *higher* R than Step 1 proposed. No new run needed;
+**Decision A → STOP; DA (Step 2) and the §4 escalation were not triggered.**
+
+**Primary metric — Amelia sample RIV vs the engine-free observed-data RIV** (`phase6-info/summary.csv`,
+non-monotone MAR):
+
+| N | `tr_samp` (Amelia) | `tr_obs` (engine-free, correct) | `tr_exp` (naive) | `tr_samp − tr_obs` | rel |
+|----|------|------|------|------|------|
+| 200 | 8.816 | 8.596 | 7.725 | +0.220 | 2.6% |
+| 500 | 8.524 | 8.346 | 7.673 | +0.178 | 2.1% |
+| 1000 | 8.431 | 8.265 | 7.652 | +0.166 | 2.0% |
+| 2000 | 8.383 | 8.199 | 7.621 | +0.184 | 2.2% |
+
+Amelia's between-imputation variance tracks the correct observed-data RIV within **≤0.22 (≈2–3%),
+non-growing in N** (monotone cells similar/smaller; overall `max|tr_samp − tr_obs| = 0.22`). The slight
+sign is an *over*-estimate (known small EMB bootstrap over-dispersion) — conservative for the claims.
+
+**Downstream witness — W3 MI-AIC selection** (`phase5/verdicts.md`): **H6 = PASS**,
+`max|FIML − Amelia congenial M=200| W3-A = 0.011` (threshold 0.03). The actual headline IC quantity is
+engine-robust, bypassing the RIV-reference subtlety entirely.
+
+**⚠ Reference correction to §3 (important — do not re-apply the literal Step-1 metric).** §3 named the
+PRIMARY metric "Amelia sample RIV vs `tr_riv_analytic`". But `tr_riv_analytic` (= `tr_exp`) is the
+**naive / as-if-MCAR** RIV that drops the MAR mean×covariance cross term; against it Amelia looks off
+by ~1.09 at N=200 (~14%), which would **falsely flag** sensitivity. The correct engine-free reference
+is the realized **`tr_obs`** (`observed_info_obs_mvn`, the K&M-1998 cross term included) — also what a
+congenial proper imputation's posterior variance should reproduce — and Amelia matches it. The
+phase-6 "one-RIV" reframe already adopts `tr_obs`; this is the single most load-bearing point.
+
+**Honest caveat — W1 secondary metric.** The proper-MI `A_prop`/`T_prop` (Amelia) residuals vs `tr_obs`
+are non-zero and noisy (`A_minus_obs` ≈ −0.48/−0.76/−0.36/−1.33 across N, within ~2 MCSE). These are the
+**same finite-n / realized-information `(A)+(C)` offset already documented** (the −0.22→−0.46 thread,
+[[project-nonmonotone-coxsnell]]) — present in FIML too (`A_fiml` similarly offset, draw-free) — i.e.
+an analytic/FIML phenomenon, **not** an Amelia artifact. Not evidence of engine sensitivity.
+
+**Definition of done: satisfied (not-sensitive branch).** Recorded here; one-line engine-robustness
+note added to `manuscript/derivation.qmd` (§sec-combine, "Both terms calibrate to the single
+observed-data RIV"); `quarto render` exit-0; no DA re-run, no limitations section needed.
