@@ -36,8 +36,18 @@ todo/022 item-B component-candor remark at the roadmap caveat; Stage-3 SKIP reco
 **Stretch EXECUTED same session: `manuscript/mi-spectral.qmd` opened** — full skeleton with
 §1 (intro) + §2 (setup/theorem) in draft submission prose and §3–§6 as structured stubs;
 citations restricted to in-session-read sources + 3 deliberate `@TODO:` placeholders; render
-exit-0; audit 0 BLOCKER / 3 WARN (the placeholders) / 4 INFO. Next sessions: draft §3–§6 from
-@sec-lrt/@sec-ic, resolve the placeholders, polish §1–§2 to submission quality.
+exit-0; audit 0 BLOCKER / 3 WARN (the placeholders) / 4 INFO.
+
+**NEXT SESSION (user decision, end of this session): the non-nested (Vuong-regime)
+measurement — CS vs AR(1).** The only derived-but-never-measured quantitative claim in the
+paper (the O(1) (A)+(C) differential for non-nested pairs, Proposition L4 → IC ranking).
+Full design captured in `todo/028-nonnested-measurement-handoff.md`: equal-parameter-count
+candidates (ΔAIC = ΔT exactly), closed-form CS / 1-D-profile AR(1) Q̄-maximizers, X1-heavy
+MAR + MCAR mechanism-isolation twins, equal-KL money cell, nested internal control
+(independence ⊂ both), pilot-based power gate, and the commit-prereg-BEFORE-code discipline
+(todo/029). Bonus: curved candidates sit OFF Proposition L2's equality case — first in-vivo
+naive-vs-exact trace test in a selection context. After that: mi-spectral.qmd §3–§6 drafting
++ @TODO resolution.
 
 **Earlier (2026-06-04, session 2 — the W2 differential session, todo/024–025 EXECUTED):**
 D1–D3 derived through the full multimodal protocol and landed in `derivation.qmd @sec-lrt`
