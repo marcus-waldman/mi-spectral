@@ -91,6 +91,17 @@ Create the stub + first full skeleton (drafting continues over subsequent sessio
   §4 the IC application (from @sec-ic); §5 numerical studies (W1 with the Amendment-2-honest
   framing, W2, W3-with-honest-wording); §6 discussion (scope fence, proper-MI/engine scoping,
   Le Cam-style power-dominance as a CONJECTURE only, sequel pointer to the calibration program).
+- **§5 Satorra–Bentler wording caution (decided 2026-06-04):** the SB-type scaled-shift (W2 arm
+  C5; the retired W3 SB arm) and equipercentile equating were NEVER analytically justified
+  anywhere in this paper — both are sequel rungs (todo/023). Present C5 strictly as an
+  *empirical two-moment-matching comparison arm* (cite Asparouhov–Muthén / Satorra–Bentler from
+  the held corpus if named), never as a derived correction. If a sentence of theory is wanted,
+  the most that may be said is what @sec-lrt already implies: at H0 the limit law is
+  $\sum\lambda_j\chi^2_1$ with the I_com-metric complement spectrum, so a two-moment correction
+  is *derivable* — and note honestly that the committed C5 coefficients used the naive
+  $\mathrm{tr}$ difference as their $tr_\perp$ input, which Proposition L2 shows overstates
+  $\mathrm{tr(RIV_\perp)}$ (immaterial in the near-aligned W2 design, real in general). Do NOT
+  derive the SB coefficients in this paper — that is deliberate sequel scope.
 - **Authorship/provenance:** AI-assisted derivation, ORCID-verified human prompter
   marcus.waldman, transparent per JAIGP norms; the derivation.qmd + verification/ +
   literature/ stack IS the provenance appendix.
