@@ -326,8 +326,11 @@ clause, Vuong is the anchor (now acquired). Verify in-session before citing.
 
 **PROMOTED 2026-06-04 (scope revision: equipercentile ladder moves IN-PAPER, todo/026 rev. 2).**
 Formerly sequel-only; the in-paper ladder section needs ONE canonical equating citation —
-acquire **Kolen & Brennan (2014)** *Test Equating, Scaling, and Linking* 3rd ed. (primary; the
-equipercentile method definition), priority **High**, lands in the IC/calibration-ladder section.
+**Kolen & Brennan (2014)** *Test Equating, Scaling, and Linking* 3rd ed. (primary; the
+equipercentile method definition), lands in the IC/calibration-ladder section. **Status: acquired
+(migrated + Mathpix-indexed + lit-synced 2026-06-04 → `literature/kolenTestEquatingScaling2014.md`,
+1.57 MB whole book — targeted-chapter reads only, like Le Cam/vdV). NOT yet verified: in-session
+read + claim check required before any `@cite` (next session, with the ladder section).**
 **Holland & Thayer (1989)** equipercentile/observed-score equating and **von Davier, Holland &
 Thayer (2004)** *The Kernel Method of Test Equating* stay optional/secondary (acquire only if the
 section needs the presmoothing/kernel distinction). Already held for the same section: Davies
