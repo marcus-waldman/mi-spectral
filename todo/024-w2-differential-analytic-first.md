@@ -149,8 +149,31 @@ off-lineage:
   separates the `t'M_Rδ` cross term (the RIV channel) from the pure `(A)+(C)` pieces — matching
   our quadratic-route referee's distinction.
 
-**MODE B: pending** (runner still in flight; grade on return against the key below — its planted
-objection is already answered by Mode A's §4.2, but grade it independently).
+**GRADING OUTCOME — MODE B (returned + graded 2026-06-04, same session): ALL FOUR CLAIMS
+SUSTAINED; escalation NOT hit.** `cache/layer3-gpt-5.5-w2diff-modeB.md`, red-team:
+- **C3 (the planted objection)**: mounted then correctly dismantled — "the proposed
+  O(n)×O(n^{-1/2}) = O(√n) term is spurious: it attaches the φ-gradient α_R to a ψ-displacement";
+  no `α_R'a` term exists because `F_ψ(θ0,θ0) = 0` (F1); the heavy noise is the common realized
+  constant, fit-dependent pieces O_p(1); fixed-alternative reversion real. SUSTAINED.
+- **C1**: the I_obs-metric attack "confuses covariance with curvature"; re-derived
+  `F_ψψ = −I_mis ⇒ J = I_com`; the decisive check is OUR self-consistency argument (Newton step
+  must reproduce δ; curvature A would give `δ + A^{-1}Mδ ≠ δ`); formula re-derived line by line.
+  SUSTAINED.
+- **C2**: attempted counterexample → instead PROVED the inequality with an exact closed form for
+  the overstatement gap: `B_C − B_0 = tr((I+H_11)^{-1} H_12 H_12') ≥ 0` (H = whitened I_mis,
+  blocked on col(I_obs^{1/2}G)), equality iff `H_12 = 0` — our invariance condition verbatim;
+  EFMI ⇒ both = λq_d. SUSTAINED. (Bonus: this exact-gap expression is sharper than our
+  trace-inequality forms — candidate for a future manuscript remark.)
+- **C4**: "the leading (A)+(C) term is not evaluated at the two fitted points — it comes from the
+  common imputation-parameter expansion at the common truth"; smooth-functional argument gives
+  O(n^{-1/2}) local, genuine O(1) fixed/non-nested. SUSTAINED.
+
+**NET: the cross-model gate is CLEARED — both modes, full agreement, zero escalation triggers.
+D1–D3 are now derived (3 in-house routes + referees) + CAS-verified + MC-confirmed (52-se
+discrimination) + blind cross-model audited (Mode A) + adversarially red-teamed (Mode B).**
+Stage 3 (moderate-scale paired estimator) is now unblocked but likely unnecessary — the spot check
+and discriminating cell already measure the differential; revisit only if the manuscript needs
+more n-range.
 
 **Manuscript LANDED 2026-06-04:** `derivation.qmd @sec-lrt` (Propositions L1–L4, sources, Appendix-A
 entries for Wilks / Chan–Meng / Chan-AoS / Meng–Rubin-92 / Vuong, vdV §16.4 passage); intro LRT

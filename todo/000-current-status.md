@@ -20,10 +20,13 @@ shared-imputation common realized constant (NOT subspace projection of the linea
 O(√n) at fixed alternatives.
 (iii) **D3**: the (A)+(C) differential cancels **exactly** at H0, is O(n^{-1/2}) local, genuine
 O(1) only non-nested (Vuong — read + cited).
-**GPT-5.5 xhigh blind audit: MODE A RETURNED + GRADED same session — FULL AGREEMENT, no
-escalation** (`cache/layer3-gpt-5.5-w2diff-modeA.md`: I_com metric boxed, formula term-for-term,
-definite-sign overstatement via a third independent Schur proof, sd orders + exact (A)+(C)
-cancellation — grading record in todo/024). **Mode B still in flight** (grade on return).
+**GPT-5.5 xhigh blind audit: BOTH MODES RETURNED + GRADED same session — CROSS-MODEL GATE
+CLEARED, zero escalation triggers** (`cache/layer3-gpt-5.5-w2diff-mode{A,B}.md`; grading record in
+todo/024). Mode A (blind): I_com metric boxed, formula term-for-term, definite-sign overstatement
+via a third independent Schur proof, sd orders + exact (A)+(C) cancellation. Mode B (red-team):
+all four claims SUSTAINED; the planted objection located precisely ("attaches the φ-gradient to a
+ψ-displacement"); bonus exact closed form for the overstatement gap
+`tr((I+H_11)^{-1}H_12 H_12')`.
 **H1 reconciled** (todo/022 item A): pooled preregistered W1 T̂ = 2.434±0.258 sits ON the
 (A+C)-augmented mean (vs 2.77 preregistered target, −1.3 se); the N=1000 FAIL = criterion artifact
 (then-underived O(1) MAR term) + √n heavy tail at fixed R — **Amendment 2 documented in todo/004**

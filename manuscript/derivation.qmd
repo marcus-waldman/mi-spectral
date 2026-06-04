@@ -1441,8 +1441,13 @@ carry over; the Monte-Carlo confirmations above are deterministic-FIML. A blind 
 re-derivation (a different model family, given only the setup and the tasks) independently
 reproduced every load-bearing conclusion — the $I_{\text{com}}$ curvature and projection metric,
 @eq-lrt-bias term for term, the definite-sign overstatement of Proposition L2 with a third
-independent proof, and the noise orders and exact $(A)+(C)$ cancellation of Propositions L3–L4
-(`verification/cache/layer3-gpt-5.5-w2diff-modeA.md`; protocol and grading record in
+independent proof, and the noise orders and exact $(A)+(C)$ cancellation of Propositions L3–L4 —
+and a companion adversarial pass, instructed to break each claim (including the natural objection
+that the two fits' $O_p(n^{-1/2})$-separated maximizers should leave $O_p(\sqrt n)$ uncancelled
+noise), sustained all four, locating the objection's error precisely: it attaches the
+imputation-slot gradient to an evaluation-slot displacement that the conditional-score identity
+annihilates (`verification/cache/layer3-gpt-5.5-w2diff-modeA.md` and
+`verification/cache/layer3-gpt-5.5-w2diff-modeB.md`; protocol and grading record in
 `todo/024-w2-differential-analytic-first.md`).
 
 ---
