@@ -1,0 +1,252 @@
+---
+title: "The deviance bias of congenial multiple imputation, with applications to likelihood-ratio comparison and model selection"
+subtitle: "JAIGP submission — working draft (skeleton opened 2026-06-04; §1–§2 drafted, §3–§6 structured stubs)"
+author:
+  - name: "Marcus Waldman"
+    note: "ORCID-verified human prompter of an AI-assisted derivation; provenance per JAIGP norms (see the statement at the end)."
+date: last-modified
+bibliography: ../literature/mi-spectral-better-bibTeX.bib
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+
+::: {.callout-note}
+**Draft status.** This is the submission document in progress. The canonical *sourced
+derivation* — every external claim pinned to a source passage, every number pinned to a
+committed artifact, executable verification inline — is the companion document
+`manuscript/derivation.qmd`; this paper states results and points there for the full
+provenance apparatus. Sections 3–6 below are structured stubs to be drafted in subsequent
+sessions; §1–§2 are draft prose.
+:::
+
+# Introduction {#sec-intro}
+
+Multiple imputation answers a practical question with an elegant division of labor: an
+imputer fills in the missing values several times from a model for the complete data, an
+analyst fits whatever model they care about to each completed data set, and simple rules
+combine the results [@rubinMultipleImputationNonresponse1987]. For point estimation and
+variance the combining rules are settled. For *likelihood-based* quantities they are not.
+The averaged log-likelihood across imputations — the Q-function of the EM algorithm in its
+infinite-imputation limit, and the computational backbone of the modern MI
+likelihood-ratio tests of @mengPerformingLikelihoodRatio1992b and
+@chanMultipleImprovementsMultiple2022 — is *not* the observed-data log-likelihood, and it
+is not an unbiased stand-in for the complete-data log-likelihood either. Deviances built
+from it are systematically too favorable.
+
+This paper derives exactly how favorable. For a regular likelihood model fit on
+congenially imputed data, with an estimated scale or covariance, the averaged
+log-likelihood at the observed-data maximum likelihood estimate overstates its
+complete-data target by
+$$ \tfrac{1}{2}\operatorname{tr}(\mathrm{RIV}) \;+\; (A){+}(C), $$
+where $\operatorname{tr}(\mathrm{RIV})$ is the trace of the relative-increase-in-variance
+matrix — the total odds of missing information about the model's parameters — and
+$(A)+(C)$ is an $O(1)$ design-imbalance term that vanishes under MCAR and is nonzero under
+MAR exactly when the missing and observed units differ on the conditioning variables. The
+half-trace itself decomposes into two parts with opposite signs and distinct mechanisms:
+an *imputation-bias* term $+\operatorname{tr}(\mathrm{RIV})$ (imputed data flatter the
+model that imputed them) and an *estimation-mismatch* term
+$-\tfrac12\operatorname{tr}(\mathrm{RIV})$ (the MI fit targets the complete-data
+maximizer, which is not the observed-data one). The decomposition, the MAR term, and the
+scope fence — a known-scale, location-only fit has no such bias — are stated as the main
+theorem in @sec-theorem and derived in full in the companion document.
+
+Two applications give the bias teeth.
+
+**Likelihood-ratio comparison.** When two nested models are fit to the *same* imputations,
+almost everything cancels — but not everything. At the null the deviance numerator carries
+a differential bias equal to $\operatorname{tr}(\mathrm{RIV}_\perp)$, the missing
+information of the tested directions projected in the *complete-data* metric — provably
+*not* the difference of the two models' own trace corrections, which always overstates it.
+The same sharing of imputations collapses the per-data-set noise of the comparison from
+$O(\sqrt n)$ to $O(1)$, and cancels the design-imbalance term exactly at the null. At the
+null, this differential bias is precisely the mean that a correctly calibrated reference
+distribution already absorbs [@chanGeneralFeasibleTests2022] — so tests built on such
+references are safe; the bias bites where no reference stands between the statistic and
+its consumer.
+
+**Model selection.** Information criteria are exactly such a consumer: MI-AIC compares
+penalized averaged deviances as numbers. The bias is model-specific — each candidate's
+criterion is too small by its own $\operatorname{tr}(\mathrm{RIV})$ — so uncorrected
+MI-AIC systematically favors the candidates with the *most* missing information about
+their own parameters. In our pre-registered study, every single misclassification of the
+uncorrected criterion lands on the largest-RIV candidate. Adding
+$\operatorname{tr}(\mathrm{RIV}_k)$ per candidate repairs the mean; as a penalty, the
+repaired criterion reproduces the missing-data information criterion
+$\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017, whose surcharge is half
+that of the earlier complete-data-discrepancy criteria
+[@cavanaughAkaikeInformationCriterion1998a]. But the mean is not the whole story: we
+derive, pre-register, and then measure a three-step contrast — matching the mean, the
+first two moments, or the entire per-model null distribution of the criterion — and show
+that the achievable target splits cleanly along the null/noncentral axis: the null side
+calibrates *completely* (in the pre-registered design the distribution-matched criterion
+selects indistinguishably from complete-data AIC), while no observable transform can
+restore the evidence that missing data destroyed, and the two stronger corrections
+actively shrink it.
+
+**What is new, and what is not.** The trace *penalty* for model selection is not new — it
+is Shimodaira's $\mathrm{AIC}_{x;y}$, and the doubled version goes back to
+@cavanaughAkaikeInformationCriterion1998a and Shimodaira's own PDIO. The calibration of
+MI *test* references is not new either — that is the Meng–Rubin line
+[@mengPerformingLikelihoodRatio1992b] culminating in @chanMultipleImprovementsMultiple2022
+and @chanGeneralFeasibleTests2022, which this work sits upstream of rather than competes
+with: calibration makes the reference right, the present correction makes the statistic
+referred to it centered. What is new here: (i) the *decomposition* of the deviance bias
+into imputation bias and estimation mismatch, with the estimated-scale scope fence;
+(ii) the MAR design-imbalance term $(A)+(C)$, beyond the fixed-pattern settings of the
+information-criterion literature; (iii) the extension from the deterministic EM pivot to
+proper multiple imputation; (iv) the exact differential bias of the MI likelihood-ratio
+numerator — the complete-data-metric projection, the proof that the naive difference of
+trace corrections always overstates it, the $O(1)$ paired-noise collapse, and the exact
+null cancellation of the design-imbalance differential; and (v) the pre-registered
+distributional-matching contrast for model selection, with its honest null/noncentral
+split. Uncongenial settings [@mengMultipleImputationInferencesUncongenial1994a] are out of
+scope throughout: congeniality is assumed, and the bias derived here is what remains
+*after* the imputer and analyst agree.
+
+@sec-theorem states the setup and the theorem. @sec-lrt-app and @sec-ic-app develop the
+two applications. @sec-numerics reports the pre-registered numerical studies. @sec-disc
+discusses scope, engine-dependence, and open directions. Throughout, the companion sourced
+derivation (`manuscript/derivation.qmd`, rendered alongside this paper) carries the full
+proofs, the source-passage audit trail, and the executable symbolic verification; this
+paper is self-contained at the level of statements and evidence.
+
+# Setup and main theorem {#sec-theorem}
+
+## Objects {#sec-objects}
+
+Let $Y$ collect $N$ independent draws from a regular parametric model with parameter
+$\theta \in \mathbb{R}^k$; we instantiate throughout with the $p$-variate normal,
+$\theta = (\mu, \operatorname{vech}\Sigma)$. An ignorable MAR mechanism hides some
+coordinates of some units, leaving $Y_{\text{obs}}$. Three log-likelihoods organize
+everything: the complete-data $\ell_{\text{com}}(\theta)$ (unavailable), the observed-data
+$\ell_{\text{obs}}(\theta)$ with maximizer $\hat\theta_{\text{obs}}$, and the averaged
+log-likelihood over imputations drawn from the congenial model at
+$\hat\theta_{\text{obs}}$ — in the infinite-imputation limit, the EM Q-function
+$$ \bar Q_\infty(\theta) =
+\mathbb{E}\big[\ell_{\text{com}}(\theta) \,\big|\, Y_{\text{obs}},\, \hat\theta_{\text{obs}}\big], $$
+the deterministic-FIML form whose finite-$M$, proper-MI version replaces the point
+$\hat\theta_{\text{obs}}$ by posterior draws. The three Fisher informations satisfy
+$I_{\text{com}} = I_{\text{obs}} + I_{\text{mis}}$ [@chanGeneralFeasibleTests2022], and
+the relative increase in variance is $\mathrm{RIV} = I_{\text{obs}}^{-1} I_{\text{mis}}$,
+whose trace is the total odds of missing information.
+
+The object of study is the *deviance bias*
+$$ T \;=\; \bar Q_\infty(\hat\theta_{\text{obs}}) \;-\;
+\ell_{\text{com}}(\hat\theta_{\text{obs}}), $$
+the amount by which the averaged log-likelihood flatters the fit relative to what the
+complete data would have shown at the same parameter value.
+
+## The theorem {#sec-thm-statement}
+
+::: {#thm-bias}
+**(Deviance bias under congenial MI.)** Under the regularity, congeniality, and properness
+conditions of the companion derivation, with an estimated scale or covariance,
+$$ \mathbb{E}[T] \;=\; \underbrace{+\operatorname{tr}(\mathrm{RIV})}_{\text{imputation bias}}
+\;\underbrace{-\;\tfrac12\operatorname{tr}(\mathrm{RIV})}_{\text{estimation mismatch}}
+\;+\; (A){+}(C) \;+\; o(1)
+\;=\; \tfrac12\operatorname{tr}(\mathrm{RIV}) + (A){+}(C) + o(1), $$
+where $(A)+(C)$ is an $O(1)$ design-imbalance term that is zero under MCAR and, under MAR,
+nonzero exactly when the conditioning-variable distributions of missing and observed units
+differ. With a *known* scale (location-only fit) the conditional missing-data entropy is
+parameter-free and the bias collapses: $\mathbb{E}[T] = 0$ under deterministic FIML and
+$-\tfrac12\operatorname{tr}(\mathrm{RIV})$ under proper MI.
+:::
+
+The proof — Term B (estimation mismatch) by an elementary Taylor argument, Term A
+(imputation bias) by a second-order expansion turning on an entropy-Hessian cancellation —
+is given in the companion derivation, together with the symbolic verification of every
+trace identity and the Monte-Carlo confirmation of the total (the pooled pre-registered
+estimate $\hat T = 2.43 \pm 0.26$ against the $(A)+(C)$-augmented prediction $2.42$–$2.55$;
+only totals and paired contrasts are Monte-Carlo-tight at finite $n$, a candor note the
+companion makes precise). @TODO:state-conditions-inline — decide whether the regularity
+ledger is summarized here or cited wholesale.
+
+# Application I: the likelihood-ratio differential {#sec-lrt-app}
+
+*(Stub — to be drafted from `derivation.qmd` `#sec-lrt`, Propositions L1–L4.)* Content
+committed: the statistic $\hat d_L$ built from the constrained and unconstrained maximizers
+of the shared $\bar Q_\infty$ [@chanMultipleImprovementsMultiple2022]; **Proposition L1**
+(at the null, $\mathbb{E}[\hat d_L - \hat d_{\text{com}}] = \operatorname{tr}(\mathrm{RIV}_\perp)$
+in the $I_{\text{com}}$ metric); **Proposition L2** (the naive difference of self-contained
+traces always overstates it; equality iff an invariance condition that holds under equal
+fractions of missing information); **Proposition L3** (pairing collapses the per-data-set
+noise to $O(1)$; mechanism is the shared-imputation realized constant); **Proposition L4**
+(the design-imbalance differential cancels exactly at the null, is $o(1)$ under local
+alternatives, and returns $O(1)$ only for non-nested comparison); where the bias bites
+(consumers with no calibrated reference). Numerical confirmations: the discriminating
+$\mu_1$ cell (52 standard errors between the two candidate formulas) and the noise-order
+spot check.
+
+# Application II: information-criterion model selection {#sec-ic-app}
+
+*(Stub — to be drafted from `derivation.qmd` `#sec-ic`.)* Content committed: the corrected
+criterion $-2\bar Q_\infty + 2q_k + \operatorname{tr}(\mathrm{RIV}_k)$ and its
+positioning ($\mathrm{AIC}_{x;y}$'s surcharge [@shimodairaInformationCriterionModel2017];
+the doubled trace of $\mathrm{AIC}_{cd}$ [@cavanaughAkaikeInformationCriterion1998a]); why
+uncorrected MI-AIC favors high-RIV candidates; the saturated-anchored construction and the
+analytic per-model null law; the three-step matching contrast (mean / two moments via the
+unique derived affine map / equipercentile equating through the Imhof distribution
+function), with the SEM-tradition and test-equating provenance
+[@TODO:sem-equating-cites-after-reread]; the pre-registered null/noncentral split and its
+quantitative confirmation; the honest fences (per-pair-own-null only; noncentral matching
+impossible in principle; marginal equating cannot calibrate difference distributions; the
+two stronger corrections do not telescope).
+
+# Numerical studies {#sec-numerics}
+
+*(Stub.)* All studies pre-registered with predictions and pass criteria frozen before
+execution; preregistration documents, amendment history, seeds, and committed caches are
+in the repository (`todo/004`, `todo/027`; `verification/`).
+
+- **Theorem validation (W1).** Design, the heavy-tail caveat, the pooled reconciliation
+  with Amendment 2's criterion note — honest framing: the per-cell criterion was written
+  against the half-trace alone before the $O(1)$ MAR term was derived; the pooled estimate
+  corroborates the completed theorem. Pointers: `verification/W1-bias-decomposition.R`
+  (frozen), `verification/w1-h1-pooled-reconciliation.R`.
+- **Likelihood-ratio power and calibration (W2).** The four-arm rejection study; the
+  near-nominal uncorrected null rate against a calibrated reference (0.042) and the
+  slightly conservative corrected one (0.034), as the theory predicts; the
+  size-adjusted-power analysis. The scaled-shift comparison arm (C5) is presented strictly
+  as an *empirical two-moment-matching arm*: its committed coefficients used the naive
+  trace difference as input, which Proposition L2 shows overstates the exact complement
+  trace (immaterial in this near-aligned design, real in general) — the *derived*
+  two-moment correction is the model-selection contrast's second step, where its
+  coefficients come from the analytic null law rather than from plug-in moments.
+- **Model selection (W3 + the matching contrast).** The committed 60-cell sweep (oracle
+  $\approx 0.90$ / corrected $\approx 0.81$ / uncorrected $\approx 0.65$; all uncorrected
+  misclassifications on the largest-RIV candidate); the pre-registered three-step contrast
+  at $\rho \in \{0.40, 0.10, 0\}$ with every criterion passed — null side complete
+  calibration, oracle-level selection where errors are overfit flips, the predicted
+  noncentral shrinkage factors, the weak-signal information-loss floor. Pointers:
+  `verification/cache/run_all-prod/phase2-w3/summary.csv`,
+  `verification/cache/ic-ladder-summary.csv`, `todo/027-ladder-preregistration.md`.
+
+# Discussion {#sec-disc}
+
+*(Stub.)* Committed content: the estimated-scale scope fence and the MVN instantiation;
+what congeniality buys and what remains without it (out of scope here;
+@mengMultipleImputationInferencesUncongenial1994a); proper-MI engine scoping (results
+shown for deterministic FIML and EMB imputation, within $0.011$ on headline rates;
+data-augmentation engines not run — an honestly disclosed gap); the power-dominance
+question stated as a **conjecture only**, with the W2 evidence as partial support; the
+non-nested regime (where the design-imbalance differential is genuinely $O(1)$ and the
+paired noise returns to $O(\sqrt n)$) as the sharpest open front; and the
+distributional-calibration program beyond per-model null maps — noncentrality
+de-shrinkage, joint calibration of score vectors — as the sequel.
+
+# Provenance and authorship statement {#sec-provenance}
+
+This is an AI-assisted derivation with a human prompter of record (Marcus Waldman,
+ORCID-verified), prepared for the Journal for AI Generated Papers under its transparency
+norms. The provenance stack is part of the submission: the companion sourced derivation
+(`manuscript/derivation.qmd`) pins every external claim to a verbatim source passage in a
+locally archived copy and every number to a committed artifact; the `verification/`
+directory contains the pre-registered studies, their frozen originals, amendment history,
+and caches; analytic claims were additionally cross-checked by an independent model
+lineage under a blind adversarial protocol, with the grading records committed. Citation
+discipline is enforced mechanically: no reference appears in this manuscript without a
+locally archived, session-read copy of the source.
+
+@TODO:references-section-via-bbt

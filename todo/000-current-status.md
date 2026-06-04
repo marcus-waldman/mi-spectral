@@ -33,7 +33,11 @@ davies, chan-AoS §5.1 MC reference). Render exit-0; **/derivation-audit PASS 0 
 (3 lifecycle WARNs fixed via todo/003 rows; "consume"/"committed sweep" jargon reworded). Issue
 #1 CLOSED as superseded by rung 2 (retirement comments only in frozen scripts). Small closures:
 todo/022 item-B component-candor remark at the roadmap caveat; Stage-3 SKIP recorded in todo/024.
-**NOT done: mi-spectral.qmd skeleton (todo/026 work item 3) — next session's opening move.**
+**Stretch EXECUTED same session: `manuscript/mi-spectral.qmd` opened** — full skeleton with
+§1 (intro) + §2 (setup/theorem) in draft submission prose and §3–§6 as structured stubs;
+citations restricted to in-session-read sources + 3 deliberate `@TODO:` placeholders; render
+exit-0; audit 0 BLOCKER / 3 WARN (the placeholders) / 4 INFO. Next sessions: draft §3–§6 from
+@sec-lrt/@sec-ic, resolve the placeholders, polish §1–§2 to submission quality.
 
 **Earlier (2026-06-04, session 2 — the W2 differential session, todo/024–025 EXECUTED):**
 D1–D3 derived through the full multimodal protocol and landed in `derivation.qmd @sec-lrt`
