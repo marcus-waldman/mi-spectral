@@ -42,11 +42,17 @@ W3 SB arm (issue #1) to be retired, not fixed. Current target document is `deriv
 2026-06-04 (Vuong, Barnard–Rubin, Self–Liang, Le Cam acquired + lit-synced). The theory layer
 (todo/015–021) stays LOCKED.
 
-**Next session:** (1) grade the GPT-5.5 -w2diff return (`cache/layer3-gpt-5.5-w2diff-mode{A,B}.md`)
-against todo/024's grading key; escalation ⇒ STOP and reconcile. (2) If clear: todo/024 Stage 3
-(moderate-scale paired between-model estimator) is OPTIONAL — the spot check + discriminating cell
-already measure the differential; decide if more scale adds anything. (3) Remaining todo/022 items:
-B (component-level finite-n) and D/E/F (W3 — sequel-scoped, wording only).
+**Post-session addenda (same day):** GPT-5.5 grading is COMPLETE (both modes, gate cleared — see
+Latest above and todo/024); an independent-session audit of derivation.qmd returned a clean PASS
+(0 BLOCKER / 0 WARN after the engine brace-glob fix `80d2d7e` — the "3 known false positives"
+disclaimer is RETIRED; any new WARN is a real signal).
+
+**Next session = `todo/026-ic-landing-and-submission-handoff.md`:** (1) land the IC application
+section `@sec-ic` in derivation.qmd (mirror of @sec-lrt; honest W3 wording π≈0.81 vs 0.90;
+in-session reads of the Shimodaira/Cavanaugh/Claeskens/Hens corpus); (2) small closures — retire
+the W3 SB arm (issue #1, retire-don't-fix), todo/022 item B remark, Stage-3 SKIP disposition,
+optional Mode-B exact-gap remark; (3) OPEN `manuscript/mi-spectral.qmd` (the JAIGP submission
+skeleton — the "after derivation.qmd is done" gate is satisfied once @sec-ic lands).
 
 **Project:** JAIGP theory paper on deviance-bias correction for the Q-function under congenial multiple imputation, with applications to LRT model comparison and information-criterion model selection.
 
