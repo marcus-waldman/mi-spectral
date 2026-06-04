@@ -351,3 +351,16 @@ landed quantitatively where the analytic law put it ($a_k$ and $1/\lambda_{\max}
 
 *Preregistered 2026-06-04 before `verification/ic-ladder.R` existed. Author of record:
 marcus.waldman (ORCID-verified human prompter); AI-assisted per JAIGP norms.*
+
+**Provenance candor note (added post-run).** §§1–5 were frozen before any ladder code was
+written and §6 was appended after the run, but the whole file landed in a single commit
+(`4aa238d`) together with the script and caches — so the temporal precedence of the
+preregistration rests on this file's structure, the session transcript, and the run log,
+NOT on separate commit history (unlike the W1/W2/W3 originals, anchored at SHA ddc9037).
+Future preregistrations should be committed before the first line of code is written.
+Reproducibility of the run itself: seeds `20260604 + r` are set per replicate inside
+`run_one_ladder`, so results are invariant to core count and scheduling (verified: the
+R=24 MAIN smoke reproduces identically at 4 and 6 cores, including the assert gaps);
+exact invocation and output in `cache/ic-ladder-runlog.txt`; package environment in
+`cache/ic-ladder-sessioninfo.txt` (no lockfile — version drift in lavaan/CompQuadForm
+could perturb numerics at optimizer tolerance, not at result scale).

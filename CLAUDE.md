@@ -133,6 +133,12 @@ Rscript verification/run_all.R <R> <out_suffix> "1,4,5" <n_cores>
 ```
 Outputs land in `verification/cache/run_all-<out_suffix>/phase{0..5}/`.
 
+**Reproduce the IC calibration ladder** (todo/027; ~8 min on 6 cores; seeds 20260604+r, core-count-invariant; overwrites `cache/ic-ladder-*.rds` + `ic-ladder-summary.csv`):
+```
+Rscript verification/ic-ladder.R 2000 6 MAIN,WEAK,JUNK
+```
+CAS companion: `py verification/cas-wolfram/verify_ic_ladder.py`. Environment record: `verification/cache/ic-ladder-sessioninfo.txt`.
+
 **Preregistered W1/W2/W3 originals** (todo/004; only for reproducing the SHA ddc9037 results, not for new analysis):
 ```
 Rscript verification/W1-bias-decomposition.R <mode> <engine> [n_cores] [N_override]
