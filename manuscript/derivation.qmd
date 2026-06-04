@@ -74,17 +74,20 @@ paper; both are developed in the manuscript, not here.
 - **Likelihood-ratio model comparison.** The MI likelihood-ratio numerator
 $\hat d_L = 2[\bar Q_\infty(\hat\psi^*) - \bar Q_\infty(\hat\psi_0^*)]$ — where $\hat\psi^*$
 maximizes the averaged log-likelihood, in the sense of
-[@chanMultipleImprovementsMultiple2022] — inherits each model's deviance-scale bias
-$\operatorname{tr}(\mathrm{RIV}) + 2[(A)+(C)]$, hence a *differential* bias
-$[\operatorname{tr}(\mathrm{RIV}(\hat\psi^*)) - \operatorname{tr}(\mathrm{RIV}(\hat\psi_0^*))] + 2[(A{+}C)_{\hat\psi^*} - (A{+}C)_{\hat\psi_0^*}]$.
-The $\operatorname{tr}(\mathrm{RIV})$ part vanishes under the null but not under local alternatives or
-non-nested comparison; the $(A)+(C)$ part is the MAR design-imbalance contribution (zero under MCAR).
-Both distort power and ranking even when the reference distribution is correctly calibrated
-[@chanGeneralFeasibleTests2022]. Each is a *differential* across candidate fits on the same data — a
-paired contrast whose variance structure cancels the common heavy-tailed sampling noise of the
-standalone $(A)+(C)$ magnitude (@sec-termA), so the comparison-relevant correction is *structurally*
-better-conditioned than the absolute $(A)+(C)$ — a statement about variance structure; the empirical
-demonstration is developed with the application witnesses, not here.
+[@chanMultipleImprovementsMultiple2022] — inherits a *differential* bias, derived in @sec-lrt.
+At the null it equals $\operatorname{tr}(\mathrm{RIV}_\perp)$, the missing information of the
+$q_{\mathrm{d}}$ *tested* directions projected in the complete-data metric (@eq-lrt-bias) — and
+**not** the difference of the two models' self-contained $\operatorname{tr}(\mathrm{RIV})$s, which
+always overstates it (Proposition L2; by a factor above three in an unfavorable design). The
+$(A)+(C)$ design-imbalance part cancels *exactly* at the null, is negligible under local
+alternatives, and re-emerges only for non-nested comparison (Proposition L4). At the null,
+$\operatorname{tr}(\mathrm{RIV}_\perp)$ is precisely the mean inflation a correctly calibrated
+reference distribution [@chanGeneralFeasibleTests2022] already absorbs; the bias bites where no
+reference absorbs it — information-criterion ranking, explicit numerator corrections, and
+non-nested comparison. And because both fits share one set of imputations, the per-dataset paired
+differential has $O(1)$ noise where each model's level has $O(\sqrt n)$ (Proposition L3) — the
+comparison-relevant correction is not just structurally better-conditioned but precisely
+estimable, now derived and measured (@sec-lrt-pairing).
 - **Information criteria.** MI-AIC and MI-BIC are built from $-2\bar Q_\infty$, so each
 candidate model carries a bias $-\operatorname{tr}(\mathrm{RIV})$ that is *model-specific* —
 RIV depends on the model. Left uncorrected, the criteria systematically favor higher-RIV
@@ -142,7 +145,11 @@ congeniality, and properness conditions together with the asymptotic lemmas the 
 rests on. @sec-derivation states the theorem, sketches the proof strategy, and gives the
 proof: Term B (estimation mismatch) is an elementary Taylor argument, while Term A
 (imputation bias) is a second-order expansion turning on a cancellation we isolate as a
-lemma. @sec-sources reproduces the cited source passages verbatim, and @sec-verify
+lemma. @sec-lrt develops the likelihood-ratio application: the exact differential bias of
+the MI deviance numerator at the null, why the naive difference of the two models'
+$\operatorname{tr}(\mathrm{RIV})$s overstates it, and the noise collapse that makes the
+comparison-relevant correction precisely estimable. @sec-sources reproduces the cited source
+passages verbatim, and @sec-verify
 verifies the trace identities symbolically and the normal instantiation numerically,
 executed inline at render time.
 
@@ -154,7 +161,16 @@ survives re-pagination). Steps proved here rather than cited are flagged `[deriv
 those additionally checked symbolically in @sec-verify are flagged `[mc]`. Independently,
 the pre-registered Monte Carlo study in `verification/` estimates
 $\mathbb{E}[A],\mathbb{E}[B],\mathbb{E}[T]$ across configurations and compares them with the
-analytic $\tfrac12\operatorname{tr}(\mathrm{RIV})$.
+analytic $\tfrac12\operatorname{tr}(\mathrm{RIV})$. One honest caveat on that comparison: the
+study was pre-registered against $\tfrac12\operatorname{tr}(\mathrm{RIV})$ *alone*, before the
+$O(1)$ MAR term $(A)+(C)$ had been derived, and its per-replicate statistic is heavy-tailed with
+standard deviation $\propto\sqrt n$ — so at fixed replication the per-cell estimates at larger $n$
+cannot resolve an $O(1)$ offset and one cell ($N{=}1000$) misses the uncorrected target at
+$2.6$ standard errors. Pooling the four sample sizes by inverse variance gives
+$\hat T = 2.43 \pm 0.26$ against the pre-registered target $2.77$ and the $(A)+(C)$-augmented
+mean $2.42$–$2.55$: the pooled pre-registered data corroborate the completed theorem
+(`verification/w1-h1-pooled-reconciliation.R`; the criterion amendment is documented in the
+pre-registration's version history).
 
 ---
 
@@ -692,9 +708,12 @@ reproduce $-0.22$, plausibly Monte-Carlo noise but undiagnosed). The absolute $(
 correction order (`verification/term-ac-controlvariate-pin.R`, `verification/term-ac-higherorder-paired.R`).
 And because $(A)+(C)$ enters model *comparison* and likelihood-ratio numerators only through a difference
 across candidates — a paired contrast that cancels the common heavy-tailed noise — the
-comparison-relevant correction is *structurally* better-conditioned than the standalone value (a claim
-about variance structure, not yet a committed differential measurement). What is firm: $(A)+(C)$ is a
-nonzero $O(1)$ under MAR and **vanishes under MCAR** (controls $\approx0$ throughout).
+comparison-relevant correction is *structurally* better-conditioned than the standalone value. That
+clause is now derived and measured, not just asserted: at the null the paired differential's
+$(A)+(C)$ content cancels *exactly* and its noise is $O(1)$ against the level's $O(\sqrt n)$
+(@sec-lrt, Propositions L3–L4; sd $\approx 1.5$ flat in $n$ against $18\to37$ for the level). What
+is firm: $(A)+(C)$ is a nonzero $O(1)$ under MAR and **vanishes under MCAR** (controls $\approx0$
+throughout).
 
 Here $\mathrm{RIV}=\operatorname{tr}(I_{\text{obs}}^{-1}I_{\text{mis}\mid\text{obs}})$ (D8) is
 evaluated with the **observed-data** information $I_{\text{obs}}$ — the unconditional expectation
@@ -1214,6 +1233,220 @@ information is large.
 
 ---
 
+## Application: the likelihood-ratio differential {#sec-lrt}
+
+The theorem prices the bias of one model's $\bar Q_\infty$. A likelihood-ratio comparison consumes
+two such quantities at once — the same imputed data, two nested fits — and everything in this
+section follows from asking what survives the subtraction. Three things are derived here: the exact
+differential bias of the MI deviance numerator at the null (it is *not* the difference of the two
+models' $\operatorname{tr}(\mathrm{RIV})$s); the collapse of the per-dataset noise from
+$O_p(\sqrt n)$ to $O_p(1)$ under pairing; and the exact cancellation of the design-imbalance term
+$(A)+(C)$ at the null.
+
+### The statistic {#sec-lrt-setup}
+
+Let the null model be a smooth submodel $\theta = g(\gamma)$, $\gamma\in\mathbb{R}^{k_0}$, with
+Jacobian $G = \partial g/\partial\gamma^\top$ (full column rank, evaluated at $\gamma_0$) and
+$q_{\mathrm{d}} = k - k_0$ tested constraints; under the null the truth is
+$\theta_0 = g(\gamma_0)$. Both models are fit to the *same* imputations: with
+$\bar Q_\infty$ the averaged log-likelihood of @sec-qfun (imputation parameter the full model's
+$\hat\theta_{\text{obs}}$), the MI likelihood-ratio numerator is
+$$ \hat d_L = 2\big[\bar Q_\infty(\hat\psi^*) - \bar Q_\infty(\hat\psi_0^*)\big], \qquad
+\hat\psi^* = \arg\max_\theta \bar Q_\infty(\theta), \quad
+\hat\psi_0^* = \arg\max_{\theta = g(\gamma)} \bar Q_\infty(\theta), $$
+the infinite-$M$ limit of the averaged-likelihood maximizers of Chan and Meng — note
+$\hat\psi_0^*$ maximizes the *shared* $\bar Q_\infty$ over the null manifold; it is not the null
+model's own observed-data MLE. The complete-data counterpart is
+$\hat d_{\text{com}} = 2[\ell_{\text{com}}(\hat\theta_{\text{com}}) - \ell_{\text{com}}(g(\hat\gamma_{\text{com}}))]$,
+with $\mathbb{E}[\hat d_{\text{com}}] = q_{\mathrm{d}} + O(n^{-1})$ at the null by Wilks' theorem.
+The object of interest is the differential $\hat d_L - \hat d_{\text{com}}$: the bias the
+missing data inject into the deviance comparison.
+
+::: {.column-margin}
+**Source.** Averaged-likelihood maximizers $\hat\psi^*, \hat\psi_0^*$ and
+$\hat d_L = 2\{\bar L(\hat\psi^*) - \bar L(\hat\psi_0^*)\}$:
+@chanMultipleImprovementsMultiple2022 [<a href="#sec-src-chanmeng"><code>:191</code></a>-<a href="#sec-src-chanmeng"><code>:197</code></a>];
+the original average-the-LRT combining rule is
+@mengPerformingLikelihoodRatio1992b [(2.9), <a href="#sec-src-mengrubin92"><code>:168</code></a>].
+Wilks' $\chi^2_{q_{\mathrm{d}}}$ limit: @wilksLargeSampleDistributionLikelihood1938a
+[Theorem, <a href="#sec-src-wilks"><code>:99</code></a>].
+:::
+
+### The differential bias at the null {#sec-lrt-bias}
+
+**Proposition L1 (differential bias).** Under R1–R7 and the construction above, at the null,
+$$ \mathbb{E}\big[\hat d_L - \hat d_{\text{com}}\big]
+ = \operatorname{tr}(\mathrm{RIV}_\perp) + O(n^{-1}), \qquad
+\operatorname{tr}(\mathrm{RIV}_\perp) :=
+\operatorname{tr}\big(I_{\text{obs}}^{-1} I_{\text{mis}\mid\text{obs}}\big)
+- \operatorname{tr}\big[(G^\top I_{\text{com}} G)^{-1}\, G^\top I_{\text{com}} I_{\text{obs}}^{-1} I_{\text{mis}\mid\text{obs}}\, G\big]. $$ {#eq-lrt-bias}
+The null-model term is the missing information *projected onto the null tangent space in the
+$I_{\text{com}}$ metric* — not the null model's own self-contained
+$\operatorname{tr}(\mathrm{RIV}_0) = \operatorname{tr}[(G^\top I_{\text{obs}} G)^{-1} G^\top I_{\text{mis}\mid\text{obs}} G]$.
+
+*Why $I_{\text{com}}$ and not $I_{\text{obs}}$.* Write $Z = \nabla\bar Q_\infty(\theta_0)$ and
+$J = -\nabla^2\bar Q_\infty(\theta_0)$. Because the conditional density integrates to one, the
+evaluation-slot gradient of the imputed part vanishes identically at
+$(\theta_0,\theta_0)$, so $Z = S + I_{\text{mis}\mid\text{obs}}\,\delta_{\text{obs}} + O_p(1)$
+with $\delta_{\text{obs}} = \hat\theta_{\text{obs}}-\theta_0$ — and hence
+$Z = I_{\text{com}} I_{\text{obs}}^{-1} S + O_p(1)$,
+$\operatorname{Var}(Z) = I_{\text{com}} I_{\text{obs}}^{-1} I_{\text{com}} + O(\sqrt n)$. The curvature is
+$J \to_p I_{\text{obs}} + I_{\text{mis}\mid\text{obs}} = I_{\text{com}}$ — the EM identity that the
+$Q$-function's curvature is the *complete*-data information. The two are consistent only together:
+the unconstrained maximizer must reproduce $\hat\theta_{\text{obs}}$ (EM self-consistency, the
+fixed point of @sec-qfun), and indeed $J^{-1}Z = I_{\text{com}}^{-1} I_{\text{com}} I_{\text{obs}}^{-1} S = \delta_{\text{obs}}$
+only for $J = I_{\text{com}}$. The constrained maximizer therefore projects $Z$ onto
+$\operatorname{col}(G)$ in the $I_{\text{com}}$ metric, the deviance is the standard difference of
+quadratic forms
+$\hat d_L = Z^\top[I_{\text{com}}^{-1} - G(G^\top I_{\text{com}}G)^{-1}G^\top]Z + O_p(n^{-1/2})$,
+and taking expectations against $\operatorname{Var}(Z)$, subtracting Wilks'
+$\mathbb{E}[\hat d_{\text{com}}] = q_{\mathrm{d}} + O(n^{-1})$, gives @eq-lrt-bias. Substituting
+$I_{\text{obs}}$ for the curvature — conflating $\hat\psi_0^*$ with the null model's own
+observed-data MLE — is the natural error here; it reproduces exactly the naive
+$\operatorname{tr}(\mathrm{RIV}) - \operatorname{tr}(\mathrm{RIV}_0)$ of Proposition L2.
+
+::: {.column-margin}
+**Source.** Derived this session, three independent routes (difference-of-levels, direct quadratic
+expansion, realized pairing) with independent referee recomputation
+(`verification/cache/w2diff-stage1-routes.json`); the realized-pairing route made precisely the
+$I_{\text{obs}}$-metric error and its referee caught and corrected it. Route-form equivalences and
+the projection algebra verified symbolically in
+`verification/cas-wolfram/verify_w2_differential.py` (checks A1–A4). MLE expansion and
+quadratic-form geometry: @vaartAsymptoticStatistics1998a
+[Thm 5.39, <a href="#sec-src-vaart"><code>:7388</code></a>; Thm 16.7, <a href="#sec-src-vaart"><code>:7457</code></a>].
+:::
+
+**Numerical confirmation.** On a four-variate design built to separate the two candidate formulas —
+$H_0\!: \mu_1 = 0$ with $X_1$ missing for most units under MAR, where
+@eq-lrt-bias gives $2.64$ while the naive difference gives $8.47$ — the Monte-Carlo mean of
+$\hat d_L - \hat d_{\text{com}}$ lands on @eq-lrt-bias to within sampling error and $52$ standard
+errors away from the naive value ($2.639 \pm 0.113$ at $N{=}500$, $2.701 \pm 0.112$ at $N{=}1000$,
+$R = 2000$; `verification/w2-paired-differential-mu1-cell.R`). On the $\sigma_{12}$-test design of
+the pre-registered likelihood-ratio study the two formulas differ by only $\approx 5\%$ ($1.31$ vs
+$1.37$) and the Monte Carlo is consistent with both
+(`verification/w2-paired-differential-spotcheck.R`).
+
+### The naive difference of $\operatorname{tr}(\mathrm{RIV})$s overstates it {#sec-lrt-naive}
+
+**Proposition L2 (overstatement).** Always
+$\operatorname{tr}(\mathrm{RIV}_\perp) \le \operatorname{tr}(\mathrm{RIV}) - \operatorname{tr}(\mathrm{RIV}_0)$,
+with equality if and only if $\operatorname{col}(I_{\text{obs}}^{1/2}G)$ is an invariant subspace of
+$I_{\text{obs}}^{-1/2} I_{\text{mis}\mid\text{obs}} I_{\text{obs}}^{-1/2}$ — in particular under
+equal fractions of missing information, where both sides equal $r\,q_{\mathrm{d}}$ for the common
+odds $r$. The proof is one matrix inequality: the Gram matrix of
+$(I_{\text{obs}}^{1/2}G,\; I_{\text{obs}}^{-1/2}I_{\text{com}}G)$ is positive semidefinite, so its
+Schur complement
+$G^\top I_{\text{com}} I_{\text{obs}}^{-1} I_{\text{com}} G \succeq
+ (G^\top I_{\text{com}}G)(G^\top I_{\text{obs}}G)^{-1}(G^\top I_{\text{com}}G)$,
+and tracing against $(G^\top I_{\text{com}}G)^{-1}$ gives the claim.
+
+Consequently, correcting an MI deviance comparison by the difference of the two models'
+self-contained $\operatorname{tr}(\mathrm{RIV})$s *over*-corrects at the null whenever the tested
+directions mix unequally-missing information — mildly in the W2 design ($\approx 5\%$), by a factor
+above three in the $\mu_1$ design above. The preregistered W2 study's correction differential used
+the naive difference; its conclusions are unaffected there (the design sits near the invariant
+case), but @eq-lrt-bias is the correct general form.
+
+::: {.column-margin}
+**Source.** Inequality + equality condition: `verification/cas-wolfram/verify_w2_differential.py`
+(B1–B3: symbolic Gram/Schur check, strictness over 400 random instances, exact equality under
+constructed invariance); independently derived in operator-variance form by the quadratic route
+(`w2diff-stage1-routes.json`).
+:::
+
+### Pairing collapses the noise from $O_p(\sqrt n)$ to $O_p(1)$ {#sec-lrt-pairing}
+
+**Proposition L3 (paired noise).** Define the per-dataset paired differential
+$D = (\hat d_L - \hat d_{\text{com}})/2$. At the null and under local alternatives
+$\theta_n = g(\gamma_0) + h/\sqrt n$,
+$$ \operatorname{sd}(D) = O(1), $$
+in contrast to the single-model statistic $T$ of @eq-decomp, whose standard deviation grows as
+$c\sqrt n$ (@sec-termA). At a fixed alternative — the two models' pseudo-true values separated at
+$O(1)$, as in non-nested comparison [@vuongLikelihoodRatioTests1989] — the cancellation fails and
+$\operatorname{sd}(D)$ reverts to $O(\sqrt n)$.
+
+The mechanism is worth stating precisely, because it is *not* a projection of the linear noise onto
+the tested subspace. The $O_p(\sqrt n)$ noise of each model's level lives in a *fit-independent*
+realized constant: the imputed conditional term $F(\theta_0, \hat\theta_{\text{obs}})$-type pieces
+(the entropy gradient contracted with the shared $\delta_{\text{obs}}$) plus the realized
+$\ell_{\text{com}} - \ell_{\text{obs}}$ at $\theta_0$. Both fits maximize the *same* realized
+$\bar Q_\infty$ built from the *same* imputation parameter, so these pieces are literally the same
+realization in both levels and cancel exactly, dataset by dataset — not merely in expectation. What
+survives is a difference of $O_p(1)$ quadratic forms. Empirically, on the W2 design at the null,
+$\operatorname{sd}(T) = 18.4 \to 26.6 \to 36.5$ across $N = 500 \to 1000 \to 2000$ (the $\sqrt n$
+growth) while $\operatorname{sd}(D) = 1.58 \to 1.47 \to 1.57$ (flat); at the fixed alternative
+$\sigma_{12} = 0.6$, $\operatorname{sd}(D) = 12.4 \to 16.8 \to 24.9$ — the $\sqrt n$ tail returns
+(`verification/w2-paired-differential-spotcheck.R`). This is the precise content of the
+"structurally better-conditioned" clause of @sec-thm, and the design basis for estimating the
+comparison-relevant correction by paired contrasts rather than differences of separately-estimated
+levels.
+
+### The design-imbalance term cancels at the null {#sec-lrt-ac}
+
+**Proposition L4 ($(A)+(C)$ differential).** The $(A)+(C)$ contributions of the two levels are
+built from the entropy gradient $\alpha$, the curvature $\mathcal{H}_{\phi\phi}$, and the shared
+imputation error $\delta_{\text{obs}}$ — all properties of the *imputation*, not of which model is
+fit. At the null they are identical realizations in both levels and cancel exactly to leading
+order; the first surviving model-specific contribution is $O(n^{-1})$. Under local alternatives the
+differential is $O(n^{-1/2}) = o(1)$: the trace differential @eq-lrt-bias dominates whatever the
+$(A)+(C)$ term does locally. Only at a fixed alternative — pseudo-true values $O(1)$ apart, the
+non-nested regime of @vuongLikelihoodRatioTests1989 — do the two models' $(A)+(C)$ terms decouple
+into a genuine $O(1)$ differential, alongside the return of the $O(\sqrt n)$ noise of
+Proposition L3.
+
+This sharpens the standalone-value discussion of @sec-termA: the $(A)+(C)$ *level* is an $O(1)$
+whose exact magnitude is hard to pin (heavy-tailed, $\operatorname{sd}\propto\sqrt n$), but the
+LRT consumes only its *differential*, which is exactly zero at the null, asymptotically negligible
+under contiguous alternatives, and re-emerges only for non-nested comparison.
+
+::: {.column-margin}
+**Source.** Local-alternative machinery: @vaartAsymptoticStatistics1998a
+[§16.4, <a href="#sec-src-vaart"><code>:7553</code></a>-<a href="#sec-src-vaart"><code>:7570</code></a>].
+Pseudo-true values and the nested/non-nested LR framework: @vuongLikelihoodRatioTests1989
+[<a href="#sec-src-vuong"><code>:81</code></a>, <a href="#sec-src-vuong"><code>:40</code></a>].
+Monte-Carlo check of the null cancellation: `w2-paired-differential-spotcheck.R` (mean of $D$ at
+the null matches @eq-lrt-bias$/2$ with no $O(1)$ offset, $\pm 0.02$ pooled).
+:::
+
+### Where the bias bites {#sec-lrt-consequences}
+
+At the null, @eq-lrt-bias is precisely the mean inflation that a correctly calibrated reference
+distribution already absorbs: the limiting law of $\hat d_L$ is the weighted sum
+$\sum_{j=1}^{q_{\mathrm{d}}} \lambda_j \chi^2_1$ whose weights $\lambda_j = 1 + r_j$ exceed one by
+the odds-of-missing-information of the tested directions
+[@chanGeneralFeasibleTests2022, eq. (1.10)], and
+$\sum_j \lambda_j = q_{\mathrm{d}} + \operatorname{tr}(\mathrm{RIV}_\perp)$. A test that refers the
+*uncorrected* numerator to such a reference is therefore approximately calibrated at the null —
+consistent with the preregistered W2 null rates (uncorrected against Chan's simulated reference:
+$0.042$; numerator additionally corrected: $0.034$, slightly conservative, as double-counting
+predicts). The differential bias matters instead where no reference distribution absorbs it:
+information-criterion-style ranking, which compares penalized $-2\bar Q_\infty$ values directly
+(@sec-intro-why); numerator corrections, which must use @eq-lrt-bias rather than the naive
+difference (Proposition L2); and non-nested comparison, where both the $(A)+(C)$ differential and
+the heavy-tailed noise return (Proposition L4). The distributional-calibration program built on top
+of this correction — second-moment matching and beyond — is developed separately.
+
+::: {.column-margin}
+**Source.** Weighted-$\chi^2$ limit and OMI weights: @chanGeneralFeasibleTests2022
+[eq. (1.8), <a href="#sec-src-chanaos"><code>:82</code></a>; eq. (1.10), <a href="#sec-src-chanaos"><code>:117</code></a>;
+OMI defined at <a href="#sec-src-chanaos"><code>:79</code></a>]. W2 null rates:
+`verification/cache/W2-prod-amelia.rds` (todo/004, 2026-05-23 entry).
+:::
+
+**Scope.** The propositions are stated for the deterministic-FIML $\bar Q_\infty$ (imputation at
+the point $\hat\theta_{\text{obs}}$). Under proper MI the imputation-side quantities acquire
+posterior smearing, but they remain *common to both fits* — the same posterior, the same draws —
+so the cancellation structure of Propositions L3–L4 and the leading-order form of @eq-lrt-bias
+carry over; the Monte-Carlo confirmations above are deterministic-FIML. A blind off-lineage
+re-derivation (a different model family, given only the setup and the tasks) independently
+reproduced every load-bearing conclusion — the $I_{\text{com}}$ curvature and projection metric,
+@eq-lrt-bias term for term, the definite-sign overstatement of Proposition L2 with a third
+independent proof, and the noise orders and exact $(A)+(C)$ cancellation of Propositions L3–L4
+(`verification/cache/layer3-gpt-5.5-w2diff-modeA.md`; protocol and grading record in
+`todo/024-w2-differential-analytic-first.md`).
+
+---
+
 ## Appendix A — Verbatim source passages {#sec-sources}
 
 Consolidated provenance audit, grouped by reference. Each entry reproduces — verbatim
@@ -1327,6 +1560,11 @@ the joint full/null-restricted form at `:7392`-`:7393` underpins L3's score cova
 **Conditional expectation as $L^2$ projection (Ch 11)** [`:5161`, `:5170`].
 
 > (line 5161) "the conditional expectation is the unique measurable function $E(X \mid Y)$ of $Y$ that satisfies the orthogonality relation $\mathrm{E}(X-\mathrm{E}(X \mid Y)) g(Y)=0$"; (line 5170, Example 11.3) "$\mathrm{EX}=E E(X \mid Y)$ ... 'the expectation of a conditional expectation is the expectation.'"
+
+**Likelihood-ratio asymptotics, Theorem 16.7** [`:7457`]; **local alternatives and the noncentral
+$\chi^2$ (§16.4)** [`:7553`-`:7570`]. Invoked by @sec-lrt.
+
+> (line 7553) "We assume that the parameter $\vartheta$ is an inner point of the parameter set and denote the true parameter by $\vartheta+h / \sqrt{n}$. Under the conditions of Theorem 16.7, the sequence of likelihood ratio statistics is asymptotically distributed as $\Lambda=\|Z+I_{\vartheta}^{1 / 2} h-I_{\vartheta}^{1 / 2} H_{0}\|^{2}$"; (line 7566) "This distribution is known as the noncentral chi-square distribution with noncentrality parameter $\delta$."
 
 ### Meng (1994) — Multiple-Imputation Inferences with Uncongenial Sources of Input {#sec-src-meng}
 
@@ -1496,6 +1734,60 @@ $\mathcal{J}$-vs-$\mathcal{I}$ distinction, contrasted with our correctly-specif
 **GIC = bias-corrected log-likelihood (a trace penalty)** [`:100`–`:101`].
 
 > $\operatorname{GIC}(X_{n};\hat{G}) := -2\sum_{\alpha}\log f(X_{\alpha}\mid\hat{\theta}) + \frac{2}{n}\sum_{\alpha}\operatorname{tr}\left\{T^{(1)}(X_{\alpha};\hat{G})\,\partial\log f(X_{\alpha}\mid\theta)/\partial\theta'\big|_{\hat{\theta}}\right\}$
+
+### Wilks (1938) — Large-Sample Distribution of the Likelihood Ratio {#sec-src-wilks}
+
+[@wilksLargeSampleDistributionLikelihood1938a]. Invoked by @sec-lrt (the complete-data
+$\chi^2_{q_{\mathrm{d}}}$ reference for $\hat d_{\text{com}}$).
+
+**Theorem** [`:99`].
+
+> "...then when the hypothesis $H$ is true that $\theta_{i}=\theta_{0 i}, i=m+1, m+2, \cdots h$, the distribution of $-2 \log \lambda$, where $\lambda$ is given by (2) is, except for terms of order $1 / \sqrt{n}$, distributed like $\chi^{2}$ with $h-m$ degrees of freedom."
+
+### Chan & Meng (2022) — Multiple Improvements of Multiple Imputation LR Tests {#sec-src-chanmeng}
+
+[@chanMultipleImprovementsMultiple2022]. Invoked by @sec-lrt-setup (the averaged-likelihood
+maximizer construction of $\hat\psi^*, \hat\psi_0^*$, of which $\bar Q_\infty$-maximization is
+the $M\to\infty$ limit).
+
+**The averaged log-likelihood and its constrained/unconstrained maximizers** [`:185`, `:191`, `:197`].
+
+> $\bar{L}(\psi)=\frac{1}{m} \sum_{\ell=1}^{m} L^{(\ell)}(\psi)$ [`:185`]; $\widehat{\psi}_{0}^{*}=\arg \max_{\psi \in \Psi: \theta(\psi)=\theta_{0}} \bar{L}(\psi), \quad \widehat{\psi}^{*}=\arg \max _{\psi \in \Psi} \bar{L}(\psi)$ [`:191`]; $\hat{d}_{\mathrm{L}}=2\{\bar{L}(\widehat{\psi}^{*})-\bar{L}(\widehat{\psi}_{0}^{*})\}$ [`:197`].
+
+### Chan (2022) — General and Feasible Tests with Multiply-Imputed Datasets {#sec-src-chanaos}
+
+[@chanGeneralFeasibleTests2022]. Invoked by @sec-lrt-consequences (the weighted-$\chi^2$
+reference whose mean absorbs $\operatorname{tr}(\mathrm{RIV}_\perp)$ at the null).
+
+**FMI/OMI eigenvalues** [`:79`].
+
+> "Let the eigenvalues of $F$ be $f_{1} \geq \cdots \geq f_{k}$, and denote $r_{j}:=f_{j} /(1-f_{j})$ for each $j$. The values $f_{j}$ and $r_{j}$ are known as the fraction of missing information (FMI) and the odds of missing information (OMI), respectively."
+
+**The fixed-$m$ limit law, eq. (1.8)** [`:82`], and its $m\to\infty$ form, eq. (1.10) [`:117`].
+
+> $\widetilde{D}_{\aleph} \Rightarrow \mathbb{D}$ [eq. (1.8), `:82`]; $\quad \mathbb{D}_{\infty}:=\frac{1}{k(1+\mu_{r})} \sum_{j=1}^{k}(1+r_{j}) G_{j}$, where $\mu_{r}:=\frac{1}{k} \sum_{j=1}^{k} r_{j}$ [eq. (1.10), `:117`], with $G_j \sim \chi^2_1$ independent.
+
+### Meng & Rubin (1992) — Performing Likelihood Ratio Tests with Multiply-Imputed Data {#sec-src-mengrubin92}
+
+[@mengPerformingLikelihoodRatio1992b]. Invoked by @sec-intro-lineage and @sec-lrt-setup
+(the original average-the-LRT-statistics combining rule that $\hat d_L$ refines).
+
+**The combining rule from completed-data LR statistics, eq. (2.9)** [`:168`].
+
+> $D_{m} \bumpeq \hat{D}_{m}^{\prime} \equiv\left(\frac{\bar{d}_{m}^{\prime}}{k}-\frac{m-1}{m+1} r_{m}\right) /\left(1+r_{m}\right)$, "where $\bar{d}_{m}^{\prime}$ is the average of $\{d_{* l}^{\prime} ; l=1, \ldots, m\}$" [`:165`-`:171`].
+
+### Vuong (1989) — Likelihood Ratio Tests for Model Selection and Non-Nested Hypotheses {#sec-src-vuong}
+
+[@vuongLikelihoodRatioTests1989]. Invoked by @sec-lrt-pairing and @sec-lrt-ac (the fixed-alternative
+/ non-nested regime, where the models' pseudo-true values are $O(1)$ apart).
+
+**Pseudo-true values** [`:81`].
+
+> "The value $\theta_{*}$ is called the pseudo-true value of $\theta$ for the conditional model $\boldsymbol{F}_{\theta}$ (see, e.g., Sawa (1978)). Similarly, $\gamma_{*}$ denotes the pseudo-true value of $\gamma$ for the conditional model $\boldsymbol{G}_{\gamma}$."
+
+**Scope of the framework (nested, non-nested, overlapping; LR limit laws)** [`:40`, `:55`].
+
+> "The tests are directional and are derived successively for the cases where the competing models are non-nested, overlapping, or nested and whether both, one, or neither is misspecified. As a prerequisite, we fully characterize the asymptotic distribution of the likelihood ratio statistic under the most general conditions." [`:40`]
 
 ---
 

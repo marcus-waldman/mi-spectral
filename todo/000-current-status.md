@@ -1,15 +1,49 @@
 # Current status — read this when resuming
 
-**Last updated:** 2026-05-25 (manuscript `mi-spectral.qmd` full draft underway; see Open issues).
+**Last updated:** 2026-06-04 (W2 differential D1–D3 derived + landed; see Latest).
 
-**Latest (2026-06-04):** SCOPE SPLIT — this paper = bias correction + LRT (W1/W2); the W3
+**Latest (2026-06-04, session 2 — the W2 differential session, todo/024–025 EXECUTED):**
+D1–D3 derived through the full multimodal protocol and landed in `derivation.qmd @sec-lrt`
+(Propositions L1–L4 + numerics). Headline findings, all in-house-derived (3 independent routes +
+referees, `cache/w2diff-stage1-routes.json`), CAS-verified
+(`cas-wolfram/verify_w2_differential.py`) and MC-confirmed:
+(i) **D1**: at H0, Bias[d̂_L] = tr(RIV_⊥) in the **I_com metric** (`@eq-lrt-bias`) — the Q̄
+curvature is I_com (EM identity + FIML self-consistency), so the constrained MI fit projects
+there; the naive tr(RIV)−tr(RIV_0) **always overstates** (Gram/Schur; equality iff invariance/EFMI)
+— MC-discriminated at **52 se** on a μ₁=0/X1-heavy design (`w2-paired-differential-mu1-cell.R`:
+2.639±0.113 vs B_direct 2.636 vs naive 8.47). The committed W2 `bias_correction` is the naive form
+(immaterial there, ~5%); at H0 tr(RIV_⊥) is exactly what Chan's calibrated reference absorbs
+(explains C3≈0.042, C2 conservative 0.034).
+(ii) **D2**: sd(paired differential) = O(1) at H0/local vs the level's O(√n) — mechanism is the
+shared-imputation common realized constant (NOT subspace projection of the linear noise); MC: sd(D)
+1.5 flat vs sd(T) 18→37 (`w2-paired-differential-spotcheck.R`, P1–P5 all confirmed); reverts to
+O(√n) at fixed alternatives.
+(iii) **D3**: the (A)+(C) differential cancels **exactly** at H0, is O(n^{-1/2}) local, genuine
+O(1) only non-nested (Vuong — read + cited).
+**GPT-5.5 xhigh blind audit: MODE A RETURNED + GRADED same session — FULL AGREEMENT, no
+escalation** (`cache/layer3-gpt-5.5-w2diff-modeA.md`: I_com metric boxed, formula term-for-term,
+definite-sign overstatement via a third independent Schur proof, sd orders + exact (A)+(C)
+cancellation — grading record in todo/024). **Mode B still in flight** (grade on return).
+**H1 reconciled** (todo/022 item A): pooled preregistered W1 T̂ = 2.434±0.258 sits ON the
+(A+C)-augmented mean (vs 2.77 preregistered target, −1.3 se); the N=1000 FAIL = criterion artifact
+(then-underived O(1) MAR term) + √n heavy tail at fixed R — **Amendment 2 documented in todo/004**
+(`w1-h1-pooled-reconciliation.R`); no brute-force re-run (deliberate: direct heavy-tailed means
+don't tighten). Render exit-0; audit 0 BLOCKER (3 cas-wolfram WARN = known false positives).
+Intro LRT bullet + CLAUDE.md core contribution updated to the derived form ("vanishes at H0" was
+wrong — it equals tr(RIV_⊥), which calibration absorbs).
+
+**Earlier (2026-06-04, session 1):** SCOPE SPLIT — this paper = bias correction + LRT (W1/W2); the W3
 distributional-calibration ladder (SB/equating/pairwise-ΔAIC) is a SEQUEL, captured in `todo/023`;
 W3 SB arm (issue #1) to be retired, not fixed. Current target document is `derivation.qmd` only
 (`mi-spectral.qmd` does not exist yet — submission drafting comes after). Literature stocked
-2026-06-04 (Vuong, Barnard–Rubin, Self–Liang, Le Cam acquired + lit-synced). **Next session =
-`todo/025-w2-derivation-session-handoff.md`**: derive the W2 LRT-differential claims D1–D3
-(todo/024) analytic-first → blind GPT-5.5 audit → small paired MC; W1/H1 reconciliation (todo/022
-item A) as the gap-filler while the audit runs. The theory layer (todo/015–021) stays LOCKED.
+2026-06-04 (Vuong, Barnard–Rubin, Self–Liang, Le Cam acquired + lit-synced). The theory layer
+(todo/015–021) stays LOCKED.
+
+**Next session:** (1) grade the GPT-5.5 -w2diff return (`cache/layer3-gpt-5.5-w2diff-mode{A,B}.md`)
+against todo/024's grading key; escalation ⇒ STOP and reconcile. (2) If clear: todo/024 Stage 3
+(moderate-scale paired between-model estimator) is OPTIONAL — the spot check + discriminating cell
+already measure the differential; decide if more scale adds anything. (3) Remaining todo/022 items:
+B (component-level finite-n) and D/E/F (W3 — sequel-scoped, wording only).
 
 **Project:** JAIGP theory paper on deviance-bias correction for the Q-function under congenial multiple imputation, with applications to LRT model comparison and information-criterion model selection.
 
