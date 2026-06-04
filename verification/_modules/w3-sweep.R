@@ -68,6 +68,10 @@ run_one_w3 <- function(r, cell, mu0, Sigma_truth) {
     trRIV_obs[k]     <- tr_riv_observed_general(theta_k, mar$Y, mar$R,  # observed/sample RIV (Term B)
                                                 W3_FREE_IDX[[k]])
   }
+  # RETIRED ARM (issue #1, closed 2026-06-04): scaled-shift applied to the UNCORRECTED
+  # chi2_MI with naive-difference tr/sum_lsq inputs. Superseded by the ladder rung 2 in
+  # verification/ic-ladder.R (todo/027; derived a_k, b_k from the @sec-lrt null law).
+  # Frozen as committed; not re-run; headline arms unaffected. Do not fix in place.
   chi2_MI_per_k <- 2 * (barL["MD"] - barL)
   trRIV_D <- trRIV["MD"]; sum_lsq_D <- sum_lambda_sq["MD"]
   chi2_SB <- numeric(4); names(chi2_SB) <- W3_MODEL_NAMES

@@ -69,7 +69,7 @@ different conditioning-variable distributions and zero under MCAR — developed 
 ### Why it matters {#sec-intro-why}
 
 Whatever is built on $\bar Q_\infty$ inherits this bias. Two applications motivate the
-paper; both are developed in the manuscript, not here.
+paper; both are developed below (@sec-lrt, @sec-ic).
 
 - **Likelihood-ratio model comparison.** The MI likelihood-ratio numerator
 $\hat d_L = 2[\bar Q_\infty(\hat\psi^*) - \bar Q_\infty(\hat\psi_0^*)]$ — where $\hat\psi^*$
@@ -91,8 +91,11 @@ estimable, now derived and measured (@sec-lrt-pairing).
 - **Information criteria.** MI-AIC and MI-BIC are built from $-2\bar Q_\infty$, so each
 candidate model carries a bias $-\operatorname{tr}(\mathrm{RIV})$ that is *model-specific* —
 RIV depends on the model. Left uncorrected, the criteria systematically favor higher-RIV
-models; adding $\operatorname{tr}(\mathrm{RIV})$ to the deviance restores complete-data-equivalent
-selection. The corrected criterion **coincides with the missing-data information criterion
+models; adding $\operatorname{tr}(\mathrm{RIV})$ to the deviance *substantially recovers*
+complete-data selection (measured in @sec-ic: $\approx 0.81$ against an oracle $\approx 0.90$
+from an uncorrected $\approx 0.65$), and @sec-ic derives how much more than the mean a
+correction can match — the whole null distribution per pair, exactly; nothing on the
+noncentral side, in principle. The corrected criterion **coincides with the missing-data information criterion
 $\mathrm{AIC}_{x;y}$ of [@shimodairaInformationCriterionModel2017]**, whose penalty is *half* that
 of the earlier complete-data-discrepancy criteria — AICcd
 [@cavanaughAkaikeInformationCriterion1998a] (and the related PDIO) carry
@@ -148,7 +151,12 @@ proof: Term B (estimation mismatch) is an elementary Taylor argument, while Term
 lemma. @sec-lrt develops the likelihood-ratio application: the exact differential bias of
 the MI deviance numerator at the null, why the naive difference of the two models'
 $\operatorname{tr}(\mathrm{RIV})$s overstates it, and the noise collapse that makes the
-comparison-relevant correction precisely estimable. @sec-sources reproduces the cited source
+comparison-relevant correction precisely estimable. @sec-ic develops the model-selection
+application: the corrected criterion and its place in the missing-data
+information-criterion literature, the pre-registered selection evidence, and a graded
+contrast — mean, two moments, all moments — of how much of the complete-data criterion
+distribution a correction can match, with the null/noncentral split derived in advance and
+then measured. @sec-sources reproduces the cited source
 passages verbatim, and @sec-verify
 verifies the trace identities symbolically and the normal instantiation numerically,
 executed inline at render time.
@@ -170,7 +178,13 @@ $2.6$ standard errors. Pooling the four sample sizes by inverse variance gives
 $\hat T = 2.43 \pm 0.26$ against the pre-registered target $2.77$ and the $(A)+(C)$-augmented
 mean $2.42$–$2.55$: the pooled pre-registered data corroborate the completed theorem
 (`verification/w1-h1-pooled-reconciliation.R`; the criterion amendment is documented in the
-pre-registration's version history).
+pre-registration's version history). A second candor note at the component level: the
+*individual* terms $\mathbb{E}[A]$ and $\mathbb{E}[B]$ miss their Monte-Carlo targets by roughly
+$9$–$20\%$ at the sample sizes studied ($B$ overshoots its $-\tfrac12\operatorname{tr}(\mathrm{RIV})$
+target by $-0.3$ to $-0.55$ with tight Monte-Carlo error;
+`verification/w1-h1-pooled-reconciliation.R`, part 4) — only the total $T$ and the paired
+contrasts are Monte-Carlo-tight at finite $n$, which is why every quantitative claim in this
+document is stated for totals and paired differentials, never for components.
 
 ---
 
@@ -1426,8 +1440,9 @@ predicts). The differential bias matters instead where no reference distribution
 information-criterion-style ranking, which compares penalized $-2\bar Q_\infty$ values directly
 (@sec-intro-why); numerator corrections, which must use @eq-lrt-bias rather than the naive
 difference (Proposition L2); and non-nested comparison, where both the $(A)+(C)$ differential and
-the heavy-tailed noise return (Proposition L4). The distributional-calibration program built on top
-of this correction — second-moment matching and beyond — is developed separately.
+the heavy-tailed noise return (Proposition L4). The first of these — information-criterion
+ranking — is taken up in @sec-ic, together with the question of how much *more* than the mean
+a correction can match.
 
 ::: {.column-margin}
 **Source.** Weighted-$\chi^2$ limit and OMI weights: @chanGeneralFeasibleTests2022
@@ -1452,6 +1467,270 @@ imputation-slot gradient to an evaluation-slot displacement that the conditional
 annihilates (`verification/cache/layer3-gpt-5.5-w2diff-modeA.md` and
 `verification/cache/layer3-gpt-5.5-w2diff-modeB.md`; protocol and grading record in
 `todo/024-w2-differential-analytic-first.md`).
+
+## Application: information-criterion model selection {#sec-ic}
+
+The likelihood-ratio application referred a bias-corrected statistic to a reference
+distribution. Model selection by information criterion has no reference distribution to hide
+behind: it compares penalized deviances *as numbers*, across candidates, and takes the
+smallest. Whatever bias each candidate's $-2\bar Q_\infty$ carries lands directly in the
+ranking. This section does two things: it states the corrected criterion and places it in the
+missing-data information-criterion literature (the penalty itself turns out to be known; the
+decomposition, the MAR term, and the proper-MI extension are what is new), and it then asks a
+sharper question the literature has not: since selection depends on the *distribution* of
+pairwise criterion differences, not just their means, how much of that distribution can a
+correction match? The answer — derived from the @sec-lrt null law, pre-registered, then
+measured — splits cleanly along the null/noncentral axis.
+
+### The corrected criterion {#sec-ic-criterion}
+
+The MI information criterion built on the averaged deviance is
+$\mathrm{AIC}_{\mathrm{MI}}(k) = -2\bar Q_\infty(\hat\psi^*_k) + 2q_k$, with $q_k$ the
+candidate's parameter count. By the theorem, each candidate's $\bar Q_\infty$ *overstates* its
+complete-data-target log-likelihood by $\tfrac12\operatorname{tr}(\mathrm{RIV}_k)$ — so the
+deviance is too small by $\operatorname{tr}(\mathrm{RIV}_k)$, and the bias is
+**model-specific**: $\mathrm{RIV}_k$ is computed on the candidate's own parameter space. The
+corrected criterion is
+$$ \mathrm{AIC}_{\mathrm{MI}}^{c}(k) = -2\bar Q_\infty(\hat\psi^*_k) + 2q_k +
+\operatorname{tr}(\mathrm{RIV}_k). $$ {#eq-ic-corrected}
+As a penalty this is not new: it reproduces the missing-data information criterion
+$\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017, whose missing-data surcharge
+$\operatorname{tr}(I_{z\mid y} I_y^{-1}) = \operatorname{tr}(\mathrm{RIV})$ is exactly *half*
+that of the earlier complete-data-discrepancy criteria — Cavanaugh and Shumway's
+$\mathrm{AIC}_{cd}$ [@cavanaughAkaikeInformationCriterion1998a] and the related PDIO attach
+$2\operatorname{tr}(\mathrm{RIV})$ to the EM deviance, which
+@shimodairaInformationCriterionModel2017 showed doubles the correct value. What the present
+derivation adds is the *anatomy* and the *scope* of that penalty: the decomposition into the
+imputation-bias term $+\operatorname{tr}(\mathrm{RIV})$ and the estimation-mismatch term
+$-\tfrac12\operatorname{tr}(\mathrm{RIV})$; the MAR design-imbalance term $(A)+(C)$, which
+lies beyond the fixed-pattern setting of the earlier criteria; and the extension from the
+deterministic EM pivot to proper multiple imputation (@sec-intro-lineage; the alternative
+EM-likelihood and reweighting routes of
+@claeskensconsentinoVariableSelectionIncomplete2008 and @hensModelSelectionIncomplete2006a
+are positioned there as well).
+
+::: {.column-margin}
+**Source.** $\mathrm{AIC}_{x;y} = -2\ell_y(\hat\theta_y) + d +
+\operatorname{tr}\!\big(I_x(\hat\theta_y)\, I_y(\hat\theta_y)^{-1}\big)$ and the halved surcharge:
+@shimodairaInformationCriterionModel2017
+[eq. (8), <a href="#sec-src-shimodaira2017"><code>:80</code></a>; eq. (9),
+<a href="#sec-src-shimodaira2017"><code>:86</code></a>; the trace decomposition at
+<a href="#sec-src-shimodaira2017"><code>:59</code></a>]. $\mathrm{AIC}_{cd}$ with the doubled
+trace: @cavanaughAkaikeInformationCriterion1998a
+[eq. (3.20), <a href="#sec-src-cavanaugh"><code>:302</code></a>; the $2d + 2\operatorname{tr}$
+split, eq. (4.4), <a href="#sec-src-cavanaugh"><code>:353</code></a>], reproduced as eq. (4)
+of @shimodairaInformationCriterionModel2017 [<a href="#sec-src-shimodaira2017"><code>:68</code></a>].
+:::
+
+The ranking consequence is immediate. For two candidates the uncorrected criterion difference
+carries a differential bias $-[\operatorname{tr}(\mathrm{RIV}_j) -
+\operatorname{tr}(\mathrm{RIV}_k)]$: the candidate with *more* missing information about its
+own parameters looks artificially better, by exactly the amount of extra missing information.
+Two caveats from @sec-lrt frame what the correction can and cannot promise. First, candidate
+sets are generally not nested chains, and for non-nested pairs the $(A)+(C)$ differential is a
+genuine $O(1)$ that @eq-ic-corrected does not remove and no reference distribution absorbs
+(Proposition L4; the Vuong regime [@vuongLikelihoodRatioTests1989]). Second, the per-model
+$\operatorname{tr}(\mathrm{RIV}_k)$ corrections are exactly the "self-contained levels" whose
+*difference* Proposition L2 shows overstates the projected complement trace whenever the
+tested directions mix unequally-missing information — though, remarkably, the model family
+studied below sits at the exact equality case (a structural fact derived there, not luck).
+
+### The pre-registered evidence: correction substantially recovers selection {#sec-ic-w3}
+
+The pre-registered model-selection study draws four-variate normal data whose only nonzero
+correlations are $\sigma_{13} = \sigma_{24} = 0.4$, imposes 40% MAR missingness, and ranks four
+zero-pattern covariance candidates — diagonal (MA), wrong off-diagonals (MB), the truth (MC),
+and saturated (MD) — by MI-AIC under congenial imputation. Across the congenial cells of the
+pre-registered sweep, uncorrected MI-AIC selects the true model in $\approx 0.65$–$0.67$ of
+replicates against an oracle (complete-data AIC) rate of $\approx 0.90$ — and **100% of its
+misclassifications land on the saturated, largest-RIV candidate**, the directional signature
+of the model-specific bias. The corrected criterion @eq-ic-corrected recovers selection to
+$\approx 0.81$ — substantially, but visibly short of the oracle. That gap is not sloppiness in
+the trace; it is the subject of the next subsection.
+
+::: {.column-margin}
+**Source.** Committed sweep, 60 cells: `verification/cache/run_all-prod/phase2-w3/summary.csv`
+(e.g. the deterministic-FIML $N{=}500$ cell: oracle $0.898$, uncorrected $0.674$, corrected
+$0.816$; `W3C_high_RIV_frac = 1.0` in every congenial cell). Engine robustness: the
+Amelia/EMB congenial cells agree with deterministic FIML within $0.011$ on the recovery gap.
+:::
+
+### Beyond the mean: how much of the distribution can be matched? {#sec-ic-ladder}
+
+Selection depends on more than a mean. Even with every candidate's criterion correctly centered,
+the *spread* of the MI deviance differences exceeds its complete-data counterpart — at the
+null the limiting law is $\sum_j \lambda_j \chi^2_1$ with every weight $\lambda_j = 1 +
+r_{\perp,j} \ge 1$ (@sec-lrt-consequences), so the variance is inflated by
+$\sum\lambda_j^2/q_{\mathrm{d}}$ even after the mean is fixed — and inflated spread means
+flipped rankings. This motivates a graded contrast, pre-registered in full before any code was
+written (`todo/027-ladder-preregistration.md`): match the first moment, the first two moments,
+or the entire null distribution, and measure what each step buys.
+
+**The working statistic.** Anchor every candidate at the saturated model, fit to the same
+imputations: $T_k = 2[\bar Q_\infty(\hat\psi^*_{\text{sat}}) - \bar Q_\infty(\hat\psi^*_k)]
+\ge 0$. Anchoring costs nothing — AIC ranking is invariant to the common shift — and buys
+three things. The anchor *is* the congenial imputation model, so the heavy-tailed realized
+$(A)+(C)$ component and the $O_p(\sqrt n)$ noise common to both levels cancel dataset by
+dataset (the Proposition L3 mechanism, applied for free to every candidate); every $T_k$ is a
+proper likelihood-ratio statistic with a constructible per-model null reference (the
+distribution of $T_k$ *when candidate $k$ is true*, available analytically from the @sec-lrt
+law without knowing the global truth); and each candidate here is a block-diagonal zero
+pattern, so the constrained maximizer $\hat\psi^*_k$ is closed-form — the block restriction
+of the E-step moments — giving $T_k = N[\log|\hat\Sigma_k| - \log|S^*|]$ exactly.
+
+**The three corrections.** With $\lambda_{k,1},\dots,\lambda_{k,q_{d,k}}$ the analytic null-law
+weights of candidate $k$ — the nonzero eigenvalues of $[I_{\text{com}}^{-1} -
+G_k(G_k^\top I_{\text{com}} G_k)^{-1}G_k^\top]\, I_{\text{com}} I_{\text{obs}}^{-1}
+I_{\text{com}}$, with $\sum_j \lambda_{k,j} = q_{d,k} + \operatorname{tr}(\mathrm{RIV}_{\perp,k})$
+and each $\lambda_{k,j} \ge 1$ —
+
+1. **Mean:** $T^{(1)}_k = T_k - \operatorname{tr}(\mathrm{RIV}_{\perp,k})$, the
+   @eq-lrt-bias complement trace. A linear per-model shift: it telescopes, so every pairwise
+   comparison is simultaneously mean-corrected.
+2. **Two moments:** $T^{(2)}_k = a_k T_k + b_k$ with
+   $a_k = \sqrt{q_{d,k}/\sum_j\lambda_{k,j}^2}$ and $b_k = q_{d,k} - a_k\sum_j\lambda_{k,j}$ —
+   the *unique* affine map carrying the null law's mean and variance onto
+   $\chi^2_{q_{d,k}}$'s, an immediate corollary of
+   $\mathbb{E}[\sum\lambda\chi^2_1] = \sum\lambda_j$,
+   $\operatorname{Var} = 2\sum\lambda_j^2$. Matching a misbehaving test statistic's first two
+   moments is the standard repair in the structural-equation tradition — the Satorra–Bentler
+   scaled difference statistic matches the mean
+   [@satorraEnsuringPositivenessScaled2010], and the mean-and-variance-adjusted statistics
+   match both via a scale and a Satterthwaite degrees-of-freedom adjustment, from the same
+   moment inputs $\operatorname{tr}(M), \operatorname{tr}(M^2)$
+   [@asparouhovRobustChiSquare2006] — but here the coefficients are *derived* from the
+   analytic null law rather than estimated from sandwich matrices.
+3. **All moments (equipercentile equating):** $T^{(3)}_k =
+   F^{-1}_{\chi^2_{q_{d,k}}}\big(F_{W_k}(T_k)\big)$, $W_k = \sum_j \lambda_{k,j}\chi^2_1$ —
+   the equipercentile equating function $e_Y(x) = G^{-1}[F(x)]$ of observed-score test
+   equating [@kolenTestEquatingScaling2014], applied with the analytic null law as $F$ and
+   the complete-data $\chi^2$ as $G$. By the probability integral transform this matches the
+   *entire* null distribution. The weighted-$\chi^2$ distribution function is evaluated in
+   closed form by numerical inversion of the characteristic function
+   [@imhofComputingDistributionQuadratic1961; @daviesAlgorithm155Distribution1980]; a
+   simulated reference in the style of Chan's Monte-Carlo null
+   [@chanGeneralFeasibleTests2022, §5.1] is the pre-registered fallback, and was never
+   needed (0 of 18,000 evaluations).
+
+::: {.column-margin}
+**Source.** Scaled difference statistic $\bar T_d = T_d/\hat c_d$ and the
+Satorra–Bentler (2001) combination: @satorraEnsuringPositivenessScaled2010
+[<a href="#sec-src-satorra2010"><code>:61</code></a>, <a href="#sec-src-satorra2010"><code>:79</code></a>].
+Mean-and-variance adjustment via $\bar T = (d/\operatorname{tr}(M))T$ with
+$d' = (\operatorname{tr} M)^2/\operatorname{tr}(M^2)$: @asparouhovRobustChiSquare2006
+[<a href="#sec-src-asparouhov2006"><code>:51</code></a>, <a href="#sec-src-asparouhov2006"><code>:67</code></a>].
+Equipercentile equating $e_Y(x) = G^{-1}[F(x)]$: @kolenTestEquatingScaling2014
+[eq. (2.11), <a href="#sec-src-kolen"><code>:1262</code></a>]. Imhof's inversion integral:
+@imhofComputingDistributionQuadratic1961
+[eq. (3.2), <a href="#sec-src-imhof"><code>:237</code></a>]; algorithmic form:
+@daviesAlgorithm155Distribution1980 [<a href="#sec-src-davies"><code>:47</code></a>].
+Monte-Carlo null reference: @chanGeneralFeasibleTests2022
+[eq. (5.1), <a href="#sec-src-chanaos"><code>:404</code></a>].
+The moment identities, the uniqueness and form-equivalence of $(a_k, b_k)$, the
+spectrum-trace identity $\sum_j\lambda_j = q_d + \operatorname{tr}(\mathrm{RIV}_\perp)$ with
+$\lambda_j \ge 1$, and the probability-integral-transform exactness of the equated statistic
+are verified symbolically and numerically in
+`verification/cas-wolfram/verify_ic_ladder.py` (L-A1–L-A4, all pass).
+:::
+
+**What was predicted.** The pre-registration (written before the script existed) states the
+split: each step should close more of the *null-side* calibration gap, with equating exact
+there up to asymptotic approximation; on the *noncentral* side — a misspecified candidate's
+$T_k$ against its own null map — the first moment is preserved only by the mean correction,
+while the two-moment and equating maps actively *shrink* the evidence (the affine map by
+$a_k < 1$, the equating map by $\approx 1/\lambda_{\max}$ in the far tail), because no
+transform built from observed data can restore destroyed Fisher information. The residual
+against the oracle should therefore be removable where selection errors are overfit flips,
+and irreducible where they are underfit retention.
+
+### What matching achieves, and what it cannot {#sec-ic-ladder-results}
+
+Three cells, $N = 500$, $R = 2000$ each, 40% non-monotone MAR: the pre-registered design
+($\rho = 0.40$, truth MC), a weak-signal stress cell ($\rho = 0.10$, near-tied candidates),
+and a junk-heavy cell ($\rho = 0$, truth diagonal, so *every* anchored statistic is null-type).
+True-model selection rates (Monte-Carlo se $\approx 0.010$):
+
+| Cell | oracle | uncorrected | mean | two-moment | equating |
+|---|---|---|---|---|---|
+| $\rho = 0.40$ | 0.899 | 0.678 | 0.814 | 0.904 | 0.903 |
+| $\rho = 0.10$ | 0.820 | 0.582 | 0.650 | 0.648 | 0.650 |
+| $\rho = 0$ (junk) | 0.727 | 0.422 | 0.585 | 0.702 | 0.696 |
+
+Every pre-registered criterion passed; the detailed grading is recorded in the
+pre-registration file. Four findings carry the story.
+
+*The null side calibrates completely.* On the true model's anchored statistic, the
+Kolmogorov–Smirnov distance to the paired complete-data statistic falls
+$0.281 \to 0.228 \to 0.026 \to 0.019$ across the four arms — the equated statistic is
+statistically indistinguishable from its complete-data counterpart at this replication size —
+and the variance ratio falls from $3.18$ (uncorrected *and* mean-corrected) to $0.97$. The
+mean correction's paired gap, $0.076 \pm 0.100$, is itself a direct Monte-Carlo confirmation
+of @eq-lrt-bias at $q_d = 4$. In the junk cell, where all three statistics are null-type,
+equating calibrates all of them ($D_{KS} \le 0.035$).
+
+*Where overfit flips drive the errors, distribution matching reaches the oracle.* In the
+$\rho = 0.40$ design the corrected criterion's residual ($0.814$ vs $0.899$) is variance, not
+mean: the two-moment and equating arms select the true model at $0.904$ and $0.903$ —
+statistically indistinguishable from complete-data AIC. The junk cell shows the same
+mechanism at larger scale: the full contrast closes 90% of the uncorrected-to-oracle gap.
+
+*The noncentral side shrinks, exactly as the law predicts.* The underfit candidate's mean
+statistic, relative to its complete-data counterpart: $1.002$ under the mean correction
+(evidence preserved), $0.586$ under two moments (predicted $a_k = 0.570$), $0.362$ under
+equating (predicted far-tail factor $1/\lambda_{\max} = 0.398$). This is the toy made exact:
+the null map cannot see information loss, so it reads shrunken noncentrality as genuinely
+smaller misfit.
+
+*Where selection is genuinely hard, nothing closes the floor.* In the weak-signal cell the
+oracle itself drops to $0.820$ and *no* correction passes $0.650$: the $0.17$ residual is the
+information-loss floor, not fixable calibration error. The upper arms buy nothing there —
+their null-side calibration win is fully offset by underfit retention (they keep too-small
+models at rate $0.270$ vs the oracle's $0.091$). The light indirect-pair measurement in the
+same cell quantifies the coordinatewise limitation: the equated score difference for the
+near-tied non-nested pair has mean $6.10$ and sd $5.99$ against the complete-data
+$\Delta$AIC's $10.00$ and $7.10$ — per-model marginal transforms cannot calibrate a
+*difference* distribution (the dependence between scores is invariant under marginal maps;
+here MI's shared imputations mildly raise the score correlation, $0.279$ vs $0.226$).
+
+::: {.column-margin}
+**Source.** Pre-registration with pass criteria frozen before code:
+`todo/027-ladder-preregistration.md` (§6 records the grading). Script:
+`verification/ic-ladder.R`; outputs `verification/cache/ic-ladder-summary.csv`,
+`verification/cache/ic-ladder-MAIN.rds`, `verification/cache/ic-ladder-WEAK.rds`,
+`verification/cache/ic-ladder-JUNK.rds`; log `verification/cache/ic-ladder-runlog.txt`.
+Internal asserts passed on every replicate: spectrum-trace identity to $3\times10^{-15}$,
+all null-law weights $\ge 1$, zero Imhof failures.
+:::
+
+A structural remark closes the loop with Proposition L2. In this candidate family the naive
+trace difference and the exact complement trace agree *to machine precision*
+($3.6\times10^{-15}$) — not luck: the candidates are block-diagonal covariance patterns, and
+at a block-diagonal evaluation point both $I_{\text{com}}$ and the expected $I_{\text{obs}}$
+decompose over within-block versus cross-block coordinates, which is precisely the invariance
+condition under which Proposition L2 holds with equality. The overstatement is therefore
+structurally invisible here and material only for constraints that do not block-decompose —
+the $\mu_1$ design of @sec-lrt-bias, where it is a factor above three. The earlier sweep's
+scaled-shift arm (which applied its transform to the uncorrected statistic with
+naive-difference inputs) scores $0.824$ in the $\rho = 0.40$ cell against the derived
+two-moment arm's $0.904$ — the repaired construction is worth eight points of selection
+accuracy where calibration binds.
+
+**Honest fences.** Stated once, bluntly: all-moment matching holds *per pair, under that
+pair's own null* — nowhere else; noncentral matching is impossible in principle, and the
+two-moment and equating maps actively shrink evidence against misspecified candidates (their
+conservatism is the price of null-side calibration); per-model marginal equating cannot
+calibrate difference distributions in general; the affine and equating maps do not telescope,
+so the contrast is presented on common-reference (saturated-anchored) scores, with the
+indirect-pair distortion measured rather than assumed away; and none of this restores
+complete-data selection where the data no longer carry the information — the weak-signal
+floor is the honest summary. Selection-aware refinements beyond the per-model null maps —
+de-shrinkage of estimated noncentrality, joint (copula-aware) calibration of score vectors —
+are developed separately.
+
+**Scope.** As in @sec-lrt, everything here is stated and measured for the deterministic-FIML
+$\bar Q_\infty$; the anchoring cancellations are properties of *sharing the imputation
+model*, so the construction carries to proper MI unchanged, and the pre-registered sweep's
+proper-MI (EMB) congenial cells track the FIML cells within $0.011$ on the headline rates.
 
 ---
 
@@ -1774,6 +2053,81 @@ reference whose mean absorbs $\operatorname{tr}(\mathrm{RIV}_\perp)$ at the null
 **The fixed-$m$ limit law, eq. (1.8)** [`:82`], and its $m\to\infty$ form, eq. (1.10) [`:117`].
 
 > $\widetilde{D}_{\aleph} \Rightarrow \mathbb{D}$ [eq. (1.8), `:82`]; $\quad \mathbb{D}_{\infty}:=\frac{1}{k(1+\mu_{r})} \sum_{j=1}^{k}(1+r_{j}) G_{j}$, where $\mu_{r}:=\frac{1}{k} \sum_{j=1}^{k} r_{j}$ [eq. (1.10), `:117`], with $G_j \sim \chi^2_1$ independent.
+
+**The simulated (Monte-Carlo) null reference, eq. (5.1)** [`:401`-`:407`]. Invoked by
+@sec-ic-ladder (the pre-registered fallback for the equating reference).
+
+> "We propose approximating the limiting null distribution $\mathbb{D}$ by substituting $r_{j}=\widehat r_{j}$ into (1.8). Although it is not a named distribution, we can easily compute its quantile via Monte Carlo methods. Precisely, we first generate $G_{j}^{(\iota)} \sim \chi_{1}^{2}$ and $H_{j}^{(\iota)} \sim \chi_{m-1}^{2}/(m-1)$ independently …" [`:401`]; $\widehat{\mathbb{D}}^{(\iota)}:=\frac{\frac{1}{k} \sum_{j=1}^{k}\{1+(1+\frac{1}{m}) \widehat{r}_{j}\} G_{j}^{(\iota)}}{1+\frac{1}{k} \sum_{j=1}^{k}(1+\frac{1}{m}) \widehat{r}_{j} H_{j}^{(\iota)}}$ [eq. (5.1), `:404`]; step-by-step form in Algorithm 2.1 [`:177`-`:179`].
+
+### Shimodaira (2017, with Maeda) — An Information Criterion for Model Selection with Missing Data via Complete-Data Divergence {#sec-src-shimodaira2017}
+
+[@shimodairaInformationCriterionModel2017]. Invoked by @sec-intro-lineage and @sec-ic-criterion
+(the $\mathrm{AIC}_{x;y}$ criterion whose $\operatorname{tr}(\mathrm{RIV})$ surcharge the
+corrected criterion @eq-ic-corrected reproduces; the halved-penalty relation to PDIO/AICcd).
+
+**The trace decomposition (missing-information surcharge)** [`:59`].
+
+> "Let … $I_{z \mid y}(\boldsymbol{\theta})=I_{x}(\boldsymbol{\theta})-I_{y}(\boldsymbol{\theta})$ be the Fisher information matrix for $p_{z \mid y}$. Since $I_{z \mid y}(\boldsymbol{\theta})$ is nonnegative definite, we have $\operatorname{tr}(I_{x}(\boldsymbol{\theta}) I_{y}(\boldsymbol{\theta})^{-1}) = d+\operatorname{tr}(I_{z \mid y}(\boldsymbol{\theta}) I_{y}(\boldsymbol{\theta})^{-1}) \geq d$."
+
+**$\mathrm{AIC}_{cd}$ as reproduced there, eq. (4)** [`:68`]; **$\mathrm{AIC}_{x;y}$, eq. (8)** [`:80`]; **the halved surcharge, eq. (9)** [`:86`-`:89`].
+
+> $\mathrm{AIC}_{c d}=-2 Q(\hat{\boldsymbol{\theta}}_{y} ; \hat{\boldsymbol{\theta}}_{y})+2 \operatorname{tr}(I_{x}(\hat{\boldsymbol{\theta}}_{y}) I_{y}(\hat{\boldsymbol{\theta}}_{y})^{-1})$ [`:68`]; $\quad \operatorname{AIC}_{x ; y}=-2 \ell_{y}(\hat{\boldsymbol{\theta}}_{y})+d+\operatorname{tr}(I_{x}(\hat{\boldsymbol{\theta}}_{y}) I_{y}(\hat{\boldsymbol{\theta}}_{y})^{-1})$ [`:80`]; $\quad \operatorname{AIC}_{x ; y}-\mathrm{AIC}=\operatorname{tr}(I_{z \mid y}(\hat{\boldsymbol{\theta}}_{y}) I_{y}(\hat{\boldsymbol{\theta}}_{y})^{-1})$ [`:86`]; "The additional penalty is only half the value of that in PDIO." [`:89`]
+
+### Cavanaugh & Shumway (1998) — An Akaike Information Criterion for Model Selection in the Presence of Incomplete Data {#sec-src-cavanaugh}
+
+[@cavanaughAkaikeInformationCriterion1998a]. Invoked by @sec-intro-lineage and
+@sec-ic-criterion (the $\mathrm{AIC}_{cd}$ criterion with the doubled
+$2\operatorname{tr}(\mathrm{RIV})$ surcharge on the EM deviance).
+
+**$\mathrm{AIC}_{cd}$, eq. (3.20)** [`:302`], **and the $2d + 2\operatorname{tr}$ split, eq. (4.4)** [`:351`-`:355`].
+
+> $\mathrm{AICcd}=-2 Q(\hat{\boldsymbol{\theta}} \mid \hat{\boldsymbol{\theta}})+2 \operatorname{trace}\{\boldsymbol{I}_{o c}(\hat{\boldsymbol{\theta}} \mid \boldsymbol{Y}_{\mathrm{obs}}) \boldsymbol{I}_{o}^{-1}(\hat{\boldsymbol{\theta}} \mid \boldsymbol{Y}_{\mathrm{obs}})\}$ [`:302`]; penalty $= 2 d+2 \operatorname{trace}\{\boldsymbol{D} \boldsymbol{M}(\boldsymbol{I}-\boldsymbol{D} \boldsymbol{M})^{-1}\}$ [`:354`], the trace term being "the increase in variance [of $\hat\theta$] due to missing information" (Meng–Rubin, quoted at [`:360`]).
+
+### Satorra & Bentler (2010) — Ensuring Positiveness of the Scaled Difference Chi-square Test Statistic {#sec-src-satorra2010}
+
+[@satorraEnsuringPositivenessScaled2010]. Invoked by @sec-ic-ladder (the scaled difference
+statistic, the first-moment-matching precedent for the two-moment arm).
+
+**The scaled difference test statistic** [`:58`-`:61`] **and the Satorra–Bentler (2001) combination** [`:76`-`:79`].
+
+> "Satorra (2000, p. 241) proposed the following scaled test statistic: $\bar{T}_{d}:=T_{d} / \hat{c}_{d}$, where $c_{d}:=\frac{1}{m} \operatorname{tr}\{U_{d} \Gamma\}$" [`:61`]; "Compute the scaled difference test statistic as $\tilde{T}_{d}:=T_{d} / \tilde{c}_{d}$ with $\tilde{c}_{d}=(r_{0} \hat{c}_{0}-r_{1} \hat{c}_{1}) / m$" [`:79`].
+
+### Asparouhov & Muthén (2006) — Robust Chi Square Difference Testing with Mean and Variance Adjusted Test Statistics {#sec-src-asparouhov2006}
+
+[@asparouhovRobustChiSquare2006]. Invoked by @sec-ic-ladder (the mean-and-variance-adjusted
+difference statistic — two-moment matching via a scale and a Satterthwaite degrees-of-freedom
+adjustment from the moment inputs $\operatorname{tr}(M), \operatorname{tr}(M^2)$).
+
+**The adjustment** [`:48`-`:68`].
+
+> $\bar{T}=\frac{d}{\operatorname{tr}(M)} T$ [`:51`]; "The distribution of $\bar{T}$ is approximately a chi-square distribution with $d^{\prime}$ degrees of freedom where $d^{\prime}$ is the integer nearest to $\frac{(\operatorname{tr}(M))^{2}}{\operatorname{tr}(M^{2})}$" [`:64`-`:67`].
+
+### Kolen & Brennan (2014) — Test Equating, Scaling, and Linking {#sec-src-kolen}
+
+[@kolenTestEquatingScaling2014]. Invoked by @sec-ic-ladder (the equipercentile equating
+function applied with the analytic null law as the source distribution).
+
+**The equipercentile equating function, eq. (2.11)** [`:1259`-`:1265`].
+
+> "Braun and Holland (1982) indicated that the following function is an equipercentile equating function when $X$ and $Y$ are continuous random variables: $e_{Y}(x)=G^{-1}[F(x)]$, where $G^{-1}$ is the inverse of the cumulative distribution function $G$."
+
+### Imhof (1961) — Computing the Distribution of Quadratic Forms in Normal Variables {#sec-src-imhof}
+
+[@imhofComputingDistributionQuadratic1961]. Invoked by @sec-ic-ladder (the closed-form
+evaluation of the weighted-$\chi^2$ distribution function in the equating map).
+
+**The inversion integral, eq. (3.2)** [`:234`-`:247`].
+
+> $P\{Q>x\}=\frac{1}{2}+\frac{1}{\pi} \int_{0}^{\infty} \frac{\sin \theta(u)}{u \varphi(u)} d u$ [eq. (3.2), `:237`], with $\theta(u)=\frac{1}{2} \sum_{1}^{m}[h_{r} \tan ^{-1}(\lambda_{r} u)+\delta_{r}^{2} \lambda_{r} u(1+\lambda_{r}^{2} u^{2})^{-1}]-\frac{1}{2} x u$ and $\rho(u)=\prod_{1}^{m}(1+\lambda_{r}^{2} u^{2})^{\frac{1}{4} h_{r}} \exp\{\cdots\}$ [`:243`-`:246`; the central case $\delta_r = 0$, $h_r = 1$ is the one used here].
+
+### Davies (1980) — Algorithm AS 155: The Distribution of a Linear Combination of $\chi^2$ Random Variables {#sec-src-davies}
+
+[@daviesAlgorithm155Distribution1980]. Invoked by @sec-ic-ladder (the standard algorithmic
+implementation of the weighted-$\chi^2$ distribution function).
+
+**Description and purpose** [`:44`-`:56`].
+
+> "Let $Q=\sum_{j=1}^{r} \lambda_{j} X_{j}+\sigma X_{0}$, where $X_{j}$ are independent random variables, $X_{j}$ having a non-central $\chi^{2}$ distribution … Then the purpose of this algorithm is to calculate $\operatorname{pr}(Q<c)$. The algorithm is based on the method of Davis (1973) involving the numerical inversion of the characteristic function." [`:47`-`:56`]
 
 ### Meng & Rubin (1992) — Performing Likelihood Ratio Tests with Multiply-Imputed Data {#sec-src-mengrubin92}
 

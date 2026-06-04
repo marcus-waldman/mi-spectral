@@ -175,6 +175,13 @@ Stage 3 (moderate-scale paired estimator) is now unblocked but likely unnecessar
 and discriminating cell already measure the differential; revisit only if the manuscript needs
 more n-range.
 
+**Stage-3 disposition (2026-06-04, todo/026 work item): SKIP.** The spot check
+(`w2-paired-differential-spotcheck.R`, P1–P5) and the 52-se discriminating cell
+(`w2-paired-differential-mu1-cell.R`, two sample sizes) already measure the differential at the
+precision the manuscript uses; additional scale adds no claim the manuscript makes. If a future
+submission revision wants an n-range plot, that is a small few-core run of the existing
+mu1-cell script with `Ns` extended — no new design needed. CLOSED.
+
 **Manuscript LANDED 2026-06-04:** `derivation.qmd @sec-lrt` (Propositions L1–L4, sources, Appendix-A
 entries for Wilks / Chan–Meng / Chan-AoS / Meng–Rubin-92 / Vuong, vdV §16.4 passage); intro LRT
 bullet + @sec-thm better-conditioned clause updated; render exit-0; /derivation-audit 0 BLOCKER

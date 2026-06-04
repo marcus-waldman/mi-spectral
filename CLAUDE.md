@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Open issues:** [#1](https://github.com/marcus-waldman/mi-spectral/issues/1) — W3 (IC) SB arm applies the scaled-shift to the uncorrected deviance; intended to wrap the bias correction. Auxiliary arm only; headline results unaffected. See `todo/000-current-status.md`.
+**Open issues:** none. (#1 closed 2026-06-04 — superseded by the calibration-ladder rung 2 in `verification/ic-ladder.R`; see `todo/027-ladder-preregistration.md`.)
 
 ## Scope
 

@@ -1,8 +1,41 @@
 # Current status — read this when resuming
 
-**Last updated:** 2026-06-04 (W2 differential D1–D3 derived + landed; see Latest).
+**Last updated:** 2026-06-04 (IC application + calibration ladder LANDED; see Latest).
 
-**Latest (2026-06-04, session 2 — the W2 differential session, todo/024–025 EXECUTED):**
+**Latest (2026-06-04, session 3 — the IC-landing session, todo/026 rev. 2 EXECUTED):**
+The calibration ladder was **preregistered before any code** (`todo/027-ladder-preregistration.md`:
+rungs 0–3 on saturated-anchored $T_k = 2[\bar Q(\hat\psi^*_{sat}) - \bar Q(\hat\psi^*_k)]$, the
+null/noncentral split, pass criteria C1–C6), CAS-checked
+(`verification/cas-wolfram/verify_ic_ladder.py`, L-A1–L-A4 ALL PASS; rung-2 $a_k = \sqrt{q_d/\Sigma\lambda^2}$,
+$b_k = q_d - a_k\Sigma\lambda$ unique affine two-moment match; rung-3 = PIT through the Imhof CDF;
+GPT-5.5 gate NOT triggered — both rungs are two-line corollaries of the gate-cleared @sec-lrt law,
+decision recorded), built as a NEW script (`verification/ic-ladder.R`; frozen originals untouched;
+candidates' constrained $\bar Q$-maximizers are CLOSED-FORM block restrictions of the E-step
+moments, so $T_k = N\log(|\hat\Sigma_k|/|S^*|) \ge 0$), and run at R=2000 × {MAIN ρ=.40, WEAK
+ρ=.10, JUNK ρ=0}, 6 cores, 0 errors, all asserts pass (spectrum identity 3e-15, all λ ≥ 1, zero
+Imhof fallbacks). **Every preregistered criterion PASSED** (todo/027 §6): (i) null side calibrates
+COMPLETELY — KS 0.281→0.228→0.026→0.019 across rungs, var ratio 3.18→0.97, rung-1 paired mean gap
+0.076±0.100 = a direct MC confirmation of @eq-lrt-bias at q_d=4; (ii) where errors are overfit
+flips (MAIN) rungs 2–3 REACH the oracle (0.904/0.903 vs 0.899; uncorrected 0.678, rung-1 0.814);
+(iii) noncentral side shrinks by exactly the predicted factors (rung-2 ratio 0.586 ≈ a_k = 0.570;
+rung-3 0.362 ≈ 1/λ_max = 0.398; rung-1 preserves 1.002); (iv) WEAK floor: oracle−rung3 = 0.170,
+underfit retention 0.270 vs 0.091 — upper rungs buy NOTHING where selection is hard; (v) P8
+indirect pair: equated ΔAIC mean 6.10 vs complete 10.00 (copula limitation measured). **Bonus
+structural finding:** the W3 candidate family sits at Proposition L2's EXACT equality case
+(block-diagonal zero patterns ⇒ I_com, I_obs decompose over within/cross-block coordinates) —
+naive ≡ perp trace to 3.6e-15; the frozen SB arm's real defect was the uncorrected-statistic
+wrapping (worth 0.824→0.904 at MAIN). **@sec-ic landed** in derivation.qmd (corrected criterion =
+AIC_{x;y} surcharge formalized vs AICcd's doubled trace; honest W3 wording 0.65→0.81 vs 0.90;
+the full ladder contrast + blunt fences: per-pair-own-null only, noncentral matching impossible
+in principle, marginal equating can't calibrate differences, no telescoping for rungs 2–3; 8 new
+Appendix-A entries — shimodaira2017, cavanaugh, satorra2010, asparouhov2006, kolen, imhof,
+davies, chan-AoS §5.1 MC reference). Render exit-0; **/derivation-audit PASS 0 BLOCKER / 0 WARN**
+(3 lifecycle WARNs fixed via todo/003 rows; "consume"/"committed sweep" jargon reworded). Issue
+#1 CLOSED as superseded by rung 2 (retirement comments only in frozen scripts). Small closures:
+todo/022 item-B component-candor remark at the roadmap caveat; Stage-3 SKIP recorded in todo/024.
+**NOT done: mi-spectral.qmd skeleton (todo/026 work item 3) — next session's opening move.**
+
+**Earlier (2026-06-04, session 2 — the W2 differential session, todo/024–025 EXECUTED):**
 D1–D3 derived through the full multimodal protocol and landed in `derivation.qmd @sec-lrt`
 (Propositions L1–L4 + numerics). Headline findings, all in-house-derived (3 independent routes +
 referees, `cache/w2diff-stage1-routes.json`), CAS-verified
@@ -76,7 +109,12 @@ SKIP disposition); (5) mi-spectral.qmd opening = stretch goal.
 
 ## Open issues
 
-- **[#1](https://github.com/marcus-waldman/mi-spectral/issues/1) — W3 (IC) SB arm applies the scaled-shift to the *uncorrected* differential deviance; intended design is to wrap the bias correction** (mirror W2's `a·(d_L − bias_corr) + b`). One-line fix in `verification/W3-model-selection.R` and `verification/_modules/w3-sweep.R` (`chi2_SB[k] = a_k * (chi2_MI_per_k[k] - tr_perp_k) + b_k`), then re-run W3 and update §6's SB number. **Auxiliary arm only** — the preregistered oracle/uncorrected/corrected headline and the 100% directional concordance are unaffected. Flagged in `manuscript/mi-spectral.qmd` §6 with a draft-note callout.
+- None. **[#1](https://github.com/marcus-waldman/mi-spectral/issues/1) CLOSED 2026-06-04** as
+  superseded by the calibration ladder rung 2 (`verification/ic-ladder.R`, todo/027,
+  derivation.qmd @sec-ic): the two-moment arm was rebuilt with coefficients DERIVED from the
+  @sec-lrt weighted-χ² null law; the frozen preregistered scripts carry retirement comments
+  only (logic untouched, SHA ddc9037 results stand); measured impact of the repair
+  0.824→0.904 (MAIN), 0.596→0.702 (JUNK).
 
 ## What happened this session
 

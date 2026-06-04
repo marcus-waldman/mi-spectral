@@ -128,6 +128,14 @@ run_one_replicate_w3 <- function(r, cfg, engine, mu0, Sigma_truth) {
   # chi^2_SB(k) = a_k * chi^2_MI(k) + b_k
   # AIC_SB(k)   = chi^2_SB(k) + 2 p_k   (rank against each other; common
   #               constant -2 bar L_M(theta_D) drops out)
+  # RETIRED ARM (issue #1, closed 2026-06-04): this SB arm applies the scaled-shift
+  # to the UNCORRECTED chi2_MI (intended design wrapped the bias correction), and its
+  # tr_perp / sum_lsq inputs are the NAIVE per-model differences, not the I_com-metric
+  # complement quantities of derivation.qmd @eq-lrt-bias. Superseded by the ladder
+  # rung 2 in verification/ic-ladder.R (todo/027), which derives a_k, b_k from the
+  # analytic weighted-chi2 null law. This preregistered block is frozen as committed
+  # (SHA ddc9037) and is NOT re-run; auxiliary arm only — the oracle/uncorrected/
+  # corrected headline is unaffected. Do not fix in place.
   chi2_MI_per_k <- 2 * (barL["MD"] - barL)
   trRIV_D       <- trRIV["MD"]
   sum_lsq_D     <- sum_lambda_sq["MD"]

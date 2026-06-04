@@ -1,6 +1,26 @@
 # Todo 026 — Handoff: land the IC application + calibration ladder, then open submission drafting
 
-**Status:** Handoff, **REVISION 2** (2026-06-04, same day — user scope decision). Execute in a
+**Status:** **EXECUTED 2026-06-04** (the IC-landing session; revision-2 scope). Outcomes:
+ladder preregistered (`todo/027`, BEFORE code) → CAS check (`verify_ic_ladder.py`, L-A1–L-A4
+ALL PASS; GPT-5.5 gate deliberately NOT triggered — rungs 2–3 stated as two-line corollaries of
+the gate-cleared @sec-lrt law, decision recorded in todo/027 §1.3) → NEW script
+`verification/ic-ladder.R` (frozen originals untouched; saturated-anchored $\hat\psi^*$
+construction, closed-form candidates) → run R=2000 × {MAIN, WEAK, JUNK}, 6 cores, 0 errors,
+all internal asserts pass → **every preregistered criterion C1–C6 PASSED** (grading in todo/027
+§6; headline: null side calibrates completely, KS 0.019; rungs 2–3 reach the oracle at ρ=0.40
+(0.904/0.903 vs 0.899); noncentral shrinkage lands on the predicted $a_k$/$1/\lambda_{\max}$
+factors; WEAK floor 0.17; bonus structural finding — the W3 family sits at Proposition L2's
+EXACT equality case, block-decomposition, naive ≡ perp to 3.6e-15) → combined `@sec-ic` landed
+in derivation.qmd (criterion + AIC_{x;y} positioning + honest W3 wording + ladder + fences; 8
+new Appendix-A entries; render exit-0; audit **PASS 0 BLOCKER / 0 WARN**) → issue #1 CLOSED as
+superseded (retirement comments in the frozen scripts; todo/000 + CLAUDE.md banners fixed) →
+small closures (todo/022 item-B remark at the roadmap caveat; Stage-3 SKIP in todo/024).
+Remaining from this handoff: **work item 3 (mi-spectral.qmd skeleton) — the stretch goal, not
+executed; next session.**
+
+*(Original revision-2 handoff below, kept for the record.)*
+
+**Original status:** Handoff, **REVISION 2** (2026-06-04, same day — user scope decision). Execute in a
 fresh session. Continues todo/024–025 (the W2 differential session — EXECUTED, cross-model gate
 cleared, commits `6217ae9`/`c08a18a`/`80d2d7e`).
 
