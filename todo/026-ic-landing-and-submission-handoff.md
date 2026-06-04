@@ -1,9 +1,74 @@
-# Todo 026 — Handoff: land the IC application, retire the SB arm, then open submission drafting
+# Todo 026 — Handoff: land the IC application + calibration ladder, then open submission drafting
 
-**Status:** Handoff (2026-06-04). Execute in a fresh session. Continues todo/024–025 (the W2
-differential session — EXECUTED, cross-model gate cleared, commits `6217ae9`/`c08a18a`/`80d2d7e`)
-under the scope split of todo/023. The W2/LRT arc is DONE; this session closes the remaining
-application-layer items and opens the JAIGP submission document.
+**Status:** Handoff, **REVISION 2** (2026-06-04, same day — user scope decision). Execute in a
+fresh session. Continues todo/024–025 (the W2 differential session — EXECUTED, cross-model gate
+cleared, commits `6217ae9`/`c08a18a`/`80d2d7e`).
+
+---
+
+## REVISION 2 (2026-06-04) — the calibration ladder moves IN-PAPER. Supersedes items below.
+
+**User decision** (recovering the 2026-06-03 design discussion, session `ea505749…`, extract at
+`verification/cache/_equating_extract.txt`): the paper's IC application must **contrast first-,
+second-, and all-moment matching** — mean `tr(RIV)` correction vs SB two-moment vs equipercentile
+equating — so that the distribution of pairwise ΔAIC/ΔBIC matches the complete-data law as far as
+is achievable. This un-parks ladder rungs 1–3 from todo/023 (which now keeps only the
+de-shrinkage map, the full pairwise-matrix-with-Z testbed, and copula/triangle-closure at scale).
+
+**Supersessions of the items below:**
+- **Work Item 1 (the IC section)** becomes *IC application + calibration ladder*: the planned
+  @sec-ic content PLUS the three-rung contrast with the preregistered null/noncentral split.
+- **The SB arm FLIPS from "retire" to "fix as rung 2"** — you cannot contrast two-moment
+  matching without a working two-moment arm. Issue #1 stays OPEN until the ladder arm lands,
+  then closes as "superseded by the ladder rung 2 (new script); original preregistered arm
+  documented as buggy, frozen, not re-run."
+- **The §5 SB wording caution** (rev. 1, below) is superseded in part: the two-moment rung IS
+  now derived/used in-paper — @sec-lrt makes the coefficients derivable (two-moment matching of
+  the weighted-χ² `Σ(1+r_⊥,j)χ²₁` to `χ²_q`), and the rung must use the CORRECT I_com-metric
+  complement trace (Proposition L2), reporting the naive trace for comparison. What survives of
+  the caution: never present the ladder as fully restoring complete-data selection — the
+  noncentral side is impossible in principle.
+
+**The ladder, precisely (from the recovered discussion + todo/023, now with the @sec-lrt asset):**
+- Working statistic: saturated-anchored `T_k = D(M_k) − D(M_sat)` (the anchor is the congenial
+  imputation model ⇒ the heavy realized (A)+(C) cancels — Proposition L3's mechanism for free;
+  rankings invariant; every T_k is a null-referenceable LRT statistic; W3's candidates form a
+  nested chain so pairs telescope).
+- Rung 1 (mean): `−tr(RIV_⊥,k)` — the I_com-metric complement trace per candidate (@eq-lrt-bias),
+  NOT the naive difference; linear ⇒ coherent across all pairs.
+- Rung 2 (SB two-moment): `a·(T_k − tr(RIV_⊥,k)) + b` with a, b derived by matching mean AND
+  variance of the analytic weighted-χ² null law to `χ²_{q_k}` — coefficients now DERIVED, not
+  borrowed (cite Satorra–Bentler/Asparouhov–Muthén as provenance of the form; both held).
+- Rung 3 (equipercentile): `T_eq = F_com⁻¹(F_MI(T_k))` per model under ITS OWN null —
+  **closed-form for nested pairs** via the analytic weighted-χ² CDF (Davies/Imhof — both held),
+  falling back to Chan-style MC where needed.
+- **Preregistered predictions (write BEFORE running):** each rung closes more of the
+  null-side/overfit calibration gap (equating exact there, all moments); on the noncentral/
+  underfit side equating is first-moment-only and CONSERVATIVE (shrunken gaps — the toy: equated
+  mean 11 vs complete-data 21); the corrected-vs-oracle residual decomposes into fixable
+  calibration error vs the irreducible information-loss floor; stress cell = weak true
+  coefficient (near-tied pairs) shows the underfit-retention cost; junk-heavy cell shows the
+  calibration win. LIGHT indirect-pair diagnostic only (one near-tied B-vs-C cell measuring
+  s_B − s_C against complete-data ΔAIC(B,C)); the instrumented testbed stays sequel.
+- **Honest-claim fence:** all-moment matching is claimed ONLY per pair under that pair's null;
+  noncentral pairs are first-moment-corrected, full matching impossible in principle
+  (information loss is not equatable — no monotone transform restores destroyed Fisher
+  information); per-model marginal equating cannot calibrate difference distributions in
+  general (copula invariance) — state, don't hide.
+- **New analytic claims trigger the protocol:** the derived SB a/b and the analytic equating map
+  are new claims ⇒ CAS check + (if formalized beyond two lines) the GPT-5.5 gate, per the
+  standing directive. Empirically running the ladder does not.
+- **Sequencing within the session:** (1) preregister the ladder arm (new todo/027 or todo/004
+  Amendment 3 — predictions + pass criteria BEFORE code); (2) build the NEW ladder script
+  (frozen originals untouched); (3) run at moderate scale (few cores); (4) land the combined
+  @sec-ic; (5) mi-spectral.qmd opening becomes the stretch goal / next session.
+- **Pre-session user action:** acquire **Kolen & Brennan (2014)** via the litrev pipeline
+  (todo/003, promoted High) — the equating rung needs its canonical citation; Holland–Thayer /
+  von Davier et al. optional.
+
+---
+
+*(Revision 1 below — items superseded as noted above; everything else stands.)*
 
 ## 0. Scope frame (carried, do not re-litigate)
 

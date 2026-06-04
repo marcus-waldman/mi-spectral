@@ -47,12 +47,21 @@ Latest above and todo/024); an independent-session audit of derivation.qmd retur
 (0 BLOCKER / 0 WARN after the engine brace-glob fix `80d2d7e` — the "3 known false positives"
 disclaimer is RETIRED; any new WARN is a real signal).
 
-**Next session = `todo/026-ic-landing-and-submission-handoff.md`:** (1) land the IC application
-section `@sec-ic` in derivation.qmd (mirror of @sec-lrt; honest W3 wording π≈0.81 vs 0.90;
-in-session reads of the Shimodaira/Cavanaugh/Claeskens/Hens corpus); (2) small closures — retire
-the W3 SB arm (issue #1, retire-don't-fix), todo/022 item B remark, Stage-3 SKIP disposition,
-optional Mode-B exact-gap remark; (3) OPEN `manuscript/mi-spectral.qmd` (the JAIGP submission
-skeleton — the "after derivation.qmd is done" gate is satisfied once @sec-ic lands).
+**SCOPE REVISION (2026-06-04, later same day — todo/026 REVISION 2):** the calibration-ladder
+rungs 1–3 move **IN-PAPER** (user decision; recovered 06-03 design discussion at
+`verification/cache/_equating_extract.txt`): the IC application must contrast mean (tr(RIV_⊥),
+I_com metric) vs SB two-moment (coefficients now DERIVED from the @sec-lrt weighted-χ² law) vs
+equipercentile equating (closed-form for nested pairs via Davies/Imhof) on saturated-anchored
+pairwise ΔAIC, with the null/noncentral achievability split preregistered. **The SB arm FLIPS
+retire→FIX as rung 2** (new script; frozen originals untouched; issue #1 closes after the ladder
+lands). Sequel (todo/023, trimmed) keeps: de-shrinkage map, pairwise-matrix-with-Z testbed,
+copula/triangle at scale. Pre-session user action: acquire Kolen & Brennan (todo/003, High).
+
+**Next session = `todo/026-ic-landing-and-submission-handoff.md` (REVISION 2):** (1) preregister
+the ladder arm (todo/027 or todo/004 Amendment 3 — BEFORE code); (2) build + run the new ladder
+script (moderate scale, few cores); (3) land the combined @sec-ic (IC application + ladder
+contrast + honest noncentral/copula fences); (4) small closures (todo/022 item B remark, Stage-3
+SKIP disposition); (5) mi-spectral.qmd opening = stretch goal.
 
 **Project:** JAIGP theory paper on deviance-bias correction for the Q-function under congenial multiple imputation, with applications to LRT model comparison and information-criterion model selection.
 

@@ -1,9 +1,22 @@
 # Todo 023 — FOLLOW-UP PAPER capture: distributional calibration of MI information criteria
 
-**Status:** PARKED (2026-06-03). Scope decision: this paper = bias correction + LRT application
-(W1/W2, plus the existing W3 results with calibrated wording). Everything below is the **sequel**,
-captured from the 2026-06-03 design discussion so it does not evaporate. Do NOT start in the
-current paper's sessions.
+**Status:** PARTIALLY UN-PARKED (2026-06-04, user decision — supersedes the 2026-06-03 full
+parking). **The correction ladder rungs 1–3 move IN-PAPER** (todo/026 rev. 2): mean →
+SB two-moment (the SB arm flips from retire-to-fix) → per-model null equipercentile equating on
+saturated-anchored statistics, with the null/noncentral achievability split as the preregistered
+prediction and the honest impossibility caveat (information loss is not equatable). The in-paper
+version gains an asset the 2026-06-03 discussion didn't have: the @sec-lrt analytic null law
+(weighted-χ² with the I_com-metric complement spectrum; Davies/Imhof CDF inversion) makes the
+nested-pair equating map CLOSED-FORM, not MC-only.
+
+**What REMAINS the sequel (do NOT start in the current paper's sessions):** the noncentrality
+de-shrinkage map (a NEW analytic claim — needs its own derive→GPT-gate→simulate protocol), the
+full pairwise-matrix-with-Z testbed (triangle-closure residuals at scale, two-anchor bracketing,
+copula diagnostics across cells), and any "MI-corrected fit index" implications (MI-IC territory).
+The in-paper ladder carries only a LIGHT indirect-pair diagnostic (one near-tied B-vs-C
+measurement), not the instrumented testbed.
+
+*(Original 2026-06-03 capture below — still the sequel's design record.)*
 
 ## Premise
 

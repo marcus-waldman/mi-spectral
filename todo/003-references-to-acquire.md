@@ -324,9 +324,15 @@ clause, Vuong is the anchor (now acquired). Verify in-session before citing.
 | **Self, S. G. & Liang, K.-Y. (1987).** "Asymptotic properties of MLEs and LRTs under nonstandard conditions." *JASA* 82, 605–610. | **acquired (lit-synced 2026-06-04)** | Boundary/irregular nesting — only if §4's scope note invokes it. | §4 scope note | Low | `literature/selfAsymptoticPropertiesMaximum1987.md`. CLAUDE.md excludes non-regular settings; likely never cited. |
 | **Le Cam, L. (1986).** *Asymptotic Methods in Statistical Decision Theory.* Springer. | **acquired (lit-synced 2026-06-04)** | Primary source for contiguity/LAN; cite-via-van-der-Vaart remains the default routing. | §4 / D3 | Low | `literature/camAsymptoticMethodsStatistical1986.md` (citekey surname is "Cam"; Drive PDF copied to citekey name to satisfy the matcher; converted from DjVu). **2.47M chars — whole book indexed; read targeted chapters only, never the full file.** |
 
-**SEQUEL-ONLY proposals (todo/023) — log, do NOT acquire now.** Equating rung: **Kolen & Brennan
-(2014)** *Test Equating, Scaling, and Linking* 3rd ed.; **Holland & Thayer (1989)** equipercentile/
-observed-score equating; **von Davier, Holland & Thayer (2004)** *The Kernel Method of Test Equating*.
+**PROMOTED 2026-06-04 (scope revision: equipercentile ladder moves IN-PAPER, todo/026 rev. 2).**
+Formerly sequel-only; the in-paper ladder section needs ONE canonical equating citation —
+acquire **Kolen & Brennan (2014)** *Test Equating, Scaling, and Linking* 3rd ed. (primary; the
+equipercentile method definition), priority **High**, lands in the IC/calibration-ladder section.
+**Holland & Thayer (1989)** equipercentile/observed-score equating and **von Davier, Holland &
+Thayer (2004)** *The Kernel Method of Test Equating* stay optional/secondary (acquire only if the
+section needs the presmoothing/kernel distinction). Already held for the same section: Davies
+(1980) + Imhof (1961) (analytic weighted-χ² CDF for the closed-form null reference),
+Asparouhov–Muthén (2006) + Satorra–Bentler (2010) (the two-moment rung).
 Noncentrality/RMSEA rung: **Steiger & Lind (1980)**; **Browne & Cudeck (1992/1993)**; **McDonald
 (1989)**. SB rung: **Satorra & Bentler (1994; 2001)** (the 2010 variant + Asparouhov–Muthén 2006
 already held). All marked `[proposed — SEQUEL (todo/023), do not acquire]`.
