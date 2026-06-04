@@ -2,13 +2,14 @@
 
 **Last updated:** 2026-05-25 (manuscript `mi-spectral.qmd` full draft underway; see Open issues).
 
-**Latest (2026-06-02):** the deviance-bias *derivation + correction* is settled and adversarially
-audited (todo/015–021). The headline `+½tr(RIV)`, its `+tr/−½tr` split, the scope fencing, the
-`(A)+(C)` structure/convention/`Δ_KM`, and the honest "absolute `(A)+(C)` value not independently
-pinned" wording are LOCKED — do not re-open. **Next session = the empirical application layer:
-`todo/022-applications-w1w3-handoff.md`** (W1–W3 witnesses + the audit's flagged items: preregistered
-H1 diff-criterion FAIL, W2 LRT-differential measurement, W3 "restores"→partial-recovery wording, the
-SB-arm bug #1, proper-MI engine-independence, and the deferred Satorra–Bentler/Chan-2022 re-eval).
+**Latest (2026-06-04):** SCOPE SPLIT — this paper = bias correction + LRT (W1/W2); the W3
+distributional-calibration ladder (SB/equating/pairwise-ΔAIC) is a SEQUEL, captured in `todo/023`;
+W3 SB arm (issue #1) to be retired, not fixed. Current target document is `derivation.qmd` only
+(`mi-spectral.qmd` does not exist yet — submission drafting comes after). Literature stocked
+2026-06-04 (Vuong, Barnard–Rubin, Self–Liang, Le Cam acquired + lit-synced). **Next session =
+`todo/025-w2-derivation-session-handoff.md`**: derive the W2 LRT-differential claims D1–D3
+(todo/024) analytic-first → blind GPT-5.5 audit → small paired MC; W1/H1 reconciliation (todo/022
+item A) as the gap-filler while the audit runs. The theory layer (todo/015–021) stays LOCKED.
 
 **Project:** JAIGP theory paper on deviance-bias correction for the Q-function under congenial multiple imputation, with applications to LRT model comparison and information-criterion model selection.
 

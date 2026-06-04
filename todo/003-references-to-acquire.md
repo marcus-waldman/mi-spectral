@@ -302,6 +302,39 @@ the two references below are the canonical engine-ID and DA-origin cites to **ad
 | **Honaker, J., King, G. & Blackwell, M. (2011).** "Amelia II: A Program for Missing Data." *JSS* 45(7). | **cited** (`@honakerAmeliaIIProgram2011`, 2026-06-02) | Identifies the engine actually used (EMB = EM-with-bootstrap) and that its posterior is a bootstrap approximation — the subject of the limitation note. | `derivation.qmd` §sec-combine limitation note ("the EMB sampler") | High | Migrated → Mathpix → lit-synced → **verified in-session 2026-06-02**: p.1 "Amelia II draws imputations … the EMB (expectation-maximization with bootstrapping) algorithm … uses the familiar EM algorithm on multiple bootstrapped samples … to draw values of the complete-data parameters." Cited. |
 | **Tanner, M. A. & Wong, W. H. (1987).** "The Calculation of Posterior Distributions by Data Augmentation." *JASA* 82(398), 528–540. (with discussion) | **cited** (`@TannerCalculationPosteriorDistributions1987`, 2026-06-02) | Seminal data-augmentation source — the exact-posterior MCMC alternative to the bootstrap, alongside Schafer (1997, MVN application). | `derivation.qmd` §sec-combine limitation note ("proper data augmentation") | High | Migrated → Mathpix → lit-synced → **verified in-session 2026-06-02**: abstract + §1 give the iterative exact-posterior algorithm with convergence proof "under mild regularity conditions"; §3 applies it to "the covariance matrix of the multivariate normal distribution with missing values." Citekey **normalized 2026-06-02** from the litrev override `Tanner01061987` to `TannerCalculationPosteriorDistributions1987` (user refreshed the BBT key + re-exported; re-synced; orphaned `Tanner01061987.md` removed; cite swapped in `derivation.qmd`). |
 
+## Citation-coverage audit for the scope split + W2 analytic-first plan (proposed 2026-06-03)
+
+Workflow audit (5 parallel readers + synthesis) against the needs of `todo/024` (W2 LRT-differential
+derivation, THIS paper) and `todo/023` (sequel future-work pointer). **Headline: the in-paper
+derivation needs (D1–D3) are fully covered by holdings** — van der Vaart (contiguity/LAN/noncentral
+χ², nested-MLE linearization), Wilks 1938, Chan/Chan–Meng/Meng–Rubin, Meng 1994, Rubin 1987, Schafer,
+Reiter 2007, Pawitan, Shimodaira pair, Konishi–Kitagawa, Cavanaugh–Shumway, Claeskens–Consentino,
+Hens–Aerts — all verified present. No discipline violations: all 27 in-use `@cite`s in
+`derivation.qmd` map to `literature/` files. New proposals below; all four PDFs were user-acquired
+and lit-synced on 2026-06-04.
+
+**The one live in-paper question — Vuong.** CLAUDE.md's core contribution states the LRT differential
+is "non-zero under local alternatives **and non-nested model comparison**." If §4 keeps the non-nested
+clause, Vuong is the anchor (now acquired). Verify in-session before citing.
+
+| Proposed citation | Status | Claim it supports | Where it would land | Priority | Notes |
+|---|---|---|---|---|---|
+| **Vuong, Q. H. (1989).** "Likelihood ratio tests for model selection and non-nested hypotheses." *Econometrica* 57(2), 307–333. | **acquired (lit-synced 2026-06-04)** | Canonical non-nested LRT; anchors the "differential non-zero under non-nested comparison" clause if §4 retains it. | §4 (LRT application, scope note) | **Medium (→ High if clause stays)** | `literature/vuongLikelihoodRatioTests1989.md`. Needs in-session read before `@cite`. |
+| **Barnard, J. & Rubin, D. B. (1999).** "Small-sample degrees of freedom with multiple imputation." *Biometrika* 86(4), 948–955. | **acquired (lit-synced 2026-06-04)** | Additional small-sample-df citation for finite-M conditioning (D2); primary backing already held (Rubin 1987 + `reiterSmallsampleDegreesFreedom2007b`). | §4 / W2 write-up | Low | `literature/barnardMiscellaneaSmallsampleDegrees1999.md`. |
+| **Self, S. G. & Liang, K.-Y. (1987).** "Asymptotic properties of MLEs and LRTs under nonstandard conditions." *JASA* 82, 605–610. | **acquired (lit-synced 2026-06-04)** | Boundary/irregular nesting — only if §4's scope note invokes it. | §4 scope note | Low | `literature/selfAsymptoticPropertiesMaximum1987.md`. CLAUDE.md excludes non-regular settings; likely never cited. |
+| **Le Cam, L. (1986).** *Asymptotic Methods in Statistical Decision Theory.* Springer. | **acquired (lit-synced 2026-06-04)** | Primary source for contiguity/LAN; cite-via-van-der-Vaart remains the default routing. | §4 / D3 | Low | `literature/camAsymptoticMethodsStatistical1986.md` (citekey surname is "Cam"; Drive PDF copied to citekey name to satisfy the matcher; converted from DjVu). **2.47M chars — whole book indexed; read targeted chapters only, never the full file.** |
+
+**SEQUEL-ONLY proposals (todo/023) — log, do NOT acquire now.** Equating rung: **Kolen & Brennan
+(2014)** *Test Equating, Scaling, and Linking* 3rd ed.; **Holland & Thayer (1989)** equipercentile/
+observed-score equating; **von Davier, Holland & Thayer (2004)** *The Kernel Method of Test Equating*.
+Noncentrality/RMSEA rung: **Steiger & Lind (1980)**; **Browne & Cudeck (1992/1993)**; **McDonald
+(1989)**. SB rung: **Satorra & Bentler (1994; 2001)** (the 2010 variant + Asparouhov–Muthén 2006
+already held). All marked `[proposed — SEQUEL (todo/023), do not acquire]`.
+
+**Tracking inconsistencies found (fix when convenient):** Satterthwaite (1946), Imhof (1961), Davies
+(1980) are listed `queued` above but their `literature/` files exist — bump to `acquired`; per the
+scope split they are sequel-only and should not be cited in this paper.
+
 ## Recently rejected (kept as a record so we don't re-propose)
 
 - **2026-05-22 — Wood, A. T. A. (1989).** "An F approximation to the distribution of a linear combination of chi-squared variables." *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`. Reason: We're sticking with χ² reference (not F), so the F-approximation is not load-bearing. Citation lineage for the scaled-shifted moment-matching form is already covered by Satterthwaite (1946) + Satorra-Bentler (2010) + Asparouhov-Muthén (2006). Imhof (1961) + Davies (1980) cover the exact reference distribution. Full text was also not freely available, which would have been a small acquisition cost — combined with non-load-bearing status → reject. Re-propose only if we change framing to F-reference.
@@ -314,4 +347,4 @@ the two references below are the canonical engine-ID and DA-origin cites to **ad
 
 ---
 
-*Last updated: 2026-06-01*
+*Last updated: 2026-06-04*
