@@ -339,11 +339,37 @@ PATH_RE = re.compile(r"`([^`]*?(?:verification|todo|manuscript)[^`]*?)`")
 PHASE_RE = re.compile(r"\bphase[\s-]?(\d+)\b", re.IGNORECASE)
 
 
+def _brace_expand(s):
+    """Expand one level of {a,b}/{0..5} brace groups into the full list of
+    alternatives (cartesian product across groups). Returns [s] if no
+    expandable group is present."""
+    m = re.search(r"\{([^{}]*)\}", s)
+    if not m:
+        return [s]
+    body = m.group(1)
+    rng = re.match(r"^(\d+)\.\.(\d+)$", body)
+    if rng:
+        alts = [str(i) for i in range(int(rng.group(1)), int(rng.group(2)) + 1)]
+    elif "," in body:
+        alts = body.split(",")
+    else:
+        return [s]  # not an expandable group (e.g. literal braces)
+    out = []
+    for alt in alts:
+        out.extend(_brace_expand(s[:m.start()] + alt + s[m.end():]))
+    return out
+
+
 def _pointer_exists(repo, target_dir, cand):
     """Resolve a backticked path against the repo root, the target file's dir
-    (manuscript/), a todo/0NN prefix, or a glob base. Return True if any hits."""
+    (manuscript/), a todo/0NN prefix, or a glob base. Return True if any hits.
+    Brace groups `{a,b}` / `{0..5}` are expanded; the pointer counts as
+    existing only if EVERY expansion resolves (it names a set of artifacts)."""
     import glob
     norm = cand.replace("\\", "/")
+    expansions = _brace_expand(norm)
+    if len(expansions) > 1:
+        return all(_pointer_exists(repo, target_dir, e) for e in expansions)
     base = re.split(r"[*{]", norm)[0].rstrip("/")
     parts = base.split("/")
     for root in (repo, target_dir):

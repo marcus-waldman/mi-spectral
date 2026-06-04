@@ -1369,7 +1369,10 @@ The mechanism is worth stating precisely, because it is *not* a projection of th
 the tested subspace. The $O_p(\sqrt n)$ noise of each model's level lives in a *fit-independent*
 realized constant: the imputed conditional term $F(\theta_0, \hat\theta_{\text{obs}})$-type pieces
 (the entropy gradient contracted with the shared $\delta_{\text{obs}}$) plus the realized
-$\ell_{\text{com}} - \ell_{\text{obs}}$ at $\theta_0$. Both fits maximize the *same* realized
+$\ell_{\text{com}} - \ell_{\text{obs}}$ at $\theta_0$. (Argument-order note: in this section $F$
+takes the *evaluation* parameter first and the *sampling/imputation* parameter second,
+$F(\psi, \phi)$ — the reverse positional order of @sec-combine's $F(\phi, \psi)$; the roles are
+identical, with $\phi$ the imputer's parameter in both.) Both fits maximize the *same* realized
 $\bar Q_\infty$ built from the *same* imputation parameter, so these pieces are literally the same
 realization in both levels and cancel exactly, dataset by dataset — not merely in expectation. What
 survives is a difference of $O_p(1)$ quadratic forms. Empirically, on the W2 design at the null,
