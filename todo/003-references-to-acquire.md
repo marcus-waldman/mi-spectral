@@ -345,6 +345,49 @@ already held). All marked `[proposed — SEQUEL (todo/023), do not acquire]`.
 (1980) are listed `queued` above but their `literature/` files exist — bump to `acquired`; per the
 scope split they are sequel-only and should not be cited in this paper.
 
+## Background-section corpus (proposed 2026-06-05)
+
+Surfaced while planning the manuscript Background section (continues the 2026-05-25 IMRAD note
+above). Selection rule: a known result enters the background **only if a numbered proposition of
+`todo/030-concept-map.md` later consumes it** — the section is the leftmost column of the argument
+DAG written as prose, and its function is reader verification (trust) before the central claims.
+Most of the corpus is owned; the gaps are the canonical primary sources an expert expects named
+even where Schafer/Pawitan cover the technical content. Also noted here: **Orchard & Woodbury
+(1972)** (logged 2026-05-23, Low) rises to Medium if the background recites the
+missing-information principle with primary attribution.
+
+| Proposed citation | Status | Claim it supports | Where it would land | Priority | Notes |
+|---|---|---|---|---|---|
+| **Dempster, A. P., Laird, N. M. & Rubin, D. B. (1977).** "Maximum Likelihood from Incomplete Data via the EM Algorithm." *JRSS-B* 39(1), 1–38. | **verified (read in-session 2026-06-05; citekey `dempsterMaximumLikelihoodIncomplete1977a`)** | Canonical EM citation: Q-function definition (the paper's central object), E/M steps, GEM monotonicity, convergence rate tied to missing information. | Background §EM/Q-function; feeds C3's curvature identity and the "RIV is not the EM rate" disambiguation | **High** | Claim-check quotes below. |
+| **Wei, G. C. G. & Tanner, M. A. (1990).** "A Monte Carlo Implementation of the EM Algorithm and the Poor Man's Data Augmentation Algorithms." *JASA* 85(411), 699–704. | **verified (read in-session 2026-06-05; citekey `weiMonteCarloImplementation1990`)** | Q̄_M as Monte Carlo integration of the E-step (MCEM) — the precise sense in which imputation is a Monte Carlo integration technique; Q̄_∞ as the M→∞ limit. Remark 2 ties the draws to Rubin's multiple imputations verbatim. | Background §imputation-as-MC-integration; feeds S3 (fitted predictive, the sign-determining definition) | **High** | Claim-check quotes below. |
+| **Akaike, H. (1974).** "A New Look at the Statistical Model Identification." *IEEE Trans. Automat. Contr.* 19(6), 716–723. | **verified (read in-session 2026-06-05; citekey `akaikeNewLookStatistical1974a`)** | AIC origin: criterion as bias-corrected plug-in log-likelihood — the background template C1 instantiates under MI. Technical content already covered by Pawitan §13.6 + Konishi–Kitagawa (owned, verified). | Background §IC basics; bridge to C4 | Medium | First acquisition attempt FAILED same day — the Zotero attachment was a 2019 Universidad Nacional de Colombia agronomy thesis that merely cites Akaike; the wrong PDF, its `literature/` markdown, and its 182 RAG chunks (MotherDuck item `8ZKBXH6L`) were all purged, the correct IEEE PDF re-attached, re-migrated (first page visually confirmed: IEEE TAC AC-19(6), Dec. 1974, p. 716), re-indexed, re-synced. Claim-check quotes below. |
+| **Meng, X.-L. & Rubin, D. B. (1991).** "Using EM to Obtain Asymptotic Variance-Covariance Matrices: The SEM Algorithm." *JASA* 86(416), 899–909. | **verified (read in-session 2026-06-05; citekey `Meng01121991` — pinned date-key, normalization pending)** | Primary source tying the EM rate matrix DM to the fractions of missing information, and the cleanest statement + attribution of the missing-information principle. | Background §missing-information principle; S1's disambiguation (RIV = I_obs⁻¹I_mis\|obs ≠ EM rate) | Medium | Claim-check quotes below. Citekey should be refreshed in Zotero (Tanner precedent) → `mengUsingEMObtain1991`-style, then re-export + re-sync. |
+| **Tierney, L. & Kadane, J. B. (1986).** "Accurate Approximations for Posterior Moments and Marginal Densities." *JASA* 81(393), 82–86. | **acquired + content verified (read in-session 2026-06-05; citekey `Tierney01031986` — pinned date-key, normalization pending)** | The Laplace-method citation for an optional gloss only. **Framing DECIDED 2026-06-05 from the Rubin 1987 ch. 3 read:** the rules are exact posterior-moment identities — Result 3.2, T_∞ = Ū_∞ + B_∞ by total variance over imputations — and the sole approximation is "the usual approximation of the posterior distribution as normal, motivated in Section 2.10" (at 3.2.13; §2.10 cites Cox–Hinkley ch. 9–10). Rubin never says "Laplace." Background states it in Rubin's structure; "(a Laplace-type approximation)" with this cite is an optional parenthetical. Bonus: §3.2 "Missing and Observed Information with Infinite m" + eq. 3.1.7 (r_∞ = B_∞/Ū_∞) is the primary source for S1's RIV = r_∞. | Background §Rubin's rules | Low | Cite only if the optional gloss is kept. |
+
+**Status bumps recorded 2026-06-05:** `wangLargesampleTheoryParametric1998` and
+`nielsenProperImproperMultiple2003` (proposed 2026-06-01 in the Phase-3b table above) are now
+**acquired** — both `literature/` files exist. Not yet read in-session; verify before citing.
+
+**Orchard & Woodbury (1972) — verified (read in-session 2026-06-05; citekey
+`woodburyMissingInformationPrinciple1972`).** Content verified: title page reads "TERENCE ORCHARD
+and MAX A. WOODBURY, Duke University Medical Center"; §1 states the principle's provenance (1946
+Woodbury–Cotterman gene-frequency conversation) and §2 the theory. Zotero author order was always
+correct (`author = {Orchard, Terence and Woodbury, Max A}` — an earlier "reversed order" claim was
+wrong; the `woodbury...` slug is a pinned citation key in the extra field). **Metadata RESOLVED
+same day:** year fixed 1970 → 1972 (the published 6th Berkeley Symposium proceedings, as DLR 1977
+§3 lit review, Meng–Rubin 1991 eq. 2.4.2, and Schafer 1997 — twice — all date it); user re-pinned
+the key as `woodburyMissingInformationPrinciple1972` (deliberately keeping the woodbury slug,
+deviating from the firstauthor convention); re-exported; lit-synced; orphaned `...1970.md`
+deleted. **Citeable.**
+
+### Verbatim claim-check for the 2026-06-05 background reads
+
+- **`dempsterMaximumLikelihoodIncomplete1977a`** — Q-function definition: "$Q(\phi' \mid \phi)=E(\log f(\mathbf{x} \mid \phi') \mid \mathbf{y}, \phi)$" with "E-step: Compute $Q(\phi \mid \phi^{(p)})$. m-step: Choose $\phi^{(p+1)}$ to be a value of $\phi \in \Omega$ which maximizes $Q(\phi \mid \phi^{(p)})$" (§2, final generality level). Heuristic: "Since we do not know $\log f(\mathbf{x} \mid \phi)$, we maximize instead its current expectation given the data $\mathbf{y}$ and the current fit $\phi^{(p)}$." Rate: "the largest such eigenvalue gives the rate of convergence... $-\mathbf{D}^{20}H(\phi^* \mid \phi^*)$ is an expected or Fisher information in the unobserved part of $\mathbf{x}$... if the information loss due to incompleteness is small, then the algorithm converges rapidly" (§3, after eq. 3.19); also $Q(\phi'\mid\phi)=L(\phi')+H(\phi'\mid\phi)$ (eq. 3.2-context) — the Q = observed-loglik + (negative) conditional-entropy split the derivation's @sec-qfun uses. DLR's §3 review dates Orchard and Woodbury as (1972).
+- **`weiMonteCarloImplementation1990`** — MCEM: "$Q_{i+1}(\theta, \theta^{(i)})=\frac{1}{m} \sum_{j=1}^{m} \log(p(\theta \mid z^{(j)}, y))$" with draws "from the current approximation to the conditional predictive distribution $p(z \mid \theta^{(i)}, y)$" (§3.1, eq. 3.1). Remark 2: "Rubin (1987) referred to the quantities $z^{(1)}, \ldots, z^{(m)}$ as multiple imputations." — the exact bridge from MCEM averaging to MI averaging the background needs.
+- **`Meng01121991`** — "the rate of convergence of EM is governed by the fractions of missing information" (abstract). "$I_o(\theta^* \mid Y_{obs}) = I_{oc} - I_{om}$... observed information = complete information − missing information, which has been called the 'missing information principle' by Orchard and Woodbury (1972)" (eq. 2.4.2). "$V = I_{oc}^{-1} + \Delta V$, $\Delta V = I_{oc}^{-1} DM(I-DM)^{-1}$ is the increase in variance due to missing information" (§2.3) — the EM-rate-matrix object S1's disambiguation contrasts with RIV.
+- **`Tierney01031986`** — "Let $\hat\theta$ be the posterior mode... Then Laplace's method produces the approximation" (§2); "the error in (2.3) is of order $O(n^{-2})$" (§2); posterior variance approximation at (2.4)-context. Backs the Laplace-method wording if adopted.
+- **`akaikeNewLookStatistical1974a`** — the criterion: "$\operatorname{AIC}(\hat\theta) = (-2)\log(\text{maximum likelihood}) + 2k$" (eq. 4). The bias-correction logic: the plug-in estimate "needs a correction for the downward bias introduced by replacing $\theta$ by $\hat\theta$. This correction is simply realized by adding $k$ to (3)." The target: the mean log-likelihood $S(g; f(\cdot\mid\theta))$, "a most sensitive criterion to the small deviation of $f(x\mid\theta)$ from $g(x)$" (§II–III). Incidental: §V already defers non-nested AIC differences to Cox's separate-families analysis — the 1974 antecedent of the Vuong-regime caveat in Proposition L4.
+
 ## Recently rejected (kept as a record so we don't re-propose)
 
 - **2026-05-22 — Wood, A. T. A. (1989).** "An F approximation to the distribution of a linear combination of chi-squared variables." *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`. Reason: We're sticking with χ² reference (not F), so the F-approximation is not load-bearing. Citation lineage for the scaled-shifted moment-matching form is already covered by Satterthwaite (1946) + Satorra-Bentler (2010) + Asparouhov-Muthén (2006). Imhof (1961) + Davies (1980) cover the exact reference distribution. Full text was also not freely available, which would have been a small acquisition cost — combined with non-load-bearing status → reject. Re-propose only if we change framing to F-reference.
@@ -357,4 +400,4 @@ scope split they are sequel-only and should not be cited in this paper.
 
 ---
 
-*Last updated: 2026-06-04*
+*Last updated: 2026-06-05*
