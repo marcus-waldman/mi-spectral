@@ -28,8 +28,13 @@ O(1) the MCAR contrast separates, which can partially offset the net ranking bia
 −0.23). Full magnitude-mapping → sequel todo/023. Landed @sec-lrt-ac + @sec-ic-criterion caveat +
 mi-spectral §5/§6 (both pairs); render exit-0; **/derivation-audit 0 BLOCKER / 0 WARN**. Also closed the two small
 items: Mode-B exact-gap remark @sec-lrt-naive + CAS B4, and the impossibility-grading sentence @sec-ic.
-**NEXT:** mi-spectral.qmd §3–§6 full drafting + the three @TODO resolutions (stretch; @vuong re-read
-done this session) — submission-drafting is the remaining work.
+**mi-spectral.qmd §3–§6 DRAFTED (same session):** all four application/numerics/discussion sections
+written into submission prose; all three @TODOs resolved (regularity conditions summarized inline +
+companion pointer; SEM/equating cites = Satorra-Bentler 2010 + Asparouhov-Muthén 2006 + Kolen-Brennan
+2014, all in-session-read; references section = Quarto `::: {#refs}` auto-gen). Render exit-0, 0
+citeproc warnings; /derivation-audit on mi-spectral.qmd PASS 0 BLOCKER / 0 WARN / 5 INFO (foundational
+corpus). **NEXT (remaining submission work):** prose polish + a co-read pass against derivation.qmd for
+consistency; the dissimilar-pair design/misspecification interplay → pairwise-matrix sequel (todo/023).
 
 **Latest (2026-06-04, session 3 — the IC-landing session, todo/026 rev. 2 EXECUTED):**
 The calibration ladder was **preregistered before any code** (`todo/027-ladder-preregistration.md`:
