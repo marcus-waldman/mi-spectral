@@ -351,6 +351,41 @@ sequel (todo/023). `@sec-lrt-ac` and `@sec-ic` are updated to this measured nuan
 run (commit 99c7fd4); §6 appended after. Author of record: marcus.waldman (ORCID-verified human prompter);
 AI-assisted per JAIGP norms.*
 
+## Amendment 2 — a DISSIMILAR-pair anchor: Diagonal vs AR(1) (dated 2026-06-04, before the dissimilar run)
+
+§6 found the CS-vs-AR1 $(A)+(C)$ *differential* small (the two *similar* candidates carry nearly equal
+levels). To give the differential fence a positive empirical anchor — and to test the
+dissimilarity-scaling claim directly — measure one **maximally dissimilar** non-nested pair with the
+same apparatus. Committed (this amendment) before the dissimilar engine code.
+
+- **Pair:** candidate A = **Diagonal** (free per-variable variances, $\Sigma_D = \operatorname{diag}(\operatorname{diag}(S^*))$
+  — a structure-*blind* model: no correlations, 4 variance params); candidate B = **AR(1)** (as before).
+  **Non-nested** (intersection $\sigma^2 I$), and maximally dissimilar in what they capture (variance
+  heterogeneity vs correlation). Diagonal is a block-diagonal ($1\times1$-block) candidate, so its
+  spectrum uses a *selection-matrix* $G_D$ (free vech indices $\{1,5,8,10\}$ + 4 means; $q_d = 6$) —
+  the already-CAS-blessed machinery (verify_ic_ladder L-A3 / verify_w4 A3), sitting at Proposition L2's
+  equality case (so no new identity, no new CAS). Its constrained $\bar Q$-maximizer on $S^*$ is closed
+  form ($\operatorname{diag}(S^*)$), and the trace term cancels exactly ($\operatorname{tr}(\Sigma_D^{-1}S^*)=p$).
+- **Truth & cells:** truth = AR(1) $\rho{=}0.5$ (so AR1 is correctly specified, KL=0; Diagonal is badly
+  misspecified, pseudo-true $\operatorname{diag}=I$, large KL — a clean dissimilar non-nested setup).
+  Cells: **A-dis** (X1-heavy MAR) + **A-dis′** (matched MCAR twin) for the MAR$-$MCAR isolation. The
+  equal-KL "money cell" does not apply (Diagonal is not a correlation model); cell B is omitted.
+  $N \in \{500, 1000, 2000\}$, $R = 20{,}000$ (the frozen Amendment-1 budget). Engine
+  `verification/w4-dissimilar-vuong.R`; caches `verification/cache/w4-dissimilar-*`.
+- **Prediction (directional):** the dissimilar-pair isolated $(A)+(C)$ differential **exceeds** the
+  similar pair's below-resolution value, reflecting the candidates' structurally different response to
+  the imbalance — specifically $|\hat\Delta_{AC}^{\text{MAR}} - \hat\Delta_{AC}^{\text{MCAR}}| \ge 3$ se
+  for at least one N (a *resolved nonzero* differential — the fence's positive anchor: the bias bites
+  for dissimilar candidates). Two-sided on sign. **Outcome interpretations (both informative):** (a)
+  resolved nonzero ⇒ the $(A)+(C)$ differential bites in proportion to candidate dissimilarity, as the
+  decoupling implies; (b) still small ⇒ the single-model $(A)+(C)$ level is broadly *common* across
+  covariance structures under congenial MI — an IC-robustness finding. Either anchors the
+  dissimilarity-scaling claim that §6 could only assert.
+- **Asserts/gates:** same as §1.7 (spectrum identity, $\min\lambda\ge1$, $T_k\ge0$, $\operatorname{tr}(\Sigma_k^{-1}S^*)\approx p$, PD).
+
+### Amendment-2 results
+*(appended after the dissimilar run; the prediction above frozen first).*
+
 ---
 
 *Preregistered 2026-06-04 before `verification/w4-nonnested-vuong.R` existed; committed alone, ahead
