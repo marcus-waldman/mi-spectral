@@ -384,7 +384,46 @@ same apparatus. Committed (this amendment) before the dissimilar engine code.
 - **Asserts/gates:** same as §1.7 (spectrum identity, $\min\lambda\ge1$, $T_k\ge0$, $\operatorname{tr}(\Sigma_k^{-1}S^*)\approx p$, PD).
 
 ### Amendment-2 results
-*(appended after the dissimilar run; the prediction above frozen first).*
+
+**Run executed 2026-06-04** (after Amendment 2 frozen, commit 39cfc38). `Rscript
+verification/w4-dissimilar-vuong.R 20000 8 A,Aprime 500,1000,2000`; 20,000/20,000 ok, 0 errors;
+runtime ≈47 min; caches `w4-dissimilar-{A,Aprime}-N{500,1000,2000}.rds` + `w4-dissimilar-summary.csv`
++ `w4-dissimilar-runlog.txt`. Asserts pass (diagonal: spec_gap 0, $\min\lambda$ 1.0, $|\operatorname{tr}-p|$ 0;
+AR(1) as §6). AR(1) levels reproduce the §6 run on shared seeds (consistency-checked: first-30-seeds
+$(A)+(C)_{\text{AR1}} = +4.9822$ identical in both engines).
+
+**PREDICTION MET — the differential is RESOLVED and dissimilarity-scaled.** MCAR-isolated
+design-imbalance $(A)+(C)$ differential (Diagonal − AR1) vs the similar pair (CS − AR1, §6):
+
+| N | Diagonal − AR(1) (dissimilar) | CS − AR(1) (similar, §6) |
+|---|---|---|
+| 500 | **−1.197 ± 0.342 (−3.5 se)** | −0.28 (≤1.0 se) |
+| 1000 | −1.361 ± 0.479 (−2.8 se) | −0.59 (≤1.5 se) |
+| 2000 | −1.077 ± 0.677 (−1.6 se) | −0.04 (≤0.1 se) |
+
+The dissimilar-pair differential is **resolved nonzero at N=500 (−3.5 se)**, ~3–4× the similar pair's,
+and **un-trending** (≈ −1.2 across N — a genuine O(1); the se grows $\sqrt n$ because sd($D_{\text{pair}}$)
+grows 36 → 71, so *resolution* degrades with N even as the *effect* holds). Per-candidate
+design-imbalance levels (MAR − MCAR per model, N=500): AR(1) **+2.42**, Diagonal **+1.22** — the
+correct, richer AR(1) carries MORE $(A)+(C)$ than the structure-blind diagonal (which estimates only
+variances, less entangled with the X1-heavy missingness), giving the negative differential.
+
+**Second-order nuance (honest).** The diagonal candidate, badly misspecified, also carries a generic
+*misspecification* O(1) that survives MCAR (its MCAR level +1.40 → +0.57 across N, vs AR(1)'s ~0) —
+exactly the baggage the MAR−MCAR isolation is built to remove. Two O(1)s thus coexist for a
+misspecified non-nested candidate: the MAR-specific design-imbalance $(A)+(C)$ (the L4 term, isolated
+here at −1.2) and a mechanism-independent misspecification O(1); for this truth they partially offset,
+leaving the *net* differential an IC ranking would see at the raw-MAR −0.23. Proposition L4's subject —
+the design-imbalance term — is positively anchored as a resolved O(1); the net IC-ranking distortion is
+the sum of that term and the candidates' misspecification O(1)s.
+
+**Net.** The $(A)+(C)$ differential that §6 could only bound-small for *similar* candidates is here a
+**resolved O(1) for a dissimilar pair**, confirming the dissimilarity-scaling §6 had to assert. The
+fence has a positive empirical anchor, not just a theoretical prediction. Mapping the full magnitude
+across candidate space — and the design/misspecification interplay — remains the pairwise-matrix sequel
+(todo/023).
+
+*Amendment 2 frozen before `w4-dissimilar-vuong.R` existed (commit 39cfc38); results appended after.*
 
 ---
 

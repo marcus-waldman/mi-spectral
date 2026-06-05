@@ -18,11 +18,15 @@ CS/AR1; the paired noise returns to O($\sqrt n$) for *any* pseudo-true-separated
 included → separation, not nesting, governs); naive trace overstates exact $\operatorname{tr}(\mathrm{RIV}_\perp)$
 by ~9% per curved candidate (first in-vivo off L2's equality, Mode-B closed form
 $\operatorname{tr}[(I+H_{11})^{-1}H_{12}H_{12}']$ also CAS-verified + landed @sec-lrt-naive).
-**Headline NOT met:** the *resolved nonzero differential* — for the similar CS-vs-AR1 pair the two
-large levels nearly cancel (≤1.5 se, below ~0.5 resolution; pilot's −2 was MC noise). **Framing
-modified** per discipline (real per candidate, mild for similar candidates, scales with dissimilarity;
-dissimilar-pair magnitude → sequel todo/023). Landed @sec-lrt-ac + @sec-ic-criterion caveat +
-mi-spectral §5/§6; render exit-0; **/derivation-audit 0 BLOCKER / 0 WARN**. Also closed the two small
+**Similar-pair headline NOT met:** the *resolved nonzero differential* — for the similar CS-vs-AR1
+pair the two large levels nearly cancel (≤1.5 se, below ~0.5 resolution; pilot's −2 was MC noise).
+**Dissimilar-pair anchor MET (todo/029 Amendment 2, prereg'd commit 39cfc38 before code):** Diagonal
+vs AR(1) gives a RESOLVED isolated (A)+(C) differential −1.2 (−3.5 se at N=500, un-trending, ~3–4× the
+similar pair) — the positive anchor; the dissimilarity-scaling is now MEASURED, not asserted. Honest
+rider: a badly-misspecified candidate (diagonal) also carries a mechanism-independent misspecification
+O(1) the MCAR contrast separates, which can partially offset the net ranking bias (here net raw-MAR
+−0.23). Full magnitude-mapping → sequel todo/023. Landed @sec-lrt-ac + @sec-ic-criterion caveat +
+mi-spectral §5/§6 (both pairs); render exit-0; **/derivation-audit 0 BLOCKER / 0 WARN**. Also closed the two small
 items: Mode-B exact-gap remark @sec-lrt-naive + CAS B4, and the impossibility-grading sentence @sec-ic.
 **NEXT:** mi-spectral.qmd §3–§6 full drafting + the three @TODO resolutions (stretch; @vuong re-read
 done this session) — submission-drafting is the remaining work.

@@ -1447,7 +1447,18 @@ $(A)+(C)$ contributions nearly cancel, leaving an isolated differential consiste
 $\approx 0.5$ at $N = 2000$; the pilot's apparent $-2$ was Monte-Carlo noise the full run dissolved).
 The un-absorbed $O(1)$ that an information criterion would consume is therefore real *per candidate*
 but mild for *similar* candidates; its magnitude scales with how differently the competitors handle
-the missing data, and is appreciable only for dissimilar pairs.
+the missing data. A second, *maximally dissimilar* pair confirms this directly: a structure-blind
+diagonal model against AR(1) (same truth, same isolation, same $R$) carries an isolated
+design-imbalance differential that *is* a resolved $O(1)$ — $-1.2$ at $-3.5$ standard errors,
+three-to-four times the similar pair's and un-trending across $N$, where the similar pair's sat below
+resolution. The mechanism is legible: the correct, richer AR(1) is more entangled with the
+$X_1$-heavy missingness than the variance-only diagonal, so it carries the larger $(A)+(C)$ ($+2.4$
+vs $+1.2$). One honest caveat travels with the dissimilar case: a badly misspecified candidate also
+carries a *mechanism-independent* misspecification $O(1)$ (visible as a non-vanishing MCAR residual),
+which the MCAR contrast separates from the design-imbalance term; the two can partially offset in the
+*net* bias an information criterion sees, so "the $(A)+(C)$ differential is a resolved $O(1)$" is a
+statement about the design-imbalance term itself, not a guarantee that it dominates the net ranking
+bias for every pair.
 
 ::: {.column-margin}
 **Source.** Local-alternative machinery: @vaartAsymptoticStatistics1998a
@@ -1460,7 +1471,10 @@ the null matches @eq-lrt-bias$/2$ with no $O(1)$ offset, $\pm 0.02$ pooled). Non
 M1–M4); script `verification/w4-nonnested-vuong.R`; caches
 `verification/cache/w4-nonnested-summary.csv` and the 12 per-(cell$\times$N) files (e.g.
 `verification/cache/w4-nonnested-A-N500.rds`); CAS `verification/cas-wolfram/verify_w4_nonnested.py`
-(general-Jacobian spectrum identity to $2\times10^{-15}$ on the curved $G_k$).
+(general-Jacobian spectrum identity to $2\times10^{-15}$ on the curved $G_k$). Dissimilar-pair anchor
+(Diagonal vs AR(1); resolved $-1.2$ differential at $-3.5$ se): `todo/029` Amendment 2; script
+`verification/w4-dissimilar-vuong.R`; caches `verification/cache/w4-dissimilar-summary.csv` +
+`verification/cache/w4-dissimilar-A-N500.rds`.
 :::
 
 ### Where the bias bites {#sec-lrt-consequences}

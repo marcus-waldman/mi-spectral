@@ -232,12 +232,19 @@ in the repository (`todo/004`, `todo/027`; `verification/`).
   nested-but-false restriction included, so it is separation rather than nesting that triggers the
   return. It *refines* the magnitude: for this similar pair the two large levels nearly cancel,
   leaving the differential below resolution, so the un-absorbed bias that reaches an information
-  criterion is real per candidate but mild for similar candidates and grows with dissimilarity. A
-  byproduct is the first in-vivo case off Proposition L2's equality — the naive trace difference
-  overstates the exact complement trace by $\approx 9\%$ per curved candidate. The headline
-  prediction (a *resolved* nonzero differential) was not met; the framing above is the modified one,
+  criterion is real per candidate but mild for similar candidates and grows with dissimilarity. That
+  scaling is then *anchored*, not merely asserted: a pre-registered dissimilar-pair follow-up
+  (Amendment 2 — a structure-blind diagonal model versus AR(1)) carries an isolated design-imbalance
+  differential that is a resolved $O(1)$ ($-1.2$ at $-3.5$ se, three-to-four times the similar pair's
+  and un-trending), with the honest rider that a badly misspecified candidate also carries a
+  mechanism-independent misspecification $O(1)$ which the MCAR contrast separates and which can
+  partially offset the net ranking bias. A further byproduct is the first in-vivo case off
+  Proposition L2's equality — the naive trace difference overstates the exact complement trace by
+  $\approx 9\%$ per curved candidate. So the *similar*-pair headline (a resolved nonzero differential)
+  was not met — that difference is below resolution — while the dissimilar follow-up was; both are
   reported per the pre-registration discipline. Pointers:
-  `todo/029-nonnested-preregistration.md` (§6 grading), `verification/w4-nonnested-vuong.R`,
+  `todo/029-nonnested-preregistration.md` (§6 + Amendment 2 grading),
+  `verification/w4-nonnested-vuong.R`, `verification/w4-dissimilar-vuong.R`,
   `verification/cas-wolfram/verify_w4_nonnested.py`.
 
 # Discussion {#sec-disc}
@@ -249,9 +256,11 @@ shown for deterministic FIML and EMB imputation, within $0.011$ on headline rate
 data-augmentation engines not run — an honestly disclosed gap); the power-dominance
 question stated as a **conjecture only**, with the W2 evidence as partial support; the
 non-nested regime, now measured (§5) — the per-model design-imbalance levels decouple and the
-paired noise returns to $O(\sqrt n)$ as predicted, but the *differential* is small for the similar
-candidates tested and scales with dissimilarity, so its magnitude for dissimilar competitors, and
-the pairwise-matrix design that would map it, is the sharpest open front; and the
+paired noise returns to $O(\sqrt n)$ as predicted; the *differential* is small for similar candidates
+but a resolved $O(1)$ for a dissimilar pair (diagonal vs AR(1)), so the dissimilarity-scaling is
+anchored, and mapping its full magnitude across candidate space — together with the
+design-versus-misspecification interplay that surfaced there — is the sharpest open front (the
+pairwise-matrix sequel); and the
 distributional-calibration program beyond per-model null maps — noncentrality
 de-shrinkage, joint calibration of score vectors — as the sequel.
 
