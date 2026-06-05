@@ -1,7 +1,21 @@
 # Todo 028 — Handoff: the non-nested (Vuong-regime) measurement cell — CS vs AR(1)
 
-**Status:** Handoff (2026-06-04, user decision at the end of the IC-landing session). **Next
-session's focus.** Closes the only derived-but-never-measured quantitative claim in the paper
+**Status: EXECUTED 2026-06-04** (next-session focus, done same day). Preregistered (`todo/029`,
+committed alone `7677777` before any engine code), CAS-blessed (`verify_w4_nonnested.py` ALL PASS),
+engine built (`w4-nonnested-vuong.R`, smoke-validated), pilots → power gate (dated Amendment 1,
+recalibrated 0.25→O(1) MDE, R=20,000, commit `99c7fd4`), graded run (240k replicates, 0 errors, all
+asserts pass), landed in `@sec-lrt-ac`/`@sec-ic` + mi-spectral §5/§6. **Result (todo/029 §6):** the
+$(A)+(C)$ *level* is a large O(1) (~+2.5 per curved candidate, up to 37 se) that collapses under MCAR
+and *decouples* between CS/AR1; the paired noise returns to O($\sqrt n$) (for any pseudo-true-separated
+pair, nested-but-false included — separation, not nesting, governs); the naive trace overstates the
+exact $\operatorname{tr}(\mathrm{RIV}_\perp)$ by ~9% per curved candidate (first in-vivo off L2's
+equality). **The headline (a *resolved* nonzero $(A)+(C)$ *differential*) was NOT met** — for the
+similar CS-vs-AR1 pair the two large levels nearly cancel, differential consistent with 0 (≤1.5 se,
+below ~0.5 resolution at N=2000; the pilot's −2 was MC noise). Framing modified per discipline: the
+differential is real per candidate but mild for similar candidates, scaling with dissimilarity (the
+dissimilar-pair magnitude → pairwise-matrix sequel, todo/023). Original handoff text preserved below.
+
+**Original handoff.** Closes the only derived-but-never-measured quantitative claim in the paper
 (M3: the $(A)+(C)$ differential returns as a genuine $O(1)$ for non-nested comparison —
 Proposition L4 / `@sec-lrt-ac`; consumed un-absorbed by IC ranking per `@sec-lrt-consequences`
 and `@sec-ic-criterion`).

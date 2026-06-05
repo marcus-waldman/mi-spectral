@@ -183,6 +183,34 @@ def main():
     check("B2   equality under invariant col(G)", max(eq_gaps) < 1e-9,
           f"max |gap| = {max(eq_gaps):.3e}")
 
+    # B4: Mode-B closed form for the overstatement gap (GPT-5.5 red-team bonus, todo/024).
+    #   gap := D_naive - B_direct = tr( (I + H11)^-1 H12 H12' ),
+    # where H = Iobs^-1/2 I_mis Iobs^-1/2 is the standardized missing information and
+    # (H11, H12) is its partition by the model/tested orthonormal split (U1 spanning
+    # col(Iobs^1/2 G), U2 the complement). The gap is >= 0 (PSD), = 0 iff H12 = 0 (the
+    # invariance/EFMI / block-diagonal case) -- a sharp form of Proposition L2.
+    cf_err = []
+    for _ in range(200):
+        kk = int(rng.integers(3, 9))
+        kk0 = int(rng.integers(1, kk))
+        A = rand_pd(rng, kk)                          # I_obs
+        B = A + 0.5 * rand_pd(rng, kk)                # I_com (PSD missing info)
+        Gn = rng.standard_normal((kk, kk0))
+        wo, Uo = np.linalg.eigh((A + A.T) / 2)
+        Ah = Uo @ np.diag(np.sqrt(wo)) @ Uo.T         # I_obs^1/2
+        Aih = Uo @ np.diag(wo ** -0.5) @ Uo.T         # I_obs^-1/2
+        H = Aih @ (B - A) @ Aih
+        Qf, _ = np.linalg.qr(np.hstack([Ah @ Gn, rng.standard_normal((kk, kk - kk0))]))
+        U1 = Qf[:, :kk0]
+        U2 = Qf[:, kk0:]
+        H11 = U1.T @ H @ U1
+        H12 = U1.T @ H @ U2
+        gap_cf = np.trace(np.linalg.solve(np.eye(kk0) + H11, H12 @ H12.T))
+        gap_direct = np_d_naive(A, B, Gn) - np_b_direct(A, B, Gn)
+        cf_err.append(abs(gap_cf - gap_direct))
+    check("B4   gap == tr((I+H11)^-1 H12 H12') (Mode-B closed form)", max(cf_err) < 1e-7,
+          f"max |closed-form - direct| = {max(cf_err):.2e}")
+
     print()
     if FAIL:
         print("RESULT: MISMATCH — investigate before landing D1.")

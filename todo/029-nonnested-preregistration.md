@@ -279,7 +279,77 @@ the largest N," not "zero."
 *Amendment 1 dated 2026-06-04, after the (ungraded) pilots, before the graded R=20,000 run.*
 
 ## 6. Results vs predictions
-*(appended after the power-gate freeze and the full run; §§1–5 + Amendment 1 frozen first).*
+
+**Run executed 2026-06-04** (after §§1–5 + Amendment 1 frozen). `Rscript
+verification/w4-nonnested-vuong.R 20000 8 A,B,Aprime,Bprime 500,1000,2000`; 20,000/20,000 ok in every
+cell, 0 errors; runtime ≈95 min (8 cores); caches `w4-nonnested-{A,B,Aprime,Bprime}-N{500,1000,2000}.rds`
++ `w4-nonnested-summary.csv`; log `w4-nonnested-runlog.txt`. **Internal asserts (§1.7): all pass** —
+max spec_gap $8.8\times10^{-15}$, min $\lambda$ = 1.000000, max $|\operatorname{tr}(\hat\Sigma_k^{-1}S^*)-p|$
+= $2.2\times10^{-15}$, AR(1) convergence 1.000, realized pseudo-true $\rho$ on target every cell
+($\rho_{\text{CS}}\approx0.354/0.405$, $\rho_{\text{AR1}}\approx0.500/0.473$).
+
+### Headline: the (A)+(C) terms DECOUPLE and are LARGE per model, but their DIFFERENTIAL is small for this similar pair
+
+Per-candidate $(A)+(C)$ level $= \overline{T_{\text{MI},k}-T_{\text{com},k}} - \overline{\operatorname{tr}(\mathrm{RIV}_{\perp,k})}$
+(single-model bias minus the expected-info trace), N = 500 / 1000 / 2000:
+
+| cell | mech | $(A)+(C)_{\text{CS}}$ | $(A)+(C)_{\text{AR1}}$ | isolated differential (MAR−MCAR) |
+|---|---|---|---|---|
+| A | MAR | +2.33 / +2.30 / +2.47 | +2.85 / +2.62 / +2.56 | −0.28 / −0.59 / −0.04 (≤1.5 se) |
+| A′ | MCAR | +0.19 / +0.41 / −0.01 | +0.43 / +0.14 / +0.05 | — |
+| B | MAR | +2.45 / +2.48 / +2.40 | +2.75 / +2.37 / +2.30 | +0.20 / −0.08 / +0.36 (≤0.7 se) |
+| B′ | MCAR | +0.19 / +0.19 / −0.14 | +0.68 / +0.01 / +0.13 | — |
+
+Per-model levels are individually 10–37 se from zero under MAR (e.g. AR1 cell A N=500: $+2.85\pm0.076$ =
+37 se) and collapse to ≈0 (within ~2 se) under MCAR.
+
+### Grading (M1–M4 + the Amendment-1 control)
+
+- **M1 (the $(A)+(C)$ DIFFERENTIAL is a resolved nonzero $O(1)$): NOT CONFIRMED.** The MCAR-isolated
+  differential is ≤1.5 se at every N for both cells (C1a's ≥3 se bar is not met). Reported per the honest
+  fence as "differential below the ~0.5 resolution at N=2000," not "zero." **The pilot's −2.1 was
+  Monte-Carlo noise** (R=300, −1.2 se); R=20,000 resolves it to ≈0. The decoupling and the noise-return
+  ARE confirmed (below) — only the *magnitude of the difference* for this similar pair is small.
+- **C1d′ (the $(A)+(C)$ LEVEL): CONFIRMED strongly.** Curved-candidate levels +2.3 to +2.9 under MAR
+  (10–37 se), collapsing to ≈0 under MCAR; the $\mu_1{=}0$ control gives the same picture (+3.5 → +0.07,
+  ~58 se). The single-model $(A)+(C)$ is large and design-imbalance-driven — a clean positive
+  demonstration for *covariance* candidates, not just the mean test. The CS and AR1 levels are genuinely
+  *unequal* (e.g. +2.33 vs +2.85) — they **decouple**, exactly as Proposition L4 says they do for
+  non-nested comparison (vs the null's exact cancellation).
+- **M2 (noise orders): CONFIRMED.** C2a: $\operatorname{sd}(D_{\text{pair}})$ non-nested grows $\sqrt n$
+  — cell A 29.9 / 42.4 / 59.6 (ratio 1.99), cell B 32.2 / 45.4 / 64.2 (1.99). C2b: the $\mu_1$ null
+  control is flat — 8.6 / 8.4 / 8.5 (MAR), 3.6 / 3.7 / 3.6 (MCAR). **M2-aux (nested-but-false):
+  CONFIRMED** — Independence-vs-candidate sd grows $\sqrt n$ (43.7 / 61.1 / 87.4, ratio 2.00): the
+  nested-but-false pair behaves like the non-nested one, so it is **pseudo-true separation, not nesting,**
+  that triggers the $O(\sqrt n)$ return (a refinement of the todo/028 framing, preregistered as M2-aux).
+- **M3 (decision distortion, cell B): NULL** (consistent with M1). P(select CS) = 0.496–0.503 for oracle,
+  uncorrected MI, and corrected MI alike at every N — the equal-KL coin flip stays a coin flip under MI;
+  the small $(A)+(C)$ differential does not distort the CS-vs-AR1 decision here.
+- **M4 (L2 in-vivo): CONFIRMED.** Per curved candidate the naive trace
+  $\operatorname{tr}(\mathrm{RIV})-\operatorname{tr}(\mathrm{RIV}_0)$ overstates the exact
+  $\operatorname{tr}(\mathrm{RIV}_\perp)$ by ≈0.73 (CS 8.77 vs 8.04; AR1 8.74 vs 7.95) — ~9%, the first
+  in-vivo demonstration OFF Proposition L2's equality case (the W3 zero-pattern family hit equality to
+  $3.6\times10^{-15}$ by block structure; curved candidates do not block-decompose). The differential of
+  the two gaps is small (~0.05), so it does not change the CS-vs-AR1 ranking, but the per-candidate
+  overstatement is material.
+
+### Net and framing modification (per the pre-registration discipline)
+
+The measurement **refines** Proposition L4 rather than simply confirming it. **Confirmed:** (i) the
+$(A)+(C)$ terms *decouple* under non-nested MAR — each candidate carries a large, MAR-specific $O(1)$
+level (~+2.5) that collapses under MCAR, in contrast to the null's exact cancellation; (ii) the paired
+noise returns to $O(\sqrt n)$, and does so for any pseudo-true-separated pair (nested-but-false included),
+not just non-nested; (iii) the naive trace overstates the exact complement trace materially for curved
+candidates (Proposition L2 off the equality case). **Not demonstrated:** a *resolved nonzero $(A)+(C)$
+differential* — for the similar CS-vs-AR1 pair the two large levels nearly cancel, leaving a difference
+below resolution (≤1.5 se). The un-absorbed $O(1)$ that bites IC ranking is therefore real *per model* but
+**mild for similar candidates**; its magnitude scales with how differently the candidates respond to the
+design imbalance — largest for dissimilar candidates, a quantitative question left to the pairwise-matrix
+sequel (todo/023). `@sec-lrt-ac` and `@sec-ic` are updated to this measured nuance.
+
+*Preregistered 2026-06-04 before the engine existed (commit 7677777); Amendment 1 dated before the graded
+run (commit 99c7fd4); §6 appended after. Author of record: marcus.waldman (ORCID-verified human prompter);
+AI-assisted per JAIGP norms.*
 
 ---
 

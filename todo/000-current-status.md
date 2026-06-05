@@ -1,6 +1,31 @@
 # Current status — read this when resuming
 
-**Last updated:** 2026-06-04 (IC application + calibration ladder LANDED; see Latest).
+**Last updated:** 2026-06-04 (session 4 — non-nested CS-vs-AR(1) measurement EXECUTED + landed).
+
+**Latest (2026-06-04, session 4 — the non-nested (Vuong) measurement, todo/028 EXECUTED):**
+Closed the only derived-but-never-measured quantitative claim — the $(A)+(C)$ differential of
+Proposition L4 for a non-nested pair (compound symmetry vs AR(1)). **Discipline:** preregistered
+`todo/029` committed **alone** (`7677777`) before any engine code (the fix for todo/027 §6's
+single-commit defect); CAS `verify_w4_nonnested.py` ALL PASS (general-Jacobian spectrum identity to
+2e-15 on the curved $G_k$ — the new machinery: `ladder_spectrum`'s `free_idx` generalized to the
+analytic Jacobian $G_k=\partial(\mu,\operatorname{vech}\Sigma)/\partial(\mu,\sigma^2,\rho)$,
+evaluated at each candidate's own pseudo-true); engine `w4-nonnested-vuong.R` built + smoke-gated
+(general-G ≡ selection-index to 0.0e0); pilots → **dated Amendment 1** (commit `99c7fd4`,
+recalibrated the mis-scaled 0.25 MDE to an O(1) MDE, R=20,000, user-approved) before the graded run;
+graded run 240k replicates, 0 errors, every assert clean. **Result (todo/029 §6):** the $(A)+(C)$
+LEVEL is a large O(1) (~+2.5/curved candidate, ≤37 se) that collapses under MCAR and decouples
+CS/AR1; the paired noise returns to O($\sqrt n$) for *any* pseudo-true-separated pair (nested-but-false
+included → separation, not nesting, governs); naive trace overstates exact $\operatorname{tr}(\mathrm{RIV}_\perp)$
+by ~9% per curved candidate (first in-vivo off L2's equality, Mode-B closed form
+$\operatorname{tr}[(I+H_{11})^{-1}H_{12}H_{12}']$ also CAS-verified + landed @sec-lrt-naive).
+**Headline NOT met:** the *resolved nonzero differential* — for the similar CS-vs-AR1 pair the two
+large levels nearly cancel (≤1.5 se, below ~0.5 resolution; pilot's −2 was MC noise). **Framing
+modified** per discipline (real per candidate, mild for similar candidates, scales with dissimilarity;
+dissimilar-pair magnitude → sequel todo/023). Landed @sec-lrt-ac + @sec-ic-criterion caveat +
+mi-spectral §5/§6; render exit-0; **/derivation-audit 0 BLOCKER / 0 WARN**. Also closed the two small
+items: Mode-B exact-gap remark @sec-lrt-naive + CAS B4, and the impossibility-grading sentence @sec-ic.
+**NEXT:** mi-spectral.qmd §3–§6 full drafting + the three @TODO resolutions (stretch; @vuong re-read
+done this session) — submission-drafting is the remaining work.
 
 **Latest (2026-06-04, session 3 — the IC-landing session, todo/026 rev. 2 EXECUTED):**
 The calibration ladder was **preregistered before any code** (`todo/027-ladder-preregistration.md`:

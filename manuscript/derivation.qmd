@@ -1361,11 +1361,25 @@ above three in the $\mu_1$ design above. The preregistered W2 study's correction
 the naive difference; its conclusions are unaffected there (the design sits near the invariant
 case), but @eq-lrt-bias is the correct general form.
 
+The overstatement has an exact closed form, which makes the equality condition transparent. Write
+$H = I_{\text{obs}}^{-1/2} I_{\text{mis}\mid\text{obs}} I_{\text{obs}}^{-1/2}$ for the standardized
+missing information, and partition it by the retained model directions ($\operatorname{col}(I_{\text{obs}}^{1/2}G)$,
+block $H_{11}$) versus the tested directions (block $H_{22}$, coupling $H_{12}$). Then
+$$\big[\operatorname{tr}(\mathrm{RIV}) - \operatorname{tr}(\mathrm{RIV}_0)\big] - \operatorname{tr}(\mathrm{RIV}_\perp)
+= \operatorname{tr}\!\big[(I + H_{11})^{-1} H_{12} H_{12}^\top\big] \;\ge\; 0,$$
+positive semidefinite and zero exactly when $H_{12} = 0$ — when the tested and retained directions
+carry *independent* missing information. The overstatement is therefore precisely the
+missing-information coupling between the two subspaces, screened by the retained block's own
+information $I + H_{11}$; it vanishes in the equal-fractions and block-diagonal cases because there
+the coupling does.
+
 ::: {.column-margin}
 **Source.** Inequality + equality condition: `verification/cas-wolfram/verify_w2_differential.py`
 (B1–B3: symbolic Gram/Schur check, strictness over 400 random instances, exact equality under
-constructed invariance); independently derived in operator-variance form by the quadratic route
-(`w2diff-stage1-routes.json`).
+constructed invariance; B4: the closed-form gap $\operatorname{tr}[(I+H_{11})^{-1}H_{12}H_{12}^\top]$
+reproduces the direct difference to $6\times10^{-14}$); independently derived in operator-variance
+form by the quadratic route (`w2diff-stage1-routes.json`) and as a red-team byproduct of the
+cross-model audit (@sec-lrt-ac source note).
 :::
 
 ### Pairing collapses the noise from $O_p(\sqrt n)$ to $O_p(1)$ {#sec-lrt-pairing}
@@ -1416,13 +1430,37 @@ whose exact magnitude is hard to pin (heavy-tailed, $\operatorname{sd}\propto\sq
 LRT consumes only its *differential*, which is exactly zero at the null, asymptotically negligible
 under contiguous alternatives, and re-emerges only for non-nested comparison.
 
+A direct measurement sharpens this, with one quantitative refinement. Fitting compound-symmetry
+and AR(1) covariance candidates to the *same* congenial imputations under a strong $X_1$-heavy MAR
+design — a genuine non-nested comparison [@vuongLikelihoodRatioTests1989] with the two pseudo-true
+correlations well separated ($0.35$ vs $0.50$; $0.40$ vs $0.47$) — and isolating the
+design-imbalance contribution by differencing against an MCAR twin ($20{,}000$ replicates per cell,
+$N \in \{500, 1000, 2000\}$), the run reproduces the *mechanism* of Proposition L4 exactly. The
+single-model $(A)+(C)$ *level* is a large $O(1)$ for each curved candidate — $\approx +2.5$ deviance
+units, tens of standard errors from zero — that collapses to zero under MCAR: the two candidates'
+levels *decouple* ($+2.33$ vs $+2.85$ in the AR(1)-truth cell), no longer the identical realizations
+that cancel at the null, and the paired noise returns to $O(\sqrt n)$ (the same run shows this for
+*any* pseudo-true-separated pair — a nested-but-*false* restriction triggers it just as a non-nested
+one does, so it is separation, not nesting, that matters). What is *not* large is the differential
+of the two levels: compound symmetry and AR(1) respond to the imbalance so similarly that their
+$(A)+(C)$ contributions nearly cancel, leaving an isolated differential consistent with zero (below
+$\approx 0.5$ at $N = 2000$; the pilot's apparent $-2$ was Monte-Carlo noise the full run dissolved).
+The un-absorbed $O(1)$ that an information criterion would consume is therefore real *per candidate*
+but mild for *similar* candidates; its magnitude scales with how differently the competitors handle
+the missing data, and is appreciable only for dissimilar pairs.
+
 ::: {.column-margin}
 **Source.** Local-alternative machinery: @vaartAsymptoticStatistics1998a
 [§16.4, <a href="#sec-src-vaart"><code>:7553</code></a>-<a href="#sec-src-vaart"><code>:7570</code></a>].
 Pseudo-true values and the nested/non-nested LR framework: @vuongLikelihoodRatioTests1989
 [<a href="#sec-src-vuong"><code>:81</code></a>, <a href="#sec-src-vuong"><code>:40</code></a>].
 Monte-Carlo check of the null cancellation: `w2-paired-differential-spotcheck.R` (mean of $D$ at
-the null matches @eq-lrt-bias$/2$ with no $O(1)$ offset, $\pm 0.02$ pooled).
+the null matches @eq-lrt-bias$/2$ with no $O(1)$ offset, $\pm 0.02$ pooled). Non-nested measurement
+(decoupled levels, $\sqrt n$ noise return, small differential): pre-registered `todo/029` (§6 grades
+M1–M4); script `verification/w4-nonnested-vuong.R`; caches
+`verification/cache/w4-nonnested-summary.csv` and the 12 per-(cell$\times$N) files (e.g.
+`verification/cache/w4-nonnested-A-N500.rds`); CAS `verification/cas-wolfram/verify_w4_nonnested.py`
+(general-Jacobian spectrum identity to $2\times10^{-15}$ on the curved $G_k$).
 :::
 
 ### Where the bias bites {#sec-lrt-consequences}
@@ -1529,7 +1567,10 @@ own parameters looks artificially better, by exactly the amount of extra missing
 Two caveats from @sec-lrt frame what the correction can and cannot promise. First, candidate
 sets are generally not nested chains, and for non-nested pairs the $(A)+(C)$ differential is a
 genuine $O(1)$ that @eq-ic-corrected does not remove and no reference distribution absorbs
-(Proposition L4; the Vuong regime [@vuongLikelihoodRatioTests1989]). Second, the per-model
+(Proposition L4; the Vuong regime [@vuongLikelihoodRatioTests1989]) — though the direct measurement
+of @sec-lrt-ac finds this differential *small* when the candidates are similar, the two large
+per-model $(A)+(C)$ levels nearly cancelling, so it bites in proportion to candidate dissimilarity.
+Second, the per-model
 $\operatorname{tr}(\mathrm{RIV}_k)$ corrections are exactly the "self-contained levels" whose
 *difference* Proposition L2 shows overstates the projected complement trace whenever the
 tested directions mix unequally-missing information — though, remarkably, the model family
@@ -1725,7 +1766,12 @@ indirect-pair distortion measured rather than assumed away; and none of this res
 complete-data selection where the data no longer carry the information — the weak-signal
 floor is the honest summary. Selection-aware refinements beyond the per-model null maps —
 de-shrinkage of estimated noncentrality, joint (copula-aware) calibration of score vectors —
-are developed separately.
+are developed separately. These fences differ in standing, and it is worth being explicit about
+which is which: the first two are theorems with exact empirical confirmation — the noncentral
+shrinkage is the $a_k$ and $1/\lambda_{\max}$ law landed above, and difference-distribution
+non-calibration is the invariance of the score copula under per-model marginal transforms — whereas
+the last is an empirical floor, the measured $0.17$ weak-signal residual, not a proof that no
+estimator built from the same observed data could do better.
 
 **Scope.** As in @sec-lrt, everything here is stated and measured for the deterministic-FIML
 $\bar Q_\infty$; the anchoring cancellations are properties of *sharing the imputation
