@@ -230,8 +230,56 @@ cannot reduce it, so brute $R$ is the only precision lever.
 - Run log `verification/cache/w4-nonnested-runlog.txt`; environment `…-sessioninfo.txt`.
 - Grading of M1–M4 recorded in §6 (appended after the run) and consumed by `@sec-lrt-ac` / `@sec-ic`.
 
+## Amendment 1 — power-gate recalibration + control reinterpretation (dated 2026-06-04, before the graded run)
+
+Pilots run with the committed engine (`w4-nonnested-vuong.R`; R=300 at N=500 and R=200 at
+N=1000/2000, cells A and A′; **not graded**) settle the power gate and surface a control
+misclassification. Both fixes are dated here, BEFORE the graded R=20,000 run.
+
+**Pilot facts (cell A, X1-heavy MAR / A′ MCAR):**
+- `sd(D_pair)` (non-nested) = 29.8 / 39.2 / 66.7 at N = 500 / 1000 / 2000 — grows $\approx\sqrt n$
+  (66.7/29.8 = 2.24), confirming the Proposition L3 non-nested $O(\sqrt n)$ noise.
+- `sd(D_mu1)` (the $\mu_1{=}0$ single-test paired differential) = 8.7 / 8.7 / 9.7 — **flat** across
+  N, confirming the L3 $O(1)$ null-control noise.
+- The $\mu_1{=}0$ residual $\overline{D_{\mu_1}}-\operatorname{tr}(\mathrm{RIV}_{\perp,\mu_1})$
+  = +4.0 / +3.9 / +4.7 under MAR (un-trending $O(1)$), collapsing to +0.16 under MCAR (A′). A
+  standalone in-session diagnostic confirms this is the **(A)+(C) level**: $\overline{d_L-d_{\text{com}}}$
+  = +5.71 lands on $\operatorname{tr}(\mathrm{RIV}_\perp)$ computed with the **realized** observed
+  info (`observed_info_obs_mvn`, +5.67, resid +0.04) but exceeds the same with the
+  **expected/pattern-mixture** info (`fisher_info_obs_mvn`, +1.69) by +4.0 — the gap IS $(A)+(C)$,
+  large because X1-heavy MAR makes the observed entries a *selected* subsample (so the expected
+  info $\ne E[$realized Hessian$]$ under MAR selection). The engine uses the **expected** info for
+  $\operatorname{tr}(\mathrm{RIV}_\perp)$, so its `resid` correctly isolates $(A)+(C)$.
+
+**Fix 1 — C1d reinterpretation (the $\mu_1$ control is the (A)+(C) LEVEL, not a differential$\approx$0).**
+The $\mu_1{=}0$ single-model test's residual is the $(A)+(C)$ **level** (≈+4, un-trending, ~6.5 se),
+NOT the $(A)+(C)$ **differential** (which cancels at the null between two models sharing a
+pseudo-true). It therefore serves as (i) the **flat-sd reference** for M2/C2b (`sd(D_mu1)`≈9 flat vs
+the non-nested $O(\sqrt n)$), and (ii) a **single-model $(A)+(C)$ demonstration** that collapses
+MAR→MCAR (+4.0 → +0.16). **The differential=0 reference is the MCAR twin** (A′/B′: `resid`≈0), which
+the primary MAR−MCAR isolation already uses. C1d is replaced by:
+- **C1d′ ($\mu_1$ level):** $\overline{D_{\mu_1}}-\operatorname{tr}(\mathrm{RIV}_{\perp,\mu_1})\ge3$
+  se under MAR, un-trending across N, collapsing under MCAR ($<3$ se; $|\text{MAR}-\text{MCAR}|\ge3$
+  se). The single-model $(A)+(C)$ level is large and design-imbalance-driven.
+- The headline M1 ((A)+(C) DIFFERENTIAL for CS-vs-AR1) and the MAR−MCAR isolation are unchanged.
+
+**Fix 2 — power-gate recalibration.** With `sd(D_pair)`≈29.8 at N=500, the original 0.25 MDE needs
+$R=\lceil(3\cdot29.8/0.25)^2\rceil\approx127{,}900>50{,}000$ — infeasible. But the gate's premise
+(effect too small) is FALSE: the $(A)+(C)$ level is ≈+4 ($\mu_1$ control), so the differential of two
+such levels is a large $O(1)$, not a sub-0.25 effect. The 0.25 MDE was set blind and is mis-scaled
+against the now-known noise. **Recalibrated MDE = an $O(1)$ differential**, with R chosen from the
+pilot sd (noise) and the $(A)+(C)$-level scale (≈4), NOT from the headline differential mean (which
+remains two-sided and unresolved at pilot scale, −2.1 ± 1.7, −1.2 se). **Freeze R = 20,000** (user
+decision; 8 cores): the isolated MAR−MCAR se $=\sqrt2\,\text{sd}/\sqrt R$ is 0.30 / 0.39 / 0.67 at
+N = 500 / 1000 / 2000, resolving a 2.0-sized isolated $(A)+(C)$ differential at ≥3 se even at the
+binding N=2000. C1a's "≥3 se" and C1b's un-trending are evaluated at this R. **Honest fence
+retained:** a null at R=20,000 is reported as "$(A)+(C)$ differential below the ~0.7-resolution at
+the largest N," not "zero."
+
+*Amendment 1 dated 2026-06-04, after the (ungraded) pilots, before the graded R=20,000 run.*
+
 ## 6. Results vs predictions
-*(appended after the power-gate freeze and the full run; §§1–5 frozen first).*
+*(appended after the power-gate freeze and the full run; §§1–5 + Amendment 1 frozen first).*
 
 ---
 
