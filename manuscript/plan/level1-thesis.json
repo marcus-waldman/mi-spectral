@@ -1,0 +1,245 @@
+{
+  "metadata": {
+    "level": 1,
+    "date": "2026-06-05",
+    "status": "drafted_awaiting_annotation",
+    "purpose": "Central thesis, JAIGP venue alignment, persuasion arc, and strategic decision blocks. This is the strategic layer the section-by-section review loop serves. Annotate with #[COMMENTS] via /section-review level1.",
+    "annotation_note": "Everything here was reconstructed from work already done (manuscript at commit 180e2b5, derivation.qmd, the pre-registrations, session memory). Nothing is newly invented. Ratifying it makes it the standard every section is reviewed against; amending it is allowed any time, dated, in decisions.md."
+  },
+  "thesis": {
+    "primary": "Under congenial proper multiple imputation with the complete-data MLE as target, the averaged log-likelihood (the infinite-imputation Q-function) evaluated at the observed-data MLE overstates its complete-data target by +(1/2)tr(RIV) + (A)+(C): an imputation-bias term +tr(RIV) (completions drawn from the fitted imputation model inflate the apparent fit of that same model) minus an estimation-mismatch term (1/2)tr(RIV) (the MI fit targets the complete-data maximizer, not the observed-data one). The result requires an estimated scale or covariance - a known-scale, location-only fit collapses to 0 (deterministic FIML) or -(1/2)tr(RIV) (proper MI) - and under MAR carries an additional O(1) design-imbalance term (A)+(C) that vanishes exactly under MCAR.",
+    "secondary": "Likelihood-ratio comparison: when two nested models are fit to the same imputations, the deviance numerator's differential bias at the null is tr(RIV_perp) - the missing information of the tested directions projected in the complete-data metric I_com, provably NOT the naive difference of the two models' own trace corrections, which always overstates it (equality only when the tested directions' missing information decouples, including EFMI and block-decomposing constraints). Sharing imputations collapses the paired noise from O(sqrt n) to O(1) and cancels the (A)+(C) differential exactly at the null; the differential returns at O(1) only for pseudo-true-separated pairs (separation, not nesting, is the criterion). At the null, tr(RIV_perp) is exactly the mean a correctly calibrated reference distribution already absorbs - so the bias matters precisely where no reference stands between the statistic and its use: information-criterion ranking, explicit numerator corrections, and non-nested comparison.",
+    "tertiary": "Information-criterion model selection is exactly such a procedure. The bias is model-specific - each candidate's criterion is too small by its own tr(RIV_k) - so uncorrected MI-AIC systematically favors the candidates with the most missing information (100% of misclassifications land on the largest-RIV candidate in the pre-registered congenial cells). Adding tr(RIV_k) repairs the mean and reproduces Shimodaira's AIC_{x;y}; what is new is the anatomy, the MAR term, and the proper-MI scope. Beyond the mean, a pre-registered three-step contrast (mean / two moments / full null distribution) shows the achievable target splits along the null/noncentral axis: the null side calibrates completely (distribution matching selects indistinguishably from complete-data AIC), while no observed-data transform can restore destroyed Fisher information - noncentral statistics shrink by exactly predictable factors, and the weak-signal floor is information loss, not calibration error.",
+    "venue_alignment": "JAIGP submission: an AI-assisted derivation with an ORCID-verified human prompter, written for an AI-skeptical academic audience. The credibility case is itself part of the contribution: every external claim pinned to a locally archived, session-read source; every number traced to a committed pre-registered artifact, with failed predictions reported; load-bearing claims cross-checked by an independent model lineage under a blind adversarial protocol; citation discipline enforced mechanically. Claims are trust-ordered throughout - firm (proved + verified) first, measurements next, conjectures last and labeled."
+  },
+  "persuasion_arc": {
+    "total_moves": 8,
+    "design_note": "Theory-paper arc: PROBLEM -> FOUNDATIONS -> THEOREM -> two APPLICATIONS -> EVIDENCE -> SCOPE -> PROVENANCE. The reader must never wonder 'why am I being told this' (every background item names the proposition that depends on it) nor 'is this actually true' (every claim points at its evidence class).",
+    "moves": [
+      {
+        "id": "M1",
+        "label": "PROBLEM",
+        "section_anchor": "sec-intro",
+        "title": "Introduction",
+        "function": "Establish that likelihood-based MI quantities lack settled combining rules; state the headline bias and both applications up front; position upstream of the test-calibration literature (Meng-Rubin -> Chan-Meng -> Chan) and against the model-selection lineage (Cavanaugh-Shumway, Shimodaira, Claeskens-Consentino, Hens et al.); say plainly what is new and what is not.",
+        "serves_thesis": ["primary", "secondary", "tertiary"],
+        "key_claims": [
+          "Averaged log-likelihood is not the observed-data log-likelihood and not an unbiased stand-in for the complete-data one; deviances built from it are systematically too favorable",
+          "The bias is +(1/2)tr(RIV) + (A)+(C), with the imputation-bias / estimation-mismatch anatomy",
+          "Calibration (Chan line) makes the reference right; this work makes the statistic referred to it centered - complementary, not competing",
+          "The trace penalty itself is Shimodaira's AIC_{x;y}; new here are the decomposition, the MAR term, the proper-MI extension, and the two application-level results"
+        ],
+        "evidence_base": ["lit:chanGeneralFeasibleTests2022", "lit:shimodairaInformationCriterionModel2017", "lit:hensModelSelectionIncomplete2006a", "deriv:sec-intro"],
+        "rhetorical_role": "State the whole result in the first two pages; an expert reader should be able to referee the claim structure from the introduction alone."
+      },
+      {
+        "id": "M2",
+        "label": "FOUNDATIONS",
+        "section_anchor": "sec-background",
+        "title": "Background",
+        "function": "Restate each standard result in its source's own terms, at the precision later steps need - EM rate matrix is NOT the RIV, Rubin's rules are exact given one named approximation, observed and expected information differ under MAR - with each restatement naming the proposition that depends on it.",
+        "serves_thesis": ["primary"],
+        "key_claims": [
+          "Ignorability (Rubin 1976), EM/Q-function (DLR 1977), missing-information principle (Orchard-Woodbury / Meng-Rubin 1991), Rubin's rules as exact posterior-moment identities, MCEM bridge (Wei-Tanner), congeniality (Meng 1994), AIC as bias-corrected plug-in (Akaike), Wilks, observed-vs-expected information under MAR (Kenward-Molenberghs), MI test combining (Meng-Rubin 1992 -> Chan-Meng 2022 -> Chan 2022)"
+        ],
+        "evidence_base": ["lit:kenwardLikelihoodBasedFrequentist1998", "lit:rubinMultipleImputationNonresponse1987", "lit:akaikeNewLookStatistical1974a", "deriv:sec-sources"],
+        "rhetorical_role": "Pre-empt the standard misreadings (RIV vs EM rate matrix; naive vs unconditional information) before they can occur."
+      },
+      {
+        "id": "M3",
+        "label": "THEOREM",
+        "section_anchor": "sec-setup",
+        "title": "Setup and main theorem",
+        "function": "Fix notation (one RIV, normalized by I_obs, Kenward-Molenberghs unconditional information), define Q-bar-infinity with the fitted-vs-oracle distinction stated up front, state the theorem with the A/B split, sketch both proof terms, state the (A)+(C) closed form and its three-tier evidential standing, give the known-scale collapse and the entropy-plug-in consistency check.",
+        "serves_thesis": ["primary"],
+        "key_claims": [
+          "E[T] = +(1/2)tr(RIV) + (A)+(C) + O(1/n), decomposing as E[A] = +tr(RIV) + (A)+(C), E[B] = -(1/2)tr(RIV)",
+          "Fitted-vs-oracle determines the sign: oracle conditioning would force the imputation bias to zero by the tower property",
+          "(A)+(C): structure/sign/order firm with closed form under monotone bivariate; absolute magnitude measured but imprecise (heavy-tailed); comparisons use only the paired differential",
+          "Known-scale collapse: 0 (FIML) vs -(1/2)tr(RIV) (proper MI), confirmed at R=200000 within 4%"
+        ],
+        "evidence_base": ["deriv:sec-thm", "deriv:sec-qfun", "deriv:sec-termA", "deriv:sec-termB", "deriv:sec-combine"],
+        "rhetorical_role": "The pivot of the paper; everything after is consequences."
+      },
+      {
+        "id": "M4",
+        "label": "APPLICATION-LRT",
+        "section_anchor": "sec-lrt",
+        "title": "Application I: likelihood-ratio comparison",
+        "function": "Derive what survives the subtraction when two nested fits share imputations: the I_com-metric projection tr(RIV_perp); the proof that the naive trace difference always overstates (with the exact Schur-complement gap); the O(1) paired-noise collapse; the exact null cancellation of (A)+(C) and its O(1) return under pseudo-true separation; close with the absorption argument that confines the bias to reference-free procedures.",
+        "serves_thesis": ["secondary"],
+        "key_claims": [
+          "E[d_L - d_com] = tr(RIV_perp) at the null, projection in the I_com metric (the Q-function's curvature is I_com - the EM identity)",
+          "Naive difference always overstates; equality iff invariant subspace; 5% in the covariance design, factor >3 in the mu_1 design, 52 se MC discrimination",
+          "Pairing: sd(D) = O(1) at null/local vs O(sqrt n) for levels; measured flat 1.58/1.47/1.57 across N",
+          "Dissimilar-pair differential resolved at -1.2 (3.5 se); similar-pair below resolution (reported as the discipline requires)"
+        ],
+        "evidence_base": ["deriv:sec-lrt", "deriv:sec-lrt-naive", "deriv:sec-lrt-pairing", "deriv:sec-lrt-ac", "verif:verification/cache/w4-nonnested-summary.csv", "lit:chanMultipleImprovementsMultiple2022"],
+        "rhetorical_role": "Show the subtraction structure is where the value is: what cancels, what survives, and the natural error (I_obs for I_com) that reproduces the naive formula."
+      },
+      {
+        "id": "M5",
+        "label": "APPLICATION-IC",
+        "section_anchor": "sec-ic",
+        "title": "Application II: information-criterion model selection",
+        "function": "Model selection has no reference distribution, so the model-specific bias lands directly in the ranking. Corrected criterion = AIC_{x;y}; directional signature (misclassifications on largest-RIV candidate); then the pre-registered ladder - mean, two moments, equipercentile equating - with the null/noncentral split and the two exact structural limits (block-decomposition equality; difference-distribution invariance).",
+        "serves_thesis": ["tertiary"],
+        "key_claims": [
+          "Uncorrected 0.674/0.678 vs oracle 0.898/0.899; mean correction 0.816/0.814; two-moment 0.904; equating 0.903 (indistinguishable from oracle at rho=.40)",
+          "Noncentral shrinkage by exactly predicted factors (a_k = 0.570 predicted, 0.586 observed; 1/lambda_max = 0.398 predicted, 0.362 observed)",
+          "Weak-signal floor 0.17 is information loss, measured not proved",
+          "W3 family sits at the exact equality case of the overstatement proposition (3.6e-15) - the overstatement is structurally invisible there and material off block-decomposition"
+        ],
+        "evidence_base": ["deriv:sec-ic", "deriv:sec-ic-ladder", "deriv:sec-ic-ladder-results", "verif:verification/cache/ic-ladder-summary.csv", "lit:shimodairaInformationCriterionModel2017", "lit:cavanaughAkaikeInformationCriterion1998a"],
+        "rhetorical_role": "The headline empirical payoff: complete-data-equivalent selection restored on the null side, with the unrecoverable part named and priced."
+      },
+      {
+        "id": "M6",
+        "label": "EVIDENCE",
+        "section_anchor": "sec-numerics",
+        "title": "Numerical studies",
+        "function": "One consolidated account of the pre-registered apparatus and what each study found, including predictions NOT met (the N=1000 cell at 2.6 se; the similar-pair headline; component-level 9-20% misses). States seeds, caches, amendment histories; engine sensitivity scoped.",
+        "serves_thesis": ["primary", "secondary", "tertiary"],
+        "key_claims": [
+          "Pooled theorem confirmation: T-hat = 2.43 +/- 0.26 against (A)+(C)-augmented range 2.42-2.55",
+          "Sign-reversal experiment (impute from truth) confirms fitted-vs-oracle; known-scale experiment confirms all four collapse values",
+          "Every quantitative claim is stated for totals and paired differentials, never components",
+          "EMB tracks FIML within 2-3% (RIV) and 0.011 (selection); DA not run - scoped limitation"
+        ],
+        "evidence_base": ["verif:verification/run_all.R", "verif:verification/ic-ladder.R", "verif:verification/W2-lrt-power.R", "deriv:sec-verify"],
+        "rhetorical_role": "The reader can re-run everything; failures are reported next to successes so the successes are believable."
+      },
+      {
+        "id": "M7",
+        "label": "SCOPE",
+        "section_anchor": "sec-discussion",
+        "title": "Discussion",
+        "function": "Six numbered limits (G1-G6), each stated next to the claim it qualifies; the power-dominance conjecture stated as a conjecture with partial support; three directions (covariate shift per Shimodaira's named future work; exact-engine replication; distribution-level calibration beyond per-model maps).",
+        "serves_thesis": ["primary", "secondary", "tertiary"],
+        "key_claims": [
+          "G1 (A)+(C) magnitude; G2 proper-MI carry-over structural; G3 engine robustness scoped; G4 weak-signal floor is a measurement; G5 misspecification O(1) coexists; G6 MVN instantiation"
+        ],
+        "evidence_base": ["deriv:sec-lrt-ac", "lit:shimodairaInformationCriterionModel2017"],
+        "rhetorical_role": "Trust through explicit fences: the limits section is load-bearing for an AI-skeptical audience, not boilerplate."
+      },
+      {
+        "id": "M8",
+        "label": "PROVENANCE",
+        "section_anchor": "sec-provenance",
+        "title": "Provenance and authorship statement",
+        "function": "JAIGP transparency: human prompter of record, companion sourced derivation, pre-registration trail, cross-model adversarial checks, mechanical citation discipline.",
+        "serves_thesis": ["venue_alignment"],
+        "key_claims": [],
+        "evidence_base": ["deriv:sec-sources", "deriv:sec-verify"],
+        "rhetorical_role": "The apparatus is the authorship statement."
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "id": "D-01",
+      "date": "2026-05-22",
+      "label": "Frame as deviance-bias correction upstream of test calibration",
+      "chosen": "The paper derives the bias of the deviance numerator; Chan (2022, AoS) is cited as the canonical reference for MI test calibration. Complementarity stated explicitly: calibration makes the reference right, this work makes the statistic centered.",
+      "rejected_options": {
+        "spectral_correction_headline": "The original spectral chi-square correction / generalized eigendecomposition framing - preempted by Chan (2022, AoS), which already carries the full eigenvalue spectrum and MC reference. Archived in IDEAS.md; do not draft from it.",
+        "compete_with_chan": "Positioning the correction as an alternative to Chan's calibration would be both wrong (they compose) and strategically fatal (his machinery is more general for testing)."
+      },
+      "provenance": "IDEAS.md reframing note; CLAUDE.md scope",
+      "status": "ratified_in_prior_work"
+    },
+    {
+      "id": "D-02",
+      "date": "2026-06-02",
+      "label": "Headline sign convention: fitted-imputation Q-bar-infinity",
+      "chosen": "The theorem is stated for the FITTED-imputation Q-function (+1/2 tr(RIV)), with the oracle-conditioning contrast (-1/2, by the tower property) stated prominently inside the setup section, and the sign-reversal experiment cited as direct confirmation.",
+      "rejected_options": {
+        "oracle_definition": "Defining Q-bar-infinity as E[l_com | Y_obs] under the data-generating law flips the headline to -1/2 - mathematically coherent but not what any MI procedure computes; 8 of 9 blind re-derivations landed there when the conditioning was left implicit.",
+        "suppress_the_contrast": "Omitting the fitted-vs-oracle discussion invites exactly that blind-derivation error in referees."
+      },
+      "provenance": "todo/020; sec-qfun callout in derivation.qmd; memory project_fitted_vs_oracle_sign",
+      "status": "ratified_in_prior_work"
+    },
+    {
+      "id": "D-03",
+      "date": "2026-06-05",
+      "label": "Evidence placement: consolidated numerics section plus inline headline numbers",
+      "chosen": "One consolidated pre-registered-evidence section (sec-numerics) holding the apparatus, the grading, and the failures; headline numbers ALSO quoted inline at the point of each claim (e.g. 52 se, 0.904 vs 0.899, -1.2 at 3.5 se). This is the analogue of SAMPLE-STRATEGY-ECD's threading decision, adapted: their evidence was one dataset serving rhetoric; ours is six pre-registered studies whose amendment histories must be readable as a unit.",
+      "rejected_options": {
+        "full_threading": "Distributing the studies into the application sections fragments the pre-registration narrative (predictions, amendments, failures) that JAIGP provenance requires to be auditable in one place.",
+        "numerics_only": "Keeping all numbers in sec-numerics leaves sections 3-5 floating without evidence at the point of claim."
+      },
+      "provenance": "structure of mi-spectral.qmd at 180e2b5",
+      "status": "proposed_for_ratification"
+    },
+    {
+      "id": "D-04",
+      "date": "2026-06-05",
+      "label": "Background as precision restatement, not citation list",
+      "chosen": "sec-background restates each standard result in its source's own terms, with displays, each restatement naming the proposition that later depends on it (B1-B11 background layer from the argument map).",
+      "rejected_options": {
+        "cite_only": "A conventional citation paragraph invites the two standard conflations (RIV vs EM rate matrix; naive vs unconditional information) that the derivation spends real effort preventing.",
+        "appendix_background": "Moving it to an appendix breaks the arc - M3 needs the reader already inoculated."
+      },
+      "provenance": "todo/030-031 argument map; commit 180e2b5",
+      "status": "proposed_for_ratification"
+    },
+    {
+      "id": "D-05",
+      "date": "2026-06-05",
+      "label": "Trust-ordered claims with failures reported",
+      "chosen": "Claims are graded firm / measured / structural in the text wherever standing differs ((A)+(C) three-tier paragraph; ladder limits; G1-G6), and failed predictions are reported in the main text (similar-pair headline NOT met; N=1000 cell at 2.6 se; component-level misses).",
+      "rejected_options": {
+        "headline_first": "Leading with the strongest numbers and footnoting the misses reads as salesmanship to exactly the referee this venue attracts.",
+        "failures_in_supplement": "Hiding failures in supplementary material contradicts the provenance posture the paper itself argues for."
+      },
+      "provenance": "standing outside-reader feedback; W4 reporting in mi-spectral.qmd",
+      "status": "proposed_for_ratification"
+    },
+    {
+      "id": "D-06",
+      "date": "2026-06-04",
+      "label": "In-paper vs sequel scope split",
+      "chosen": "In-paper: theorem + LRT application + IC application including calibration-ladder rungs 1-3 (mean / two-moment / equipercentile on saturated-anchored statistics). Sequel: de-shrinkage of estimated noncentrality, Z-testbed, copula/triangle designs, joint calibration of score vectors.",
+      "rejected_options": {
+        "everything_in_one": "Length and dilution; the sequel material is a different contribution (selection-aware calibration) with its own apparatus.",
+        "rungs_to_sequel": "The original todo/023 split sent the ladder to the sequel; reversed 2026-06-04 (todo/026 rev 2) because the rungs are the null-side completeness result - without them the IC application stops at the mean and undersells the split."
+      },
+      "provenance": "todo/023, todo/026 rev 2, todo/027; memory project_scope_split_2026_06_03",
+      "status": "ratified_in_prior_work"
+    },
+    {
+      "id": "D-07",
+      "date": "2026-06-05",
+      "label": "General statement, multivariate-normal verification",
+      "chosen": "The theorem is stated for general regular likelihoods with an estimated scale; every constant is verified (symbolically and by simulation) in the normal family only, and G6 says so. No general-family verification is attempted in this paper.",
+      "rejected_options": {
+        "mvn_only_statement": "Stating the theorem only for the normal family undersells the mechanism (the entropy-Hessian split is general).",
+        "chase_general_verification": "Verifying constants beyond the normal family is open-ended and delays submission without changing the contribution's standing."
+      },
+      "provenance": "memory project_scope_keep_mvn; G6 in mi-spectral.qmd",
+      "status": "ratified_in_prior_work"
+    },
+    {
+      "id": "D-08",
+      "date": "2026-06-05",
+      "label": "Companion-document posture",
+      "chosen": "The paper is self-contained at the level of statements and evidence; manuscript/derivation.qmd carries full proofs, the source-passage audit trail, and executable symbolic verification, and is cited as the companion throughout.",
+      "rejected_options": {
+        "inline_full_proofs": "Doubles the length and buries the applications; the proof detail is auditable in the companion.",
+        "pure_pointer": "Stating results with no proof sketches (Term B Taylor argument, the I_com-metric reasoning, the Schur gap) would make the paper un-refereeable standalone."
+      },
+      "provenance": "draft-status callout in mi-spectral.qmd; derivation-audit PASS at 180e2b5",
+      "status": "proposed_for_ratification"
+    }
+  ],
+  "metrics_gate": {
+    "arc_moves": 8,
+    "target_range": "5-8",
+    "every_move_serves_thesis": true,
+    "every_decision_has_rejected_options": true,
+    "venue_alignment_explicit": true,
+    "passes": true,
+    "notes": "Eight moves; M2/M6/M7/M8 serve all thesis components or the venue apparatus rather than one thesis line - acceptable for a theory paper where evidence and scope are shared infrastructure. Gate re-evaluated at every Level-1 amendment."
+  }
+}

@@ -58,6 +58,11 @@ manuscript/
   derivation.qmd                         # canonical sourced derivation (notation, ledger, tagged proof);
                                          #   Appendix B = executable Sympy/NumPy verification (jupyter: python3)
   proof-verification-fixture.json        # W1 replicate + cache read by derivation.qmd Appendix B (committed)
+  plan/                                  # manuscript plan system (README.md = protocol of record):
+                                         #   level1-thesis.json (thesis/arc/decisions), level2-sections.json,
+                                         #   level3-paragraphs.json (prose source of truth once compile_enabled),
+                                         #   level4-evidence.json (proposition->evidence join table),
+                                         #   status.json (project-manager state), decisions.md (locked decisions)
 
 verification/
   run_all.R                              # SINGLE ENTRYPOINT for the comprehensive sweep
@@ -93,12 +98,34 @@ todo/
 
 .claude/
   hooks/check_citations.py               # PreToolUse hook: blocks @<citekey> writes if
-                                         #   literature/<citekey>.md absent. Bypass via @TODO:<slug>.
+                                         #   literature/<citekey>.md absent; also checks lit: pointers and
+                                         #   structured citation fields in plan JSONs. Bypass via @TODO:<slug>.
   skills/lit-sync/                       # /lit-sync slash command (BBT -> literature/ bridge)
+  skills/status/                         # /status — manuscript project-manager dashboard (derived, read-only)
+  skills/section-review/                 # /section-review <target> — 5-phase human-in-the-loop review cycle
 
 scripts/
   lit_sync.py                            # Zotero BBT -> literature/<citekey>.md sync (see skill)
+  check_plan.py                          # authoritative plan lint (pointers, citekeys, gates); must be green
+                                         #   before every review-cycle commit; also runs from pre-commit
+  compile_manuscript.py                  # level3-paragraphs.json -> manuscript/mi-spectral.qmd (refuses until
+                                         #   compile_enabled; the qmd becomes a derived artifact after that)
+  git-hooks/pre-commit                   # runs check_plan.py when plan files staged (core.hooksPath)
+  test_check_citations_hook.py           # hook smoke tests (13 cases)
 ```
+
+## Manuscript plan system (load-bearing for drafting)
+
+Manuscript work goes through `manuscript/plan/` (protocol: `manuscript/plan/README.md`).
+Four leveled JSONs (thesis/arc/decisions → sections → paragraphs → evidence), each with a
+metrics gate; evidence pointers `lit:`/`deriv:`/`verif:`/`xmodel:` are resolved mechanically
+by `scripts/check_plan.py`. `/status` = where we are, what is blocked on whom (derived from
+files + git, never from memory). `/section-review <target>` = one review cycle: annotation
+extract → Marcus's `#[COMMENTS]` → per-unit iteration → atomic update script under
+`manuscript/plan/updates/` → status/decisions/commit. Locked decisions in
+`manuscript/plan/decisions.md` are not relitigated without a dated amendment. Once level3
+`compile_enabled` is true, never edit `manuscript/mi-spectral.qmd` directly — edit the JSON
+and recompile.
 
 **Module organization for `verification/run_all.R`.** Five phases, each in its own module under `_modules/`:
 

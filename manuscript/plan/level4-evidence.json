@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "level": 4,
+    "date": "2026-06-05",
+    "status": "awaiting_level3_population",
+    "purpose": "Proposition -> evidence join table. The existing infrastructure is evidence-side (literature/, derivation.qmd, verification/cache); this file records, per manuscript proposition, WHICH evidence backs it, making the gate checkable per-proposition. Populated during the Level-3 decomposition and maintained during every section review.",
+    "evidence_classes": {
+      "lit": "literature/<citekey>.md - read-in-session rule applies before status may reach 'verified'",
+      "deriv": "anchor in manuscript/derivation.qmd",
+      "verif": "committed artifact under verification/ (cache RDS/CSV, scripts, run logs)",
+      "xmodel": "cross-model audit record (GPT-5.5 runs, blind re-derivation gradings)"
+    },
+    "status_ladder": "proposed -> queued -> acquired -> verified -> cited (lit class; mirrors todo/003). deriv/verif/xmodel entries are 'verified' once the pointer resolves and the content was checked against the claim.",
+    "schema_example": {
+      "id": "E-S4-SP1-1",
+      "proposition_id": "S4-SP1",
+      "pointer": "deriv:sec-lrt-bias",
+      "evidence_status": "verified",
+      "passage_or_value": "Optional: the specific passage, equation, or cached number relied on.",
+      "note": "What this entry establishes for the proposition, and any caveat."
+    }
+  },
+  "evidence_map": [],
+  "acquisition_queue_note": "New references surfaced while drafting enter here as 'proposed' AND in todo/003 in the same response (standing rule). The /status dashboard reports the backlog by status.",
+  "metrics_gate": {
+    "every_proposition_has_evidence": null,
+    "no_cited_without_verified_literature_file": null,
+    "every_pointer_resolves": null,
+    "passes": null,
+    "notes": "Evaluated when populated. 'every_proposition_has_evidence' is checked against Level 2 super-propositions and Level 3 paragraph propositions, excluding declared rhetorical paragraphs."
+  }
+}

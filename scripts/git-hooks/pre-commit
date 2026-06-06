@@ -1,0 +1,14 @@
+#!/bin/sh
+# Pre-commit: run the manuscript-plan lint when plan files are staged.
+# Wired via: git config core.hooksPath scripts/git-hooks
+# Bypass (emergencies only): git commit --no-verify
+
+if git diff --cached --name-only | grep -q "^manuscript/plan/"; then
+    echo "pre-commit: manuscript/plan/ files staged - running check_plan.py"
+    py scripts/check_plan.py
+    if [ $? -ne 0 ]; then
+        echo "pre-commit: check_plan.py failed - commit blocked."
+        exit 1
+    fi
+fi
+exit 0

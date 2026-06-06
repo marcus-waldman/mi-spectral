@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "project": "mi-spectral JAIGP manuscript",
+  "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
+  "phase": "level1_annotation",
+  "last_updated": "2026-06-05",
+  "updated_by": "claude (system bootstrap)",
+  "blocked_on": {
+    "who": "marcus",
+    "what": "Annotate Level 1 (thesis, arc, decision blocks D-03/D-04/D-05/D-08 ratification) — run /section-review level1 to get the annotation extract, or annotate level1-thesis.json directly with #[COMMENTS]",
+    "artifact": "manuscript/plan/level1-thesis.json"
+  },
+  "levels": {
+    "level1": "drafted_awaiting_annotation",
+    "level2": "not_started",
+    "level3": "schema_only",
+    "level4": "schema_only"
+  },
+  "sections": [
+    {"id": "S1", "anchor": "sec-intro", "title": "Introduction", "state": "drafted_pre_system"},
+    {"id": "S2", "anchor": "sec-background", "title": "Background", "state": "drafted_pre_system"},
+    {"id": "S3", "anchor": "sec-setup", "title": "Setup and main theorem", "state": "drafted_pre_system"},
+    {"id": "S4", "anchor": "sec-lrt", "title": "Application I: likelihood-ratio comparison", "state": "drafted_pre_system"},
+    {"id": "S5", "anchor": "sec-ic", "title": "Application II: information-criterion model selection", "state": "drafted_pre_system"},
+    {"id": "S6", "anchor": "sec-numerics", "title": "Numerical studies", "state": "drafted_pre_system"},
+    {"id": "S7", "anchor": "sec-discussion", "title": "Discussion", "state": "drafted_pre_system"},
+    {"id": "S8", "anchor": "sec-provenance", "title": "Provenance and authorship statement", "state": "drafted_pre_system"}
+  ],
+  "section_state_vocabulary": ["drafted_pre_system", "decomposed_needs_review", "awaiting_annotation", "in_review", "approved", "committed"],
+  "open_decisions": ["D-03", "D-04", "D-05", "D-08"],
+  "citations_backlog": {"proposed": 0, "queued": 0, "acquired_unverified": 0},
+  "clickup": {"list_id": null, "last_synced": null},
+  "next_actions": [
+    "Marcus: annotate Level 1 (the decision blocks especially — D-03/D-04/D-05/D-08 are proposed, not yet ratified)",
+    "Then: draft Level 2 under the approved Level 1",
+    "Then: decompose mi-spectral.qmd (180e2b5) into Level 3 + populate Level 4; set compile_enabled",
+    "Then: section-by-section review loop, S1 first"
+  ]
+}

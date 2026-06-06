@@ -1,6 +1,28 @@
 # Current status — read this when resuming
 
-**Last updated:** 2026-06-04 (session 4 — non-nested CS-vs-AR(1) measurement EXECUTED + landed).
+**Last updated:** 2026-06-05 (session 5 — manuscript plan system bootstrapped).
+
+> **Manuscript work now goes through the plan system.** Run `/status` for the
+> project-manager dashboard (what's blocked on whom, drift, citation backlog) and
+> `/section-review <target>` for the human-in-the-loop review loop. Protocol of record:
+> `manuscript/plan/README.md`. State of record: `manuscript/plan/status.json`.
+
+**Latest (2026-06-05, session 5 — manuscript plan system, adapted from SAMPLE-STRATEGY-ECD):**
+Investigated the SAMPLE-STRATEGY-ECD leveled-reconstruction workflow (4 JSON levels with
+per-level gates, recorded decisions with rejected options, 5-phase per-section human review,
+prose compiled from JSON) and built the mi-spectral adaptation: `manuscript/plan/` with
+`level1-thesis.json` (thesis + arc + decision blocks D-01…D-08, **drafted awaiting Marcus's
+annotation — the first review exercise**), level 2–4 schema'd skeletons, `decisions.md`,
+`status.json`; lag metric deliberately dropped (rhetorical-essay gate, not a theory-paper one);
+evidence layer = the four-pointer grammar `lit:`/`deriv:`/`verif:`/`xmodel:` resolved
+mechanically. Enforcement at three points: extended PreToolUse hook (structured JSON fields,
+13/13 tests), authoritative `scripts/check_plan.py` lint (green; closes the update-script
+bypass), tracked pre-commit via `core.hooksPath=scripts/git-hooks`. Skills: `/status`
+(derived dashboard, optional ClickUp mirror) + `/section-review` (5-phase loop).
+`scripts/compile_manuscript.py` refuses until `compile_enabled` (decomposition not started).
+**NEXT:** Marcus annotates Level 1 (`/section-review level1`) → Level 2 drafted under the
+approved Level 1 → decompose `mi-spectral.qmd` (180e2b5) into Level 3 + populate Level 4 →
+section-by-section review, S1 first.
 
 **Latest (2026-06-04, session 4 — the non-nested (Vuong) measurement, todo/028 EXECUTED):**
 Closed the only derived-but-never-measured quantitative claim — the $(A)+(C)$ differential of

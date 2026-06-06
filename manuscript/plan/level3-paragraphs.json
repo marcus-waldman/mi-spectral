@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "level": 3,
+    "date": "2026-06-05",
+    "status": "awaiting_level2_approval",
+    "purpose": "SOURCE OF TRUTH for manuscript prose once populated. Each paragraph carries its proposition, dependencies, the draft_prose itself, a review object, and an audit object. manuscript/mi-spectral.qmd is compiled from this file by scripts/compile_manuscript.py and never edited directly.",
+    "compile_enabled": false,
+    "compile_note": "compile_enabled stays false until the decomposition of the existing draft (commit 180e2b5) into paragraphs is complete and reviewed; until then the existing qmd remains the working document.",
+    "schema_example": {
+      "id": "S4-P3",
+      "section": "S4",
+      "goal": "prove_sketch",
+      "proposition": "The constrained MI fit projects in the I_com metric because the Q-function's curvature is the complete-data information; substituting I_obs reproduces the naive formula.",
+      "depends_on": ["S4-P2", "S3-P5"],
+      "dep_types": ["builds_on", "builds_on"],
+      "review": {
+        "serves_L2": "Which super-proposition this paragraph delivers (by id).",
+        "serves_L1": "Which thesis component / arc move it ultimately serves.",
+        "sets_up": "Which later paragraphs rely on it.",
+        "topic_sentence": "Verbatim, checked to carry the proposition.",
+        "closing_sentence": "Verbatim, checked to hand off.",
+        "status": "imported_needs_review | revised | approved",
+        "flags": null
+      },
+      "draft_prose": "The paragraph text, ordinary Quarto markdown: @TODO:example citations in @-form, display math with anchors, theorem divs all pass through the compiler verbatim.",
+      "audit": {
+        "status": "pending | complete",
+        "citations": {},
+        "numbers": {},
+        "notes": "citations: bare citekey -> verdict string. numbers: claim -> pointer (verif:..., deriv:...)."
+      }
+    }
+  },
+  "sections_order": [
+    {"id": "S1", "anchor": "sec-intro", "title": "Introduction"},
+    {"id": "S2", "anchor": "sec-background", "title": "Background"},
+    {"id": "S3", "anchor": "sec-setup", "title": "Setup and main theorem"},
+    {"id": "S4", "anchor": "sec-lrt", "title": "Application I: likelihood-ratio comparison"},
+    {"id": "S5", "anchor": "sec-ic", "title": "Application II: information-criterion model selection"},
+    {"id": "S6", "anchor": "sec-numerics", "title": "Numerical studies"},
+    {"id": "S7", "anchor": "sec-discussion", "title": "Discussion"},
+    {"id": "S8", "anchor": "sec-provenance", "title": "Provenance and authorship statement"}
+  ],
+  "paragraphs": [],
+  "metrics_gate": {
+    "every_paragraph_has_proposition_or_rhetorical_goal": null,
+    "every_number_has_verification_pointer": null,
+    "every_citekey_backed": null,
+    "review_objects_complete": null,
+    "dependency_graph_acyclic": null,
+    "passes": null,
+    "notes": "Evaluated when paragraphs are populated. No lag gate: logical order, not reader-distance, governs a theory paper; dependencies are still recorded so audit corrections can find their blast radius."
+  }
+}

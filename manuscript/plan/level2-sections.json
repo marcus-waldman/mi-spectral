@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "level": 2,
+    "date": "2026-06-05",
+    "status": "awaiting_level1_approval",
+    "purpose": "Section blueprints: per-section goal statement, super-propositions with evidence pointers, dependency graph. Drafted only after Level 1 is annotated and ratified, so section goals serve an approved thesis and arc.",
+    "schema_example": {
+      "id": "S4",
+      "arc_move": "M4_APPLICATION-LRT",
+      "anchor": "sec-lrt",
+      "title": "Application I: likelihood-ratio comparison",
+      "goal_statement": "One paragraph stating exactly what this section must convince the reader of, what it explicitly defers, and which thesis component it serves.",
+      "estimated_paragraphs": "8-10",
+      "super_propositions": [
+        {
+          "id": "S4-SP1",
+          "claim": "One sentence, falsifiable as stated.",
+          "goal": "state_result | define_concept | prove_sketch | evaluate_evidence | scope_limit | position_lineage",
+          "evidence": ["deriv:sec-lrt-bias", "verif:verification/cache/w4-nonnested-summary.csv", "lit:chanMultipleImprovementsMultiple2022"],
+          "evidence_status": "grounded | needs_grounding | empirical_placeholder"
+        }
+      ],
+      "depends_on": ["S3"],
+      "dep_types": ["builds_on"],
+      "feeds_forward_to": ["S5", "S6"]
+    }
+  },
+  "goal_vocabulary": ["state_result", "define_concept", "prove_sketch", "evaluate_evidence", "scope_limit", "position_lineage", "summarize", "transition"],
+  "dep_types_vocabulary": ["builds_on", "instantiates", "qualifies", "summarizes", "contrasts_with"],
+  "sections": [],
+  "dependency_graph": {},
+  "metrics_gate": {
+    "every_super_proposition_has_evidence_pointer": null,
+    "dependency_graph_acyclic": null,
+    "no_orphaned_sections": null,
+    "every_section_serves_an_arc_move": null,
+    "passes": null,
+    "notes": "Evaluated when sections are populated."
+  }
+}
