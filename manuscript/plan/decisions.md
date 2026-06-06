@@ -26,6 +26,7 @@ Strategic decisions D-01…D-08 live in full (chosen + rejected options + ration
 | D-06 | 2026-06-04 | Scope split: ladder rungs 1–3 in-paper; de-shrinkage etc. to sequel | ratified_in_prior_work |
 | D-07 | 2026-06-05 | General statement, MVN verification (G6) | ratified_in_prior_work |
 | D-08 | 2026-06-05 | Companion-document posture (statements here, proofs in derivation.qmd) | proposed |
+| D-09 | 2026-06-05 | IMRaD macro-structure with Methods-as-workflow; fourth (methodological) thesis component; rejected: 180e2b5 theory-paper shape with workflow as end-matter | **ratified** (in-chat) |
 
 ## Style and terminology
 

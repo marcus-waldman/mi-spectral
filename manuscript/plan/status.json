@@ -4,14 +4,14 @@
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
   "phase": "level1_annotation",
   "last_updated": "2026-06-05",
-  "updated_by": "claude (system bootstrap)",
+  "updated_by": "claude (level1 amendment cycle: D-09)",
   "blocked_on": {
     "who": "marcus",
-    "what": "Annotate Level 1 (thesis, arc, decision blocks D-03/D-04/D-05/D-08 ratification) — run /section-review level1 to get the annotation extract, or annotate level1-thesis.json directly with #[COMMENTS]",
+    "what": "Continue Level-1 annotation: thesis text (incl. the new methodological component) and ratification of D-03/D-04/D-05/D-08. D-09 (IMRaD with Methods-as-workflow) is ratified and the arc is amended.",
     "artifact": "manuscript/plan/level1-thesis.json"
   },
   "levels": {
-    "level1": "drafted_awaiting_annotation",
+    "level1": "amended_d09_awaiting_annotation",
     "level2": "not_started",
     "level3": "schema_only",
     "level4": "schema_only"
@@ -31,9 +31,10 @@
   "citations_backlog": {"proposed": 0, "queued": 0, "acquired_unverified": 0},
   "clickup": {"list_id": null, "last_synced": null},
   "next_actions": [
-    "Marcus: annotate Level 1 (the decision blocks especially — D-03/D-04/D-05/D-08 are proposed, not yet ratified)",
-    "Then: draft Level 2 under the approved Level 1",
-    "Then: decompose mi-spectral.qmd (180e2b5) into Level 3 + populate Level 4; set compile_enabled",
-    "Then: section-by-section review loop, S1 first"
-  ]
+    "Marcus: finish Level-1 annotation (thesis text incl. methodological component; ratify or amend D-03/D-04/D-05/D-08)",
+    "Then: draft Level 2 under the approved Level 1 — target structure is now IMRaD (Intro / Background / Methods / Results / Discussion, per D-09); the Methods section is new writing, Results redistributes current sections 3-6",
+    "Then: decompose mi-spectral.qmd (180e2b5) into Level 3 under the NEW section set + populate Level 4; set compile_enabled",
+    "Then: section-by-section review loop"
+  ],
+  "structure_note": "The 8 sections listed above describe the CURRENT draft (180e2b5). The target structure after D-09 is 5 IMRaD sections; the mapping old->new is defined at Level 2."
 }
