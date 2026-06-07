@@ -13,8 +13,8 @@
   "levels": {
     "level1": "ratified_cycle2",
     "level2": "annotated_cycle1",
-    "level3": "schema_only",
-    "level4": "schema_only"
+    "level3": "s1_s2_s3_drafted (28 paragraphs; S3-P2 rewritten from the collaboration analysis)",
+    "level4": "populating (52 entries, all verified)"
   },
   "sections": [
     {"id": "S1", "anchor": "sec-intro", "title": "Introduction", "state": "drafted_pre_system"},
