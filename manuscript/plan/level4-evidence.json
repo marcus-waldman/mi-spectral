@@ -446,8 +446,8 @@
       "note": "The theorem (firm)."
     },
     {
-      "id": "E-S4-P7-1",
-      "proposition_id": "S4-P7",
+      "id": "E-S4-P7b-1",
+      "proposition_id": "S4-P7b",
       "pointer": "deriv:sec-lrt-ac",
       "evidence_status": "verified",
       "passage_or_value": "(A)+(C) structure, sign, closed form, three-tier standing.",
