@@ -29,6 +29,10 @@ Checks
    - level3: every paragraph has a non-null proposition OR a goal in the
      rhetorical set; review and audit objects present.
    - level4: every entry's pointer resolves; proposition_id non-empty.
+7. Prose-style gate (level3 draft_prose): the CLAUDE.md punctuation budget.
+   Rhetorical colons and semicolons are flagged. Display/table/quotation/heading
+   colons and math/citation-bracket semicolons are allowed. See
+   prose_punctuation_hits().
 
 Exit 0 = green; exit 1 = violations (listed on stdout).
 
@@ -119,6 +123,50 @@ def detect_cycles(nodes):
         if color[k] == WHITE:
             visit(k, [k])
     return on_cycle
+
+
+def prose_punctuation_hits(prose):
+    """
+    Manuscript prose-style gate (CLAUDE.md 'Punctuation budget').
+
+    Flags rhetorical colons and semicolons in draft_prose. Allowed and therefore
+    NOT flagged:
+      - colons introducing a display ($$...$$), a markdown table, a heading run-in
+        (a **bold:** label, or a '## ...:' subhead), or a verbatim quotation;
+      - semicolons inside math ($...$) and inside citation brackets ([@a; @b]);
+      - the em-dash / arithmetic uses of ':' inside math.
+    Returns a list of short human-readable strings (empty when clean).
+    """
+    hits = []
+    # Blank out the always-allowed regions so their inner punctuation is invisible.
+    text = re.sub(r"\$\$.*?\$\$", " §DISPLAY ", prose, flags=re.S)  # display math
+    text = re.sub(r"\$[^$]*\$", " §MATH ", text)                    # inline math
+    text = re.sub(r"^\|.*$", "", text, flags=re.M)                       # table rows
+    text = re.sub(r"\[[^\]]*@[^\]]*\]", " §CITE ", text)            # citation brackets
+    text = re.sub(r"\{#[^}]*\}", "", text)                                # crossref anchors
+    text = re.sub(r":::[^\n]*", "", text)                                # fenced-div markers
+
+    for m in re.finditer(r"([^.\n]{0,55}):(\s|$)", text):
+        frag = m.group(1).strip()
+        after = text[m.end():m.end() + 16].lstrip()
+        if not frag:
+            continue
+        if after.startswith(('"', "“", "§DISPLAY")):
+            continue  # quotation- or display-introducing colon
+        if frag.startswith("#") or frag.startswith("**") or frag.endswith("**"):
+            continue  # subhead or bold run-in label
+        if "Monte Carlo standard error" in frag:
+            continue  # introduces the results table
+        hits.append(f"rhetorical colon after '...{frag[-40:]}'")
+
+    for m in re.finditer(r";", text):
+        ctx = text[max(0, m.start() - 30):m.start()]
+        if "§MATH" in ctx[-8:] or "§CITE" in ctx[-8:]:
+            continue
+        seg = text[max(0, m.start() - 40):m.start() + 1].strip().replace("\n", " ")
+        hits.append(f"semicolon: '...{seg[-45:]}'")
+
+    return hits
 
 
 def main():
@@ -251,6 +299,8 @@ def main():
                 problems.append(f"level3-paragraphs.json: {pid} missing review object")
             if not isinstance(p.get("audit"), dict):
                 problems.append(f"level3-paragraphs.json: {pid} missing audit object")
+            for hit in prose_punctuation_hits(p.get("draft_prose") or ""):
+                problems.append(f"level3-paragraphs.json: {pid} prose-style: {hit}")
         for pid, dlist in deps.items():
             for d in dlist:
                 if d not in deps:
