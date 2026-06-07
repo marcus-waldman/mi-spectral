@@ -759,7 +759,7 @@
         "topic_sentence": "Direction, scope, and the acceptance or rejection of every result were decided by the human author of record; derivations, drafts, and computations were produced by an AI assistant.",
         "closing_sentence": "The remaining parts exist for that.",
         "status": "drafted",
-        "flags": null
+        "flags": "awaiting_collaboration_analysis (todo/032): current text is a placeholder; the collaboration heuristic + examples must come from the qualitative analysis of the 35-session transcript archive, not from recency-sampled episodes. Expanded-P2 draft from the 2026-06-07 chat is recorded in todo/032 context."
       },
       "draft_prose": "**Roles and decision records.** Direction, scope, and the acceptance or rejection of every result were decided by the human author of record. Derivations, drafts, and computations were produced by an AI assistant. Each strategic decision was recorded with its date, the options rejected, and the rationale. Recorded decisions were not revisited without a dated amendment. The log is part of the public record, so the division of labor is auditable after the fact. This discipline cannot certify correctness. Recording who decided what catches nothing about whether a derivation is right. The remaining parts exist for that.",
       "audit": {
