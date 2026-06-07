@@ -191,6 +191,37 @@ Or invoke `/lit-sync` as a slash command.
 Rscript verification/00-test-primitives.R
 ```
 
+## Manuscript prose style (binding for all drafting)
+
+Target reader: an applied researcher with quantitative training and working MI knowledge.
+
+- **Plain expository structure.** Topic sentence first, supporting details in separate
+  sentences, one idea per sentence, explicit connectives ("The practical consequence
+  is...", "The fix is direct:"). No em-dash appositive chains (X — gloss — verb), no
+  nested mid-sentence glosses, no fixed poetic cadence, no constructions that make the
+  reader backtrack.
+- **Announce results.** New results are introduced as things the paper shows ("We show
+  that..."), never asserted cold. Immediately translate each formal object into applied
+  terms in its own sentence (e.g., the model-specific bias → "a model-comparison table
+  built on imputed data favors the candidates with the most missing information").
+- **Typed claims (T-06).** "Unresolved in the literature" must be either documented-open
+  (cited to the stating passage, quotes verbatim) or asserted-here (in the authors'
+  voice, flagged as contribution). Settledness is attributed ("the field's own accounts
+  treat X as settled"), not endorsed.
+- **Trust-ordered (T-04/D-05).** Firm (proved + verified) first, measurements next,
+  conjectures last and labeled; failed predictions in the main text.
+- **Banned vocabulary (T-03).** "ledger", "numerical witness", "tagged",
+  "machine-checked", "Stage N", "consume", and figurative house jargon ("where it
+  bites", "honest fences", "funnel/hub") — in manuscript AND conversation.
+- **Methods section only (T-05):** factual passive voice; every safeguard paragraph ends
+  with what it cannot catch.
+- **Terminology:** "repetitions" for Monte Carlo, never "replications" (reserved for the
+  complete-data replication principle, D-10); one RIV normalized by I_obs (T-01); K–M
+  observed-information convention (T-02).
+
+Decisions of record: `manuscript/plan/decisions.md`. Standing examples: S1 in
+`manuscript/plan/level3-paragraphs.json` (post-rewrite, commit `b7e2a40`).
+
 ## Related repos
 
 - `~/git-repositories/MI-IC` — companion SEM methodology paper; v4.5 derivation, `miicsem` package, and SEM simulations live there. JAIGP paper is cited from there.
