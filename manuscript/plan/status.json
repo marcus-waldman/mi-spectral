@@ -2,12 +2,12 @@
   "schema_version": 1,
   "project": "mi-spectral JAIGP manuscript",
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
-  "phase": "level3_decomposition",
+  "phase": "level3_drafting",
   "last_updated": "2026-06-06",
-  "updated_by": "claude (level2 cycle 1 complete: annotated in-chat, all six units adjudicated)",
+  "updated_by": "claude (D-12 ratified: from-scratch drafting, 180e2b5 as quarry)",
   "blocked_on": {
     "who": "claude",
-    "what": "Level-3 decomposition: import mi-spectral.qmd (180e2b5) into level3-paragraphs.json under the NEW 6-section set + title-page declaration (D-11), restructuring per the approved Level-2 blueprints (old S3+S4+S5 -> sec-derivations subsections; old S6 -> sec-simulations setup/results; old S7+S8 -> sec-discussion + title page; sec-methods is new writing). Populate Level 4 per proposition; set compile_enabled; verify compiled qmd before commit.",
+    "what": "Draft S1 (Introduction) into level3-paragraphs.json from scratch under its approved blueprint (6 SPs, four-paragraph funnel, T-06 typing, D-10 principle, meta layer last) - quarrying 180e2b5 only for verified citation-backed material; then Marcus annotates via /section-review S1. Sections drafted one at a time; Level 4 populated alongside each; compile_enabled only when all six exist (D-12).",
     "artifact": "manuscript/plan/level3-paragraphs.json"
   },
   "levels": {
@@ -31,10 +31,11 @@
   "citations_backlog": {"proposed": 4, "queued": 0, "acquired_unverified": 2},
   "clickup": {"list_id": null, "last_synced": null},
   "next_actions": [
-    "Claude: Level-3 decomposition of mi-spectral.qmd (180e2b5) under the approved Level-2 blueprints (new 6-section set + D-11 title-page declaration); populate Level 4; set compile_enabled; byte-equivalence check before commit",
-    "Then: section-by-section review loop (sec-methods is new writing and needs a full drafting cycle, not just decomposition)",
-    "Follow-up queued: sync todo/030 argument map + litrev DB with the D-09/D-10 structure (replication-principle and Methods-as-workflow nodes)",
-    "Note: M1 typing pass COMPLETE (todo/003, 2026-06-06): centering question + replication principle confirmed asserted-here; C-C 2010 SS5 prior MI-AIC must be cited in lineage; novelty scoped to posing the PRINCIPLE"
+    "Claude: draft S1 Introduction from scratch under its blueprint (D-12); Marcus annotates (/section-review S1); then S2 -> S6 one section per cycle (drafting order may follow dependency: S1, S2, S3, S4, S5, S6)",
+    "Per section: populate Level 4 alongside; re-read every cited literature/<citekey>.md in the drafting session; quarry 180e2b5 only for verified material",
+    "compile_enabled + first compile + render only when all six sections exist (D-12); mi-spectral.qmd frozen at 180e2b5 until then",
+    "Follow-up queued: sync todo/030 argument map + litrev DB with the D-09/D-10 structure",
+    "Note: M1 typing pass COMPLETE (todo/003): C-C 2010 SS5 prior MI-AIC cited in lineage; novelty scoped to posing the PRINCIPLE"
   ],
   "structure_note": "The 8 sections listed above describe the CURRENT draft (180e2b5). The ratified target structure is 6 IMRaD moves (D-09 + Amendment 1): sec-intro, sec-background, sec-methods, sec-derivations, sec-simulations, sec-discussion. The old->new mapping is defined at Level 2. Citations backlog: proposed = White et al. 2011, Grund et al. 2021, Anderson 1957, Honaker et al. 2011 (the last two pre-date this cycle; Honaker queued-equivalent); acquired_unverified = schaferMissingDataOur2002a, woodHowShouldVariable2008a (synced 2026-06-06, not yet read in-session)."
 }
