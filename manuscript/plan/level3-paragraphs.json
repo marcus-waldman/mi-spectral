@@ -2,7 +2,7 @@
   "metadata": {
     "level": 3,
     "date": "2026-06-05",
-    "status": "drafting_s2_complete",
+    "status": "drafting_s2_rewritten",
     "purpose": "SOURCE OF TRUTH for manuscript prose once populated. Each paragraph carries its proposition, dependencies, the draft_prose itself, a review object, and an audit object. manuscript/mi-spectral.qmd is compiled from this file by scripts/compile_manuscript.py and never edited directly.",
     "compile_enabled": false,
     "compile_note": "compile_enabled stays false until all six sections are drafted and reviewed (D-12: from-scratch drafting, 180e2b5 as quarry; the decomposition route is retired). mi-spectral.qmd remains frozen at 180e2b5 until the first compile.",
@@ -313,7 +313,7 @@
       "id": "S2-P1",
       "section": "S2",
       "goal": "transition",
-      "proposition": "Why this section restates rather than cites: precision, the two standard conflations, and the notation-once rule.",
+      "proposition": "Roadmap: notation; standing assumptions (ignorability, congenial proper imputation); the RIV; the Q-machinery; the baselines and launch points.",
       "depends_on": [
         "S1-P7"
       ],
@@ -324,17 +324,17 @@
         "serves_L2": "S2 goal statement (framing)",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
         "sets_up": "all S2 paragraphs",
-        "topic_sentence": "The argument of this paper rests on results that are individually standard.",
-        "closing_sentence": "The section also fixes the paper's notation: every symbol is introduced here once and reused unchanged.",
+        "topic_sentence": "This section fixes the paper's notation and assembles the results the derivations use.",
+        "closing_sentence": "Symbols introduced here are used unchanged throughout.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "The argument of this paper rests on results that are individually standard. This section restates them rather than merely cites them. The reason is precision: each result is used later in a form that a casual recollection would miss. The EM rate matrix is not the RIV. Rubin's rules are exact, given one named approximation. The observed and the expected information differ under MAR. Each restatement below names the later result that depends on it. The section also fixes the paper's notation: every symbol is introduced here once and reused unchanged.",
+      "draft_prose": "This section fixes the paper's notation and assembles the results the derivations use. The reader needs five things. First, the two likelihoods of incomplete data and their two maximizers; the bias this paper derives is the distance between functions of these. Second, the standing assumptions: ignorable missingness, and congenial, proper imputation. Third, the paper's central matrix, the RIV, which comes from the missing-information principle. Fourth, the machinery behind the averaged log-likelihood: the EM Q-function, its Monte Carlo implementation, and Rubin's combining rules. Fifth, the complete-data baselines --- AIC and Wilks --- and the three prior results the applications extend. Each item is restated in its source's own terms, and each restatement names the later result that uses it. Symbols introduced here are used unchanged throughout.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
-        "notes": "Opener quarried from 180e2b5 background lead; plain cadence."
+        "notes": "Rewritten as a roadmap (use-first feedback); self-justification removed."
       }
     },
     {
@@ -369,7 +369,7 @@
       "id": "S2-P3",
       "section": "S2",
       "goal": "define_concept",
-      "proposition": "Rubin 1976 ignorability: MAR + distinctness for likelihood/Bayes; stricter OAR/MCAR for sampling inference; the gap hosts (A)+(C) and the K-M distinction.",
+      "proposition": "First standing assumption: ignorability (assumption-first), with Rubin's conditions and the gap that hosts (A)+(C) and the information convention.",
       "depends_on": [
         "S2-P2"
       ],
@@ -379,27 +379,27 @@
       "review": {
         "serves_L2": "S2-SP2",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
-        "sets_up": "S2-P11; S4 (A)+(C)",
-        "topic_sentence": "@rubinInferenceMissingData1976b gives the weakest general conditions under which the process that causes missing data can be ignored.",
-        "closing_sentence": "...two objects of this paper live inside it: the design-imbalance term $(A)+(C)$ of the main theorem, and the information-matrix distinction restated at the end of this section.",
+        "sets_up": "S2-P12; S4 (A)+(C)",
+        "topic_sentence": "This paper assumes throughout that the missingness mechanism is ignorable.",
+        "closing_sentence": "The information-matrix distinction restated at the end of this section is the other.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Ignorability.** @rubinInferenceMissingData1976b gives the weakest general conditions under which the process that causes missing data can be ignored. For likelihood and Bayesian inference, two conditions suffice. The data must be missing at random: the conditional probability of the observed missingness pattern is the same for all values of the missing data. The mechanism's parameter must also be distinct from the data parameter. Sampling-distribution inference is stricter. It requires in addition that the observed data are observed at random, which together with MAR amounts to MCAR, and it is otherwise generally conditional on the observed pattern. Everything in this paper assumes the likelihood-side conditions. The gap Rubin identified between the two senses of \"ignorable\" matters later, because two objects of this paper live inside it: the design-imbalance term $(A)+(C)$ of the main theorem, and the information-matrix distinction restated at the end of this section.",
+      "draft_prose": "**Ignorability.** This paper assumes throughout that the missingness mechanism is ignorable. The assumption and its conditions are Rubin's [@rubinInferenceMissingData1976b]: the data must be missing at random --- the conditional probability of the observed missingness pattern is the same for all values of the missing data --- and the mechanism's parameter must be distinct from the data parameter. These are the weakest general conditions for ignoring the mechanism in likelihood and Bayesian inference. Sampling-distribution inference is stricter. It requires in addition that the observed data are observed at random, which together with MAR amounts to MCAR, and it is otherwise generally conditional on the observed pattern. The gap between the two senses of \"ignorable\" is not a technicality for this paper; two of its objects live inside that gap. The design-imbalance term $(A)+(C)$ of the main theorem is one. The information-matrix distinction restated at the end of this section is the other.",
       "audit": {
         "status": "complete",
         "citations": {
           "rubinInferenceMissingData1976b": "verified (read in-session 2026-06-06; MAR and distinctness definitions at :61-:65; sampling-vs-likelihood distinction SS9)"
         },
         "numbers": {},
-        "notes": "Quarried from 180e2b5; plain cadence."
+        "notes": "Use-first rewrite of the first draft."
       }
     },
     {
       "id": "S2-P4",
       "section": "S2",
       "goal": "define_concept",
-      "proposition": "The missing-information principle (Orchard-Woodbury; Meng-Rubin form), the RIV defined and normalized by I_obs, and the EM-rate-matrix conflation warning.",
+      "proposition": "The central matrix (RIV) defined use-first from the missing-information principle; EM-rate-matrix conflation warning.",
       "depends_on": [
         "S2-P2"
       ],
@@ -410,12 +410,12 @@
         "serves_L2": "S2-SP3 (+ the EM-rate half of S2-SP7)",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
         "sets_up": "every trace formula; S4 throughout",
-        "topic_sentence": "Information matrices add across the missing-data split.",
+        "topic_sentence": "The paper's central matrix is the relative-increase-in-variance matrix, and it comes from the missing-information principle.",
         "closing_sentence": "The notation keeps them apart.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**The missing-information principle and the RIV.** Information matrices add across the missing-data split. @woodburyMissingInformationPrinciple1972 decompose the information in the complete data as the observed-data information plus what they call the lost information, together with a score identity: the observed-data score is the conditional expectation of the complete-data score. @Meng01121991 state the same principle in the form used throughout this paper,\n$$ I_{\\text{obs}} \\;=\\; I_{\\text{com}} - I_{\\text{mis}\\mid\\text{obs}}, $$ {#eq-bg-mip}\n\"observed information = complete information $-$ missing information.\" The central matrix of this paper is built from these ingredients:\n$$ \\mathrm{RIV} \\;=\\; I_{\\text{obs}}^{-1}\\, I_{\\text{mis}\\mid\\text{obs}}. $$ {#eq-bg-riv}\nIts trace adds up the odds of missing information about each parameter, and it is the matrix form of Rubin's scalar relative increase in variance, restated below. One warning is needed here, and it is the reason this section exists. The EM literature works with a different normalization of the same ingredients: the EM rate matrix $DM = I_{\\text{mis}\\mid\\text{obs}}\\, I_{\\text{com}}^{-1}$ of @dempsterMaximumLikelihoodIncomplete1977a and @Meng01121991. The RIV divides by the observed-data information; the rate matrix divides by the complete-data information. The two matrices have different eigenvalues, and conflating them corrupts every trace formula in this paper. The notation keeps them apart.",
+      "draft_prose": "**The missing-information principle and the RIV.** The paper's central matrix is the relative-increase-in-variance matrix, and it comes from the missing-information principle. @woodburyMissingInformationPrinciple1972 decompose the information in the complete data as the observed-data information plus what they call the lost information, together with a score identity: the observed-data score is the conditional expectation of the complete-data score. @Meng01121991 state the same principle in the form used throughout this paper,\n$$ I_{\\text{obs}} \\;=\\; I_{\\text{com}} - I_{\\text{mis}\\mid\\text{obs}}, $$ {#eq-bg-mip}\n\"observed information = complete information $-$ missing information.\" The central matrix is built from these ingredients:\n$$ \\mathrm{RIV} \\;=\\; I_{\\text{obs}}^{-1}\\, I_{\\text{mis}\\mid\\text{obs}}. $$ {#eq-bg-riv}\nIts trace adds up the odds of missing information about each parameter, and it is the matrix form of Rubin's scalar relative increase in variance, restated below. One warning is needed here. The EM literature works with a different normalization of the same ingredients: the EM rate matrix $DM = I_{\\text{mis}\\mid\\text{obs}}\\, I_{\\text{com}}^{-1}$ of @dempsterMaximumLikelihoodIncomplete1977a and @Meng01121991. The RIV divides by the observed-data information; the rate matrix divides by the complete-data information. The two matrices have different eigenvalues, and conflating them corrupts every trace formula in this paper. The notation keeps them apart.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -424,14 +424,14 @@
           "dempsterMaximumLikelihoodIncomplete1977a": "verified (read in-session 2026-06-06; DM form per Meng-Rubin's attribution)"
         },
         "numbers": {},
-        "notes": "Quarried from 180e2b5; RIV definition display added (was prose); T-01 one-RIV discipline."
+        "notes": "Use-first rewrite."
       }
     },
     {
       "id": "S2-P5",
       "section": "S2",
       "goal": "define_concept",
-      "proposition": "Dempster Q-function: definition, the Q = L + H split (the theorem is an account of H), and curvature I_com (the geometric fact behind the LRT result).",
+      "proposition": "The Q-function (use-first): definition, Q = L + H, curvature I_com.",
       "depends_on": [
         "S2-P4"
       ],
@@ -442,26 +442,26 @@
         "serves_L2": "S2-SP4",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
         "sets_up": "S4a (H-term account), S4b (I_com metric)",
-        "topic_sentence": "@dempsterMaximumLikelihoodIncomplete1977a define [the Q-function].",
+        "topic_sentence": "The object whose bias this paper derives is a Q-function, so its definition and one geometric fact about it are needed.",
         "closing_sentence": "...constrained fits of the averaged log-likelihood project in the $I_{\\text{com}}$ metric.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**EM and the Q-function.** @dempsterMaximumLikelihoodIncomplete1977a define\n$$ Q(\\phi' \\mid \\phi) \\;=\\; E\\big(\\log f(\\mathbf{x} \\mid \\phi') \\,\\big|\\, \\mathbf{y}, \\phi\\big), $$ {#eq-bg-q}\nthe expected complete-data log-likelihood given the observed data. The E-step computes $Q(\\cdot \\mid \\phi^{(p)})$ and the M-step maximizes it. Their heuristic is direct: \"since we do not know $\\log f(\\mathbf{x}\\mid\\phi)$, we maximize instead its current expectation given the data $\\mathbf{y}$ and the current fit $\\phi^{(p)}$.\" Two facts from their analysis carry the weight later. First, the Q-function decomposes as $Q(\\phi'\\mid\\phi) = L(\\phi') + H(\\phi'\\mid\\phi)$, where $L$ is the observed-data log-likelihood and $H$ is a conditional-entropy term. The main theorem of @sec-derivations is, at bottom, an account of what the $H$ term does when its parameters are estimated rather than known. Second, the curvature of $Q$ at its maximizer is the complete-data information $I_{\\text{com}}$, not the observed-data information. This single geometric fact drives the likelihood-ratio result of @sec-derivations: constrained fits of the averaged log-likelihood project in the $I_{\\text{com}}$ metric.",
+      "draft_prose": "**EM and the Q-function.** The object whose bias this paper derives is a Q-function, so its definition and one geometric fact about it are needed. @dempsterMaximumLikelihoodIncomplete1977a define\n$$ Q(\\phi' \\mid \\phi) \\;=\\; E\\big(\\log f(\\mathbf{x} \\mid \\phi') \\,\\big|\\, \\mathbf{y}, \\phi\\big), $$ {#eq-bg-q}\nthe expected complete-data log-likelihood given the observed data. The E-step computes $Q(\\cdot \\mid \\phi^{(p)})$ and the M-step maximizes it. Their heuristic is direct: \"since we do not know $\\log f(\\mathbf{x}\\mid\\phi)$, we maximize instead its current expectation given the data $\\mathbf{y}$ and the current fit $\\phi^{(p)}$.\" Two facts from their analysis carry the weight later. First, the Q-function decomposes as $Q(\\phi'\\mid\\phi) = L(\\phi') + H(\\phi'\\mid\\phi)$, where $L$ is the observed-data log-likelihood and $H$ is a conditional-entropy term. The main theorem is, at bottom, an account of what the $H$ term does when its parameters are estimated rather than known. Second, the curvature of $Q$ at its maximizer is the complete-data information $I_{\\text{com}}$, not the observed-data information. This single geometric fact drives the likelihood-ratio result: constrained fits of the averaged log-likelihood project in the $I_{\\text{com}}$ metric.",
       "audit": {
         "status": "complete",
         "citations": {
           "dempsterMaximumLikelihoodIncomplete1977a": "verified (read in-session 2026-06-06; 'since we do not know...' quote verbatim at :259; Q definition)"
         },
         "numbers": {},
-        "notes": "Quarried from 180e2b5; the two load-bearing facts kept, rate-quote trimmed (rate material lives in P4)."
+        "notes": "Use-first rewrite."
       }
     },
     {
       "id": "S2-P6",
       "section": "S2",
       "goal": "define_concept",
-      "proposition": "Wei-Tanner: imputation is Monte Carlo integration of the E-step; Q-bar-infinity defined; FITTED conditioning flagged as sign-determining.",
+      "proposition": "The MCEM bridge with the improperness marked: draws at a FIXED parameter value; Q-bar-infinity named; hands off to proper imputation.",
       "depends_on": [
         "S2-P5"
       ],
@@ -471,24 +471,60 @@
       "review": {
         "serves_L2": "S2-SP4",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
-        "sets_up": "S4a (fitted-vs-oracle, D-02)",
-        "topic_sentence": "@weiMonteCarloImplementation1990 implement the E-step by simulation.",
-        "closing_sentence": "...@sec-derivations states both versions to prevent the standard confusion.",
+        "sets_up": "S2-P7 (proper imputation); S4a (fitted-vs-oracle)",
+        "topic_sentence": "The averaged log-likelihood over imputations is itself a Q-function, computed by Monte Carlo.",
+        "closing_sentence": "...the next paragraph states the form of imputation under which this paper studies it.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Imputation is Monte Carlo integration of the E-step.** @weiMonteCarloImplementation1990 implement the E-step by simulation. Draws $z^{(1)},\\dots,z^{(m)}$ from the conditional predictive distribution of the missing data replace the integral in @eq-bg-q by an average over completed data sets. Their Remark 2 makes the connection to multiple imputation explicit: \"Rubin (1987) referred to the quantities $z^{(1)}, \\ldots, z^{(m)}$ as multiple imputations.\" This is the precise sense in which the averaged log-likelihood over imputations is a Q-function. Its $m \\to \\infty$ limit, written $\\bar Q_\\infty(\\theta)$, is the central object of this paper. One detail of the definition matters more than any other: the conditioning is on the fitted (or drawn) imputation model, not on the true parameter. That choice of conditioning determines the sign of the main theorem, and @sec-derivations states both versions to prevent the standard confusion.",
+      "draft_prose": "**Imputation is Monte Carlo integration of the E-step.** The averaged log-likelihood over imputations is itself a Q-function, computed by Monte Carlo. @weiMonteCarloImplementation1990 implement the E-step by simulation: draws $z^{(1)},\\dots,z^{(m)}$ from the conditional predictive distribution of the missing data replace the E-step integral by an average over completed data sets. Their Remark 2 makes the connection to multiple imputation explicit: \"Rubin (1987) referred to the quantities $z^{(1)}, \\ldots, z^{(m)}$ as multiple imputations.\" One feature of this construction must be marked at once: the draws are taken at a *fixed* parameter value --- the current iterate, or in the limit the observed-data estimate. Imputation at a fixed parameter value is what Rubin calls *improper*. The $m \\to \\infty$ limit of the averaged log-likelihood, written $\\bar Q_\\infty(\\theta)$, is the central object of this paper, and the next paragraph states the form of imputation under which this paper studies it.",
       "audit": {
         "status": "complete",
         "citations": {
           "weiMonteCarloImplementation1990": "verified (read in-session 2026-06-06; Remark 2 quote verbatim at :74)"
         },
         "numbers": {},
-        "notes": "Quarried from 180e2b5; MCEM display dropped for cadence (the average is described in words; the formal object returns in S4)."
+        "notes": "Improperness of fixed-parameter draws made explicit (Marcus 2026-06-06); hands off to the new P7."
       }
     },
     {
       "id": "S2-P7",
+      "section": "S2",
+      "goal": "define_concept",
+      "proposition": "NEW: proper vs improper imputation - definition (posterior draw first), Rubin ch.4 conditions; MCEM and the deterministic-EM lineage are improper; the theorem prices the distinction (known-scale arms 0 vs -1/2 tr); properness is analysis-relative (Nielsen); MLE analyst => congeniality implies properness; extension to proper MI is a contribution.",
+      "depends_on": [
+        "S2-P6"
+      ],
+      "dep_types": [
+        "builds_on"
+      ],
+      "review": {
+        "serves_L2": "S2-SP5 (+ scope of SP8's lineage)",
+        "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
+        "sets_up": "S4a (known-scale collapse, C_n); S1-P6 novelty item three",
+        "topic_sentence": "The imputations this paper studies are proper in Rubin's sense, and the distinction between proper and improper imputation does real work in the theorem.",
+        "closing_sentence": "The extension of the bias accounting from the improper, deterministic Q-function to proper multiple imputation is one of the things this paper adds.",
+        "status": "drafted",
+        "flags": null
+      },
+      "draft_prose": "**Proper imputation.** The imputations this paper studies are proper in Rubin's sense, and the distinction between proper and improper imputation does real work in the theorem. Proper imputation propagates parameter uncertainty: a parameter value is first drawn from its posterior given the observed data, and the missing values are then drawn from the predictive distribution at that drawn value. Chapter 4 of @rubinMultipleImputationNonresponse1987 states the validity conditions and gives the fully normal Bayesian scheme as the canonical example. Improper imputation skips the first draw and imputes at a fixed parameter value. The Monte Carlo E-step of the previous paragraph is improper by construction, and so is the entire deterministic-EM lineage in which the earlier missing-data criteria were derived [@cavanaughAkaikeInformationCriterion1998a; @shimodairaInformationCriterionModel2017]. The distinction is not bookkeeping. The extra posterior draw contributes its own variation to the averaged log-likelihood, and the main theorem prices it exactly: in the known-scale case, the bias is zero under improper imputation at the observed-data estimate and $-\\tfrac12\\operatorname{tr}(\\mathrm{RIV})$ under proper imputation, so the two forms differ by precisely the posterior-draw contribution. Properness is also not absolute: @nielsenProperImproperMultiple2003 shows that Bayesian imputations are proper when the analyst's complete-data estimator is the maximum likelihood estimator, and that the same imputations can fail to be proper for a different estimator. This paper's analyst always uses the complete-data MLE, which is the case where congeniality implies properness [@mengMultipleImputationInferencesUncongenial1994a; @nielsenProperImproperMultiple2003]. The extension of the bias accounting from the improper, deterministic Q-function to proper multiple imputation is one of the things this paper adds.",
+      "audit": {
+        "status": "complete",
+        "citations": {
+          "rubinMultipleImputationNonresponse1987": "verified (read in-session 2026-06-06; ch.4 SS4.2-4.4 validity conditions + proper/improper examples incl. fully normal Bayesian, per ToC :236-:254)",
+          "cavanaughAkaikeInformationCriterion1998a": "verified (read in-session 2026-06-06; EM/SEM complete-data-tools construction = deterministic, improper)",
+          "shimodairaInformationCriterionModel2017": "verified (read in-session 2026-06-06; deterministic EM estimation, fixed-pattern setting)",
+          "nielsenProperImproperMultiple2003": "verified (read in-session 2026-06-06; :177 Bayesian MI proper when complete-data estimator is the MLE; :265 properness analysis-relative; :335 congeniality implies properness)",
+          "mengMultipleImputationInferencesUncongenial1994a": "verified (congeniality; via Nielsen :335 link)"
+        },
+        "numbers": {
+          "known-scale arms: 0 (improper at theta-hat-obs) vs -1/2 tr(RIV) (proper)": "deriv:sec-thm"
+        },
+        "notes": "NEW paragraph (Marcus 2026-06-06: proper imputation was never invoked; MCEM is improper; Shumway-line results do not touch proper MI)."
+      }
+    },
+    {
+      "id": "S2-P8",
       "section": "S2",
       "goal": "define_concept",
       "proposition": "Rubin's rules are exact posterior-moment identities (Result 3.2); r_inf = B/U-bar (3.1.7); one named approximation separates identities from inference.",
@@ -502,12 +538,12 @@
         "serves_L2": "S2-SP5",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
         "sets_up": "S4a (the theorem uses the identities through the likelihood)",
-        "topic_sentence": "For multiply imputed data, Result 3.2 of @rubinMultipleImputationNonresponse1987 shows two things.",
+        "topic_sentence": "The derivations use Rubin's combining rules not as moment formulas but through the likelihood, and for that they are needed in their exact form.",
         "closing_sentence": "The main theorem describes what happens when the exact moment identities are used not as moments but through the likelihood itself.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Rubin's rules are exact posterior-moment identities.** For multiply imputed data, Result 3.2 of @rubinMultipleImputationNonresponse1987 shows two things. The posterior mean of an estimand given the observed data equals the average of the completed-data posterior means. The posterior variance equals the average completed-data variance plus the variance of the completed-data means. These are the ordinary rules for conditional moments, applied to imputation, and with infinitely many imputations they are exact identities rather than asymptotic approximations. In Rubin's notation they give $\\bar Q_\\infty$, $\\bar U_\\infty$, $B_\\infty$, and the total variance $T_\\infty = \\bar U_\\infty + B_\\infty$. Rubin then defines the scalar relative increase in variance due to nonresponse,\n$$ r_\\infty \\;=\\; B_\\infty / \\bar U_\\infty $$ {#eq-bg-rinf}\n(his equation 3.1.7). The RIV matrix of @eq-bg-riv is this quantity in matrix form. A single approximation separates the exact identities from usable inference: \"the usual approximation of the posterior distribution as normal\" (a Laplace-type approximation; @Tierney01031986). The main theorem describes what happens when the exact moment identities are used not as moments but through the likelihood itself.",
+      "draft_prose": "**Rubin's rules are exact posterior-moment identities.** The derivations use Rubin's combining rules not as moment formulas but through the likelihood, and for that they are needed in their exact form. Result 3.2 of @rubinMultipleImputationNonresponse1987 shows two things. The posterior mean of an estimand given the observed data equals the average of the completed-data posterior means. The posterior variance equals the average completed-data variance plus the variance of the completed-data means. These are the ordinary rules for conditional moments, applied to imputation, and with infinitely many imputations they are exact identities rather than asymptotic approximations. In Rubin's notation they give $\\bar Q_\\infty$, $\\bar U_\\infty$, $B_\\infty$, and the total variance $T_\\infty = \\bar U_\\infty + B_\\infty$. Rubin then defines the scalar relative increase in variance due to nonresponse,\n$$ r_\\infty \\;=\\; B_\\infty / \\bar U_\\infty $$ {#eq-bg-rinf}\n(his equation 3.1.7). The RIV matrix of @eq-bg-riv is this quantity in matrix form. A single approximation separates the exact identities from usable inference: \"the usual approximation of the posterior distribution as normal\" (a Laplace-type approximation; @Tierney01031986). The main theorem describes what happens when the exact moment identities are used not as moments but through the likelihood itself.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -515,41 +551,43 @@
           "Tierney01031986": "verified (Laplace-approximation pointer; held from 180e2b5 verification, role unchanged)"
         },
         "numbers": {},
-        "notes": "Quarried from 180e2b5; plain cadence."
+        "notes": "Use-first rewrite; renumbered from P7."
       }
     },
     {
-      "id": "S2-P8",
+      "id": "S2-P9",
       "section": "S2",
       "goal": "define_concept",
       "proposition": "Congeniality (Meng 1994): definition; assumed throughout; the bias is what remains after imputer-analyst agreement.",
       "depends_on": [
-        "S2-P7"
+        "S2-P7",
+        "S2-P8"
       ],
       "dep_types": [
+        "builds_on",
         "builds_on"
       ],
       "review": {
         "serves_L2": "S2-SP5",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
         "sets_up": "S4 scope; S6 limits",
-        "topic_sentence": "@mengMultipleImputationInferencesUncongenial1994a formalizes when the imputer and the analyst agree.",
+        "topic_sentence": "The second standing assumption is congeniality: the imputer and the analyst agree.",
         "closing_sentence": "It is what remains after they agree.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Congeniality.** @mengMultipleImputationInferencesUncongenial1994a formalizes when the imputer and the analyst agree. An analysis procedure is congenial to an imputation model if there exists one Bayesian model that reproduces both: its posterior means and variances asymptotically match the analyst's complete-data and incomplete-data procedures, and its posterior predictive distribution for the missing data is the imputation model. Everything in this paper assumes congenial, proper imputation. This assumption is what gives the main theorem its force: the bias derived there is not an artifact of imputer-analyst disagreement. It is what remains after they agree.",
+      "draft_prose": "**Congeniality.** The second standing assumption is congeniality: the imputer and the analyst agree. @mengMultipleImputationInferencesUncongenial1994a formalizes the agreement. An analysis procedure is congenial to an imputation model if there exists one Bayesian model that reproduces both --- its posterior means and variances asymptotically match the analyst's complete-data and incomplete-data procedures, and its posterior predictive distribution for the missing data is the imputation model. Everything in this paper assumes congenial, proper imputation. This assumption is what gives the main theorem its force: the bias derived there is not an artifact of imputer-analyst disagreement. It is what remains after they agree.",
       "audit": {
         "status": "complete",
         "citations": {
           "mengMultipleImputationInferencesUncongenial1994a": "verified (read in-session 2026-06-06; congeniality formalization per abstract + SS1)"
         },
         "numbers": {},
-        "notes": "Quarried from 180e2b5; plain cadence."
+        "notes": "Use-first rewrite; renumbered from P8; now also depends on P7 (proper)."
       }
     },
     {
-      "id": "S2-P9",
+      "id": "S2-P10",
       "section": "S2",
       "goal": "define_concept",
       "proposition": "Akaike: AIC as a bias-corrected plug-in estimate; the IC application repeats the accounting with one additional bias source.",
@@ -563,28 +601,28 @@
         "serves_L2": "S2-SP6",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
         "sets_up": "S4c (corrected criterion)",
-        "topic_sentence": "@akaikeNewLookStatistical1974a evaluates a fitted model by its mean log-likelihood against the true distribution.",
+        "topic_sentence": "The model-selection application corrects AIC, so AIC's own logic is needed first.",
         "closing_sentence": "...the additional bias is exactly what the main theorem quantifies.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**AIC is a bias-corrected plug-in estimate.** @akaikeNewLookStatistical1974a evaluates a fitted model by its mean log-likelihood against the true distribution. The maximized log-likelihood is the natural estimate of this criterion, and it is too optimistic: it \"needs a correction for the downward bias introduced by replacing $\\theta$ by $\\hat\\theta$. This correction is simply realized by adding $k$,\" the parameter count. The result is\n$$ \\mathrm{AIC} \\;=\\; -2\\log(\\text{maximum likelihood}) + 2k. $$ {#eq-bg-aic}\nThe model-selection application of @sec-derivations repeats this accounting with one additional bias source. Under multiple imputation the goodness-of-fit term is $-2\\bar Q_\\infty$ rather than the complete-data deviance, and the additional bias is exactly what the main theorem quantifies.",
+      "draft_prose": "**AIC is a bias-corrected plug-in estimate.** The model-selection application corrects AIC, so AIC's own logic is needed first. @akaikeNewLookStatistical1974a evaluates a fitted model by its mean log-likelihood against the true distribution. The maximized log-likelihood is the natural estimate of this criterion, and it is too optimistic: it \"needs a correction for the downward bias introduced by replacing $\\theta$ by $\\hat\\theta$. This correction is simply realized by adding $k$,\" the parameter count. The result is\n$$ \\mathrm{AIC} \\;=\\; -2\\log(\\text{maximum likelihood}) + 2k. $$ {#eq-bg-aic}\nThe model-selection application repeats this accounting with one additional bias source. Under multiple imputation the goodness-of-fit term is $-2\\bar Q_\\infty$ rather than the complete-data deviance, and the additional bias is exactly what the main theorem quantifies.",
       "audit": {
         "status": "complete",
         "citations": {
           "akaikeNewLookStatistical1974a": "verified (read in-session 2026-06-06; 'downward bias... adding k' quote verbatim at :148)"
         },
         "numbers": {},
-        "notes": "Quarried from 180e2b5; plain cadence."
+        "notes": "Use-first rewrite; renumbered from P9."
       }
     },
     {
-      "id": "S2-P10",
+      "id": "S2-P11",
       "section": "S2",
       "goal": "define_concept",
       "proposition": "Wilks: -2 log lambda -> chi-square_{h-m}; the complete-data reference the replication principle compares against.",
       "depends_on": [
-        "S2-P9"
+        "S2-P10"
       ],
       "dep_types": [
         "builds_on"
@@ -593,23 +631,23 @@
         "serves_L2": "S2-SP6",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
         "sets_up": "S4b/S4c references; S1-P3 principle",
-        "topic_sentence": "Under a null hypothesis fixing $h - m$ of $h$ parameters, @wilksLargeSampleDistributionLikelihood1938a shows that $-2\\log\\lambda$ is distributed as $\\chi^2_{h-m}$ in large samples.",
+        "topic_sentence": "The complete-data baseline for testing is Wilks' theorem, and the replication principle is defined against it.",
         "closing_sentence": "...the complete-data replication principle asks when that comparison behaves as it would have with full data.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Wilks.** Under a null hypothesis fixing $h - m$ of $h$ parameters, @wilksLargeSampleDistributionLikelihood1938a shows that $-2\\log\\lambda$ is distributed as $\\chi^2_{h-m}$ in large samples. This is the complete-data reference distribution. Every multiply imputed deviance in @sec-derivations is ultimately compared against it, and the complete-data replication principle asks when that comparison behaves as it would have with full data.",
+      "draft_prose": "**Wilks.** The complete-data baseline for testing is Wilks' theorem, and the replication principle is defined against it. Under a null hypothesis fixing $h - m$ of $h$ parameters, @wilksLargeSampleDistributionLikelihood1938a shows that $-2\\log\\lambda$ is distributed as $\\chi^2_{h-m}$ in large samples. Every multiply imputed deviance in this paper is ultimately compared against this reference, and the complete-data replication principle asks when that comparison behaves as it would have with full data.",
       "audit": {
         "status": "complete",
         "citations": {
           "wilksLargeSampleDistributionLikelihood1938a": "verified (read in-session 2026-06-06; chi-square characteristic-function conclusion at :96)"
         },
         "numbers": {},
-        "notes": "Quarried from 180e2b5; tied to the principle (new clause)."
+        "notes": "Use-first rewrite; renumbered from P10."
       }
     },
     {
-      "id": "S2-P11",
+      "id": "S2-P12",
       "section": "S2",
       "goal": "define_concept",
       "proposition": "Kenward-Molenberghs: R not ancillary under MAR; unconditional framework; naive vs unconditional expected information (MCAR iff equal); observed information recommended; MAR cross terms.",
@@ -623,29 +661,29 @@
         "serves_L2": "S2-SP7",
         "serves_L1": "M2 BACKGROUND (three-tier gradient, D-04)",
         "sets_up": "S4a ((A)+(C) convention, T-02); the one-RIV (T-01)",
-        "topic_sentence": "@kenwardLikelihoodBasedFrequentist1998 sharpen Rubin's caution about frequentist inference.",
+        "topic_sentence": "One convention must be fixed before any trace in this paper is computed: which information matrix to use under MAR.",
         "closing_sentence": "The observed-data information behind the one RIV of this paper carries exactly their MAR cross term.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Observed versus expected information under MAR.** @kenwardLikelihoodBasedFrequentist1998 sharpen Rubin's caution about frequentist inference. Under MAR the missingness indicator is not ancillary. The correct sampling framework is therefore unconditional over both the data and the missingness pattern. A \"naive\" expected information, computed as if the realized pattern were fixed by design, is biased, and MCAR is necessary and sufficient for the naive and unconditional forms to agree. Their recommendation is to use the observed information. Their bivariate Gaussian example shows where the difference lodges: under MAR dropout, the unconditional information acquires mean-covariance cross terms that the naive form misses. Both facts recur in @sec-derivations. The design-imbalance term $(A)+(C)$ is nonzero exactly when MCAR fails, and it is computed against the observed information, as they recommend. The observed-data information behind the one RIV of this paper carries exactly their MAR cross term.",
+      "draft_prose": "**Observed versus expected information under MAR.** One convention must be fixed before any trace in this paper is computed: which information matrix to use under MAR. @kenwardLikelihoodBasedFrequentist1998 settle it. Under MAR the missingness indicator is not ancillary, so the correct sampling framework is unconditional over both the data and the missingness pattern. A \"naive\" expected information, computed as if the realized pattern were fixed by design, is biased, and MCAR is necessary and sufficient for the naive and unconditional forms to agree. Their recommendation is to use the observed information, and this paper follows it. Their bivariate Gaussian example shows where the difference lodges: under MAR dropout, the unconditional information acquires mean-covariance cross terms that the naive form misses. Both facts recur in @sec-derivations. The design-imbalance term $(A)+(C)$ is nonzero exactly when MCAR fails, and it is computed against the observed information. The observed-data information behind the one RIV of this paper carries exactly their MAR cross term.",
       "audit": {
         "status": "complete",
         "citations": {
           "kenwardLikelihoodBasedFrequentist1998": "verified (read in-session 2026-06-06; naive vs unconditional construction at :128-:140; observed-information recommendation :111)"
         },
         "numbers": {},
-        "notes": "Quarried from 180e2b5; plain cadence."
+        "notes": "Use-first rewrite; renumbered from P11."
       }
     },
     {
-      "id": "S2-P12",
+      "id": "S2-P13",
       "section": "S2",
       "goal": "position_lineage",
       "proposition": "Three launch points: Meng-Rubin combining -> Chan-Meng maximize-then-average numerator (the analyzed statistic) -> Chan reference (absorption); and the prior MI-AIC (C-C 2010) whose open theory Application II answers.",
       "depends_on": [
-        "S2-P7",
-        "S2-P10"
+        "S2-P8",
+        "S2-P11"
       ],
       "dep_types": [
         "builds_on",
@@ -672,7 +710,7 @@
         "numbers": {
           "null-law mean exceeds k by total odds of missing information": "lit:chanGeneralFeasibleTests2022"
         },
-        "notes": "Quarried from 180e2b5 with the C-C 2010 strand ADDED (level2 cycle-1 decision: the prior MI-AIC enters the lineage)."
+        "notes": "Renumbered from P12; opening already functional."
       }
     }
   ],
@@ -683,6 +721,6 @@
     "review_objects_complete": null,
     "dependency_graph_acyclic": null,
     "passes": null,
-    "notes": "Partial evaluation after S2 drafting (2026-06-06): S1 7 + S2 12 = 19 paragraphs; all carry propositions/goals; S2 quotes re-verified in-session against the literature files; dependency graph acyclic (S2-P1 hangs off S1-P7). S2 estimated 12-15 in the blueprint, drafted at 12. Full gate when all six sections drafted."
+    "notes": "After the S2 use-first rewrite (2026-06-06): S1 7 + S2 13 = 20 paragraphs; use-first openings throughout S2; new P7 (proper imputation) with in-session verified sources; dependency graph acyclic. Note for the S1 session: add 'improper' to S1-P6's deterministic-EM clause. Full gate when all sections drafted."
   }
 }

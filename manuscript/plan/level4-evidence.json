@@ -238,84 +238,108 @@
       "note": "The MCEM bridge."
     },
     {
-      "id": "E-S2-P7-1",
-      "proposition_id": "S2-P7",
+      "id": "E-S2-P8-1",
+      "proposition_id": "S2-P8",
       "pointer": "lit:rubinMultipleImputationNonresponse1987",
       "evidence_status": "verified",
       "passage_or_value": "Result 3.2 :2438; r_inf (3.1.7) :2534; 'usual approximation' :2538.",
       "note": "Exact identities + the one approximation."
     },
     {
-      "id": "E-S2-P7-2",
-      "proposition_id": "S2-P7",
+      "id": "E-S2-P8-2",
+      "proposition_id": "S2-P8",
       "pointer": "lit:Tierney01031986",
       "evidence_status": "verified",
       "passage_or_value": "Laplace-type posterior approximation.",
       "note": "The named approximation's source."
     },
     {
-      "id": "E-S2-P8-1",
-      "proposition_id": "S2-P8",
+      "id": "E-S2-P9-1",
+      "proposition_id": "S2-P9",
       "pointer": "lit:mengMultipleImputationInferencesUncongenial1994a",
       "evidence_status": "verified",
       "passage_or_value": "Congeniality formalization (abstract + SS1).",
       "note": "Scope assumption."
     },
     {
-      "id": "E-S2-P9-1",
-      "proposition_id": "S2-P9",
+      "id": "E-S2-P10-1",
+      "proposition_id": "S2-P10",
       "pointer": "lit:akaikeNewLookStatistical1974a",
       "evidence_status": "verified",
       "passage_or_value": "'downward bias... simply realized by adding k' :148.",
       "note": "AIC as plug-in correction."
     },
     {
-      "id": "E-S2-P10-1",
-      "proposition_id": "S2-P10",
+      "id": "E-S2-P11-1",
+      "proposition_id": "S2-P11",
       "pointer": "lit:wilksLargeSampleDistributionLikelihood1938a",
       "evidence_status": "verified",
       "passage_or_value": "chi-square_{h-m} conclusion :96.",
       "note": "Complete-data reference."
     },
     {
-      "id": "E-S2-P11-1",
-      "proposition_id": "S2-P11",
+      "id": "E-S2-P12-1",
+      "proposition_id": "S2-P12",
       "pointer": "lit:kenwardLikelihoodBasedFrequentist1998",
       "evidence_status": "verified",
       "passage_or_value": "Naive vs unconditional information :128-:140; observed-info recommendation :111.",
       "note": "T-02 convention + MAR cross terms."
     },
     {
-      "id": "E-S2-P12-1",
-      "proposition_id": "S2-P12",
+      "id": "E-S2-P13-1",
+      "proposition_id": "S2-P13",
       "pointer": "lit:mengPerformingLikelihoodRatio1992b",
       "evidence_status": "verified",
       "passage_or_value": "Combining rule (SS2-3).",
       "note": "Launch point 1."
     },
     {
-      "id": "E-S2-P12-2",
-      "proposition_id": "S2-P12",
+      "id": "E-S2-P13-2",
+      "proposition_id": "S2-P13",
       "pointer": "lit:chanMultipleImprovementsMultiple2022",
       "evidence_status": "verified",
       "passage_or_value": "Maximize-then-average statistic; defect repairs.",
       "note": "The analyzed numerator."
     },
     {
-      "id": "E-S2-P12-3",
-      "proposition_id": "S2-P12",
+      "id": "E-S2-P13-3",
+      "proposition_id": "S2-P13",
       "pointer": "lit:chanGeneralFeasibleTests2022",
       "evidence_status": "verified",
       "passage_or_value": "Eigenvalue estimation; weighted-sum null law (eq 1.10).",
       "note": "Absorption property feeding S4b."
     },
     {
-      "id": "E-S2-P12-4",
-      "proposition_id": "S2-P12",
+      "id": "E-S2-P13-4",
+      "proposition_id": "S2-P13",
       "pointer": "lit:consentinoclaeskensOrderSelectionTests2010",
       "evidence_status": "verified",
       "passage_or_value": "SS5: aic_D; open-theory closing statement :404.",
       "note": "The prior MI-AIC whose question S4c answers."
+    },
+    {
+      "id": "E-S2-P7-1",
+      "proposition_id": "S2-P7",
+      "pointer": "lit:rubinMultipleImputationNonresponse1987",
+      "evidence_status": "verified",
+      "passage_or_value": "Ch.4: SS4.2 randomization-validity conditions; SS4.3 proper/improper examples incl. Example 4.2 (fully normal Bayesian); SS4.4 further discussion.",
+      "note": "Proper-imputation definition and conditions."
+    },
+    {
+      "id": "E-S2-P7-2",
+      "proposition_id": "S2-P7",
+      "pointer": "lit:nielsenProperImproperMultiple2003",
+      "evidence_status": "verified",
+      "passage_or_value": ":177 'Bayesian multiple imputations are proper, when the complete data estimator is the complete data MLE'; :265 properness analysis-relative; :335 congeniality implies properness (m=inf).",
+      "note": "Properness scoping; the MLE-analyst case this paper occupies."
+    },
+    {
+      "id": "E-S2-P7-3",
+      "proposition_id": "S2-P7",
+      "pointer": "deriv:sec-thm",
+      "evidence_status": "verified",
+      "passage_or_value": "Known-scale arms: 0 (deterministic/improper) vs -1/2 tr(RIV) (proper MI); difference = posterior-draw contribution C_n.",
+      "note": "Why the distinction does work in the theorem."
     }
   ],
   "acquisition_queue_note": "New references surfaced while drafting enter here as 'proposed' AND in todo/003 in the same response (standing rule). The /status dashboard reports the backlog by status.",
@@ -324,6 +348,6 @@
     "no_cited_without_verified_literature_file": null,
     "every_pointer_resolves": null,
     "passes": null,
-    "notes": "S1 + S2 populated (2026-06-06): every drafted paragraph has >=1 entry; all pointers resolve. Full gate when all sections drafted."
+    "notes": "S1 + S2 populated; S2 renumbered after the proper-imputation insertion (P7 new; old P7-P12 -> P8-P13). All pointers resolve."
   }
 }

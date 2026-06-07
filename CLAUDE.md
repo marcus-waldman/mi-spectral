@@ -204,6 +204,12 @@ Target reader: an applied researcher with quantitative training and working MI k
   that..."), never asserted cold. Immediately translate each formal object into applied
   terms in its own sentence (e.g., the model-specific bias → "a model-comparison table
   built on imputed data favors the candidates with the most missing information").
+- **Motivate by use, not provenance.** Background/restatement paragraphs open with the
+  item's role in THIS paper ("This paper assumes...", "The paper's central matrix is...",
+  "The complete-data baseline is..."), with the source second — never "Author (year)
+  gives/defines/shows..." first (reads as literature review; the impatient reader asks
+  "why are you telling me this"). Section openers are roadmaps of what the reader will
+  get, never self-justifications of why the section exists.
 - **Typed claims (T-06).** "Unresolved in the literature" must be either documented-open
   (cited to the stating passage, quotes verbatim) or asserted-here (in the authors'
   voice, flagged as contribution). Settledness is attributed ("the field's own accounts
