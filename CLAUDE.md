@@ -197,9 +197,13 @@ Target reader: an applied researcher with quantitative training and working MI k
 
 - **Plain expository structure.** Topic sentence first, supporting details in separate
   sentences, one idea per sentence, explicit connectives ("The practical consequence
-  is...", "The fix is direct:"). No em-dash appositive chains (X — gloss — verb), no
+  is...", "The fix is direct."). No em-dash appositive chains (X — gloss — verb), no
   nested mid-sentence glosses, no fixed poetic cadence, no constructions that make the
   reader backtrack.
+- **Punctuation budget.** Semicolons, colons, and dashes are near-zero by default —
+  where one is tempting, end the sentence and start a new one. Lists become "The first
+  is X. The second is Y." or enumerated displays, not semicolon chains. A colon is
+  acceptable only to introduce a display or a definition.
 - **Announce results.** New results are introduced as things the paper shows ("We show
   that..."), never asserted cold. Immediately translate each formal object into applied
   terms in its own sentence (e.g., the model-specific bias → "a model-comparison table

@@ -2,7 +2,7 @@
   "metadata": {
     "level": 3,
     "date": "2026-06-05",
-    "status": "drafting_s3_complete",
+    "status": "drafting_s3_rewritten",
     "purpose": "SOURCE OF TRUTH for manuscript prose once populated. Each paragraph carries its proposition, dependencies, the draft_prose itself, a review object, and an audit object. manuscript/mi-spectral.qmd is compiled from this file by scripts/compile_manuscript.py and never edited directly.",
     "compile_enabled": false,
     "compile_note": "compile_enabled stays false until all six sections are drafted and reviewed (D-12: from-scratch drafting, 180e2b5 as quarry; the decomposition route is retired). mi-spectral.qmd remains frozen at 180e2b5 until the first compile.",
@@ -728,17 +728,17 @@
         "serves_L2": "S3 goal statement (framing)",
         "serves_L1": "M3 METHODS (methodological thesis; T-05; D-08 appendix note)",
         "sets_up": "all S3 paragraphs; S4/S5 tier usage",
-        "topic_sentence": "The derivations in this paper were produced by an AI system and verified under a protocol that this section states as the paper's methods.",
+        "topic_sentence": "The derivations in this paper were produced by an AI system.",
         "closing_sentence": "...this section states the design.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "The derivations in this paper were produced by an AI system and verified under a protocol that this section states as the paper's methods. The section answers one question: why the results that follow deserve the same scrutiny, no more and no less, that is applied to human-derived mathematics. The protocol has six parts: roles and decision records; sourced citations; a verification pipeline with explicit trust tiers; preregistration of every simulation; adversarial cross-model review; and full reproducibility. Each part is stated below together with what it can catch and what it cannot. The complete protocol records --- decision logs, grading sheets, amendment histories, and the enforcement code --- are collected in the appendices and the public repository; this section states the design.",
+      "draft_prose": "The derivations in this paper were produced by an AI system. They were verified under a protocol that this section states as the paper's methods. The section answers one question. Why do the results that follow deserve the same scrutiny that is applied to human-derived mathematics? The protocol has six parts. The first is roles and decision records. The second is sourced citations. The third is a verification pipeline with explicit trust tiers. The fourth is preregistration of every simulation. The fifth is adversarial cross-model review. The sixth is full reproducibility. Each part is stated below together with what it can catch and what it cannot. The complete protocol records are collected in the appendices and the public repository. These records include the decision logs, the grading sheets, the amendment histories, and the enforcement code. This section states the design.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
-        "notes": "Use-first roadmap; passive voice (T-05); appendix posture per D-08 note."
+        "notes": "Use-first roadmap; passive voice (T-05); appendix posture per D-08 note. Punctuation rewrite 2026-06-07 (semicolon/colon/dash budget)."
       }
     },
     {
@@ -761,12 +761,12 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Roles and decision records.** Direction, scope, and the acceptance or rejection of every result were decided by the human author of record; derivations, drafts, and computations were produced by an AI assistant. Each strategic decision was recorded with its date, the options rejected, and the rationale, and recorded decisions were not revisited without a dated amendment. The log is part of the public record, so the division of labor is auditable after the fact. What this discipline cannot do is certify correctness: recording who decided what catches nothing about whether a derivation is right. The remaining parts exist for that.",
+      "draft_prose": "**Roles and decision records.** Direction, scope, and the acceptance or rejection of every result were decided by the human author of record. Derivations, drafts, and computations were produced by an AI assistant. Each strategic decision was recorded with its date, the options rejected, and the rationale. Recorded decisions were not revisited without a dated amendment. The log is part of the public record, so the division of labor is auditable after the fact. This discipline cannot certify correctness. Recording who decided what catches nothing about whether a derivation is right. The remaining parts exist for that.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
-        "notes": "Evidence: the decision log itself (manuscript/plan/decisions.md)."
+        "notes": "Evidence: the decision log itself (manuscript/plan/decisions.md). Punctuation rewrite 2026-06-07 (semicolon/colon/dash budget)."
       }
     },
     {
@@ -784,17 +784,17 @@
         "serves_L2": "S3-SP2",
         "serves_L1": "M3 METHODS (methodological thesis; T-05; D-08 appendix note)",
         "sets_up": "every literature citation in the paper",
-        "topic_sentence": "Every claim about prior literature was pinned to a source document archived locally and read in the working session that used it.",
-        "closing_sentence": "A real passage can still be misread, and only review catches that.",
+        "topic_sentence": "Every claim about prior literature was pinned to a source document that was archived locally and read in the working session that used it.",
+        "closing_sentence": "Only review catches that.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Sourced citations.** Every claim about prior literature was pinned to a source document archived locally and read in the working session that used it. The rule was enforced mechanically: a pre-write check blocked any manuscript edit that cited a paper whose archived copy did not exist. Reliance on the AI system's trained recollection of a paper was prohibited throughout, because invented or misattributed citations are among the most common failures of AI-assisted scholarship. The enforcement has a stated limit: it checks existence and provenance, not understanding. A real passage can still be misread, and only review catches that.",
+      "draft_prose": "**Sourced citations.** Every claim about prior literature was pinned to a source document that was archived locally and read in the working session that used it. The rule was enforced by software. A pre-write check blocked any manuscript edit that cited a paper whose archived copy did not exist. Reliance on the AI system's trained recollection of a paper was prohibited throughout. The reason is that invented or misattributed citations are among the most common failures of AI-assisted scholarship. The enforcement has a stated limit. It checks that a source exists and where it came from. It does not check understanding. A real passage can still be misread. Only review catches that.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
-        "notes": "Evidence: the pre-write hook + the companion's source-passage apparatus."
+        "notes": "Evidence: the pre-write hook + the companion's source-passage apparatus. Punctuation rewrite 2026-06-07 (semicolon/colon/dash budget)."
       }
     },
     {
@@ -812,17 +812,17 @@
         "serves_L2": "S3-SP3",
         "serves_L1": "M3 METHODS (methodological thesis; T-05; D-08 appendix note)",
         "sets_up": "tier labels used throughout S4/S5",
-        "topic_sentence": "Every analytic claim passed through a fixed sequence: derivation first, then symbolic verification in two independent computer-algebra systems, then Monte Carlo confirmation against criteria fixed in advance.",
+        "topic_sentence": "Every analytic claim passed through a fixed sequence.",
         "closing_sentence": "The next two parts exist for that class of error.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**The claim pipeline and trust tiers.** Every analytic claim passed through a fixed sequence: derivation first, then symbolic verification in two independent computer-algebra systems, then Monte Carlo confirmation against criteria fixed in advance. Results are labeled throughout the paper by the gates they cleared. A claim is *firm* if it was derived in closed form and passed both symbolic systems and Monte Carlo. It is *measured* if it is a quantitative finding confirmed by preregistered simulation but not pinned in closed form. It is *structural* if it is argued from the form of the problem but not separately measured. Anything weaker is a *conjecture* and is labeled as one. These four labels are used in the Derivations and Simulation studies sections without further comment. The pipeline's limit is shared setup: both algebra systems verify the expressions they are given, so an error upstream of the algebra --- a wrong conditioning, a misstated expectation --- passes both. The next two parts exist for that class of error.",
+      "draft_prose": "**The claim pipeline and trust tiers.** Every analytic claim passed through a fixed sequence. It was derived first. It was then verified symbolically in two independent computer-algebra systems. It was then confirmed by Monte Carlo simulation against criteria fixed in advance. Results are labeled throughout the paper by the gates they cleared. A claim is *firm* if it was derived in closed form and passed both symbolic systems and Monte Carlo. A claim is *measured* if it is a quantitative finding confirmed by preregistered simulation but not pinned in closed form. A claim is *structural* if it is argued from the form of the problem but not separately measured. Anything weaker is a *conjecture* and is labeled as one. These four labels are used in the Derivations and Simulation studies sections without further comment. The pipeline has a limit, and the limit is shared setup. Both algebra systems verify the expressions they are given. An error upstream of the algebra passes both. A wrong conditioning or a misstated expectation is exactly that kind of error. The next two parts exist for that class of error.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
-        "notes": "Tier definitions align with the todo/030 standing classes (T/M/E + conjecture)."
+        "notes": "Tier definitions align with the todo/030 standing classes (T/M/E + conjecture). Punctuation rewrite 2026-06-07 (semicolon/colon/dash budget)."
       }
     },
     {
@@ -840,17 +840,17 @@
         "serves_L2": "S3-SP4",
         "serves_L1": "M3 METHODS (methodological thesis; T-05; D-08 appendix note)",
         "sets_up": "S5 (the preregistered account)",
-        "topic_sentence": "Every simulation in this paper was preregistered: predictions, designs, and pass criteria were committed to the repository before the simulation code was written.",
+        "topic_sentence": "Every simulation in this paper was preregistered.",
         "closing_sentence": "...committing it early validates neither the derivation behind it nor the design that tests it.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Preregistration before code.** Every simulation in this paper was preregistered: predictions, designs, and pass criteria were committed to the repository before the simulation code was written. Changes were handled by dated amendments, themselves committed before any new runs. Predictions that failed are reported in the main text alongside those that held. The limit is stated directly: preregistration disciplines the reporting, and nothing more. A frozen prediction can rest on a wrong premise, and committing it early validates neither the derivation behind it nor the design that tests it.",
+      "draft_prose": "**Preregistration before code.** Every simulation in this paper was preregistered. Predictions, designs, and pass criteria were committed to the repository before the simulation code was written. Changes were handled by dated amendments, themselves committed before any new runs. Predictions that failed are reported in the main text alongside those that held. The limit is stated directly. Preregistration disciplines the reporting and nothing more. A frozen prediction can rest on a wrong premise. Committing it early validates neither the derivation behind it nor the design that tests it.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
-        "notes": "Evidence: todo/004 (frozen at ddc9037), todo/027, todo/005; amendment history within."
+        "notes": "Evidence: todo/004 (frozen at ddc9037), todo/027, todo/005; amendment history within. Punctuation rewrite 2026-06-07 (semicolon/colon/dash budget)."
       }
     },
     {
@@ -868,19 +868,19 @@
         "serves_L2": "S3-SP5",
         "serves_L1": "M3 METHODS (methodological thesis; T-05; D-08 appendix note)",
         "sets_up": "S4a (the two-conditioning statement, D-02)",
-        "topic_sentence": "Load-bearing claims were re-derived blind by a model of an independent lineage, which was given the setup but not the result, and were then subjected to a second pass in which that model was instructed to refute each claim with the strongest available argument.",
+        "topic_sentence": "Load-bearing claims were re-derived blind by a model of an independent lineage.",
         "closing_sentence": "...an error common to the corpus can survive both.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Cross-model adversarial review.** Load-bearing claims were re-derived blind by a model of an independent lineage, which was given the setup but not the result, and were then subjected to a second pass in which that model was instructed to refute each claim with the strongest available argument. The grading records are committed. One episode shows what this gate catches and is reported here as the worked example. The main theorem's sign depends on a conditioning choice: the averaged log-likelihood can be defined at the fitted imputation model, which is what multiple imputation computes, or at an oracle conditioned on the truth, which is not. Eight of nine blind re-derivations produced the opposite sign, $-\\tfrac12\\operatorname{tr}(\\mathrm{RIV})$, because the oracle conditioning had been silently substituted. The error was not algebraic; every algebra check passed, because the algebra was correct for the definition it was given. The fork is now stated explicitly where the theorem is set up, with both conditionings and both signs. A derivation produced and checked within a single model lineage would likely have shipped one sign without noticing that there was a choice. The gate's limit is the mirror of its strength: independent lineages are trained on overlapping corpora, and an error common to the corpus can survive both.",
+      "draft_prose": "**Cross-model adversarial review.** Load-bearing claims were re-derived blind by a model of an independent lineage. That model was given the setup but not the result. The claims were then subjected to a second pass in which the model was instructed to refute each one with the strongest available argument. The grading records are committed. One episode shows what this gate catches, and it is reported here as the worked example. The main theorem's sign depends on a conditioning choice. The averaged log-likelihood can be defined at the fitted imputation model, which is what multiple imputation computes. It can instead be defined at an oracle conditioned on the truth, which no procedure computes. Eight of nine blind re-derivations produced the opposite sign, $-\\tfrac12\\operatorname{tr}(\\mathrm{RIV})$. They did so because the oracle conditioning had been silently substituted. The error was not algebraic. Every algebra check passed, because the algebra was correct for the definition it was given. The fork is now stated explicitly where the theorem is set up, with both conditionings and both signs. A derivation produced and checked within a single model lineage would likely have shipped one sign without noticing that there was a choice. The gate's limit is the mirror of its strength. Independent lineages are trained on overlapping corpora. An error common to the corpus can survive both.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {
           "8 of 9 blind re-derivations produced the opposite sign": "deriv:sec-qfun"
         },
-        "notes": "The single narrative passage of S3 (blueprint requirement). Model lineages deliberately unnamed in prose; named in the title-page declaration and appendices."
+        "notes": "The single narrative passage of S3 (blueprint requirement). Model lineages deliberately unnamed in prose; named in the title-page declaration and appendices. Punctuation rewrite 2026-06-07 (semicolon/colon/dash budget)."
       }
     },
     {
@@ -903,12 +903,12 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "**Reproducibility.** Every number in this paper regenerates from committed code. The simulations run from fixed entry points with fixed seeds; outputs are cached as committed artifacts; the software environment is recorded. Where a result is quoted in the text, its audit trail names the artifact it comes from. The limit is the usual one: reproducibility guarantees the numbers, not their meaning. A wrong design reproduces its artifact exactly.",
+      "draft_prose": "**Reproducibility.** Every number in this paper regenerates from committed code. The simulations run from fixed entry points with fixed seeds. Outputs are cached as committed artifacts. The software environment is recorded. Where a result is quoted in the text, its audit trail names the artifact it comes from. The limit is the usual one. Reproducibility guarantees the numbers, not their meaning. A wrong design reproduces its artifact exactly.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
-        "notes": "Evidence: verification/run_all.R, verification/ic-ladder.R, cached artifacts + sessioninfo records."
+        "notes": "Evidence: verification/run_all.R, verification/ic-ladder.R, cached artifacts + sessioninfo records. Punctuation rewrite 2026-06-07 (semicolon/colon/dash budget)."
       }
     },
     {
@@ -929,16 +929,16 @@
         "serves_L1": "M3 METHODS (methodological thesis; T-05; D-08 appendix note)",
         "sets_up": "S4 opening",
         "topic_sentence": "Read with this section in hand, the rest of the paper carries its evidence with it.",
-        "closing_sentence": "It asks the reader to check one, and states where the checking has already been done and where it cannot be.",
+        "closing_sentence": "It states where the checking has already been done and where it cannot be.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "Read with this section in hand, the rest of the paper carries its evidence with it. Each claim in the Derivations and Simulation studies sections arrives with a tier label and, where quantitative, a committed artifact behind it. The appendices hold the records; the repository holds everything. The protocol does not ask the reader to trust an AI derivation. It asks the reader to check one, and states where the checking has already been done and where it cannot be.",
+      "draft_prose": "Read with this section in hand, the rest of the paper carries its evidence with it. Each claim in the Derivations and Simulation studies sections arrives with a tier label. Each quantitative claim also arrives with a committed artifact behind it. The appendices hold the records. The repository holds everything. The protocol does not ask the reader to trust an AI derivation. It asks the reader to check one. It states where the checking has already been done and where it cannot be.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
-        "notes": "Hands off to S4."
+        "notes": "Hands off to S4. Punctuation rewrite 2026-06-07 (semicolon/colon/dash budget)."
       }
     }
   ],
