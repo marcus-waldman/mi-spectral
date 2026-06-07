@@ -2,16 +2,16 @@
   "schema_version": 1,
   "project": "mi-spectral JAIGP manuscript",
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
-  "phase": "level1_annotation",
-  "last_updated": "2026-06-05",
-  "updated_by": "claude (level1 amendment cycle: D-09)",
+  "phase": "level2_drafting",
+  "last_updated": "2026-06-06",
+  "updated_by": "claude (level1 review cycle 2: arc ratified, 6 moves)",
   "blocked_on": {
-    "who": "marcus",
-    "what": "Continue Level-1 annotation: thesis text (incl. the new methodological component) and ratification of D-03/D-04/D-05/D-08. D-09 (IMRaD with Methods-as-workflow) is ratified and the arc is amended.",
-    "artifact": "manuscript/plan/level1-thesis.json"
+    "who": "claude",
+    "what": "Draft Level 2 (section blueprints) under the ratified Level 1: 6 IMRaD moves (M1/M2/M3/M4a/M4b/M5 per D-09 Amendment 1). Prerequisite rider: theory-side literature pass (Chan 2022, Chan-Meng 2022, Meng-Rubin 1992, Consentino-Claeskens 2008/2010) to finish typing M1's unresolved claims before the M1 blueprint is finalized.",
+    "artifact": "manuscript/plan/level2-sections.json"
   },
   "levels": {
-    "level1": "amended_d09_awaiting_annotation",
+    "level1": "ratified_cycle2",
     "level2": "not_started",
     "level3": "schema_only",
     "level4": "schema_only"
@@ -27,14 +27,14 @@
     {"id": "S8", "anchor": "sec-provenance", "title": "Provenance and authorship statement", "state": "drafted_pre_system"}
   ],
   "section_state_vocabulary": ["drafted_pre_system", "decomposed_needs_review", "awaiting_annotation", "in_review", "approved", "committed"],
-  "open_decisions": ["D-03", "D-04", "D-05", "D-08"],
-  "citations_backlog": {"proposed": 0, "queued": 0, "acquired_unverified": 0},
+  "open_decisions": [],
+  "citations_backlog": {"proposed": 4, "queued": 0, "acquired_unverified": 2},
   "clickup": {"list_id": null, "last_synced": null},
   "next_actions": [
-    "Marcus: finish Level-1 annotation (thesis text incl. methodological component; ratify or amend D-03/D-04/D-05/D-08)",
-    "Then: draft Level 2 under the approved Level 1 — target structure is now IMRaD (Intro / Background / Methods / Results / Discussion, per D-09); the Methods section is new writing, Results redistributes current sections 3-6",
-    "Then: decompose mi-spectral.qmd (180e2b5) into Level 3 under the NEW section set + populate Level 4; set compile_enabled",
+    "Claude: theory-side literature pass (Chan / Chan-Meng / Meng-Rubin / Consentino-Claeskens) to finish M1's documented-vs-asserted typing",
+    "Claude: draft Level 2 blueprints for the 6 ratified moves (M1 Introduction, M2 Background and notation, M3 Methods-as-workflow, M4a Derivations, M4b Simulation studies, M5 Discussion); Marcus annotates",
+    "Then: decompose mi-spectral.qmd (180e2b5) into Level 3 under the NEW 6-section set + populate Level 4; set compile_enabled",
     "Then: section-by-section review loop"
   ],
-  "structure_note": "The 8 sections listed above describe the CURRENT draft (180e2b5). The target structure after D-09 is 5 IMRaD sections; the mapping old->new is defined at Level 2."
+  "structure_note": "The 8 sections listed above describe the CURRENT draft (180e2b5). The ratified target structure is 6 IMRaD moves (D-09 + Amendment 1): sec-intro, sec-background, sec-methods, sec-derivations, sec-simulations, sec-discussion. The old->new mapping is defined at Level 2. Citations backlog: proposed = White et al. 2011, Grund et al. 2021, Anderson 1957, Honaker et al. 2011 (the last two pre-date this cycle; Honaker queued-equivalent); acquired_unverified = schaferMissingDataOur2002a, woodHowShouldVariable2008a (synced 2026-06-06, not yet read in-session)."
 }
