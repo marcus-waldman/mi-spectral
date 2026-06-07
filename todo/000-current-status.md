@@ -1,11 +1,48 @@
 # Current status — read this when resuming
 
-**Last updated:** 2026-06-05 (session 5 — manuscript plan system bootstrapped).
+**Last updated:** 2026-06-06/07 (session 6 — Levels 1–2 ratified; S1+S2 drafted from scratch).
 
 > **Manuscript work now goes through the plan system.** Run `/status` for the
 > project-manager dashboard (what's blocked on whom, drift, citation backlog) and
 > `/section-review <target>` for the human-in-the-loop review loop. Protocol of record:
 > `manuscript/plan/README.md`. State of record: `manuscript/plan/status.json`.
+
+**Latest (2026-06-06, session 6 — plan ratified through Level 2; S1 + S2 drafted):**
+Nine commits, `b73d806..f1126db`. **Level 1 cycle 2** (in-chat): 6-move IMRaD arc ratified
+(D-09 Amendment 1 split Results into M4a Derivations + M4b Simulation studies, subheads
+"Simulation studies: setup/results"); D-03/04/05/08 ratified; **D-10 complete-data
+replication principle** (term from MI-IC; three levels: estimates / criterion-in-expectation
+/ decision rates; the paper's organizing question, asserted-here); T-05 (Methods in factual
+passive voice + each gate's blind spot), T-06 (unresolved claims typed documented-open vs
+asserted-here), T-07 (MC "repetitions", never "replications"). **M1 typing pass** (todo/003):
+centering question + principle confirmed unposed across the theory line; **C-C 2010 §5 has
+the prior MI-AIC (aic_D)** and flags its theory open — must be cited in the lineage; novelty
+scoped to posing the PRINCIPLE (full-data benchmarking precedented in Wood 2008 / C-C 2010
+Table 7). New verified refs: vanBuuren FIMD 2018a (built from bookdown source — no-PDF
+pipeline pattern: clone → strip chunks → literature/*.md + generated PDF + pre-seeded
+Mathpix cache), Schomaker-Heumann 2014a, Enders 2025, Schafer-Graham 2002a, Wood 2008a.
+**Level 2** drafted + annotated same day (settledness ATTRIBUTED; S4 repaired against the
+todo/030 DAG — entropy-plug-in tail, L5 absorption SP, I7 structural limits; **D-11**
+provenance → title-page declaration block). **D-12:** Level 3 from scratch under the
+blueprints, 180e2b5 = quarry only; decomposition route retired. **S1 drafted** (7 paragraphs)
+and **S2 drafted** (13 paragraphs incl. the NEW proper-vs-improper-imputation paragraph
+P7 — Rubin ch.4 + Nielsen 2003; MCEM marked improper; known-scale arms price the
+distinction). Two standing prose rules extracted from Marcus's feedback and added to
+CLAUDE.md ("Manuscript prose style" section, binding): plain expository cadence (topic
+sentences, one idea/sentence, no em-dash appositive chains, results announced with "we
+show" + immediate applied translation) and motivate-by-use (restatements open with their
+role in THIS paper, source second; section openers are roadmaps, never self-justification).
+**NEXT (blocked on Marcus):** per-paragraph annotation sessions on S1 and S2 at a computer
+(`/section-review S1`). Open flags for those sessions: (a) S1 length 7 vs blueprint 4–5;
+(b) the +tr/−½tr decomposition sentence moved from S1-P4 to S1-P6's novelty list — confirm
+or restore; (c) add "improper" to S1-P6's deterministic-EM clause for continuity with
+S2-P7. **THEN (Claude):** draft S3 Methods — the one section with no quarry (six parts,
+T-05 voice, gate blind spots, protocol records to appendices per the D-08 note). Then S4
+(Derivations; biggest section, quarry-rich), S5 (Simulations), S6 (Discussion, inverse
+gradient, no Conclusion section); compile_enabled only when all six exist (D-12).
+Follow-up queued: sync todo/030 argument map + litrev DB with the D-09/D-10 structure.
+Companion-paper citation was REMOVED from S1-P3 (todo/003 row rejected) — re-open only if
+a later section cites MI-IC.
 
 **Latest (2026-06-05, session 5 — manuscript plan system, adapted from SAMPLE-STRATEGY-ECD):**
 Investigated the SAMPLE-STRATEGY-ECD leveled-reconstruction workflow (4 JSON levels with
