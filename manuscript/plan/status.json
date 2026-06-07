@@ -7,7 +7,7 @@
   "updated_by": "claude (S1 drafted: 6 paragraphs, 22 level4 entries, lint green)",
   "blocked_on": {
     "who": "marcus",
-    "what": "Per-paragraph annotation session on the rewritten S1 (7 paragraphs, plain cadence; substance approved 'so far' in-chat 2026-06-06; Marcus has comments and wants to go paragraph by paragraph at a computer). Open flags: 7 paragraphs vs blueprint estimate 4-5; the +tr/-1/2tr decomposition sentence moved from P4 to P6's novelty list (confirm or restore). After S1 approval: draft S2.",
+    "what": "Per-paragraph annotation sessions on S1 (7 paragraphs, rewritten in plain cadence; substance approved 'so far') and S2 (12 paragraphs, drafted 2026-06-06, presented in-chat). S1 open flags: length 7 vs 4-5; decomposition sentence placement (P4 vs P6). After S1+S2 approval: draft S3 Methods (new writing).",
     "artifact": "manuscript/plan/level3-paragraphs.json"
   },
   "levels": {

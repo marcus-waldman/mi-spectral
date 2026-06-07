@@ -196,6 +196,126 @@
       "evidence_status": "verified",
       "passage_or_value": "Congeniality definition and the uncongenial controversy.",
       "note": "Scope sentence."
+    },
+    {
+      "id": "E-S2-P3-1",
+      "proposition_id": "S2-P3",
+      "pointer": "lit:rubinInferenceMissingData1976b",
+      "evidence_status": "verified",
+      "passage_or_value": "MAR definition :61; distinctness :65; sampling-vs-likelihood SS9.",
+      "note": "Ignorability restatement."
+    },
+    {
+      "id": "E-S2-P4-1",
+      "proposition_id": "S2-P4",
+      "pointer": "lit:woodburyMissingInformationPrinciple1972",
+      "evidence_status": "verified",
+      "passage_or_value": "Score identity + information decomposition (:59-:86).",
+      "note": "MIP primary source."
+    },
+    {
+      "id": "E-S2-P4-2",
+      "proposition_id": "S2-P4",
+      "pointer": "lit:Meng01121991",
+      "evidence_status": "verified",
+      "passage_or_value": "'missing information principle' :211; DM rate matrix :137.",
+      "note": "The I_obs = I_com - I_mis form + the rate-matrix contrast."
+    },
+    {
+      "id": "E-S2-P5-1",
+      "proposition_id": "S2-P5",
+      "pointer": "lit:dempsterMaximumLikelihoodIncomplete1977a",
+      "evidence_status": "verified",
+      "passage_or_value": "'since we do not know...' :259; Q definition.",
+      "note": "Q-function restatement; Q = L + H; curvature I_com."
+    },
+    {
+      "id": "E-S2-P6-1",
+      "proposition_id": "S2-P6",
+      "pointer": "lit:weiMonteCarloImplementation1990",
+      "evidence_status": "verified",
+      "passage_or_value": "Remark 2 :74: 'Rubin (1987) referred to the quantities z(1),...,z(m) as multiple imputations.'",
+      "note": "The MCEM bridge."
+    },
+    {
+      "id": "E-S2-P7-1",
+      "proposition_id": "S2-P7",
+      "pointer": "lit:rubinMultipleImputationNonresponse1987",
+      "evidence_status": "verified",
+      "passage_or_value": "Result 3.2 :2438; r_inf (3.1.7) :2534; 'usual approximation' :2538.",
+      "note": "Exact identities + the one approximation."
+    },
+    {
+      "id": "E-S2-P7-2",
+      "proposition_id": "S2-P7",
+      "pointer": "lit:Tierney01031986",
+      "evidence_status": "verified",
+      "passage_or_value": "Laplace-type posterior approximation.",
+      "note": "The named approximation's source."
+    },
+    {
+      "id": "E-S2-P8-1",
+      "proposition_id": "S2-P8",
+      "pointer": "lit:mengMultipleImputationInferencesUncongenial1994a",
+      "evidence_status": "verified",
+      "passage_or_value": "Congeniality formalization (abstract + SS1).",
+      "note": "Scope assumption."
+    },
+    {
+      "id": "E-S2-P9-1",
+      "proposition_id": "S2-P9",
+      "pointer": "lit:akaikeNewLookStatistical1974a",
+      "evidence_status": "verified",
+      "passage_or_value": "'downward bias... simply realized by adding k' :148.",
+      "note": "AIC as plug-in correction."
+    },
+    {
+      "id": "E-S2-P10-1",
+      "proposition_id": "S2-P10",
+      "pointer": "lit:wilksLargeSampleDistributionLikelihood1938a",
+      "evidence_status": "verified",
+      "passage_or_value": "chi-square_{h-m} conclusion :96.",
+      "note": "Complete-data reference."
+    },
+    {
+      "id": "E-S2-P11-1",
+      "proposition_id": "S2-P11",
+      "pointer": "lit:kenwardLikelihoodBasedFrequentist1998",
+      "evidence_status": "verified",
+      "passage_or_value": "Naive vs unconditional information :128-:140; observed-info recommendation :111.",
+      "note": "T-02 convention + MAR cross terms."
+    },
+    {
+      "id": "E-S2-P12-1",
+      "proposition_id": "S2-P12",
+      "pointer": "lit:mengPerformingLikelihoodRatio1992b",
+      "evidence_status": "verified",
+      "passage_or_value": "Combining rule (SS2-3).",
+      "note": "Launch point 1."
+    },
+    {
+      "id": "E-S2-P12-2",
+      "proposition_id": "S2-P12",
+      "pointer": "lit:chanMultipleImprovementsMultiple2022",
+      "evidence_status": "verified",
+      "passage_or_value": "Maximize-then-average statistic; defect repairs.",
+      "note": "The analyzed numerator."
+    },
+    {
+      "id": "E-S2-P12-3",
+      "proposition_id": "S2-P12",
+      "pointer": "lit:chanGeneralFeasibleTests2022",
+      "evidence_status": "verified",
+      "passage_or_value": "Eigenvalue estimation; weighted-sum null law (eq 1.10).",
+      "note": "Absorption property feeding S4b."
+    },
+    {
+      "id": "E-S2-P12-4",
+      "proposition_id": "S2-P12",
+      "pointer": "lit:consentinoclaeskensOrderSelectionTests2010",
+      "evidence_status": "verified",
+      "passage_or_value": "SS5: aic_D; open-theory closing statement :404.",
+      "note": "The prior MI-AIC whose question S4c answers."
     }
   ],
   "acquisition_queue_note": "New references surfaced while drafting enter here as 'proposed' AND in todo/003 in the same response (standing rule). The /status dashboard reports the backlog by status.",
@@ -204,6 +324,6 @@
     "no_cited_without_verified_literature_file": null,
     "every_pointer_resolves": null,
     "passes": null,
-    "notes": "Renumbered after the S1 rewrite (P4 split -> P4/P5; old P5 -> P6); companion placeholder entry removed with the citation. Every S1 paragraph has >=1 entry; all pointers resolve. Full gate when all sections drafted."
+    "notes": "S1 + S2 populated (2026-06-06): every drafted paragraph has >=1 entry; all pointers resolve. Full gate when all sections drafted."
   }
 }
