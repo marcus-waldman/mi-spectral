@@ -110,14 +110,6 @@
       "note": "Displays the replication gap without framing it - second precedent for the benchmark practice."
     },
     {
-      "id": "E-S1-P3-4",
-      "proposition_id": "S1-P3",
-      "pointer": "verif:todo/003-references-to-acquire.md",
-      "evidence_status": "proposed",
-      "passage_or_value": "MI-IC companion paper (Waldman, in preparation): complete-data replication framing at MI-IC/manuscript/mi-ic-article.qmd:136.",
-      "note": "PLACEHOLDER for the @TODO:mi-ic-companion citation in S1-P3 prose - the companion needs a citable form (preprint/DOI or in-prep bib entry) before compile. Logged in todo/003."
-    },
-    {
       "id": "E-S1-P4-1",
       "proposition_id": "S1-P4",
       "pointer": "deriv:sec-thm",
@@ -142,64 +134,64 @@
       "note": "Selection clauses."
     },
     {
-      "id": "E-S1-P4-4",
-      "proposition_id": "S1-P4",
+      "id": "E-S1-P5-4",
+      "proposition_id": "S1-P5",
       "pointer": "verif:verification/cache/ic-ladder-summary.csv",
       "evidence_status": "verified",
       "passage_or_value": "Null-side rungs 2-3: 0.904/0.903 vs oracle 0.899 (exact values quoted in S4, qualitative here).",
       "note": "'Indistinguishable from complete-data AIC' clause."
     },
     {
-      "id": "E-S1-P4-5",
-      "proposition_id": "S1-P4",
+      "id": "E-S1-P5-5",
+      "proposition_id": "S1-P5",
       "pointer": "lit:chanGeneralFeasibleTests2022",
       "evidence_status": "verified",
       "passage_or_value": "Calibrated reference absorbs the null mean (eq. 1.10 spectrum).",
       "note": "Testing side of the null-replication claim."
     },
     {
-      "id": "E-S1-P5-1",
-      "proposition_id": "S1-P5",
+      "id": "E-S1-P6-1",
+      "proposition_id": "S1-P6",
       "pointer": "lit:shimodairaInformationCriterionModel2017",
       "evidence_status": "verified",
       "passage_or_value": ":77-89: AIC_{x;y} penalty d + tr(I_x I_y^{-1}); 'The additional penalty is only half the value of that in PDIO'; SS8 names mechanism combinations as future work.",
       "note": "Penalty precedent + future-work hook."
     },
     {
-      "id": "E-S1-P5-2",
-      "proposition_id": "S1-P5",
+      "id": "E-S1-P6-2",
+      "proposition_id": "S1-P6",
       "pointer": "lit:cavanaughAkaikeInformationCriterion1998a",
       "evidence_status": "verified",
       "passage_or_value": "AICcd = -2Q + 2tr(I_x I_y^{-1}); complete-data discrepancy motivation.",
       "note": "The doubled-penalty lineage."
     },
     {
-      "id": "E-S1-P5-3",
-      "proposition_id": "S1-P5",
+      "id": "E-S1-P6-3",
+      "proposition_id": "S1-P6",
       "pointer": "lit:claeskensconsentinoVariableSelectionIncomplete2008",
       "evidence_status": "verified",
       "passage_or_value": "TIC-style criterion on the EM Q-function for missing covariates ('best approximating' values; no correct-specification assumption).",
       "note": "'Different discrepancy, outside this line' sentence."
     },
     {
-      "id": "E-S1-P5-4",
-      "proposition_id": "S1-P5",
+      "id": "E-S1-P6-4",
+      "proposition_id": "S1-P6",
       "pointer": "lit:hensModelSelectionIncomplete2006a",
       "evidence_status": "verified",
       "passage_or_value": "Weighted (Horvitz-Thompson) AIC for incomplete/design-based samples.",
       "note": "Reweighting route; leaves imputation-based criterion open."
     },
     {
-      "id": "E-S1-P5-5",
-      "proposition_id": "S1-P5",
+      "id": "E-S1-P6-5",
+      "proposition_id": "S1-P6",
       "pointer": "lit:shimodairahidetoshiImprovingPredictiveInference2000",
       "evidence_status": "verified",
       "passage_or_value": "Covariate-shift weighting of the log-likelihood.",
       "note": "Named in the future-work clause."
     },
     {
-      "id": "E-S1-P5-6",
-      "proposition_id": "S1-P5",
+      "id": "E-S1-P6-6",
+      "proposition_id": "S1-P6",
       "pointer": "lit:mengMultipleImputationInferencesUncongenial1994a",
       "evidence_status": "verified",
       "passage_or_value": "Congeniality definition and the uncongenial controversy.",
@@ -212,6 +204,6 @@
     "no_cited_without_verified_literature_file": null,
     "every_pointer_resolves": null,
     "passes": null,
-    "notes": "Partial evaluation at S1 drafting (2026-06-06): every S1 paragraph proposition has >=1 entry; all pointers resolve; the one 'proposed' entry (E-S1-P3-4) is the declared @TODO:mi-ic-companion placeholder. Full gate when all sections drafted."
+    "notes": "Renumbered after the S1 rewrite (P4 split -> P4/P5; old P5 -> P6); companion placeholder entry removed with the citation. Every S1 paragraph has >=1 entry; all pointers resolve. Full gate when all sections drafted."
   }
 }

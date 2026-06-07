@@ -2,7 +2,7 @@
   "metadata": {
     "level": 3,
     "date": "2026-06-05",
-    "status": "drafting_s1_complete",
+    "status": "s1_rewritten_awaiting_paragraph_annotation",
     "purpose": "SOURCE OF TRUTH for manuscript prose once populated. Each paragraph carries its proposition, dependencies, the draft_prose itself, a review object, and an audit object. manuscript/mi-spectral.qmd is compiled from this file by scripts/compile_manuscript.py and never edited directly.",
     "compile_enabled": false,
     "compile_note": "compile_enabled stays false until all six sections are drafted and reviewed (D-12: from-scratch drafting, 180e2b5 as quarry; the decomposition route is retired). mi-spectral.qmd remains frozen at 180e2b5 until the first compile.",
@@ -85,13 +85,13 @@
       "review": {
         "serves_L2": "S1-SP1",
         "serves_L1": "M1 paragraph (1) of the funnel; primary thesis via setup",
-        "sets_up": "S1-P2 (the exception), S1-P3 (the criterion question)",
-        "topic_sentence": "Multiple imputation treats missing data through a division of labor that has served applied research for nearly four decades: an imputer fills in the missing values several times from a model for the complete data, an analyst fits the model of substantive interest to each completed data set, and simple rules combine the results [@rubinMultipleImputationNonresponse1987].",
+        "sets_up": "S1-P2, S1-P3",
+        "topic_sentence": "Multiple imputation treats missing data through a division of labor, and that division has served applied research for nearly four decades.",
         "closing_sentence": "On that testimony, the major inferential questions read as settled.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "Multiple imputation treats missing data through a division of labor that has served applied research for nearly four decades: an imputer fills in the missing values several times from a model for the complete data, an analyst fits the model of substantive interest to each completed data set, and simple rules combine the results [@rubinMultipleImputationNonresponse1987]. The field's own accounts of its state of the art --- @schaferMissingDataOur2002a and the twentieth-anniversary update of @endersMissingDataUpdate2025 --- describe a mature methodology: the role of the missing-data mechanism is understood, point estimates recover their complete-data targets under stated conditions, and Wald-type tests for single and multiple parameters are well calibrated. On that testimony, the major inferential questions read as settled.",
+      "draft_prose": "Multiple imputation treats missing data through a division of labor, and that division has served applied research for nearly four decades. An imputer fills in the missing values several times from a model for the complete data. An analyst fits the model of substantive interest to each completed data set. Simple rules then combine the results [@rubinMultipleImputationNonresponse1987]. The field's own accounts of its state of the art describe a mature methodology [@schaferMissingDataOur2002a; @endersMissingDataUpdate2025]. The role of the missing-data mechanism is understood. Point estimates recover their complete-data targets under stated conditions. Wald-type tests for single and multiple parameters are well calibrated. On that testimony, the major inferential questions read as settled.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -117,13 +117,13 @@
       "review": {
         "serves_L2": "S1-SP2",
         "serves_L1": "M1 paragraph (2); T-06 documented-open typing",
-        "sets_up": "S1-P3 (the principle that explains WHY these are open)",
+        "sets_up": "S1-P3",
         "topic_sentence": "The exception is inference carried by the likelihood itself.",
-        "closing_sentence": "The applied guides are silent in the same direction: neither the standard book-length treatment [@vanbuurenFlexibleImputationMissing2018a] nor the current state-of-the-art review [@endersMissingDataUpdate2025] treats information criteria for multiply imputed data at all.",
+        "closing_sentence": "Neither the standard book-length treatment [@vanbuurenFlexibleImputationMissing2018a] nor the current state-of-the-art review [@endersMissingDataUpdate2025] treats information criteria for multiply imputed data at all.",
         "status": "drafted",
-        "flags": "Draft runs S1 to 6 paragraphs vs the blueprint's estimated 4-5; P2 (quotes) and P3 (principle) each need their own paragraph. For Marcus to confirm or compress."
+        "flags": "S1 runs to 7 paragraphs vs blueprint estimate 4-5 (Marcus aware; per-paragraph session pending)."
       },
-      "draft_prose": "The exception is inference carried by the likelihood itself. A combining rule for likelihood-ratio tests has existed since @mengPerformingLikelihoodRatio1992b, and its modern repairs [@chanMultipleImprovementsMultiple2022; @chanGeneralFeasibleTests2022] give tests with accurate size; but on likelihood-based *model selection* after multiple imputation the literature's assessment of itself is that the question is open. The one information criterion proposed for multiply imputed data closes with the statement that the method \"seems worthwhile to be further investigated, both theoretically as well as in practical situations,\" the investigation lying beyond that paper's scope [@consentinoclaeskensOrderSelectionTests2010]. The first comprehensive study of model selection and model averaging after multiple imputation calls the literature \"surprisingly sparse\" and cautions that selecting by averaged criteria \"is not supported by MI literature\" [@schomakerModelSelectionModel2014a]. For variable selection, \"there are currently no guidelines\" [@woodHowShouldVariable2008a]. The applied guides are silent in the same direction: neither the standard book-length treatment [@vanbuurenFlexibleImputationMissing2018a] nor the current state-of-the-art review [@endersMissingDataUpdate2025] treats information criteria for multiply imputed data at all.",
+      "draft_prose": "The exception is inference carried by the likelihood itself. For likelihood-ratio tests, a combining rule has existed since @mengPerformingLikelihoodRatio1992b, and its modern repairs give tests with accurate size [@chanMultipleImprovementsMultiple2022; @chanGeneralFeasibleTests2022]. For likelihood-based model selection, the literature's assessment of itself is that the question is open. The one information criterion proposed for multiply imputed data closes with the statement that the method \"seems worthwhile to be further investigated, both theoretically as well as in practical situations\"; that investigation lay beyond the paper's scope [@consentinoclaeskensOrderSelectionTests2010]. The first comprehensive study of model selection after multiple imputation calls the literature \"surprisingly sparse\" [@schomakerModelSelectionModel2014a]. The same study cautions that selecting by averaged criteria \"is not supported by MI literature.\" For variable selection, \"there are currently no guidelines\" [@woodHowShouldVariable2008a]. The applied guides are silent in the same direction. Neither the standard book-length treatment [@vanbuurenFlexibleImputationMissing2018a] nor the current state-of-the-art review [@endersMissingDataUpdate2025] treats information criteria for multiply imputed data at all.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -156,13 +156,13 @@
       "review": {
         "serves_L2": "S1-SP3",
         "serves_L1": "M1 paragraph (2)-(3) hinge; D-10",
-        "sets_up": "S1-P4 (the answers, level by level); S4 subsection openers; S6 verdict",
+        "sets_up": "S1-P4, S1-P5; S4 openers; S6 verdict",
         "topic_sentence": "What, then, should \"settled\" mean?",
-        "closing_sentence": "...but the principle as an explicit yardstick, with a characterization of when it can and cannot be met, is to our knowledge stated here for the first time, jointly with a companion applied paper (@TODO:mi-ic-companion).",
+        "closing_sentence": "The principle as an explicit yardstick, with a characterization of when it can and cannot be met, is to our knowledge stated here for the first time.",
         "status": "drafted",
-        "flags": "@TODO:mi-ic-companion placeholder - the MI-IC companion needs a citable form (preprint DOI or in-prep entry) before compile."
+        "flags": null
       },
-      "draft_prose": "What, then, should \"settled\" mean? We propose a standard and organize this paper around it. Call it the *complete-data replication principle*: a procedure for multiply imputed data replicates complete-data inference if, on average over repeated samples, it reaches the same conclusion that would have been reached had no data been missing. The principle can be demanded at three levels: that *estimates* recover their complete-data targets --- the classical level, settled by Rubin's rules; that the decision *criterion* --- a deviance, an information criterion --- recover its complete-data counterpart in expectation; and that *decision rates* --- which model is selected, whether a hypothesis is rejected, how often --- match those of the complete-data analysis. Stated this way, the settled results are settled because they pass at the first level, and the open questions above are open precisely because the second and third levels had not been posed. Benchmarking selection methods against the full data is not new in itself --- simulation comparisons of that kind appear in @woodHowShouldVariable2008a and @consentinoclaeskensOrderSelectionTests2010 --- but the principle as an explicit yardstick, with a characterization of when it can and cannot be met, is to our knowledge stated here for the first time, jointly with a companion applied paper (@TODO:mi-ic-companion).",
+      "draft_prose": "What, then, should \"settled\" mean? We propose a standard and organize this paper around it. We call it the *complete-data replication principle*: a procedure for multiply imputed data replicates complete-data inference if, on average over repeated samples, it reaches the same conclusion that would have been reached had no data been missing. The principle can be demanded at three levels. At the first level, estimates recover their complete-data targets. This is the classical level, and Rubin's rules settle it. At the second level, the decision criterion itself --- a deviance, an information criterion --- recovers its complete-data counterpart in expectation. At the third level, decision rates match: the same model is selected, and the same hypotheses are rejected, as often as they would have been with complete data. Stated this way, the settled results are settled because they pass at the first level. The open questions above are open because the second and third levels had not been posed. Benchmarking selection methods against the full data is not new in itself; simulation comparisons of that kind appear in @woodHowShouldVariable2008a and @consentinoclaeskensOrderSelectionTests2010. The principle as an explicit yardstick, with a characterization of when it can and cannot be met, is to our knowledge stated here for the first time.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -170,14 +170,14 @@
           "consentinoclaeskensOrderSelectionTests2010": "verified (Table 7 AIC_orig row :383-391)"
         },
         "numbers": {},
-        "notes": "Asserted-here typing per the todo/003 pass (2026-06-06): the principle confirmed unposed in Meng-Rubin 1992, both Chan papers, C-C 2008/2010, Schomaker-Heumann 2014; novelty scoped to the PRINCIPLE, not the benchmark practice. The @TODO:mi-ic-companion placeholder is mirrored as a 'proposed' entry in level4 (E-S1-P3-4) and in todo/003."
+        "notes": "Companion-paper citation REMOVED per Marcus (2026-06-06); compile blocker cleared. Asserted-here typing per the todo/003 pass."
       }
     },
     {
       "id": "S1-P4",
       "section": "S1",
       "goal": "state_result",
-      "proposition": "The headline bias and its decomposition restore level-2 replication everywhere; level 3 splits along the null/noncentral axis identically for testing and selection.",
+      "proposition": "The headline bias, stated as something the paper shows, with each formal object translated to applied terms; correction restores level-2 replication.",
       "depends_on": [
         "S1-P3"
       ],
@@ -186,35 +186,31 @@
       ],
       "review": {
         "serves_L2": "S1-SP4",
-        "serves_L1": "M1 paragraph (3); primary+secondary+tertiary theses",
-        "sets_up": "S4 (all three subsections), S5 (the preregistered grading), S6-SP4 (the verdict)",
-        "topic_sentence": "This paper answers the principle's second level completely and locates the exact boundary of its third.",
-        "closing_sentence": "Less information means less power, and the third level is met exactly to the extent the data permit.",
+        "serves_L1": "M1 paragraph (3); primary+tertiary theses",
+        "sets_up": "S4a/S4c, S5, S6-SP4",
+        "topic_sentence": "The obstacle is a bias in the averaged log-likelihood, and this paper's central result describes that bias exactly.",
+        "closing_sentence": "This is the principle's second level, met in full.",
         "status": "drafted",
-        "flags": null
+        "flags": "The +tr/-1/2tr decomposition detail moved out of this paragraph in the plain-cadence rewrite; it now first appears in P6's novelty list. Confirm or restore a sentence here (per-paragraph session)."
       },
-      "draft_prose": "This paper answers the principle's second level completely and locates the exact boundary of its third. The obstruction is a bias. For a regular likelihood model fit to congenially imputed data, with an estimated scale or covariance, the averaged log-likelihood across imputations --- the Q-function of the EM algorithm in its infinite-imputation limit --- overstates its complete-data target at the observed-data maximum likelihood estimate by\n$$ \\tfrac{1}{2}\\operatorname{tr}(\\mathrm{RIV}) \\;+\\; (A){+}(C), $$\nwhere $\\operatorname{tr}(\\mathrm{RIV})$ is the trace of the relative-increase-in-variance matrix --- the total odds of missing information about the model's parameters --- and $(A)+(C)$ is an $O(1)$ design-imbalance term that vanishes under MCAR. The half-trace decomposes into an *imputation-bias* term $+\\operatorname{tr}(\\mathrm{RIV})$ --- completions drawn from the fitted imputation model inflate the apparent fit of that same model --- and an *estimation-mismatch* term $-\\tfrac12\\operatorname{tr}(\\mathrm{RIV})$ --- the MI fit targets the complete-data maximizer, which is not the observed-data one. Because the bias is model-specific --- each candidate's criterion is too small by its own $\\operatorname{tr}(\\mathrm{RIV}_k)$ --- uncorrected comparisons systematically favor the candidates with the most missing information; adding the trace back restores the criterion's complete-data expectation at any signal strength, and with it the principle's second level. The third level splits. At the null, corrected procedures replicate complete-data decisions completely: for testing, because a correctly calibrated reference distribution absorbs exactly the corresponding differential bias [@chanGeneralFeasibleTests2022]; for selection, because matching the criterion's null distribution makes model choice indistinguishable from complete-data AIC in our pre-registered design. Under signal, no transform built from the observed data restores the evidence the missing data destroyed: noncentral statistics shrink by exactly predictable factors, and the residual is information loss, not calibration error. Less information means less power, and the third level is met exactly to the extent the data permit.",
+      "draft_prose": "The obstacle is a bias in the averaged log-likelihood, and this paper's central result describes that bias exactly. Suppose a likelihood model with an estimated variance or covariance is fit to congenially imputed data. We show that the averaged log-likelihood then overstates its complete-data counterpart by\n$$ \\tfrac{1}{2}\\operatorname{tr}(\\mathrm{RIV}) \\;+\\; (A){+}(C). $$\nThe first term is one half the trace of the relative-increase-in-variance matrix. This matrix is a standard object in the MI literature, and its trace adds up the missing information about the model's parameters. The second term is smaller. It reflects imbalance between the observed and the missing units on the conditioning variables, and it vanishes when the data are missing completely at random. The practical consequence is that every deviance and every information criterion computed from multiply imputed data is too optimistic. Worse, the optimism is not uniform across models. Each candidate's criterion is inflated in proportion to that candidate's own missing information. A model-comparison table built on imputed data therefore favors the candidates with the most missing information. In our pre-registered study, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV. The fix is direct: add each candidate's own trace back to its criterion. We show that the corrected criterion recovers its complete-data expectation at any signal strength. This is the principle's second level, met in full.",
       "audit": {
         "status": "complete",
-        "citations": {
-          "chanGeneralFeasibleTests2022": "verified (calibrated reference absorbs the null-mean inflation; eq. 1.10 spectrum)"
-        },
+        "citations": {},
         "numbers": {
           "headline display +1/2 tr(RIV) + (A)+(C)": "deriv:sec-thm",
-          "decomposition +tr(RIV) / -1/2 tr(RIV)": "deriv:sec-thm",
-          "(A)+(C) O(1), vanishes under MCAR": "deriv:sec-lrt-ac",
-          "model-specific bias tr(RIV_k); uncorrected favors high-RIV": "deriv:sec-ic",
-          "null-side selection indistinguishable from complete-data AIC": "verif:verification/cache/ic-ladder-summary.csv",
-          "noncentral shrinkage by predictable factors; information loss not calibration error": "deriv:sec-ic"
+          "(A)+(C) imbalance reading, MCAR vanishing": "deriv:sec-lrt-ac",
+          "every misclassification on the largest-RIV candidate": "verif:verification/cache/run_all-prod",
+          "corrected criterion recovers complete-data expectation": "deriv:sec-ic"
         },
-        "notes": "Display and decomposition sentences quarried from 180e2b5 P2 (citation-verified there); numbers kept qualitative in the intro per D-03 (exact values land inline in S4)."
+        "notes": "Rewritten for plain cadence + 'we show' announcements (Marcus feedback 2026-06-06)."
       }
     },
     {
       "id": "S1-P5",
       "section": "S1",
-      "goal": "position_lineage",
-      "proposition": "Upstream of calibration (complementary), beside the model-selection lineage (penalty precedented); the five claimed novelties named; congeniality scoped.",
+      "goal": "state_result",
+      "proposition": "Level 3 splits: null side restored entirely (testing and selection); under signal the shortfall is information loss with exactly predicted shrinkage.",
       "depends_on": [
         "S1-P4"
       ],
@@ -222,15 +218,50 @@
         "builds_on"
       ],
       "review": {
-        "serves_L2": "S1-SP5",
-        "serves_L1": "M1 paragraph (3) positioning; honest-novelty posture (T-06)",
-        "sets_up": "S2-SP8 (lineage restatement), S6-SP3 (future directions)",
-        "topic_sentence": "These results sit upstream of the test-calibration literature and beside the model-selection one.",
-        "closing_sentence": "Congeniality is assumed throughout [@mengMultipleImputationInferencesUncongenial1994a]: the bias derived here is what remains after the imputer and the analyst agree.",
+        "serves_L2": "S1-SP4",
+        "serves_L1": "M1 paragraph (3); secondary+tertiary theses",
+        "sets_up": "S4b/S4c, S6-SP4",
+        "topic_sentence": "The principle's third level asks for more: the same decisions at the same rates as the complete data.",
+        "closing_sentence": "Less information means less power, and the third level is met exactly to the extent the data permit.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "These results sit upstream of the test-calibration literature and beside the model-selection one. The combining-rule line from @mengPerformingLikelihoodRatio1992b through @chanMultipleImprovementsMultiple2022 to @chanGeneralFeasibleTests2022 calibrates the *reference distribution* of an MI test statistic, taking the statistic's numerator as given; we derive the bias of that numerator. The two are complementary: calibration makes the reference distribution right, and the present correction makes the statistic referred to it centered. As a penalty, the correction is precedented: it reproduces $\\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017, which halved the missing-data surcharge of the complete-data-discrepancy criteria PDIO and $\\mathrm{AIC}_{cd}$ [@cavanaughAkaikeInformationCriterion1998a] --- all derived for deterministic EM estimation under a fixed missingness pattern. The missing-covariate criteria of @claeskensconsentinoVariableSelectionIncomplete2008 target a different, Takeuchi-type discrepancy and sit outside this line, and the inverse-probability-reweighting route of @hensModelSelectionIncomplete2006a reaches the complete-data target while explicitly leaving an imputation-based criterion open. What is new here: the decomposition of the bias into imputation bias and estimation mismatch, with its estimated-scale scope condition; the MAR design-imbalance term $(A)+(C)$, which lies beyond Shimodaira's fixed-pattern setting --- his concluding section names the combination of missingness with other sampling mechanisms, such as covariate shift [@shimodairahidetoshiImprovingPredictiveInference2000], as future work; the extension from the deterministic EM Q-function to proper multiple imputation; the exact differential bias of the likelihood-ratio numerator in the complete-data metric; and the replication principle itself, with the null/noncentral characterization of its third level. Congeniality is assumed throughout [@mengMultipleImputationInferencesUncongenial1994a]: the bias derived here is what remains after the imputer and the analyst agree.",
+      "draft_prose": "The principle's third level asks for more: the same decisions at the same rates as the complete data. We show that the answer splits into two cases. In the first case, the competing models fit equally well, in the sense that the smaller model is true. Correction then restores complete-data behavior entirely. Calibrated tests reject at the complete-data rate [@chanGeneralFeasibleTests2022]. Selection that matches the criterion's full null distribution chooses models indistinguishably from complete-data AIC in our pre-registered design. In the second case, one model genuinely fits better. The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it. The relevant statistics shrink by factors we predict exactly, and the remaining shortfall is information loss rather than a fixable calibration error. The practical reading is this: corrected criteria are honest, not clairvoyant. Less information means less power, and the third level is met exactly to the extent the data permit.",
+      "audit": {
+        "status": "complete",
+        "citations": {
+          "chanGeneralFeasibleTests2022": "verified (calibrated reference absorbs the null-mean inflation)"
+        },
+        "numbers": {
+          "null-side selection indistinguishable from complete-data AIC": "verif:verification/cache/ic-ladder-summary.csv",
+          "noncentral shrinkage by exactly predicted factors": "deriv:sec-ic"
+        },
+        "notes": "Split out of old P4 in the plain-cadence rewrite."
+      }
+    },
+    {
+      "id": "S1-P6",
+      "section": "S1",
+      "goal": "position_lineage",
+      "proposition": "Upstream of calibration (complementary), beside the model-selection lineage (penalty precedented); the five claimed novelties named; congeniality scoped.",
+      "depends_on": [
+        "S1-P4",
+        "S1-P5"
+      ],
+      "dep_types": [
+        "builds_on",
+        "builds_on"
+      ],
+      "review": {
+        "serves_L2": "S1-SP5",
+        "serves_L1": "M1 paragraph (3) positioning; honest-novelty posture (T-06)",
+        "sets_up": "S2-SP8, S6-SP3",
+        "topic_sentence": "These results sit upstream of the test-calibration literature and beside the model-selection one.",
+        "closing_sentence": "The bias derived here is what remains after the imputer and the analyst agree.",
+        "status": "drafted",
+        "flags": null
+      },
+      "draft_prose": "These results sit upstream of the test-calibration literature and beside the model-selection one. The calibration line runs from @mengPerformingLikelihoodRatio1992b through @chanMultipleImprovementsMultiple2022 to @chanGeneralFeasibleTests2022. That line calibrates the reference distribution of an MI test statistic, and it takes the statistic's numerator as given. We derive the bias of that numerator. The two are complementary: calibration makes the reference distribution right, and the present correction makes the statistic referred to it centered. As a penalty, the correction is precedented. It reproduces $\\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017, which halved the missing-data surcharge of the earlier complete-data-discrepancy criteria [@cavanaughAkaikeInformationCriterion1998a]. All of those criteria were derived for deterministic EM estimation under a fixed missingness pattern. Two other routes sit nearby. The missing-covariate criteria of @claeskensconsentinoVariableSelectionIncomplete2008 target a different, Takeuchi-type discrepancy. The reweighting route of @hensModelSelectionIncomplete2006a reaches the complete-data target through inverse-probability weights, and it explicitly leaves an imputation-based criterion open. Five things here are new. First, the decomposition of the bias into an imputation-bias part and an estimation-mismatch part, with its estimated-scale scope condition. Second, the design-imbalance term $(A)+(C)$ under MAR, which lies beyond Shimodaira's fixed-pattern setting; his concluding section names the combination of missingness with other sampling mechanisms, such as covariate shift [@shimodairahidetoshiImprovingPredictiveInference2000], as future work. Third, the extension from the deterministic EM Q-function to proper multiple imputation. Fourth, the exact differential bias of the likelihood-ratio numerator in the complete-data metric. Fifth, the replication principle itself, with the null/noncentral characterization of its third level. Congeniality is assumed throughout [@mengMultipleImputationInferencesUncongenial1994a]. The bias derived here is what remains after the imputer and the analyst agree.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -247,16 +278,16 @@
         "numbers": {
           "AIC_{x;y} halves the PDIO/AICcd surcharge": "lit:shimodairaInformationCriterionModel2017"
         },
-        "notes": "Lineage sentences quarried from 180e2b5 P5-P6 and reframed; the five-item novelty list adds the replication principle (D-10) to 180e2b5's three-item list."
+        "notes": "Novelty list enumerated (First..Fifth) in the plain-cadence rewrite; deps updated to P4+P5."
       }
     },
     {
-      "id": "S1-P6",
+      "id": "S1-P7",
       "section": "S1",
       "goal": "transition",
       "proposition": "The meta layer, last: title-page declaration referenced, Methods as the reading protocol, roadmap.",
       "depends_on": [
-        "S1-P5"
+        "S1-P6"
       ],
       "dep_types": [
         "builds_on"
@@ -264,13 +295,13 @@
       "review": {
         "serves_L2": "S1-SP6",
         "serves_L1": "M1 paragraph (4); methodological thesis; D-11",
-        "sets_up": "S3 (Methods), the section sequence",
+        "sets_up": "S3, section sequence",
         "topic_sentence": "One feature of this paper bears on how it should be read, and the title page declares it: the derivations are AI-assisted, with an ORCID-verified human prompter of record.",
         "closing_sentence": "@sec-discussion states what is firm, what is measured, and what is conjectured.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "One feature of this paper bears on how it should be read, and the title page declares it: the derivations are AI-assisted, with an ORCID-verified human prompter of record. @sec-methods states the workflow under which every claim was produced --- citations backed by archived source documents, symbolic verification in two independent computer-algebra systems with Monte Carlo confirmation, preregistration with failed predictions reported, and adversarial re-derivation by an independent model --- together with what each safeguard can and cannot catch. The results are then offered to be judged through that protocol, as the results of an empirical paper are judged through its methods. @sec-background fixes notation and restates the standard results at the precision the argument needs. @sec-derivations develops the theorem and both applications; @sec-simulations reports the pre-registered studies, including the predictions that failed; @sec-discussion states what is firm, what is measured, and what is conjectured.",
+      "draft_prose": "One feature of this paper bears on how it should be read, and the title page declares it: the derivations are AI-assisted, with an ORCID-verified human prompter of record. @sec-methods states the workflow under which every claim was produced. Citations are backed by archived source documents. Every analytic result was verified symbolically in two independent computer-algebra systems and confirmed by Monte Carlo simulation. Predictions were registered before code was written, and the failed ones are reported. Load-bearing claims were re-derived blind by an independent model and subjected to an adversarial review. @sec-methods also states what each of these safeguards can and cannot catch. The results are then offered to be judged through that protocol, the way an empirical paper's results are judged through its methods. The rest of the paper proceeds as follows. @sec-background fixes notation and restates the standard results at the precision the argument needs. @sec-derivations develops the theorem and both applications. @sec-simulations reports the pre-registered studies, including the predictions that failed. @sec-discussion states what is firm, what is measured, and what is conjectured.",
       "audit": {
         "status": "complete",
         "citations": {},
@@ -286,6 +317,6 @@
     "review_objects_complete": null,
     "dependency_graph_acyclic": null,
     "passes": null,
-    "notes": "Partial evaluation at S1 drafting (2026-06-06): 6/6 paragraphs carry a proposition or declared rhetorical goal; every number in S1 has a deriv:/verif: pointer in its audit object; every citekey backed by literature/<citekey>.md read in-session 2026-06-06 (@TODO:mi-ic-companion is the one declared placeholder); review objects complete; dependency chain P1->P6 acyclic. Full gate evaluation deferred until all six sections are drafted (D-12)."
+    "notes": "Partial evaluation after the S1 plain-cadence rewrite (2026-06-06): 7/7 paragraphs carry propositions/goals; numbers pointered; citekeys session-read; the @TODO:mi-ic-companion placeholder is REMOVED (P3). Marcus: substance approved 'so far', per-paragraph annotation session pending. Full gate when all sections drafted."
   }
 }
