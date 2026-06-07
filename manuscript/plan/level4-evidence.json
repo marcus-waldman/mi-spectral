@@ -516,6 +516,94 @@
       "evidence_status": "verified",
       "passage_or_value": "3.6e-15 equality-case agreement; difference 6.10 vs 10.00.",
       "note": "The two structural limits (firm)."
+    },
+    {
+      "id": "E-S5-P2-1",
+      "proposition_id": "S5-P2",
+      "pointer": "lit:honakerAmeliaIIProgram2011",
+      "evidence_status": "verified",
+      "passage_or_value": ":37 EMB algorithm description (EM on bootstrap resamples; draws at bootstrapped parameters).",
+      "note": "Engine citation."
+    },
+    {
+      "id": "E-S5-P5-1",
+      "proposition_id": "S5-P5",
+      "pointer": "verif:verification/cache/run_all-prod",
+      "evidence_status": "verified",
+      "passage_or_value": "Pooled 2.43 +/- 0.26; 2.77 prereg / 2.42-2.55 augmented; N=1000 2.6 se; components 9-20%.",
+      "note": "W1 grading."
+    },
+    {
+      "id": "E-S5-P6-1",
+      "proposition_id": "S5-P6",
+      "pointer": "verif:verification/cache/rederivation-knownvar-N200-R20000.rds",
+      "evidence_status": "verified",
+      "passage_or_value": "Known-scale four arms within 4%; sign-regime reversal companion run.",
+      "note": "Targeted experiments."
+    },
+    {
+      "id": "E-S5-P7-1",
+      "proposition_id": "S5-P7",
+      "pointer": "verif:verification/cache/W2-prod-amelia.rds",
+      "evidence_status": "verified",
+      "passage_or_value": "0.042 / 0.034 null rates.",
+      "note": "Absorption + double-counting."
+    },
+    {
+      "id": "E-S5-P8-1",
+      "proposition_id": "S5-P8",
+      "pointer": "verif:verification/cache/run_all-prod",
+      "evidence_status": "verified",
+      "passage_or_value": "2.639 +/- 0.113, 2.701 +/- 0.112 vs 2.64 / 8.47.",
+      "note": "52-se discrimination."
+    },
+    {
+      "id": "E-S5-P9-1",
+      "proposition_id": "S5-P9",
+      "pointer": "verif:verification/cache/run_all-prod",
+      "evidence_status": "verified",
+      "passage_or_value": "sd 18.4/26.6/36.5 vs 1.58/1.47/1.57; alt 12.4/16.8/24.9.",
+      "note": "Pairing receipt."
+    },
+    {
+      "id": "E-S5-P10-1",
+      "proposition_id": "S5-P10",
+      "pointer": "verif:verification/cache/run_all-prod",
+      "evidence_status": "verified",
+      "passage_or_value": "0.898 / 0.674 / 0.816; 100% saturated misclassifications.",
+      "note": "W3 headline."
+    },
+    {
+      "id": "E-S5-P11-1",
+      "proposition_id": "S5-P11",
+      "pointer": "verif:verification/cache/ic-ladder-summary.csv",
+      "evidence_status": "verified",
+      "passage_or_value": "Full table + KS/variance/shrinkage/floor + internal checks.",
+      "note": "Ladder grading."
+    },
+    {
+      "id": "E-S5-P12-1",
+      "proposition_id": "S5-P12",
+      "pointer": "verif:verification/cache/ic-ladder-summary.csv",
+      "evidence_status": "verified",
+      "passage_or_value": "3.6e-15; 0.824 vs 0.904; 6.10/5.99 vs 10.00/7.10.",
+      "note": "Structural exhibits."
+    },
+    {
+      "id": "E-S5-P13-1",
+      "proposition_id": "S5-P13",
+      "pointer": "verif:verification/cache/w4-nonnested-summary.csv",
+      "evidence_status": "verified",
+      "passage_or_value": "+2.5 level; 2.33/2.85; similar below resolution; dissimilar -1.2 (3.5 se); ~9%.",
+      "note": "W4 incl. reported failure."
+    },
+    {
+      "id": "E-S5-P14-1",
+      "proposition_id": "S5-P14",
+      "pointer": "verif:verification/cache/run_all-prod",
+      "evidence_status": "verified",
+      "passage_or_value": "EMB vs observed-data RIV 2-3%; selection within 0.011.",
+      "note": "Engine sensitivity."
     }
   ],
   "acquisition_queue_note": "New references surfaced while drafting enter here as 'proposed' AND in todo/003 in the same response (standing rule). The /status dashboard reports the backlog by status.",
@@ -524,6 +612,6 @@
     "no_cited_without_verified_literature_file": null,
     "every_pointer_resolves": null,
     "passes": null,
-    "notes": "S4 MC-evidence entries removed under D-03-A1 (re-created against S5 paragraphs at S5 drafting; the artifacts are unchanged). All remaining pointers resolve."
+    "notes": "S1-S5 populated; all pointers resolve. Full gate when S6 drafted."
   }
 }
