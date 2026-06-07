@@ -604,6 +604,30 @@
       "evidence_status": "verified",
       "passage_or_value": "EMB vs observed-data RIV 2-3%; selection within 0.011.",
       "note": "Engine sensitivity."
+    },
+    {
+      "id": "E-S6-P5-1",
+      "proposition_id": "S6-P5",
+      "pointer": "verif:verification/W2-lrt-power.R",
+      "evidence_status": "verified",
+      "passage_or_value": "Power arms + size-adjusted analysis.",
+      "note": "Partial support for the labeled conjecture."
+    },
+    {
+      "id": "E-S6-P6-1",
+      "proposition_id": "S6-P6",
+      "pointer": "lit:shimodairaInformationCriterionModel2017",
+      "evidence_status": "verified",
+      "passage_or_value": "SS8: mechanism combinations named as future work.",
+      "note": "Direction 1."
+    },
+    {
+      "id": "E-S6-P8-1",
+      "proposition_id": "S6-P8",
+      "pointer": "verif:verification/collaboration-analysis.md",
+      "evidence_status": "verified",
+      "passage_or_value": "The committed collaboration analysis; transcripts public per D-13.",
+      "note": "The record the reflection points to."
     }
   ],
   "acquisition_queue_note": "New references surfaced while drafting enter here as 'proposed' AND in todo/003 in the same response (standing rule). The /status dashboard reports the backlog by status.",
@@ -612,6 +636,6 @@
     "no_cited_without_verified_literature_file": null,
     "every_pointer_resolves": null,
     "passes": null,
-    "notes": "S1-S5 populated; all pointers resolve. Full gate when S6 drafted."
+    "notes": "S1-S6 populated (87 entries); all pointers resolve. Full gate at compile."
   }
 }

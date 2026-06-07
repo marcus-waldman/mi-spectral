@@ -4,7 +4,7 @@
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
   "phase": "level3_drafting",
   "last_updated": "2026-06-07",
-  "updated_by": "claude (D-03-A1 ratified + applied to S4; phi-tilde defined; S4 part (a) formalized)",
+  "updated_by": "claude (S6 drafted: ALL SIX SECTIONS COMPLETE, 73 paragraphs)",
   "blocked_on": {
     "who": "marcus",
     "what": "Per-paragraph annotation sessions on S1 (7), S2 (13), S3 (8), and now S4 (22 paragraphs, drafted 2026-06-07: setup+theorem A1-A8, LRT B1-B7, IC C1-C7; quarried displays/propositions/numbers with prose rewritten to the style rules). Open flags unchanged (S1 length; decomposition sentence; improper continuity) + S4-P22 note (naive-input arm comparison kept implicit, full version in S5). After approvals or in parallel: Claude drafts S5 + S6 (small).",
@@ -13,8 +13,8 @@
   "levels": {
     "level1": "ratified_cycle2",
     "level2": "annotated_cycle1",
-    "level3": "s1_s2_s3_s4_drafted (50 paragraphs)",
-    "level4": "populating (69 entries, all verified)"
+    "level3": "all_six_drafted (73 paragraphs; compile pending Marcus passes + regen gate)",
+    "level4": "populated (87 entries, all verified)"
   },
   "sections": [
     {
@@ -45,13 +45,13 @@
       "id": "S5",
       "anchor": "sec-simulations",
       "title": "Simulation studies",
-      "state": "not_started"
+      "state": "drafted_awaiting_annotation"
     },
     {
       "id": "S6",
       "anchor": "sec-discussion",
       "title": "Discussion",
-      "state": "not_started"
+      "state": "drafted_awaiting_annotation"
     }
   ],
   "section_state_vocabulary": [
@@ -72,10 +72,10 @@
     "last_synced": null
   },
   "next_actions": [
-    "Marcus: per-paragraph passes on S1/S2/S3/S4 (50 paragraphs); D-13 deposit review",
-    "Claude: draft S5 Simulation studies (now the paper FULL empirical account per D-03-A1: sign-regime + known-scale experiments, pooled theorem confirmation, 52-se discrimination, pairing sd table, W4, null-rate double-counting, W3 rates + signature, ladder table + findings, structural-limit exhibits, proper-MI tracking) + S6 Discussion; then compile (D-12)",
-    "Follow-up queued: sync todo/030 argument map + litrev DB with D-09/D-10",
-    "Deposit: upload 35 hashed transcripts to Zenodo/OSF after Marcus reviews the scan; commit the DOI"
+    "Marcus: per-paragraph passes S1-S6 (73 paragraphs; flags recorded in level3 metrics_gate notes); D-13 deposit review",
+    "Regen gate: background sweep running (ble1692z3); then ic-ladder regen + diff + receipt commit",
+    "Then: compile_enabled, first compile, quarto render, derivation-audit on the new draft",
+    "Follow-up queued: todo/030 map sync; P20 outcome-phrasing soften"
   ],
   "structure_note": "Section list = the ratified 6-section set (D-09 + Amendment 1) + title-page declaration (D-11/D-13). mi-spectral.qmd remains frozen at 180e2b5 until first compile. Citations backlog: proposed = White 2011, Grund 2021, Schomaker 2007 (all optional)."
 }

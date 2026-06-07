@@ -2,7 +2,7 @@
   "metadata": {
     "level": 3,
     "date": "2026-06-05",
-    "status": "drafting_s5_complete",
+    "status": "all_six_sections_drafted",
     "purpose": "SOURCE OF TRUTH for manuscript prose once populated. Each paragraph carries its proposition, dependencies, the draft_prose itself, a review object, and an audit object. manuscript/mi-spectral.qmd is compiled from this file by scripts/compile_manuscript.py and never edited directly.",
     "compile_enabled": false,
     "compile_note": "compile_enabled stays false until all six sections are drafted and reviewed (D-12: from-scratch drafting, 180e2b5 as quarry; the decomposition route is retired). mi-spectral.qmd remains frozen at 180e2b5 until the first compile.",
@@ -2124,6 +2124,254 @@
         },
         "notes": "Engine-sensitivity scoping."
       }
+    },
+    {
+      "id": "S6-P1",
+      "section": "S6",
+      "goal": "scope_limit",
+      "proposition": "Mechanism scope (estimated scale; congeniality) + the discussion roadmap.",
+      "depends_on": [
+        "S4-P6",
+        "S5-P14"
+      ],
+      "dep_types": [
+        "qualifies",
+        "builds_on"
+      ],
+      "review": {
+        "serves_L2": "S6-SP1 (framing)",
+        "serves_L1": "M5 DISCUSSION (inverse gradient; D-11 no provenance section; no Conclusion)",
+        "sets_up": "P2-P8",
+        "topic_sentence": "The result is scoped by its own mechanism, and the scope comes first.",
+        "closing_sentence": "...one conjecture, three directions, and the answer to the question the paper opened with.",
+        "status": "drafted",
+        "flags": "S6 drafted at 8 paragraphs vs blueprint estimate 9-11 (G-limits grouped two per paragraph)."
+      },
+      "draft_prose": "The result is scoped by its own mechanism, and the scope comes first. The bias exists only when the fit estimates a scale or covariance, so that the conditional missing-data entropy depends on the estimated parameters. A known-scale, location-only fit has no such bias, which is why the estimated-scale clause sits in the theorem rather than in a footnote. Congeniality is assumed throughout, and what the bias becomes without it [@mengMultipleImputationInferencesUncongenial1994a] is a separate question this paper does not take up. Beyond these scope conditions, six specific limits remain. Each is stated next to the claim it qualifies, with its evidential standing, and they are followed by one conjecture, three directions, and the answer to the question the paper opened with.",
+      "audit": {
+        "status": "complete",
+        "citations": {
+          "mengMultipleImputationInferencesUncongenial1994a": "verified (read in-session)"
+        },
+        "numbers": {},
+        "notes": "Quarried from 180e2b5 discussion opening."
+      }
+    },
+    {
+      "id": "S6-P2",
+      "section": "S6",
+      "goal": "scope_limit",
+      "proposition": "G1 ((A)+(C) magnitude, firm/not-firm split) + G2 (proper-MI carry-over structural).",
+      "depends_on": [
+        "S4-P7b",
+        "S4-P15"
+      ],
+      "dep_types": [
+        "qualifies",
+        "qualifies"
+      ],
+      "review": {
+        "serves_L2": "S6-SP1",
+        "serves_L1": "M5 DISCUSSION (inverse gradient; D-11 no provenance section; no Conclusion)",
+        "sets_up": "-",
+        "topic_sentence": "The absolute magnitude of $(A)+(C)$ is not independently pinned, and this qualifies the theorem.",
+        "closing_sentence": "...no dedicated proper-MI replication of the differential experiments exists.",
+        "status": "drafted",
+        "flags": null
+      },
+      "draft_prose": "**G1.** The absolute magnitude of $(A)+(C)$ is not independently pinned, and this qualifies the theorem. Firm: its structure, sign, $O(1)$ order, exact MCAR vanishing, the closed form @eq-ac, and the $O(1/n)$ order of the correction beyond the leading-order analytic value. Not firm: the absolute magnitude itself. The direct Monte Carlo estimates are heavy-tailed and untrended, and the variance-reduced estimate of the higher-order remainder is conditional on the analytic anchor it is paired against. Every comparison in this paper therefore uses $(A)+(C)$ only through the better-conditioned paired differential. **G2.** The proper-MI carry-over of the likelihood-ratio propositions is structural, not separately measured, and this qualifies the likelihood-ratio part of @sec-derivations. The propositions are proved and confirmed for the deterministic-FIML $\\bar Q_\\infty$. Under proper MI the imputation-side quantities remain common to both fits, which preserves the cancellation arguments, but no dedicated proper-MI replication of the differential experiments exists.",
+      "audit": {
+        "status": "complete",
+        "citations": {},
+        "numbers": {
+          "G1 standing split": "deriv:sec-lrt-ac"
+        },
+        "notes": "G1+G2."
+      }
+    },
+    {
+      "id": "S6-P3",
+      "section": "S6",
+      "goal": "scope_limit",
+      "proposition": "G3 (engine robustness empirical, scoped) + G4 (floor is a measurement).",
+      "depends_on": [
+        "S5-P14",
+        "S5-P11"
+      ],
+      "dep_types": [
+        "qualifies",
+        "qualifies"
+      ],
+      "review": {
+        "serves_L2": "S6-SP1",
+        "serves_L1": "M5 DISCUSSION (inverse gradient; D-11 no provenance section; no Conclusion)",
+        "sets_up": "-",
+        "topic_sentence": "Imputation-engine robustness is empirical and scoped, and this qualifies @sec-simulations.",
+        "closing_sentence": "No argument here shows that no estimator built from the same observed data could do better.",
+        "status": "drafted",
+        "flags": null
+      },
+      "draft_prose": "**G3.** Imputation-engine robustness is empirical and scoped, and this qualifies @sec-simulations. The EMB engine tracks deterministic FIML within the stated tolerances on the designs studied. Exact data augmentation was not run, and nothing here establishes engine-independence beyond those designs. **G4.** The weak-signal floor is a measurement, not an impossibility proof, and this qualifies the selection part of @sec-derivations. The residual in the weak-signal cell is information loss as measured through these corrections. No argument here shows that no estimator built from the same observed data could do better.",
+      "audit": {
+        "status": "complete",
+        "citations": {},
+        "numbers": {},
+        "notes": "G3+G4."
+      }
+    },
+    {
+      "id": "S6-P4",
+      "section": "S6",
+      "goal": "scope_limit",
+      "proposition": "G5 (misspecification O(1) coexists) + G6 (MVN instantiation, D-07).",
+      "depends_on": [
+        "S4-P13",
+        "S4-P6"
+      ],
+      "dep_types": [
+        "qualifies",
+        "qualifies"
+      ],
+      "review": {
+        "serves_L2": "S6-SP1",
+        "serves_L1": "M5 DISCUSSION (inverse gradient; D-11 no provenance section; no Conclusion)",
+        "sets_up": "-",
+        "topic_sentence": "For dissimilar candidate pairs, a mechanism-independent misspecification $O(1)$ coexists with the design-imbalance $O(1)$.",
+        "closing_sentence": "...every constant is verified, symbolically and by simulation, only in the normal family.",
+        "status": "drafted",
+        "flags": null
+      },
+      "draft_prose": "**G5.** For dissimilar candidate pairs, a mechanism-independent misspecification $O(1)$ coexists with the design-imbalance $O(1)$, and this qualifies @prp-ac-diff and its use in selection. The MCAR contrast separates the two in measurement, but they can reinforce or partially offset each other in the net ranking bias a criterion sees. We make no claim that the design-imbalance term dominates every pair. **G6.** All instantiation is multivariate normal, and this qualifies the theorem. The theorem is stated for general regular likelihoods with an estimated scale, but every constant is verified, symbolically and by simulation, only in the normal family.",
+      "audit": {
+        "status": "complete",
+        "citations": {},
+        "numbers": {},
+        "notes": "G5+G6 (G6 = D-07)."
+      }
+    },
+    {
+      "id": "S6-P5",
+      "section": "S6",
+      "goal": "scope_limit",
+      "proposition": "The power-dominance conjecture, labeled, with its partial support pointed at S5.",
+      "depends_on": [
+        "S4-P14"
+      ],
+      "dep_types": [
+        "qualifies"
+      ],
+      "review": {
+        "serves_L2": "S6-SP2",
+        "serves_L1": "M5 DISCUSSION (inverse gradient; D-11 no provenance section; no Conclusion)",
+        "sets_up": "-",
+        "topic_sentence": "One question is left as a conjecture, and it is labeled as one.",
+        "closing_sentence": "We state no theorem.",
+        "status": "drafted",
+        "flags": null
+      },
+      "draft_prose": "One question is left as a conjecture, and it is labeled as one. We conjecture that the bias-corrected likelihood-ratio comparison dominates its uncorrected counterpart in power uniformly. The preregistered likelihood-ratio study's power arms provide partial support (@sec-simulations). We state no theorem.",
+      "audit": {
+        "status": "complete",
+        "citations": {},
+        "numbers": {
+          "partial support": "verif:verification/W2-lrt-power.R"
+        },
+        "notes": "The conjecture (T-04: labeled)."
+      }
+    },
+    {
+      "id": "S6-P6",
+      "section": "S6",
+      "goal": "position_lineage",
+      "proposition": "Three directions: covariate shift (Shimodaira SS8), exact-engine replication, selection-aware calibration + beyond-normal (sequel, D-06).",
+      "depends_on": [
+        "S6-P4"
+      ],
+      "dep_types": [
+        "builds_on"
+      ],
+      "review": {
+        "serves_L2": "S6-SP3",
+        "serves_L1": "M5 DISCUSSION (inverse gradient; D-11 no provenance section; no Conclusion)",
+        "sets_up": "-",
+        "topic_sentence": "Three directions seem most worth pursuing.",
+        "closing_sentence": "...as is the extension beyond the normal family.",
+        "status": "drafted",
+        "flags": null
+      },
+      "draft_prose": "Three directions seem most worth pursuing. The first is covariate shift. The concluding section of @shimodairaInformationCriterionModel2017 names the combination of a missing mechanism with other sampling mechanisms as future work. The design-imbalance term derived here is nonzero exactly when the missing and observed units differ on the conditioning variables, which is a step into that program, and the weighting machinery exists [@shimodairahidetoshiImprovingPredictiveInference2000]. The second is an exact-engine replication. Running the headline studies under data augmentation would convert G3 from an empirical tolerance into a tested equivalence. The third is the calibration program beyond per-model null maps. De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are developed separately, as is the extension beyond the normal family.",
+      "audit": {
+        "status": "complete",
+        "citations": {
+          "shimodairaInformationCriterionModel2017": "verified (read in-session; SS8 future work)",
+          "shimodairahidetoshiImprovingPredictiveInference2000": "verified (read in-session; weighting machinery)"
+        },
+        "numbers": {},
+        "notes": "Quarried; D-06 sequel scope respected."
+      }
+    },
+    {
+      "id": "S6-P7",
+      "section": "S6",
+      "goal": "summarize",
+      "proposition": "The plain-language replication-principle verdict: criterion yes; null-side decisions yes; signal-side no, irreducibly; the applied summary.",
+      "depends_on": [
+        "S5-P11",
+        "S1-P3"
+      ],
+      "dep_types": [
+        "builds_on",
+        "summarizes"
+      ],
+      "review": {
+        "serves_L2": "S6-SP4 (the takeaway block)",
+        "serves_L1": "M5 DISCUSSION (inverse gradient; D-11 no provenance section; no Conclusion)",
+        "sets_up": "-",
+        "topic_sentence": "The paper closes where it began, with the replication principle.",
+        "closing_sentence": "There, the honest answer is that the data no longer say.",
+        "status": "drafted",
+        "flags": null
+      },
+      "draft_prose": "The paper closes where it began, with the replication principle. The question was whether an analyst working from multiply imputed data reaches the same conclusions, as often, as the analyst who never lost the data. The answer now has three parts. For the criterion itself, yes: after correction, a deviance or information criterion computed from imputed data means what its complete-data counterpart means, on average, at any signal strength. For decisions when the competing models fit alike, yes: corrected selection and calibrated tests behave as they would have with complete data. For decisions when one model genuinely fits better, no, and the shortfall is not fixable: the missing data carried part of the evidence, less information means less power, and no transformation of the observed data manufactures the lost evidence back. The practical summary for an applied reader is short. Correct the criterion, or match its null distribution, and trust the result the way complete-data results are trusted, except where the comparison was close enough that the missing data could have decided it. There, the honest answer is that the data no longer say.",
+      "audit": {
+        "status": "complete",
+        "citations": {},
+        "numbers": {},
+        "notes": "The broadening turn; no numbers (D-03-A1 permits summaries here, none needed)."
+      }
+    },
+    {
+      "id": "S6-P8",
+      "section": "S6",
+      "goal": "evaluate_evidence",
+      "proposition": "The workflow reflection, trust-ordered: what it caught (on the record), what it cost, what it cannot catch, what is asserted vs demonstrated; the published record as the test.",
+      "depends_on": [
+        "S3-P8",
+        "S6-P7"
+      ],
+      "dep_types": [
+        "builds_on",
+        "builds_on"
+      ],
+      "review": {
+        "serves_L2": "S6-SP5 (the close)",
+        "serves_L1": "M5 DISCUSSION (inverse gradient; D-11 no provenance section; no Conclusion)",
+        "sets_up": "-",
+        "topic_sentence": "A final word on the workflow, held to the same standard as everything it produced.",
+        "closing_sentence": "...so that the assertion can be tested by someone other than its authors.",
+        "status": "drafted",
+        "flags": null
+      },
+      "draft_prose": "A final word on the workflow, held to the same standard as everything it produced. What it demonstrably caught is on the record: a sign error that eight of nine blind re-derivations shipped, a wrong shortcut in an early entropy-gradient argument, and every failed prediction now reported in @sec-simulations. What it cost is also visible: claims arrive slower, hedged to their tier, and two preregistered headlines were given up rather than rescued. What it cannot catch was stated in @sec-methods and bears repeating once: errors shared across model lineages, misreadings of real sources, and designs that answer the wrong question reproducibly. Whether this workflow generalizes beyond one paper is asserted, not demonstrated. The record it leaves behind, the decision log, the preregistrations with their amendments, the verification gates, and the session transcripts, is published so that the assertion can be tested by someone other than its authors.",
+      "audit": {
+        "status": "complete",
+        "citations": {},
+        "numbers": {
+          "the catches on the record": "xmodel:verification/cache/derivation-audit-run-w2diff.json",
+          "published transcripts": "verif:verification/collaboration-analysis.md"
+        },
+        "notes": "The close; D-13 transcripts referenced; no provenance section follows (D-11)."
+      }
     }
   ],
   "metrics_gate": {
@@ -2133,6 +2381,6 @@
     "review_objects_complete": null,
     "dependency_graph_acyclic": null,
     "passes": null,
-    "notes": "After S5 drafting (2026-06-07): S1 7 + S2 13 + S3 8 + S4 23 + S5 14 = 65 paragraphs. S5 is the complete empirical account (D-03-A1); failures reported in main text (D-05); 'repetitions' throughout (T-07); all numbers pointered to committed caches. Remaining: S6. Regeneration gate running in background."
+    "notes": "ALL SIX SECTIONS DRAFTED (2026-06-07): S1 7 + S2 13 + S3 8 + S4 23 + S5 14 + S6 8 = 73 paragraphs. compile_enabled remains false pending Marcus's per-paragraph passes (D-12) and the regeneration gate. Flags: S1 length; S1 decomposition-sentence placement; S1-P6 'improper'; S5 14 vs 10-13; S6 8 vs 9-11; P20 outcome-phrasing soften pending."
   }
 }
