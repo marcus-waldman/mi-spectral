@@ -59,14 +59,18 @@ first, since the early sessions carry the reframing-era decisions; sessions on
 coding by subagents is sensible IF Marcus opts into a workflow; otherwise
 sequential is fine across 2-3 sittings, recording progress in this file.
 
-## Open questions for Marcus (answer before or during execution)
+## Open questions — ANSWERED (D-13, ratified in-chat 2026-06-07)
 
-1. Do the raw transcripts enter the public record (JAIGP provenance maximalism),
-   or does only the committed analysis? (Candidate decision D-13. Transcripts may
-   contain material not intended for publication; the analysis quotes selectively
-   either way.)
-2. Does the analysis cover only mi-spectral, or also the MI-IC sessions where the
-   replication-principle terminology originated?
+1. **Raw transcripts enter the public record** (mi-spectral project only), to build
+   trust; the committed analysis is the citable summary. Practical consequence for
+   the executing session: the transcripts must be staged for publication (copy into
+   the repo or an archival deposit — decide format then; mind repo size, ~85 MB,
+   consider a Zenodo/OSF deposit with hashes committed here), and a pre-publication
+   pass for accidentally sensitive content (paths, keys, personal matter) is
+   REQUIRED before deposit. Selective-redaction, if any, must itself be logged.
+2. **mi-spectral sessions only.** MI-IC sessions are out of scope; the
+   replication-principle terminology import from MI-IC is documented in D-10 and
+   needs no transcript evidence.
 
 ## Current state of S3-P2
 
