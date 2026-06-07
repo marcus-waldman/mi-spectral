@@ -2,17 +2,17 @@
   "schema_version": 1,
   "project": "mi-spectral JAIGP manuscript",
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
-  "phase": "level2_drafting",
+  "phase": "level2_annotation",
   "last_updated": "2026-06-06",
-  "updated_by": "claude (level1 review cycle 2: arc ratified, 6 moves)",
+  "updated_by": "claude (level2 drafted under ratified level1; typing pass complete)",
   "blocked_on": {
-    "who": "claude",
-    "what": "Draft Level 2 (section blueprints) under the ratified Level 1: 6 IMRaD moves (M1/M2/M3/M4a/M4b/M5 per D-09 Amendment 1). Prerequisite rider: theory-side literature pass (Chan 2022, Chan-Meng 2022, Meng-Rubin 1992, Consentino-Claeskens 2008/2010) to finish typing M1's unresolved claims before the M1 blueprint is finalized.",
+    "who": "marcus",
+    "what": "Annotate Level 2: six section blueprints (S1-S6 = the new section set), 38 super-propositions. Key items to adjudicate: the S1 typing-pass scoping (C-C 2010's prior MI-AIC enters the lineage; novelty = the principle, not the full-data benchmark), the S2 tier assignments, S4's eight derivation super-propositions. Run /section-review level2 or annotate in-chat.",
     "artifact": "manuscript/plan/level2-sections.json"
   },
   "levels": {
     "level1": "ratified_cycle2",
-    "level2": "not_started",
+    "level2": "drafted_awaiting_annotation",
     "level3": "schema_only",
     "level4": "schema_only"
   },
@@ -31,10 +31,10 @@
   "citations_backlog": {"proposed": 4, "queued": 0, "acquired_unverified": 2},
   "clickup": {"list_id": null, "last_synced": null},
   "next_actions": [
-    "Claude: theory-side literature pass (Chan / Chan-Meng / Meng-Rubin / Consentino-Claeskens) to finish M1's documented-vs-asserted typing",
-    "Claude: draft Level 2 blueprints for the 6 ratified moves (M1 Introduction, M2 Background and notation, M3 Methods-as-workflow, M4a Derivations, M4b Simulation studies, M5 Discussion); Marcus annotates",
+    "Marcus: annotate Level 2 (manuscript/plan/level2-sections.json) - /section-review level2 or in-chat",
     "Then: decompose mi-spectral.qmd (180e2b5) into Level 3 under the NEW 6-section set + populate Level 4; set compile_enabled",
-    "Then: section-by-section review loop"
+    "Then: section-by-section review loop",
+    "Note: M1 typing pass COMPLETE (todo/003, 2026-06-06): centering question + replication principle confirmed asserted-here; C-C 2010 SS5 prior MI-AIC must be cited in lineage; novelty scoped to posing the PRINCIPLE (full-data benchmarking precedented in Wood 2008 / C-C 2010)"
   ],
   "structure_note": "The 8 sections listed above describe the CURRENT draft (180e2b5). The ratified target structure is 6 IMRaD moves (D-09 + Amendment 1): sec-intro, sec-background, sec-methods, sec-derivations, sec-simulations, sec-discussion. The old->new mapping is defined at Level 2. Citations backlog: proposed = White et al. 2011, Grund et al. 2021, Anderson 1957, Honaker et al. 2011 (the last two pre-date this cycle; Honaker queued-equivalent); acquired_unverified = schaferMissingDataOur2002a, woodHowShouldVariable2008a (synced 2026-06-06, not yet read in-session)."
 }

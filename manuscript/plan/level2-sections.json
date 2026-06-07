@@ -1,14 +1,15 @@
 {
   "metadata": {
     "level": 2,
-    "date": "2026-06-05",
-    "status": "awaiting_level1_approval",
-    "purpose": "Section blueprints: per-section goal statement, super-propositions with evidence pointers, dependency graph. Drafted only after Level 1 is annotated and ratified, so section goals serve an approved thesis and arc.",
+    "date": "2026-06-06",
+    "status": "drafted_awaiting_annotation",
+    "purpose": "Section blueprints: per-section goal statement, super-propositions with evidence pointers, dependency graph. Drafted under the ratified Level 1 (cycle 2, commit b73d806): 6 IMRaD moves per D-09 + Amendment 1. Annotate via /section-review level2.",
+    "drafting_note": "Section ids S1-S6 are the NEW section set (the 180e2b5 draft's 8 sections map in via mapping_from_180e2b5 per section; status.json's section list is updated to this set when the Level-3 decomposition begins). Evidence typing for S1 follows the completed M1 typing pass recorded in todo/003-references-to-acquire.md (2026-06-06).",
     "schema_example": {
       "id": "S4",
-      "arc_move": "M4_APPLICATION-LRT",
-      "anchor": "sec-lrt",
-      "title": "Application I: likelihood-ratio comparison",
+      "arc_move": "M4a_DERIVATIONS",
+      "anchor": "sec-derivations",
+      "title": "Derivations",
       "goal_statement": "One paragraph stating exactly what this section must convince the reader of, what it explicitly defers, and which thesis component it serves.",
       "estimated_paragraphs": "8-10",
       "super_propositions": [
@@ -16,7 +17,7 @@
           "id": "S4-SP1",
           "claim": "One sentence, falsifiable as stated.",
           "goal": "state_result | define_concept | prove_sketch | evaluate_evidence | scope_limit | position_lineage",
-          "evidence": ["deriv:sec-lrt-bias", "verif:verification/cache/w4-nonnested-summary.csv", "lit:chanMultipleImprovementsMultiple2022"],
+          "evidence": ["deriv:sec-lrt", "verif:verification/cache/w4-nonnested-summary.csv", "lit:chanMultipleImprovementsMultiple2022"],
           "evidence_status": "grounded | needs_grounding | empirical_placeholder"
         }
       ],
@@ -27,14 +28,372 @@
   },
   "goal_vocabulary": ["state_result", "define_concept", "prove_sketch", "evaluate_evidence", "scope_limit", "position_lineage", "summarize", "transition"],
   "dep_types_vocabulary": ["builds_on", "instantiates", "qualifies", "summarizes", "contrasts_with"],
-  "sections": [],
-  "dependency_graph": {},
+  "sections": [
+    {
+      "id": "S1",
+      "arc_move": "M1_INTRODUCTION",
+      "anchor": "sec-intro",
+      "title": "Introduction",
+      "mapping_from_180e2b5": "Old S1 (sec-intro), rewritten to the four-paragraph funnel; the old intro's lineage material partly moves to S2-SP8.",
+      "goal_statement": "Convince an applied researcher with quantitative training and working knowledge of MI that (i) MI's major inferential results are settled but LRT and IC are not - on the field's own testimony; (ii) the right yardstick for 'settled' is the complete-data replication principle, posed here at three levels; (iii) this paper resolves criterion replication everywhere and characterizes the exact boundary of decision-rate replication; and (iv) only then, that the derivation is AI-assisted under a verification protocol stated as Methods. Defers: all notation and standard results (S2), all proof content (S4), all apparatus (S5). Serves all four thesis components. Style gates: T-06 (every unresolved-status claim typed documented-open vs asserted-here), the todo/003 typing-pass scoping caution (novelty = posing the PRINCIPLE, not the full-data benchmark practice).",
+      "estimated_paragraphs": "4-5",
+      "super_propositions": [
+        {
+          "id": "S1-SP1",
+          "claim": "MI is a mature, gold-standard treatment for missing data whose major inferential results - mechanisms, point estimation, Wald-type tests - are settled, on the testimony of the field's own state-of-the-art reviews.",
+          "goal": "position_lineage",
+          "evidence": ["lit:schaferMissingDataOur2002a", "lit:endersMissingDataUpdate2025", "lit:rubinMultipleImputationNonresponse1987"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S1-SP2",
+          "claim": "Likelihood-ratio testing and information-criterion selection after MI are documented-open: the prior MI-AIC proposal's authors flag its theory as beyond their scope, the first comprehensive selection study calls the literature sparse and averaged criteria unsupported, and the three state-of-the-art accounts contain no IC-after-MI treatment at all.",
+          "goal": "position_lineage",
+          "evidence": ["lit:consentinoclaeskensOrderSelectionTests2010", "lit:schomakerModelSelectionModel2014a", "lit:woodHowShouldVariable2008a", "lit:vanbuurenFlexibleImputationMissing2018a", "lit:endersMissingDataUpdate2025"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S1-SP3",
+          "claim": "The complete-data replication principle - would the same conclusion have been reached, on average over repeated samples, had the data been complete - is posed at three levels (estimates / criterion-in-expectation / decision rates) and is asserted here: empirical full-data benchmarking is precedented, but the principle as a named yardstick with an achievability characterization is not.",
+          "goal": "define_concept",
+          "evidence": ["verif:todo/003-references-to-acquire.md", "lit:woodHowShouldVariable2008a", "lit:consentinoclaeskensOrderSelectionTests2010"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S1-SP4",
+          "claim": "The averaged log-likelihood overstates its complete-data target by exactly +(1/2)tr(RIV) + (A)+(C), and correcting it restores criterion replication in expectation for any signal strength, while decision-rate replication is complete at the null and provably information-bounded under signal, identically for testing and selection.",
+          "goal": "state_result",
+          "evidence": ["deriv:sec-thm", "deriv:sec-lrt", "deriv:sec-ic"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S1-SP5",
+          "claim": "This work sits upstream of the Chan calibration line (calibration makes the reference right, this work makes the statistic centered - complementary, not competing) and the trace penalty itself reproduces Shimodaira's AIC_{x;y}, whose prior uses target prediction rather than replication.",
+          "goal": "position_lineage",
+          "evidence": ["lit:chanGeneralFeasibleTests2022", "lit:shimodairaInformationCriterionModel2017", "lit:cavanaughAkaikeInformationCriterion1998a"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S1-SP6",
+          "claim": "The derivation is AI-assisted under a stated verification protocol reported in full as the Methods section - one closing paragraph, the paper's only introduction-level statement of the meta layer.",
+          "goal": "transition",
+          "evidence": ["deriv:sec-verify"],
+          "evidence_status": "grounded"
+        }
+      ],
+      "depends_on": [],
+      "dep_types": [],
+      "feeds_forward_to": ["S2", "S3", "S4", "S5", "S6"]
+    },
+    {
+      "id": "S2",
+      "arc_move": "M2_BACKGROUND",
+      "anchor": "sec-background",
+      "title": "Background and notation",
+      "mapping_from_180e2b5": "Old S2 (sec-background), reorganized into the three-tier gradient and made dual-purpose (notation established here, once); absorbs lineage detail displaced from the old intro.",
+      "goal_statement": "Establish the paper's notation and restate every standard result the derivations consume, in the source's own terms, ordered as a deliberate gradient: Tier 1 readable with a calculus-based statistical-inference course, Tier 2 graduate, Tier 3 specialist - so the M1 reader is graduated upward rather than hitting a cliff. Each restatement names the later proposition that depends on it (D-04). Pre-empts the two standard conflations (EM rate matrix vs RIV; observed vs expected information under MAR). Defers: anything novel (S4). Serves the primary thesis component.",
+      "estimated_paragraphs": "12-15",
+      "super_propositions": [
+        {
+          "id": "S2-SP1",
+          "claim": "Tier 1 - the data decompose as Y = {Y_obs, Y_mis} with missingness indicator R, giving two likelihoods and two MLE targets, theta_com (complete-data) and theta_obs (observed-data), between which this paper's bias lives.",
+          "goal": "define_concept",
+          "evidence": ["lit:rubinInferenceMissingData1976b", "lit:littleStatisticalAnalysisMissing2019"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S2-SP2",
+          "claim": "Tier 1 - under MAR with distinct parameters the missingness mechanism is ignorable and R drops out of likelihood inference (Rubin 1976, in his own terms).",
+          "goal": "define_concept",
+          "evidence": ["lit:rubinInferenceMissingData1976b"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S2-SP3",
+          "claim": "Tier 1 - the missing-information principle through Hessians, I_com = I_obs + I_mis|obs, defines the RIV = I_obs^{-1} I_mis|obs that every later result is expressed in.",
+          "goal": "define_concept",
+          "evidence": ["lit:woodburyMissingInformationPrinciple1972", "lit:schaferAnalysisIncompleteMultivariate1997", "deriv:sec-sources"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S2-SP4",
+          "claim": "Tier 2 - EM's Q-function and the MCEM bridge identify MI's averaged log-likelihood as a Monte Carlo Q, the object whose bias the main theorem characterizes.",
+          "goal": "define_concept",
+          "evidence": ["lit:dempsterMaximumLikelihoodIncomplete1977a", "lit:weiMonteCarloImplementation1990", "lit:TannerCalculationPosteriorDistributions1987", "deriv:sec-qfun"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S2-SP5",
+          "claim": "Tier 2 - Rubin's rules are exact posterior-moment identities given one named approximation, and congeniality is the compatibility condition under which the paper's results hold.",
+          "goal": "define_concept",
+          "evidence": ["lit:rubinMultipleImputationNonresponse1987", "lit:mengMultipleImputationInferencesUncongenial1994a", "lit:nielsenProperImproperMultiple2003"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S2-SP6",
+          "claim": "Tier 3 - AIC is a bias-corrected plug-in estimator of expected KL divergence and Wilks gives the LRT's reference; both are stated in the form the missing-data generalizations must reduce to.",
+          "goal": "define_concept",
+          "evidence": ["lit:akaikeNewLookStatistical1974a", "lit:wilksLargeSampleDistributionLikelihood1938a", "lit:burnhamModelSelectionMultimodel2010"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S2-SP7",
+          "claim": "Tier 3 - observed and expected information differ under MAR (Kenward-Molenberghs convention adopted, T-02), and the EM rate matrix I_com^{-1} I_mis is NOT the RIV I_obs^{-1} I_mis - the two standard conflations this section exists to prevent.",
+          "goal": "define_concept",
+          "evidence": ["lit:kenwardLikelihoodBasedFrequentist1998", "lit:dempsterMaximumLikelihoodIncomplete1977a", "lit:endersMissingDataUpdate2025"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S2-SP8",
+          "claim": "Tier 3 - the MI test-combining line (Meng-Rubin D-statistics through the Chan calibration) and the prior MI-AIC proposal (Consentino-Claeskens 2010, penalty 2p_S, theory flagged open by its authors) are restated as the launch points for Applications I and II.",
+          "goal": "position_lineage",
+          "evidence": ["lit:mengPerformingLikelihoodRatio1992b", "lit:li1991significance", "lit:chanGeneralFeasibleTests2022", "lit:chanMultipleImprovementsMultiple2022", "lit:consentinoclaeskensOrderSelectionTests2010"],
+          "evidence_status": "grounded"
+        }
+      ],
+      "depends_on": ["S1"],
+      "dep_types": ["builds_on"],
+      "feeds_forward_to": ["S4", "S5", "S6"]
+    },
+    {
+      "id": "S3",
+      "arc_move": "M3_METHODS",
+      "anchor": "sec-methods",
+      "title": "Methods: the derivation and verification workflow",
+      "mapping_from_180e2b5": "NEW section (D-09). Absorbs and expands the old S8 provenance material's workflow content; the formal declaration itself stays in S6. Protocol records go to appendices (D-08 note).",
+      "goal_statement": "State the AI-human workflow as method - factually, in the passive voice (T-05), one paragraph per part, each gate paragraph ending with what that gate cannot catch - so that 'why believe an AI derivation' is answered as procedure before any result is asked to be believed. The fitted-vs-oracle sign episode is the single narrative passage. Defers: protocol records to appendices, proofs to the companion document, results to S4/S5. Serves the methodological thesis component. Sits deliberately low on the technical gradient (not announced in the text).",
+      "estimated_paragraphs": "7-9",
+      "super_propositions": [
+        {
+          "id": "S3-SP1",
+          "claim": "Roles and decision discipline: a human prompter of record set direction and gates, decisions were recorded with rejected options in a dated log, and the AI performed the derivations - with the division of labor stated, not argued.",
+          "goal": "define_concept",
+          "evidence": ["verif:manuscript/plan/decisions.md"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S3-SP2",
+          "claim": "Sourced derivation: every external claim was pinned to a source passage in a locally archived, session-read copy, with citation discipline enforced mechanically by a pre-write hook; blind spot - the hook checks existence, not understanding.",
+          "goal": "define_concept",
+          "evidence": ["deriv:sec-sources", "verif:.claude/hooks/check_citations.py"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S3-SP3",
+          "claim": "Claim pipeline: results were derived, then verified symbolically in two independent computer-algebra systems, then confirmed by Monte Carlo against frozen criteria, with trust tiers (firm / measured / structural / conjecture) assigned by gates cleared; blind spot - dual-CAS catches algebra, not a wrong conditioning shared by both runs.",
+          "goal": "define_concept",
+          "evidence": ["deriv:sec-verify"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S3-SP4",
+          "claim": "Preregistration before code: predictions and pass criteria were committed before simulation code, amendments are dated, and failed predictions are reported in the main text; blind spot - preregistration disciplines reporting, it does not validate the predictions' derivations.",
+          "goal": "define_concept",
+          "evidence": ["verif:todo/004-simulation-hypotheses.md", "verif:todo/027-ladder-preregistration.md", "verif:todo/005-comprehensive-sweep-hypotheses.md"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S3-SP5",
+          "claim": "Cross-model adversarial verification: load-bearing claims were blindly re-derived by an independent model lineage and subjected to an instructed-to-refute pass with grading records committed; the fitted-vs-oracle episode (8 of 9 blind re-derivations on the opposite sign until the conditioning was pinned) is the worked example of what this gate catches that single-lineage derivation ships.",
+          "goal": "evaluate_evidence",
+          "evidence": ["xmodel:verification/cache/derivation-audit-run-w2diff.json", "deriv:sec-qfun"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S3-SP6",
+          "claim": "Reproducibility: seeds, caches, single-entrypoint scripts and environment records allow every number in the paper to be regenerated; blind spot - reproducibility guarantees the numbers, not their interpretation.",
+          "goal": "define_concept",
+          "evidence": ["verif:verification/run_all.R", "verif:verification/ic-ladder.R"],
+          "evidence_status": "grounded"
+        }
+      ],
+      "depends_on": ["S1"],
+      "dep_types": ["builds_on"],
+      "feeds_forward_to": ["S4", "S5", "S6"]
+    },
+    {
+      "id": "S4",
+      "arc_move": "M4a_DERIVATIONS",
+      "anchor": "sec-derivations",
+      "title": "Derivations",
+      "mapping_from_180e2b5": "Old S3 (sec-setup) + S4 (sec-lrt) + S5 (sec-ic) become subsections (a)/(b)/(c), prose largely reusable; each subsection gains an opening sentence naming the replication-principle level it addresses; headline numbers stay inline (D-03).",
+      "goal_statement": "Deliver the paper's analytic content, graded by the trust tiers defined in S3, as the level-by-level answer to the principle posed in S1: (a) the main theorem (criterion replication in expectation), (b) likelihood-ratio comparison (decision-rate replication for testing), (c) information-criterion selection (decision-rate replication for selection). Headline numbers quoted inline at the point of claim; full preregistered account deferred to S5; proofs deferred to the companion document (D-08). Serves primary, secondary and tertiary thesis components. The technical peak of the paper.",
+      "estimated_paragraphs": "20-26",
+      "super_propositions": [
+        {
+          "id": "S4-SP1",
+          "claim": "Under congenial proper MI with an estimated scale, E[T] = +(1/2)tr(RIV) + (A)+(C): imputation bias +tr(RIV) minus estimation mismatch (1/2)tr(RIV), for the FITTED-imputation Q-bar-infinity (the oracle conditioning flips the sign to -(1/2), stated up front per D-02).",
+          "goal": "state_result",
+          "evidence": ["deriv:sec-thm", "deriv:sec-qfun"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S4-SP2",
+          "claim": "The result requires an estimated scale (known-scale location-only fits collapse to 0 or -(1/2)tr(RIV)), and the MAR design-imbalance term (A)+(C) carries three-tier standing: sign and order firm, value heavy-tailed O(1), vanishing exactly under MCAR.",
+          "goal": "scope_limit",
+          "evidence": ["deriv:sec-thm", "deriv:sec-lrt-ac"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S4-SP3",
+          "claim": "Pooled Monte Carlo confirms the theorem: 2.43 +/- 0.26 against the augmented analytic range 2.42-2.55 (quoted inline; full grading in S5).",
+          "goal": "evaluate_evidence",
+          "evidence": ["deriv:sec-thm", "verif:verification/cache/run_all-prod"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S4-SP4",
+          "claim": "At the null the LRT numerator's differential bias is tr(RIV_perp) - the tested directions' missing information projected in the I_com metric - and the naive difference of per-model trace corrections ALWAYS overstates it (Gram/Schur; equality only under decoupling; MC-discriminated at 52 se).",
+          "goal": "state_result",
+          "evidence": ["deriv:sec-lrt"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S4-SP5",
+          "claim": "Sharing imputations collapses paired noise from O(sqrt n) to O(1) and cancels the (A)+(C) differential exactly at the null; the differential returns at O(1) only for pseudo-true-separated pairs - separation, not nesting, is the criterion.",
+          "goal": "state_result",
+          "evidence": ["deriv:sec-lrt", "deriv:sec-lrt-ac", "verif:verification/cache/w4-nonnested-summary.csv"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S4-SP6",
+          "claim": "Adding tr(RIV_k) to MI-AIC reproduces Shimodaira's AIC_{x;y} penalty and removes the systematic tilt toward high-missing-information candidates (100% of misclassifications land on the largest-RIV candidate in the preregistered congenial cells).",
+          "goal": "state_result",
+          "evidence": ["deriv:sec-ic", "lit:shimodairaInformationCriterionModel2017"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S4-SP7",
+          "claim": "The calibration ladder splits the achievable target along the null/noncentral axis: rungs 2-3 select indistinguishably from complete-data AIC on the null side (0.904/0.903 vs 0.899), while noncentral statistics shrink by exactly predicted factors and the weak-signal floor (0.17) is information loss, not calibration error.",
+          "goal": "state_result",
+          "evidence": ["deriv:sec-ic", "verif:verification/cache/ic-ladder-summary.csv"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S4-SP8",
+          "claim": "Each subsection opens by naming the replication-principle level it addresses, so the S1 question is answered piece by piece in the reader's sight.",
+          "goal": "transition",
+          "evidence": ["verif:manuscript/plan/level1-thesis.json"],
+          "evidence_status": "grounded"
+        }
+      ],
+      "depends_on": ["S2", "S3"],
+      "dep_types": ["builds_on", "builds_on"],
+      "feeds_forward_to": ["S5", "S6"]
+    },
+    {
+      "id": "S5",
+      "arc_move": "M4b_SIMULATIONS",
+      "anchor": "sec-simulations",
+      "title": "Simulation studies",
+      "mapping_from_180e2b5": "Old S6 (sec-numerics), restructured into the two subheads 'Simulation studies: setup' and 'Simulation studies: results' (D-09 Amendment 1); content largely reusable.",
+      "goal_statement": "Present the consolidated pre-registered evidence as a single auditable unit: setup states the apparatus once (designs, engines, repetition counts, seeds, preregistration protocol and amendment history - 'repetitions', never 'replications', per T-07); results grade every frozen prediction including the failures, prominently (D-05). Steps back down the technical gradient from S4. Serves all four thesis components (the methodological one through the preregistration narrative).",
+      "estimated_paragraphs": "10-13",
+      "super_propositions": [
+        {
+          "id": "S5-SP1",
+          "claim": "Setup - the full apparatus is stated once: MVN designs, missingness mechanisms, MI engines, repetition counts and seeds, with every study preregistered before code and amendments dated.",
+          "goal": "define_concept",
+          "evidence": ["verif:verification/run_all.R", "verif:verification/ic-ladder.R", "verif:todo/004-simulation-hypotheses.md", "verif:todo/005-comprehensive-sweep-hypotheses.md", "verif:todo/027-ladder-preregistration.md"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S5-SP2",
+          "claim": "Results - the frozen predictions grade out: W1 bias decomposition, the W2 differential, the W3/ladder selection results (C1-C6 pass), and the non-nested W4 measurements, each tied to its committed artifact.",
+          "goal": "evaluate_evidence",
+          "evidence": ["verif:verification/cache/ic-ladder-summary.csv", "verif:verification/cache/w4-nonnested-summary.csv", "verif:verification/cache/run_all-prod"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S5-SP3",
+          "claim": "Failures are reported as a unit in the main text: the similar-pair differential below resolution, the N=1000 cell at 2.6 se, and the component-level 9-20% misses (D-05).",
+          "goal": "evaluate_evidence",
+          "evidence": ["verif:verification/cache/w4-nonnested-summary.csv", "verif:verification/cache/run_all-prod"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S5-SP4",
+          "claim": "Engine sensitivity is scoped: EMB/Amelia agrees with the engine-free observed-data RIV within 2-3% and the selection results within 0.011, so the conclusions are not artifacts of one imputation engine - an empirical, not analytic, robustness statement.",
+          "goal": "scope_limit",
+          "evidence": ["verif:verification/cache/run_all-prod"],
+          "evidence_status": "grounded"
+        }
+      ],
+      "depends_on": ["S3", "S4"],
+      "dep_types": ["builds_on", "instantiates"],
+      "feeds_forward_to": ["S6"]
+    },
+    {
+      "id": "S6",
+      "arc_move": "M5_DISCUSSION",
+      "anchor": "sec-discussion",
+      "title": "Discussion",
+      "mapping_from_180e2b5": "Old S7 (sec-discussion) + old S8 (sec-provenance, shrunk to the closing declaration block). Reordered to the inverse gradient with the plain-language verdict as item (4).",
+      "goal_statement": "Close the paper on the inverse gradient: open at the technical level the derivations earned (G1-G6 next to the claims they qualify, the power-dominance conjecture labeled), then broaden until the closing passages - the plain-language replication-principle verdict and the workflow reflection - are fully readable by the S1 reader; end with the formal JAIGP provenance declaration. NO separate Conclusion section; the verdict paragraph is the takeaway block. Serves all four thesis components.",
+      "estimated_paragraphs": "9-11",
+      "super_propositions": [
+        {
+          "id": "S6-SP1",
+          "claim": "G1-G6 scope limits are stated next to the claims they qualify, each with its evidential standing (general statement / MVN verification per D-07 among them).",
+          "goal": "scope_limit",
+          "evidence": ["deriv:sec-thm", "deriv:sec-lrt-ac"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S6-SP2",
+          "claim": "Power dominance of the corrected statistic is stated as a conjecture with partial empirical support (W2), not as a result.",
+          "goal": "scope_limit",
+          "evidence": ["verif:verification/W2-lrt-power.R"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S6-SP3",
+          "claim": "Three future directions: covariate shift (Shimodaira's named future work), exact-engine replication of the bias constants, and selection-aware calibration (the sequel, developed separately per D-06).",
+          "goal": "position_lineage",
+          "evidence": ["lit:shimodairaInformationCriterionModel2017"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S6-SP4",
+          "claim": "The plain-language verdict: after correction, the criterion matches complete data on average; at the null, selection and testing behave as if the data were complete; under signal, missing information costs power that no post-processing buys back - and the open piece is exactly the sequel's subject.",
+          "goal": "summarize",
+          "evidence": ["deriv:sec-ic", "verif:verification/cache/ic-ladder-summary.csv"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S6-SP5",
+          "claim": "The workflow reflection is itself trust-ordered: what the gates demonstrably caught (the sign episode), what they cost, and what they cannot catch - demonstrated claims separated from asserted ones.",
+          "goal": "evaluate_evidence",
+          "evidence": ["deriv:sec-verify", "xmodel:verification/cache/derivation-audit-run-w2diff.json"],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S6-SP6",
+          "claim": "The paper closes with the formal JAIGP provenance declaration - a formality by this point, because the whole paper performed it.",
+          "goal": "summarize",
+          "evidence": ["verif:manuscript/plan/decisions.md"],
+          "evidence_status": "grounded"
+        }
+      ],
+      "depends_on": ["S4", "S5"],
+      "dep_types": ["qualifies", "qualifies"],
+      "feeds_forward_to": []
+    }
+  ],
+  "dependency_graph": {
+    "S1": [],
+    "S2": ["S1"],
+    "S3": ["S1"],
+    "S4": ["S2", "S3"],
+    "S5": ["S3", "S4"],
+    "S6": ["S4", "S5"]
+  },
   "metrics_gate": {
-    "every_super_proposition_has_evidence_pointer": null,
-    "dependency_graph_acyclic": null,
-    "no_orphaned_sections": null,
-    "every_section_serves_an_arc_move": null,
-    "passes": null,
-    "notes": "Evaluated when sections are populated."
+    "every_super_proposition_has_evidence_pointer": true,
+    "dependency_graph_acyclic": true,
+    "no_orphaned_sections": true,
+    "every_section_serves_an_arc_move": true,
+    "passes": true,
+    "notes": "Evaluated at drafting 2026-06-06: 38 super-propositions, all with at least one evidence pointer; graph is a DAG (S1 -> {S2,S3} -> S4 -> S5 -> S6); each section maps to exactly one of the six ratified arc moves (D-09 + Amendment 1). Marcus annotation pending."
   }
 }
