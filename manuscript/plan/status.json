@@ -4,10 +4,10 @@
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
   "phase": "level3_drafting",
   "last_updated": "2026-06-06",
-  "updated_by": "claude (D-12 ratified: from-scratch drafting, 180e2b5 as quarry)",
+  "updated_by": "claude (S1 drafted: 6 paragraphs, 22 level4 entries, lint green)",
   "blocked_on": {
-    "who": "claude",
-    "what": "Draft S1 (Introduction) into level3-paragraphs.json from scratch under its approved blueprint (6 SPs, four-paragraph funnel, T-06 typing, D-10 principle, meta layer last) - quarrying 180e2b5 only for verified citation-backed material; then Marcus annotates via /section-review S1. Sections drafted one at a time; Level 4 populated alongside each; compile_enabled only when all six exist (D-12).",
+    "who": "marcus",
+    "what": "Annotate the S1 Introduction draft (6 paragraphs in level3-paragraphs.json; prose presented in-chat 2026-06-06). Items flagged: draft runs to 6 paragraphs vs blueprint's 4-5; @TODO:mi-ic-companion needs a citable form before compile (todo/003). After S1: draft S2.",
     "artifact": "manuscript/plan/level3-paragraphs.json"
   },
   "levels": {

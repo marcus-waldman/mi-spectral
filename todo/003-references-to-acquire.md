@@ -101,6 +101,8 @@ centering question or the replication principle?").
   AIC_orig row) — claim novelty for posing it as a PRINCIPLE and characterizing its
   achievable boundary, NOT for being first to compare against complete data.
 
+| **Waldman, M. (in preparation).** "Information Criteria for Multiply-Imputed Data: A Principled Approach for Complete-Data Replication" (the MI-IC companion, `~/git-repositories/MI-IC/manuscript/mi-ic-article.qmd`). | **proposed** | The companion applied paper sharing the complete-data replication framing (D-10); cited at S1-P3's "jointly with a companion applied paper" | S1-P3 (@TODO:mi-ic-companion placeholder) | High (blocks compile) | Needs a citable form before compile_enabled: preprint DOI (OSF/arXiv) or an in-prep bib entry. Not an acquisition — our own manuscript; resolve at submission planning. |
+
 ## Derivation-ledger references (proposed 2026-05-23)
 
 Surfaced while mapping the formalized derivation ledger (explicit axioms / regularity
