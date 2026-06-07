@@ -47,3 +47,5 @@ _gsdata_/
 .claude/*.local.json
 .vscode/
 .idea/
+
+verification/cache/run_all-regen/
