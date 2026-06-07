@@ -1,0 +1,400 @@
+{
+  "session_id": "9436d7e4-cbee-4fc1-ad1e-adced7a10e59",
+  "session_summary": "Session built the Sympy proof-verification notebook then pivoted to scaffolding the canonical sourced derivation (derivation.qmd) in stages: notation, ledger, full tagged proof. Marcus drove almost everything: he reframed the deliverable toward a fully formalized axiom/lemma registry, demanded equation- and line-level provenance for every step, controlled scope (stay MVN), interrogated notation choices, and rejected house jargon and symbol collisions. The AI executed and repeatedly surfaced decisions; Marcus's interrogation caught unsourced steps and a phi double-duty notation bug.",
+  "coded_turns": [
+    {
+      "uuid": "57f019a8-60ac-4aa2-bffe-e7febef749ab",
+      "timestamp": "2026-05-23T18:28:05.269Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "build a Sympy + Quarto notebook that symbolically verifies the\n  central theorem (Q-function deviance-bias decomposition), per the\n  operational spec in todo/007",
+      "note": "Detailed kickoff prompt: builds Sympy verification notebook, with honest-scoping and no-silent-fallback discipline imposed.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/007-sympy-proof-verification.md; proof-verification-sympy.qmd"
+    },
+    {
+      "uuid": "087a0b86-da3a-40a1-8b40-380f2a8a67c9",
+      "timestamp": "2026-05-23T18:47:51.699Z",
+      "codes": ["pose-question", "challenge-framing"],
+      "quote": "How is this gonna be useful in the paper?",
+      "note": "Probes the deliverable's purpose, forcing justification of the notebook's role in the manuscript.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "0197e191-d19f-456b-8d63-8684db08a0ee",
+      "timestamp": "2026-05-23T22:40:11.720Z",
+      "codes": ["pose-question", "set-standard", "scope-decision"],
+      "quote": "I want something where we list all axioms and properties that will be used, and I mean all like linearity properties of expectation or iterated expectation, regularity conditions, matrix algebra",
+      "note": "Reframes deliverable: demands a fully formalized axiom/lemma registry referenced in the derivation.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd ledger (Stage 2 R/A/L registry)"
+    },
+    {
+      "uuid": "da92932d-e9a9-4c8a-82ec-c288c8a93855",
+      "timestamp": "2026-05-23T22:45:19.352Z",
+      "codes": ["set-standard", "redirect-priority", "supply-domain-judgment"],
+      "quote": "We should probably do any citation searching, including what we already have before drafting in full.",
+      "note": "Sequences citation acquisition before full drafting; names existing sources (Matrix Cookbook, Shafer, van der Vaart).",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "380f635e-bd00-4e9d-94ef-279a0ed873a0",
+      "timestamp": "2026-05-23T22:52:54.514Z",
+      "codes": ["assign-task", "redirect-priority"],
+      "quote": "But you should do it strategically to be smart with context. We can search by embedding with litrev or you can search the Md with keywords",
+      "note": "Approves search-first with a context-efficiency constraint and two suggested methods.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "2e97da5d-c409-4a5c-a11f-b8a3f4499e38",
+      "timestamp": "2026-05-23T23:06:36.483Z",
+      "codes": ["supply-domain-judgment", "catch-gap"],
+      "quote": "Isn’t the missing information principle on Shafer. I know it isn’t the source",
+      "note": "Supplies a likely source location for the missing-information principle, correcting the citation target.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd ledger source assignment"
+    },
+    {
+      "uuid": "981bccbe-832a-4116-bcce-f5377fc29dc8",
+      "timestamp": "2026-05-23T23:13:59.542Z",
+      "codes": ["challenge-derivation", "audit-artifact"],
+      "quote": "Are you sure that vech is not already in the matrix cookbook?",
+      "note": "Stress-tests the claim that vech is absent from the cookbook, forcing a verification check.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "753ff68c-0242-47a7-919c-e9dbfb91f11b",
+      "timestamp": "2026-05-23T23:22:12.548Z",
+      "codes": ["assign-task"],
+      "quote": "What’s the title for Magnus–Neudecker",
+      "note": "Routine request for the reference title to add it to Zotero.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/003 reference proposal (Magnus-Neudecker)"
+    },
+    {
+      "uuid": "45f50b01-3443-4746-9658-268f0de08298",
+      "timestamp": "2026-05-23T23:23:43.614Z",
+      "codes": ["assign-task"],
+      "quote": "Ok I’ll add this it’ll just be a bit when I get home",
+      "note": "Logistics: commits to acquiring the Magnus-Neudecker PDF later.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "38cfe2b3-a518-4141-a907-04047c44e016",
+      "timestamp": "2026-05-24T00:33:53.247Z",
+      "codes": ["provide-resource"],
+      "quote": "Alright. I have added the referennce and pdf into zotero",
+      "note": "Reports the Magnus-Neudecker reference and PDF are now in Zotero for the pipeline.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "bbabdda6-81f3-4f5e-978e-22f6861eaa45",
+      "timestamp": "2026-05-24T00:36:43.149Z",
+      "codes": ["assign-task", "set-standard"],
+      "quote": "We need to migrate it from zotero to google drive using litrev and then copy over the md from mathpix / litsync skill",
+      "note": "Specifies the canonical acquisition pipeline rather than reading the Zotero PDF directly.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "533fa4ff-d7d2-4292-8221-7558e7ac4ad2",
+      "timestamp": "2026-05-24T00:42:31.062Z",
+      "codes": ["scope-decision", "set-standard", "pose-question"],
+      "quote": "First let's start with defining notation and quantities, ensuring whever possible we trace that convention back to sources we have and/or making sure we are clear by what we mean by things like RIV. Second, we do the ledger. Then we move to the full derivation.",
+      "note": "Sets the three-stage document order (notation, ledger, derivation) with source-traced conventions.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd Stage 1/2/3 structure"
+    },
+    {
+      "uuid": "5b4d0d26-1c49-42fe-a031-78cbaec48ff4",
+      "timestamp": "2026-05-24T00:46:28.289Z",
+      "codes": ["set-standard"],
+      "quote": "NOw it isn't enough to just cite the reference. You need to provide equations from the reference that you are invoking. If an equation is not available, provide the line numbber from the markdown.",
+      "note": "Tightens provenance standard: every invoked source needs its equation or markdown line number.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd provenance discipline; check_provenance.py idea"
+    },
+    {
+      "uuid": "9e8f0456-006a-4734-b4ab-33970206ac09",
+      "timestamp": "2026-05-24T00:57:54.108Z",
+      "codes": ["reject-prose-style", "pose-question"],
+      "quote": "since this is an html file can we do hoverovers for or box4es on provenance. Provenance is important, but it is really affecting readability",
+      "note": "Flags provenance clutter hurting readability; proposes hover/box presentation to separate audit detail.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd margin-provenance design"
+    },
+    {
+      "uuid": "65edc02a-41e4-4d13-949a-d44f0d791919",
+      "timestamp": "2026-05-24T01:01:55.282Z",
+      "codes": ["ratify"],
+      "quote": "I like the side margin! very nice.",
+      "note": "Approves the side-margin provenance presentation option.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd margin provenance (Stage 1)"
+    },
+    {
+      "uuid": "424bc37a-10a2-4daf-b5f1-055df05378cc",
+      "timestamp": "2026-05-24T01:07:01.235Z",
+      "codes": ["challenge-derivation", "challenge-framing"],
+      "quote": "Why are we introducing X in D1 instead of just using Y?",
+      "note": "Questions an unnecessary notation symbol in definition D1, probing the notation design.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd D1 notation"
+    },
+    {
+      "uuid": "757b0b93-de00-4546-9531-5c4783a97bb6",
+      "timestamp": "2026-05-24T01:12:32.904Z",
+      "codes": ["catch-gap", "challenge-derivation", "set-standard"],
+      "quote": "How is it that you applied linearity of trace, and tr(I_k) = K but you didn't give provenance to Matrix Cookbook?",
+      "note": "Catches an unsourced algebra step; enforces the no-unsourced-step rule he just imposed.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd 'no unsourced step' audit"
+    },
+    {
+      "uuid": "19a66e10-951d-4e28-8677-7b80d490dcfe",
+      "timestamp": "2026-05-24T01:18:47.699Z",
+      "codes": ["pose-question", "set-standard"],
+      "quote": "Should we add a hook?",
+      "note": "Raises whether to enforce provenance via an automated hook; AI counsels a plain script instead.",
+      "episode_candidate": false,
+      "artifact_hint": "check_provenance.py (deferred)"
+    },
+    {
+      "uuid": "7e15e7ab-02cb-4c20-b290-f35d661909e8",
+      "timestamp": "2026-05-24T01:24:37.228Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "Ok let’s go to stage 2",
+      "note": "Defers the provenance hook and advances to Stage 2 (ledger).",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd Stage 2 ledger"
+    },
+    {
+      "uuid": "20db823d-60e9-4e2a-a3fc-9ff83d645320",
+      "timestamp": "2026-05-24T01:45:07.239Z",
+      "codes": ["challenge-derivation", "audit-artifact"],
+      "quote": "What is this: explicitly labeled as the lemma whose misuse generates the spurious −½k; MI variance recovery (Meng Lemma 3 + Main result)?",
+      "note": "Queries a conflated ledger entry, surfacing that L2 and L4 are two distinct lemmas run together.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd L2/L4 lemma distinction"
+    },
+    {
+      "uuid": "45bda689-4169-4d37-9547-fc48ef09b4ac",
+      "timestamp": "2026-05-24T01:46:53.835Z",
+      "codes": ["assign-task"],
+      "quote": "Show this again",
+      "note": "Asks AI to re-display the lemma content for inspection.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "3f838e83-7aba-4209-8e09-4aa5febbb26d",
+      "timestamp": "2026-05-24T02:06:52.042Z",
+      "codes": ["assign-task"],
+      "quote": "Can you render as a pdf and show me here so I can open it on my phone",
+      "note": "Requests a PDF render to review the document on mobile.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "1de560b9-2c7e-4a10-b7f7-23dff5e8a485",
+      "timestamp": "2026-05-24T02:11:04.295Z",
+      "codes": ["ratify"],
+      "quote": "Don’t worry about it",
+      "note": "Drops the PDF render after AI flags a TeX Live version mismatch; accepts HTML fallback.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "333e033f-5eac-41d5-92f3-dc799e380219",
+      "timestamp": "2026-05-24T02:20:16.990Z",
+      "codes": ["assign-task"],
+      "quote": "Okay do the fully tagged proof",
+      "note": "Greenlights Stage 3, the full tagged proof.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd Stage 3 tagged proof"
+    },
+    {
+      "uuid": "9713efa5-1b9b-4643-bbc0-5159aeefbc3e",
+      "timestamp": "2026-05-24T03:26:44.201Z",
+      "codes": ["challenge-derivation", "catch-gap"],
+      "quote": "Why in D5 are you invoking Q^bar when defining the complete data likelihood? Y not just \\scriptl(\\theta|Y)?",
+      "note": "Catches a definitional mismatch in D5; fix tightens I_com definition and Stage 3 convergence claim.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd D5/D6/D7 Fisher-information fix (commit 1de7f40)"
+    },
+    {
+      "uuid": "447aacc2-38a0-44c5-af24-ce9fbd84f2bb",
+      "timestamp": "2026-05-24T03:31:57.427Z",
+      "codes": ["challenge-framing", "pose-question", "scope-decision"],
+      "quote": "why are we limiting ourselves to something that specific and not go for the more general case, invoke the quadratic approximation, etc?",
+      "note": "Questions the MVN-only restriction, asking whether to pursue the general quadratic-approximation case.",
+      "episode_candidate": true,
+      "artifact_hint": "scope: MVN vs general"
+    },
+    {
+      "uuid": "b45fbc25-8c6e-47a8-99c1-860f251000ac",
+      "timestamp": "2026-05-24T03:35:18.066Z",
+      "codes": ["scope-decision"],
+      "quote": "Maybe we just keep in the normal case for now and if a reviewer pushes back to make more general, we do that then. Let's keep scope in control",
+      "note": "Decides to keep MVN scope, deferring generalization until a reviewer demands it.",
+      "episode_candidate": true,
+      "artifact_hint": "project_scope_keep_mvn decision"
+    },
+    {
+      "uuid": "b6d584d8-5883-46d0-b8d0-29b87c4d7c8c",
+      "timestamp": "2026-05-24T15:25:19.538Z",
+      "codes": ["reject-prose-style", "set-standard"],
+      "quote": "Things like \"W1 fixture\" are nto going to make sense. 2. Some equations should have numbers associated with theme--things that are major and would show up in a proof sketch in the main section",
+      "note": "Rejects internal codename jargon and requires numbered equations for proof-sketch-worthy results.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd jargon removal + equation numbering (commit 1de7f40)"
+    },
+    {
+      "uuid": "10143df0-5c68-4437-b840-ea2126eeb326",
+      "timestamp": "2026-05-24T15:35:19.272Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "Let's commit",
+      "note": "Approves committing the D5/D6/D7 fix plus jargon and equation-numbering pass.",
+      "episode_candidate": false,
+      "artifact_hint": "commit 1de7f40"
+    },
+    {
+      "uuid": "bedbaff1-7388-4590-b654-c675a8730f7b",
+      "timestamp": "2026-05-24T15:36:37.875Z",
+      "codes": ["assign-task", "set-standard"],
+      "quote": "Fix the hook to whitelist eq/fig/tbl/sec prefixes",
+      "note": "Orders the citation hook fixed to allow Quarto crossref prefixes so equation cross-refs work.",
+      "episode_candidate": false,
+      "artifact_hint": "check_citations.py crossref whitelist"
+    },
+    {
+      "uuid": "087f8516-0dd8-42cf-9092-2f941e05204e",
+      "timestamp": "2026-05-24T15:39:05.454Z",
+      "codes": ["reject-prose-style", "set-standard"],
+      "quote": "in stage 1 we put provenance in the margins (but not for stage 2 and 3). I want provenance on the margin",
+      "note": "Requires consistent margin-provenance presentation across all three stages.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd Stage 2/3 margin provenance"
+    },
+    {
+      "uuid": "274f4f4c-c1e6-4b3a-af19-c06575f4b4e6",
+      "timestamp": "2026-05-24T15:45:14.090Z",
+      "codes": ["audit-artifact", "reject-prose-style"],
+      "quote": "I'm still seeing \"W1\" showing up",
+      "note": "Audits the render and catches residual W1 codename still visible to readers.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd codename purge"
+    },
+    {
+      "uuid": "d538589d-e287-4f99-b61d-f7beab6f58a7",
+      "timestamp": "2026-05-24T15:49:44.000Z",
+      "codes": ["catch-gap", "reject-prose-style", "challenge-derivation"],
+      "quote": "It looks like \\phi is doing a double duty as both the normal pdf and a simulated parameter estimate. I think I rather have the normal pdf just be an f_{\\scriptN}",
+      "note": "Catches phi notation collision (normal pdf vs imputation draw); demands disambiguation.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd f_N density notation fix"
+    },
+    {
+      "uuid": "e48d15ef-b05f-46d1-b776-5f5405752178",
+      "timestamp": "2026-05-24T15:50:47.328Z",
+      "codes": ["challenge-derivation", "reject-prose-style", "pose-question"],
+      "quote": "Why not something like \\phi^\\hat^\\tilde or some thing?",
+      "note": "Extends the notation challenge, probing why phi-tilde rather than a hat-tilde for the simulated estimate.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd phi-tilde imputation-draw notation"
+    },
+    {
+      "uuid": "bca1f6db-e48e-430b-b36c-54744c711547",
+      "timestamp": "2026-05-24T15:56:44.842Z",
+      "codes": ["set-standard", "assign-task"],
+      "quote": "we should put all verbatim text references from the sources into an appendix organized by reference, link to that section/subsection in the appendix",
+      "note": "Specifies a verbatim-source appendix plus Petersen-Pedersen equation-number citations for the next session.",
+      "episode_candidate": true,
+      "artifact_hint": "next-session todo: verbatim-source appendix + Matrix Cookbook equation numbers"
+    },
+    {
+      "uuid": "60ab4900-2e66-4d19-964c-70864fa9ab6f",
+      "timestamp": "2026-05-24T15:58:59.989Z",
+      "codes": ["assign-task"],
+      "quote": "give me the prompt for the next session",
+      "note": "Requests a self-contained handoff prompt for the next session.",
+      "episode_candidate": false,
+      "artifact_hint": "next-session handoff prompt"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-23T22:40:11.720Z",
+      "evidence": "Want me to draft that footnote and the Discussion paragraph when §3 gets written?",
+      "note": "Proposed a two-artifact verification framing and offered to draft the footnote."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-23T22:40:11.720Z",
+      "evidence": "the overselling is the thing that gets AI-assisted papers torn apart in review",
+      "note": "Flagged the overselling risk for AI-assisted papers and recommended a defensible claim."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-23T22:45:19.352Z",
+      "evidence": "should this ledger become *the* canonical derivation that supersedes MI-IC's v4.5"
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-23T23:13:59.542Z",
+      "evidence": "the only thing I still need from you is the A8 call (Option A + acquire Magnus–Neudecker, or Option B coordinate-free with Anderson)"
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-23T23:13:59.542Z",
+      "evidence": "a Schafer-literate referee will misread the quantity"
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-23T23:23:43.614Z",
+      "evidence": "I'm giving this title from training knowledge, so it stays `proposed` in `todo/003` until a PDF is acquired"
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-24T00:36:43.149Z",
+      "evidence": "no Mathpix cache for this PDF, and it's a 47-page excerpt, not the full book"
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-24T01:01:55.282Z",
+      "evidence": "Which do you want as the default — C (margin), B (collapsible), or a C-primary/B-overflow hybrid?"
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-24T01:24:37.228Z",
+      "evidence": "the existing `check_citations.py` already broke once on a working-directory edge case... More hooks = more of that fragility."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-24T02:11:04.295Z",
+      "evidence": "the margin notes need the `sidenotes` LaTeX package, and TinyTeX can't fetch it"
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-24T03:35:18.066Z",
+      "evidence": "is (2) something you want to take on, or leave flagged as the open frontier?"
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-24T15:35:19.272Z",
+      "evidence": "For §3 to cite \"equation (6),\" either reference by literal number, or... teach `check_citations.py` to whitelist Quarto's reserved crossref prefixes"
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-24T15:45:14.090Z",
+      "evidence": "I treated the inline `[ledger-tag]` references as proof structure (kept inline), not provenance (margin). If you'd rather those go to the margin too... say so"
+    }
+  ],
+  "proposed_codes": []
+}

@@ -3,11 +3,11 @@
   "project": "mi-spectral JAIGP manuscript",
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
   "phase": "level3_drafting",
-  "last_updated": "2026-06-06",
-  "updated_by": "claude (S1 drafted: 6 paragraphs, 22 level4 entries, lint green)",
+  "last_updated": "2026-06-07",
+  "updated_by": "claude (todo/032 executed: collaboration analysis committed at verification/collaboration-analysis.md; S3-P2 rewritten from it, awaiting_collaboration_analysis flag cleared; D-13 deposit manifest + sensitive scan prepared for review)",
   "blocked_on": {
     "who": "marcus",
-    "what": "Per-paragraph annotation sessions on S1 (7 paragraphs), S2 (13 paragraphs), and now S3 (8 paragraphs, drafted 2026-06-07 while S1/S2 review pending). Open flags: S1 length 7 vs 4-5; S1 decomposition sentence placement (P4 vs P6); S1-P6 'improper' continuity with S2-P7. After approvals: draft S4 Derivations (quarry-rich, biggest section).",
+    "what": "Per-paragraph annotation sessions on S1 (7 paragraphs), S2 (13 paragraphs), and S3 (8 paragraphs; P2 now rewritten from the todo/032 collaboration analysis). Open flags: S1 length 7 vs 4-5; S1 decomposition sentence placement (P4 vs P6); S1-P6 'improper' continuity with S2-P7. Also pending Marcus: review of the D-13 deposit artifacts (verification/cache/collab-analysis/deposit-manifest.md + deposit-sensitive-scan.md) before any transcript deposit. After approvals: draft S4 Derivations (quarry-rich, biggest section).",
     "artifact": "manuscript/plan/level3-paragraphs.json"
   },
   "levels": {

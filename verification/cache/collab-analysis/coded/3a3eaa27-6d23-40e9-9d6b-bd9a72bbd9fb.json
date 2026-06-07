@@ -1,0 +1,69 @@
+{
+  "session_id": "3a3eaa27-6d23-40e9-9d6b-bd9a72bbd9fb",
+  "session_summary": "An adversarial verification session: Marcus commissioned an independent audit of the AI-assisted (A)+(C) MAR information-convention resolution (todo/018, commit d37183b), explicitly forbidding trust in the commit message or prior summaries and demanding per-claim refutation from literature, code, and reproductions. The human's role was to design and enforce the verification protocol (adversarial stance, blind cross-model independence checks, citation/render gates) and then to request the fixes be packaged as a portable correction prompt. The audit returned PASS with two material WARNs (a line-906 contradiction and an overstated GPT-5.5 independence claim).",
+  "coded_turns": [
+    {
+      "uuid": "208bc91b-5e1f-48cf-ab5a-38f557819f88",
+      "timestamp": "2026-06-02T17:24:48.193Z",
+      "codes": ["set-standard", "catch-gap", "challenge-derivation"],
+      "quote": "independently verify or refute each claim from the literature, the code, and reproductions. Your job is to find\n    errors, not to confirm.",
+      "note": "Commissions an adversarial audit forbidding trust in prior summaries; pre-specifies independence, mapping, and weak-point attacks.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/018 audit; verification/cache/derivation-audit-2026-06-02-acinfo.md; @sec-termA"
+    },
+    {
+      "uuid": "a867a52d-1441-4df2-a182-b0ee2c6e6bee",
+      "timestamp": "2026-06-02T17:25:27.756Z",
+      "codes": ["set-standard", "redirect-priority"],
+      "quote": "Yes but remember, you are using the derivation-audit skill",
+      "note": "Redirects the AI to run the audit through the prescribed derivation-audit skill rather than an ad hoc workflow.",
+      "episode_candidate": false,
+      "artifact_hint": ".claude/skills/derivation-audit"
+    },
+    {
+      "uuid": "e32e75fe-179c-4d07-be70-41a4360c1982",
+      "timestamp": "2026-06-02T17:54:41.846Z",
+      "codes": ["other"],
+      "quote": "<status>completed</status>\n<summary>Background command \"Run analytic reproduction solo (single-process)\" completed (exit code 0)",
+      "note": "System task-completion notification (background reproduction finished, exit 0); not an authored human move.",
+      "episode_candidate": false,
+      "artifact_hint": "verification/term-ac-realized-info.R reproduction"
+    },
+    {
+      "uuid": "8a488a88-0bd5-4008-afa8-9c8678f6093d",
+      "timestamp": "2026-06-02T17:57:15.856Z",
+      "codes": ["assign-task"],
+      "quote": "Give me a prompt I can take back to correct the minor things.",
+      "note": "Requests the two audit WARNs be packaged into a portable correction prompt for a follow-up session.",
+      "episode_candidate": false,
+      "artifact_hint": "fix prompt for line-906 contradiction + overstated GPT-5.5 independence"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-02T17:54:41.846Z",
+      "evidence": "so \"independently returns the same closed form\" and \"spontaneously the K&M recommendation\" overstate it. GPT produced no number; the agreement is structural",
+      "note": "AI flags that the committed text overstates the cross-model independence/agreement claim."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-04T19:41:41.887Z",
+      "evidence": "with the two material WARNs (line-906 contradiction; overstated GPT-5.5 independence) as the actionable items.",
+      "note": "AI surfaces two material defects in committed text despite the overall PASS verdict."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T17:54:41.846Z",
+      "evidence": "One disagreement with your prior `derivation-audit-2026-06-02-acinfo.md`: it graded honesty \"ok\" and didn't flag line 906",
+      "note": "AI explicitly raises a disagreement with the prior audit for the human to adjudicate."
+    }
+  ],
+  "proposed_codes": [
+    {
+      "name": "system-artifact",
+      "definition": "A kept turn whose text is machine-emitted (task-completion notification, command stdout, tool callback) carrying no authored human intent; coded only because it occupies a turn slot.",
+      "example_quote": "<status>completed</status>\n<summary>Background command \"Run analytic reproduction solo (single-process)\" completed (exit code 0)</summary>"
+    }
+  ]
+}

@@ -1,6 +1,13 @@
 # todo/032 — Qualitative analysis of the collaboration record (for S3-P2)
 
-**Status:** open (handoff). Created 2026-06-07.
+**Status:** EXECUTED 2026-06-07 (same-day session). Deliverables:
+`verification/collaboration-analysis.md` (committed analysis: 13-code taxonomy,
+599-turn frequencies, 25-episode verified table, five-pattern heuristic) and the
+S3-P2 rewrite (`manuscript/plan/updates/update-s3p2-collab-20260607.py`).
+Primary data committed under `verification/cache/collab-analysis/coded/`.
+Remaining: the D-13 deposit itself — manifest + sensitive-content scan are
+prepared at `verification/cache/collab-analysis/deposit-manifest.md` and
+`deposit-sensitive-scan.md`, awaiting Marcus's review before deposit.
 **Blocks:** the final form of S3-P2 (Methods, "Roles and decision records").
 **Decided in-chat 2026-06-07:** S3-P2 must characterize the collaboration by a
 heuristic derived from the actual working record, then illustrate with examples —

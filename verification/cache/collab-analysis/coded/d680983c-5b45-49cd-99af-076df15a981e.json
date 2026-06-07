@@ -1,0 +1,59 @@
+{
+  "session_id": "d680983c-5b45-49cd-99af-076df15a981e",
+  "session_summary": "This session drafted manuscript/mi-spectral.qmd from scratch by walking the argument DAG, with the human opening in plan mode and supplying the full drafting protocol: section-by-section map nodes, citation-discipline reading order, trust-ordered style constraints, and an explicit ask for the AI's recommendation on whether section 6 stands alone. After the draft, render, and review, the human's role narrowed to lightweight operational steers: render an HTML copy, audit commit state, and authorize the push to origin.",
+  "coded_turns": [
+    {
+      "uuid": "d1bd5b67-e810-42a8-911a-070797f67538",
+      "timestamp": "2026-06-05T18:34:35.506Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "We are drafting manuscript/mi-spectral.qmd from scratch this session.",
+      "note": "Sets the full drafting protocol: reading order, DAG walk, citation-discipline gates, trust-ordered style, and asks for a section-6 recommendation.",
+      "episode_candidate": true,
+      "artifact_hint": "manuscript/mi-spectral.qmd drafted (commit 180e2b5); todo/031 handoff"
+    },
+    {
+      "uuid": "eba3f0cf-0034-49b2-8aae-80eb4366f272",
+      "timestamp": "2026-06-06T01:09:55.981Z",
+      "codes": ["assign-task"],
+      "quote": "Can you render it as an html file?",
+      "note": "Operational instruction to produce an HTML render of the drafted manuscript.",
+      "episode_candidate": false,
+      "artifact_hint": "manuscript/mi-spectral.html"
+    },
+    {
+      "uuid": "e2579d8b-eecf-4e1c-81d0-b7d1a2350181",
+      "timestamp": "2026-06-06T00:47:27.461Z",
+      "codes": ["audit-artifact"],
+      "quote": "Are we up to date on commits?",
+      "note": "Checks whether work is committed before authorizing further action.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "e568f085-f5be-496a-8d13-dae4d513cca2",
+      "timestamp": "2026-06-06T01:09:55.981Z",
+      "codes": ["assign-task", "ratify"],
+      "quote": "Yes, push it",
+      "note": "Authorizes pushing all 87 commits including manuscript draft and preregistrations to origin.",
+      "episode_candidate": false,
+      "artifact_hint": "push 1b4ba7e..82c4bb0 to origin/main"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-05T19:49:17.714Z",
+      "evidence": "9-agent adversarial map-conformance review (0 blocking, 5 material",
+      "note": "Assistant reported the review's blocking/material split, surfacing the draft's verification state before proceeding.",
+      "kind_detail": ""
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-06T01:09:55.981Z",
+      "evidence": "all 87 commits (`1b4ba7e..82c4bb0`) are now on `origin/main`, and local and remote are in sync",
+      "note": "Assistant confirmed exactly what would be published before the human's push authorization, framing the public-record consequence.",
+      "kind_detail": ""
+    }
+  ],
+  "proposed_codes": []
+}

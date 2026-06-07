@@ -1,0 +1,165 @@
+{
+  "session_id": "336e846b-886e-4798-85cd-fe63f884c53e",
+  "session_summary": "On 2026-06-02 Marcus directed the assistant to execute the approved derivation-audit remediation plan (W1-W5 + lifecycle/jargon fixes to manuscript/derivation.qmd), then pivoted to the harder question of getting multi-source evidence that the novel decomposition is correct. He supplied the Wolfram client library lead, installed Mathematica to add a second independent CAS, and queued two plans for fresh sessions: independent adversarial re-derivation (todo/013) and the non-monotone Cox-Snell pilot (todo/014). His role was to set the verification standard, contribute the second-CAS resource, partition scope across sessions, and gate every commit.",
+  "coded_turns": [
+    {
+      "uuid": "9726b5b2-697c-45a3-9e1f-415c7de97197",
+      "timestamp": "2026-06-02T00:38:24.292Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "Resume mi-spectral: EXECUTE the approved derivation-audit remediation plan.",
+      "note": "Detailed tier-by-tier execution order for audit remediation; W1 verify-first; render-must-exit-0 gate; commit discipline.",
+      "artifact_hint": "verification/cache/derivation-audit-2026-06-01-post-remediation.md (WARN 10->0)",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "11ff1f4f-2fca-4e50-b41a-c7a1063c3624",
+      "timestamp": "2026-06-02T01:41:09.711Z",
+      "codes": ["pose-question", "set-standard"],
+      "quote": "Does do we have the tighest evidence that our derivation is correct from multiple sources?",
+      "note": "Reframes agenda from audit cleanup to triangulated multi-source verification of the novel decomposition.",
+      "artifact_hint": "todo/013-independent-rederivation-plan.md",
+      "episode_candidate": true
+    },
+    {
+      "uuid": "676b53da-9fe5-4321-8dc8-4d5df17d66b4",
+      "timestamp": "2026-06-02T02:04:19.750Z",
+      "codes": ["supply-domain-judgment", "set-standard", "ratify"],
+      "quote": "if it is truly adversarial, it would need to come from another llm--perhaps openai or something",
+      "note": "Endorses item #1 but raises that genuine adversarial check needs an independent LLM; notes API cost and context-management difficulty.",
+      "artifact_hint": "todo/013 (cross-model adversarial re-derivation)",
+      "episode_candidate": true
+    },
+    {
+      "uuid": "d2d327b4-df0a-4cb6-80ef-87bc63410aaa",
+      "timestamp": "2026-06-02T02:09:04.746Z",
+      "codes": ["pose-question", "supply-domain-judgment"],
+      "quote": "let's say I was interested in mathematica how would I do that?",
+      "note": "Opens a second independent CAS (Mathematica) as a symbolic-verification source before the plan is drafted.",
+      "artifact_hint": "verification/cas-wolfram/ (Layer-2 second CAS)",
+      "episode_candidate": true
+    },
+    {
+      "uuid": "0e638ad2-a30e-4ec3-8a0e-82e548aa95bc",
+      "timestamp": "2026-06-02T02:18:14.230Z",
+      "codes": ["provide-resource", "supply-domain-judgment"],
+      "quote": "I believe there is a wolfram client library for python: https://reference.wolfram.com/language/WolframClientForPython/",
+      "note": "Supplies the wolframclient library lead enabling the Python-to-Wolfram CAS bridge.",
+      "artifact_hint": "verification/cas-wolfram/ via wolframclient",
+      "episode_candidate": true
+    },
+    {
+      "uuid": "325ca121-76d8-4bcf-8165-540c17f8168e",
+      "timestamp": "2026-06-02T02:20:35.346Z",
+      "codes": ["provide-resource", "assign-task"],
+      "quote": "I'm downloading wolfram right now.",
+      "note": "Reports installing Wolfram, enabling the live-kernel second-CAS check.",
+      "artifact_hint": "verification/cas-wolfram/ companion check",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "ddbdfac7-5d98-4b84-b18d-c54776022636",
+      "timestamp": "2026-06-02T02:30:55.146Z",
+      "codes": ["assign-task"],
+      "quote": "installed — run the companion check",
+      "note": "Greenlights running the Wolfram companion verification now that the kernel is available.",
+      "artifact_hint": "verification/cas-wolfram/ companion check run",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "ea8af8de-0ef2-4c1e-948e-bd6300ddfd0b",
+      "timestamp": "2026-06-02T02:40:55.679Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "Yes that sounds good",
+      "note": "Approves extend-then-commit: extend companion to MVN p=2 Fisher-info + (A)+(C), then commit with summary-table row.",
+      "artifact_hint": "commit 3977bdd (Wolfram trace+Magnus)",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "e2a42769-48d5-46a4-b386-c81eb7cea475",
+      "timestamp": "2026-06-02T02:52:39.425Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "Sure let's draft the plan",
+      "note": "Picks option #1 (draft the multi-source verification plan) over deepening Wolfram first.",
+      "artifact_hint": "todo/013-independent-rederivation-plan.md",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "c21d019c-fcc3-4650-8218-db50c9723a0b",
+      "timestamp": "2026-06-02T02:57:00.996Z",
+      "codes": ["scope-decision", "redirect-priority"],
+      "quote": "I'll do this in anoter session. Let's now turn to  Deepen Wolfram",
+      "note": "Defers the adversarial plan to a separate session; redirects this session to the Wolfram (A)+(C) and Cox-Snell deepening.",
+      "artifact_hint": "todo/014 (non-monotone Cox-Snell) deepening track",
+      "episode_candidate": true
+    },
+    {
+      "uuid": "519c5364-211c-411c-9575-50cc7327fd16",
+      "timestamp": "2026-06-02T02:57:33.645Z",
+      "codes": ["scope-decision", "set-standard", "assign-task"],
+      "quote": "before we do anything commit and give the prompt for pointing the new session to todo/013-independent-rederivation-plan.md",
+      "note": "Commit-then-proceed gate plus a handoff prompt so the deferred adversarial plan resumes cleanly in a fresh session.",
+      "artifact_hint": "commit 51ebc4d (todo/013 plan) + resume prompt",
+      "episode_candidate": true
+    },
+    {
+      "uuid": "1dd386ab-62e1-48e7-a338-a64268e888ed",
+      "timestamp": "2026-06-02T03:07:20.487Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "Go ahead and commit",
+      "note": "Greenlights committing verify_term_ac.py with provenance note; holds on the pilot decision.",
+      "artifact_hint": "commit d2ba31c (bivariate (A)+(C) re-derivation)",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "75a0055c-1113-47b1-bb68-d4ac9e4ff951",
+      "timestamp": "2026-06-02T03:11:42.074Z",
+      "codes": ["scope-decision", "redirect-priority"],
+      "quote": "Should we come up with a plan here and then do it in a fresh session?",
+      "note": "Routes the non-monotone Cox-Snell pilot to a prereg plan executed in a fresh session rather than starting it now.",
+      "artifact_hint": "todo/014 (non-monotone Cox-Snell pilot plan), commit fb7b570",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "202d6970-14bd-4f62-b26c-1998205ac7e8",
+      "timestamp": "2026-06-02T03:16:08.291Z",
+      "codes": ["assign-task"],
+      "quote": "Give me the prompt for the non-monotone Cox-Snell",
+      "note": "Requests the resume handoff prompt for the todo/014 Cox-Snell session.",
+      "artifact_hint": "todo/014 resume prompt",
+      "episode_candidate": false
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-02T01:41:09.711Z",
+      "evidence": "My recommendation is #1 ... Want me to launch it as a multi-agent workflow ... or start with a single inline re-derivation as a lighter first pass?",
+      "note": "Laid out a ranked menu (4 items) with a recommendation and two execution depths for the human to pick."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T02:09:04.746Z",
+      "evidence": "Want me to drop into plan mode and write it — or kick off Layer 0 first so the plan is informed by whether a blind Claude re-derivation even converges?",
+      "note": "Put the plan-first-vs-pilot-first sequencing decision explicitly to Marcus."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-02T02:52:39.425Z",
+      "evidence": "I'd lean #1 — it's the original goal ... But #2 is a clean, self-contained win if you'd rather keep riding the Wolfram momentum. Which way?",
+      "note": "Two-way fork (draft plan vs deepen Wolfram) with a lean and trade-offs."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T03:07:20.487Z",
+      "evidence": "Two things to confirm: 1. Commit verify_term_ac.py now ... or hold? 2. Non-monotone: green-light the scoped 3-variable Cox–Snell pilot, or defer it",
+      "note": "Surfaced a commit decision and a scope-of-pilot decision rather than proceeding silently."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-02T02:20:35.346Z",
+      "evidence": "skips cleanly if the kernel isn't found ... so the canonical render stays pip-only and reproducible for anyone without Wolfram",
+      "note": "Flagged the reproducibility risk of a Wolfram dependency and guarded the render to skip-if-no-kernel."
+    }
+  ],
+  "proposed_codes": []
+}

@@ -1,0 +1,17 @@
+{
+  "session_id": "1cff4222-cee2-48d9-8e41-1fab7a7085e2",
+  "session_summary": "A single-turn session in which Marcus commissions the build of the /derivation-audit project skill: a read-only flag-only auditor that mechanizes the project's verification and citation-discipline standards over manuscript/derivation.qmd. His role was to fully specify the audit's standards (citation backing as BLOCKER, evidence-to-external-exact-text matching against literature/ files, reproducible-artifact pointers, [mc]-to-assert pairing, over-claiming and house-jargon detection) and to mandate grounding every check in the repo's real conventions plus a test run.",
+  "coded_turns": [
+    {
+      "uuid": "ca1d5ca0-7e62-46e7-be1f-f3cea7079dba",
+      "timestamp": "2026-06-01T15:55:02.970Z",
+      "codes": ["set-standard", "assign-task", "catch-gap"],
+      "quote": "Create a project skill (slash command) that AUDITS the manuscript's sourced derivation for\n  verification/best-practices compliance and emits a flag-only report. Read-only: it diagnoses and\n  flags, it never edits.",
+      "note": "Commissions the /derivation-audit skill; mechanizes citation discipline, evidence-to-source matching, reproducibility, and over-claiming gates into one enforceable auditor.",
+      "episode_candidate": true,
+      "artifact_hint": ".claude/skills/derivation-audit/ skill (cited later as /derivation-audit PASS 0/0)"
+    }
+  ],
+  "ai_side": [],
+  "proposed_codes": []
+}

@@ -1,0 +1,174 @@
+{
+  "session_id": "dc9724ea-fef4-423e-96d4-802101901e29",
+  "session_summary": "Marcus reviews the canonical sourced derivation (derivation.qmd/html) and drives a wholesale restructuring for an outside theoretical-statistician reader: he demands a high-level roadmap, a proof sketch, and motivating prose around the bare algebra, and rejects house jargon ('ledge'/'numerical witness'/'consume'). His role is editorial and standard-setting plus quality control of fair-use handling of verbatim quotes; he repeatedly redirects to commit first and decides what stays vs. cuts.",
+  "coded_turns": [
+    {
+      "uuid": "af195fa0-dfba-49f2-9c21-13b5271ebe91",
+      "timestamp": "2026-05-25T01:51:06.278Z",
+      "codes": ["assign-task"],
+      "quote": "Read over derivation.html",
+      "note": "Opens the session by directing the AI to read the rendered derivation; plain operational kickoff.",
+      "artifact_hint": "manuscript/derivation.qmd",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "3d666643-6f31-431a-85fe-447b53bea415",
+      "timestamp": "2026-05-25T01:52:47.335Z",
+      "codes": ["catch-gap", "assign-task"],
+      "quote": "I need more information in this:   A couple of careful design points stand out",
+      "note": "Flags that the RIV/Q-bar disambiguation callouts are under-explained and need more content.",
+      "artifact_hint": "manuscript/derivation.qmd D8 disambiguation",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "757f93ca-e074-4884-8dd1-a547edc50763",
+      "timestamp": "2026-05-25T01:54:01.727Z",
+      "codes": ["pose-question", "challenge-derivation"],
+      "quote": "What's the fix?",
+      "note": "Probes the AI to articulate the actual fix for the (A)+(C) cancellation, not just describe behavior.",
+      "artifact_hint": "manuscript/derivation.qmd A4 (A)+(C) cancellation",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "8e741a44-3514-4a5e-b853-9b459cf4fcf1",
+      "timestamp": "2026-05-25T01:56:06.427Z",
+      "codes": ["pose-question", "supply-domain-judgment"],
+      "quote": "What would a skeptical reviewer want?",
+      "note": "Reframes the agenda around referee scrutiny, eliciting the documentation-gap (proof vs pointer) diagnosis.",
+      "artifact_hint": "manuscript/derivation.qmd A4 self-containment",
+      "episode_candidate": true
+    },
+    {
+      "uuid": "aa5c9fd2-d31a-48f9-9eb2-e023c9a97e9d",
+      "timestamp": "2026-05-25T01:58:41.776Z",
+      "codes": ["ratify", "scope-decision"],
+      "quote": "Let's start with 2",
+      "note": "Picks the fix-the-keystone-now option over running the reviewer persona pass.",
+      "artifact_hint": "manuscript/derivation.qmd A4 normal/exponential cancellation lemma",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "67ff49f1-ed61-4953-8de5-1c7ac458001b",
+      "timestamp": "2026-05-25T02:08:36.508Z",
+      "codes": ["assign-task"],
+      "quote": "can you re-render?",
+      "note": "Operational request to re-render the derivation document after the lemma edit.",
+      "artifact_hint": "manuscript/derivation.html render",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "4bdfada4-f310-44b5-b641-144ef29b850d",
+      "timestamp": "2026-05-25T02:10:09.395Z",
+      "codes": ["reject-prose-style", "catch-gap"],
+      "quote": "I don't think these [cite], [mc], etc. bracket things in text are needed any more now that we have the visibility in the margins. Correct?",
+      "note": "Calls for removing in-text provenance brackets now that margin flags carry it; declutters body.",
+      "artifact_hint": "manuscript/derivation.qmd margin-provenance cleanup",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "dc057da8-c43b-4f5d-8864-3a462a1381f8",
+      "timestamp": "2026-05-25T02:19:42.918Z",
+      "codes": ["reject-prose-style", "set-standard"],
+      "quote": "still is not outside reader friendly. First there are some words that a theoretical statistician would never use like \"ledge\" or \"numerical witness\"",
+      "note": "Rejects house jargon and demands an intro roadmap, proof sketch, and motivating prose around the algebra.",
+      "artifact_hint": "T-03 banned vocabulary / outside-reader feedback; derivation restructure",
+      "episode_candidate": true
+    },
+    {
+      "uuid": "50da961e-ed32-410a-82b7-d0bb6f22eb91",
+      "timestamp": "2026-05-25T02:23:11.252Z",
+      "codes": ["redirect-priority", "ratify"],
+      "quote": "Should we enter plan mode?. Margin-provenance is good. Agree with you on applications.",
+      "note": "Endorses plan mode for the reorg and ratifies margin-provenance and applications-as-pointers.",
+      "artifact_hint": "manuscript/derivation.qmd restructure plan",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "baa140eb-7d97-47fd-9438-dde1a9f1308f",
+      "timestamp": "2026-05-25T02:23:28.623Z",
+      "codes": ["redirect-priority", "set-standard"],
+      "quote": "Before you do that. let's commit",
+      "note": "Interrupts to commit current state before the large reorg begins; checkpoint discipline.",
+      "artifact_hint": "commit before restructure",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "5b336709-34e8-4f8c-8101-de82d2246d1e",
+      "timestamp": "2026-05-25T02:23:56.744Z",
+      "codes": ["redirect-priority", "set-standard"],
+      "quote": "Before you do that. let's commit",
+      "note": "Repeats the commit-first instruction (resend); enforce checkpoint before reorganization.",
+      "artifact_hint": "commit before restructure",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "c914c6d6-a57b-40be-a72c-3aa1116c12d6",
+      "timestamp": "2026-05-25T02:39:58.978Z",
+      "codes": ["challenge-framing", "supply-domain-judgment"],
+      "quote": "Do we ever relate any of our terms to the derivations of the AICcd?",
+      "note": "Pushes to connect the new terms to Cavanaugh-Shumway AICcd lineage; positioning check.",
+      "artifact_hint": "AICcd lineage placement (Cavanaugh-Shumway)",
+      "episode_candidate": true
+    },
+    {
+      "uuid": "d47de5c2-e0be-486a-aec1-a609186d91cc",
+      "timestamp": "2026-05-25T02:44:16.561Z",
+      "codes": ["reject-prose-style", "ratify"],
+      "quote": "consume is a weird word. but its seems fine to continue",
+      "note": "Flags 'consume' as off-register (later banned) while approving continuation of the rewrite.",
+      "artifact_hint": "T-03 banned vocabulary ('consume')",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "25c0ca18-a5d9-4ed5-b2d8-8e468c83ead8",
+      "timestamp": "2026-05-25T03:06:41.593Z",
+      "codes": ["reject-prose-style", "catch-gap"],
+      "quote": "a human reader woudl like more text in the 3.1. The's too muhcin paragraph in 3.2..kinda expand it vertically. Is this necessary",
+      "note": "Demands more prose in 3.1, splits the dense 3.2 paragraph, and questions a load-bearing bold sentence.",
+      "artifact_hint": "manuscript/derivation.qmd 3.1/3.2 prose balance",
+      "episode_candidate": false
+    },
+    {
+      "uuid": "e94a2238-bc35-4088-88b9-113c73fee076",
+      "timestamp": "2026-05-25T03:14:00.981Z",
+      "codes": ["set-standard", "supply-domain-judgment"],
+      "quote": "we can make a note that these verbatim will be deleted after the blinded peer review process terminated. That said, we need more of the surrounding words around the verbatim text",
+      "note": "Sets fair-use handling rule for verbatim quotes: delete-after-review note plus surrounding context.",
+      "artifact_hint": "fair-use / verbatim-quote handling standard",
+      "episode_candidate": true
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-25T01:56:06.427Z",
+      "evidence": "If you meant #2 ... I can pull the normal/exponential cancellation out of the MI-IC derivation and write it into A4 (or a collapsible appendix block)",
+      "note": "Offered to make A4 self-contained vs. leave it as a pointer."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-25T01:58:41.776Z",
+      "evidence": "Two ways forward ... 1. Run `/review reviewer1` ... 2. Fix the top item now ... Which do you want?",
+      "note": "Laid out reviewer-persona pass vs. immediate fix as a choice."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-25T02:23:11.252Z",
+      "evidence": "If that architecture matches your mental model, I'll start by drafting ... Want me to go — or adjust the skeleton first?",
+      "note": "Put the restructuring skeleton up for approval before drafting."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-25T02:39:58.978Z",
+      "evidence": "is this the register you want for an outside theoretical statistician? ... Too much structure for an intro, or right?",
+      "note": "Asked the human to ratify voice/level and intro structure."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-25T03:06:41.593Z",
+      "evidence": "This was a large rewrite (+292/−189). Want me to commit it? I'd propose, on `main` (your working branch)",
+      "note": "Surfaced the commit decision with a proposed message."
+    }
+  ],
+  "proposed_codes": []
+}

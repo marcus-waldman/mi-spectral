@@ -1,0 +1,111 @@
+{
+  "session_id": "af507d14-2e1b-4f6a-b57d-905ab269ccfc",
+  "session_summary": "A logistics-and-handoff session (2026-06-01..02) around the closed-form (A)+(C) MAR term: Marcus migrates Zotero PDFs to Drive, hands off a literature-gated citation-swap task (Hyodo / Kanda-Fujikoshi for derivation.qmd sec-termA), runs a parallel derivation audit, and asks for a plan to address its findings plus a next-session prompt. The human role is overwhelmingly operational direction and process control: detailed task specification, citation discipline, and orchestrating a separate audit whose results feed the plan.",
+  "coded_turns": [
+    {
+      "uuid": "a0b095ff-ea14-48c9-8f7d-e5fb9f37cbe5",
+      "timestamp": "2026-06-01T23:02:06.250Z",
+      "codes": ["assign-task"],
+      "quote": "There are pdfs in zotero that need to be migrated to google drive",
+      "note": "Plain operational instruction to migrate Zotero PDFs to Drive; opens the acquisition-logistics work.",
+      "episode_candidate": false,
+      "artifact_hint": "literature acquisition pipeline (Hyodo, Kanda-Fujikoshi migration)"
+    },
+    {
+      "uuid": "5c4a2fba-f202-4fdf-a4d9-4b79202c18b6",
+      "timestamp": "2026-06-01T23:09:29.337Z",
+      "codes": ["assign-task"],
+      "quote": "One more to migrate",
+      "note": "Follow-up instruction to migrate the remaining (broken-path Kanda) attachment after the AI flagged the stale path.",
+      "episode_candidate": false,
+      "artifact_hint": "Kanda & Fujikoshi 1998 Drive migration"
+    },
+    {
+      "uuid": "daed5582-3b97-4d95-8fec-3ef0743dce53",
+      "timestamp": "2026-06-01T23:13:10.845Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "Do NOT re-derive: the closed-form\n  general-MVN (A)+(C) for monotone MAR is DONE, fully analytic, verified",
+      "note": "Detailed resume prompt: bounds work (no re-derivation), enforces lit-sync-before-cite discipline, specifies exact citation swap.",
+      "episode_candidate": true,
+      "artifact_hint": "manuscript/derivation.qmd sec-termA @cite swap; todo/012; commit 874f7e8"
+    },
+    {
+      "uuid": "c1741098-4b07-430e-b28e-93105efd23e9",
+      "timestamp": "2026-06-01T23:13:21.170Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "READ each synced literature/<citekey>.md IN-SESSION and verify the claim before @cite-ing\n       (citation discipline; the hook only checks file existence)",
+      "note": "Duplicate resume prompt; explicitly tightens citation discipline beyond the hook (verify claim in-session).",
+      "episode_candidate": false,
+      "artifact_hint": "citation discipline; derivation.qmd sec-termA"
+    },
+    {
+      "uuid": "380ea453-4d95-4ac6-b7b4-90bed3dd6fac",
+      "timestamp": "2026-06-01T23:20:29.807Z",
+      "codes": ["set-standard", "redirect-priority"],
+      "quote": "I'm doing a derivation audit now in a separate session. I'll let you know what it findes",
+      "note": "Signals an independent audit running in parallel; sets up external verification gate before further manuscript work.",
+      "episode_candidate": true,
+      "artifact_hint": "verification/cache/derivation-audit-2026-06-01.md"
+    },
+    {
+      "uuid": "19389289-e2ce-42e9-a7cf-e5f6166aca5c",
+      "timestamp": "2026-06-01T23:20:49.362Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "Go ahead and commit",
+      "note": "Approves committing the verified citation work; ratifies the completed lit-gated step.",
+      "episode_candidate": false,
+      "artifact_hint": "commit 874f7e8 (citation work)"
+    },
+    {
+      "uuid": "f7389672-3c20-41d8-a81d-527406c2f234",
+      "timestamp": "2026-06-01T23:46:44.028Z",
+      "codes": ["assign-task", "set-standard"],
+      "quote": "Read over the report in  verification/cache/derivation-audit-2026-06-01.md and make a plan to address the issues. We'll just write the plan to a markdown file, not actually run it in this session",
+      "note": "Feeds the audit findings back in and orders a plan-only (no execution) remediation, gating fixes behind a written plan.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation-audit remediation plan (post-remediation md)"
+    },
+    {
+      "uuid": "06e39729-5433-495a-816e-ed0b68a65657",
+      "timestamp": "2026-06-02T00:37:05.858Z",
+      "codes": ["assign-task", "redirect-priority"],
+      "quote": "Give me the prompt for the next session",
+      "note": "Closes the session by requesting a handoff prompt; defers audit-fix execution to a fresh session.",
+      "episode_candidate": false,
+      "artifact_hint": "next-session handoff prompt (todo next-session)"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-01T23:09:29.337Z",
+      "evidence": "Want me to dig into the Kanda attachment path issue, or is the broken path something you'll re-add in Zotero yourself?",
+      "note": "AI put the broken-attachment remedy choice to Marcus instead of acting unilaterally."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-01T23:09:29.337Z",
+      "evidence": "the Zotero attachment path is broken/stale",
+      "note": "AI flagged a stale/broken attachment path that would block the Kanda migration."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-01T23:20:29.807Z",
+      "evidence": "the synced **Hyodo** markdown is the **2013 Hiroshima TR (TR13-05)**, not the published 2016 *Comm. Stat.* version",
+      "note": "AI flagged a citation-metadata mismatch (year/version) before the @cite swap."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-01T23:20:49.362Z",
+      "evidence": "If you actually want those committed as evidence, say so and I'll add them; otherwise they're safe to leave or delete.",
+      "note": "AI surfaced the untracked-cache-dir commit decision rather than deciding silently."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-02T00:37:05.858Z",
+      "evidence": "it **does** exist (670 KB); I confirmed directly. But its §4 surfaces variance-*validity*/efficiency machinery, not a crisp `T_∞ = Var(θ̂_obs)` equality",
+      "note": "AI flagged that a cited source does not crisply support the equality, motivating a verify-first fix."
+    }
+  ],
+  "proposed_codes": []
+}

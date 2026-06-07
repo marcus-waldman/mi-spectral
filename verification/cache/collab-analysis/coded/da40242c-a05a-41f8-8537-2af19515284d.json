@@ -1,0 +1,17 @@
+{
+  "session_id": "da40242c-a05a-41f8-8537-2af19515284d",
+  "session_summary": "Marcus spun up a fresh, independent audit session for the just-landed W2 LRT-differential material (@sec-lrt, Propositions L1-L4) in derivation.qmd, instructing the auditor to treat every claim as suspect and re-derive the mathematics before reading the proofs. The single human turn is a fully specified verification protocol: derivation-audit, blind re-derivation, reproduction of the CAS/Monte-Carlo verification chain, an audit of the prior session's own cross-model grading, and an end-to-end H1 over-claim check, all under a strict scope fence. The human's role here is process architect: he designs an adversarial, independence-maximizing verification ritual rather than asking for new results.",
+  "coded_turns": [
+    {
+      "uuid": "6decd6d9-94e3-4b9f-a12a-2935d819ee21",
+      "timestamp": "2026-06-04T18:16:48.318Z",
+      "codes": ["set-standard", "assign-task", "scope-decision"],
+      "quote": "You had NO part in\n  producing the material you are auditing — treat every claim as suspect until verified against\n  artifacts you open yourself.",
+      "note": "Designs an independent adversarial audit: re-derive L1-L4 before reading proofs, reproduce CAS/MC chain, audit the grading itself.",
+      "episode_candidate": true,
+      "artifact_hint": "/derivation-audit on manuscript/derivation.qmd @sec-lrt (todo/024-025; commit c08a18a)"
+    }
+  ],
+  "ai_side": [],
+  "proposed_codes": []
+}

@@ -1,0 +1,78 @@
+{
+  "session_id": "a33dbba8-2632-4e54-a46a-0d6f1ac15409",
+  "session_summary": "Marcus resumed the C2 Delta_n entropy-reconciliation task (todo/017): prove analytically that the MVN Q-function bias equals the conditional-entropy plug-in bias and that the two decompositions are the same total regrouped, verified two ways (CAS + Monte Carlo). His opening turn was a fully specified work order with goal, two-way verification protocol, a pre-set decision gate, settled-facts guardrails, and a parallel-commit safety warning; the remaining turns steered toward updating the derivation qmd, ran a render, and audited where the reconciliation callout landed.",
+  "coded_turns": [
+    {
+      "uuid": "358fc14a-ef22-4a42-ae2d-99d2818f54ad",
+      "timestamp": "2026-06-02T13:42:45.283Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "Verify two ways per project norm: (1) extend verification/cas-wolfram/verify_term_ac.py",
+      "note": "Full work order: goal, mandatory two-way verification, pre-set decision gate, settled-facts no-relitigate list, parallel-commit safety.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/017-c2-deltan-entropy-reconciliation.md (C2 reconciliation; commit c50b25a)"
+    },
+    {
+      "uuid": "254d5a51-03be-4b69-8d7d-f4486870d92d",
+      "timestamp": "2026-06-02T14:22:40.338Z",
+      "codes": ["assign-task"],
+      "quote": "Sounds like we need to update the derivation quarto markdown?",
+      "note": "Confirms next step is editing the derivation qmd with the reconciliation remark, per the decision gate.",
+      "episode_candidate": false,
+      "artifact_hint": "manuscript/derivation.qmd reconciliation remark near @sec-combine"
+    },
+    {
+      "uuid": "8b1452cb-072d-4a54-963d-083760165d1f",
+      "timestamp": "2026-06-02T14:33:33.121Z",
+      "codes": ["assign-task"],
+      "quote": "Let's do a render, yes",
+      "note": "Picks the render sanity-check option from the AI's menu over the lighter default.",
+      "episode_candidate": false,
+      "artifact_hint": "quarto render manuscript/derivation.qmd (c2-render-log.txt)"
+    },
+    {
+      "uuid": "1b977878-778d-4a14-b665-e98c84fd76b4",
+      "timestamp": "2026-06-02T14:34:15.188Z",
+      "codes": ["other"],
+      "quote": "<task-notification>",
+      "note": "Auto-generated background-task completion notification, not an authored human move.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "74332724-6838-4451-a45a-0dbc3ecbf5d7",
+      "timestamp": "2026-06-02T14:40:22.037Z",
+      "codes": ["audit-artifact"],
+      "quote": "where is this call out box?",
+      "note": "Checks where the reconciliation callout actually landed in the rendered derivation before approving.",
+      "episode_candidate": true,
+      "artifact_hint": "manuscript/derivation.qmd C2 reconciliation callout"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T14:22:40.338Z",
+      "evidence": "did **not** promote $\\mathbb{E}[T]=\\Delta_n$ to primary",
+      "note": "Reports it followed the decision gate (kept +1/2 tr(RIV) headline, added only a secondary remark) rather than deciding silently."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-02T14:33:33.121Z",
+      "evidence": "A `quarto render` sanity check ... My default, if you just want me to proceed: add #1 ... Want me to do that, or steer differently?",
+      "note": "Lays out three options (cross-link, un-collapse callout, render) with trade-offs and a stated default."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-02T14:33:33.121Z",
+      "evidence": "the full render executes Appendix B's sympy/numpy and is slow ... I'm confident it's valid, but I can render to be sure",
+      "note": "Flags that it had not rendered and the callout's validity was unconfirmed."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T14:40:22.037Z",
+      "evidence": "Want me to add it (it'd be a tiny follow-up commit), or leave the manuscript as the single remark?",
+      "note": "Puts the optional @sec-termA cross-link decision to Marcus instead of acting."
+    }
+  ],
+  "proposed_codes": []
+}

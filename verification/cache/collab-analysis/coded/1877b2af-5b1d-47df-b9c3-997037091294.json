@@ -1,0 +1,125 @@
+{
+  "session_id": "1877b2af-5b1d-47df-b9c3-997037091294",
+  "session_summary": "This 2026-06-06 session designed and stood up the manuscript plan system. Marcus directed the AI to investigate an exemplar repo's multi-level JSON plan, then steered the design toward a strategic, multi-session human-AI collaboration apparatus (project manager, citation-discipline hook, level-4 evidence map), and ratified the IMRaD-with-Methods-as-workflow restructuring as D-09. The human's role was almost entirely architectural and directive: setting the agenda, importing a model from another project, insisting on specific safeguards, and locking the structural decision.",
+  "coded_turns": [
+    {
+      "uuid": "6c184d31-fde5-4d4c-9e4f-f407e024e4f1",
+      "timestamp": "2026-06-06T01:16:32.994Z",
+      "codes": ["redirect-priority", "provide-resource", "assign-task"],
+      "quote": "This is going to require human in the loop. I want you to investigate how the manuscript for C:\\Users\\marcu\\git-repositories\\SAMPLE-STRATEGY-ECD. Notice how there was a json file with multiple levels",
+      "note": "Opens new direction: investigate exemplar repo's multi-level JSON plan as a model to mimic for manuscript collaboration.",
+      "episode_candidate": true,
+      "artifact_hint": "manuscript/plan/ system (four-level JSONs); todo/031"
+    },
+    {
+      "uuid": "2c42b07d-05ce-4ebd-a729-2424e7ea3a5b",
+      "timestamp": "2026-06-06T01:41:58.896Z",
+      "codes": ["pose-question", "assign-task"],
+      "quote": "And does the commit history give you insights on how the process unfolded. How human in the loop refined the writing?",
+      "note": "Asks AI to mine the exemplar's commit history for how the human-in-the-loop refinement process unfolded.",
+      "episode_candidate": false,
+      "artifact_hint": "manuscript/plan/ design investigation"
+    },
+    {
+      "uuid": "49edd7e9-2a93-4172-96e1-678c5275238e",
+      "timestamp": "2026-06-06T02:05:04.774Z",
+      "codes": ["challenge-framing", "pose-question", "scope-decision"],
+      "quote": "the lag was a rhetorical structure for that type of paper, doesn’t need to be replicated here. But what does survive is the need for a AI human collaboration in the writing exercise that is strategic, goal oriented, and that spans multiple sessions",
+      "note": "Rejects copying the exemplar's lag device; reframes the goal as strategic multi-session collaboration with memory; floats an agent.",
+      "episode_candidate": true,
+      "artifact_hint": "manuscript/plan/ system; /section-review and /status skills"
+    },
+    {
+      "uuid": "cfb5f1e5-5f69-4832-a8ef-d8c807ce6ece",
+      "timestamp": "2026-06-06T02:09:15.634Z",
+      "codes": ["redirect-priority", "supply-domain-judgment"],
+      "quote": "But we need a project manager because I’m juggling a lot of things and I need to know where we are in the process.",
+      "note": "Imposes a requirement for a project-manager component grounded in the human's real workload constraint.",
+      "episode_candidate": true,
+      "artifact_hint": "status.json + /status skill"
+    },
+    {
+      "uuid": "a5f4e59b-c595-40c9-b808-b2a4f4652a0d",
+      "timestamp": "2026-06-06T02:54:34.016Z",
+      "codes": ["set-standard", "catch-gap", "scope-decision"],
+      "quote": "I think level 4 is important even if it is redundant. And we should have a hook to maintain citation discipline in the JSON just like we did with the derivation. We will be citing more articles",
+      "note": "Keeps redundant level-4 evidence map; extends citation-discipline hook into the plan JSONs anticipating more citations.",
+      "episode_candidate": true,
+      "artifact_hint": "level4-evidence.json; check_plan.py + check_citations.py hook extension"
+    },
+    {
+      "uuid": "23d430a1-ccce-49ac-b0e3-e7d737ba724a",
+      "timestamp": "2026-06-06T03:57:36.236Z",
+      "codes": ["assign-task", "audit-artifact"],
+      "quote": "show me the level1 thesis here",
+      "note": "Asks to see the drafted level-1 thesis inline for review.",
+      "episode_candidate": false,
+      "artifact_hint": "manuscript/plan/level1-thesis.json"
+    },
+    {
+      "uuid": "43700e31-5a38-4ed7-8fd8-c622b899f869",
+      "timestamp": "2026-06-06T04:01:00.308Z",
+      "codes": ["challenge-framing", "scope-decision", "supply-domain-judgment"],
+      "quote": "we are going to need to do more of an introduction, background, methods, results, conclusion. Remember thatr tthis whole AI-human dderivation is a new thing. So the methods section is really where we state the workflow we used to arrive at claims",
+      "note": "Rejects theory-paper structure; mandates IMRaD with Methods as the AI-human workflow that defends the claims.",
+      "episode_candidate": true,
+      "artifact_hint": "D-09 IMRaD with Methods-as-workflow; level1-thesis.json amendment"
+    },
+    {
+      "uuid": "a0d61685-9e5c-419d-a867-4d15de8cd4f2",
+      "timestamp": "2026-06-06T04:04:09.111Z",
+      "codes": ["ratify", "scope-decision"],
+      "quote": "Yes that matches my intent, record D-09 and amend level 1",
+      "note": "Ratifies D-09 (IMRaD/Methods-as-workflow) and directs recording it plus amending the level-1 plan.",
+      "episode_candidate": true,
+      "artifact_hint": "D-09 recorded in decisions.md; level1-thesis.json amended"
+    },
+    {
+      "uuid": "d2095db7-e298-45ce-ade4-8f8e264e79ad",
+      "timestamp": "2026-06-06T22:04:05.102Z",
+      "codes": ["assign-task"],
+      "quote": "Remind me how to invoke skills you made for this session.",
+      "note": "Routine operational request: how to invoke the newly built skills (/status, /section-review).",
+      "episode_candidate": false,
+      "artifact_hint": "/status, /section-review skills"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-06T01:41:58.896Z",
+      "evidence": "No build work started — tell me where you want to take this (e.g., start with the deconstruction/lag audit ... or set up the level-1 thesis file first for you to react to)",
+      "note": "AI withholds build work and surfaces the next-step choice to the human."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-06T02:05:04.774Z",
+      "evidence": "If you want that preserved for mi-spectral ... we'd add one artifact: commit the annotated section extract alongside the update script."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-06T02:54:34.016Z",
+      "evidence": "Say the word and I'll build it, starting with `level1-thesis.json` and the status schema so you have something concrete to react to.",
+      "note": "AI gates the build on explicit human go-ahead and offers a concrete first artifact."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-06T03:57:36.236Z",
+      "evidence": "ratifying D-03/D-04/D-05/D-08 (or amending them) sets the standard every section review is graded against",
+      "note": "AI puts decision blocks to the human as the explicit annotation targets."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-06T04:01:00.308Z",
+      "evidence": "Two things worth your input before I land it: (a) anything you want added to or cut from the Methods inventory above, and (b) whether the Results section keeps the current internal order",
+      "note": "AI flags two open sub-choices for human input before locking D-09."
+    }
+  ],
+  "proposed_codes": [
+    {
+      "name": "import-external-pattern",
+      "definition": "Human brings a structure, workflow, or artifact pattern from another project/repo and directs the AI to adapt it to the current work.",
+      "example_quote": "I want you to investigate how the manuscript for ...SAMPLE-STRATEGY-ECD. Notice how there was a json file with multiple levels ... We want to mimic that."
+    }
+  ]
+}

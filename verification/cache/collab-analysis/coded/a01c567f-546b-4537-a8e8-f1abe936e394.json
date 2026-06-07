@@ -1,0 +1,17 @@
+{
+  "session_id": "a01c567f-546b-4537-a8e8-f1abe936e394",
+  "session_summary": "A single-turn operational session in which Marcus instructs the assistant to migrate Zotero-stored PDFs to Google Drive, part of the reference-acquisition pipeline that feeds literature/<citekey>.md. The human's role is purely directive: a logistics instruction with no conceptual, framing, or verification content.",
+  "coded_turns": [
+    {
+      "uuid": "1921a517-5f23-40e5-a254-5105177098e5",
+      "timestamp": "2026-06-06T23:02:26.643Z",
+      "codes": ["assign-task"],
+      "quote": "Migrate pdfs in zotero to google drive",
+      "note": "Plain operational instruction to move PDFs from Zotero into Google Drive; no other signal.",
+      "episode_candidate": false,
+      "artifact_hint": "reference acquisition pipeline (migrate Zotero attachments -> MI-SPECTRAL drive folder)"
+    }
+  ],
+  "ai_side": [],
+  "proposed_codes": []
+}

@@ -1,0 +1,87 @@
+{
+  "session_id": "7e0e49ed-851c-471c-aa32-5501c6006406",
+  "session_summary": "A short session resuming the imputation-engine sensitivity screen (Amelia/EMB vs Bayes-proper data augmentation, todo/017), then pivoting to acquire and cite the Amelia (Honaker) and Tanner-Wong data-augmentation references. Marcus kicks it off with a detailed plan-of-record prompt, then catches a gap the AI missed (the engines are not Bayesianly proper in Schafer's sense even if sensitivity is not detected, so the manuscript should acknowledge it), and drives the litrev acquisition/citekey-fix loop.",
+  "coded_turns": [
+    {
+      "uuid": "0294c109-7193-414e-b30c-7916270478d8",
+      "timestamp": "2026-06-02T14:08:20.534Z",
+      "codes": ["assign-task", "set-standard", "redirect-priority"],
+      "quote": "Resume mi-spectral: SCREEN imputation-engine sensitivity (Bayes-proper DA vs EMB), then\n  escalate ONLY if necessary.",
+      "note": "Detailed resume prompt setting a DA-minimizing tiered screening design with decision rules, gotchas, and verification gates.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/017-imputation-engine-sensitivity-screener.md"
+    },
+    {
+      "uuid": "ac27f663-fa6b-42e1-9741-fcfb3312669e",
+      "timestamp": "2026-06-02T14:32:41.766Z",
+      "codes": ["catch-gap", "supply-domain-judgment", "scope-decision"],
+      "quote": "they are not Bayesianly proper in the Shafer sense and may carry limitations (bootstraping discribed in little and rubin as approaximate bayesian, etc.). I'm thining we need to update the manuscript",
+      "note": "Catches that not-sensitive does not equal proper; demands a manuscript limitation citing Schafer/Little-Rubin on approximate-Bayesian bootstrap.",
+      "episode_candidate": true,
+      "artifact_hint": "manuscript/derivation.qmd engine-robustness/limitations note; project_engine_sensitivity_verdict"
+    },
+    {
+      "uuid": "14c890f9-c8fa-47be-b3bc-6535519fe01f",
+      "timestamp": "2026-06-02T14:44:12.348Z",
+      "codes": ["assign-task", "provide-resource"],
+      "quote": "can you migrate the pdfs to google drive",
+      "note": "Operational instruction to migrate the newly-added Amelia and Tanner-Wong PDFs into the litrev pipeline.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/003 reference acquisition; Honaker + Tanner-Wong citekeys"
+    },
+    {
+      "uuid": "0335ab0c-9d15-4654-a355-22585f032306",
+      "timestamp": "2026-06-02T14:52:15.609Z",
+      "codes": ["provide-resource", "assign-task"],
+      "quote": "It has no been indexed. BBT has been re-exported. ready for the lit sync skill",
+      "note": "Reports he has driven convert/index and re-exported BBT, signaling the AI to run lit-sync.",
+      "episode_candidate": false,
+      "artifact_hint": "lit_sync.py / literature/<citekey>.md for Honaker + Tanner-Wong"
+    },
+    {
+      "uuid": "242413ee-1054-451f-89ea-85c7a0e86e50",
+      "timestamp": "2026-06-02T15:03:19.524Z",
+      "codes": ["audit-artifact", "provide-resource"],
+      "quote": "I just fixed the citation key to TannerCalculationPosteriorDistributions1987 in zotero",
+      "note": "Corrects the Tanner-Wong citekey at source in Zotero so the BBT-to-literature mapping resolves.",
+      "episode_candidate": false,
+      "artifact_hint": "tannerCalculationPosteriorDistributions1987 citekey in derivation.qmd"
+    },
+    {
+      "uuid": "b0d516d4-8c4d-4455-9f26-eb347c330d5e",
+      "timestamp": "2026-06-02T15:03:32.746Z",
+      "codes": ["audit-artifact", "provide-resource"],
+      "quote": "I just fixed the citation key to TannerCalculationPosteriorDistributions1987 in zotero and re-exported the BBT",
+      "note": "Follow-up confirming the BBT re-export after the citekey fix so the AI can re-sync and swap the cite.",
+      "episode_candidate": false,
+      "artifact_hint": "tannerCalculationPosteriorDistributions1987 swap + re-render"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T14:32:41.766Z",
+      "evidence": "If you'd prefer the manuscript note to have its own commit message, say so and I can amend — but I'd avoid touching c50b25a.",
+      "note": "Put the commit-message/amend choice to Marcus rather than silently rewriting history."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-02T14:44:12.348Z",
+      "evidence": "a concurrent process is committing on main this session (it made c50b25a and is touching todo/016, 00-setup.R, and various verification/cache/ files)",
+      "note": "Proactively warned of an interleaving concurrent agent on main and that commits were kept surgical."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T14:44:12.348Z",
+      "evidence": "Want me to drive the litrev MCP steps after the export, or will you run them?",
+      "note": "Asked who drives convert/index rather than assuming, respecting the user-drives-litrev convention."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-02T15:03:32.746Z",
+      "evidence": "(b) Commit the @sec-termA rewrite ... (c) Both, or (d) leave it ... Which way do you want me to go?",
+      "note": "Laid out lettered options (a)-(d) for how to proceed with the citekey swap and pending rewrite."
+    }
+  ],
+  "proposed_codes": []
+}

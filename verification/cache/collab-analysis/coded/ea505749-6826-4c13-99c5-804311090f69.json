@@ -1,0 +1,291 @@
+{
+  "session_id": "ea505749-6826-4c13-99c5-804311090f69",
+  "session_summary": "The 2026-06-04 session that turned the deferred W1-W3 empirical work-list into a strategic redesign. Through a long Socratic exchange Marcus pushed the AI from per-model bias correction toward an equipercentile-equating / moment-matching ladder for delta-AIC, then ruled the whole IC pairwise-matrix expansion out of this paper (scope split D-06, paper = bias + LRT), imposed an analytic-derivation-first + GPT-5.5 adversarial-audit gate before any full simulation, and drove the literature acquisition (Vuong, Barnard-Rubin, Self-Liang, Le Cam) to keep citation discipline intact. The human role was agenda-setting questioner, scope arbiter, process-standard setter, and resource driver.",
+  "coded_turns": [
+    {
+      "uuid": "5295ced8-eb77-4f89-84ec-39c023674b0f",
+      "timestamp": "2026-06-04T02:55:26.995Z",
+      "codes": ["assign-task"],
+      "quote": "I’m going to give you a prompt. I want you to load things into context and the summarize to me what the goals are for this session.",
+      "note": "Opens session; instructs AI to load context and summarize goals before work.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "d66cf9dc-a77f-453d-9186-67ce8bed61b5",
+      "timestamp": "2026-06-04T02:55:38.295Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "This session is the deferred\n  EMPIRICAL APPLICATION layer — the W1–W3 witnesses and the audit's application work-list. Do\n  NOT re-derive or re-litigate the bias theory.",
+      "note": "Pastes the resume prompt: locks settled theory, sets cross-check directive, gives the W1-W3 work-list.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/022-applications-w1w3-handoff.md"
+    },
+    {
+      "uuid": "63cf3324-a061-405d-a127-e93496910183",
+      "timestamp": "2026-06-04T02:56:52.017Z",
+      "codes": ["reject-prose-style"],
+      "quote": "What do you mean by empirical witnesses. That is such a weird term",
+      "note": "Rejects the house jargon 'witnesses'; AI confirms it is on the banned-vocabulary list.",
+      "episode_candidate": false,
+      "artifact_hint": "T-03 banned vocabulary"
+    },
+    {
+      "uuid": "b69bfce2-fe50-4c28-8c87-e369b5a54cff",
+      "timestamp": "2026-06-04T03:18:35.417Z",
+      "codes": ["redirect-priority", "pose-question"],
+      "quote": "I think w1 is straight forward to show. Let’s talk about the deviance term and what we can any to show from it that might inform a redesign of W2 and W3",
+      "note": "Sets W1 aside as easy; redirects the session to use the deviance term to redesign W2/W3.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/023 + todo/024 redesign"
+    },
+    {
+      "uuid": "c42746cd-99e8-4dcf-95ea-1a92615da19e",
+      "timestamp": "2026-06-04T03:22:42.614Z",
+      "codes": ["set-standard", "supply-domain-judgment", "pose-question"],
+      "quote": "the sampling distribution of corrected deviance for the mi corrected match the first and second moments a minimum of the complete data. Does that make sense why?",
+      "note": "Sets the moment-matching target (match complete-data 1st/2nd moments) as the W3 success criterion.",
+      "episode_candidate": true,
+      "artifact_hint": "W3 redesign moment-matching ladder (todo/023)"
+    },
+    {
+      "uuid": "83d89675-5665-44d5-ad5e-1c8659751610",
+      "timestamp": "2026-06-04T03:25:23.048Z",
+      "codes": ["pose-question", "supply-domain-judgment"],
+      "quote": "Why is this not relevant for W2? And how does the santorra Bentler correction related to all this, if at all",
+      "note": "Probes why moment-matching skips W2; pulls Satorra-Bentler into the design conversation.",
+      "episode_candidate": false,
+      "artifact_hint": "SB arm in W3/sequel"
+    },
+    {
+      "uuid": "a9bea3d1-e9e3-49a6-be9f-59c978f17504",
+      "timestamp": "2026-06-04T03:35:13.264Z",
+      "codes": ["pose-question", "supply-domain-judgment"],
+      "quote": "If we know the distribution in W2 then we know what quantile we are on that reference. Can’t we do equiquantile equating to the complete data chi square distribution to get the equivalent difference in the deviances?",
+      "note": "Introduces equipercentile equating to the complete-data chi-square as the calibration mechanism.",
+      "episode_candidate": true,
+      "artifact_hint": "equating ladder rung 3 (todo/023)"
+    },
+    {
+      "uuid": "0f452142-32e0-43d7-b7ed-c059d9d2934c",
+      "timestamp": "2026-06-04T03:42:04.034Z",
+      "codes": ["ratify", "catch-gap"],
+      "quote": "I like the idea of doing SB and equating  as a generalization.  But I’m not fully following #2 the null calibration. I need a concrete toy example",
+      "note": "Approves SB+equating ladder but flags he cannot follow the null calibration; demands a toy example.",
+      "episode_candidate": false,
+      "artifact_hint": "ladder null-calibration design"
+    },
+    {
+      "uuid": "917ae5fd-41fc-4de2-b0bd-58169ba204bf",
+      "timestamp": "2026-06-04T03:46:56.455Z",
+      "codes": ["supply-domain-judgment", "pose-question"],
+      "quote": "Can’t we always compare with reference to the saturated model like model chi square in SEM literature?",
+      "note": "Supplies SEM convention: anchor every comparison to the saturated model chi-square.",
+      "episode_candidate": false,
+      "artifact_hint": "saturated-anchored ladder (D-06 rung design)"
+    },
+    {
+      "uuid": "7fd24b08-7e38-4775-9031-1608351f6107",
+      "timestamp": "2026-06-04T03:51:02.842Z",
+      "codes": ["challenge-framing", "set-standard"],
+      "quote": "I’m really wanting to make sure that the distribution of delta AIC between two models match on all moments. I’m not asking for the AIC distribution to matc. Does that make sense?",
+      "note": "Corrects the target object: it is delta-AIC between two models that must match moments, not the AIC distribution.",
+      "episode_candidate": true,
+      "artifact_hint": "per-pair delta-AIC moment-matching (todo/023)"
+    },
+    {
+      "uuid": "094b7909-92b2-4a63-9746-a999d3552d5a",
+      "timestamp": "2026-06-04T03:55:58.346Z",
+      "codes": ["pose-question"],
+      "quote": "If you have multiple models say A B C D why can’t B C D all be references to A and rankings from there?",
+      "note": "Proposes a common-anchor (everything referenced to A) ranking scheme for multi-model selection.",
+      "episode_candidate": false,
+      "artifact_hint": "common-referenced ranking design"
+    },
+    {
+      "uuid": "d5998660-3e40-457f-9614-688026d5e834",
+      "timestamp": "2026-06-04T04:01:49.178Z",
+      "codes": ["challenge-derivation", "pose-question"],
+      "quote": "Don’t all equates put us in a chi-square scale because that is F_complete? If so, why   are we not on comparable scales?",
+      "note": "Stress-tests the claim that equated statistics are not on comparable scales, since all map to F_complete.",
+      "episode_candidate": false,
+      "artifact_hint": "indirect-pair calibration measurement"
+    },
+    {
+      "uuid": "f1067420-edd4-4fef-84fb-8a94fbd15668",
+      "timestamp": "2026-06-04T04:07:09.172Z",
+      "codes": ["pose-question"],
+      "quote": "Let’s say we introduce Z the independence model, could we get insights if we did all pairwise comparisons?",
+      "note": "Extends design to add an independence model Z and full pairwise comparison matrix.",
+      "episode_candidate": false,
+      "artifact_hint": "pairwise-matrix-with-Z design (todo/023)"
+    },
+    {
+      "uuid": "0fda0fe5-ea6a-41a3-b13e-419b9a28a285",
+      "timestamp": "2026-06-04T04:10:49.692Z",
+      "codes": ["scope-decision", "redirect-priority"],
+      "quote": "This seems like a follow up paper. Maybe we just focus on the bias correction and LRT for this paper?",
+      "note": "Splits scope: the whole IC pairwise-matrix expansion becomes a sequel; this paper = bias + LRT.",
+      "episode_candidate": true,
+      "artifact_hint": "D-06 scope split; todo/023 parked as sequel"
+    },
+    {
+      "uuid": "5f06589a-28f1-4012-8b85-10f183fb4892",
+      "timestamp": "2026-06-04T04:14:34.950Z",
+      "codes": ["set-standard", "redirect-priority"],
+      "quote": "we need to start with analytic derivations and adversarial audits with gpt 5.5 before running full scale simulation. Multimodal evidence  is necessary",
+      "note": "Imposes the order of evidence: derive + GPT-5.5 adversarial audit BEFORE any full-scale simulation.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/024 analytic-first W2 plan; three-stage protocol"
+    },
+    {
+      "uuid": "d7a3df00-ddd2-4591-85ee-6ae3e996ee5f",
+      "timestamp": "2026-06-04T04:21:16.028Z",
+      "codes": ["catch-gap", "scope-decision"],
+      "quote": "I’m not sure we have all the references we need to maintain strict citation and literature discipline",
+      "note": "Defers planning to a fresh session and flags that the literature may not yet cover citation discipline.",
+      "episode_candidate": true,
+      "artifact_hint": "literature gap analysis; todo/003 acquisition"
+    },
+    {
+      "uuid": "6238879d-5b23-47a2-ad4c-43adf5569b10",
+      "timestamp": "2026-06-04T04:23:51.427Z",
+      "codes": ["audit-artifact"],
+      "quote": "Is it running in the background?",
+      "note": "Checks that the launched literature-coverage workflow is actually running.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "270186af-da4c-451c-9881-d1e015ba91f4",
+      "timestamp": "2026-06-04T04:25:08.160Z",
+      "codes": ["provide-resource"],
+      "quote": "Dynamic workflow \"Audit literature/ coverage against the citation needs of todo/023+024 and the scope-split manuscript edits\" completed",
+      "note": "System task-notification deliver gap analysis (auto-pasted result, not authored prose); supplies the coverage audit.",
+      "episode_candidate": false,
+      "artifact_hint": "literature gap analysis for todo/024"
+    },
+    {
+      "uuid": "e46b1619-4c30-4b12-9436-86069111620a",
+      "timestamp": "2026-06-04T04:31:23.530Z",
+      "codes": ["scope-decision", "assign-task"],
+      "quote": "Right now we are just working on the derivation.qmd. Later we can work on submission after that document is done. What are the authors and titles i need to find and retrieve?",
+      "note": "Scopes current work to derivation.qmd only; asks for the concrete author/title acquisition list.",
+      "episode_candidate": false,
+      "artifact_hint": "derivation.qmd as locked theory source; acquisition list"
+    },
+    {
+      "uuid": "a560f546-fc27-4801-8dfd-0ed6d0240f7b",
+      "timestamp": "2026-06-04T15:44:32.301Z",
+      "codes": ["assign-task", "provide-resource"],
+      "quote": "if you could please migrate pdfs to the google drive. I got 1,2,and 4. Waiting on 3 to download.",
+      "note": "Drives the acquisition pipeline: instructs PDF migration and reports which references are downloaded.",
+      "episode_candidate": false,
+      "artifact_hint": "litrev acquisition pipeline (Vuong/Barnard-Rubin/Self-Liang)"
+    },
+    {
+      "uuid": "0714752c-6252-4f54-ae64-0f40d62a937b",
+      "timestamp": "2026-06-04T15:51:36.093Z",
+      "codes": ["provide-resource", "assign-task"],
+      "quote": "Got one more to migrate over",
+      "note": "Signals an additional PDF ready to migrate in the acquisition pipeline.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "fbe95671-ba43-48b0-9311-2288751183c9",
+      "timestamp": "2026-06-04T15:52:21.030Z",
+      "codes": ["catch-gap", "supply-domain-judgment"],
+      "quote": "It is actually a djvu file",
+      "note": "Corrects the AI's assumption: the Le Cam attachment is djvu, not PDF, explaining the failed migration.",
+      "episode_candidate": false,
+      "artifact_hint": "Le Cam (camAsymptoticMethodsStatistical1986) acquisition"
+    },
+    {
+      "uuid": "331a045b-2a93-48b6-8271-bd7fe8c2b90a",
+      "timestamp": "2026-06-04T16:00:55.877Z",
+      "codes": ["provide-resource", "assign-task"],
+      "quote": "OK. Le Cam pdf is there now",
+      "note": "Reports the Le Cam PDF is now available for migration.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "915acf91-b705-4153-8be0-be4587bf2e8c",
+      "timestamp": "2026-06-04T16:25:05.938Z",
+      "codes": ["assign-task"],
+      "quote": "Okay le cam has been indexed. Let's fire up the lit-sync tool",
+      "note": "Confirms Le Cam indexed and instructs running /lit-sync to write literature files.",
+      "episode_candidate": false,
+      "artifact_hint": "lit-sync -> literature/<citekey>.md"
+    },
+    {
+      "uuid": "c5b2b334-5716-4f24-b600-c82f7e0cc6c4",
+      "timestamp": "2026-06-04T16:43:52.496Z",
+      "codes": ["pose-question", "redirect-priority"],
+      "quote": "I now want to write a handoff document ot a new session. What will the primary deliverable be for that new session now that we have the literature?",
+      "note": "Shifts to handoff-writing; asks the AI to name the next session's primary deliverable.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/025 handoff"
+    },
+    {
+      "uuid": "ee6b1a55-a56b-4fac-b24d-2f3d6c02f006",
+      "timestamp": "2026-06-04T16:49:24.982Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "Yes, please write it.",
+      "note": "Approves writing the todo/025 handoff document as the AI proposed.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/025 handoff doc"
+    },
+    {
+      "uuid": "79b13b98-771d-48c1-bb3d-ad5bfa92a365",
+      "timestamp": "2026-06-04T16:54:33.300Z",
+      "codes": ["assign-task"],
+      "quote": "Give me the prompt for the next session",
+      "note": "Requests the resume prompt for the next session.",
+      "episode_candidate": false,
+      "artifact_hint": "next-session resume prompt"
+    },
+    {
+      "uuid": "fb042752-eb89-4a00-86d2-4cf80b44aa1e",
+      "timestamp": "2026-06-04T16:54:46.876Z",
+      "codes": ["assign-task"],
+      "quote": "Commit and then Give me the prompt for the next session",
+      "note": "Authorizes the commit then asks for the next-session prompt; closes the session.",
+      "episode_candidate": false,
+      "artifact_hint": "commit on main + resume prompt"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-04T03:25:23.048Z",
+      "evidence": "second moments can't be fully matched in general — between-imputation noise at finite M is irreducible",
+      "note": "AI volunteered the limit of the moment-matching target before being asked."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-04T03:42:04.034Z",
+      "evidence": "if we start *deriving* properties of the equated statistic ... that's a new analytic claim and triggers your standing GPT-5.5 cross-check directive",
+      "note": "AI flagged that deriving (vs measuring) would trip the cross-check gate."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-04T16:00:55.877Z",
+      "evidence": "My lean is option 2 — park it ... But if you want it in the corpus anyway, point me at the file path and I'll convert it.",
+      "note": "AI laid out keep-vs-park options for the low-priority Le Cam djvu with a recommendation."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-04T04:07:09.172Z",
+      "evidence": "it should probably become a new todo (023) with preregistered predictions before any code? Want me to write the full spec now",
+      "note": "AI surfaced the todo/023-vs-inline and write-now decision rather than deciding silently."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-04T04:31:23.530Z",
+      "evidence": "the JAIGP submission file was never created (todo/000 calls it an \"empty Quarto stub,\" and even the stub is absent)",
+      "note": "AI flagged that mi-spectral.qmd does not exist, correcting the work-list's assumption."
+    }
+  ],
+  "proposed_codes": []
+}

@@ -1,0 +1,102 @@
+{
+  "session_id": "f42f0b2f-eca0-460a-a8be-d1f6350e78ab",
+  "session_summary": "Working session executing the non-monotone (A)+(C) Cox-Snell pilot (todo/014): deriving the covariance-MLE second-order bias b_Sigma in Wolfram and checking it against the phase-8 empirical curve. Marcus opened with a detailed plan-of-record prompt with verification gates, then supervised the background runs, caught that the committed deliverable was only bivariate (not general-p), and steered the general-p / 4-variate -0.46 match into a fresh session with a handoff prompt.",
+  "coded_turns": [
+    {
+      "uuid": "7021089c-4333-4091-874a-17f08a92ca52",
+      "timestamp": "2026-06-02T03:17:08.914Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "EXECUTE the non-monotone (A)+(C) Cox-Snell pilot.",
+      "note": "Detailed plan-of-record prompt: derive b_Sigma via Cox-Snell with four explicit verification gates and a minimal-bivariate-first scope.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/014-nonmonotone-coxsnell-pilot.md; commit 08ee37b (bivariate b_Sigma derived)"
+    },
+    {
+      "uuid": "5defca30-e458-4769-8a38-7edc8d5be543",
+      "timestamp": "2026-06-02T04:07:19.805Z",
+      "codes": ["audit-artifact", "challenge-derivation"],
+      "quote": "What's running in the background? and why isn't it leveraging parallel processing?",
+      "note": "Audits the running background job and challenges why it is single-core; prompts the assistant to justify parallelism placement.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "604eb306-95b5-451c-b840-aeb4cf14a031",
+      "timestamp": "2026-06-02T04:08:19.841Z",
+      "codes": ["other"],
+      "quote": "Monitor event: \"Precise R MC + assembly run results\"",
+      "note": "System monitor-timeout notification, not a human-authored move; carries no human intent.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "7b708128-b286-46df-a976-98de6adabe7a",
+      "timestamp": "2026-06-02T04:14:16.997Z",
+      "codes": ["other"],
+      "quote": "Background command \"Full precise R MC + assembly run\" completed (exit code 0)",
+      "note": "System task-completion notification, not a human-authored move; carries no human intent.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "9a07eaed-b6c3-49a1-8ad2-76c0a0445c72",
+      "timestamp": "2026-06-02T04:27:18.602Z",
+      "codes": ["catch-gap", "challenge-framing"],
+      "quote": "this wasn't a general p-variate?",
+      "note": "Catches that the committed deliverable is only the bivariate case, not the general-p object he expected; surfaces the scope shortfall.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/015 general-p / 4-variate -0.46 scaling teed up"
+    },
+    {
+      "uuid": "c400639b-fbdc-488e-8a4b-9fdd0de548a4",
+      "timestamp": "2026-06-02T04:34:09.123Z",
+      "codes": ["redirect-priority", "scope-decision"],
+      "quote": "Should we do it in a new session?",
+      "note": "Defers the general-p / 4-variate work to a fresh session rather than continuing in-context; reorders the work plan.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/015 fresh-session handoff"
+    },
+    {
+      "uuid": "1b913e85-05bf-4be9-9b8a-0e513e41a181",
+      "timestamp": "2026-06-02T04:37:29.449Z",
+      "codes": ["assign-task"],
+      "quote": "Give me the prompt fir the next session",
+      "note": "Requests a handoff resume-prompt for the next session's general-p build.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/015 resume prompt"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T04:08:19.841Z",
+      "evidence": "Want me to, or leave the parallelism where the cost actually is?",
+      "note": "Put the choice of whether to parallelize the cheap moment-pass stage to Marcus instead of deciding silently."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T04:27:18.602Z",
+      "evidence": "Want me to take on the 4-variate scaling next, or leave it here?",
+      "note": "Surfaced the go/no-go on scaling to the 4-variate design rather than proceeding."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-02T04:34:09.123Z",
+      "evidence": "or I can keep it as a clean general-`p` library validated at p=2,3,4 first if you'd rather have the general object than the specific number",
+      "note": "Offered two paths (target -0.46 directly vs. build validated general-p library first) with trade-offs."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-02T04:27:18.602Z",
+      "evidence": "So I updated the manuscript to the faithful intermediate state rather than claiming the −0.46 is reproduced.",
+      "note": "Self-flagged that the headline -0.46 was not yet reproduced and edited the manuscript honestly to the intermediate state."
+    }
+  ],
+  "proposed_codes": [
+    {
+      "name": "system-notification",
+      "definition": "A non-human-authored turn injected by the harness (task-completion, monitor-timeout, command stdout) that carries no human intent and is present only because it sat in the user-turn stream.",
+      "example_quote": "Background command \"Full precise R MC + assembly run\" completed (exit code 0)"
+    }
+  ]
+}

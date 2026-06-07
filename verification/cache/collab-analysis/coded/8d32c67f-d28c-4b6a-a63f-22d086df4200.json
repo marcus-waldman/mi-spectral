@@ -1,0 +1,111 @@
+{
+  "session_id": "8d32c67f-d28c-4b6a-a63f-22d086df4200",
+  "session_summary": "A 2026-06-02 session running the known-variance experiment (todo/015) to decide whether the theorem's universality phrasing must be restated, then committing the C1/C3 scope-restatement result and accounting for what remained open (C2, C4, housekeeping). Marcus set the task with the decision gates driving scope, then mostly drove via short audit and process questions about commits, branch choice, and unresolved items, ending by asking for a handoff prompt to pick up C2 in a new session.",
+  "coded_turns": [
+    {
+      "uuid": "d3611978-583c-435b-9e8a-b0112e5018ac",
+      "timestamp": "2026-06-02T04:57:26.516Z",
+      "codes": ["assign-task", "scope-decision", "set-standard"],
+      "quote": "build + run the known-variance experiment, and let the decision gates drive whether the theorem’s scope gets restated. The headline survives for the paper’s actual regime",
+      "note": "Assigns the experiment and pins scope: headline holds for estimated-covariance regime; only universality phrasing is on the line, gates decide.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/015 known-variance experiment; C1/C3 scope restatement (commit bbc383d)"
+    },
+    {
+      "uuid": "65f79d82-5f8e-4b3b-a49b-734859a58f35",
+      "timestamp": "2026-06-02T06:03:00.433Z",
+      "codes": ["audit-artifact"],
+      "quote": "So have you committed?",
+      "note": "Checks commit state of the new script and caches after the AI noted they were untracked.",
+      "episode_candidate": false,
+      "artifact_hint": "commit bbc383d"
+    },
+    {
+      "uuid": "8ae682a6-7af1-4480-990d-93ab86893421",
+      "timestamp": "2026-06-02T06:04:59.494Z",
+      "codes": ["audit-artifact", "challenge-derivation"],
+      "quote": "Why new branch?",
+      "note": "Questions the AI's proposed new-branch default; AI concedes repo history is direct-to-main, single-author.",
+      "episode_candidate": true,
+      "artifact_hint": "commit bbc383d to main"
+    },
+    {
+      "uuid": "d43234f2-e55d-4012-a59f-e992b5226874",
+      "timestamp": "2026-06-02T06:05:59.542Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "Go ahead and",
+      "note": "Approves committing straight to main with the proposed scope (truncated but clearly an ok-proceed).",
+      "episode_candidate": false,
+      "artifact_hint": "commit bbc383d"
+    },
+    {
+      "uuid": "5a82f6b8-e111-4d51-b18e-791556991524",
+      "timestamp": "2026-06-02T06:08:04.979Z",
+      "codes": ["audit-artifact"],
+      "quote": "What’s left unresolved from this conversation?",
+      "note": "Asks for an accounting of open items after the commit lands.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/015 resolution log; C2/C4 remainders"
+    },
+    {
+      "uuid": "d5003a3e-7c1c-49b0-9cdd-408530e4d88d",
+      "timestamp": "2026-06-02T06:10:16.357Z",
+      "codes": ["pose-question", "audit-artifact"],
+      "quote": "What does it involve?",
+      "note": "Probes what a remaining open item entails before deciding whether to pursue it.",
+      "episode_candidate": false,
+      "artifact_hint": "C2 full identity / C4 assumptions"
+    },
+    {
+      "uuid": "42137787-eb03-4b46-9404-9baffaaa05c3",
+      "timestamp": "2026-06-02T06:25:35.388Z",
+      "codes": ["redirect-priority", "scope-decision"],
+      "quote": "Should we do it here or new session?",
+      "note": "Weighs whether to continue the remaining work now or defer it to a fresh session.",
+      "episode_candidate": false,
+      "artifact_hint": "C2 deferred to todo/017"
+    },
+    {
+      "uuid": "13a06d95-67eb-4b76-ac22-a2e796ab61c0",
+      "timestamp": "2026-06-02T13:29:57.987Z",
+      "codes": ["redirect-priority", "assign-task"],
+      "quote": "Do I can pick up c2 in a new prompt if you give me a prompt",
+      "note": "Defers C2 to a new session and requests a handoff prompt to carry it forward.",
+      "episode_candidate": true,
+      "artifact_hint": "C2 reconciliation planned in todo/017"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T06:03:00.433Z",
+      "evidence": "I haven't committed anything. Say the word if you want a commit",
+      "note": "AI held off committing and put the decision (and re-render) to Marcus."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-02T06:04:59.494Z",
+      "evidence": "my proposed scope is the 3 modified files + ... on a new branch ... Say the word and I'll stage exactly that",
+      "note": "AI proposed a staging scope and branch and asked for explicit go-ahead."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-02T06:05:59.542Z",
+      "evidence": "it's a default guardrail I carry ... not something this repo needs. Your history is all direct-to-main",
+      "note": "AI surfaced that its new-branch default did not match the repo's actual workflow."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-02T06:25:35.388Z",
+      "evidence": "My suggestion if you want forward motion: C4 first ... then decide on C2 ... The housekeeping I can batch anytime. Which do you want?",
+      "note": "AI laid out C2/C4/housekeeping options with a recommended order for Marcus to choose."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-02T13:29:57.987Z",
+      "evidence": "they committed 446d1a4 on top of bbc383d before I could — amending would have clobbered their work",
+      "note": "AI flagged a cross-session collision and that the fat blob remains in history, push still gated."
+    }
+  ],
+  "proposed_codes": []
+}

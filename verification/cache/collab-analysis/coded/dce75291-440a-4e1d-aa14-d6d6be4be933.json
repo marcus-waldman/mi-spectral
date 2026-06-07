@@ -1,0 +1,123 @@
+{
+  "session_id": "dce75291-440a-4e1d-aa14-d6d6be4be933",
+  "session_summary": "Session enhances the provenance apparatus of manuscript/derivation.qmd per todo/008: a verbatim-source appendix organized by reference, Matrix Cookbook equation numbers, margin provenance blocks linked to appendix subsections, and integration of the sympy verification as Appendix B. Marcus's role was to set and tighten the citation-display standard (author/year must lead every Source line before any colon), require appendix linkage for every line-ref, approve retiring the standalone sympy file, and gate the commit/push.",
+  "coded_turns": [
+    {
+      "uuid": "14aee7f8-d296-4dbc-95a5-571ca0ac8628",
+      "timestamp": "2026-05-24T16:00:03.360Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "enhance the provenance apparatus of manuscript/derivation.qmd per\\n  todo/008-source-appendix-and-cookbook-eqrefs.md (the operational spec for THIS\\n  session)",
+      "note": "Kickoff brief: scopes the session to appendix + Cookbook eq numbers, reaffirms provenance discipline and MVN scope, states done-when.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/008-source-appendix-and-cookbook-eqrefs.md"
+    },
+    {
+      "uuid": "16c9babe-1299-4088-847c-e06a13ae7452",
+      "timestamp": "2026-05-24T16:12:15.565Z",
+      "codes": ["assign-task"],
+      "quote": "Let's render",
+      "note": "Operational go-ahead to render the document after the appendix edits.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "b122fd5f-f32e-4a07-924e-2938e86fc8a0",
+      "timestamp": "2026-05-24T16:14:18.291Z",
+      "codes": ["catch-gap", "set-standard"],
+      "quote": "Each of these \":1483\" should have a link the corresponding subsection at the appendix in the bottom",
+      "note": "Spots that bare line-refs lack appendix links; requires every locator to link to its appendix subsection.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd margin provenance appendix cross-links"
+    },
+    {
+      "uuid": "50e00c02-55ee-46f9-b8eb-eed1e070199a",
+      "timestamp": "2026-05-24T16:27:43.323Z",
+      "codes": ["set-standard", "ratify", "reject-prose-style"],
+      "quote": "Yes, let's remove redundant citations.But we should make sure the author/apa citqation is clear. So like :2320 shouldn't just appear alone",
+      "note": "Approves redundancy removal but tightens standard: a bare line-ref like :2320 must not stand alone without clear APA citation.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd citation-display standard"
+    },
+    {
+      "uuid": "5b470546-c8b1-40bd-b11a-7aa71339f4df",
+      "timestamp": "2026-05-24T16:40:31.107Z",
+      "codes": ["assign-task"],
+      "quote": "Let's render",
+      "note": "Go-ahead to render after redundancy removal and locator-comma line-refs.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "ebbd70fa-0b73-48f9-b9cf-76b6ed383a79",
+      "timestamp": "2026-05-24T16:43:36.707Z",
+      "codes": ["reject-prose-style", "set-standard"],
+      "quote": "you are doing things like reference Meng (1994) as \"Source. 4\". This isn't goign to make any sense to the reader. It should be Source. Meng (1994): .... . So the author/year needs to show up first",
+      "note": "Rejects bare-number Source lines; mandates author/year-first then colon display format for reader sense.",
+      "episode_candidate": true,
+      "artifact_hint": "commit 714b16a restructure margin provenance to lead with author-year"
+    },
+    {
+      "uuid": "f664046e-1394-448a-b916-7e4ac0a97876",
+      "timestamp": "2026-05-24T18:56:59.552Z",
+      "codes": ["assign-task"],
+      "quote": "Let’s commit",
+      "note": "Gates the commit after the author-year-first restructure was verified.",
+      "episode_candidate": false,
+      "artifact_hint": "commit 714b16a"
+    },
+    {
+      "uuid": "267cae48-7a2d-42c3-8631-dcbeb8b1bf3a",
+      "timestamp": "2026-05-24T19:00:01.981Z",
+      "codes": ["pose-question", "scope-decision", "set-standard"],
+      "quote": "Can we integrate the sympy quarto stuff directly into this document so that when we cite evidence from it we can link it to the code chunk that will be at the appendix?",
+      "note": "Proposes folding sympy verification into the derivation as a linkable Appendix B, unifying evidence provenance into one document.",
+      "episode_candidate": true,
+      "artifact_hint": "derivation.qmd Appendix B sympy integration; proof-verification-fixture.json consumer"
+    },
+    {
+      "uuid": "d8ba52cc-c227-4eb5-810e-61eba79b6947",
+      "timestamp": "2026-05-24T19:08:12.550Z",
+      "codes": ["ratify", "scope-decision"],
+      "quote": "Yes. Retire it, and let's clean up.",
+      "note": "Approves retiring the duplicate standalone sympy qmd and updating CLAUDE.md/todo/007 references.",
+      "episode_candidate": false,
+      "artifact_hint": "retire proof-verification-sympy.qmd; update CLAUDE.md/todo/007"
+    },
+    {
+      "uuid": "9b0784ff-c004-4474-ab53-381f93c7a2cd",
+      "timestamp": "2026-05-24T20:38:18.912Z",
+      "codes": ["assign-task"],
+      "quote": "Let's go ahead and push",
+      "note": "Gates the push after the sympy integration and cleanup were verified clean.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-24T16:12:15.565Z",
+      "evidence": "I did **not** invent numbers ... If you want the published §1.1 numbers ... that needs confirming against the PDF",
+      "note": "AI refused to fabricate Cookbook eq numbers under citation discipline and flagged the gap."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-24T16:40:31.107Z",
+      "evidence": "One judgment call to flag: the 3 retained `Verbatim:` lines render as \"Verbatim: Section 4.x\" ... If you'd rather they read \"(see appendix)\" or be dropped",
+      "note": "AI surfaced a display judgment call rather than silently deciding."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-24T19:08:12.550Z",
+      "evidence": "I left it in place to avoid touching `CLAUDE.md`/`todo/007` unilaterally. Want me to retire it ... or keep both?",
+      "note": "AI put the retire-vs-keep duplicate-file decision to Marcus."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-24T19:08:12.550Z",
+      "evidence": "`derivation.qmd` now requires the Python toolchain to render** — it changed from pure-Pandoc to `jupyter: python3`",
+      "note": "AI flagged the new render dependency introduced by sympy integration."
+    }
+  ],
+  "proposed_codes": []
+}

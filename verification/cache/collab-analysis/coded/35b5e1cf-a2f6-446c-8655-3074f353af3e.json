@@ -1,0 +1,570 @@
+{
+  "session_id": "35b5e1cf-a2f6-446c-8655-3074f353af3e",
+  "session_summary": "An overnight-into-next-day manuscript-planning marathon: Marcus reopened Level-1 review, walked the five-move IMRaD arc (M1-M5) and ratified a six-move version (D-09 amendment, D-10 replication principle), then drove Level-2 and the from-scratch drafting of S1/S2/S3 in plain prose. The human's role was relentless framing and prose adjudication: typing 'unresolved' claims as asserted-vs-documented, demanding the proper-vs-improper imputation distinction, rejecting poetic cadence three times, and specifying the qualitative collaboration analysis (todo/032) with D-13.",
+  "coded_turns": [
+    {
+      "uuid": "0e6779fa-5c54-49cc-bdd3-5012d02f53c2",
+      "timestamp": "2026-06-06T22:08:20.082Z",
+      "codes": ["redirect-priority", "challenge-framing"],
+      "quote": "Let's review L1 again, I'm not sold as is",
+      "note": "Reopens Level-1 thesis review, signaling dissatisfaction with the current arc as drafted.",
+      "episode_candidate": false,
+      "artifact_hint": "manuscript/plan/level1-thesis.json"
+    },
+    {
+      "uuid": "f6fb432b-dc38-43a6-a272-b19fb595b91a",
+      "timestamp": "2026-06-06T22:10:13.093Z",
+      "codes": ["pose-question"],
+      "quote": "Walk me thorugh this proposed document you are making",
+      "note": "Asks AI to explain the proposed document structure before engaging.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "0ab1aa5c-9c18-43d7-9384-f2a66f84367d",
+      "timestamp": "2026-06-06T22:13:22.696Z",
+      "codes": ["redirect-priority", "challenge-framing"],
+      "quote": "I think U1-U5 are solid it is U6-10 that I want to focus on. Not sure U11-U14 are",
+      "note": "Triages the thesis units, focusing attention on the unsettled middle and doubting the last batch.",
+      "episode_candidate": false,
+      "artifact_hint": "manuscript/plan/level1-thesis.json"
+    },
+    {
+      "uuid": "1bba8412-b58a-4d32-8bf2-5852000ccbd1",
+      "timestamp": "2026-06-06T22:14:33.794Z",
+      "codes": ["assign-task", "scope-decision"],
+      "quote": "Load the claude todo list with M1-M5 because we need to discuss these in turn. We may want to add a formal conclusion section too",
+      "note": "Sets a structured M1-M5 walkthrough agenda; floats adding a conclusion section.",
+      "episode_candidate": false,
+      "artifact_hint": "manuscript/plan/level1-thesis.json"
+    },
+    {
+      "uuid": "7a43d6a6-778c-41dd-bcc7-e1b89265c237",
+      "timestamp": "2026-06-06T22:26:50.797Z",
+      "codes": ["challenge-framing", "supply-domain-judgment", "reject-prose-style"],
+      "quote": "this introduction needs to be readable by any applied researcher that has some level of quantitative training and is knowledgable about multiple imptuation",
+      "note": "Dictates the intro arc and audience via stream-of-consciousness draft: MI settled long ago, LRT/IC not.",
+      "episode_candidate": true,
+      "artifact_hint": "S1 Introduction funnel arc; D-09"
+    },
+    {
+      "uuid": "4c5e7293-87cb-4b9a-8b6a-a2dcb4953dc1",
+      "timestamp": "2026-06-06T22:29:00.414Z",
+      "codes": ["set-standard", "challenge-framing"],
+      "quote": "we need to be careful of knowing the difference between what is asserted (numerator bias) adn what is truly accepted as unresolved in previous literature",
+      "note": "Imposes the typed-claims rule: distinguish asserted-here from documented-open, and say which you assert.",
+      "episode_candidate": true,
+      "artifact_hint": "T-06 typed claims"
+    },
+    {
+      "uuid": "adbfe13f-d001-4089-ad3c-09c5f94e6113",
+      "timestamp": "2026-06-06T22:32:59.805Z",
+      "codes": ["supply-domain-judgment", "pose-question"],
+      "quote": "is the same model selection decision made in excpectation over vinite samples as what would have been made with the complete data",
+      "note": "Recalls a previously named principle (decision equivalence) as the unifying thesis for IC and LRT.",
+      "episode_candidate": true,
+      "artifact_hint": "D-10 complete-data replication principle"
+    },
+    {
+      "uuid": "4117711f-5d6f-494c-9878-3f287d76d888",
+      "timestamp": "2026-06-06T22:34:25.619Z",
+      "codes": ["audit-artifact", "supply-domain-judgment"],
+      "quote": "Maybe it was termed in the MI-IC repository",
+      "note": "Locates the origin of the principle's terminology in the companion repo.",
+      "episode_candidate": false,
+      "artifact_hint": "D-10"
+    },
+    {
+      "uuid": "9e894afa-267a-4d1b-a719-1bf6efb79cc1",
+      "timestamp": "2026-06-06T22:37:41.565Z",
+      "codes": ["challenge-derivation", "supply-domain-judgment", "catch-gap"],
+      "quote": "I don't htink you can say that on average you would reject a null hypothesis as frequently as int he complete data sense because of the loss of in formation and less power",
+      "note": "Corrects the principle's scope: replication holds for IC selection, not for LRT rejection rate, due to power loss.",
+      "episode_candidate": true,
+      "artifact_hint": "D-10 scope; U2/U3 thesis clauses"
+    },
+    {
+      "uuid": "dc3201f6-a13e-474a-ad64-2ceb2e1fb7aa",
+      "timestamp": "2026-06-06T22:40:02.238Z",
+      "codes": ["audit-artifact"],
+      "quote": "Give me the M1 in full here that you will document and I can tell you whether I move on to M2.",
+      "note": "Requires seeing the full M1 text before approving and advancing.",
+      "episode_candidate": false,
+      "artifact_hint": "M1 INTRODUCTION block"
+    },
+    {
+      "uuid": "37664339-5ae2-45ac-88fd-b41b29156d6a",
+      "timestamp": "2026-06-06T22:42:50.128Z",
+      "codes": ["supply-domain-judgment", "catch-gap"],
+      "quote": "We probably will need to find new literature too for this, don't you think?",
+      "note": "Flags that the new arc needs additional citations not yet in the corpus.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/003 references-to-acquire"
+    },
+    {
+      "uuid": "b28bb70b-496a-4c9c-8ae3-0c565b064dd0",
+      "timestamp": "2026-06-06T22:44:45.123Z",
+      "codes": ["assign-task"],
+      "quote": "Give me the author and title  for each",
+      "note": "Requests bibliographic details for proposed references.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/003"
+    },
+    {
+      "uuid": "eb59cdc5-3cdf-4953-ab6e-0b8e6a5a83a1",
+      "timestamp": "2026-06-06T23:03:48.033Z",
+      "codes": ["provide-resource", "supply-domain-judgment"],
+      "quote": "the van Buuren reference is a bookdown that can be found here https://github.com/stefvanbuuren/fimdbook. I don't want to download a pdf only to convert it to markdown and embedd it",
+      "note": "Supplies the FIMD source location and constrains the acquisition method (no PDF round-trip).",
+      "episode_candidate": false,
+      "artifact_hint": "literature/vanbuurenFlexibleImputationMissing2018.md"
+    },
+    {
+      "uuid": "cc59b9af-e0d4-4f0b-be09-98259a2a192b",
+      "timestamp": "2026-06-06T23:09:21.839Z",
+      "codes": ["provide-resource"],
+      "quote": "Okay I've added it to the zotero",
+      "note": "Reports completing the human-side Zotero entry for the reference.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "b3f99bc1-c40e-40ed-a564-cc0aede0650d",
+      "timestamp": "2026-06-06T23:13:35.297Z",
+      "codes": ["provide-resource"],
+      "quote": "Ok I've exported the bBT",
+      "note": "Reports exporting the Better BibTeX bib for citekey reconciliation.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "47138b9d-a658-4a68-8049-66b656c4064d",
+      "timestamp": "2026-06-06T23:22:54.777Z",
+      "codes": ["audit-artifact"],
+      "quote": "Yes, I tried to index it, but failed: [3/69] 2FENS96U: Flexible Imputation of Missing Data, Second Editio...\n  SKIP: No document found",
+      "note": "Reports the indexer failure, pasting the skip output for diagnosis.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "c76b9138-722c-4f46-92a5-1530073721ee",
+      "timestamp": "2026-06-06T23:23:51.941Z",
+      "codes": ["ratify"],
+      "quote": "Sure let's do 2",
+      "note": "Picks option 2 (give the indexer a document) for the FIMD RAG coverage.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "60c71027-7eaf-4a3e-a9ba-86dfa28e9f38",
+      "timestamp": "2026-06-06T23:25:51.278Z",
+      "codes": ["audit-artifact"],
+      "quote": "Still didn't find it",
+      "note": "Reports the re-run still fails to locate the document.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "004d9874-7b4a-4213-941e-78689b433337",
+      "timestamp": "2026-06-06T23:36:54.448Z",
+      "codes": ["audit-artifact"],
+      "quote": "Why was it only 58 chuncks?",
+      "note": "Probes whether the indexed chunk count indicates incomplete coverage.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "52be4874-d38b-41b8-b69f-352f43d25d49",
+      "timestamp": "2026-06-06T23:37:52.839Z",
+      "codes": ["assign-task"],
+      "quote": "do the lit-sync skiills with all the new additions",
+      "note": "Instructs running lit-sync to bridge new BBT additions into literature/.",
+      "episode_candidate": false,
+      "artifact_hint": "literature/ sync"
+    },
+    {
+      "uuid": "e8f692ff-da27-4f37-b0c2-57609283ba54",
+      "timestamp": "2026-06-06T23:47:19.974Z",
+      "codes": ["audit-artifact", "supply-domain-judgment"],
+      "quote": "Did you see the enders citation. Anyhthing interesting there?",
+      "note": "Directs attention to the Enders reference as a potential evidence warrant.",
+      "episode_candidate": false,
+      "artifact_hint": "lit:endersMissingDataUpdate2025"
+    },
+    {
+      "uuid": "3b32f93b-77f5-4906-8086-3a5662f6bab9",
+      "timestamp": "2026-06-06T23:56:01.547Z",
+      "codes": ["challenge-framing", "supply-domain-judgment", "scope-decision"],
+      "quote": "the background is also about notation. Two, the progression should be to start with things that someone with a calculus based stat inference class can understand, thand then narrow into the more technical stuff",
+      "note": "Specifies the Background's dual job (notation + technical gradient) so readers graduate rather than hit a cliff.",
+      "episode_candidate": true,
+      "artifact_hint": "S2 Background blueprint; D-04"
+    },
+    {
+      "uuid": "15e171c2-7c5a-4ed5-90ad-75bb4176884b",
+      "timestamp": "2026-06-07T00:35:11.267Z",
+      "codes": ["reject-prose-style", "scope-decision", "set-standard"],
+      "quote": "the tone risk is can be solved by just stating things factually and using passive voice. I'm generally not a fan of passive voice, but in this case I am",
+      "note": "Endorses factual passive voice for Methods; approves supplements but bans condescending framing.",
+      "episode_candidate": false,
+      "artifact_hint": "T-05 Methods passive voice"
+    },
+    {
+      "uuid": "5f526bad-b32f-46d6-9c4a-18692d479b81",
+      "timestamp": "2026-06-07T00:36:54.682Z",
+      "codes": ["scope-decision", "supply-domain-judgment"],
+      "quote": "we can just put in appendices rather htan supplemental materials becasue I'm not sure we can do more than one document upload",
+      "note": "Decides appendices over a separate supplement, citing venue upload constraints.",
+      "episode_candidate": false,
+      "artifact_hint": "D-08 appendix note"
+    },
+    {
+      "uuid": "5e7d8a58-2808-48e4-93e5-c80ae035a354",
+      "timestamp": "2026-06-07T00:39:07.639Z",
+      "codes": ["pose-question", "challenge-framing"],
+      "quote": "So you are thinking that all numerical studies should come after the derivations?",
+      "note": "Probes the IMRaD ordering of simulations relative to derivations.",
+      "episode_candidate": false,
+      "artifact_hint": "M4 structure"
+    },
+    {
+      "uuid": "ef47b76a-67d3-423a-a900-25311e0729d1",
+      "timestamp": "2026-06-07T00:41:14.837Z",
+      "codes": ["scope-decision", "challenge-framing"],
+      "quote": "I'm wondering if we woudl do oursleves better to break fo M4 into M4a: Derivations and M4b Simulations and within the simulations we have a methods and results section",
+      "note": "Proposes splitting Results into Derivations + Simulation studies with internal setup/results.",
+      "episode_candidate": true,
+      "artifact_hint": "D-09 amendment (5->6 moves); M4a/M4b"
+    },
+    {
+      "uuid": "dc272a72-46b4-4d6d-80e8-b2b68d810d23",
+      "timestamp": "2026-06-07T00:42:15.049Z",
+      "codes": ["scope-decision", "reject-prose-style"],
+      "quote": "Simulations you can just have the sub heading Simulation studies:setup and Simulation studies:results",
+      "note": "Settles the subheading form to avoid two bare Methods sections.",
+      "episode_candidate": false,
+      "artifact_hint": "M4b subheadings"
+    },
+    {
+      "uuid": "9bfd847f-17fc-4d24-831e-8fcefafbfc62",
+      "timestamp": "2026-06-07T00:43:40.807Z",
+      "codes": ["scope-decision", "challenge-framing"],
+      "quote": "I'm find with just Discussion. The reason I separated it si that it may start very technical, but it needs to broaden out to where that reader who is reading M1 can understand",
+      "note": "Drops a separate Conclusion; Discussion must broaden from technical to the applied M1 reader.",
+      "episode_candidate": false,
+      "artifact_hint": "M5 Discussion gradient"
+    },
+    {
+      "uuid": "dce895c9-3002-4f55-be1c-b7f4b5f034a2",
+      "timestamp": "2026-06-07T00:44:35.397Z",
+      "codes": ["ratify"],
+      "quote": "Yes, ratify them",
+      "note": "Ratifies the D-09 amendment plus the open decisions D-03/D-04/D-05/D-08 in one update.",
+      "episode_candidate": false,
+      "artifact_hint": "D-03/D-04/D-05/D-08 ratified"
+    },
+    {
+      "uuid": "09bd6d47-584f-4c1b-a252-aebf030b9228",
+      "timestamp": "2026-06-07T01:00:47.687Z",
+      "codes": ["redirect-priority"],
+      "quote": "Let’s go to level 2",
+      "note": "Advances the review cycle from Level 1 to Level 2 sections.",
+      "episode_candidate": false,
+      "artifact_hint": "manuscript/plan/level2-sections.json"
+    },
+    {
+      "uuid": "96029d4e-8024-4a1a-8b53-8f8888be384d",
+      "timestamp": "2026-06-07T01:07:25.311Z",
+      "codes": ["assign-task"],
+      "quote": "I’ll annotate by chat because I am on my phone",
+      "note": "Chooses in-chat annotation over the file round-trip due to phone constraint.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "0b3a8728-74d9-4545-8dd5-182a380a1949",
+      "timestamp": "2026-06-07T01:12:42.735Z",
+      "codes": ["challenge-framing", "set-standard"],
+      "quote": "What do you mean settled ? I feel like others think it is settled but there are still unresolved issues as is what this paper exposes",
+      "note": "Challenges the word 'settled': field treats it settled, paper exposes it is not, so attribute settledness.",
+      "episode_candidate": true,
+      "artifact_hint": "T-06 typed claims; S1 attributed settledness"
+    },
+    {
+      "uuid": "653de66a-7c8c-4aed-a6a2-4571a0d4ddfa",
+      "timestamp": "2026-06-07T01:30:17.211Z",
+      "codes": ["audit-artifact", "challenge-framing"],
+      "quote": "How well does this follow the concept map DAG we created?",
+      "note": "Checks the blueprint against the argument-map DAG as the drafting spine.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/030 concept map DAG"
+    },
+    {
+      "uuid": "0b9cd1da-03dd-47fc-8e7e-a08a8c5d8afd",
+      "timestamp": "2026-06-07T01:42:25.353Z",
+      "codes": ["challenge-framing", "pose-question"],
+      "quote": "I’m not sure about a provenance declaration . What’ that about ?",
+      "note": "Questions the provenance-declaration element placed in the Discussion.",
+      "episode_candidate": false,
+      "artifact_hint": "D-11 title-page declaration"
+    },
+    {
+      "uuid": "cd8c3430-8007-47b5-b096-f57fd42d4263",
+      "timestamp": "2026-06-07T01:44:27.898Z",
+      "codes": ["scope-decision", "supply-domain-judgment"],
+      "quote": "Feel like that goes in a declaration in a title page.",
+      "note": "Relocates the provenance declaration to the title page as standard scholarly apparatus.",
+      "episode_candidate": true,
+      "artifact_hint": "D-11 title-page declaration"
+    },
+    {
+      "uuid": "13b16428-d036-4fc4-9a0c-914eed3d10a8",
+      "timestamp": "2026-06-07T01:47:45.861Z",
+      "codes": ["scope-decision", "ratify"],
+      "quote": "Do we want to decompose or start from scratch? I lean start from scratch",
+      "note": "Decides to draft sections from scratch rather than mechanically decompose the old manuscript.",
+      "episode_candidate": true,
+      "artifact_hint": "D-12 from-scratch, 180e2b5 as quarry"
+    },
+    {
+      "uuid": "6edbcc01-b57d-4fab-9464-fa5353014e97",
+      "timestamp": "2026-06-07T01:52:34.351Z",
+      "codes": ["assign-task"],
+      "quote": "Let’s continue",
+      "note": "Proceeds with the next planned step in the cycle.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "6af7a95f-2212-453c-a746-66f92d5cbf9d",
+      "timestamp": "2026-06-07T02:10:00.761Z",
+      "codes": ["reject-prose-style", "catch-gap"],
+      "quote": "P4 needs to be rewritten because it is like, whoa, where did this all come from? Is this something we are going to show? If so state it and relate it back to applied settings",
+      "note": "Rejects P4 for arriving cold; demands 'we show' framing and applied translation, no companion cite.",
+      "episode_candidate": true,
+      "artifact_hint": "S1-P4 rewrite"
+    },
+    {
+      "uuid": "e52270ba-55f3-4fd4-945a-81aa879421c4",
+      "timestamp": "2026-06-07T02:21:53.011Z",
+      "codes": ["reject-prose-style"],
+      "quote": "there is something off with the cadence of the prose. It’s very much like on a listening to poet with fixed predicable cadence... Let’s forgo the elegance and go back to high school with clear topic sentences",
+      "note": "Rejects poetic cadence and hanging inline references; mandates plain topic-sentence prose.",
+      "episode_candidate": true,
+      "artifact_hint": "plain expository cadence; CLAUDE.md prose style"
+    },
+    {
+      "uuid": "28e4b419-b83c-46e0-b7c3-b9f93a973fbb",
+      "timestamp": "2026-06-07T02:23:08.455Z",
+      "codes": ["assign-task"],
+      "quote": "Do this for the whole introduction and show me the new introduction",
+      "note": "Extends the plain-prose rewrite to all of S1 and asks to see it.",
+      "episode_candidate": false,
+      "artifact_hint": "S1 full rewrite"
+    },
+    {
+      "uuid": "2659789a-e44e-45c5-a02c-df37954dbef9",
+      "timestamp": "2026-06-07T02:55:21.752Z",
+      "codes": ["ratify"],
+      "quote": "This is good enough so far. I do have comments, but I need to sit down at a computer and go one paragraph at a time with you",
+      "note": "Provisionally accepts S1, deferring per-paragraph comments to a computer session.",
+      "episode_candidate": false,
+      "artifact_hint": "S1 drafted"
+    },
+    {
+      "uuid": "a684aecd-db79-43cc-b52e-1da357268105",
+      "timestamp": "2026-06-07T03:10:00.643Z",
+      "codes": ["set-standard", "assign-task"],
+      "quote": "Can you write a claude Md about the writing style I want",
+      "note": "Codifies the prose-style rules into CLAUDE.md so they govern all future drafting.",
+      "episode_candidate": true,
+      "artifact_hint": "CLAUDE.md manuscript prose style section"
+    },
+    {
+      "uuid": "3f985374-1ca8-4698-8690-85e5b31124b2",
+      "timestamp": "2026-06-07T03:23:38.998Z",
+      "codes": ["redirect-priority"],
+      "quote": "Let’s continue to tbs background",
+      "note": "Moves drafting on to the Background section.",
+      "episode_candidate": false,
+      "artifact_hint": "S2 Background"
+    },
+    {
+      "uuid": "70dd1519-14a9-4ce9-b5b9-3e238d309f30",
+      "timestamp": "2026-06-07T03:51:16.325Z",
+      "codes": ["reject-prose-style", "challenge-framing", "catch-gap"],
+      "quote": "It reads like a literature review. The reader is left wondering, “why are you telling me all this” . Again the reader is impatient so if you are bringing up ignorability, is that being brought up because that is what you are assuming?",
+      "note": "Rejects lit-review register; demands use-first motivation, a roadmap P1, and no apologetic tone.",
+      "episode_candidate": true,
+      "artifact_hint": "T-07 motivate-by-use; S2 use-first rewrite"
+    },
+    {
+      "uuid": "96ebac40-4c98-41e6-ba38-2c171820fb86",
+      "timestamp": "2026-06-07T03:53:23.254Z",
+      "codes": ["assign-task"],
+      "quote": "Show me the full section now",
+      "note": "Requests the full rewritten Background to inspect.",
+      "episode_candidate": false,
+      "artifact_hint": "S2 full section"
+    },
+    {
+      "uuid": "040cca9a-d0c9-4856-9108-21f533f4f123",
+      "timestamp": "2026-06-07T04:04:45.604Z",
+      "codes": ["catch-gap", "supply-domain-judgment", "challenge-derivation"],
+      "quote": "Why do you never invoke proper imputation. Sure Monte Carlo em is multiple imputation but it isn’t proper... they don’t touch proper imputations like we do",
+      "note": "Catches a missing distinction: Shumway/EM are improper; the paper's novelty is proper imputation.",
+      "episode_candidate": true,
+      "artifact_hint": "S2 proper/improper imputation paragraph"
+    },
+    {
+      "uuid": "247588ae-0506-41e5-92b4-9a899374a001",
+      "timestamp": "2026-06-07T04:12:43.659Z",
+      "codes": ["assign-task"],
+      "quote": "Show me the full background",
+      "note": "Requests the full Background after the proper/improper fix.",
+      "episode_candidate": false,
+      "artifact_hint": "S2 full section"
+    },
+    {
+      "uuid": "e6da1a25-9d9d-477a-9894-31a10bf8de23",
+      "timestamp": "2026-06-07T13:45:42.718Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "This is good enough for now... Let's commit our progress and write a handoff document so we can continue in the next session",
+      "note": "Accepts S2, instructs commit plus a handoff document for continuity.",
+      "episode_candidate": false,
+      "artifact_hint": "551d4b6 session handoff todo/000"
+    },
+    {
+      "uuid": "9cce3e3a-755b-45b3-96c1-7021511323fd",
+      "timestamp": "2026-06-07T13:59:52.462Z",
+      "codes": ["assign-task"],
+      "quote": "give me the prompt for hte next session",
+      "note": "Requests a resume prompt for the following session.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "33ed9e59-2662-469d-a6b4-e9a3ae7c5146",
+      "timestamp": "2026-06-07T14:19:26.644Z",
+      "codes": ["assign-task"],
+      "quote": "Go ahead and draft S3 now",
+      "note": "Greenlights drafting S3 Methods, the from-scratch section.",
+      "episode_candidate": false,
+      "artifact_hint": "S3 Methods draft"
+    },
+    {
+      "uuid": "69c346fb-aca0-48df-93b4-71c757627a99",
+      "timestamp": "2026-06-07T14:25:18.959Z",
+      "codes": ["reject-prose-style", "set-standard"],
+      "quote": "Why so many semicolons dashes and colons? Again. Write like a high shooler",
+      "note": "Rejects S3's punctuation; reasserts the punctuation-budget plain-prose rule.",
+      "episode_candidate": true,
+      "artifact_hint": "punctuation budget rule; S3 rewrite"
+    },
+    {
+      "uuid": "9e40a768-e38c-44c0-98d5-eb02b44c8db5",
+      "timestamp": "2026-06-07T14:28:32.519Z",
+      "codes": ["assign-task"],
+      "quote": "Rewrite the S3",
+      "note": "Orders the S3 rewrite to the punctuation budget.",
+      "episode_candidate": false,
+      "artifact_hint": "S3 rewrite"
+    },
+    {
+      "uuid": "94817093-8de2-40f4-bff6-f75e3ecfbadb",
+      "timestamp": "2026-06-07T14:31:30.063Z",
+      "codes": ["catch-gap", "challenge-framing"],
+      "quote": "P2 doesn't exactly et at the collaborative nature of the work together. People aren't going to know how we challenged eachother. yes, I relied on you for hte math, but what does direction mean? That needs to be expanded.",
+      "note": "Catches that the Methods underplays mutual challenge; 'direction' is vague and must be expanded.",
+      "episode_candidate": true,
+      "artifact_hint": "S3-P2 collaboration expansion; todo/032 seed"
+    },
+    {
+      "uuid": "f9ea9928-5e36-4df9-9756-265e0a047f78",
+      "timestamp": "2026-06-07T14:35:27.407Z",
+      "codes": ["catch-gap", "scope-decision", "assign-task"],
+      "quote": "We need a heuristic on what collaboration looked like first and then include examples. I htink IN need a handoff document where we do some good qualitative research on the conversations that are in .claude",
+      "note": "Specifies the collaboration analysis: heuristic first then examples; proposes qualitative coding of transcripts.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/032 qualitative collaboration analysis"
+    },
+    {
+      "uuid": "51a43305-5191-45bb-a58a-b98f81763701",
+      "timestamp": "2026-06-07T14:41:10.125Z",
+      "codes": ["ratify", "scope-decision"],
+      "quote": "Yes, I think they enter public record to buld trust",
+      "note": "Decides raw transcripts enter the public record to build trust (initial D-13 ruling).",
+      "episode_candidate": false,
+      "artifact_hint": "D-13"
+    },
+    {
+      "uuid": "a51d8f62-1a91-4906-941b-2c4c2cf5410b",
+      "timestamp": "2026-06-07T14:41:20.137Z",
+      "codes": ["ratify", "scope-decision"],
+      "quote": "Yes, I think they enter public record to buld trust but mi-spectral only",
+      "note": "Confirms D-13 and scopes the analysis to mi-spectral sessions only.",
+      "episode_candidate": true,
+      "artifact_hint": "D-13 ratified; todo/032 scope"
+    },
+    {
+      "uuid": "61baa750-314b-41b6-a0c6-0c12313bb7a6",
+      "timestamp": "2026-06-07T14:49:02.444Z",
+      "codes": ["assign-task", "redirect-priority"],
+      "quote": "Give me prompt to lauch 032 adn I'll do it in a separate session",
+      "note": "Requests a launch prompt for todo/032 to run as a separate session.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/032 launch prompt"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-06T22:08:20.082Z",
+      "evidence": "ClickUp mirror is unset (`list_id: null`) — want me to set one up to mirror section states, or mark it declined so I stop asking?",
+      "note": "AI surfaces the ClickUp mirror decision rather than deciding silently."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-06T22:13:22.696Z",
+      "evidence": "you can also just tell me in-chat and skip the file round-trip — the protocol allows in-chat annotation. Want the file, or do it here?",
+      "note": "AI offers file vs in-chat annotation paths."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-06T22:32:59.805Z",
+      "evidence": "Want me to run that literature pass now, or keep moving through M2–M5 first and do the pass as a batch task before Phase 4?",
+      "note": "AI surfaces sequencing of the literature pass to the human."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-06T22:37:41.565Z",
+      "evidence": "One wrinkle to flag: the term needs care next to \"replications\" in the Monte Carlo sense",
+      "note": "AI flags terminology collision risk for the replication principle (T-07)."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-06T23:09:21.839Z",
+      "evidence": "full book in the markdown (bigger file, complete audit trail) or relevant-chapters-only with a pointer to the repo for the rest? I'd default to relevant-chapters-only",
+      "note": "AI lays out two acquisition options with a default."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-07T02:10:00.761Z",
+      "evidence": "@TODO:mi-ic-companion in P3 needs a citable form (preprint DOI or in-prep entry) before compile — logged in todo/003 as a compile blocker",
+      "note": "AI flags an uncitable companion reference as a compile blocker."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-07T14:41:10.125Z",
+      "evidence": "Do the raw transcripts enter the public record, or only the committed analysis? (Candidate D-13 — provenance maximalism vs. selective quotation.",
+      "note": "AI surfaces the D-13 transcript-disclosure decision and the scope question."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-07T02:21:53.011Z",
+      "evidence": "T-03 banned figurative jargon, so your call: keep or replace with literal phrasing (\"removes the systematic advantage\")",
+      "note": "AI flags its own metaphor against the banned-vocabulary rule."
+    }
+  ],
+  "proposed_codes": []
+}

@@ -1,0 +1,258 @@
+{
+  "session_id": "eabfef36-044b-40b9-afb9-7b4861f6c8e8",
+  "session_summary": "A pre-drafting session on 2026-06-05: Marcus judged the manuscript ineffective and redirected the work to first build a concept map / argument DAG from the derivation guide, then acquire and verify a 'background' literature corpus (EM, imputation-as-Monte-Carlo, Rubin's rules as Laplace approximation) and a handoff for the drafting session. Marcus drove strategy (DAG ordering by node centrality, background-for-trust rationale, banning businessy jargon) and personally ran the Zotero/litrev acquisition pipeline (migrate, convert, index, BBT export, Orchard-Woodbury year/key fixes), while the AI executed map construction, verification, and metadata reconciliation.",
+  "coded_turns": [
+    {
+      "uuid": "53d9dccf-1dd6-4975-aa6e-2f98862079a7",
+      "timestamp": "2026-06-05T15:11:04.012Z",
+      "codes": ["pose-question", "redirect-priority", "challenge-framing"],
+      "quote": "manuscript is not written effectively. I think that what we need to do is first create a concept map from the information in the derivations guide",
+      "note": "Judges manuscript ineffective; reframes the work around a concept map of central propositions before writing.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/030-concept-map; argument-map drafting spine"
+    },
+    {
+      "uuid": "34db800b-c999-4eea-a2d0-47a9f3e0d6b2",
+      "timestamp": "2026-06-05T15:18:59.805Z",
+      "codes": ["set-standard", "reject-prose-style", "supply-domain-judgment"],
+      "quote": "Stop with the businessy jargon of \"where it bites\", etc. This type of jargon is really ambiguous and does not reflect hte degree of precision needed to gain the trust for an academic audience skeptical of AI",
+      "note": "Bans figurative jargon, demands precision and trust-ordered communication for an AI-skeptical audience; saved to memory.",
+      "episode_candidate": true,
+      "artifact_hint": "CLAUDE.md banned vocabulary T-03; feedback_outside_reader_prose memory"
+    },
+    {
+      "uuid": "2f96a3d4-abfa-4c1a-9fd5-54de21b4e4c1",
+      "timestamp": "2026-06-05T15:28:14.499Z",
+      "codes": ["redirect-priority", "scope-decision", "assign-task"],
+      "quote": "Delte the mi-spectral.qmd. We aren't ready to begin the writing phase on that",
+      "note": "Orders deletion of the draft qmd; rules the project not yet in the writing phase.",
+      "episode_candidate": true,
+      "artifact_hint": "mi-spectral.qmd deleted (recoverable at 75d3ea7)"
+    },
+    {
+      "uuid": "18f15edc-bf81-487c-8e2e-8384fa9dfc1b",
+      "timestamp": "2026-06-05T15:33:17.251Z",
+      "codes": ["redirect-priority", "assign-task"],
+      "quote": "Let's build the concept map from the litrev mcp, can we? The one we've build doesn't have the features that I like",
+      "note": "Rejects the pyvis map; redirects to rebuild it in the litrev MCP for its query features.",
+      "episode_candidate": false,
+      "artifact_hint": "litrev argument map (DB-backed)"
+    },
+    {
+      "uuid": "bac4ca67-be9b-4416-8a87-d0f5c312aebc",
+      "timestamp": "2026-06-05T15:43:23.301Z",
+      "codes": ["supply-domain-judgment", "pose-question"],
+      "quote": "it effecitvely shoudl be a DAG, right? And so arrows should in general have a left to right ordering",
+      "note": "Supplies the structural insight that the map is a DAG with left-to-right ordering by centrality.",
+      "episode_candidate": true,
+      "artifact_hint": "litrev layout='dag' feature; DAG drafting spine"
+    },
+    {
+      "uuid": "7b641450-9406-4941-938a-31d9bd05572c",
+      "timestamp": "2026-06-05T16:16:37.765Z",
+      "codes": ["supply-domain-judgment", "scope-decision", "pose-question"],
+      "quote": "We need to find \"background\" literature because we will be writing a background section. That will involve very basic things like the EM algorithm, imputation as monte carlo integration technique, perhaps even rubin's rules as a laplace approximation",
+      "note": "Defines a background section and its rationale (lineage recital builds reader trust), naming the items to acquire.",
+      "episode_candidate": true,
+      "artifact_hint": "B1-B11 background corpus; background section plan"
+    },
+    {
+      "uuid": "c4540a87-40a5-4229-943a-061e4fbb51cc",
+      "timestamp": "2026-06-05T16:20:43.933Z",
+      "codes": ["assign-task"],
+      "quote": "Give me the author and titles that I am to find here",
+      "note": "Asks for the author/title list of background papers to acquire.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/003 background acquisition list"
+    },
+    {
+      "uuid": "486600ee-ef66-44bc-9ba8-d36ec2a458bc",
+      "timestamp": "2026-06-05T17:14:22.678Z",
+      "codes": ["provide-resource", "assign-task"],
+      "quote": "pdfs are in zotero and need to be migrated",
+      "note": "Reports PDFs are in Zotero and signals the migration step of the acquisition pipeline.",
+      "episode_candidate": false,
+      "artifact_hint": "migrate_zotero_attachments pipeline"
+    },
+    {
+      "uuid": "2c321674-196c-47ed-b950-20839ca8e894",
+      "timestamp": "2026-06-05T17:16:04.063Z",
+      "codes": ["assign-task"],
+      "quote": "I just reconnected it",
+      "note": "Confirms litrev MCP reconnected so the pipeline can proceed.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "4f39e88c-da5c-46ae-a19c-ef677d3b33d4",
+      "timestamp": "2026-06-05T17:19:59.769Z",
+      "codes": ["assign-task", "set-standard"],
+      "quote": "I'm converting them and indexing them now. I'll let you know when to lit-sync tools should be invoked",
+      "note": "Takes ownership of convert/index; gates lit-sync on his signal (user-drives pipeline discipline).",
+      "episode_candidate": false,
+      "artifact_hint": "feedback_litrev_pipeline_user_drives"
+    },
+    {
+      "uuid": "aef4c22f-9ff2-4d33-b42f-f23863d7ebc4",
+      "timestamp": "2026-06-05T17:33:03.311Z",
+      "codes": ["assign-task"],
+      "quote": "Okay BBT exported and all are index lit-sync time",
+      "note": "Signals BBT export and indexing complete; triggers lit-sync.",
+      "episode_candidate": false,
+      "artifact_hint": "lit-sync run; literature/<citekey>.md writes"
+    },
+    {
+      "uuid": "7a77c283-ca7e-42d2-ad98-b23baffd196d",
+      "timestamp": "2026-06-05T17:43:09.227Z",
+      "codes": ["catch-gap", "assign-task"],
+      "quote": "cAN YOU FIND THE DRIVE COPY IN THE gOOGLE DRIVE AND DELETE IT?",
+      "note": "Initiates purge of the wrong (Akaike) PDF from Google Drive; part of catching a bad artifact.",
+      "episode_candidate": false,
+      "artifact_hint": "Akaike wrong-PDF purge"
+    },
+    {
+      "uuid": "22dcf268-12d7-4748-8bed-deeddaa08356",
+      "timestamp": "2026-06-05T17:56:19.477Z",
+      "codes": ["catch-gap", "audit-artifact"],
+      "quote": "WE MAY NEED TO DELETE IT FROM THE MOTHERDUCK DATABASE TOO SO IT KNOWS TO REINDEX",
+      "note": "Catches that the RAG/MotherDuck row must also be deleted so the bad PDF gets reindexed correctly.",
+      "episode_candidate": true,
+      "artifact_hint": "MotherDuck RAG row 8ZKBXH6L deleted; reindex"
+    },
+    {
+      "uuid": "c1ff4fac-bffd-4a33-ac8a-6c8c4ebacf6b",
+      "timestamp": "2026-06-05T17:59:28.836Z",
+      "codes": ["assign-task"],
+      "quote": "Okay. bad one deleted good one now pdf in zotero",
+      "note": "Confirms bad Akaike PDF removed and correct IEEE paper attached in Zotero.",
+      "episode_candidate": false,
+      "artifact_hint": "Akaike correct-PDF attach"
+    },
+    {
+      "uuid": "acd6d007-6d8b-4a7f-aca3-3c27130bf32c",
+      "timestamp": "2026-06-05T18:08:32.326Z",
+      "codes": ["assign-task"],
+      "quote": "Okay it has been indexed. I also reexported the bBT",
+      "note": "Confirms reindex and BBT re-export complete for the corrected Akaike paper.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "2056b642-e492-4cda-b7d1-03484b257b95",
+      "timestamp": "2026-06-05T18:10:14.839Z",
+      "codes": ["pose-question", "redirect-priority"],
+      "quote": "Do you want me to enter plan mode or is this another session and I should go to ultra-code?",
+      "note": "Asks how to sequence the drafting work (plan mode vs new session), organizing the transition.",
+      "episode_candidate": false,
+      "artifact_hint": "drafting-session handoff decision"
+    },
+    {
+      "uuid": "e0420cb2-0464-4076-8be7-fd3fb755c92b",
+      "timestamp": "2026-06-05T18:11:32.389Z",
+      "codes": ["assign-task", "redirect-priority"],
+      "quote": "I need a handoff for hte drafting session and a prompt to lead into it",
+      "note": "Requests a drafting-session handoff and lead-in prompt to carry the work to the next session.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/031 drafting handoff; lead-in prompt"
+    },
+    {
+      "uuid": "7fdb430d-e0ed-4ea6-93c3-29917ead0630",
+      "timestamp": "2026-06-05T18:25:16.980Z",
+      "codes": ["audit-artifact", "challenge-derivation"],
+      "quote": "The correct order is Orchard and Woodbury in that order, and that Is what I'm seeing in zotero. Is that not what you are seeing?",
+      "note": "Checks author-order claim against Zotero; disputes the AI's metadata reading.",
+      "episode_candidate": false,
+      "artifact_hint": "Orchard-Woodbury metadata reconciliation"
+    },
+    {
+      "uuid": "4f29a6f3-430d-4609-b29e-e834634c8ad5",
+      "timestamp": "2026-06-05T18:27:30.407Z",
+      "codes": ["audit-artifact", "set-standard"],
+      "quote": "CAn you tell me the year that it is cited in the Schafer book?",
+      "note": "Demands a primary-source check (Schafer) to settle the Orchard-Woodbury year dispute.",
+      "episode_candidate": true,
+      "artifact_hint": "Orchard-Woodbury year fixed to 1972 (Schafer/DLR/Meng-Rubin)"
+    },
+    {
+      "uuid": "513ef7d0-6f84-43dd-ab9f-7610db2fa2b1",
+      "timestamp": "2026-06-05T18:28:39.417Z",
+      "codes": ["assign-task"],
+      "quote": "I'll update on my end and fix",
+      "note": "Takes ownership of the Zotero year/key fix.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "4a39c24a-65b0-47d6-8b74-947f1060decb",
+      "timestamp": "2026-06-05T18:29:13.496Z",
+      "codes": ["audit-artifact", "assign-task"],
+      "quote": "I've refreshed the BBT. Take a look at that first",
+      "note": "Reports BBT refresh and directs the AI to verify the export before proceeding.",
+      "episode_candidate": false,
+      "artifact_hint": "BBT re-export verification"
+    },
+    {
+      "uuid": "c6ad4255-796c-4323-a215-ef3e0a82011c",
+      "timestamp": "2026-06-05T18:31:18.674Z",
+      "codes": ["audit-artifact", "supply-domain-judgment"],
+      "quote": "Try now. I've updated \"Citation Key\" to woodburyMissingInformationPrinciple1972",
+      "note": "Pins the citation key deliberately (woodbury slug, 1972 year) and prompts re-verification.",
+      "episode_candidate": false,
+      "artifact_hint": "woodburyMissingInformationPrinciple1972 deliberate pin"
+    },
+    {
+      "uuid": "c8f6e63b-ae92-4c44-ac9b-209da5dabcc4",
+      "timestamp": "2026-06-05T18:33:39.501Z",
+      "codes": ["assign-task"],
+      "quote": "Give me the handoff prompt again",
+      "note": "Requests the drafting handoff lead-in prompt restated to close the session.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/031 drafting handoff lead-in"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-05T15:18:59.805Z",
+      "evidence": "If this matches what you had in mind, a natural next step is to actually materialize the map ... Want me to build that?",
+      "note": "AI put map-construction to Marcus rather than proceeding silently."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-05T15:33:17.251Z",
+      "evidence": "I'd keep `todo/030-concept-map.md` ... and delete the script and HTML — confirm and I'll remove them.",
+      "note": "AI surfaced the cleanup deletion decision for confirmation."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-05T17:14:22.678Z",
+      "evidence": "volume/page numbers above are from training-weight knowledge — trust the author/title for searching, and let the Zotero metadata be the citation of record",
+      "note": "AI flagged its own metadata as training-weight and unreliable."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-05T18:11:32.389Z",
+      "evidence": "shall I do the Rubin check and the Background propositions now, and you start the drafting session in plan mode whenever you're ready?",
+      "note": "AI proposed a work split and surfaced the session-boundary decision."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-06-05T18:11:32.389Z",
+      "evidence": "Initial drafting itself is better done by one context holding the whole narrative — fan-out drafting produces stitched-together prose",
+      "note": "AI laid out fan-out-verify vs single-context drafting trade-off."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-05T18:25:16.980Z",
+      "evidence": "Do not cite `woodburyMissingInformationPrinciple1970` until its Zotero metadata is fixed.",
+      "note": "AI flagged a do-not-cite risk pending metadata correction."
+    }
+  ],
+  "proposed_codes": [
+    {
+      "name": "drive-tooling-pipeline",
+      "definition": "Human personally operates external tooling steps (Zotero migrate, convert, index, BBT export, RAG/db deletes) that the AI cannot do, gating the AI's next action on completion signals.",
+      "example_quote": "I'm converting them and indexing them now. I'll let you know when to lit-sync tools should be invoked"
+    }
+  ]
+}

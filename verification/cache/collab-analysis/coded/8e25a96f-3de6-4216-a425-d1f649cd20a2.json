@@ -1,0 +1,54 @@
+{
+  "session_id": "8e25a96f-3de6-4216-a425-d1f649cd20a2",
+  "session_summary": "A short tail session following a derivation-audit run: the AI reported the audit was citation-clean at the blocker level with four reader-facing precision items. Marcus's role was record-keeping: he checked whether the audit report had been persisted, then directed it to a durable, untracked cache path with a timestamp, ensuring the audit verdict entered the project's reproducibility record rather than a transient temp file.",
+  "coded_turns": [
+    {
+      "uuid": "bf59132b-a1f6-4e45-ac9d-f913b586fdff",
+      "timestamp": "2026-06-01T23:43:01.747Z",
+      "codes": ["audit-artifact"],
+      "quote": "Where is this report saved? or is it?",
+      "note": "Checks whether the derivation-audit report was actually persisted anywhere or only displayed.",
+      "episode_candidate": true,
+      "artifact_hint": "verification/cache/derivation-audit-2026-06-01.md"
+    },
+    {
+      "uuid": "133b2199-0715-434e-a463-a97d6fede0f6",
+      "timestamp": "2026-06-01T23:44:27.811Z",
+      "codes": ["assign-task", "audit-artifact"],
+      "quote": "Yup, please put it here verification/cache/derivation-audit-2026-06-01.md but note the time (17:44)",
+      "note": "Directs the audit report to a durable cache path with a timestamp for the record.",
+      "episode_candidate": false,
+      "artifact_hint": "verification/cache/derivation-audit-2026-06-01.md"
+    },
+    {
+      "uuid": "61c889f2-f336-47e1-9dbc-ed2b071579e3",
+      "timestamp": "2026-06-01T23:44:30.576Z",
+      "codes": ["assign-task", "audit-artifact"],
+      "quote": "Yup, please put it here verification/cache/derivation-audit-2026-06-01.md but note the time (17:44)",
+      "note": "Duplicate of prior turn; confirms durable save location and timestamp for the audit report.",
+      "episode_candidate": false,
+      "artifact_hint": "verification/cache/derivation-audit-2026-06-01.md"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-06-01T23:44:27.811Z",
+      "evidence": "Want me to write the full markdown report to a durable file? A sensible spot would be `verification/cache/derivation-audit-2026-06-01.md`",
+      "note": "AI asked where to persist the report rather than silently saving or discarding it."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-01T23:44:27.811Z",
+      "evidence": "Note that's the OS temp dir, so it's transient — Windows can clear it on cleanup/reboot.",
+      "note": "AI flagged that the only existing dump was in a transient temp dir at risk of deletion."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-06-01T23:43:01.747Z",
+      "evidence": "The substantive items to address before submission are the four reader-facing precision issues",
+      "note": "AI surfaced four reader-facing precision items needing fixes before submission."
+    }
+  ],
+  "proposed_codes": []
+}

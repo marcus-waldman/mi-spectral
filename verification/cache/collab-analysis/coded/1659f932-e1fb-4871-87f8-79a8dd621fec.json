@@ -1,0 +1,819 @@
+{
+  "session_id": "1659f932-e1fb-4871-87f8-79a8dd621fec",
+  "session_summary": "The inception session: Marcus loaded project context, then drove a long literature-acquisition pipeline (Zotero cleanup, Mathpix conversion, RAG indexing, citation-discipline infrastructure) while reading Chan/Chan-Meng (2022). Mid-session the discovery that Chan (2022, AoS) preempts the original spectral chi-square framing forces a reframing toward the deviance-bias decomposition with LRT and IC applications. Marcus's role was directive and corrective throughout: setting verification/citation discipline, supplying domain knowledge (FMI invertibility, missing-covariate citations, MI-IC simulation results), rejecting overreach (anisotropy term, uncited papers), and steering the venue/style/contribution decisions.",
+  "coded_turns": [
+    {
+      "uuid": "c18f1f45-566c-40af-8ea5-de4db7eceeba",
+      "timestamp": "2026-05-22T18:11:25.396Z",
+      "codes": ["assign-task", "set-standard"],
+      "quote": "the\n  ▎ verification-and-citation discipline is load-bearing, not optional",
+      "note": "Loads context and launches Phase 1 corpus acquisition; foregrounds citation discipline as binding.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/001-literature-and-hooks.md"
+    },
+    {
+      "uuid": "8d371db0-aba8-4832-9f8c-5bc5bb64d46f",
+      "timestamp": "2026-05-22T18:36:24.445Z",
+      "codes": ["pose-question"],
+      "quote": "Where should I put the pdfs?",
+      "note": "Asks where PDFs should live; routine logistics question for the pipeline.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "014feb3e-7ff8-4e66-ba2d-83b48fa513d6",
+      "timestamp": "2026-05-22T18:38:40.452Z",
+      "codes": ["redirect-priority", "assign-task"],
+      "quote": "Before I do this. currently my mi-spectral in my zotero is completely empty. Can you add literature we have already to it?",
+      "note": "Interrupts the filename-convention question; redirects to populating the empty Zotero collection first.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "84628eed-c834-486b-9342-24bf7fed543a",
+      "timestamp": "2026-05-22T18:46:01.406Z",
+      "codes": ["supply-domain-judgment", "assign-task"],
+      "quote": "One option is to just get the doi from MI-IC and then add to zotero by D",
+      "note": "Suggests reusing MI-IC DOIs to populate Zotero, avoiding bad-DOI lookups.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "239fa1c6-d924-449c-8016-a86f1d3685b4",
+      "timestamp": "2026-05-22T18:46:04.039Z",
+      "codes": ["supply-domain-judgment", "assign-task"],
+      "quote": "One option is to just get the doi from MI-IC and then add to zotero by DOI",
+      "note": "Repeats the add-by-DOI-from-MI-IC suggestion (completed sentence).",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "d3415a48-815a-4e2e-b017-14b7f42c140f",
+      "timestamp": "2026-05-22T18:48:53.361Z",
+      "codes": ["audit-artifact"],
+      "quote": "What are we doing right now?",
+      "note": "Checks current state of the work after a transient API error.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "4ae77642-16df-47a7-a7c1-39519f0231da",
+      "timestamp": "2026-05-22T18:49:32.474Z",
+      "codes": ["redirect-priority", "supply-domain-judgment"],
+      "quote": "can we just run the clean my messy zotero skill from litrev?",
+      "note": "Redirects away from manual merge plan toward an existing litrev cleanup skill.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "4a89a5c6-69bf-4b2e-a9a2-2a8d87bba037",
+      "timestamp": "2026-05-22T19:04:12.915Z",
+      "codes": ["pose-question"],
+      "quote": "What texts are we going to need in zotero?",
+      "note": "Organizing question scoping the needed corpus before fetching.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "99d11284-082e-4c5b-8398-0801e2dd99de",
+      "timestamp": "2026-05-22T20:10:27.275Z",
+      "codes": ["challenge-framing", "supply-domain-judgment"],
+      "quote": "Why are you recommending matrix diffrential calculus?",
+      "note": "Probes the rationale for citing Magnus-Neudecker; questions whether the cite does real work.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "48c36a32-2b0a-415d-8751-85cc72caee7d",
+      "timestamp": "2026-05-22T20:12:56.227Z",
+      "codes": ["supply-domain-judgment", "challenge-framing"],
+      "quote": "Can we not just use matrix cookbook?",
+      "note": "Proposes Matrix Cookbook as a reviewer-verifiable substitute reference.",
+      "episode_candidate": false,
+      "artifact_hint": "petersenpedersenMatrixCookbook2012 added"
+    },
+    {
+      "uuid": "7b73bcbc-6b6e-4bd7-9bb8-c05a6dc58e11",
+      "timestamp": "2026-05-22T20:34:12.164Z",
+      "codes": ["set-standard", "pose-question"],
+      "quote": "we need to create a skill that turns these into markdown using mathpix, stores the markdown, but also puts it in a database for faster searcing through embeddings. Thoughts?",
+      "note": "Proposes building the Mathpix-to-markdown-plus-embeddings infrastructure; sets the corpus-as-RAG standard.",
+      "episode_candidate": false,
+      "artifact_hint": "lit-sync skill + RAG indexing infrastructure"
+    },
+    {
+      "uuid": "84cfb15e-c81e-44a7-aeeb-be25d1ca4b00",
+      "timestamp": "2026-05-22T20:41:54.565Z",
+      "codes": ["assign-task"],
+      "quote": "Can you give me the titles of waht I need to add?",
+      "note": "Requests the list of titles to add to Zotero.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "d65b9889-e181-4d5f-9f1c-32c8b4d208da",
+      "timestamp": "2026-05-22T20:56:16.645Z",
+      "codes": ["assign-task"],
+      "quote": "Okay. I've added",
+      "note": "Reports having added entries to Zotero; hands work back.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "a5a97fa6-7a24-4cca-9e6c-dd3e994aa8f3",
+      "timestamp": "2026-05-22T21:03:41.260Z",
+      "codes": ["audit-artifact"],
+      "quote": "My mi-spectral collection in zotero has the correct citations. I'm looking at them right now",
+      "note": "Verifies collection state against the assistant's claims by direct inspection.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "ad313c32-2bb6-447c-b9e1-8757194a2146",
+      "timestamp": "2026-05-22T21:10:34.660Z",
+      "codes": ["audit-artifact", "provide-resource"],
+      "quote": "17 itmes see Screenshot 2026-05-22 151001.png in Downloads",
+      "note": "Provides a screenshot as ground truth for the item count discrepancy.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "8e88d688-d5be-4e6e-9131-03bd3d4141ce",
+      "timestamp": "2026-05-22T21:22:22.949Z",
+      "codes": ["catch-gap", "supply-domain-judgment"],
+      "quote": "Doesn't litrev have a \"migrate\" feature that will copy the pdfs to google drive? I feel like if we make a separate script, we are being redundant.",
+      "note": "Catches redundant bespoke script; points to existing litrev migrate feature.",
+      "episode_candidate": false,
+      "artifact_hint": "migrate_zotero_attachments used instead of bespoke script"
+    },
+    {
+      "uuid": "14eac565-9ef8-4148-a990-86ec2a174c0d",
+      "timestamp": "2026-05-22T21:42:14.102Z",
+      "codes": ["audit-artifact"],
+      "quote": "Still working? do you have a progress report? where are we?",
+      "note": "Requests progress report on background indexing.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "fe7d1be0-3e98-4fc2-9e91-a987a5095c57",
+      "timestamp": "2026-05-22T22:08:36.727Z",
+      "codes": ["other"],
+      "quote": "<task-notification>",
+      "note": "System task-completion notification, not a human authored move.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "722b84c3-67de-47c7-861b-444dfaa8a5f6",
+      "timestamp": "2026-05-22T22:12:33.933Z",
+      "codes": ["scope-decision", "supply-domain-judgment"],
+      "quote": "Do you want to write a git issue on litrev_mcp repository and I can go patch it over there?",
+      "note": "Chooses upstream-fix-in-litrev over a redundant local workaround; divides labor.",
+      "episode_candidate": false,
+      "artifact_hint": "litrev_mcp issue (embedding batch fix)"
+    },
+    {
+      "uuid": "28799322-b910-42ce-81d2-d2d64862c1f3",
+      "timestamp": "2026-05-22T22:29:55.600Z",
+      "codes": ["provide-resource"],
+      "quote": "Okay. I've patched litrev_mcp",
+      "note": "Reports the upstream patch is done; unblocks re-indexing.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "2fa401ba-88f0-41d6-87c1-740e111a4dc7",
+      "timestamp": "2026-05-22T22:31:47.924Z",
+      "codes": ["assign-task"],
+      "quote": "I've updated the three broken dates",
+      "note": "Reports fixing the three malformed Zotero date fields.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "38f604c9-a41d-4842-b4fb-3c18c3f6534f",
+      "timestamp": "2026-05-22T22:37:05.580Z",
+      "codes": ["audit-artifact"],
+      "quote": "Can you tell me how the mathpix conversion is proceeding?",
+      "note": "Checks Mathpix conversion progress.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "82c2e152-a0bd-4a5b-9ff0-7fd36349304a",
+      "timestamp": "2026-05-22T22:40:19.278Z",
+      "codes": ["other"],
+      "quote": "<task-notification>",
+      "note": "System task-completion notification, not a human move.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "75fa43fe-4542-4389-a7c5-661396641f39",
+      "timestamp": "2026-05-22T22:42:24.681Z",
+      "codes": ["audit-artifact"],
+      "quote": "So I can close the git issue, correct?",
+      "note": "Confirms the upstream issue can be closed after verification.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "9279dd28-5767-4ce9-8344-9ec3e7fcb418",
+      "timestamp": "2026-05-22T22:43:52.064Z",
+      "codes": ["ratify", "redirect-priority"],
+      "quote": "Let's definitely do 1 and 2, but then let's talk about (3) together.",
+      "note": "Approves building lit-sync + hook; reserves manuscript-strategy decision for joint discussion.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/001 Phase 2/3 (lit-sync + citation hook)"
+    },
+    {
+      "uuid": "d732a9f3-759d-4243-94dc-81ffdb83d0a8",
+      "timestamp": "2026-05-22T22:57:17.866Z",
+      "codes": ["provide-resource"],
+      "quote": "I exported the better bibTeX to the literature folder",
+      "note": "Provides the BBT export that determines the citekey convention.",
+      "episode_candidate": false,
+      "artifact_hint": "citekey convention determined from BBT"
+    },
+    {
+      "uuid": "2cb0786b-711d-44e7-ac87-5a51885d263e",
+      "timestamp": "2026-05-22T23:08:02.759Z",
+      "codes": ["audit-artifact"],
+      "quote": "Do I need to fix something?",
+      "note": "Asks whether any Zotero/citekey fix is still required.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "239e80d3-87dc-47f8-9590-b4ce4cbf3ad9",
+      "timestamp": "2026-05-22T23:10:29.694Z",
+      "codes": ["assign-task"],
+      "quote": "i fixed it, rerun lit-sync",
+      "note": "Reports fix and instructs re-running lit-sync.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "749e35f9-9ea0-467f-9e9b-96977dc5b45f",
+      "timestamp": "2026-05-22T23:13:57.431Z",
+      "codes": ["catch-gap", "audit-artifact"],
+      "quote": "I've confirmed that it is 2006. The key is wrong",
+      "note": "Corrects the assistant's year assumption; the citekey, not the date, is the actual fault.",
+      "episode_candidate": false,
+      "artifact_hint": "asparouhov citekey fix"
+    },
+    {
+      "uuid": "0629ea29-f295-4758-977b-52d0dc752b3e",
+      "timestamp": "2026-05-22T23:16:45.019Z",
+      "codes": ["redirect-priority", "set-standard"],
+      "quote": "we never initiated litrev. I feel like I should do that.",
+      "note": "Catches that the litrev project was never formally initialized; moves to set it up.",
+      "episode_candidate": false,
+      "artifact_hint": "litrev project MI-SPECTRAL initialized"
+    },
+    {
+      "uuid": "450f0f9c-ea11-4ad2-a752-183e2764d5f7",
+      "timestamp": "2026-05-22T23:21:34.368Z",
+      "codes": ["scope-decision", "set-standard"],
+      "quote": "Stylistically needs needs to be tailored to the JASA/RSS crowd. WE are going to write in quarto and use this template: https://github.com/quarto-journals/jasa.",
+      "note": "Sets venue, template, and the standard that simulation evidence must justify the proof for a statistician.",
+      "episode_candidate": true,
+      "artifact_hint": "JASA template + witness-first discipline decision"
+    },
+    {
+      "uuid": "894f6551-694b-4a81-a982-096088095088",
+      "timestamp": "2026-05-22T23:24:18.004Z",
+      "codes": ["challenge-framing", "supply-domain-judgment"],
+      "quote": "I wouldn't say \"reputation-based trust\" as they are blinded peer review, so they would never admit that. It's tacit.",
+      "note": "Reframes AI-provenance posture: blinded review is tacit, so frame AI-generated as offering extra validity evidence.",
+      "episode_candidate": false,
+      "artifact_hint": "AI-assisted posture framing for Discussion"
+    },
+    {
+      "uuid": "0ab7a301-6240-4adf-96fa-c68d7b52ff78",
+      "timestamp": "2026-05-22T23:25:07.072Z",
+      "codes": ["scope-decision"],
+      "quote": "Because this is so mathematically heavy, I'm thinking more JASA?",
+      "note": "Chooses JASA over RSS given the math density.",
+      "episode_candidate": false,
+      "artifact_hint": "JASA Theory & Methods venue locked"
+    },
+    {
+      "uuid": "47cc7132-ae62-479f-853c-57331932f443",
+      "timestamp": "2026-05-22T23:26:41.101Z",
+      "codes": ["scope-decision", "provide-resource"],
+      "quote": "It may be too early to \"lock in\" contributions at this point, but I think we have an idea of what they are given what the simulations told us in the MI-IC get repository.",
+      "note": "Defers locking contributions; points to MI-IC simulation results as the evidentiary basis.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "37d48955-659b-4a2c-91e5-7a4be8fe0436",
+      "timestamp": "2026-05-22T23:37:14.127Z",
+      "codes": ["challenge-framing", "catch-gap"],
+      "quote": "I feel like we are generalizing thing here too. For examples FIML vs. MI distinction of targets, etc? Or am I thinking too broadly?",
+      "note": "Flags over-generalization; surfaces the FIML-vs-MI target distinction as the real axis.",
+      "episode_candidate": false,
+      "artifact_hint": "scope tightening (target distinction)"
+    },
+    {
+      "uuid": "581da53d-4288-4fb2-be67-375d8b6d1f5a",
+      "timestamp": "2026-05-22T23:40:42.895Z",
+      "codes": ["challenge-derivation", "challenge-framing"],
+      "quote": "I'm not understanding what Anisotropic even means and wehther that is a terms that comes up in literature or something you invented?",
+      "note": "Challenges the term anisotropic; asks if it is real literature or AI-invented jargon.",
+      "episode_candidate": true,
+      "artifact_hint": "anisotropic demoted to defined-once descriptor"
+    },
+    {
+      "uuid": "667e0414-e239-447b-ac43-c76720bdf0d7",
+      "timestamp": "2026-05-22T23:42:40.364Z",
+      "codes": ["set-standard", "ratify"],
+      "quote": "As long as we clearly define what it is, I'm great with it",
+      "note": "Accepts the term conditional on an explicit definition; imposes define-before-use rule.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "36809735-f209-4011-89b9-3350305b2300",
+      "timestamp": "2026-05-22T23:44:49.460Z",
+      "codes": ["set-standard", "scope-decision"],
+      "quote": "Let's keep it with a note that C4 has no empirical evidentiary basis yet, and is AI-hypothesized, but needs empriical validating. We deifintely want ot read CS very carefully",
+      "note": "Types C4 as AI-hypothesized/unvalidated; mandates a careful Cavanaugh-Shumway read.",
+      "episode_candidate": true,
+      "artifact_hint": "C4 conjecture typing; CS-98 close comparison"
+    },
+    {
+      "uuid": "8666b53e-ee89-4c97-808d-9424bafc6706",
+      "timestamp": "2026-05-23T00:00:02.403Z",
+      "codes": ["ratify"],
+      "quote": "This looks right to me.",
+      "note": "Approves the drafted Cavanaugh-Shumway comparison paragraph.",
+      "episode_candidate": false,
+      "artifact_hint": "CS-98 parallel-universe comparison"
+    },
+    {
+      "uuid": "b1e85029-f194-4ac2-95a9-4f2be3e9a422",
+      "timestamp": "2026-05-23T00:02:32.535Z",
+      "codes": ["assign-task", "redirect-priority"],
+      "quote": "Let's save it, but then let's keep talking about it because I have a few other things I wanna talk",
+      "note": "Saves context but keeps the floor open for more issues.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "af58afa4-a8fc-4a36-a272-bf878c7e8137",
+      "timestamp": "2026-05-23T00:03:40.833Z",
+      "codes": ["pose-question", "supply-domain-judgment"],
+      "quote": "Where do we talk about how the d three statistic didn't have nominal type one error rate?",
+      "note": "Raises the D3-statistic Type I failure as a result needing a home in the paper.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "f781bf04-812e-4a8d-a72b-f05064065348",
+      "timestamp": "2026-05-23T00:06:28.776Z",
+      "codes": ["set-standard", "catch-gap"],
+      "quote": "We're gonna have to do our own simulation, so we don't wanna say exact numbers at this point, period.",
+      "note": "Bars quoting prior numbers; flags the reference distribution may be wrong now that Chan-Meng is known.",
+      "episode_candidate": false,
+      "artifact_hint": "no-exact-numbers-before-our-sim rule"
+    },
+    {
+      "uuid": "8f16ca6a-f91e-49a2-8744-4b50efb0728c",
+      "timestamp": "2026-05-23T00:09:19.831Z",
+      "codes": ["set-standard", "assign-task"],
+      "quote": "Make a note that we are gonna have to follow-up with Chen and Mang very carefully",
+      "note": "Orders a tracked reminder to faithfully implement the Chan-Meng reference distribution.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/002-verification-implementation.md"
+    },
+    {
+      "uuid": "1fe1f05e-b85c-4b29-a362-d05c07ff3b32",
+      "timestamp": "2026-05-23T00:11:23.857Z",
+      "codes": ["catch-gap", "challenge-derivation"],
+      "quote": "the fraction of information matrix has to be invertible. So do we need to make sure that we have a sufficient number of the amputations in order for the between amputation information component to be, um, uh, positive definite?",
+      "note": "Surfaces an unstated invertibility/positive-definiteness assumption requiring an M floor.",
+      "episode_candidate": true,
+      "artifact_hint": "FMI invertibility / M-floor assumption"
+    },
+    {
+      "uuid": "e651b204-2e60-4687-bbd8-06c1d9d1b0dc",
+      "timestamp": "2026-05-23T00:14:59.637Z",
+      "codes": ["scope-decision"],
+      "quote": "for right now, we just have to make the assumption that our fraction of missing information matrix is invertible, and we can come back to what pragmatic approaches might be.",
+      "note": "Scopes the small-M regularization out to future work; assume invertibility for now.",
+      "episode_candidate": false,
+      "artifact_hint": "invertibility assumed; shrinkage deferred"
+    },
+    {
+      "uuid": "8244cd2a-842c-4efb-af83-59fa475185fc",
+      "timestamp": "2026-05-23T00:16:26.972Z",
+      "codes": ["catch-gap", "set-standard"],
+      "quote": "You're reciting things that we don't actually have papers on right now.",
+      "note": "Catches the assistant citing Ledoit-Wolf/Marchenko-Pastur from training weights without acquired papers.",
+      "episode_candidate": true,
+      "artifact_hint": "reference-proposal tracking discipline"
+    },
+    {
+      "uuid": "24fecb1b-ff6d-4386-8537-c6dcb234d9ed",
+      "timestamp": "2026-05-23T00:17:25.257Z",
+      "codes": ["set-standard"],
+      "quote": "we need some way of keeping track of things that need to be verified, the papers that we actually need to get, that kind of thing.",
+      "note": "Imposes a tracking mechanism for unverified papers and pending verifications.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/003-references-to-acquire.md"
+    },
+    {
+      "uuid": "0899ad8b-4b11-4978-88b8-79aa93013724",
+      "timestamp": "2026-05-23T00:18:55.844Z",
+      "codes": ["ratify", "set-standard"],
+      "quote": "Yes. Do both.",
+      "note": "Approves both CLAUDE.md rule and a project memory for the reference-proposal discipline.",
+      "episode_candidate": false,
+      "artifact_hint": "CLAUDE.md rule + memory for reference proposals"
+    },
+    {
+      "uuid": "f2b7b4b5-3dca-4841-a669-9ac0ed3cb5a5",
+      "timestamp": "2026-05-23T00:20:23.907Z",
+      "codes": ["scope-decision", "supply-domain-judgment"],
+      "quote": "right now, we are only focused on missing endogenous variables. I know somewhere in MIIC, the other repository, we looked at missing exogenous variables.",
+      "note": "Scopes to missing endogenous variables; recalls MI-IC's missing-exogenous treatment.",
+      "episode_candidate": false,
+      "artifact_hint": "scope = missing endogenous variables"
+    },
+    {
+      "uuid": "1b0e8776-402d-45f7-a7ba-e04c6303e264",
+      "timestamp": "2026-05-23T00:25:18.257Z",
+      "codes": ["catch-gap", "set-standard"],
+      "quote": "we're gonna need to find the citation that was used to derive the expressions that we had for the missing covariates.",
+      "note": "Requires locating the source citation behind reused missing-covariate expressions.",
+      "episode_candidate": false,
+      "artifact_hint": "Claeskens/Consentino acquisition"
+    },
+    {
+      "uuid": "a7a97acf-5fd7-4230-b930-94055f7618ca",
+      "timestamp": "2026-05-23T00:39:05.676Z",
+      "codes": ["provide-resource", "supply-domain-judgment"],
+      "quote": "I already have them it looks like in zotero in the MI-IC. They are claeskensVariableSelectionIncomplete2008 and consentinoOrderSelectionTests2010",
+      "note": "Supplies the exact citekeys for the missing-covariate references from MI-IC's Zotero.",
+      "episode_candidate": false,
+      "artifact_hint": "claeskensVariableSelectionIncomplete2008, consentinoOrderSelectionTests2010"
+    },
+    {
+      "uuid": "0e1d9290-03d5-46a9-9a54-f66a52376059",
+      "timestamp": "2026-05-23T00:42:29.309Z",
+      "codes": ["audit-artifact", "catch-gap"],
+      "quote": "ARe you sure we don't already have the mathpix conversion somewhere?",
+      "note": "Checks whether the Mathpix cache already holds these conversions before paying again.",
+      "episode_candidate": false,
+      "artifact_hint": "Mathpix cache reuse"
+    },
+    {
+      "uuid": "4d0ac334-c02d-4b4b-ad5e-23b8644d767c",
+      "timestamp": "2026-05-23T00:45:59.760Z",
+      "codes": ["assign-task"],
+      "quote": "Okay rexported.",
+      "note": "Reports the re-export done; unblocks lit-sync + indexing.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "24b49f60-6a7a-404a-8638-75a4d3bbfa9b",
+      "timestamp": "2026-05-23T00:46:44.548Z",
+      "codes": ["other"],
+      "quote": "<task-notification>",
+      "note": "System task-completion notification, not a human move.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "4c2f494c-16b0-4a04-9459-06e31e10e940",
+      "timestamp": "2026-05-23T00:47:19.726Z",
+      "codes": ["assign-task"],
+      "quote": "Yes read C&C 2010 cold and report",
+      "note": "Directs a cold read of Consentino-Claeskens 2010 to check the competitor landscape.",
+      "episode_candidate": false,
+      "artifact_hint": "C&C 2010 read"
+    },
+    {
+      "uuid": "174974cd-7ac8-475e-be87-d21d8a08dcce",
+      "timestamp": "2026-05-23T00:49:51.448Z",
+      "codes": ["assign-task", "pose-question"],
+      "quote": "Yes update. And tell me what additional papers I am going to need to add to zotero",
+      "note": "Approves status update; asks which further references are needed.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "4e639a2d-8e15-4ff1-a5ad-0554a7894848",
+      "timestamp": "2026-05-23T00:58:23.086Z",
+      "codes": ["provide-resource", "audit-artifact"],
+      "quote": "I've added the first three. already to zotero. What were the others already in 003 that you wanted me to add?",
+      "note": "Reports adding three references; asks for the remaining backlog items.",
+      "episode_candidate": false,
+      "artifact_hint": "Satterthwaite/Imhof/Davies queue"
+    },
+    {
+      "uuid": "8dcc2e76-941f-47e4-9030-bb103d848db6",
+      "timestamp": "2026-05-23T01:05:42.236Z",
+      "codes": ["catch-gap"],
+      "quote": "Okay. The wood I can't find the full text.",
+      "note": "Flags Wood (1989) full text unavailable, raising a citation-discipline problem.",
+      "episode_candidate": false,
+      "artifact_hint": "Wood (1989) unavailable"
+    },
+    {
+      "uuid": "080100bc-b0fe-4154-86a9-cd207edaaf5c",
+      "timestamp": "2026-05-23T01:06:45.339Z",
+      "codes": ["redirect-priority", "assign-task"],
+      "quote": "I want to do a consensus search on the regularized covariance for the noninvertable FMI",
+      "note": "Redirects to a Consensus search for regularized-covariance methods for the non-invertible FMI.",
+      "episode_candidate": false,
+      "artifact_hint": "consensus regularized-covariance search"
+    },
+    {
+      "uuid": "dad38737-3568-42df-b9de-05ec14825c62",
+      "timestamp": "2026-05-23T01:07:19.423Z",
+      "codes": ["assign-task"],
+      "quote": "Just give me the query to consensus",
+      "note": "Asks for the Consensus query so the user can run it himself.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "f6906ecc-064b-4538-8fed-a01e556c0654",
+      "timestamp": "2026-05-23T01:08:25.484Z",
+      "codes": ["set-standard", "assign-task"],
+      "quote": "I need you to save the result verbatum.",
+      "note": "Requires the Consensus result be saved verbatim, preserving provenance.",
+      "episode_candidate": false,
+      "artifact_hint": "consensus-regularized-covariance note"
+    },
+    {
+      "uuid": "3e8bd0db-631b-4593-b8e9-0ec6f53ef619",
+      "timestamp": "2026-05-23T01:09:00.797Z",
+      "codes": ["provide-resource"],
+      "quote": "# **Regularized High-Dimensional Covariance & Spectrum Estimation:** Main Method Families",
+      "note": "Pastes the full Consensus search result into the session for synthesis and saving.",
+      "episode_candidate": false,
+      "artifact_hint": "consensus regularized-covariance result"
+    },
+    {
+      "uuid": "60f48efd-7868-4fa6-a284-bc14f8a0d375",
+      "timestamp": "2026-05-23T01:10:16.636Z",
+      "codes": ["scope-decision", "assign-task"],
+      "quote": "Yes. Remember. What's the candidate as just a future reference",
+      "note": "Decides to save the result and asks which single future-work reference to keep.",
+      "episode_candidate": false,
+      "artifact_hint": "Lam (2019) as future-work cite"
+    },
+    {
+      "uuid": "c0e88fec-719e-460b-bc83-c3f6fa9ff13f",
+      "timestamp": "2026-05-23T01:12:10.698Z",
+      "codes": ["pose-question"],
+      "quote": "Should we do a consensus search to see if there ia an alternative to Wood (1989)?",
+      "note": "Proposes a Consensus search for a Wood (1989) alternative.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "bd0546c0-e500-47dc-adf8-68a8a637226b",
+      "timestamp": "2026-05-23T01:13:08.245Z",
+      "codes": ["catch-gap", "scope-decision"],
+      "quote": "Should I delete the wood reference then since we don't have full text?",
+      "note": "Moves to delete the unbacked Wood reference rather than keep a citation gap.",
+      "episode_candidate": false,
+      "artifact_hint": "Wood dropped per citation discipline"
+    },
+    {
+      "uuid": "e821e3e6-a9c7-449e-848b-7c990ffe3e69",
+      "timestamp": "2026-05-23T01:14:55.230Z",
+      "codes": ["assign-task"],
+      "quote": "I've updated the BBT. But we need to migrate the pdfs to google drive, mathpix, move markdown to literature, etc.",
+      "note": "Reports BBT update; itemizes the remaining pipeline steps.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "f39bc86f-39f1-4a7b-b47c-e8b71879691c",
+      "timestamp": "2026-05-23T01:17:14.392Z",
+      "codes": ["assign-task"],
+      "quote": "Okay. Updated",
+      "note": "Reports Zotero dates fixed and bib re-exported; unblocks the pipeline.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "b290f6cf-7a83-403a-b89d-dfc07a81c862",
+      "timestamp": "2026-05-23T01:19:05.164Z",
+      "codes": ["other"],
+      "quote": "<task-notification>",
+      "note": "System task-failure notification (exit code 1), not a human move.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "3ceb5111-da75-42ca-ab96-7b21dcfb1cce",
+      "timestamp": "2026-05-23T01:21:14.210Z",
+      "codes": ["assign-task", "set-standard"],
+      "quote": "Add a git issue to litrev_MCP",
+      "note": "Orders the Windows-encoding failure logged upstream as a litrev issue.",
+      "episode_candidate": false,
+      "artifact_hint": "litrev_mcp issue #22 (Windows hardening)"
+    },
+    {
+      "uuid": "065b3b6e-997c-460b-9bea-fc36873289a2",
+      "timestamp": "2026-05-23T01:22:23.965Z",
+      "codes": ["other"],
+      "quote": "<task-notification>",
+      "note": "System task-completion notification, not a human move.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "e06c1d3b-55db-4119-8de5-311950b0f129",
+      "timestamp": "2026-05-23T01:25:02.666Z",
+      "codes": ["assign-task", "redirect-priority"],
+      "quote": "Yes. Let’s read carefully",
+      "note": "Directs the careful Chan-Meng read, the highest-leverage move before drafting.",
+      "episode_candidate": false,
+      "artifact_hint": "Chan-Meng careful read"
+    },
+    {
+      "uuid": "5e5ad394-a75b-4c2a-b939-88119e6d4df9",
+      "timestamp": "2026-05-23T01:30:31.302Z",
+      "codes": ["assign-task"],
+      "quote": "Okay. I've added it and updated the BBT. Now we need to migrate, mathpix, etc.",
+      "note": "Reports Chan-Meng added; runs the pipeline again.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "8aef65dd-77f5-4892-a338-05acfc97778c",
+      "timestamp": "2026-05-23T01:31:58.431Z",
+      "codes": ["other"],
+      "quote": "<task-notification>",
+      "note": "System task-completion notification, not a human move.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "25d9be0d-2f55-4554-8b37-1cdf91a4037b",
+      "timestamp": "2026-05-23T01:35:30.883Z",
+      "codes": ["provide-resource", "assign-task"],
+      "quote": "I've added Chan (2021) and updated BBT",
+      "note": "Adds the load-bearing Chan AoS paper to Zotero and re-exports.",
+      "episode_candidate": false,
+      "artifact_hint": "Chan (2022) AoS acquisition"
+    },
+    {
+      "uuid": "6acd1486-47c3-4046-90ed-825e8b57e0bf",
+      "timestamp": "2026-05-23T01:36:25.774Z",
+      "codes": ["assign-task"],
+      "quote": "ok done, lit-sync it",
+      "note": "Confirms done; instructs lit-sync to finish the corpus.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "b9ded361-83d1-4763-81dd-f81499063eed",
+      "timestamp": "2026-05-23T01:36:41.817Z",
+      "codes": ["other"],
+      "quote": "<task-notification>",
+      "note": "System task-completion notification, not a human move.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "81e70818-5c4d-4e20-9f82-6cbf161c1945",
+      "timestamp": "2026-05-23T01:43:13.140Z",
+      "codes": ["redirect-priority", "assign-task"],
+      "quote": "Let's star with (3) and then perhaps decide from there.",
+      "note": "Chooses the deeper Chan (2022) read first, deferring the contribution decision.",
+      "episode_candidate": false,
+      "artifact_hint": "Chan (2022) §4-6 read"
+    },
+    {
+      "uuid": "534eca3d-e798-4db0-ae39-e959b46c65b8",
+      "timestamp": "2026-05-23T01:48:45.140Z",
+      "codes": ["challenge-framing", "scope-decision"],
+      "quote": "It may mean we need to perhaps look away \"we are doing this as a chi-squared test\" and towards the deviance is used in lots of thing: model fit statitics, information critieria, and so we better have an unbiased estiamte of the complete data log deviance.",
+      "note": "Pivots the paper's framing from a chi-squared test to unbiased complete-data deviance estimation.",
+      "episode_candidate": true,
+      "artifact_hint": "D-01 reframing to deviance-bias decomposition"
+    },
+    {
+      "uuid": "947f4841-53a5-4982-802b-e3105cccd134",
+      "timestamp": "2026-05-23T02:18:25.439Z",
+      "codes": ["scope-decision", "pose-question"],
+      "quote": "I think 1 and 2 are sufficient. . What do you mean numerator in 2?",
+      "note": "Narrows the action list and probes the LRT-numerator claim for clarity.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "c9e3bb57-9a85-4d13-ac4c-7fd6f6b50193",
+      "timestamp": "2026-05-23T02:22:53.326Z",
+      "codes": ["challenge-derivation", "supply-domain-judgment"],
+      "quote": "why 2. Might need to come before 1. People are interested in model comparisons generally, which invokes a chi square stat. so doesn’t the chi square need to be shifted and have the right calibration, type 1 error rates as are guaranteed by complete case?",
+      "note": "Argues calibration must precede bias ordering; ties IC use to chi-square calibration needs.",
+      "episode_candidate": false,
+      "artifact_hint": "LRT/IC application ordering and calibration logic"
+    },
+    {
+      "uuid": "28a129a5-4ed6-4a92-8392-041f43960596",
+      "timestamp": "2026-05-23T02:34:38.327Z",
+      "codes": ["scope-decision", "pose-question"],
+      "quote": "We don’t need section 6. So what is the best case of things we show that matter",
+      "note": "Cuts the third-application section; asks for the strongest showable results.",
+      "episode_candidate": false,
+      "artifact_hint": "section structure (drop §6 other-tools)"
+    },
+    {
+      "uuid": "516f93c7-1b70-4e73-9e76-f516d88ea574",
+      "timestamp": "2026-05-23T02:41:41.808Z",
+      "codes": ["set-standard", "scope-decision"],
+      "quote": "before we commit to writing we better do some simulation tests because I think we will need to modify as it won’t all go as planned. But we can write what we think is going to happen as hypotheses to be tested under simulations",
+      "note": "Imposes preregistration: write predictions as hypotheses before simulation, modify framing if reality differs.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/004 preregistered W1/W2/W3"
+    },
+    {
+      "uuid": "970ea921-600a-40c3-a0c7-f2f26cc5313a",
+      "timestamp": "2026-05-23T02:49:27.579Z",
+      "codes": ["assign-task"],
+      "quote": "Can you make a todo list so I can clear context before stating. Oh and save a memory",
+      "note": "Requests a handoff todo list and a project memory for the reframing.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/000-current-status.md; project_reframing memory"
+    },
+    {
+      "uuid": "1f02516c-2d51-4f24-bd71-5725cd640d0a",
+      "timestamp": "2026-05-23T02:52:10.422Z",
+      "codes": ["assign-task"],
+      "quote": "Give me the prompt for the next",
+      "note": "Asks for the resume prompt to start the next session.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-22T18:38:40.452Z",
+      "evidence": "name each PDF with its BBT citekey ... but ugly. (ii) use MI-IC's filename style",
+      "note": "Laid out two filename-convention options with trade-offs."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-22T22:12:33.933Z",
+      "evidence": "Alternative if you'd rather not touch litrev: I can write a single-use script ... Which do you want — patch litrev, or local workaround?",
+      "note": "Offered patch-upstream vs local-workaround with the redundancy trade-off."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-22T22:12:33.933Z",
+      "evidence": "Risk: other projects that re-index would get slightly different chunking decisions",
+      "note": "Flagged a side effect of the litrev patch on its own initiative."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-22T22:42:24.681Z",
+      "evidence": "My weak recommendation is (1) → (2) before (3) ... but if you want to draft prose first that's defensible too.",
+      "note": "Put the build-discipline-vs-draft-first ordering to the human."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-23T00:42:29.309Z",
+      "evidence": "the 2010 CSDA paper is potentially a competitor we don't yet understand ... read it carefully before committing to the §1 contribution framing",
+      "note": "Self-flagged a possible competitor that could force a contribution reframe."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-23T00:20:23.907Z",
+      "evidence": "caught me leaning on training-weight knowledge in exactly the way CLAUDE.md says not to. Reinforces why the hook exists.",
+      "note": "Acknowledged its own citation-discipline violation after the human caught it."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-23T01:43:13.140Z",
+      "evidence": "My weak recommendation: option 2 + careful read of §4–§6 first. ... What's your call?",
+      "note": "Offered numbered paths on how to handle the Chan-collision decision."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-22T23:08:02.759Z",
+      "evidence": "Strategy first ... Concrete first ... Architecture first ... Something else — your call",
+      "note": "Surfaced manuscript-start framing options for the human to pick."
+    }
+  ],
+  "proposed_codes": [
+    {
+      "name": "report-progress",
+      "definition": "Human reports completion of an off-session manual action (Zotero edit, BBT export, upstream patch) that gates the AI's next pipeline step, carrying no other directive signal. Distinct from assign-task: the load is the unblocking status, not a new instruction.",
+      "example_quote": "Okay. I've added it and updated the BBT. Now we need to migrate, mathpix, etc."
+    }
+  ]
+}

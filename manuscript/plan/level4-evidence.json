@@ -350,6 +350,14 @@
       "note": "The decision log the paragraph describes."
     },
     {
+      "id": "E-S3-P2-2",
+      "proposition_id": "S3-P2",
+      "pointer": "verif:verification/collaboration-analysis.md",
+      "evidence_status": "verified",
+      "passage_or_value": "Five-pattern heuristic with frequencies (599 turns, 13 codes) and a 25-episode verified table; episodes E11 and E14 are the two cited in P2.",
+      "note": "todo/032 qualitative coding of the 34-transcript session record; primary data committed under verification/cache/collab-analysis/."
+    },
+    {
       "id": "E-S3-P3-1",
       "proposition_id": "S3-P3",
       "pointer": "verif:todo/001-literature-and-hooks.md",

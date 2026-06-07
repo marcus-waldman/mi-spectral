@@ -1,0 +1,165 @@
+{
+  "session_id": "63b28d6e-4646-4397-8e15-3f073347a9fc",
+  "session_summary": "Marcus reframed the manuscript's credibility problem (a posture that presumes the reader's trust) and steered toward an IMRAD-with-explicit-Background structure, demanding concrete before/after examples before committing. He imposed a hard provenance rule (no weight-sourced citations; only manually-run Consensus searches feed the backlog), posed a conceptual challenge about why preregistration matters for a deductive result, and then offloaded Background drafting to the AI while he ran literature searches, repeatedly asking for prose to be printed/rendered for phone reading.",
+  "coded_turns": [
+    {
+      "uuid": "a33c640e-b07a-4c4a-92ca-bba277fdef5e",
+      "timestamp": "2026-05-25T12:24:55.704Z",
+      "codes": ["challenge-framing", "pose-question", "scope-decision"],
+      "quote": "The format still has a subtle posture of “I’m entitled to your trust because I have earned my membership to this community.” I’m thinking we need to rewrite in a IMRAD format",
+      "note": "Diagnoses a credibility/posture problem in the manuscript and proposes IMRAD with an explicit trust-earning Background section.",
+      "note_len_ok": true,
+      "episode_candidate": true,
+      "artifact_hint": "manuscript IMRAD restructure + Background section (mi-spectral.qmd)"
+    },
+    {
+      "uuid": "bc53aa0e-dc98-4076-b409-a51382ab6deb",
+      "timestamp": "2026-05-25T12:30:09.717Z",
+      "codes": ["set-standard", "challenge-framing"],
+      "quote": "Give me examples of before and afters so this is concrete under your proposal. That way I can judge whether imrad is needed",
+      "note": "Refuses to commit to IMRAD without concrete before/after examples; demands evidence before structural change.",
+      "note_len_ok": true,
+      "episode_candidate": true,
+      "artifact_hint": "manuscript IMRAD decision gated on examples"
+    },
+    {
+      "uuid": "7082364d-1558-4b77-8b2b-d6c1584b1bfd",
+      "timestamp": "2026-05-25T12:36:24.757Z",
+      "codes": ["ratify", "assign-task"],
+      "quote": "I agree with your analysis and let’s start with your suggestions. I’ll have a better idea if IMRAD is needed after",
+      "note": "Approves the prose-fix + Background-carveout plan, defers the IMRAD-headings call until he can judge the draft.",
+      "note_len_ok": true,
+      "episode_candidate": false,
+      "artifact_hint": "Background carve-out + descriptive rewrite started"
+    },
+    {
+      "uuid": "dc42ee78-b92e-4379-8eb9-236a22504167",
+      "timestamp": "2026-05-25T12:39:15.781Z",
+      "codes": ["assign-task"],
+      "quote": "In both confortable with you using your weights to suggest citations.",
+      "note": "Typo-laden assent (later reversed) tentatively allowing weight-sourced citation suggestions.",
+      "note_len_ok": true,
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "99b1c0b7-c3cd-45b9-b38d-71d6bb64f120",
+      "timestamp": "2026-05-25T12:40:24.438Z",
+      "codes": ["set-standard"],
+      "quote": "In not confortable with you using your weights to suggest citations. Give me search queries I can manually run in consensus",
+      "note": "Reverses prior turn; bans weight-sourced citations and requires manually-run Consensus searches instead.",
+      "note_len_ok": true,
+      "episode_candidate": true,
+      "artifact_hint": "todo/003 rewritten as search-strategy entries (no named papers from weights)"
+    },
+    {
+      "uuid": "049bf47b-d8ad-4495-ab2d-2e5792c514c5",
+      "timestamp": "2026-05-25T12:43:55.785Z",
+      "codes": ["pose-question", "challenge-derivation"],
+      "quote": "why preregistration matters when you have deductively proved something. It makes sense when induction is applied like in empirical studies.",
+      "note": "Conceptual challenge: questions the rationale for preregistration on a deductively proved result vs inductive studies.",
+      "note_len_ok": true,
+      "episode_candidate": true,
+      "artifact_hint": "verification-section justification (independence of inductive evidence vs theorem validity)"
+    },
+    {
+      "uuid": "ceea46d9-98a2-4384-802c-4c9eca593cc2",
+      "timestamp": "2026-05-25T12:53:14.886Z",
+      "codes": ["assign-task", "redirect-priority"],
+      "quote": "While I work on getting consensus reports, I believe you can write the background?",
+      "note": "Splits labor: Marcus runs Consensus searches while the AI drafts the Background section.",
+      "note_len_ok": true,
+      "episode_candidate": false,
+      "artifact_hint": "Background section drafting"
+    },
+    {
+      "uuid": "6a1f392d-1104-4331-a39f-5ce05e13e05b",
+      "timestamp": "2026-05-25T12:57:24.434Z",
+      "codes": ["provide-resource", "assign-task"],
+      "quote": "You can do RAG using litrev_mcp.",
+      "note": "Points the AI at litrev_mcp RAG so it can source the Rubin (1987) claim without opening the PDF.",
+      "note_len_ok": true,
+      "episode_candidate": false,
+      "artifact_hint": "Rubin (1987) combining-rules citation via litrev RAG"
+    },
+    {
+      "uuid": "3fa1a441-50b9-4a57-b002-2da208ba4d75",
+      "timestamp": "2026-05-25T13:05:56.114Z",
+      "codes": ["assign-task"],
+      "quote": "Shoe me the text here on the console",
+      "note": "Asks the AI to print the drafted text to the console for review.",
+      "note_len_ok": true,
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "b0ffdf99-8cf7-447e-98eb-48942584aaed",
+      "timestamp": "2026-05-25T13:07:25.763Z",
+      "codes": ["assign-task"],
+      "quote": "I need you to print the intro and background here",
+      "note": "Requests the intro and Background prose printed inline for direct reading.",
+      "note_len_ok": true,
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "a7e9056e-26d9-46ff-b076-6540c0b732ce",
+      "timestamp": "2026-05-25T13:09:11.401Z",
+      "codes": ["assign-task"],
+      "quote": "I’m reading in my phone. Please print the text in the intro and background tonight the consult so I can read it here in this conversation",
+      "note": "Reiterates the inline-print request, citing phone reading as the constraint shaping the workflow.",
+      "note_len_ok": true,
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "5c604068-9038-47e1-b0f4-e3488b770865",
+      "timestamp": "2026-05-25T14:55:24.621Z",
+      "codes": ["assign-task"],
+      "quote": "Can you render as a pdf so I can read here",
+      "note": "Asks for a PDF render of the manuscript for phone reading.",
+      "note_len_ok": true,
+      "episode_candidate": false,
+      "artifact_hint": "manuscript PDF render"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-25T12:30:09.717Z",
+      "evidence": "do you want full IMRAD headings, or the hybrid?",
+      "note": "Assistant put the IMRAD-vs-hybrid structural fork to Marcus rather than picking silently."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-25T12:30:09.717Z",
+      "evidence": "the citation hook will block any that aren't backed in `literature/`. So if we go deep on Background, the acquisition of those references becomes a prerequisite",
+      "note": "Flagged that a richer Background forces reference acquisition as a hard prerequisite, not a parallel task."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-25T12:43:55.785Z",
+      "evidence": "the `todo/003` block I added earlier names Nosek (2018) and Peng (2011) — those came from my weights, which is exactly what you're (rightly) ruling out",
+      "note": "Self-flagged its own weight-sourced citations as violating the rule Marcus had just set."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-25T13:05:56.114Z",
+      "evidence": "will render as broken-citation markers** until the real references are acquired. That's the only thing standing between the current file and a clean render",
+      "note": "Flagged that the three @TODO placeholders will render as broken markers until Consensus picks land."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-25T13:05:56.114Z",
+      "evidence": "Want me to render it to confirm nothing else broke (the three placeholders aside), or leave it until you've chosen the anchors?",
+      "note": "Offered to render or wait, leaving the call to Marcus."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-25T12:53:14.886Z",
+      "evidence": "an LLM can fluently produce a wrong theorem *and* simulation code that appears to confirm it, because both came from the same possibly-wrong source — the \"confirmation\" is circular",
+      "note": "Conceded Marcus's deduction/induction distinction, recasting preregistration as guarding inductive-evidence independence, not theorem validity."
+    }
+  ],
+  "proposed_codes": []
+}

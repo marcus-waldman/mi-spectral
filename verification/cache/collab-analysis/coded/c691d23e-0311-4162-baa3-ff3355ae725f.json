@@ -1,0 +1,561 @@
+{
+  "session_id": "c691d23e-0311-4162-baa3-ff3355ae725f",
+  "session_summary": "An end-to-end witness session (2026-05-23): drafting and preregistering the W1/W2/W3 simulation hypotheses (todo/004), implementing and running them, and then scoping out the comprehensive sweep (todo/005/006) with a fresh-session handoff. Marcus drove preregistration discipline, repeatedly redirected engine and parallelization choices, probed numerical results (W2 Type I, finite-N residuals), supplied applied-data domain knowledge (NHANES/HRS missingness), pasted external Consensus search output, and made the scope and design calls (p=4, MAR vs MNAR, M cap, monotone missingness, R=2000).",
+  "coded_turns": [
+    {
+      "uuid": "43bb0726-977c-411c-87b9-3b3d7de2c551",
+      "timestamp": "2026-05-23T02:53:16.211Z",
+      "codes": ["assign-task", "set-standard", "scope-decision"],
+      "quote": "write todo/004-simulation-hypotheses.md as a pre-registered design document",
+      "note": "Opening task: draft the preregistered W1/W2/W3 design doc with prediction/design/fallback, no code yet.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/004-simulation-hypotheses.md"
+    },
+    {
+      "uuid": "2a99b7ba-c35a-4bd8-9ea9-81b2409e3265",
+      "timestamp": "2026-05-23T03:12:22.867Z",
+      "codes": ["set-standard"],
+      "quote": "Let’s preregister predictions",
+      "note": "Directs that predictions be formally preregistered before running anything.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/004-simulation-hypotheses.md"
+    },
+    {
+      "uuid": "225cda5c-c813-4cca-ad3b-75dde735a2f7",
+      "timestamp": "2026-05-23T03:14:37.695Z",
+      "codes": ["set-standard", "audit-artifact"],
+      "quote": "You need to write these in a markdown and commit and push for them to be preregistered",
+      "note": "Imposes the rule that preregistration means committed and pushed, not just drafted.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/004 committed (SHA ddc9037)"
+    },
+    {
+      "uuid": "f21155ed-636f-49ea-936c-646977ce42fd",
+      "timestamp": "2026-05-23T03:39:02.794Z",
+      "codes": ["redirect-priority", "assign-task"],
+      "quote": "Try with Amelia as imputation",
+      "note": "Redirects the imputation engine to Amelia to test the W1 bias decomposition.",
+      "episode_candidate": false,
+      "artifact_hint": "verification/W1-bias-decomposition.R Amelia engine"
+    },
+    {
+      "uuid": "162c51b0-e0ef-4fe8-ba16-307384049843",
+      "timestamp": "2026-05-23T04:03:37.805Z",
+      "codes": ["supply-domain-judgment", "pose-question"],
+      "quote": "get the fiml estimates and marginalize across Ymiss from the FIML estimate? I believe the derivation accommodates that",
+      "note": "Proposes a FIML cross-check, judging that the derivation supports marginalizing over missing data.",
+      "episode_candidate": true,
+      "artifact_hint": "verification/W1 FIML analytic cross-check"
+    },
+    {
+      "uuid": "624aa6c3-2d7b-4234-b3c9-1ccd95635f10",
+      "timestamp": "2026-05-23T04:04:00.703Z",
+      "codes": ["supply-domain-judgment", "pose-question"],
+      "quote": "marginalize across Ymis analytically from the FIML estimate? I believe the derivation accommodates that",
+      "note": "Refines prior turn: do the FIML marginalization analytically, not by imputation.",
+      "episode_candidate": false,
+      "artifact_hint": "verification/W1 FIML analytic marginalization"
+    },
+    {
+      "uuid": "04351f17-afc7-4bef-a52e-e8fef6a04d60",
+      "timestamp": "2026-05-23T04:12:07.721Z",
+      "codes": ["scope-decision", "redirect-priority"],
+      "quote": "I’m fine with just using Amelia and forgetting about norm imputation",
+      "note": "Drops norm engine from scope; Amelia becomes primary, parking the norm anomaly.",
+      "episode_candidate": false,
+      "artifact_hint": "Preregistration Amendment 1 (norm dropped, Amelia primary)"
+    },
+    {
+      "uuid": "9e74dcfa-dc1a-453c-8255-feed1e175ddb",
+      "timestamp": "2026-05-23T04:16:05.037Z",
+      "codes": ["redirect-priority", "supply-domain-judgment"],
+      "quote": "Good lord. Can we not just do an analytic hessian?",
+      "note": "Pushes back on slow numeric Hessian; demands an analytic Hessian for speed.",
+      "episode_candidate": true,
+      "artifact_hint": "verification/W1 analytic-Hessian FIML speedup"
+    },
+    {
+      "uuid": "dcf4c562-8c8c-4ea9-a254-24405a5b62a9",
+      "timestamp": "2026-05-23T04:26:16.995Z",
+      "codes": ["assign-task", "redirect-priority"],
+      "quote": "Can we parallelize across replications? Let’s to 20 codes",
+      "note": "Directs parallelization across replications on 20 cores.",
+      "episode_candidate": false,
+      "artifact_hint": "20-core PSOCK cluster default"
+    },
+    {
+      "uuid": "f244ff64-0f6a-4ff4-83f4-b9d05bf025bf",
+      "timestamp": "2026-05-23T04:38:05.805Z",
+      "codes": ["redirect-priority"],
+      "quote": "Let’s move to w2",
+      "note": "Closes W1 work and moves the session to W2.",
+      "episode_candidate": false,
+      "artifact_hint": "verification/W2-lrt-power.R"
+    },
+    {
+      "uuid": "ab6ff815-2f7e-4186-a205-62b193f1e7ff",
+      "timestamp": "2026-05-23T05:15:09.974Z",
+      "codes": ["supply-domain-judgment", "assign-task"],
+      "quote": "So read Chan carefully. I know they sat not to do a a*chi_sq+b like we did for mi-ic",
+      "note": "Recalls that Chan declined the scaled-shifted form; directs a careful read of Chan.",
+      "episode_candidate": true,
+      "artifact_hint": "Chan (2022 AoS) MC reference vs SB scaled-shifted"
+    },
+    {
+      "uuid": "117fa7fe-ce5e-4119-96f7-49227cf5674c",
+      "timestamp": "2026-05-23T05:43:35.975Z",
+      "codes": ["supply-domain-judgment", "assign-task"],
+      "quote": "I swear we found good results with a satorra Bentler a*chi_swuare + b in MI-IC. Look it up",
+      "note": "Supplies cross-project lead: Satorra-Bentler scaled-shifted worked in MI-IC; tells AI to check.",
+      "episode_candidate": false,
+      "artifact_hint": "W2 SB scaled-shifted correction arm"
+    },
+    {
+      "uuid": "76027e47-438e-4e68-b8ab-ec1ca0c78294",
+      "timestamp": "2026-05-23T12:04:49.599Z",
+      "codes": ["challenge-derivation"],
+      "quote": "What was delta?",
+      "note": "Probes the local-alternative delta value behind the reported power numbers.",
+      "episode_candidate": false,
+      "artifact_hint": "W2 local-alternative delta grid"
+    },
+    {
+      "uuid": "a6954e6d-5ea4-4e38-aa88-746a008e9009",
+      "timestamp": "2026-05-23T12:06:42.658Z",
+      "codes": ["assign-task"],
+      "quote": "Ok. Let’s test",
+      "note": "Greenlights running the size-adjusted W2 test.",
+      "episode_candidate": false,
+      "artifact_hint": "W2-size-adjusted-power.R"
+    },
+    {
+      "uuid": "24e9f3c5-7403-4393-868d-b3ea86a784d8",
+      "timestamp": "2026-05-23T12:14:09.357Z",
+      "codes": ["set-standard", "redirect-priority"],
+      "quote": "We should probably do production to finalize conclusions of W2?",
+      "note": "Pushes for a production-scale W2 run before drawing conclusions.",
+      "episode_candidate": false,
+      "artifact_hint": "W2 production run (M=200, R=1000)"
+    },
+    {
+      "uuid": "4b9b5fd4-5342-446d-8ec7-faff496853ee",
+      "timestamp": "2026-05-23T12:16:44.406Z",
+      "codes": ["redirect-priority"],
+      "quote": "Sorry are we talking advvantage of parallel processing",
+      "note": "Checks that the W2 prod run will use parallelism before launching.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "6ca829bc-9749-44e6-abd8-65e7dccdd432",
+      "timestamp": "2026-05-23T12:31:44.089Z",
+      "codes": ["audit-artifact"],
+      "quote": "<status>completed</status>\n<summary>Background command \"Optimized W2 Amelia pilot",
+      "note": "Background task-completion notification for the optimized W2 Amelia pilot (system-injected).",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "e6297ebc-96bc-4af0-967e-08f86c085cfd",
+      "timestamp": "2026-05-23T12:34:06.931Z",
+      "codes": ["redirect-priority", "scope-decision"],
+      "quote": "Just run FIML. We’ll wait to do production over night",
+      "note": "Defers the heavy Amelia prod run to overnight; run only fast FIML now.",
+      "episode_candidate": false,
+      "artifact_hint": "W2 FIML now, Amelia prod overnight"
+    },
+    {
+      "uuid": "4a312946-fb64-42c0-8dc0-f8502837db1d",
+      "timestamp": "2026-05-23T13:03:44.645Z",
+      "codes": ["supply-domain-judgment", "pose-question"],
+      "quote": "I wonder if we did a SB correction to the difference in model deviances when making selection if that would work better",
+      "note": "Proposes applying SB correction to the differential deviance in model selection (W3).",
+      "episode_candidate": true,
+      "artifact_hint": "SB MI-AIC arm on differential deviance (W3/W2 menu)"
+    },
+    {
+      "uuid": "5c804d15-ecf2-4dc4-b09e-d144e57a61c8",
+      "timestamp": "2026-05-23T13:13:54.585Z",
+      "codes": ["redirect-priority", "catch-gap"],
+      "quote": "Let’s go back to W2. Are we warm starting Lavaan?",
+      "note": "Returns to W2 and asks whether lavaan fits are warm-started, flagging a likely overhead gap.",
+      "episode_candidate": false,
+      "artifact_hint": "lavaan warm-start optimization"
+    },
+    {
+      "uuid": "93e7affb-2e4d-417d-9789-4e9c1e86c5aa",
+      "timestamp": "2026-05-23T13:19:44.243Z",
+      "codes": ["supply-domain-judgment", "assign-task"],
+      "quote": "Can’t you two loss functions and their gradients and do optim. One has the covariance as a parameter the other doesn’t",
+      "note": "Proposes replacing lavaan overhead with two hand-coded loss+gradient optim fits (constrained/unconstrained).",
+      "episode_candidate": true,
+      "artifact_hint": "custom Cholesky optim replacing lavaan in chan_smi_test_k1"
+    },
+    {
+      "uuid": "b77cf2c6-1fc0-4142-90dc-7a05744a1890",
+      "timestamp": "2026-05-23T13:52:26.119Z",
+      "codes": ["pose-question", "challenge-framing"],
+      "quote": "Should we talk about how what we know now clarifies our potential— and I say potential because one MVN dies not make a skeptic convinced—contributions",
+      "note": "Opens a framing discussion on contributions, cautioning one MVN example won't convince a skeptic.",
+      "episode_candidate": true,
+      "artifact_hint": "Contributions framing / scope of examples"
+    },
+    {
+      "uuid": "7f120ef3-e0a0-43f1-bda9-bebf9a8969fd",
+      "timestamp": "2026-05-23T14:01:03.070Z",
+      "codes": ["challenge-framing", "scope-decision"],
+      "quote": "Do we need to give an example outside of the MVN data generation?",
+      "note": "Questions whether a non-MVN example is needed to make the contribution credible.",
+      "episode_candidate": false,
+      "artifact_hint": "scope: MVN-only vs second example"
+    },
+    {
+      "uuid": "39768309-2f52-4701-9598-ef70e00ad5c3",
+      "timestamp": "2026-05-23T14:07:15.916Z",
+      "codes": ["ratify", "supply-domain-judgment"],
+      "quote": "Yeah I agree with you and JAIGP seems to be pretty short articles",
+      "note": "Agrees to stay MVN-scoped; supplies venue knowledge that JAIGP articles are short.",
+      "episode_candidate": false,
+      "artifact_hint": "scope decision: MVN-only, short JAIGP article"
+    },
+    {
+      "uuid": "557ae7b3-ea77-4960-a8de-50f51aae304e",
+      "timestamp": "2026-05-23T14:28:30.208Z",
+      "codes": ["pose-question", "supply-domain-judgment"],
+      "quote": "What variables have large missingness and require auxiliary variables in public databases?",
+      "note": "Reframes toward a real-data demonstration: which public-DB variables have high missingness needing auxiliaries.",
+      "episode_candidate": false,
+      "artifact_hint": "real-data demonstration scouting (NHANES/HRS)"
+    },
+    {
+      "uuid": "655a970f-6ef8-4584-9fd4-7776b349b113",
+      "timestamp": "2026-05-23T14:32:13.138Z",
+      "codes": ["assign-task", "supply-domain-judgment"],
+      "quote": "Can you look online and do some research about what the missingness is in NHANES lipid and what predicts it?",
+      "note": "Directs online research on NHANES lipid-panel missingness and its predictors.",
+      "episode_candidate": false,
+      "artifact_hint": "NHANES lipid missingness research"
+    },
+    {
+      "uuid": "08f54021-319e-4c1f-9cb6-64f501b83523",
+      "timestamp": "2026-05-23T14:32:51.546Z",
+      "codes": ["redirect-priority", "assign-task"],
+      "quote": "Actually give me a consensus search query",
+      "note": "Redirects from AI doing the search to AI handing him a Consensus query to run himself.",
+      "episode_candidate": false,
+      "artifact_hint": "Consensus query for NHANES missingness"
+    },
+    {
+      "uuid": "830781a3-8bee-4c83-a6af-d66c87bca79b",
+      "timestamp": "2026-05-23T14:33:37.262Z",
+      "codes": ["assign-task"],
+      "quote": "Just give me the question that I can manually feed to consensus",
+      "note": "Narrows the ask to a single manual-feed Consensus question.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "7f506adb-e448-483d-b119-c61be4087abb",
+      "timestamp": "2026-05-23T14:43:14.652Z",
+      "codes": ["provide-resource", "set-standard"],
+      "quote": "Sve this output from consensus verbatim that I will provide you",
+      "note": "Announces he'll paste Consensus output and directs verbatim saving (provenance discipline).",
+      "episode_candidate": false,
+      "artifact_hint": "consensus-nhanes note (verbatim save)"
+    },
+    {
+      "uuid": "461cf7d6-2b20-409e-b7be-52a87d435b39",
+      "timestamp": "2026-05-23T14:44:17.022Z",
+      "codes": ["provide-resource"],
+      "quote": "Auxiliary variables and missingness in NHANES lipids:** what is known",
+      "note": "Pastes the full Consensus search result on NHANES lipid auxiliary variables/missingness.",
+      "episode_candidate": false,
+      "artifact_hint": "consensus-nhanes-lipid-missingness note"
+    },
+    {
+      "uuid": "89dad9e3-c2f7-415d-a47a-e1bf2c5be0bd",
+      "timestamp": "2026-05-23T14:47:42.500Z",
+      "codes": ["provide-resource"],
+      "quote": "I asked this question to: What are the corresponding reported percent missingness of lipid variables in NHANES. Let me give you the results.",
+      "note": "Announces a second Consensus query and that he'll paste its results.",
+      "episode_candidate": false,
+      "artifact_hint": "consensus-nhanes-lipid-percent-missing note"
+    },
+    {
+      "uuid": "9106181c-1778-43bf-9e5e-b6545c7b73d7",
+      "timestamp": "2026-05-23T14:48:02.757Z",
+      "codes": ["provide-resource"],
+      "quote": "Reported missingness of lipid variables in NHANES",
+      "note": "Pastes second Consensus result: only ~6-7% lipid missingness reported (Gao et al.).",
+      "episode_candidate": false,
+      "artifact_hint": "consensus-nhanes-lipid-percent-missing note"
+    },
+    {
+      "uuid": "9eb92fe3-de6c-4107-87e2-7a43f63ea7ed",
+      "timestamp": "2026-05-23T14:49:23.459Z",
+      "codes": ["catch-gap", "supply-domain-judgment"],
+      "quote": "Exactly. But is NHANES longitudinal?",
+      "note": "Catches that NHANES low missingness may be a poor fit; probes whether it is longitudinal.",
+      "episode_candidate": true,
+      "artifact_hint": "dataset choice: NHANES vs HRS (anisotropic missingness)"
+    },
+    {
+      "uuid": "3fd178a2-d1f2-4cf6-97ce-36299bf0f149",
+      "timestamp": "2026-05-23T14:50:36.353Z",
+      "codes": ["assign-task"],
+      "quote": "Let me just do this query real quick in consensus",
+      "note": "Signals he'll run another Consensus query himself.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "3e211b49-c087-46b7-84b4-ca335a49674e",
+      "timestamp": "2026-05-23T14:50:41.591Z",
+      "codes": ["assign-task"],
+      "quote": "What are the corresponding reported percent missingness of variables in NHANES",
+      "note": "States the broader NHANES percent-missingness query he is running.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "4cd45c2d-06dd-4942-9c5c-51df267088d8",
+      "timestamp": "2026-05-23T14:51:03.746Z",
+      "codes": ["audit-artifact"],
+      "quote": "<summary>Background command \"W2 Amelia production M=200 R=1000 — preregistered primary\" completed",
+      "note": "Background notification: preregistered primary W2 Amelia M=200 R=1000 production run finished.",
+      "episode_candidate": false,
+      "artifact_hint": "W2 prod M=200 R=1000 result"
+    },
+    {
+      "uuid": "098b808a-32a2-4003-8942-a902be67fd7e",
+      "timestamp": "2026-05-23T14:53:57.885Z",
+      "codes": ["provide-resource", "set-standard"],
+      "quote": "back to the consensus search: Save this verbatim:",
+      "note": "Pastes third Consensus result on NHANES missingness and directs verbatim save.",
+      "episode_candidate": false,
+      "artifact_hint": "consensus-nhanes-variable-percent-missing note"
+    },
+    {
+      "uuid": "267feafa-d2c9-4dd4-9ad3-d9bbcb657ac2",
+      "timestamp": "2026-05-23T15:18:37.979Z",
+      "codes": ["redirect-priority", "pose-question"],
+      "quote": "Let’s wait on the empirical demonstrations. What do you see as the contributions with the new results?",
+      "note": "Defers the real-data demo; pivots to articulating the paper's contributions given new results.",
+      "episode_candidate": true,
+      "artifact_hint": "contributions framing"
+    },
+    {
+      "uuid": "7aa165a3-0ca3-4778-9ae5-86d9c0ce64e3",
+      "timestamp": "2026-05-23T15:21:18.492Z",
+      "codes": ["pose-question"],
+      "quote": "Remind me what C1, C2 etc refer to",
+      "note": "Routine recall of the C1/C2 condition labels to ground the discussion.",
+      "episode_candidate": false,
+      "artifact_hint": ""
+    },
+    {
+      "uuid": "dd96e4de-505c-49a0-bd71-ed7f10da3d2f",
+      "timestamp": "2026-05-23T15:24:44.729Z",
+      "codes": ["challenge-derivation", "challenge-framing"],
+      "quote": "If C2 was .03 and C4 was .04 for the type 1 error, help me make sense of this statement the bias-corrected MI LRT controls Type I more precisely",
+      "note": "Stress-tests the Type I claim against the actual numbers (.03 vs .04), forcing framing correction.",
+      "episode_candidate": true,
+      "artifact_hint": "W2 Type I framing (M-dependent calibration claim)"
+    },
+    {
+      "uuid": "95d470e7-3686-4c95-9976-66849ac406c0",
+      "timestamp": "2026-05-23T15:38:36.850Z",
+      "codes": ["challenge-derivation", "catch-gap"],
+      "quote": "But C5 SB is performing well in terms of Type 1 error?",
+      "note": "Points out SB also controls Type I, challenging the bias-correction-necessity framing.",
+      "episode_candidate": true,
+      "artifact_hint": "W2 practitioner menu (SB as viable alternative)"
+    },
+    {
+      "uuid": "3beec9f0-9481-46d1-84eb-49577dc50338",
+      "timestamp": "2026-05-23T15:41:05.161Z",
+      "codes": ["ratify"],
+      "quote": "Agree with your analysis",
+      "note": "Ratifies the revised M-dependent Type I / practitioner-menu framing.",
+      "episode_candidate": false,
+      "artifact_hint": "W2 menu framing ratified"
+    },
+    {
+      "uuid": "d831f793-2674-4565-817b-ac5fb6d94fdc",
+      "timestamp": "2026-05-23T15:42:27.434Z",
+      "codes": ["assign-task", "audit-artifact"],
+      "quote": "I think we update IDEAS.md for sure",
+      "note": "Directs that the new W2 findings be written into IDEAS.md.",
+      "episode_candidate": false,
+      "artifact_hint": "IDEAS.md update"
+    },
+    {
+      "uuid": "006d6f84-4d1c-4112-a5d1-87ebb8315c7b",
+      "timestamp": "2026-05-23T15:51:10.995Z",
+      "codes": ["scope-decision", "set-standard"],
+      "quote": "We need to do more comprehensive simulation that includes different sample sizes, MCAR vs MAR vs MNAR. Other conditions?",
+      "note": "Opens the comprehensive-sweep scope: vary N and missingness mechanism; asks for more conditions.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/005 comprehensive-sweep hypotheses"
+    },
+    {
+      "uuid": "823cbe49-ca74-4ab5-9260-a54b9e7e605a",
+      "timestamp": "2026-05-23T16:04:04.019Z",
+      "codes": ["scope-decision", "supply-domain-judgment"],
+      "quote": "How would we do uncongenial in a covariance structure model? Maybe we use a strong ridge prior on Amelia? I think we can stick to dimension 8.",
+      "note": "Sets sweep design: MAR vs MNAR, ridge-prior uncongeniality, dim 8, M=20 vs 2000, FIML vs Amelia.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/005 sweep design (uncongeniality via Amelia empri)"
+    },
+    {
+      "uuid": "ab9193d9-ebd9-4c4d-a44c-23262d515f66",
+      "timestamp": "2026-05-23T16:08:25.016Z",
+      "codes": ["supply-domain-judgment", "scope-decision"],
+      "quote": "Wouldn’t we want to do a much stronger empri like .5, just to exacerbate",
+      "note": "Sharpens uncongeniality: use a stronger ridge prior (empri ~.5) to exaggerate the effect.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/005 empri strength"
+    },
+    {
+      "uuid": "0cfdc7cb-c1a5-48f2-814f-494e0774de6f",
+      "timestamp": "2026-05-23T16:10:22.766Z",
+      "codes": ["scope-decision"],
+      "quote": "M  should be Max 200",
+      "note": "Caps the number of imputations at M=200 for the sweep, trimming the grid.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/005 M cap at 200"
+    },
+    {
+      "uuid": "2d9d1858-e920-40b9-b43e-187e7bc720c7",
+      "timestamp": "2026-05-23T16:14:47.280Z",
+      "codes": ["set-standard", "scope-decision"],
+      "quote": "We either need to use existing packages (I.e mice ampute functions for MAR) or have in code validation step that matches to existing where feasible",
+      "note": "Sets validation standard (mice::ampute or match-to-existing checks); keeps p=4; proposes monotone missingness for max RIV-eigenvalue spread.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/005/006 mice::ampute + validation; monotone pattern"
+    },
+    {
+      "uuid": "657e9f06-a617-4f78-a54a-aa3c25d06148",
+      "timestamp": "2026-05-23T16:19:56.260Z",
+      "codes": ["set-standard", "assign-task"],
+      "quote": "I think we need 2000 replications across cells. Then let’s preregister our hypotheses, the. Write a todo list that I can take to a fresh session",
+      "note": "Sets R=2000; directs preregistration then a fresh-session handoff todo list.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/005 (R=2000) + todo/006 execution handoff"
+    },
+    {
+      "uuid": "1fa7b36c-4e6c-4a6d-af0c-2e0e0eda28e2",
+      "timestamp": "2026-05-23T16:25:05.228Z",
+      "codes": ["pose-question"],
+      "quote": "Tell me about the hypotheses here",
+      "note": "Asks the AI to lay out the sweep hypotheses for review before freezing.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/005 hypotheses"
+    },
+    {
+      "uuid": "635e5fd0-8032-46e7-8738-68dcd0f85510",
+      "timestamp": "2026-05-23T16:29:33.105Z",
+      "codes": ["supply-domain-judgment", "challenge-derivation"],
+      "quote": "H3 can be expanded to include root N convergence—high missingness rate can be offset by higher N because additional information missing value provide matters less and less to the RIV as sample size increases",
+      "note": "Supplies an asymptotic argument to expand H3 (rate-N tradeoff via RIV shrinking with N).",
+      "episode_candidate": true,
+      "artifact_hint": "todo/005 H3 / H3b rate-N tradeoff"
+    },
+    {
+      "uuid": "1213445a-6956-452c-a469-23372b36cc51",
+      "timestamp": "2026-05-23T16:33:57.458Z",
+      "codes": ["ratify", "scope-decision"],
+      "quote": "Agree with option C",
+      "note": "Ratifies Option C: a small separate 6-cell rate side-experiment (H3b) instead of expanding the main grid.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/005 H3b side experiment (phase 3 w3-rate)"
+    },
+    {
+      "uuid": "009ee8a2-a86e-43ed-9d62-a5dd1c0a6468",
+      "timestamp": "2026-05-23T16:41:07.051Z",
+      "codes": ["redirect-priority", "set-standard"],
+      "quote": "Do we need to decide or recalibrate anything now that we are talking monotone missingness. And can we do this quickly here in this conversation.",
+      "note": "Asks to settle monotone-missingness recalibration now; reiterates parallelism and warm starts.",
+      "episode_candidate": false,
+      "artifact_hint": "todo/005 monotone recalibration; warm starts"
+    },
+    {
+      "uuid": "35d63e5d-beb3-41e3-bb2a-c36ef2b0e4cb",
+      "timestamp": "2026-05-23T16:44:49.691Z",
+      "codes": ["ratify", "set-standard"],
+      "quote": "Agree do we want to do a sanity session as part of the plan with 100  replications",
+      "note": "Agrees to the recalibration and proposes an R=100 sanity sweep as a wiring-bug check before production.",
+      "episode_candidate": true,
+      "artifact_hint": "todo/006 R=100 sanity sweep gate"
+    },
+    {
+      "uuid": "b358f776-6606-426b-b8fc-4c506b3a9766",
+      "timestamp": "2026-05-23T16:47:55.642Z",
+      "codes": ["assign-task"],
+      "quote": "Can you please give me the prompt for the next session",
+      "note": "Requests the fresh-session resume prompt to hand off the sweep execution.",
+      "episode_candidate": false,
+      "artifact_hint": "fresh-session handoff prompt (todo/006)"
+    },
+    {
+      "uuid": "44a25135-b5c6-4851-a1c0-6fedc1a78b72",
+      "timestamp": "2026-05-23T16:48:57.447Z",
+      "codes": ["audit-artifact"],
+      "quote": "And we’ve pushed?",
+      "note": "Final check that the preregistration and todo files are committed and pushed.",
+      "episode_candidate": false,
+      "artifact_hint": "git push of todo/005/006"
+    }
+  ],
+  "ai_side": [
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-23T03:14:37.695Z",
+      "evidence": "How would you like to drive this? A few possibilities: 1. Just sign off as drafted ... 2. Walk through predictions conversationally ... 3. ... \"approved\" plus today's date. Which fits?",
+      "note": "AI offered three ways to proceed on the preregistration before Marcus imposed commit-and-push."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-23T05:15:09.974Z",
+      "evidence": "Now needs a decision on which reference distribution to implement next — (α) Chan-Meng F-reference (quicker) or (β) Chan (2022, AoS) MC reference (canonical preregistered). Which way do you want to go?",
+      "note": "AI surfaced the reference-distribution choice rather than picking silently."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-23T04:12:07.721Z",
+      "evidence": "(α) Commit current state + run the FIML pilot at production scale ... (β) Investigate why norm::da.norm is off before committing ... (α) seems higher-priority",
+      "note": "AI laid out alpha/beta options with a recommendation on the norm anomaly."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-23T15:38:36.850Z",
+      "evidence": "the calibration argument should be M-dependent, not a blanket claim ... Thanks for pushing on this — better to correct the framing now than have a reviewer catch it.",
+      "note": "AI flagged that the Type I claim was overstated and reviewer-vulnerable after Marcus's probe."
+    },
+    {
+      "kind": "flag-risk",
+      "timestamp": "2026-05-23T14:53:57.885Z",
+      "evidence": "The W2 reversal-of-reversal is interesting — the M=50 pilot misled us into thinking the prediction failed; at preregistered M=200 it holds. That's a useful lesson worth noting",
+      "note": "AI flagged that an underpowered pilot had misled the W2 conclusion, vindicating preregistration."
+    },
+    {
+      "kind": "propose-options",
+      "timestamp": "2026-05-23T16:33:57.458Z",
+      "evidence": "Option C — Small separate rate experiment ... Option C is the most economical ... push back on my analysis above if you think W3-A actually should shrink with N",
+      "note": "AI proposed options for the rate experiment and invited Marcus to push back on its asymptotic reasoning."
+    },
+    {
+      "kind": "surface-decision",
+      "timestamp": "2026-05-23T16:14:47.280Z",
+      "evidence": "Confirm the grid and I'll start the p=8 implementation. Or push back on any dimension (drop N=1000? drop one missingness rate? hold M at 200 instead of M=20 vs 2000?).",
+      "note": "AI surfaced each open grid dimension for explicit sign-off before building."
+    }
+  ],
+  "proposed_codes": [
+    {
+      "name": "request-handoff",
+      "definition": "Asks the AI to package the current state into a resumable artifact (resume prompt, fresh-session todo, status doc) for a future session or person.",
+      "example_quote": "Write a todo list that I can take to a fresh session"
+    }
+  ]
+}
