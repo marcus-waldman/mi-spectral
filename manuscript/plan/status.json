@@ -7,29 +7,83 @@
   "updated_by": "claude (todo/032 executed: collaboration analysis committed at verification/collaboration-analysis.md; S3-P2 rewritten from it, awaiting_collaboration_analysis flag cleared; D-13 deposit manifest + sensitive scan prepared for review)",
   "blocked_on": {
     "who": "marcus",
-    "what": "Per-paragraph annotation sessions on S1 (7 paragraphs), S2 (13 paragraphs), and S3 (8 paragraphs; P2 now rewritten from the todo/032 collaboration analysis). Open flags: S1 length 7 vs 4-5; S1 decomposition sentence placement (P4 vs P6); S1-P6 'improper' continuity with S2-P7. Also pending Marcus: review of the D-13 deposit artifacts (verification/cache/collab-analysis/deposit-manifest.md + deposit-sensitive-scan.md) before any transcript deposit. After approvals: draft S4 Derivations (quarry-rich, biggest section).",
+    "what": "Per-paragraph annotation sessions on S1 (7), S2 (13), S3 (8), and now S4 (22 paragraphs, drafted 2026-06-07: setup+theorem A1-A8, LRT B1-B7, IC C1-C7; quarried displays/propositions/numbers with prose rewritten to the style rules). Open flags unchanged (S1 length; decomposition sentence; improper continuity) + S4-P22 note (naive-input arm comparison kept implicit, full version in S5). After approvals or in parallel: Claude drafts S5 + S6 (small).",
     "artifact": "manuscript/plan/level3-paragraphs.json"
   },
   "levels": {
     "level1": "ratified_cycle2",
     "level2": "annotated_cycle1",
-    "level3": "s1_s2_s3_drafted (28 paragraphs; S3-P2 rewritten from the collaboration analysis)",
-    "level4": "populating (52 entries, all verified)"
+    "level3": "s1_s2_s3_s4_drafted (50 paragraphs)",
+    "level4": "populating (69 entries, all verified)"
   },
   "sections": [
-    {"id": "S1", "anchor": "sec-intro", "title": "Introduction", "state": "drafted_pre_system"},
-    {"id": "S2", "anchor": "sec-background", "title": "Background", "state": "drafted_pre_system"},
-    {"id": "S3", "anchor": "sec-setup", "title": "Setup and main theorem", "state": "drafted_pre_system"},
-    {"id": "S4", "anchor": "sec-lrt", "title": "Application I: likelihood-ratio comparison", "state": "drafted_pre_system"},
-    {"id": "S5", "anchor": "sec-ic", "title": "Application II: information-criterion model selection", "state": "drafted_pre_system"},
-    {"id": "S6", "anchor": "sec-numerics", "title": "Numerical studies", "state": "drafted_pre_system"},
-    {"id": "S7", "anchor": "sec-discussion", "title": "Discussion", "state": "drafted_pre_system"},
-    {"id": "S8", "anchor": "sec-provenance", "title": "Provenance and authorship statement", "state": "drafted_pre_system"}
+    {
+      "id": "S1",
+      "anchor": "sec-intro",
+      "title": "Introduction",
+      "state": "drafted_pre_system"
+    },
+    {
+      "id": "S2",
+      "anchor": "sec-background",
+      "title": "Background",
+      "state": "drafted_pre_system"
+    },
+    {
+      "id": "S3",
+      "anchor": "sec-setup",
+      "title": "Setup and main theorem",
+      "state": "drafted_pre_system"
+    },
+    {
+      "id": "S4",
+      "anchor": "sec-lrt",
+      "title": "Application I: likelihood-ratio comparison",
+      "state": "drafted_pre_system"
+    },
+    {
+      "id": "S5",
+      "anchor": "sec-ic",
+      "title": "Application II: information-criterion model selection",
+      "state": "drafted_pre_system"
+    },
+    {
+      "id": "S6",
+      "anchor": "sec-numerics",
+      "title": "Numerical studies",
+      "state": "drafted_pre_system"
+    },
+    {
+      "id": "S7",
+      "anchor": "sec-discussion",
+      "title": "Discussion",
+      "state": "drafted_pre_system"
+    },
+    {
+      "id": "S8",
+      "anchor": "sec-provenance",
+      "title": "Provenance and authorship statement",
+      "state": "drafted_pre_system"
+    }
   ],
-  "section_state_vocabulary": ["drafted_pre_system", "decomposed_needs_review", "awaiting_annotation", "in_review", "approved", "committed"],
+  "section_state_vocabulary": [
+    "drafted_pre_system",
+    "decomposed_needs_review",
+    "awaiting_annotation",
+    "in_review",
+    "approved",
+    "committed"
+  ],
   "open_decisions": [],
-  "citations_backlog": {"proposed": 4, "queued": 0, "acquired_unverified": 2},
-  "clickup": {"list_id": null, "last_synced": null},
+  "citations_backlog": {
+    "proposed": 4,
+    "queued": 0,
+    "acquired_unverified": 2
+  },
+  "clickup": {
+    "list_id": null,
+    "last_synced": null
+  },
   "next_actions": [
     "Claude: draft S1 Introduction from scratch under its blueprint (D-12); Marcus annotates (/section-review S1); then S2 -> S6 one section per cycle (drafting order may follow dependency: S1, S2, S3, S4, S5, S6)",
     "Per section: populate Level 4 alongside; re-read every cited literature/<citekey>.md in the drafting session; quarry 180e2b5 only for verified material",

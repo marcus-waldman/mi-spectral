@@ -436,6 +436,142 @@
       "evidence_status": "verified",
       "passage_or_value": "Seeded (20260604+r), core-count-invariant; sessioninfo recorded.",
       "note": "Reproducibility instance 2."
+    },
+    {
+      "id": "E-S4-P6-1",
+      "proposition_id": "S4-P6",
+      "pointer": "deriv:sec-thm",
+      "evidence_status": "verified",
+      "passage_or_value": "Theorem statement + Term B variance-of-gap argument.",
+      "note": "The theorem (firm)."
+    },
+    {
+      "id": "E-S4-P7-1",
+      "proposition_id": "S4-P7",
+      "pointer": "deriv:sec-lrt-ac",
+      "evidence_status": "verified",
+      "passage_or_value": "(A)+(C) structure, sign, closed form, three-tier standing.",
+      "note": "Term A sketch."
+    },
+    {
+      "id": "E-S4-P8-1",
+      "proposition_id": "S4-P8",
+      "pointer": "verif:verification/cache/rederivation-knownvar-N200-R20000.rds",
+      "evidence_status": "verified",
+      "passage_or_value": "Known-scale arms, R=2e5, all four values within 4%.",
+      "note": "Scope check."
+    },
+    {
+      "id": "E-S4-P8-2",
+      "proposition_id": "S4-P8",
+      "pointer": "verif:verification/cache/run_all-prod",
+      "evidence_status": "verified",
+      "passage_or_value": "Pooled 2.43 +/- 0.26 vs target 2.42-2.55.",
+      "note": "Headline MC, inline per D-03."
+    },
+    {
+      "id": "E-S4-P10-1",
+      "proposition_id": "S4-P10",
+      "pointer": "deriv:sec-lrt",
+      "evidence_status": "verified",
+      "passage_or_value": "Prop L1, I_com metric, three routes; 2.64 vs 8.47.",
+      "note": "LRT differential (firm)."
+    },
+    {
+      "id": "E-S4-P11-1",
+      "proposition_id": "S4-P11",
+      "pointer": "deriv:sec-lrt",
+      "evidence_status": "verified",
+      "passage_or_value": "Overstatement inequality + exact Schur gap.",
+      "note": "Naive overstates (firm)."
+    },
+    {
+      "id": "E-S4-P12-1",
+      "proposition_id": "S4-P12",
+      "pointer": "verif:verification/cache/run_all-prod",
+      "evidence_status": "verified",
+      "passage_or_value": "sd growth 18.4/26.6/36.5 vs flat 1.58/1.47/1.57.",
+      "note": "Pairing collapse measurement."
+    },
+    {
+      "id": "E-S4-P13-1",
+      "proposition_id": "S4-P13",
+      "pointer": "verif:verification/cache/w4-nonnested-summary.csv",
+      "evidence_status": "verified",
+      "passage_or_value": "W4: +2.5 level; similar below resolution; dissimilar -1.2 (3.5 se).",
+      "note": "Separation-regime measurements."
+    },
+    {
+      "id": "E-S4-P13-2",
+      "proposition_id": "S4-P13",
+      "pointer": "lit:vuongLikelihoodRatioTests1989",
+      "evidence_status": "verified",
+      "passage_or_value": "Pseudo-true values; nested/non-nested/overlapping; weighted chi-square law (abstract).",
+      "note": "The separation regime's source."
+    },
+    {
+      "id": "E-S4-P14-1",
+      "proposition_id": "S4-P14",
+      "pointer": "lit:chanGeneralFeasibleTests2022",
+      "evidence_status": "verified",
+      "passage_or_value": "Eq 1.10 weighted-sum null law; spectrum mean exceeds q_d by tr(RIV_perp).",
+      "note": "Absorption."
+    },
+    {
+      "id": "E-S4-P14-2",
+      "proposition_id": "S4-P14",
+      "pointer": "verif:verification/cache/W2-prod-amelia.rds",
+      "evidence_status": "verified",
+      "passage_or_value": "Null rates 0.042 / 0.034.",
+      "note": "Double-counting measurement."
+    },
+    {
+      "id": "E-S4-P16-1",
+      "proposition_id": "S4-P16",
+      "pointer": "deriv:sec-ic",
+      "evidence_status": "verified",
+      "passage_or_value": "Corrected criterion; model-specific bias; ranking consequence.",
+      "note": "IC criterion (firm)."
+    },
+    {
+      "id": "E-S4-P16-2",
+      "proposition_id": "S4-P16",
+      "pointer": "lit:shimodairaInformationCriterionModel2017",
+      "evidence_status": "verified",
+      "passage_or_value": "AIC_{x;y} penalty identity; half the PDIO/AICcd surcharge.",
+      "note": "Penalty precedent."
+    },
+    {
+      "id": "E-S4-P18-1",
+      "proposition_id": "S4-P18",
+      "pointer": "verif:verification/cache/run_all-prod",
+      "evidence_status": "verified",
+      "passage_or_value": "W3: 0.674/0.816/0.898; 100% largest-RIV misclassifications.",
+      "note": "Directional signature."
+    },
+    {
+      "id": "E-S4-P20-1",
+      "proposition_id": "S4-P20",
+      "pointer": "deriv:sec-ic",
+      "evidence_status": "verified",
+      "passage_or_value": "The three maps from the analytic null weights.",
+      "note": "Ladder maps (firm)."
+    },
+    {
+      "id": "E-S4-P21-1",
+      "proposition_id": "S4-P21",
+      "pointer": "verif:verification/cache/ic-ladder-summary.csv",
+      "evidence_status": "verified",
+      "passage_or_value": "Table; KS 0.281->0.019; var 3.18->0.97; shrinkage 0.586/0.570 + 0.362/0.398; floor 0.17.",
+      "note": "Ladder results (measured)."
+    },
+    {
+      "id": "E-S4-P22-1",
+      "proposition_id": "S4-P22",
+      "pointer": "verif:verification/cache/ic-ladder-summary.csv",
+      "evidence_status": "verified",
+      "passage_or_value": "3.6e-15 equality-case agreement; difference 6.10 vs 10.00.",
+      "note": "The two structural limits (firm)."
     }
   ],
   "acquisition_queue_note": "New references surfaced while drafting enter here as 'proposed' AND in todo/003 in the same response (standing rule). The /status dashboard reports the backlog by status.",
@@ -444,6 +580,6 @@
     "no_cited_without_verified_literature_file": null,
     "every_pointer_resolves": null,
     "passes": null,
-    "notes": "S1 + S2 + S3 populated; every drafted paragraph with a proposition has >=1 entry; all pointers resolve. Full gate when all sections drafted."
+    "notes": "S1-S4 populated; all pointers resolve. Full gate when S5-S6 drafted."
   }
 }
