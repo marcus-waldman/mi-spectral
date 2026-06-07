@@ -4,7 +4,7 @@
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
   "phase": "level3_drafting",
   "last_updated": "2026-06-07",
-  "updated_by": "claude (S6 drafted: ALL SIX SECTIONS COMPLETE, 73 paragraphs)",
+  "updated_by": "claude (S6 + punctuation gate + reproducibility gate PASS + JASA preview; todo/033 handoff for the S5 rebuild)",
   "blocked_on": {
     "who": "marcus",
     "what": "Per-paragraph annotation sessions on S1 (7), S2 (13), S3 (8), and now S4 (22 paragraphs, drafted 2026-06-07: setup+theorem A1-A8, LRT B1-B7, IC C1-C7; quarried displays/propositions/numbers with prose rewritten to the style rules). Open flags unchanged (S1 length; decomposition sentence; improper continuity) + S4-P22 note (naive-input arm comparison kept implicit, full version in S5). After approvals or in parallel: Claude drafts S5 + S6 (small).",
@@ -72,10 +72,11 @@
     "last_synced": null
   },
   "next_actions": [
-    "Marcus: per-paragraph passes S1-S6 (73 paragraphs; flags recorded in level3 metrics_gate notes); D-13 deposit review",
-    "Regen gate: background sweep running (ble1692z3); then ic-ladder regen + diff + receipt commit",
-    "Then: compile_enabled, first compile, quarto render, derivation-audit on the new draft",
-    "Follow-up queued: todo/030 map sync; P20 outcome-phrasing soften"
+    "NEXT SESSION: rebuild S5 Simulation studies per todo/033 (per-study Methods setup blocks; results as tables/graphs with perfect-vs-achieved markers; impatient-reader self-contained exhibits)",
+    "Marcus: per-paragraph passes S1-S6 (73 paragraphs); D-13 deposit-scan review",
+    "Pre-submission: regenerate W2 + W4 (not in the 2026-06-07 gate; receipt notes it)",
+    "Then: compile_enabled, canonical compile, render, derivation-audit",
+    "Follow-up queued: todo/030 map sync"
   ],
   "structure_note": "Section list = the ratified 6-section set (D-09 + Amendment 1) + title-page declaration (D-11/D-13). mi-spectral.qmd remains frozen at 180e2b5 until first compile. Citations backlog: proposed = White 2011, Grund 2021, Schomaker 2007 (all optional)."
 }
