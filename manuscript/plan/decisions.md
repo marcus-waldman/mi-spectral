@@ -29,6 +29,7 @@ Strategic decisions D-01…D-08 live in full (chosen + rejected options + ration
 | D-09 | 2026-06-05 | IMRaD macro-structure with Methods-as-workflow; fourth (methodological) thesis component; rejected: 180e2b5 theory-paper shape with workflow as end-matter | **ratified** (in-chat); **amended 2026-06-06** (Amendment 1) |
 | D-09-A1 | 2026-06-06 | Amendment 1 to D-09: Results umbrella split into M4a Derivations + M4b Simulation studies (subheads "Simulation studies: setup" / "Simulation studies: results"); arc is 6 moves; rejected: keeping the umbrella ("Results" a strained name for theorems; simulation design would crowd the workflow Methods) | **ratified** (in-chat, cycle 2) |
 | D-10 | 2026-06-06 | Complete-data replication principle (term from the MI-IC companion) as the paper's organizing question, posed at three levels (estimates / criterion-in-expectation / decision rates); asserted-here, confirmed unposed in Schomaker–Heumann 2014; rejected: new "decision equivalence" coinage, unqualified rate-replication claim, IC-only scope | **ratified** (in-chat, cycle 2) |
+| D-11 | 2026-06-06 | JAIGP provenance declaration lives in a title-page declaration block (AI lineage + role, ORCID-verified human prompter of record, repo + companion pointers) — the reader knows the paper's nature before page one; Discussion ends on the workflow reflection; rejected: standalone provenance section (180e2b5 S8), Discussion closing block, end-matter placement | **ratified** (in-chat, level2 cycle 1) |
 
 ## Style and terminology
 
