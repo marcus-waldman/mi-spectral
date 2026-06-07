@@ -340,6 +340,94 @@
       "evidence_status": "verified",
       "passage_or_value": "Known-scale arms: 0 (deterministic/improper) vs -1/2 tr(RIV) (proper MI); difference = posterior-draw contribution C_n.",
       "note": "Why the distinction does work in the theorem."
+    },
+    {
+      "id": "E-S3-P2-1",
+      "proposition_id": "S3-P2",
+      "pointer": "verif:manuscript/plan/decisions.md",
+      "evidence_status": "verified",
+      "passage_or_value": "Dated decisions D-01..D-12, T-01..T-07, each with rejected options.",
+      "note": "The decision log the paragraph describes."
+    },
+    {
+      "id": "E-S3-P3-1",
+      "proposition_id": "S3-P3",
+      "pointer": "verif:todo/001-literature-and-hooks.md",
+      "evidence_status": "verified",
+      "passage_or_value": "Hook specification: PreToolUse check blocking unbacked citation tokens on manuscript/ and plan JSONs (implementation at .claude/hooks/check_citations.py, tested by scripts/test_check_citations_hook.py).",
+      "note": "The mechanical enforcement."
+    },
+    {
+      "id": "E-S3-P3-2",
+      "proposition_id": "S3-P3",
+      "pointer": "deriv:sec-sources",
+      "evidence_status": "verified",
+      "passage_or_value": "Source-passage apparatus in the companion derivation.",
+      "note": "The archived-and-read discipline in practice."
+    },
+    {
+      "id": "E-S3-P4-1",
+      "proposition_id": "S3-P4",
+      "pointer": "deriv:sec-verify",
+      "evidence_status": "verified",
+      "passage_or_value": "Dual-CAS + MC verification apparatus (executable Appendix B).",
+      "note": "The pipeline the tiers are defined by."
+    },
+    {
+      "id": "E-S3-P5-1",
+      "proposition_id": "S3-P5",
+      "pointer": "verif:todo/004-simulation-hypotheses.md",
+      "evidence_status": "verified",
+      "passage_or_value": "W1/W2/W3 preregistration frozen at SHA ddc9037; dated amendments.",
+      "note": "Preregistration-before-code, instance 1."
+    },
+    {
+      "id": "E-S3-P5-2",
+      "proposition_id": "S3-P5",
+      "pointer": "verif:todo/027-ladder-preregistration.md",
+      "evidence_status": "verified",
+      "passage_or_value": "IC-ladder preregistration with frozen pass criteria C1-C6.",
+      "note": "Instance 2."
+    },
+    {
+      "id": "E-S3-P5-3",
+      "proposition_id": "S3-P5",
+      "pointer": "verif:todo/005-comprehensive-sweep-hypotheses.md",
+      "evidence_status": "verified",
+      "passage_or_value": "Comprehensive-sweep preregistration H1-H6.",
+      "note": "Instance 3."
+    },
+    {
+      "id": "E-S3-P6-1",
+      "proposition_id": "S3-P6",
+      "pointer": "xmodel:verification/cache/derivation-audit-run-w2diff.json",
+      "evidence_status": "verified",
+      "passage_or_value": "Cross-model gate record (blind Mode A + adversarial Mode B, sustained).",
+      "note": "The committed grading record the paragraph cites."
+    },
+    {
+      "id": "E-S3-P6-2",
+      "proposition_id": "S3-P6",
+      "pointer": "deriv:sec-qfun",
+      "evidence_status": "verified",
+      "passage_or_value": "Fitted-vs-oracle callout: both conditionings, both signs; the 8/9 blind episode.",
+      "note": "The sign-episode resolution in the companion."
+    },
+    {
+      "id": "E-S3-P7-1",
+      "proposition_id": "S3-P7",
+      "pointer": "verif:verification/run_all.R",
+      "evidence_status": "verified",
+      "passage_or_value": "Single entry point, seeds, phase caches.",
+      "note": "Reproducibility instance 1."
+    },
+    {
+      "id": "E-S3-P7-2",
+      "proposition_id": "S3-P7",
+      "pointer": "verif:verification/ic-ladder.R",
+      "evidence_status": "verified",
+      "passage_or_value": "Seeded (20260604+r), core-count-invariant; sessioninfo recorded.",
+      "note": "Reproducibility instance 2."
     }
   ],
   "acquisition_queue_note": "New references surfaced while drafting enter here as 'proposed' AND in todo/003 in the same response (standing rule). The /status dashboard reports the backlog by status.",
@@ -348,6 +436,6 @@
     "no_cited_without_verified_literature_file": null,
     "every_pointer_resolves": null,
     "passes": null,
-    "notes": "S1 + S2 populated; S2 renumbered after the proper-imputation insertion (P7 new; old P7-P12 -> P8-P13). All pointers resolve."
+    "notes": "S1 + S2 + S3 populated; every drafted paragraph with a proposition has >=1 entry; all pointers resolve. Full gate when all sections drafted."
   }
 }

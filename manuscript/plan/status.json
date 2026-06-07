@@ -7,7 +7,7 @@
   "updated_by": "claude (S1 drafted: 6 paragraphs, 22 level4 entries, lint green)",
   "blocked_on": {
     "who": "marcus",
-    "what": "Per-paragraph annotation sessions on S1 (7 paragraphs) and S2 (13 paragraphs, use-first rewrite + NEW P7 proper-vs-improper imputation, 2026-06-06). Open flags: S1 length 7 vs 4-5; S1 decomposition sentence placement (P4 vs P6); S1-P6 may need 'improper' added to the deterministic-EM clause for continuity with S2-P7. After S1+S2 approval: draft S3 Methods (new writing).",
+    "what": "Per-paragraph annotation sessions on S1 (7 paragraphs), S2 (13 paragraphs), and now S3 (8 paragraphs, drafted 2026-06-07 while S1/S2 review pending). Open flags: S1 length 7 vs 4-5; S1 decomposition sentence placement (P4 vs P6); S1-P6 'improper' continuity with S2-P7. After approvals: draft S4 Derivations (quarry-rich, biggest section).",
     "artifact": "manuscript/plan/level3-paragraphs.json"
   },
   "levels": {
