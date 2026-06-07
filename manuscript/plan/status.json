@@ -4,7 +4,7 @@
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
   "phase": "level3_drafting",
   "last_updated": "2026-06-07",
-  "updated_by": "claude (S4 drafted; status housekeeping: section list moved to the ratified 6-section set)",
+  "updated_by": "claude (D-03-A1 ratified + applied to S4; phi-tilde defined; S4 part (a) formalized)",
   "blocked_on": {
     "who": "marcus",
     "what": "Per-paragraph annotation sessions on S1 (7), S2 (13), S3 (8), and now S4 (22 paragraphs, drafted 2026-06-07: setup+theorem A1-A8, LRT B1-B7, IC C1-C7; quarried displays/propositions/numbers with prose rewritten to the style rules). Open flags unchanged (S1 length; decomposition sentence; improper continuity) + S4-P22 note (naive-input arm comparison kept implicit, full version in S5). After approvals or in parallel: Claude drafts S5 + S6 (small).",
@@ -73,7 +73,7 @@
   },
   "next_actions": [
     "Marcus: per-paragraph passes on S1/S2/S3/S4 (50 paragraphs); D-13 deposit review",
-    "Claude: draft S5 Simulation studies + S6 Discussion (small); then compile_enabled + first compile + render (D-12)",
+    "Claude: draft S5 Simulation studies (now the paper FULL empirical account per D-03-A1: sign-regime + known-scale experiments, pooled theorem confirmation, 52-se discrimination, pairing sd table, W4, null-rate double-counting, W3 rates + signature, ladder table + findings, structural-limit exhibits, proper-MI tracking) + S6 Discussion; then compile (D-12)",
     "Follow-up queued: sync todo/030 argument map + litrev DB with D-09/D-10",
     "Deposit: upload 35 hashed transcripts to Zenodo/OSF after Marcus reviews the scan; commit the DOI"
   ],

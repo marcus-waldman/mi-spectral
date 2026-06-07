@@ -454,28 +454,12 @@
       "note": "Term A sketch."
     },
     {
-      "id": "E-S4-P8-1",
-      "proposition_id": "S4-P8",
-      "pointer": "verif:verification/cache/rederivation-knownvar-N200-R20000.rds",
-      "evidence_status": "verified",
-      "passage_or_value": "Known-scale arms, R=2e5, all four values within 4%.",
-      "note": "Scope check."
-    },
-    {
-      "id": "E-S4-P8-2",
-      "proposition_id": "S4-P8",
-      "pointer": "verif:verification/cache/run_all-prod",
-      "evidence_status": "verified",
-      "passage_or_value": "Pooled 2.43 +/- 0.26 vs target 2.42-2.55.",
-      "note": "Headline MC, inline per D-03."
-    },
-    {
       "id": "E-S4-P10-1",
       "proposition_id": "S4-P10",
       "pointer": "deriv:sec-lrt",
       "evidence_status": "verified",
-      "passage_or_value": "Prop L1, I_com metric, three routes; 2.64 vs 8.47.",
-      "note": "LRT differential (firm)."
+      "passage_or_value": "Prop L1, I_com metric, three routes.",
+      "note": "LRT differential (firm); the MC discrimination evidence re-attaches at S5."
     },
     {
       "id": "E-S4-P11-1",
@@ -484,22 +468,6 @@
       "evidence_status": "verified",
       "passage_or_value": "Overstatement inequality + exact Schur gap.",
       "note": "Naive overstates (firm)."
-    },
-    {
-      "id": "E-S4-P12-1",
-      "proposition_id": "S4-P12",
-      "pointer": "verif:verification/cache/run_all-prod",
-      "evidence_status": "verified",
-      "passage_or_value": "sd growth 18.4/26.6/36.5 vs flat 1.58/1.47/1.57.",
-      "note": "Pairing collapse measurement."
-    },
-    {
-      "id": "E-S4-P13-1",
-      "proposition_id": "S4-P13",
-      "pointer": "verif:verification/cache/w4-nonnested-summary.csv",
-      "evidence_status": "verified",
-      "passage_or_value": "W4: +2.5 level; similar below resolution; dissimilar -1.2 (3.5 se).",
-      "note": "Separation-regime measurements."
     },
     {
       "id": "E-S4-P13-2",
@@ -518,14 +486,6 @@
       "note": "Absorption."
     },
     {
-      "id": "E-S4-P14-2",
-      "proposition_id": "S4-P14",
-      "pointer": "verif:verification/cache/W2-prod-amelia.rds",
-      "evidence_status": "verified",
-      "passage_or_value": "Null rates 0.042 / 0.034.",
-      "note": "Double-counting measurement."
-    },
-    {
       "id": "E-S4-P16-1",
       "proposition_id": "S4-P16",
       "pointer": "deriv:sec-ic",
@@ -542,28 +502,12 @@
       "note": "Penalty precedent."
     },
     {
-      "id": "E-S4-P18-1",
-      "proposition_id": "S4-P18",
-      "pointer": "verif:verification/cache/run_all-prod",
-      "evidence_status": "verified",
-      "passage_or_value": "W3: 0.674/0.816/0.898; 100% largest-RIV misclassifications.",
-      "note": "Directional signature."
-    },
-    {
       "id": "E-S4-P20-1",
       "proposition_id": "S4-P20",
       "pointer": "deriv:sec-ic",
       "evidence_status": "verified",
       "passage_or_value": "The three maps from the analytic null weights.",
       "note": "Ladder maps (firm)."
-    },
-    {
-      "id": "E-S4-P21-1",
-      "proposition_id": "S4-P21",
-      "pointer": "verif:verification/cache/ic-ladder-summary.csv",
-      "evidence_status": "verified",
-      "passage_or_value": "Table; KS 0.281->0.019; var 3.18->0.97; shrinkage 0.586/0.570 + 0.362/0.398; floor 0.17.",
-      "note": "Ladder results (measured)."
     },
     {
       "id": "E-S4-P22-1",
@@ -580,6 +524,6 @@
     "no_cited_without_verified_literature_file": null,
     "every_pointer_resolves": null,
     "passes": null,
-    "notes": "S1-S4 populated; all pointers resolve. Full gate when S5-S6 drafted."
+    "notes": "S4 MC-evidence entries removed under D-03-A1 (re-created against S5 paragraphs at S5 drafting; the artifacts are unchanged). All remaining pointers resolve."
   }
 }

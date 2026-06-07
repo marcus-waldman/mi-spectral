@@ -2,7 +2,7 @@
   "metadata": {
     "level": 3,
     "date": "2026-06-05",
-    "status": "drafting_s4_part_a_formalized",
+    "status": "drafting_s4_d03a1_applied",
     "purpose": "SOURCE OF TRUTH for manuscript prose once populated. Each paragraph carries its proposition, dependencies, the draft_prose itself, a review object, and an audit object. manuscript/mi-spectral.qmd is compiled from this file by scripts/compile_manuscript.py and never edited directly.",
     "compile_enabled": false,
     "compile_note": "compile_enabled stays false until all six sections are drafted and reviewed (D-12: from-scratch drafting, 180e2b5 as quarry; the decomposition route is retired). mi-spectral.qmd remains frozen at 180e2b5 until the first compile.",
@@ -970,12 +970,12 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "This section delivers the paper's analytic results, in three parts. The first part states the main theorem, which is the answer to the replication principle's second level: it prices the bias of the averaged log-likelihood exactly, so the criterion can be restored to its complete-data expectation. The second and third parts take up the third level, decision rates, for testing and for selection in turn. Every claim carries one of the four tier labels defined in @sec-methods. Full proofs are in the companion document. Headline numbers are quoted where the claims are made, and the studies behind them are reported in @sec-simulations.",
+      "draft_prose": "This section delivers the paper's analytic results, in three parts. The first part states the main theorem, which is the answer to the replication principle's second level: it prices the bias of the averaged log-likelihood exactly, so the criterion can be restored to its complete-data expectation. The second and third parts take up the third level, decision rates, for testing and for selection in turn. Every claim carries one of the four tier labels defined in @sec-methods. Full proofs are in the companion document. Where a claim was tested by a pre-registered study, the test is flagged where the claim is made, and all empirical evidence is reported in @sec-simulations.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
-        "notes": "Use-first roadmap; principle-level openers per SP8."
+        "notes": "Use-first roadmap; principle-level openers per SP8. D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
@@ -1065,7 +1065,7 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "The object of the theorem is the infinite-imputation Q-function, and its definition contains the choice that fixes the sign of everything that follows. Under congenial proper MI the imputation parameter $\\tilde\\phi$ is a draw from the imputation posterior fit to $Y_{\\text{obs}}$. Under deterministic FIML imputation it collapses to the point value $\\hat\\theta_{\\text{obs}}$. Each completion is drawn at $\\tilde\\phi$, and\n$$ \\bar Q_\\infty(\\theta) \\;:=\\; \\lim_{M\\to\\infty} \\frac1M \\sum_{l=1}^{M} \\ell_{\\text{com}}\\big(\\theta;\\, Y_{\\text{obs}}, \\tilde Y_{\\text{mis}}^{(l)}\\big) \\;=\\; \\mathbb{E}_{\\tilde\\phi}\\, \\mathbb{E}_{Y_{\\text{mis}} \\mid Y_{\\text{obs}}, \\tilde\\phi}\\big[\\ell_{\\text{com}}(\\theta)\\big]. $$ {#eq-qbar}\nThe inner expectation conditions on the fitted or drawn parameter, exactly as the EM E-step conditions on the current iterate. It does not condition on the truth. This is the fork that @sec-methods reported as the sign episode, and both branches are stated here to prevent the standard confusion. Were $\\bar Q_\\infty$ instead the oracle expectation $\\mathbb{E}[\\ell_{\\text{com}}(\\theta) \\mid Y_{\\text{obs}}]$ under the data-generating law, the tower property would force the imputation-bias term to zero and the total bias would be $-\\tfrac12\\operatorname{tr}(\\mathrm{RIV})$, with the opposite sign. The analyst imputes from a model fit to the data, not from an oracle. Both regimes were confirmed by direct simulation: imputing from the truth drives the imputation bias to zero, and imputing from the fitted model produces the constants of the theorem (@sec-simulations).",
+      "draft_prose": "The object of the theorem is the infinite-imputation Q-function, and its definition contains the choice that fixes the sign of everything that follows. Under congenial proper MI the imputation parameter is a posterior draw, $\\tilde\\phi \\sim \\pi(\\phi \\mid Y_{\\text{obs}})$, where $\\pi$ is the posterior of the imputation model, which under congeniality (R4) is the model whose predictive distribution the analyst's procedure agrees with. Under deterministic FIML imputation the draw degenerates to the point mass $\\tilde\\phi = \\hat\\theta_{\\text{obs}}$. In either case $\\tilde\\phi$ is centered at $\\hat\\theta_{\\text{obs}}$ with $\\operatorname{Var}(\\tilde\\phi) = I_{\\text{obs}}^{-1} + O(n^{-2})$, the property the order counting below draws on. Each completion is drawn at $\\tilde\\phi$, and\n$$ \\bar Q_\\infty(\\theta) \\;:=\\; \\lim_{M\\to\\infty} \\frac1M \\sum_{l=1}^{M} \\ell_{\\text{com}}\\big(\\theta;\\, Y_{\\text{obs}}, \\tilde Y_{\\text{mis}}^{(l)}\\big) \\;=\\; \\mathbb{E}_{\\tilde\\phi}\\, \\mathbb{E}_{Y_{\\text{mis}} \\mid Y_{\\text{obs}}, \\tilde\\phi}\\big[\\ell_{\\text{com}}(\\theta)\\big]. $$ {#eq-qbar}\nThe inner expectation conditions on the fitted or drawn parameter, exactly as the EM E-step conditions on the current iterate. It does not condition on the truth. This is the fork that @sec-methods reported as the sign episode, and both branches are stated here to prevent the standard confusion. Were $\\bar Q_\\infty$ instead the oracle expectation $\\mathbb{E}[\\ell_{\\text{com}}(\\theta) \\mid Y_{\\text{obs}}]$ under the data-generating law, the tower property would force the imputation-bias term to zero and the total bias would be $-\\tfrac12\\operatorname{tr}(\\mathrm{RIV})$, with the opposite sign. The analyst imputes from a model fit to the data, not from an oracle. The two regimes are distinguished experimentally by a dedicated study in @sec-simulations.",
       "audit": {
         "status": "complete",
         "citations": {},
@@ -1073,7 +1073,7 @@
           "oracle branch -1/2 tr(RIV)": "deriv:sec-qfun",
           "both regimes confirmed by simulation": "verif:verification/cache/rederivation-knownvar-N200-R20000.rds"
         },
-        "notes": "Quarried; D-02 statement; links to S3-P6's episode."
+        "notes": "Quarried; D-02 statement; links to S3-P6's episode. D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
@@ -1224,7 +1224,7 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "Two checks close the theorem, one on its scope and one on its form. The scope check is the known-scale collapse. With a known scale and a location-only fit the conditional missing-data entropy is parameter-free, and the net bias collapses to\n$$ \\mathbb{E}[T]_{\\text{known scale}} \\;=\\; \\begin{cases} 0 & \\text{deterministic FIML}, \\\\[2pt] -\\tfrac12\\operatorname{tr}(\\mathrm{RIV}) & \\text{proper MI}, \\end{cases} $$ {#eq-knownscale}\nthe two arms differing by exactly the posterior-draw imputation variance of @sec-background's proper-imputation paragraph. A dedicated experiment with $R = 2\\times10^5$ repetitions confirms all four values within 4%. Every model compared below estimates a covariance, so the applications sit in the estimated-scale regime. The form check is the entropy-plug-in reading. Writing $C_n(\\theta)$ for the conditional entropy of the missing block given the observed block, the bias @eq-thm equals the plug-in bias of evaluating $C_n$ at the estimate rather than the truth. One curvature identity regroups the proof's three pieces into a single expansion,\n$$ \\nabla^2 C_n(\\theta_0) \\;=\\; H_{\\phi\\phi} + I_{\\text{mis}\\mid\\text{obs}}, $$ {#eq-entropy-hessian}\nand delivers the known-scale collapse as the parameter-free special case. The total is convention-free, and both readings are verified symbolically and by simulation. The pre-registered Monte Carlo confirmation of @eq-thm pools to $\\hat T = 2.43 \\pm 0.26$ against the augmented target range $2.42$ to $2.55$ in the four-variate MAR design (@sec-simulations).",
+      "draft_prose": "Two checks close the theorem, one on its scope and one on its form. The scope check is the known-scale collapse. With a known scale and a location-only fit the conditional missing-data entropy is parameter-free, and the net bias collapses to\n$$ \\mathbb{E}[T]_{\\text{known scale}} \\;=\\; \\begin{cases} 0 & \\text{deterministic FIML}, \\\\[2pt] -\\tfrac12\\operatorname{tr}(\\mathrm{RIV}) & \\text{proper MI}, \\end{cases} $$ {#eq-knownscale}\nthe two arms differing by exactly the posterior-draw imputation variance of @sec-background's proper-imputation paragraph. The four-way collapse is a pre-registered prediction, tested in @sec-simulations. Every model compared below estimates a covariance, so the applications sit in the estimated-scale regime. The form check is the entropy-plug-in reading. Writing $C_n(\\theta)$ for the conditional entropy of the missing block given the observed block, the bias @eq-thm equals the plug-in bias of evaluating $C_n$ at the estimate rather than the truth. One curvature identity regroups the proof's three pieces into a single expansion,\n$$ \\nabla^2 C_n(\\theta_0) \\;=\\; H_{\\phi\\phi} + I_{\\text{mis}\\mid\\text{obs}}, $$ {#eq-entropy-hessian}\nand delivers the known-scale collapse as the parameter-free special case. The total is convention-free, and both readings are verified symbolically. The theorem's pre-registered Monte Carlo confirmation is reported in @sec-simulations.",
       "audit": {
         "status": "complete",
         "citations": {},
@@ -1233,7 +1233,7 @@
           "entropy-Hessian identity": "deriv:sec-thm",
           "pooled 2.43 +/- 0.26 vs 2.42-2.55": "verif:verification/cache/run_all-prod"
         },
-        "notes": "Quarried; ties the collapse to S2-P7's proper-imputation pricing. Curvature identity promoted to display (eq-entropy-hessian)."
+        "notes": "Quarried; ties the collapse to S2-P7's proper-imputation pricing. Curvature identity promoted to display (eq-entropy-hessian). D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
@@ -1288,14 +1288,14 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "::: {#prp-lrt}\n## Differential bias at the null\n\nUnder R1-R7, at the null,\n$$ \\mathbb{E}\\big[\\hat d_L - \\hat d_{\\text{com}}\\big] \\;=\\; \\operatorname{tr}(\\mathrm{RIV}_\\perp) + O(n^{-1}), $$ {#eq-lrt-bias}\nwhere $\\operatorname{tr}(\\mathrm{RIV}_\\perp)$ is the missing information of the tested directions, projected onto the null tangent space in the $I_{\\text{com}}$ metric.\n:::\n\nThis result is firm. The metric is its substance. The score of $\\bar Q_\\infty$ at the truth has variance built from $I_{\\text{com}} I_{\\text{obs}}^{-1} I_{\\text{com}}$, while its curvature is $I_{\\text{com}}$, the geometric fact restated in @sec-background. The constrained fit therefore projects in the $I_{\\text{com}}$ metric, and taking expectations of the difference of quadratic forms gives @eq-lrt-bias. The natural error is to substitute $I_{\\text{obs}}$ for the curvature, which is the same as conflating $\\hat\\psi_0^{*}$ with the null model's own observed-data MLE. That error reproduces exactly the naive formula that the next proposition shows always overstates. The derivation was carried through three independent routes. On a four-variate design built to separate the two formulas, @eq-lrt-bias gives $2.64$ where the naive difference gives $8.47$, and the Monte Carlo mean lands on @eq-lrt-bias within sampling error, which is $52$ standard errors from the naive value (@sec-simulations).",
+      "draft_prose": "::: {#prp-lrt}\n## Differential bias at the null\n\nUnder R1-R7, at the null,\n$$ \\mathbb{E}\\big[\\hat d_L - \\hat d_{\\text{com}}\\big] \\;=\\; \\operatorname{tr}(\\mathrm{RIV}_\\perp) + O(n^{-1}), $$ {#eq-lrt-bias}\nwhere $\\operatorname{tr}(\\mathrm{RIV}_\\perp)$ is the missing information of the tested directions, projected onto the null tangent space in the $I_{\\text{com}}$ metric.\n:::\n\nThis result is firm. The metric is its substance. The score of $\\bar Q_\\infty$ at the truth has variance built from $I_{\\text{com}} I_{\\text{obs}}^{-1} I_{\\text{com}}$, while its curvature is $I_{\\text{com}}$, the geometric fact restated in @sec-background. The constrained fit therefore projects in the $I_{\\text{com}}$ metric, and taking expectations of the difference of quadratic forms gives @eq-lrt-bias. The natural error is to substitute $I_{\\text{obs}}$ for the curvature, which is the same as conflating $\\hat\\psi_0^{*}$ with the null model's own observed-data MLE. That error reproduces exactly the naive formula that the next proposition shows always overstates. The derivation was carried through three independent routes. In designs where the tested directions mix unequally-missing information the two formulas are far apart, and a pre-registered design built to separate them is graded in @sec-simulations.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {
           "2.64 vs naive 8.47; 52 se": "deriv:sec-lrt + verif:verification/cache/run_all-prod"
         },
-        "notes": "Prop div quarried; metric explanation rewritten plain."
+        "notes": "Prop div quarried; metric explanation rewritten plain. D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
@@ -1349,14 +1349,14 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "::: {#prp-pairing}\n## Pairing collapses the noise\n\nLet $D$ be the per-dataset paired differential. At the null and under local alternatives, $\\operatorname{sd}(D) = O(1)$, against $O(\\sqrt n)$ for either level separately. At a fixed alternative the cancellation fails and $\\operatorname{sd}(D)$ reverts to $O(\\sqrt n)$.\n:::\n\nThis result is firm, and the mechanism is exact cancellation of realizations rather than averaging. The large noise of each level lives in fit-independent realized constants. Both fits maximize the same realized $\\bar Q_\\infty$ built from the same imputation parameter, so these constants are identical in the two levels and cancel dataset by dataset. The measurement matches. At the null, the single-model standard deviation grows $18.4$, $26.6$, $36.5$ across $N = 500$, $1000$, $2000$, while the paired differential stays flat at $1.58$, $1.47$, $1.57$. At the fixed alternative the growth returns. This is why every comparison-relevant quantity in this paper is estimated by paired contrasts and never by differencing separately estimated levels.",
+      "draft_prose": "::: {#prp-pairing}\n## Pairing collapses the noise\n\nLet $D$ be the per-dataset paired differential. At the null and under local alternatives, $\\operatorname{sd}(D) = O(1)$, against $O(\\sqrt n)$ for either level separately. At a fixed alternative the cancellation fails and $\\operatorname{sd}(D)$ reverts to $O(\\sqrt n)$.\n:::\n\nThis result is firm, and the mechanism is exact cancellation of realizations rather than averaging. The large noise of each level lives in fit-independent realized constants. Both fits maximize the same realized $\\bar Q_\\infty$ built from the same imputation parameter, so these constants are identical in the two levels and cancel dataset by dataset. Both the growth of the single-model noise and the flatness of the paired differential are exhibited across sample sizes in @sec-simulations. This is why every comparison-relevant quantity in this paper is estimated by paired contrasts and never by differencing separately estimated levels.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {
           "sd 18.4/26.6/36.5 vs 1.58/1.47/1.57": "verif:verification/cache/run_all-prod"
         },
-        "notes": "Quarried; mechanism stated as cancellation of realizations."
+        "notes": "Quarried; mechanism stated as cancellation of realizations. D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
@@ -1381,7 +1381,7 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "::: {#prp-ac-diff}\n## The design-imbalance differential cancels at the null\n\nThe $(A)+(C)$ contributions of the two levels are properties of the imputation, not of which model is fit. At the null they are identical realizations and cancel exactly to leading order. Under local alternatives the differential is $O(n^{-1/2})$. It becomes a genuine $O(1)$ only when the candidates' pseudo-true values are separated at $O(1)$, the regime of @vuongLikelihoodRatioTests1989.\n:::\n\nSeparation, not nesting, is the criterion. A nested but false restriction triggers the decoupling just as a non-nested pair does. A direct measurement confirms the mechanism and adds one refinement, and its findings are measured in the sense of @sec-methods. Fitting compound-symmetry and AR(1) candidates to the same imputations under a strong MAR design, with $20{,}000$ repetitions per cell and an MCAR twin to isolate the design-imbalance contribution: the per-candidate level is a large $O(1)$ of about $+2.5$ deviance units that collapses under MCAR, and the two candidates' levels decouple. The differential between these two similar candidates is below Monte Carlo resolution, because they respond to the imbalance almost identically. A maximally dissimilar pair, a structure-blind diagonal model against AR(1), carries a resolved differential of $-1.2$ at $3.5$ standard errors. The differential's size scales with how differently the competitors handle the missing data. One caveat travels with the dissimilar case and is restated in @sec-discussion. A badly misspecified candidate also carries a mechanism-independent misspecification $O(1)$, separable by the MCAR contrast but able to offset part of the design-imbalance term in the net ranking bias.",
+      "draft_prose": "::: {#prp-ac-diff}\n## The design-imbalance differential cancels at the null\n\nThe $(A)+(C)$ contributions of the two levels are properties of the imputation, not of which model is fit. At the null they are identical realizations and cancel exactly to leading order. Under local alternatives the differential is $O(n^{-1/2})$. It becomes a genuine $O(1)$ only when the candidates' pseudo-true values are separated at $O(1)$, the regime of @vuongLikelihoodRatioTests1989.\n:::\n\nSeparation, not nesting, is the criterion. A nested but false restriction triggers the decoupling just as a non-nested pair does. The expectation from the expansion is that the differential's size scales with how differently the competitors handle the missing data, because similar candidates respond to the same imbalance almost identically and their contributions nearly cancel. One caveat is analytic and travels with dissimilar pairs. A badly misspecified candidate also carries a mechanism-independent misspecification $O(1)$, separable from the design-imbalance term in measurement by an MCAR contrast but able to offset part of it in the net ranking bias. The decoupling, the dissimilarity scaling, and the caveat were all the subject of a pre-registered measurement reported in @sec-simulations.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -1390,7 +1390,7 @@
         "numbers": {
           "+2.5 per-candidate level; similar-pair below resolution; dissimilar -1.2 at 3.5 se; 20k repetitions": "verif:verification/cache/w4-nonnested-summary.csv"
         },
-        "notes": "Quarried; W4 findings labeled measured; caveat restated for S6."
+        "notes": "Quarried; W4 findings labeled measured; caveat restated for S6. D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
@@ -1415,7 +1415,7 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "The last result of this part locates which procedures the differential bias actually affects. At the null, @eq-lrt-bias is precisely the mean inflation that a correctly calibrated reference distribution already absorbs. The limiting law of $\\hat d_L$ is the weighted sum $\\sum_{j} \\lambda_j \\chi^2_1$ with $\\lambda_j = 1 + r_{\\perp,j}$ [@chanGeneralFeasibleTests2022], and\n$$ \\sum_{j=1}^{q_{\\mathrm{d}}} \\lambda_j \\;=\\; q_{\\mathrm{d}} + \\operatorname{tr}(\\mathrm{RIV}_\\perp). $$ {#eq-spectrum-sum}\nA test that refers the uncorrected numerator to such a reference is therefore approximately calibrated at the null. Correcting the numerator on top of it double-counts. The pre-registered null rates agree: $0.042$ uncorrected against the simulated reference, $0.034$ and slightly conservative with the additional correction. The differential bias matters instead exactly where no reference distribution stands between the statistic and its use. Three procedures qualify. Information-criterion ranking compares penalized values directly. Explicit numerator corrections must use @eq-lrt-bias rather than the naive difference. Non-nested comparison brings back both the design-imbalance differential and the heavy-tailed noise. The first of these is taken up next.",
+      "draft_prose": "The last result of this part locates which procedures the differential bias actually affects. At the null, @eq-lrt-bias is precisely the mean inflation that a correctly calibrated reference distribution already absorbs. The limiting law of $\\hat d_L$ is the weighted sum $\\sum_{j} \\lambda_j \\chi^2_1$ with $\\lambda_j = 1 + r_{\\perp,j}$ [@chanGeneralFeasibleTests2022], and\n$$ \\sum_{j=1}^{q_{\\mathrm{d}}} \\lambda_j \\;=\\; q_{\\mathrm{d}} + \\operatorname{tr}(\\mathrm{RIV}_\\perp). $$ {#eq-spectrum-sum}\nA test that refers the uncorrected numerator to such a reference is therefore approximately calibrated at the null. Correcting the numerator on top of it double-counts, a prediction checked against pre-registered null rates in @sec-simulations. The differential bias matters instead exactly where no reference distribution stands between the statistic and its use. Three procedures qualify. Information-criterion ranking compares penalized values directly. Explicit numerator corrections must use @eq-lrt-bias rather than the naive difference. Non-nested comparison brings back both the design-imbalance differential and the heavy-tailed noise. The first of these is taken up next.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -1424,7 +1424,7 @@
         "numbers": {
           "0.042 uncorrected / 0.034 over-corrected": "verif:verification/cache/W2-prod-amelia.rds"
         },
-        "notes": "The (b)->(c) bridge added in cycle 1 (DAG L5)."
+        "notes": "The (b)->(c) bridge added in cycle 1 (DAG L5). D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
@@ -1528,7 +1528,7 @@
       "id": "S4-P18",
       "section": "S4",
       "goal": "evaluate_evidence",
-      "proposition": "Pre-registered selection evidence: 0.674 vs oracle 0.898; 100% of misclassifications on the largest-RIV candidate; corrected 0.816; the residual motivates the ladder.",
+      "proposition": "The two preregistered directional predictions for selection, stated as predictions with the forward pointer; the residual motivates the ladder.",
       "depends_on": [
         "S4-P16"
       ],
@@ -1539,19 +1539,19 @@
         "serves_L2": "S4-SP6",
         "serves_L1": "M4a DERIVATIONS (D-03 inline numbers; D-08 proofs in companion; D-10 principle spine)",
         "sets_up": "C4-C6",
-        "topic_sentence": "The pre-registered selection evidence shows the directional signature the theorem predicts, and its findings are measured in the sense of @sec-methods.",
-        "closing_sentence": "It is the subject of the rest of this part.",
+        "topic_sentence": "Selection is where the theorem's directional content becomes testable.",
+        "closing_sentence": "A correctly centered criterion can still select worse than complete-data AIC, and the reason is the subject of the rest of this part.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "The pre-registered selection evidence shows the directional signature the theorem predicts, and its findings are measured in the sense of @sec-methods. The study draws four-variate normal data whose only nonzero correlations are $\\sigma_{13} = \\sigma_{24} = \\rho$, imposes 40% MAR missingness, and ranks four zero-pattern covariance candidates by MI-AIC under congenial imputation. At $N = 500$ with $\\rho = 0.40$, uncorrected MI-AIC selects the true model in $0.674$ of repetitions against an oracle rate of $0.898$, and 100% of its misclassifications land on the saturated, largest-RIV candidate. The corrected criterion recovers selection to $0.816$. That is substantial and visibly short of the oracle. The residual is not an error in the trace. It is the subject of the rest of this part.",
+      "draft_prose": "Selection is where the theorem's directional content becomes testable. The corrected criterion makes two pre-registered predictions. Uncorrected MI-AIC should misclassify toward the candidates with the most missing information about their own parameters, because that is the direction of the differential bias. Adding each candidate's own trace should remove the tilt and recover complete-data selection in expectation. Both predictions, the recovery the correction achieves, and the residual it leaves are graded in @sec-simulations. The residual matters. A correctly centered criterion can still select worse than complete-data AIC, and the reason is the subject of the rest of this part.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {
-          "0.674 / 0.816 / 0.898; 100% largest-RIV": "verif:verification/cache/run_all-prod"
+          "directional prediction + recovery": "verif:todo/004-simulation-hypotheses.md (predictions; results in S5)"
         },
-        "notes": "Quarried; the W3 headline."
+        "notes": "Quarried; the W3 headline. D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
@@ -1608,7 +1608,7 @@
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "Three maps are compared, each built from the analytic null weights $\\lambda_{k,j}$. The mean map subtracts $\\operatorname{tr}(\\mathrm{RIV}_{\\perp,k})$ per model. It telescopes, so all pairwise comparisons are simultaneously mean-corrected. The two-moment map is the unique affine map carrying the null law's mean and variance onto the complete-data $\\chi^2$'s. Matching a misbehaving statistic's first two moments is the standard repair in the structural-equation tradition [@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006], but here the coefficients come from the analytic null law rather than from estimated sandwich matrices. The equating map applies the equipercentile equating function of observed-score test equating [@kolenTestEquatingScaling2014] with the analytic null law as the source distribution, and by the probability integral transform it matches the entire null distribution. The weighted-$\\chi^2$ distribution function is evaluated by numerical inversion of the characteristic function [@imhofComputingDistributionQuadratic1961; @daviesAlgorithm155Distribution1980]. A simulated reference in the style of Chan's Monte Carlo null was the pre-registered fallback and was never needed. The pre-registration predicted the split the data then delivered. Each step closes more of the null-side gap, while the two stronger maps shrink evidence against misspecified candidates, because no transform built from the observed data can restore destroyed Fisher information.",
+      "draft_prose": "Three maps are compared, each built from the analytic null weights $\\lambda_{k,j}$. The mean map subtracts $\\operatorname{tr}(\\mathrm{RIV}_{\\perp,k})$ per model. It telescopes, so all pairwise comparisons are simultaneously mean-corrected. The two-moment map is the unique affine map carrying the null law's mean and variance onto the complete-data $\\chi^2$'s. Matching a misbehaving statistic's first two moments is the standard repair in the structural-equation tradition [@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006], but here the coefficients come from the analytic null law rather than from estimated sandwich matrices. The equating map applies the equipercentile equating function of observed-score test equating [@kolenTestEquatingScaling2014] with the analytic null law as the source distribution, and by the probability integral transform it matches the entire null distribution. The weighted-$\\chi^2$ distribution function is evaluated by numerical inversion of the characteristic function [@imhofComputingDistributionQuadratic1961; @daviesAlgorithm155Distribution1980]. A simulated reference in the style of Chan's Monte Carlo null was the pre-registered fallback. The pre-registration predicted the split the data then delivered. Each step closes more of the null-side gap, while the two stronger maps shrink evidence against misspecified candidates, because no transform built from the observed data can restore destroyed Fisher information.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -1621,14 +1621,14 @@
         "numbers": {
           "fallback 0 of 18,000 evaluations": "verif:verification/cache/ic-ladder-summary.csv"
         },
-        "notes": "Quarried; SEM-tradition framing retained."
+        "notes": "Quarried; SEM-tradition framing retained. D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
       "id": "S4-P21",
       "section": "S4",
       "goal": "evaluate_evidence",
-      "proposition": "The ladder table + four findings: null side calibrates completely (KS 0.281->0.019, var ratio 3.18->0.97); oracle reached (0.904/0.903 vs 0.899); noncentral shrinkage exact (0.586 vs 0.570; 0.362 vs 0.398); weak-signal floor 0.17 = information loss.",
+      "proposition": "The ladder's preregistered predictions (null-side completeness; exact noncentral shrinkage factors; the information-loss floor), stated as predictions with the forward pointer.",
       "depends_on": [
         "S4-P20"
       ],
@@ -1639,26 +1639,27 @@
         "serves_L2": "S4-SP7 (results)",
         "serves_L1": "M4a DERIVATIONS (D-03 inline numbers; D-08 proofs in companion; D-10 principle spine)",
         "sets_up": "S6 verdict; S5",
-        "topic_sentence": "The graded run uses three cells at $N = 500$ with $R = 2000$ repetitions each.",
-        "closing_sentence": "The floor is a measurement on these designs, not a theorem.",
+        "topic_sentence": "The pre-registration states what each map should achieve, and the predictions split along the null/noncentral axis.",
+        "closing_sentence": "All three predictions, with the frozen pass criteria they were graded against, are reported in @sec-simulations.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "The graded run uses three cells at $N = 500$ with $R = 2000$ repetitions each. True-model selection rates, with Monte Carlo standard error about $0.010$:\n\n| Cell | oracle | uncorrected | mean | two-moment | equating |\n|---|---|---|---|---|---|\n| $\\rho = 0.40$ | 0.899 | 0.678 | 0.814 | 0.904 | 0.903 |\n| $\\rho = 0.10$ | 0.820 | 0.582 | 0.650 | 0.648 | 0.650 |\n| $\\rho = 0$ (junk) | 0.727 | 0.422 | 0.585 | 0.702 | 0.696 |\n\nEvery pre-registered pass criterion was met, and four findings summarize the table. The null side calibrates completely. On the true model's anchored statistic the distance to the paired complete-data statistic falls from $0.281$ to $0.019$ across the four arms, and the variance ratio falls from $3.18$ to $0.97$. The mean correction's paired gap is itself a direct confirmation of @eq-lrt-bias at $q_{\\mathrm{d}} = 4$. Where overfit flips drive the errors, distribution matching reaches the oracle. In the $\\rho = 0.40$ design the two-moment and equating arms select at $0.904$ and $0.903$, statistically indistinguishable from complete-data AIC, and the junk cell closes 90% of the uncorrected-to-oracle gap. The noncentral side shrinks as the law predicts. The underfit candidate's mean statistic, relative to its complete-data counterpart, is $1.002$ under the mean correction, $0.586$ under two moments against a predicted $0.570$, and $0.362$ under equating against a predicted far-tail factor of $0.398$. Conservatism against misspecified candidates is the price of null-side calibration, and the factor is known in advance. Where selection is genuinely hard, nothing closes the floor. In the weak-signal cell the oracle itself drops to $0.820$ and no correction passes $0.650$. The $0.17$ residual is information loss, not calibration error. The floor is a measurement on these designs, not a theorem.",
+      "draft_prose": "The pre-registration states what each map should achieve, and the predictions split along the null/noncentral axis. On the null side, each map should close more of the calibration gap than the one before it, and matching the full null distribution should make selection indistinguishable from complete-data AIC wherever overfit flips drive the errors. On the noncentral side, the two stronger maps should shrink the evidence against misspecified candidates by factors computable in advance from the null weights, the affine map by $a_k$ and the equating map by approximately $1/\\lambda_{\\max}$ in the far tail. And where the complete-data oracle itself struggles, no observed-data correction should close the remaining gap, because the shortfall there is information loss rather than miscalibration. All three predictions, with the frozen pass criteria they were graded against, are reported in @sec-simulations.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {
-          "table rows + KS 0.281->0.019 + var 3.18->0.97 + shrinkage 0.586/0.570, 0.362/0.398 + floor 0.17": "verif:verification/cache/ic-ladder-summary.csv"
+          "predicted shrinkage factors a_k, 1/lambda_max": "deriv:sec-ic",
+          "predictions + pass criteria": "verif:todo/027-ladder-preregistration.md"
         },
-        "notes": "Quarried table verbatim; findings compressed to one paragraph."
+        "notes": "Quarried table verbatim; findings compressed to one paragraph. D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     },
     {
       "id": "S4-P22",
       "section": "S4",
       "goal": "scope_limit",
-      "proposition": "Two exact structural limits (I7): block-decomposition equality (3.6e-15; naive-input arm scores 0.824 vs 0.904) and difference-distribution invariance (6.10 vs 10.00); standings stated; proper-MI tracking within 0.011.",
+      "proposition": "The two structural limits stated as proved facts (block-decomposition equality; marginal-map invariance of difference distributions); numerical exhibits and the proper-MI check forward-pointed.",
       "depends_on": [
         "S4-P21",
         "S4-P11"
@@ -1671,19 +1672,19 @@
         "serves_L2": "S4-SP7 (limits) + I7",
         "serves_L1": "M4a DERIVATIONS (D-03 inline numbers; D-08 proofs in companion; D-10 principle spine)",
         "sets_up": "S6 G2-G4; S5",
-        "topic_sentence": "Two structural limits close this part, and both are exact.",
-        "closing_sentence": "...track the FIML cells within $0.011$ on the headline rates (@sec-simulations).",
+        "topic_sentence": "Two structural limits close this part, and both are proved.",
+        "closing_sentence": "...the proper-MI check is part of the pre-registered evidence in @sec-simulations.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "Two structural limits close this part, and both are exact. First, in this candidate family the naive trace difference and the exact projected trace agree to machine precision, at $3.6 \\times 10^{-15}$. That is not luck. Block-diagonal covariance patterns decompose both informations over within-block and cross-block coordinates, which is precisely the equality condition of @prp-naive. The overstatement is therefore invisible in this family and material only for constraints that do not block-decompose, where it reaches the factor above three of the $\\mu_1$ design. Second, per-model marginal transforms cannot calibrate a difference distribution. The dependence between two candidates' scores is invariant under marginal maps, and in the weak-signal near-tied pair the equated score difference has mean $6.10$ against the complete-data $10.00$. Selection-aware refinements are developed separately. The standings differ and are stated. The noncentral shrinkage and the difference-distribution invariance are firm. The weak-signal floor is measured. As in the likelihood-ratio part, everything here is stated and measured for the deterministic-FIML $\\bar Q_\\infty$. The anchoring cancellations are properties of sharing the imputation model, so the construction carries to proper MI unchanged, and the pre-registered sweep's proper-MI cells track the FIML cells within $0.011$ on the headline rates (@sec-simulations).",
+      "draft_prose": "Two structural limits close this part, and both are proved. First, block-diagonal zero patterns make the naive trace difference and the exact projected trace coincide. Such constraints decompose both information matrices over within-block and cross-block coordinates, which is exactly the equality condition of @prp-naive. The overstatement of @eq-overstate is therefore invisible in block-diagonal candidate families, and it is material only for constraints that do not block-decompose, such as the mean restriction in the design of @prp-lrt. Second, per-model marginal transforms cannot calibrate a difference distribution. The dependence between two candidates' scores is invariant under maps applied to each score separately, so no per-model map controls the law of their difference, and near-tied comparisons remain uncalibrated after equating. Selection-aware refinements are developed separately. Both limits are exhibited numerically in @sec-simulations. As in the likelihood-ratio part, everything here is stated for the deterministic-FIML $\\bar Q_\\infty$. The anchoring cancellations are properties of sharing the imputation model, so the construction carries to proper MI unchanged, and the proper-MI check is part of the pre-registered evidence in @sec-simulations.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {
-          "3.6e-15 agreement; 6.10 vs 10.00; 0.011 proper-MI tracking": "verif:verification/cache/ic-ladder-summary.csv + verif:verification/cache/run_all-prod"
+          "equality condition / invariance arguments": "deriv:sec-ic"
         },
-        "notes": "Quarried; the naive-input arm comparison (0.824 vs 0.904) folded into C7? NO - kept implicit here, full version in S5. Flag if Marcus wants it inline."
+        "notes": "Quarried; the naive-input arm comparison (0.824 vs 0.904) folded into C7? NO - kept implicit here, full version in S5. Flag if Marcus wants it inline. D-03-A1 applied 2026-06-07: simulation numbers/findings moved to S5; forward pointers only."
       }
     }
   ],
@@ -1694,6 +1695,6 @@
     "review_objects_complete": null,
     "dependency_graph_acyclic": null,
     "passes": null,
-    "notes": "S4 part (a) formalized 2026-06-07 (Marcus: a Derivations section must derive): T_est B2-B4 chain and T_imp A1-A3 chain displayed; new S4-P7b carries the (A)+(C) order counting and closed form; 51 paragraphs total. Lint green."
+    "notes": "D-03 Amendment 1 applied to S4 (2026-06-07): no MC numbers or simulation findings in the Derivations section; forward pointers to @sec-simulations; phi-tilde formally defined in P4. S5 drafting must absorb: sign-regime + known-scale experiments, pooled theorem confirmation, 52-se discrimination, pairing sd table, W4 measurements, null-rate double-counting, W3 rates + signature, ladder table + four findings, the two structural-limit exhibits, proper-MI tracking. 51 paragraphs; lint green."
   }
 }

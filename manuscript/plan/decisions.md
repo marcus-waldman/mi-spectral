@@ -20,7 +20,8 @@ Strategic decisions D-01…D-08 live in full (chosen + rejected options + ration
 |---|---|---|---|
 | D-01 | 2026-05-22 | Deviance-bias framing, upstream of Chan's calibration | ratified_in_prior_work |
 | D-02 | 2026-06-02 | Fitted-imputation headline (+1/2), oracle contrast stated in setup | ratified_in_prior_work |
-| D-03 | 2026-06-05 | Consolidated numerics section + inline headline numbers | **ratified** (2026-06-06, cycle 2) |
+| D-03 | 2026-06-05 | Consolidated numerics section + inline headline numbers | **ratified** (2026-06-06, cycle 2); **amended 2026-06-07** (A1) |
+| D-03-A1 | 2026-06-07 | Amendment 1: the Derivations section carries NO Monte Carlo numbers and no simulation findings — preregistered claims get one-line forward pointers to @sec-simulations; ALL empirical content consolidates in S5; inline headline numbers remain permitted in S1 and the S6 verdict (summary, not substantiation). Rationale: a Derivations section must derive; "from multimodal evidence we know this is true" undercuts the formal posture, and S3 Methods already establishes the verification pipeline once. Rejected: keeping inline numbers at point of claim in S4 (the original D-03 choice — made before D-09 split Results into Derivations + Simulation studies, which changes the calculus) | **ratified** (in-chat) |
 | D-04 | 2026-06-05 | Background as precision restatement with displays | **ratified** (2026-06-06, cycle 2) |
 | D-05 | 2026-06-05 | Trust-ordered claims; failures reported in main text | **ratified** (2026-06-06, cycle 2) |
 | D-06 | 2026-06-04 | Scope split: ladder rungs 1–3 in-paper; de-shrinkage etc. to sequel | ratified_in_prior_work |
