@@ -33,6 +33,7 @@ Strategic decisions D-01…D-08 live in full (chosen + rejected options + ration
 | D-11 | 2026-06-06 | JAIGP provenance declaration lives in a title-page declaration block (AI lineage + role, ORCID-verified human prompter of record, repo + companion pointers) — the reader knows the paper's nature before page one; Discussion ends on the workflow reflection; rejected: standalone provenance section (180e2b5 S8), Discussion closing block, end-matter placement | **ratified** (in-chat, level2 cycle 1) |
 | D-12 | 2026-06-06 | Level 3 authored FROM SCRATCH under the approved Level-2 blueprints, section-by-section drafting cycles; 180e2b5 is the QUARRY — verified material (displays, theorem statements, headline numbers, citation-backed sentences) lifted deliberately where a blueprint paragraph matches, never imported wholesale; mi-spectral.qmd frozen at 180e2b5 until the first compile; compile_enabled flips only when all six sections exist; the protocol's level3-decomposition target is retired for this paper; rejected: mechanical decomposition (~70% of paragraphs would need rewriting under the old framing anyway), full import-then-edit | **ratified** (in-chat) |
 | D-13 | 2026-06-07 | The raw session transcripts (mi-spectral project only, 35 files 2026-05-22→) ENTER THE PUBLIC RECORD as provenance, to build trust; the committed collaboration analysis (todo/032 → verification/collaboration-analysis.md) is the citable summary S3-P2 rests on; MI-IC sessions are OUT of scope for the analysis; rejected: analysis-only publication (selective quotation invites the suspicion the protocol exists to dispel), cross-project scope (different paper, muddies the record) | **ratified** (in-chat) |
+| D-14 | 2026-06-07 | Simulation-studies exhibits are committed PNG figures drawn by `verification/figures.R` from the gate-confirmed caches into `manuscript/figures/`, included in S5 via Quarto image syntax; the qmd stays a pure compile-from-JSON artifact and the figures carry their own provenance. Rejected: executable ggplot chunks in the qmd (adds an R-execution dependency to the manuscript build and breaks the level3-JSON-is-source invariant) | **ratified** (in-chat, todo/033) |
 
 ## Style and terminology
 
@@ -48,4 +49,25 @@ Strategic decisions D-01…D-08 live in full (chosen + rejected options + ration
 
 ## Per-section adjudications
 
-(none yet — populated by the review loop)
+**S5 rebuild (2026-06-07, todo/033).** Setup became 11 per-study Methods blocks
+(apparatus + grading + 8 study designs), each reproducible from the paragraph. Results
+became 9 committed PNG figures plus the ladder selection table and a structural-limits
+table, each carrying an explicit perfect reference (oracle / nominal level / analytic
+target / y=x) and the achieved value. S5 grew 14 → 22 paragraphs (handoff anticipated
+the growth). Three reconciliations made during the rebuild, flagged for Marcus's
+per-paragraph review:
+
+- The theorem-validation figure (`fig-w1-theorem`) draws from the preregistered
+  `W1-prod-fiml*` caches, which are the source of the verified pooled `2.43 ± 0.26`, the
+  target `2.77`, and the `N=1000` 2.6-se miss. The todo/033 inventory listed
+  `phase1-w1/summary.csv` for this exhibit, but that re-run is a different design (3
+  sample sizes, half-trace ≈ 2.63) and does not carry the registered numbers. The
+  `W1-prod-fiml*` caches were NOT in the 2026-06-07 regeneration gate (only `run_all` and
+  the ladder were) — a candidate to add to the pre-submission regen, cheap and
+  deterministic.
+- The non-nested per-candidate `(A)+(C)` levels were re-sourced from the committed
+  `w4-dissimilar-summary.csv` (`lvl_diag ≈ 2.62`, `lvl_ar ≈ 2.85` under MAR, collapsing
+  to `1.40` / `0.43` under MCAR). The previous prose's "+2.33 against +2.85" did not match
+  any committed summary column; the figure and new prose use the committed values.
+- Structural limits became a table rather than a figure (the three quantities are scalar
+  limit-checks, not a headline comparison).

@@ -1,0 +1,208 @@
+=== W2+W4 regen started 2026-06-07T23:32:04Z ===
+snapshot written to verification/cache/_regen-snapshot-20260607
+
+--- W2 prod amelia  start 23:32:04Z ---
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+Warning message:
+package 'pbapply' was built under R version 4.5.2 
+
+W2 LRT power  [mode=prod, engine=amelia, cores=20]
+  N=200   M=200   R=1000   delta_grid=[0, 0.5, 1, 1.5, 2, 2.5, 3, 4]
+
+  delta = 0
+    566.8s
+
+  delta = 0.5
+    568.2s
+
+  delta = 1
+    556.8s
+
+  delta = 1.5
+    548.4s
+
+  delta = 2
+    537.3s
+
+  delta = 2.5
+    530.5s
+
+  delta = 3
+    540.7s
+
+  delta = 4
+    540.4s
+
+Done in 4389.9 seconds.
+
+== W2 results: rejection rates at alpha=0.05 ==
+Reference distributions: C1 chi^2_1; C2/C3 Chan (2022 AoS) MC
+
+ delta C1_oracle C2_corrected C3_uncorrected C5_SB mcse_corrected
+   0.0     0.040        0.034          0.042 0.045       0.005731
+   0.5     0.079        0.041          0.055 0.058       0.006270
+   1.0     0.158        0.082          0.108 0.106       0.008676
+   1.5     0.327        0.143          0.166 0.159       0.011070
+   2.0     0.524        0.240          0.285 0.274       0.013506
+   2.5     0.719        0.376          0.424 0.420       0.015317
+   3.0     0.881        0.509          0.569 0.538       0.015809
+   4.0     0.990        0.790          0.819 0.820       0.012880
+ mcse_uncorrected  mcse_sb median_bias_corr median_trRIV_un median_trRIV_cn
+         0.006343 0.006556            1.003           4.970           3.956
+         0.007209 0.007392            1.006           4.977           3.960
+         0.009815 0.009735            1.010           4.984           3.964
+         0.011766 0.011564            1.014           4.998           3.969
+         0.014275 0.014104            1.016           5.010           3.976
+         0.015628 0.015608            1.027           5.022           3.985
+         0.015660 0.015766            1.039           5.046           3.995
+         0.012175 0.012149            1.066           5.089           4.018
+ median_r_hat
+       0.9827
+       0.9836
+       0.9805
+       0.9780
+       0.9763
+       0.9807
+       0.9829
+       1.0140
+
+Cache: verification/cache/W2-prod-amelia.rds
+--- W2 prod amelia  end   00:45:15Z  exit=0 ---
+
+--- W4 nonnested R=20000  start 00:45:15Z ---
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+====== W4 non-nested (Vuong) (A)+(C) differential (todo/029) ======
+R_per_cell=20000  n_cores=20  cells={A,B,Aprime,Bprime}  Ns={500,1000,2000}  seeds 20260604+r
+
+SMOKE: |tr_perp(G_sel) - tr_perp(idx)|=0.00e+00  max|tr_chk-p|=8.88e-16  spec_gap=1.25e-15  lam_min=1.0000
+SMOKE PASS
+
+-- A       N= 500 (20000 ok, 0 err, 197s) --
+   resid (A+C est) = -0.5208 (0.2118)  [-2.5 se] | D_pair=-0.439 d_trperp=+0.082
+   sd(D_pair)=29.934  sd(D_mu1)=8.613  sd(D_nest_cs)=43.747 | mu1 resid=+3.5499 (0.0609)
+   P(sel CS): oracle=0.000 MIunc=0.000 MIcorr=0.000 | trperp/naive CS=8.036/8.766 AR=7.954/8.737
+   rho_cs=0.353 rho_ar=0.499 ar_conv=1.000 | asserts specgap=2.6e-14 lam=1.0000 trchk=1.8e-15
+
+-- A       N=1000 (20000 ok, 0 err, 226s) --
+   resid (A+C est) = -0.3218 (0.2998)  [-1.1 se] | D_pair=-0.238 d_trperp=+0.083
+   sd(D_pair)=42.379  sd(D_mu1)=8.423  sd(D_nest_cs)=61.113 | mu1 resid=+3.4527 (0.0596)
+   P(sel CS): oracle=0.000 MIunc=0.000 MIcorr=0.000 | trperp/naive CS=8.010/8.736 AR=7.927/8.706
+   rho_cs=0.354 rho_ar=0.500 ar_conv=1.000 | asserts specgap=5.5e-15 lam=1.0000 trchk=1.8e-15
+
+-- A       N=2000 (20000 ok, 0 err, 289s) --
+   resid (A+C est) = -0.0958 (0.4218)  [-0.2 se] | D_pair=-0.012 d_trperp=+0.084
+   sd(D_pair)=59.646  sd(D_mu1)=8.545  sd(D_nest_cs)=87.359 | mu1 resid=+3.4393 (0.0604)
+   P(sel CS): oracle=0.000 MIunc=0.000 MIcorr=0.000 | trperp/naive CS=8.002/8.726 AR=7.919/8.697
+   rho_cs=0.354 rho_ar=0.500 ar_conv=1.000 | asserts specgap=5.8e-15 lam=1.0000 trchk=2.2e-15
+
+-- B       N= 500 (20000 ok, 0 err, 197s) --
+   resid (A+C est) = -0.2942 (0.2275)  [-1.3 se] | D_pair=-0.152 d_trperp=+0.142
+   sd(D_pair)=32.154  sd(D_mu1)=8.817  sd(D_nest_cs)=45.759 | mu1 resid=+3.5500 (0.0623)
+   P(sel CS): oracle=0.496 MIunc=0.495 MIcorr=0.497 | trperp/naive CS=8.083/8.782 AR=7.940/8.729
+   rho_cs=0.404 rho_ar=0.473 ar_conv=1.000 | asserts specgap=5.8e-15 lam=1.0000 trchk=2.2e-15
+
+-- B       N=1000 (20000 ok, 0 err, 230s) --
+   resid (A+C est) = +0.1058 (0.3214)  [0.3 se] | D_pair=+0.249 d_trperp=+0.143
+   sd(D_pair)=45.443  sd(D_mu1)=8.495  sd(D_nest_cs)=64.109 | mu1 resid=+3.4696 (0.0601)
+   P(sel CS): oracle=0.503 MIunc=0.495 MIcorr=0.496 | trperp/naive CS=8.060/8.756 AR=7.917/8.702
+   rho_cs=0.404 rho_ar=0.473 ar_conv=1.000 | asserts specgap=5.5e-15 lam=1.0000 trchk=1.8e-15
+
+-- B       N=2000 (20000 ok, 0 err, 287s) --
+   resid (A+C est) = +0.1038 (0.4538)  [0.2 se] | D_pair=+0.247 d_trperp=+0.143
+   sd(D_pair)=64.163  sd(D_mu1)=8.550  sd(D_nest_cs)=91.294 | mu1 resid=+3.4025 (0.0605)
+   P(sel CS): oracle=0.500 MIunc=0.499 MIcorr=0.500 | trperp/naive CS=8.052/8.746 AR=7.909/8.692
+   rho_cs=0.405 rho_ar=0.473 ar_conv=1.000 | asserts specgap=4.9e-15 lam=1.0000 trchk=1.8e-15
+
+-- Aprime  N= 500 (20000 ok, 0 err, 172s) --
+   resid (A+C est) = -0.2432 (0.1914)  [-1.3 se] | D_pair=-0.159 d_trperp=+0.084
+   sd(D_pair)=27.054  sd(D_mu1)=3.627  sd(D_nest_cs)=33.024 | mu1 resid=+0.0749 (0.0256)
+   P(sel CS): oracle=0.000 MIunc=0.000 MIcorr=0.000 | trperp/naive CS=8.052/8.782 AR=7.968/8.753
+   rho_cs=0.354 rho_ar=0.500 ar_conv=1.000 | asserts specgap=4.3e-14 lam=1.0000 trchk=1.8e-15
+
+-- Aprime  N=1000 (20000 ok, 0 err, 199s) --
+   resid (A+C est) = +0.2714 (0.2678)  [1.0 se] | D_pair=+0.355 d_trperp=+0.084
+   sd(D_pair)=37.870  sd(D_mu1)=3.654  sd(D_nest_cs)=46.379 | mu1 resid=+0.0691 (0.0258)
+   P(sel CS): oracle=0.000 MIunc=0.000 MIcorr=0.000 | trperp/naive CS=8.020/8.746 AR=7.936/8.716
+   rho_cs=0.354 rho_ar=0.500 ar_conv=1.000 | asserts specgap=5.9e-15 lam=1.0000 trchk=1.8e-15
+
+-- Aprime  N=2000 (20000 ok, 0 err, 248s) --
+   resid (A+C est) = -0.0524 (0.3770)  [-0.1 se] | D_pair=+0.032 d_trperp=+0.084
+   sd(D_pair)=53.305  sd(D_mu1)=3.590  sd(D_nest_cs)=65.394 | mu1 resid=+0.0200 (0.0254)
+   P(sel CS): oracle=0.000 MIunc=0.000 MIcorr=0.000 | trperp/naive CS=8.011/8.735 AR=7.927/8.706
+   rho_cs=0.354 rho_ar=0.500 ar_conv=1.000 | asserts specgap=5.7e-15 lam=1.0000 trchk=1.8e-15
+
+-- Bprime  N= 500 (20000 ok, 0 err, 171s) --
+   resid (A+C est) = -0.4897 (0.1937)  [-2.5 se] | D_pair=-0.346 d_trperp=+0.144
+   sd(D_pair)=27.385  sd(D_mu1)=3.625  sd(D_nest_cs)=35.465 | mu1 resid=+0.0800 (0.0256)
+   P(sel CS): oracle=0.496 MIunc=0.502 MIcorr=0.503 | trperp/naive CS=8.102/8.803 AR=7.958/8.749
+   rho_cs=0.405 rho_ar=0.473 ar_conv=1.000 | asserts specgap=8.8e-15 lam=1.0000 trchk=1.8e-15
+
+-- Bprime  N=1000 (20000 ok, 0 err, 197s) --
+   resid (A+C est) = +0.1848 (0.2708)  [0.7 se] | D_pair=+0.328 d_trperp=+0.144
+   sd(D_pair)=38.291  sd(D_mu1)=3.650  sd(D_nest_cs)=49.859 | mu1 resid=+0.0721 (0.0258)
+   P(sel CS): oracle=0.503 MIunc=0.499 MIcorr=0.500 | trperp/naive CS=8.070/8.766 AR=7.926/8.712
+   rho_cs=0.405 rho_ar=0.473 ar_conv=1.000 | asserts specgap=5.2e-15 lam=1.0000 trchk=1.8e-15
+
+-- Bprime  N=2000 (20000 ok, 0 err, 247s) --
+   resid (A+C est) = -0.2610 (0.3811)  [-0.7 se] | D_pair=-0.117 d_trperp=+0.144
+   sd(D_pair)=53.897  sd(D_mu1)=3.570  sd(D_nest_cs)=70.342 | mu1 resid=+0.0151 (0.0252)
+   P(sel CS): oracle=0.500 MIunc=0.501 MIcorr=0.502 | trperp/naive CS=8.061/8.756 AR=7.917/8.701
+   rho_cs=0.405 rho_ar=0.473 ar_conv=1.000 | asserts specgap=4.6e-15 lam=1.0000 trchk=1.8e-15
+
+wrote verification/cache/w4-nonnested-summary.csv
+ISO  cell A N= 500:  MAR resid=-0.5208  MCAR resid=-0.2432  =>  (A)+(C) = -0.2776 (0.2855) [-1.0 se]
+ISO  cell A N=1000:  MAR resid=-0.3218  MCAR resid=+0.2714  =>  (A)+(C) = -0.5932 (0.4020) [-1.5 se]
+ISO  cell A N=2000:  MAR resid=-0.0958  MCAR resid=-0.0524  =>  (A)+(C) = -0.0434 (0.5657) [-0.1 se]
+ISO  cell B N= 500:  MAR resid=-0.2942  MCAR resid=-0.4897  =>  (A)+(C) = +0.1955 (0.2988) [0.7 se]
+ISO  cell B N=1000:  MAR resid=+0.1058  MCAR resid=+0.1848  =>  (A)+(C) = -0.0789 (0.4203) [-0.2 se]
+ISO  cell B N=2000:  MAR resid=+0.1038  MCAR resid=-0.2610  =>  (A)+(C) = +0.3647 (0.5926) [0.6 se]
+====================================================================
+--- W4 nonnested R=20000  end   01:29:40Z  exit=0 ---
+
+--- W4 dissimilar R=20000  start 01:29:41Z ---
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+====== W4 DISSIMILAR pair: Diagonal vs AR(1) (todo/029 Amendment 2) ======
+R_per_cell=20000  n_cores=20  cells={A,Aprime}  Ns={500,1000,2000}  truth=AR(1) rho=0.5
+
+SMOKE (diag): max|tr_chk-p|=0.00e+00  diag spec_gap=0.00e+00  lam_min=1.0000
+SMOKE PASS
+
+-- A       N= 500 (20000 ok, 0 err, 185s) --
+   resid (A+C diff) = -0.2330 (0.2546) [-0.9 se] | (A+C)_diag=+2.618(0.263) (A+C)_ar=+2.851(0.076)
+   D_pair=-1.276 d_trperp=-1.043 sd(D_pair)=35.99 | trperp/naive diag=6.91/6.91 ar=7.95/8.74 rho_ar=0.499
+
+-- A       N=1000 (20000 ok, 0 err, 211s) --
+   resid (A+C diff) = -0.6394 (0.3557) [-1.8 se] | (A+C)_diag=+1.981(0.361) (A+C)_ar=+2.621(0.074)
+   D_pair=-1.678 d_trperp=-1.039 sd(D_pair)=50.29 | trperp/naive diag=6.89/6.89 ar=7.93/8.71 rho_ar=0.500
+
+-- A       N=2000 (20000 ok, 0 err, 261s) --
+   resid (A+C diff) = -0.5488 (0.5033) [-1.1 se] | (A+C)_diag=+2.014(0.508) (A+C)_ar=+2.563(0.073)
+   D_pair=-1.587 d_trperp=-1.038 sd(D_pair)=71.18 | trperp/naive diag=6.88/6.88 ar=7.92/8.70 rho_ar=0.500
+
+-- Aprime  N= 500 (20000 ok, 0 err, 165s) --
+   resid (A+C diff) = +0.9640 (0.2282) [4.2 se] | (A+C)_diag=+1.396(0.235) (A+C)_ar=+0.432(0.060)
+   D_pair=-0.081 d_trperp=-1.045 sd(D_pair)=32.26 | trperp/naive diag=6.92/6.92 ar=7.97/8.75 rho_ar=0.500
+
+-- Aprime  N=1000 (20000 ok, 0 err, 186s) --
+   resid (A+C diff) = +0.7220 (0.3213) [2.2 se] | (A+C)_diag=+0.862(0.325) (A+C)_ar=+0.140(0.058)
+   D_pair=-0.318 d_trperp=-1.040 sd(D_pair)=45.43 | trperp/naive diag=6.90/6.90 ar=7.94/8.72 rho_ar=0.500
+
+-- Aprime  N=2000 (20000 ok, 0 err, 226s) --
+   resid (A+C diff) = +0.5277 (0.4531) [1.2 se] | (A+C)_diag=+0.573(0.456) (A+C)_ar=+0.045(0.057)
+   D_pair=-0.511 d_trperp=-1.039 sd(D_pair)=64.08 | trperp/naive diag=6.89/6.89 ar=7.93/8.71 rho_ar=0.500
+
+wrote verification/cache/w4-dissimilar-summary.csv
+ISO  N= 500:  MAR resid=-0.2330  MCAR resid=+0.9640  =>  (A)+(C) diff = -1.1970 (0.3419) [-3.5 se]
+ISO  N=1000:  MAR resid=-0.6394  MCAR resid=+0.7220  =>  (A)+(C) diff = -1.3614 (0.4793) [-2.8 se]
+ISO  N=2000:  MAR resid=-0.5488  MCAR resid=+0.5277  =>  (A)+(C) diff = -1.0765 (0.6773) [-1.6 se]
+==========================================================================
+--- W4 dissimilar R=20000  end   01:50:17Z  exit=0 ---
+
+=== DIFF vs committed snapshot ===
+w4-nonnested-summary.csv: DIFFERS (see git diff)
+w4-dissimilar-summary.csv: DIFFERS (see git diff)
+
+=== W2+W4 regen finished 2026-06-08T01:50:18Z ===

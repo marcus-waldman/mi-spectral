@@ -64,9 +64,48 @@ All three cells identical on every statistic; only `elapsed` differs.
 - Full run logs: `verification/cache/regen-runlog-sweep.txt`,
   `verification/cache/regen-runlog-ladder.txt`.
 
+## W2 + W4 regeneration (appended 2026-06-08)
+
+Run before drawing the `@sec-simulations` figures from `W2-prod-amelia.rds`,
+`w4-nonnested-summary.csv`, and `w4-dissimilar-summary.csv`, so every W2/W4 exhibit
+rests on gate-confirmed data. Driver: `verification/_regen-w2-w4.sh` (sequential, so
+the 20-core cluster is never oversubscribed; snapshots the committed caches first).
+
+| Entry point | Command | Wall clock | Exit |
+|---|---|---|---|
+| W2 LRT power | `Rscript verification/W2-lrt-power.R prod amelia 20` | 73 min | 0 |
+| W4 non-nested | `Rscript verification/w4-nonnested-vuong.R 20000 20` | 44 min | 0 |
+| W4 dissimilar | `Rscript verification/w4-dissimilar-vuong.R 20000 20` | 21 min | 0 |
+
+**Verdict: every reported quantity reproduced; only environment churn differs.**
+
+- **W2** — the full rejection table reproduced. The four reported rejection-rate
+  columns (`C1_oracle`, `C2_corrected`, `C3_uncorrected`, `C5_SB`) are bit-identical
+  across all eight `delta` rows (max abs diff 0). The null row is `0.040 / 0.034 /
+  0.042 / 0.045`, matching the committed cache and the manuscript. The only difference
+  anywhere in the object is `median_r_hat`, a diagnostic median the manuscript never
+  reports, wobbling by `3.4e-5` (consistent with an imputation-package rebuild on this
+  host).
+- **W4 non-nested and dissimilar** — both summary CSVs are identical to the committed
+  bytes except the `elapsed_sec` timing column. Every statistic (`resid`, `resid_se`,
+  `D_pair`, `d_trperp`, the per-candidate `lvl_diag`/`lvl_ar`, the trace columns)
+  reproduced exactly. The per-cell `.rds` files differ by 2-3 bytes each
+  (high-precision serialization), with statistically identical content.
+
+As for the ladder in the gate above, the tracked W2/W4 caches were restored to their
+committed bytes with `git checkout` after the diff (timing and 3.4e-5 diagnostic churn
+discarded); the repository keeps the evidence-of-record. The S5 figures
+(`fig-lrt-absorption`, `fig-w4-nonnested`) are drawn from these gate-confirmed caches.
+
+Note: the driver's optional `identical()` convenience check on the W2 `.rds` hit a
+transient segmentation fault while the W4 cluster was still resident in memory; the
+column-by-column comparison above was run separately and stands. Full log:
+`verification/cache/regen-w2-w4-runlog.txt`.
+
 ## Still outstanding before submission
 
-W2 (`W2-lrt-power.R`) and W4 (`w4-nonnested-vuong.R`, `w4-dissimilar-vuong.R`) were
-NOT part of this gate; they are preregistered originals with their own seeds. A
-complete pre-submission reproducibility pass should regenerate them too and append
-to this receipt.
+W1's preregistered originals (`W1-prod-fiml{,-N500,-N1000,-N2000}.rds`) back the lead
+theorem-validation figure (`fig-w1-theorem`: pooled `2.43 ± 0.26`, target `2.77`, the
+`N=1000` 2.6-se miss) and were NOT in either gate. They are deterministic analytic-FIML
+runs, cheap to regenerate. Adding them would complete the pre-submission reproducibility
+pass for every figure-bearing cache in S5.

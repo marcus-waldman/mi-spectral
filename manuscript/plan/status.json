@@ -4,7 +4,7 @@
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
   "phase": "level3_drafting",
   "last_updated": "2026-06-07",
-  "updated_by": "claude (S6 + punctuation gate + reproducibility gate PASS + JASA preview; todo/033 handoff for the S5 rebuild)",
+  "updated_by": "claude (S5 REBUILT per todo/033: 11 per-study Methods blocks + 9 committed PNG figures via verification/figures.R + 2 tables; check_plan green; JASA preview re-rendered 56pp; W2+W4 regen running in background to gate-confirm the W2/W4 exhibits before commit)",
   "blocked_on": {
     "who": "marcus",
     "what": "Per-paragraph annotation sessions on S1 (7), S2 (13), S3 (8), and now S4 (22 paragraphs, drafted 2026-06-07: setup+theorem A1-A8, LRT B1-B7, IC C1-C7; quarried displays/propositions/numbers with prose rewritten to the style rules). Open flags unchanged (S1 length; decomposition sentence; improper continuity) + S4-P22 note (naive-input arm comparison kept implicit, full version in S5). After approvals or in parallel: Claude drafts S5 + S6 (small).",
@@ -72,9 +72,9 @@
     "last_synced": null
   },
   "next_actions": [
-    "NEXT SESSION: rebuild S5 Simulation studies per todo/033 (per-study Methods setup blocks; results as tables/graphs with perfect-vs-achieved markers; impatient-reader self-contained exhibits)",
-    "Marcus: per-paragraph passes S1-S6 (73 paragraphs); D-13 deposit-scan review",
-    "Pre-submission: regenerate W2 + W4 (not in the 2026-06-07 gate; receipt notes it)",
+    "IN FLIGHT: W2+W4 regeneration (background job) — on completion confirm bit-identical to the committed caches, redraw the W2/W4 figures only if a number moved, append to verification/cache/regen-receipt-20260607.md, then commit S5 (figures.R + manuscript/figures/*.png + the update script + level3/level4 JSON + decisions/status)",
+    "Marcus: per-paragraph passes S1-S6 (now 81 paragraphs); review the S5 rebuild incl. the three reconciliations in decisions.md (W1-prod-fiml source, w4 +2.6/+2.9 re-source, structural-limits table); D-13 deposit-scan review",
+    "Candidate for pre-submission regen: W1-prod-fiml* (backs the lead theorem-validation figure; cheap, deterministic; not in the 2026-06-07 gate) — awaiting Marcus go-ahead (scope was W2+W4)",
     "Then: compile_enabled, canonical compile, render, derivation-audit",
     "Follow-up queued: todo/030 map sync"
   ],
