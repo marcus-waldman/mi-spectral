@@ -46,6 +46,7 @@ Strategic decisions D-01…D-08 live in full (chosen + rejected options + ration
 | T-05 | 2026-06-06 | Methods (M3) written factually in the passive voice — deliberate exception to the paper's general active-voice preference; the protocol is described as procedure, not narrated as achievement | ratified (in-chat, cycle 2) |
 | T-06 | 2026-06-06 | Unresolved-status claims in the Introduction are typed: documented-open cited to the stating passage; asserted-here stated in the authors' voice and flagged as contribution | ratified (in-chat, cycle 2) |
 | T-07 | 2026-06-06 | "Complete-data replication" (D-10) vs Monte Carlo repetitions: simulations say "repetitions", never "replications" | ratified (in-chat, cycle 2) |
+| T-08 | 2026-06-26 | Reader-facing prose: the complete-data sense of "oracle" -> "complete-data benchmark" (insider term; applied across S5 + G6 + S4-P21). The conditioning sense ("fitted-versus-oracle", the Q-function conditioned on the truth) is a distinct load-bearing derivation term, still present in S3-P6 / S4-P4 / S4-P7, pending a separate rename decision | ratified (in-chat, 2026-06-26) |
 
 ## Per-section adjudications
 
@@ -71,3 +72,21 @@ per-paragraph review:
   any committed summary column; the figure and new prose use the committed values.
 - Structural limits became a table rather than a figure (the three quantities are scalar
   limit-checks, not a headline comparison).
+
+**S5 tribunal amendments (2026-06-26, cross-family adversarial review).** S5's simulation
+claims were stress-tested by a cross-family tribunal (Claude + GPT-5.5 + Gemini via
+`tkal-in-ket`; run `tkal-reviews/tribunal-20260627T014721Z/`). The harness defender had no
+repository access and conceded everything; a repo-grounded defense + a cross-family press
+round on it returned **verdict AMEND** — no result retracted, no headline number changed.
+The two unanimous "blockers" were rebutted on the evidence: the W1 "goalpost" (pooled
+2.43 +/- 0.26 has a 95% CI [1.93, 2.94] that *contains* the registered 2.77, and the
+O(1) (A)+(C) term is independently derived and dated, todo/004 Amendment 2), and the
+block-diagonal "luck" (the equality is already tabled; "overstates elsewhere" is proved
+@prp-naive + measured in Study 8). The "hidden failure" charge was rebutted by todo/005
+(uncongenial/MNAR registered observational, "no required pass"). Seven local edits applied:
+S5-P12 W1 leading-order-anchor bridge ("consistent with" not "confirms"); S5-P15 52-sigma
+localized to the engineered cell; S5-P17 W3C direction-not-mechanism; S5-P18/P19 two-sided
+MCSE interval + named ncratio factors; S5-P20 moment-map decoupled from trace-formula
+superiority; S5-P22 engine-sensitivity pointer tightened (phase6-info + phase2-w3); and a
+NEW S6-P4b (G6) congeniality limit that fulfils the todo/005 H5 section-6 disclosure
+commitment. Full record: `tkal-reviews/tribunal-20260627T014721Z/VERDICT-SYNTHESIS.md`.

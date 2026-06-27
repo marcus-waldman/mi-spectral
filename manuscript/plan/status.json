@@ -3,8 +3,8 @@
   "project": "mi-spectral JAIGP manuscript",
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
   "phase": "level3_drafting",
-  "last_updated": "2026-06-07",
-  "updated_by": "claude (S5 REBUILT per todo/033: 11 per-study Methods blocks + 9 committed PNG figures via verification/figures.R + 2 tables; check_plan green; JASA preview re-rendered 56pp; W2+W4 regen running in background to gate-confirm the W2/W4 exhibits before commit)",
+  "last_updated": "2026-06-26",
+  "updated_by": "claude (S5 cross-family tribunal review -> verdict AMEND; 7 wording/scoping amendments applied to S5 + new S6-P4b G6 congeniality limit + oracle->complete-data benchmark terminology pass across S5/G6/S4-P21; check_plan green; current draft rendered for Marcus)",
   "blocked_on": {
     "who": "marcus",
     "what": "Per-paragraph annotation sessions on S1 (7), S2 (13), S3 (8), and now S4 (22 paragraphs, drafted 2026-06-07: setup+theorem A1-A8, LRT B1-B7, IC C1-C7; quarried displays/propositions/numbers with prose rewritten to the style rules). Open flags unchanged (S1 length; decomposition sentence; improper continuity) + S4-P22 note (naive-input arm comparison kept implicit, full version in S5). After approvals or in parallel: Claude drafts S5 + S6 (small).",
@@ -13,7 +13,7 @@
   "levels": {
     "level1": "ratified_cycle2",
     "level2": "annotated_cycle1",
-    "level3": "all_six_drafted (73 paragraphs; compile pending Marcus passes + regen gate)",
+    "level3": "all_six_drafted + S5 tribunal-amended (82 paragraphs incl. new S6-P4b G6); compile pending Marcus passes",
     "level4": "populated (87 entries, all verified)"
   },
   "sections": [
@@ -61,7 +61,9 @@
     "approved",
     "committed"
   ],
-  "open_decisions": [],
+  "open_decisions": [
+    "T-08 follow-up: conditioning-sense 'oracle' rename in S3-P6/S4-P4/S4-P7"
+  ],
   "citations_backlog": {
     "proposed": 3,
     "queued": 0,
@@ -72,10 +74,10 @@
     "last_synced": null
   },
   "next_actions": [
-    "IN FLIGHT: W2+W4 regeneration (background job) — on completion confirm bit-identical to the committed caches, redraw the W2/W4 figures only if a number moved, append to verification/cache/regen-receipt-20260607.md, then commit S5 (figures.R + manuscript/figures/*.png + the update script + level3/level4 JSON + decisions/status)",
-    "Marcus: per-paragraph passes S1-S6 (now 81 paragraphs); review the S5 rebuild incl. the three reconciliations in decisions.md (W1-prod-fiml source, w4 +2.6/+2.9 re-source, structural-limits table); D-13 deposit-scan review",
-    "Candidate for pre-submission regen: W1-prod-fiml* (backs the lead theorem-validation figure; cheap, deterministic; not in the 2026-06-07 gate) — awaiting Marcus go-ahead (scope was W2+W4)",
-    "Then: compile_enabled, canonical compile, render, derivation-audit",
+    "DECIDE (Marcus): S3-P6 / S4-P4 / S4-P7 conditioning-sense 'oracle' rename (T-08 follow-up; e.g. 'true-parameter expectation')",
+    "Then flip compile_enabled + canonical recompile -- resolves the qmd<->level3 S5 divergence (the official mi-spectral.qmd S5 is the pre-todo/033 version)",
+    "Marcus: per-paragraph annotation passes S1-S6 (82 paragraphs); the S5 tribunal pass is one external-review cycle, not a substitute for the annotation",
+    "Optional: commit the tribunal review record (tkal-reviews/) as provenance per D-13 -- Marcus's call on what enters the public record",
     "Follow-up queued: todo/030 map sync"
   ],
   "structure_note": "Section list = the ratified 6-section set (D-09 + Amendment 1) + title-page declaration (D-11/D-13). mi-spectral.qmd remains frozen at 180e2b5 until first compile. Citations backlog: proposed = White 2011, Grund 2021, Schomaker 2007 (all optional)."

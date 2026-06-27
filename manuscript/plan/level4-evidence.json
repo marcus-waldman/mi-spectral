@@ -782,20 +782,36 @@
       "note": "W4 exhibit."
     },
     {
-      "id": "E-S5-P22-1",
-      "proposition_id": "S5-P22",
-      "pointer": "verif:verification/cache/run_all-prod",
-      "evidence_status": "verified",
-      "passage_or_value": "EMB vs observed-data RIV within 2-3%; selection within 0.011.",
-      "note": "Engine sensitivity."
-    },
-    {
       "id": "E-S5-figR",
       "proposition_id": "S5-P1",
       "pointer": "verif:verification/figures.R",
       "evidence_status": "verified",
       "passage_or_value": "verification/figures.R draws all 9 PNG exhibits from the committed caches; deterministic.",
       "note": "Figure provenance."
+    },
+    {
+      "id": "E-S5-P22-1",
+      "proposition_id": "S5-P22",
+      "pointer": "verif:verification/cache/run_all-prod/phase6-info/summary.csv",
+      "evidence_status": "verified",
+      "passage_or_value": "tr_samp vs tr_obs: |sample RIV - observed-data RIV|/tr_obs ~ 2.1-2.6% (N200 2.6%, N500 2.1%), no widening with N.",
+      "note": "Engine sensitivity, RIV agreement (exact file)."
+    },
+    {
+      "id": "E-S5-P22-2",
+      "proposition_id": "S5-P22",
+      "pointer": "verif:verification/cache/run_all-prod/phase2-w3/summary.csv",
+      "evidence_status": "verified",
+      "passage_or_value": "FIML vs EMB-congenial selection agreement within 0.011 on the recovery gap.",
+      "note": "Engine sensitivity, selection agreement (exact file)."
+    },
+    {
+      "id": "E-S6-P4b-1",
+      "proposition_id": "S6-P4b",
+      "pointer": "verif:verification/cache/run_all-prod/phase2-w3/summary.csv",
+      "evidence_status": "verified",
+      "passage_or_value": "uncongenial cells: uncorrected ~0.93 > complete-data benchmark ~0.91; corrected ~0.98 (benchmark-minus-corrected negative).",
+      "note": "Congeniality limit (tribunal 2026-06-26; fulfills todo/005 H5 section-6 commitment)."
     }
   ],
   "acquisition_queue_note": "New references surfaced while drafting enter here as 'proposed' AND in todo/003 in the same response (standing rule). The /status dashboard reports the backlog by status.",
@@ -804,6 +820,6 @@
     "no_cited_without_verified_literature_file": null,
     "every_pointer_resolves": null,
     "passes": null,
-    "notes": "S1-S6 populated; S5 rebuilt per todo/033 (figure-bearing). All pointers resolve. Full gate at compile."
+    "notes": "S1-S6 populated; S5 tribunal-amended 2026-06-26; S6 gains G6 congeniality limit. All pointers resolve. Full gate at compile."
   }
 }
