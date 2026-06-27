@@ -3,14 +3,15 @@ schema_version: 1
 project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
-current_milestone: "Socratic review of the S5 simulation evidence -- does each figure actually prove its claim? (confidence gate before more drafting)"
-last_synced_commit: a3b3da6
+current_milestone: "Prose readability pass over the manuscript (S1-S6) -- topic/support/wrap arc, plain statements, lower grade level; S5 Socratic review complete (cross-family tribunal -> AMEND)"
+last_synced_commit: fd88434
 tree_state: dirty
-updated: "2026-06-27T04:32:38Z"
+updated: "2026-06-27T04:33:53Z"
 updated_by: wrap
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 cockpit: { provider: null, list_id: null }
 ---
+
 
 
 
