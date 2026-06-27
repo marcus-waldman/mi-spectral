@@ -129,7 +129,7 @@
         "status": "drafted",
         "flags": "S1 runs to 7 paragraphs vs blueprint estimate 4-5 (Marcus aware; per-paragraph session pending). | readability-pass 2026-06-26: FK lowered, topic/support/wrap arc + plain statements; numbers, claims, hedges, citations, figure markup all preserved (mechanically verified)."
       },
-      "draft_prose": "The exception is inference carried by the likelihood itself. For likelihood-ratio tests, a combining rule has existed since @mengPerformingLikelihoodRatio1992b. Its modern repairs give tests with accurate size [@chanMultipleImprovementsMultiple2022; @chanGeneralFeasibleTests2022]. For likelihood-based model selection, the picture is different. Here the literature's assessment of itself is that the question is open. Only one information criterion has been proposed for multiply imputed data. It closes by saying the method \"seems worthwhile to be further investigated, both theoretically as well as in practical situations\". That investigation lay beyond the paper's scope [@consentinoclaeskensOrderSelectionTests2010]. The first comprehensive study of model selection after multiple imputation calls the literature \"surprisingly sparse\" [@schomakerModelSelectionModel2014a]. The same study cautions that selecting by averaged criteria \"is not supported by MI literature.\" For variable selection, \"there are currently no guidelines\" [@woodHowShouldVariable2008a]. The applied guides are silent in the same direction. The standard book-length treatment does not treat information criteria for multiply imputed data at all [@vanbuurenFlexibleImputationMissing2018a]. Neither does the current state-of-the-art review [@endersMissingDataUpdate2025].",
+      "draft_prose": "The exception is inference carried by the likelihood itself. For likelihood-ratio tests, a combining rule has existed since @mengPerformingLikelihoodRatio1992b. Its modern repairs give tests with accurate size [@chanMultipleImprovementsMultiple2022; @chanGeneralFeasibleTests2022]. For likelihood-based model selection, the picture is different. Here the literature's assessment of itself is that the question is open. Only one information criterion has been proposed for multiply imputed data. Its authors call for further theoretical and practical study of the method and place that work beyond their own scope [@consentinoclaeskensOrderSelectionTests2010]. The first comprehensive study of model selection after multiple imputation describes the available literature as unexpectedly thin [@schomakerModelSelectionModel2014a]. That study also cautions that selecting models by averaged criteria has no support in the multiple-imputation literature. A dedicated study of variable selection with multiply imputed data reports that no guidelines yet exist [@woodHowShouldVariable2008a]. The applied guides are silent in the same direction. The standard book-length treatment does not treat information criteria for multiply imputed data at all [@vanbuurenFlexibleImputationMissing2018a]. Neither does the current state-of-the-art review [@endersMissingDataUpdate2025].",
       "audit": {
         "status": "complete",
         "citations": {
@@ -143,7 +143,7 @@
           "endersMissingDataUpdate2025": "verified (read in-session 2026-06-06; MI-inference section is testing-only)"
         },
         "numbers": {},
-        "notes": "All four quotes checked verbatim against the literature files this session; absences documented in todo/003 typing pass."
+        "notes": "All four quotes checked verbatim against the literature files this session; absences documented in todo/003 typing pass. Direct quotes of other work paraphrased per Marcus 2026-06-27 (no verbatim quoting; citation to the stating passage retained)."
       }
     },
     {
@@ -647,7 +647,7 @@
         "status": "drafted",
         "flags": "readability-pass 2026-06-26: FK lowered, topic/support/wrap arc + plain statements; numbers, claims, hedges, citations, figure markup all preserved (mechanically verified)."
       },
-      "draft_prose": "**Rubin's rules are exact posterior-moment identities.** This paper uses Rubin's combining rules through the likelihood, not as moment formulas. That use requires them in their exact form. Result 3.2 of @rubinMultipleImputationNonresponse1987 shows two things. The posterior mean of an estimand given the observed data equals the average of the completed-data posterior means. The posterior variance equals the average completed-data variance plus the variance of the completed-data means. These are the ordinary rules for conditional moments, applied to imputation. With infinitely many imputations they are exact identities, not asymptotic approximations. In Rubin's notation they give $\\bar Q_\\infty$, $\\bar U_\\infty$, $B_\\infty$, and the total variance $T_\\infty = \\bar U_\\infty + B_\\infty$. Rubin then defines the scalar relative increase in variance due to nonresponse,\n$$ r_\\infty \\;=\\; B_\\infty / \\bar U_\\infty $$ {#eq-bg-rinf}\n(his equation 3.1.7). The RIV matrix of @eq-bg-riv is this quantity in matrix form. One approximation separates the exact identities from usable inference. It is \"the usual approximation of the posterior distribution as normal\", a Laplace-type approximation [@Tierney01031986]. The main theorem describes what happens when the exact moment identities are used through the likelihood itself, not as moments.",
+      "draft_prose": "**Rubin's rules are exact posterior-moment identities.** This paper uses Rubin's combining rules through the likelihood, not as moment formulas. That use requires them in their exact form. Result 3.2 of @rubinMultipleImputationNonresponse1987 shows two things. The posterior mean of an estimand given the observed data equals the average of the completed-data posterior means. The posterior variance equals the average completed-data variance plus the variance of the completed-data means. These are the ordinary rules for conditional moments, applied to imputation. With infinitely many imputations they are exact identities, not asymptotic approximations. In Rubin's notation they give $\\bar Q_\\infty$, $\\bar U_\\infty$, $B_\\infty$, and the total variance $T_\\infty = \\bar U_\\infty + B_\\infty$. Rubin then defines the scalar relative increase in variance due to nonresponse,\n$$ r_\\infty \\;=\\; B_\\infty / \\bar U_\\infty $$ {#eq-bg-rinf}\n(his equation 3.1.7). The RIV matrix of @eq-bg-riv is this quantity in matrix form. One approximation separates the exact identities from usable inference. It is the usual treatment of the posterior distribution as approximately normal, a Laplace-type approximation [@Tierney01031986]. The main theorem describes what happens when the exact moment identities are used through the likelihood itself, not as moments.",
       "audit": {
         "status": "complete",
         "citations": {
@@ -655,7 +655,7 @@
           "Tierney01031986": "verified (Laplace-approximation pointer; held from 180e2b5 verification, role unchanged)"
         },
         "numbers": {},
-        "notes": "Use-first rewrite; renumbered from P7."
+        "notes": "Use-first rewrite; renumbered from P7. Direct quotes of other work paraphrased per Marcus 2026-06-27 (no verbatim quoting; citation to the stating passage retained)."
       }
     },
     {
@@ -710,14 +710,14 @@
         "status": "drafted",
         "flags": "readability-pass 2026-06-26: FK lowered, topic/support/wrap arc + plain statements; numbers, claims, hedges, citations, figure markup all preserved (mechanically verified)."
       },
-      "draft_prose": "**AIC is a bias-corrected plug-in estimate.** The model-selection application corrects AIC, so AIC's own logic is needed first. @akaikeNewLookStatistical1974a evaluates a fitted model by its mean log-likelihood against the true distribution. The maximized log-likelihood is the natural estimate of this criterion. That estimate is too optimistic. It \"needs a correction for the downward bias introduced by replacing $\\theta$ by $\\hat\\theta$. This correction is simply realized by adding $k$,\" the parameter count. The result is\n$$ \\mathrm{AIC} \\;=\\; -2\\log(\\text{maximum likelihood}) + 2k. $$ {#eq-bg-aic}\nThe model-selection application repeats this accounting with one more bias source. Under multiple imputation the goodness-of-fit term is $-2\\bar Q_\\infty$ rather than the complete-data deviance. That added bias is exactly what the main theorem quantifies.",
+      "draft_prose": "**AIC is a bias-corrected plug-in estimate.** The model-selection application corrects AIC, so AIC's own logic is needed first. @akaikeNewLookStatistical1974a evaluates a fitted model by its mean log-likelihood against the true distribution. The maximized log-likelihood is the natural estimate of this criterion. That estimate is too optimistic. It needs a correction for the downward bias from replacing $\\theta$ with its estimate $\\hat\\theta$, and that correction is simply to add the parameter count $k$. The result is\n$$ \\mathrm{AIC} \\;=\\; -2\\log(\\text{maximum likelihood}) + 2k. $$ {#eq-bg-aic}\nThe model-selection application repeats this accounting with one more bias source. Under multiple imputation the goodness-of-fit term is $-2\\bar Q_\\infty$ rather than the complete-data deviance. That added bias is exactly what the main theorem quantifies.",
       "audit": {
         "status": "complete",
         "citations": {
           "akaikeNewLookStatistical1974a": "verified (read in-session 2026-06-06; 'downward bias... adding k' quote verbatim at :148)"
         },
         "numbers": {},
-        "notes": "Use-first rewrite; renumbered from P9. Punctuation sweep 2026-06-07."
+        "notes": "Use-first rewrite; renumbered from P9. Punctuation sweep 2026-06-07. Direct quotes of other work paraphrased per Marcus 2026-06-27 (no verbatim quoting; citation to the stating passage retained)."
       }
     },
     {

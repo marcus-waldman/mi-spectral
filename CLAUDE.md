@@ -220,7 +220,8 @@ Target reader: an applied researcher with quantitative training and working MI k
   "why are you telling me this"). Section openers are roadmaps of what the reader will
   get, never self-justifications of why the section exists.
 - **Typed claims (T-06).** "Unresolved in the literature" must be either documented-open
-  (cited to the stating passage, quotes verbatim) or asserted-here (in the authors'
+  (cited to the stating passage, **paraphrased -- no verbatim quotation of other work
+  anywhere in the manuscript prose**, per D-17) or asserted-here (in the authors'
   voice, flagged as contribution). Settledness is attributed ("the field's own accounts
   treat X as settled"), not endorsed.
 - **Trust-ordered (T-04/D-05).** Firm (proved + verified) first, measurements next,
