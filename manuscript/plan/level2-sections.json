@@ -517,12 +517,12 @@
       "anchor": "sec-discussion",
       "title": "Discussion",
       "mapping_from_180e2b5": "Old S7 (sec-discussion), reordered to the inverse gradient with the plain-language verdict as item (4) and the workflow reflection as the close. Old S8 (sec-provenance) is split: substance -> S3 Methods; formal declaration -> title-page declaration block (D-11); nothing of it remains as section content.",
-      "goal_statement": "Close the paper on the inverse gradient: open at the technical level the derivations earned (G1-G6 next to the claims they qualify, the power-dominance conjecture labeled), then broaden until the closing passages - the plain-language replication-principle verdict and the workflow reflection - are fully readable by the S1 reader, ending on the workflow reflection. NO separate Conclusion section; the verdict paragraph is the takeaway block. The JAIGP provenance declaration is NOT section content - it lives in a title-page declaration block (D-11). Serves all four thesis components.",
+      "goal_statement": "Close the paper on the inverse gradient: open at the technical level the derivations earned (G1-G7 next to the claims they qualify, the power-dominance conjecture labeled), then broaden until the closing passages - the plain-language replication-principle verdict and the workflow reflection - are fully readable by the S1 reader, ending on the workflow reflection. NO separate Conclusion section; the verdict paragraph is the takeaway block. The JAIGP provenance declaration is NOT section content - it lives in a title-page declaration block (D-11). Serves all four thesis components.",
       "estimated_paragraphs": "9-11",
       "super_propositions": [
         {
           "id": "S6-SP1",
-          "claim": "G1-G6 scope limits are stated next to the claims they qualify, each with its evidential standing (general statement / MVN verification per D-07 among them).",
+          "claim": "G1-G7 scope limits are stated next to the claims they qualify, each with its evidential standing (general statement / MVN verification per D-07 among them).",
           "goal": "scope_limit",
           "evidence": [
             "deriv:sec-thm",

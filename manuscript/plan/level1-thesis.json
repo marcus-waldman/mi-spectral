@@ -160,7 +160,7 @@
         "label": "DISCUSSION",
         "section_anchor": "sec-discussion",
         "title": "Discussion",
-        "function": "Inverse gradient: opens at the technical level the derivations earned and broadens until the closing passages are fully readable by the M1 reader. Order: (1) scope and limits G1-G6, each next to the claim it qualifies; (2) the power-dominance conjecture stated as a conjecture with partial empirical support (W2); (3) three directions - covariate shift (per Shimodaira's named future work), exact-engine replication, selection-aware calibration (the sequel, developed separately); (4) the broadening turn: the replication-principle verdict in plain language - what an applied researcher can now do and expect (on average the corrected criterion matches what complete data would have given; at the null, selection behaves as if the data were complete; under signal, missing information costs power and no post-processing can buy it back) and what remains open; (5) a short trust-ordered reflection on the workflow - what the gates caught, what they cost, what they cannot catch; (6) ends with the formal JAIGP provenance declaration (the former standalone section, shrunk). NO separate Conclusion section - item (4) is the de facto takeaway block.",
+        "function": "Inverse gradient: opens at the technical level the derivations earned and broadens until the closing passages are fully readable by the M1 reader. Order: (1) scope and limits G1-G7, each next to the claim it qualifies; (2) the power-dominance conjecture stated as a conjecture with partial empirical support (W2); (3) three directions - covariate shift (per Shimodaira's named future work), exact-engine replication, selection-aware calibration (the sequel, developed separately); (4) the broadening turn: the replication-principle verdict in plain language - what an applied researcher can now do and expect (on average the corrected criterion matches what complete data would have given; at the null, selection behaves as if the data were complete; under signal, missing information costs power and no post-processing can buy it back) and what remains open; (5) a short trust-ordered reflection on the workflow - what the gates caught, what they cost, what they cannot catch; (6) ends with the formal JAIGP provenance declaration (the former standalone section, shrunk). NO separate Conclusion section - item (4) is the de facto takeaway block.",
         "serves_thesis": [
           "primary",
           "secondary",
@@ -168,7 +168,7 @@
           "methodological"
         ],
         "key_claims": [
-          "G1-G6 with evidential standing stated",
+          "G1-G7 with evidential standing stated",
           "The replication-principle verdict stated in plain language for the M1 reader",
           "The workflow reflection is itself trust-ordered: what is demonstrated about the protocol vs what is asserted",
           "No separate Conclusion; the Discussion broadens out instead"
@@ -237,7 +237,7 @@
       "id": "D-05",
       "date": "2026-06-05",
       "label": "Trust-ordered claims with failures reported",
-      "chosen": "Claims are graded firm / measured / structural in the text wherever standing differs ((A)+(C) three-tier paragraph; ladder limits; G1-G6), and failed predictions are reported in the main text (similar-pair headline NOT met; N=1000 cell at 2.6 se; component-level misses).",
+      "chosen": "Claims are graded firm / measured / structural in the text wherever standing differs ((A)+(C) three-tier paragraph; ladder limits; G1-G7), and failed predictions are reported in the main text (similar-pair headline NOT met; N=1000 cell at 2.6 se; component-level misses).",
       "rejected_options": {
         "headline_first": "Leading with the strongest numbers and footnoting the misses reads as salesmanship to exactly the referee this venue attracts.",
         "failures_in_supplement": "Hiding failures in supplementary material contradicts the provenance posture the paper itself argues for."

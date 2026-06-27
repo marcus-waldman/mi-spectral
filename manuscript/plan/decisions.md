@@ -90,3 +90,7 @@ MCSE interval + named ncratio factors; S5-P20 moment-map decoupled from trace-fo
 superiority; S5-P22 engine-sensitivity pointer tightened (phase6-info + phase2-w3); and a
 NEW S6-P4b (G6) congeniality limit that fulfils the todo/005 H5 section-6 disclosure
 commitment. Full record: `tkal-reviews/tribunal-20260627T014721Z/VERDICT-SYNTHESIS.md`.
+
+## T-08 conditioning-sense rename (2026-06-27)
+
+The conditioning-sense "oracle" (the Q-function conditioned on the truth, $\mathbb{E}[\ell_{\text{com}}\mid Y_{\text{obs}}]$ under the data-generating law, which no real procedure computes) is renamed to **"true-model expectation"** in S3-P6, S4-P4, and S4-P7. This completes T-08: the complete-data sense became "complete-data benchmark" (2026-06-26) and S5's "fitted-versus-oracle" became "fitted-model-versus-true-model". The word "oracle" no longer appears in level3 prose. (derivation.qmd, a separate sourced artifact, is out of scope for this prose pass and may retain its own usages.)
