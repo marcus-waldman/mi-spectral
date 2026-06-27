@@ -4,22 +4,23 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Socratic review of the S5 simulation evidence -- does each figure actually prove its claim? (confidence gate before more drafting)"
-last_synced_commit: "7768357"
+last_synced_commit: a3b3da6
 tree_state: dirty
-updated: "2026-06-16T15:10:03Z"
+updated: "2026-06-27T04:32:38Z"
 updated_by: wrap
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 cockpit: { provider: null, list_id: null }
 ---
 
 
+
 # Goal
 
-A finite-M spectral correction for likelihood-based hypothesis tests under *congenial* multiple imputation (MI), with applications to likelihood-ratio model comparison and information-criterion model selection. Core result: the MI Q-function carries a deviance bias that decomposes as +1/2 * tr(RIV) (RIV = relative-increase-in-variance). It is an AI-assisted derivation with transparent, ORCID-verified human prompting, targeting JAIGP; every load-bearing claim is meant to be paired with a preregistered numerical witness. Predicted empirical signature: uncorrected MI-AIC misclassifications should concentrate on the highest-RIV candidate model -- but whether the simulation evidence actually shows this convincingly is exactly what is now in question.
+A finite-M spectral correction for likelihood-based hypothesis tests under *congenial* multiple imputation (MI), with applications to likelihood-ratio model comparison and information-criterion model selection. Core result: the MI Q-function carries a deviance bias that decomposes as +1/2 * tr(RIV) (RIV = relative-increase-in-variance). It is an AI-assisted derivation with transparent, ORCID-verified human prompting, targeting JAIGP; every load-bearing claim is meant to be paired with a preregistered numerical witness. Predicted empirical signature: uncorrected MI-AIC misclassifications should concentrate on the highest-RIV candidate model -- confirmed (W3-C = 1.000) and adversarially reviewed.
 
 # Current milestone
 
-GATE: before any further drafting or compile, the simulation evidence (S5) must pass a skeptical, figure-by-figure Socratic review. When last reviewed, the S5 evidence was unconvincing or poorly explained, and at least one figure looked clearly off yet was presented as proof that something works. That dented confidence -- the failure mode here is confident-but-wrong AI narration applied to hard evidence, which is worse than weak prose. Tie every result/figure to the precise claim it must support and adversarially test whether it does, before resuming prose annotation or compiling.
+Prose readability pass over the whole manuscript, before compile and submission. The S5 Socratic review is COMPLETE: it ran as a cross-family tribunal (Claude + GPT-5.5 + Gemini) with a repo-grounded defense and a press round, returning verdict AMEND -- no result retracted, no headline number changed, and the figure that looked clearly off was claim-overreach in wording, not a plotting or scaling bug. Reading the full manuscript in PDF then surfaced the next gate: the prose still demands inference and reads above grade level. Every paragraph (level3 draft_prose, S1-S6) must run a clear topic-sentence -> supporting-details -> wrap-up/hand-off arc, state each logical step plainly even at the cost of a little redundancy, and read at a lower grade level.
 
 # Milestones
 
@@ -29,15 +30,16 @@ The arc from start to the Goal. Mark each: `[x]` done - `[~]` current - `[ ]` up
 - [x] Preregistration of witness hypotheses (W1 theorem - W2 LRT power - W3 model selection)
 - [x] Empirical validation runs executed (comprehensive sweep; W4 non-nested)
 - [x] Proof of correctness -- formal propositions + CAS verification
-- [~] Socratic review of the simulation evidence (S5) -- does each figure actually prove its claim? (incl. the figure that looked clearly off)
-- [ ] Per-paragraph annotation of S1-S6
+- [x] Socratic review of the simulation evidence (S5) -- done as a cross-family tribunal; verdict AMEND, no result retracted (the "off" figure was claim-overreach, not a plotting bug)
+- [~] Prose readability pass (S1-S6) -- per-paragraph rewrite for the topic/support/wrap arc, plain statements, lower grade level
+- [ ] Per-paragraph annotation (Marcus passes) + compile-enablement (port front matter into level3 metadata)
 - [ ] Compile + derivation-audit (0 blocker/0 warn) + Zenodo deposit -> JAIGP submission
 
 # Next 3 actions
 
-1. Socratic review of S5: for each figure/result, state the exact claim it must support, then adversarially test whether it does -- and find/diagnose the figure that looked clearly off (a real surprising result vs a plotting/scaling bug vs a claim that overreaches the evidence).
-2. Repair what the review surfaces -- re-run, re-plot, or rewrite the claim -- until each figure demonstrably earns its place; no claim survives on confident prose alone.
-3. Only then resume per-paragraph annotation (S1-S6), and proceed to compile + derivation-audit + submission.
+1. Prose readability pass over level3 draft_prose (S1-S6): per-paragraph rewrite to the topic-sentence -> supporting-details -> wrap-up/hand-off arc; unpack compressed inferences into explicit plain sentences (a little redundancy is fine); lower sentence complexity / grade level (measure Flesch-Kincaid before/after). Includes today's S5 amendments (some, e.g. S5-P12/P20, are dense). Then regenerate the JASA preview to re-read in manuscript form.
+2. Merge branch `s5-tribunal-amendments` into main (commits 2b10f67 S5 amendments + a3b3da6 readability directive); resolve the deferred conditioning-sense "oracle" rename in S3-P6/S4-P4/S4-P7 (T-08 follow-up).
+3. Then the per-paragraph annotation passes + compile-enablement (port qmd_header / references footer / provenance title-page into level3 metadata) -> compile -> derivation-audit -> submission.
 
 # Decisions made
 
@@ -50,11 +52,16 @@ The arc from start to the Goal. Mark each: `[x]` done - `[~]` current - `[ ]` up
 - AI-assisted derivation with ORCID-verified provenance per JAIGP; no hallucinated citations (every citekey backed by a locally-read PDF).
 - Level-3 paragraphs are the prose source of truth -- never edit the rendered qmd directly once compile is enabled.
 - TRUST GATE (2026-06-16): hard evidence must survive adversarial/Socratic scrutiny before it enters the manuscript -- every figure tied to the exact claim it proves, no confident-but-wrong AI narration over results. Triggered by S5 evidence that was unconvincing/mis-explained, with a figure that looked clearly off.
+- S5 SOCRATIC REVIEW DONE (2026-06-26): run as a cross-family tribunal (Claude + GPT-5.5 + Gemini via tkal-in-ket) -> repo-grounded defense -> cross-family press round. Verdict AMEND; no result retracted, no headline number changed. The two unanimous "blockers" were rebutted on the evidence (W1 pooled 2.43+/-0.26 has a 95% CI [1.93,2.94] that CONTAINS the registered 2.77; block-diagonal "overstates elsewhere" is proved @prp-naive + measured in Study 8). The figure that "looked clearly off" was claim-overreach in wording, not a plotting/scaling bug -- fixed by 7 local amendments + a new S6 G6 congeniality limit. Method note: the tkal tribunal defender has no repo access and concedes everything; the informative pattern is challenges -> repo-grounded defense -> press round. Run: tkal-reviews/tribunal-20260627T014721Z/.
+- W3-C = 1.000 UNDER UNCONGENIALITY is genuine, not an artifact (resolves the prior open question): it was a preregistered directional prediction (todo/005 H2/H5, registered observational, expected to drop) that held across all 60 cells. But "100% land on saturated" confirms the bias DIRECTION; it does not discriminate the specific decomposition, because the nested RIV-ordering makes the saturated model the natural overfit sink (rescoped in S5-P17). The uncongenial behavior (uncorrected exceeds the complete-data benchmark; the correction overshoots past it) is now disclosed in the new S6 G6 congeniality limit.
+- TERMINOLOGY T-08 (2026-06-26): "oracle" (complete-data sense) -> "complete-data benchmark" in reader-facing prose, applied across S5 + G6 + S4-P21. The conditioning sense ("fitted-versus-oracle", the Q-function conditioned on the truth) is a distinct load-bearing term still in S3-P6 / S4-P4 / S4-P7, pending a separate rename (see Open questions).
+- PROSE READABILITY (2026-06-26): the manuscript must run the full high-school paragraph arc (topic sentence -> supporting details -> wrap-up/hand-off), state logical steps plainly rather than forcing inference (redundancy acceptable), and read at a lower grade level. Why: reading the full assembled PDF showed the existing cadence/punctuation rules were not enough -- the prose still demands inference and runs high.
 
 # Open questions
 
-- Which S5 figures/results actually demonstrate the predicted mechanism, and which are unconvincing or mis-explained? Specifically: what is wrong with the figure that looked clearly off -- a real (surprising) result, a plotting/scaling bug, or a claim that overreaches the evidence?
 - Real-data demonstration (HRS wealth components vs NHANES lipids) -- defer unless the manuscript stalls or a reviewer requests it.
-- Uncongeniality robustness: W3-C directional concordance reportedly = 1.000 even under uncongeniality -- design artifact or genuine property? (re-examine in the Socratic review.)
+- What plain term replaces the conditioning-sense "oracle" (the fitted-versus-oracle / Q-function-conditioned-on-the-truth contrast) in S3-P6 / S4-P4 / S4-P7? T-08 follow-up; e.g. "true-parameter expectation" / "conditioned on the truth".
 - Formalize the (correct but informal) MI-IC v4.5 derivation as an appendix theorem, generalized to arbitrary regular-likelihood models.
 - Optional citation backlog (White 2011, Grund 2021, Schomaker 2007) -- none load-bearing.
+
+(Resolved this session, moved to Decisions made: the S5 "which figures actually prove their claim / what is wrong with the figure that looked off" question -- answered by the tribunal, AMEND, claim-overreach not a plotting bug; and the W3-C-under-uncongeniality artifact-or-genuine question -- genuine, registered observational, direction-confirming.)
