@@ -199,7 +199,12 @@ Target reader: an applied researcher with quantitative training and working MI k
   sentences, one idea per sentence, explicit connectives ("The practical consequence
   is...", "The fix is direct."). No em-dash appositive chains (X — gloss — verb), no
   nested mid-sentence glosses, no fixed poetic cadence, no constructions that make the
-  reader backtrack.
+  reader backtrack. Run the full paragraph arc. Open with a topic
+  sentence, give the supporting details in their own sentences, and close with a
+  wrap-up or a hand-off to the next idea. State each logical step plainly rather
+  than leaving the reader to infer it, even at the cost of a little redundancy.
+  Keep the reading level low, favoring short declarative sentences over dense or
+  sophisticated constructions.
 - **Punctuation budget.** Semicolons, colons, and dashes are near-zero by default —
   where one is tempting, end the sentence and start a new one. Lists become "The first
   is X. The second is Y." or enumerated displays, not semicolon chains. A colon is
@@ -255,3 +260,9 @@ For each proposed paper, record: (a) approximate citation, (b) the claim it woul
 ## R style
 
 Inherit `~/.claude/CLAUDE.md` global instructions if computation is added.
+
+<!-- prometheus:charter -->
+## Project charter (Prometheus)
+This repo is tracked by Project Prometheus. Before starting work, read
+`.prometheus/charter.md` for the current goal, milestone, next 3 actions,
+decisions already made, and open questions.

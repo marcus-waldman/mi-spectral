@@ -4,7 +4,7 @@
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
   "phase": "level3_drafting",
   "last_updated": "2026-06-26",
-  "updated_by": "claude (S5 cross-family tribunal review -> verdict AMEND; 7 wording/scoping amendments applied to S5 + new S6-P4b G6 congeniality limit + oracle->complete-data benchmark terminology pass across S5/G6/S4-P21; check_plan green; current draft rendered for Marcus)",
+  "updated_by": "claude (S5 tribunal review DONE -> verdict AMEND, amendments applied + committed on branch s5-tribunal-amendments; Marcus then flagged a manuscript-wide PROSE READABILITY gap after reading the JASA PDF -- queued as the next-session priority)",
   "blocked_on": {
     "who": "marcus",
     "what": "Per-paragraph annotation sessions on S1 (7), S2 (13), S3 (8), and now S4 (22 paragraphs, drafted 2026-06-07: setup+theorem A1-A8, LRT B1-B7, IC C1-C7; quarried displays/propositions/numbers with prose rewritten to the style rules). Open flags unchanged (S1 length; decomposition sentence; improper continuity) + S4-P22 note (naive-input arm comparison kept implicit, full version in S5). After approvals or in parallel: Claude drafts S5 + S6 (small).",
@@ -74,6 +74,7 @@
     "last_synced": null
   },
   "next_actions": [
+    "PROSE READABILITY PASS (Marcus 2026-06-26, top priority): per-paragraph rewrite of level3 draft_prose S1-S6 for easier readability / lower grade reading level -- complete the topic-sentence -> supporting-details -> wrap-up/hand-off arc; state inferred steps plainly (a little redundancy is fine); lower sentence complexity. The manuscript still reads inference-heavy and above grade level despite the existing cadence/punctuation rules.",
     "DECIDE (Marcus): S3-P6 / S4-P4 / S4-P7 conditioning-sense 'oracle' rename (T-08 follow-up; e.g. 'true-parameter expectation')",
     "Then flip compile_enabled + canonical recompile -- resolves the qmd<->level3 S5 divergence (the official mi-spectral.qmd S5 is the pre-todo/033 version)",
     "Marcus: per-paragraph annotation passes S1-S6 (82 paragraphs); the S5 tribunal pass is one external-review cycle, not a substitute for the annotation",
