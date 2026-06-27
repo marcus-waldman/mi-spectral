@@ -94,3 +94,7 @@ commitment. Full record: `tkal-reviews/tribunal-20260627T014721Z/VERDICT-SYNTHES
 ## T-08 conditioning-sense rename (2026-06-27)
 
 The conditioning-sense "oracle" (the Q-function conditioned on the truth, $\mathbb{E}[\ell_{\text{com}}\mid Y_{\text{obs}}]$ under the data-generating law, which no real procedure computes) is renamed to **"true-model expectation"** in S3-P6, S4-P4, and S4-P7. This completes T-08: the complete-data sense became "complete-data benchmark" (2026-06-26) and S5's "fitted-versus-oracle" became "fitted-model-versus-true-model". The word "oracle" no longer appears in level3 prose. (derivation.qmd, a separate sourced artifact, is out of scope for this prose pass and may retain its own usages.)
+
+## Display-equation line-breaks (2026-06-27, todo/034 #1+2)
+
+Wide display equations that overflowed the right text margin in the assembled preview (21 blocks across 11 paragraphs: S2-P13, S4-P10, S4-P11, S4-P19, S4-P20, S4-P3, S4-P4, S4-P5, S4-P6, S4-P7, S4-P7b) were broken at their relation symbols and comma/\qquad separators onto aligned lines (\begin{aligned}/\end{aligned}, one gathered list). This clears the xelatex Overfull \hbox warnings (worst was eq-lrt-bias at 112pt over) and the associated "equation renders as $$ / not given" symptom, which was clipping at the page edge, not malformed markup. Every mathematical token is preserved verbatim -- the edits only insert alignment ampersands and line breaks, verified by a normalize-and-compare check.
