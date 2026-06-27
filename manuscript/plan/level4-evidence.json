@@ -343,7 +343,7 @@
     },
     {
       "id": "E-S3-P2-1",
-      "proposition_id": "S3-P2",
+      "proposition_id": "S1B-P2",
       "pointer": "verif:manuscript/plan/decisions.md",
       "evidence_status": "verified",
       "passage_or_value": "Dated decisions D-01..D-12, T-01..T-07, each with rejected options.",
@@ -351,7 +351,7 @@
     },
     {
       "id": "E-S3-P2-2",
-      "proposition_id": "S3-P2",
+      "proposition_id": "S1B-P2",
       "pointer": "verif:verification/collaboration-analysis.md",
       "evidence_status": "verified",
       "passage_or_value": "Five-pattern heuristic with frequencies (599 turns, 13 codes) and a 25-episode verified table; episodes E11 and E14 are the two cited in P2.",

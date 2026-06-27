@@ -49,6 +49,11 @@
       "title": "Introduction"
     },
     {
+      "id": "S1B",
+      "anchor": "sec-ai-collab",
+      "title": "AI–human collaboration"
+    },
+    {
       "id": "S2",
       "anchor": "sec-background",
       "title": "Background and notation"
@@ -295,18 +300,83 @@
       "review": {
         "serves_L2": "S1-SP6",
         "serves_L1": "M1 paragraph (4); methodological thesis; D-11",
-        "sets_up": "S3, section sequence",
+        "sets_up": "S1B (AI-human collaboration), S3 (Methods), section sequence",
         "topic_sentence": "One feature of this paper bears on how it should be read, and the title page declares it: the derivations are AI-assisted, with an ORCID-verified human prompter of record.",
         "closing_sentence": "@sec-discussion states what is firm, what is measured, and what is conjectured.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "One feature of this paper bears on how it should be read, and the title page declares it. The derivations are AI-assisted, with an ORCID-verified human prompter of record. @sec-methods states the workflow under which every claim was produced. Citations are backed by archived source documents. Every analytic result was verified symbolically in two independent computer-algebra systems and confirmed by Monte Carlo simulation. Predictions were registered before code was written, and the failed ones are reported. Load-bearing claims were re-derived blind by an independent model and subjected to an adversarial review. @sec-methods also states what each of these safeguards can and cannot catch. The results are then offered to be judged through that protocol, the way an empirical paper's results are judged through its methods. The rest of the paper proceeds as follows. @sec-background fixes notation and restates the standard results at the precision the argument needs. @sec-derivations develops the theorem and both applications. @sec-simulations reports the pre-registered studies, including the predictions that failed. @sec-discussion states what is firm, what is measured, and what is conjectured.",
+      "draft_prose": "One feature of this paper bears on how it should be read, and the title page declares it. The derivations are AI-assisted, with an ORCID-verified human prompter of record. @sec-ai-collab describes the collaboration that produced them and shows that it was productive. @sec-methods states the verification protocol under which every claim was produced and checked, and what each safeguard can and cannot catch. The results are then offered to be judged through that protocol, the way an empirical paper's results are judged through its methods. The rest of the paper proceeds as follows. @sec-background fixes notation and restates the standard results at the precision the argument needs. @sec-derivations develops the theorem and both applications. @sec-simulations reports the pre-registered studies, including the predictions that failed. @sec-discussion states what is firm, what is measured, and what is conjectured.",
       "audit": {
         "status": "complete",
         "citations": {},
         "numbers": {},
         "notes": "Rhetorical/transition paragraph; cross-references only. T-03 vocabulary check passed (no banned terms). Punctuation sweep 2026-06-07."
+      }
+    },
+    {
+      "id": "S1B-P1",
+      "section": "S1B",
+      "goal": "position_lineage",
+      "proposition": "AI-human collaboration is a novelty in the age of AI, and a stated goal of this paper is to demonstrate a workflow that is both productive and yields accurate conclusions; the division of labor (human direction, standards, field knowledge and acceptance; AI derivations, drafts and computations) and the transparent ORCID-verified provenance are stated here, with the accuracy safeguards deferred to @sec-methods.",
+      "depends_on": [
+        "S1-P7"
+      ],
+      "dep_types": [
+        "builds_on"
+      ],
+      "review": {
+        "serves_L2": "S1B-SP1",
+        "serves_L1": "M1b AI-HUMAN COLLABORATION (methodological thesis; novelty + productive-and-accurate goal; D-12)",
+        "sets_up": "S1B-P2 (the measured collaboration); @sec-methods",
+        "topic_sentence": "This paper is also a demonstration of a way of working.",
+        "closing_sentence": "@sec-methods states the verification protocol that makes its conclusions accurate, and what each safeguard cannot catch.",
+        "status": "drafted",
+        "flags": "ai-collab-restructure 2026-06-27 (todo/034 #5): new section framing paragraph."
+      },
+      "audit": {
+        "status": "complete",
+        "citations": {},
+        "numbers": {},
+        "notes": "Rhetorical/framing paragraph; cross-references only (@sec-methods hand-off). States the AI-era novelty and the productive-and-accurate workflow goal (todo/034 #5, D-12). T-03 vocabulary check passed."
+      },
+      "draft_prose": "This paper is also a demonstration of a way of working. The derivations were produced through a collaboration between a human author and an AI system. Collaboration of this kind is new in the age of AI, and its products are not yet routinely trusted. One stated goal of this paper is therefore to show a workflow that is at once productive and accurate. Productive means that the collaboration reached results a single author would have reached slowly or not at all. Accurate means that those results hold up to the scrutiny a skeptical referee applies to human-derived mathematics. The division of labor is simple to state. The human author set the direction, fixed the standards, supplied field knowledge, and accepted or rejected each result. The AI system produced the derivations, the drafts, and the computations. The provenance is transparent by design. The human prompter of record is ORCID-verified, and the full record of the work is public. This section describes the collaboration and shows that it was productive. @sec-methods states the verification protocol that makes its conclusions accurate, and what each safeguard cannot catch."
+    },
+    {
+      "id": "S1B-P2",
+      "section": "S1B",
+      "goal": "define_concept",
+      "proposition": "Roles and decision discipline, characterized from the coded session record: five collaboration patterns (standards over steps, proposal-then-ratification with a written record, bidirectional challenge, human-supplied field knowledge, managed scope and continuity); blind spot = records not correctness.",
+      "depends_on": [
+        "S1B-P1"
+      ],
+      "dep_types": [
+        "builds_on"
+      ],
+      "review": {
+        "serves_L2": "S1B-SP2",
+        "serves_L1": "M1b AI-HUMAN COLLABORATION (methodological thesis; measured collaboration; D-12)",
+        "sets_up": "@sec-methods (the verification protocol)",
+        "topic_sentence": "Direction, scope, and the acceptance or rejection of every result were decided by the human author of record; derivations, drafts, and computations were produced by an AI assistant.",
+        "closing_sentence": "The remaining parts exist for that.",
+        "status": "drafted",
+        "flags": "ai-collab-restructure 2026-06-27 (todo/034 #5): relocated from Methods opener (old S3-P2)."
+      },
+      "draft_prose": "**Roles and decision records.** Direction, scope, and the acceptance or rejection of every result were decided by the human author of record. Derivations, drafts, and computations were produced by an AI assistant. This division of labor was measured rather than recalled. The complete session record, 34 transcripts containing 599 substantive human turns, was qualitatively coded, and the committed analysis backs the counts given here. Five patterns characterize the collaboration. First, the human author set standards more often than steps. Rules of process such as preregistration before code and independent cross-model review appear in 136 of the 599 turns, the densest block of interventions after plain task assignment. Second, decisions were proposed by the assistant and ratified by the human author. The record shows 71 explicit ratifications, and each strategic decision was logged with its date, the options rejected, and the rationale. Third, challenge ran in both directions. The human author disputed derivations, contested framing, caught omissions, and rejected prose 172 times. The assistant flagged risks and surfaced decisions rather than deciding silently, with 175 such moves observed. An example of the human direction is on record. The author caught that the cited EM-based results concern improper imputation, which produced the Background's paragraph on proper imputation. The other direction has its worked example under cross-model review below. Fourth, field knowledge entered from the human side, as literature leads, methodological alternatives, and venue judgment, 131 times. Fifth, scope was actively cut and the work was partitioned across sessions with written handoffs, 183 such moves. Recorded decisions were not revisited without a dated amendment. The transcripts, the decision log, and the coded analysis are all part of the public record, so this description is auditable rather than self-reported. The discipline cannot certify correctness. Recording who decided what catches nothing about whether a derivation is right. The verification protocol of @sec-methods exists for that.",
+      "audit": {
+        "status": "complete",
+        "citations": {},
+        "numbers": {
+          "34 transcripts / 599 substantive human turns": "verif:verification/collaboration-analysis.md",
+          "136 set-standard turns": "verif:verification/collaboration-analysis.md",
+          "71 explicit ratifications": "verif:verification/collaboration-analysis.md",
+          "172 human challenge-class assignments": "verif:verification/collaboration-analysis.md",
+          "175 AI-side moves observed (68 flag-risk + 63 surface-decision + 44 propose-options)": "verif:verification/collaboration-analysis.md",
+          "131 domain-supply assignments (80 supply-domain-judgment + 51 provide-resource)": "verif:verification/collaboration-analysis.md",
+          "183 scope/continuity assignments (103 scope-decision + 80 redirect-priority)": "verif:verification/collaboration-analysis.md",
+          "improper-imputation catch episode": "verif:verification/collaboration-analysis.md (E11; commit f1126db)"
+        },
+        "notes": "Rewritten 2026-06-07 from the todo/032 qualitative analysis (verification/collaboration-analysis.md): heuristic first, examples second, per the 2026-06-07 in-chat direction. Counts are turn/assignment frequencies from the committed coded outputs; both cited episodes are verified entries (E11, E14) in the analysis episode table. Supersedes the placeholder whose examples were recency-sampled. Sign-episode telling removed from P2 (redundant with P6, which owns the worked example); P2 now points forward. Punctuation sweep 2026-06-07. Relocated 2026-06-27 from S3 (Methods) to S1B (AI-human collaboration) per todo/034 #5 / D-12; closing sentence now hands off to @sec-methods."
       }
     },
     {
@@ -727,13 +797,13 @@
       "review": {
         "serves_L2": "S3 goal statement (framing)",
         "serves_L1": "M3 METHODS (methodological thesis; T-05; D-08 appendix note)",
-        "sets_up": "all S3 paragraphs; S4/S5 tier usage",
-        "topic_sentence": "The derivations in this paper were produced by an AI system.",
+        "sets_up": "all S3 verification paragraphs; S4/S5 tier usage",
+        "topic_sentence": "The collaboration that produced these derivations is described in @sec-ai-collab.",
         "closing_sentence": "...this section states the design.",
         "status": "drafted",
         "flags": null
       },
-      "draft_prose": "The derivations in this paper were produced by an AI system. They were verified under a protocol that this section states as the paper's methods. The section answers one question. Why do the results that follow deserve the same scrutiny that is applied to human-derived mathematics? The protocol has six parts. The first is roles and decision records. The second is sourced citations. The third is a verification pipeline with explicit trust tiers. The fourth is preregistration of every simulation. The fifth is adversarial cross-model review. The sixth is full reproducibility. Each part is stated below together with what it can catch and what it cannot. The complete protocol records are collected in the appendices and the public repository. These records include the decision logs, the grading sheets, the amendment histories, and the enforcement code. This section states the design.",
+      "draft_prose": "The collaboration that produced these derivations is described in @sec-ai-collab. This section states the verification protocol under which the results were produced and checked. The protocol answers one question. Why do the results that follow deserve the same scrutiny that is applied to human-derived mathematics? The protocol has five parts. The first is sourced citations. The second is a verification pipeline with explicit trust tiers. The third is preregistration of every simulation. The fourth is adversarial cross-model review. The fifth is full reproducibility. Each part is stated below together with what it can catch and what it cannot. The complete protocol records are collected in the appendices and the public repository. These records include the decision logs, the grading sheets, the amendment histories, and the enforcement code. This section states the design.",
       "audit": {
         "status": "complete",
         "citations": {},
@@ -742,49 +812,12 @@
       }
     },
     {
-      "id": "S3-P2",
-      "section": "S3",
-      "goal": "define_concept",
-      "proposition": "Roles and decision discipline, characterized from the coded session record: five collaboration patterns (standards over steps, proposal-then-ratification with a written record, bidirectional challenge, human-supplied field knowledge, managed scope and continuity); blind spot = records not correctness.",
-      "depends_on": [
-        "S3-P1"
-      ],
-      "dep_types": [
-        "builds_on"
-      ],
-      "review": {
-        "serves_L2": "S3-SP1",
-        "serves_L1": "M3 METHODS (methodological thesis; T-05; D-08 appendix note)",
-        "sets_up": "S3-P4..P7 (the verification parts)",
-        "topic_sentence": "Direction, scope, and the acceptance or rejection of every result were decided by the human author of record; derivations, drafts, and computations were produced by an AI assistant.",
-        "closing_sentence": "The remaining parts exist for that.",
-        "status": "drafted",
-        "flags": null
-      },
-      "draft_prose": "**Roles and decision records.** Direction, scope, and the acceptance or rejection of every result were decided by the human author of record. Derivations, drafts, and computations were produced by an AI assistant. This division of labor was measured rather than recalled. The complete session record, 34 transcripts containing 599 substantive human turns, was qualitatively coded, and the committed analysis backs the counts given here. Five patterns characterize the collaboration. First, the human author set standards more often than steps. Rules of process such as preregistration before code and independent cross-model review appear in 136 of the 599 turns, the densest block of interventions after plain task assignment. Second, decisions were proposed by the assistant and ratified by the human author. The record shows 71 explicit ratifications, and each strategic decision was logged with its date, the options rejected, and the rationale. Third, challenge ran in both directions. The human author disputed derivations, contested framing, caught omissions, and rejected prose 172 times. The assistant flagged risks and surfaced decisions rather than deciding silently, with 175 such moves observed. An example of the human direction is on record. The author caught that the cited EM-based results concern improper imputation, which produced the Background's paragraph on proper imputation. The other direction has its worked example under cross-model review below. Fourth, field knowledge entered from the human side, as literature leads, methodological alternatives, and venue judgment, 131 times. Fifth, scope was actively cut and the work was partitioned across sessions with written handoffs, 183 such moves. Recorded decisions were not revisited without a dated amendment. The transcripts, the decision log, and the coded analysis are all part of the public record, so this description is auditable rather than self-reported. The discipline cannot certify correctness. Recording who decided what catches nothing about whether a derivation is right. The remaining parts exist for that.",
-      "audit": {
-        "status": "complete",
-        "citations": {},
-        "numbers": {
-          "34 transcripts / 599 substantive human turns": "verif:verification/collaboration-analysis.md",
-          "136 set-standard turns": "verif:verification/collaboration-analysis.md",
-          "71 explicit ratifications": "verif:verification/collaboration-analysis.md",
-          "172 human challenge-class assignments": "verif:verification/collaboration-analysis.md",
-          "175 AI-side moves observed (68 flag-risk + 63 surface-decision + 44 propose-options)": "verif:verification/collaboration-analysis.md",
-          "131 domain-supply assignments (80 supply-domain-judgment + 51 provide-resource)": "verif:verification/collaboration-analysis.md",
-          "183 scope/continuity assignments (103 scope-decision + 80 redirect-priority)": "verif:verification/collaboration-analysis.md",
-          "improper-imputation catch episode": "verif:verification/collaboration-analysis.md (E11; commit f1126db)"
-        },
-        "notes": "Rewritten 2026-06-07 from the todo/032 qualitative analysis (verification/collaboration-analysis.md): heuristic first, examples second, per the 2026-06-07 in-chat direction. Counts are turn/assignment frequencies from the committed coded outputs; both cited episodes are verified entries (E11, E14) in the analysis episode table. Supersedes the placeholder whose examples were recency-sampled. Sign-episode telling removed from P2 (redundant with P6, which owns the worked example); P2 now points forward. Punctuation sweep 2026-06-07."
-      }
-    },
-    {
       "id": "S3-P3",
       "section": "S3",
       "goal": "define_concept",
       "proposition": "Sourced citations with mechanical enforcement; trained-recollection reliance prohibited; blind spot = existence not understanding.",
       "depends_on": [
-        "S3-P2"
+        "S3-P1"
       ],
       "dep_types": [
         "builds_on"
@@ -812,7 +845,7 @@
       "goal": "define_concept",
       "proposition": "The derive -> dual-CAS -> Monte Carlo pipeline; the four trust tiers defined once (firm / measured / structural / conjecture); blind spot = shared wrong setup passes both CAS.",
       "depends_on": [
-        "S3-P2"
+        "S3-P1"
       ],
       "dep_types": [
         "builds_on"
@@ -2690,6 +2723,6 @@
     "review_objects_complete": null,
     "dependency_graph_acyclic": null,
     "passes": null,
-    "notes": "Equation line-breaks 2026-06-27 (todo/034 #1+2): 21 wide display blocks in 11 paragraphs (S2-P13, S4-P10, S4-P11, S4-P19, S4-P20, S4-P3, S4-P4, S4-P5, S4-P6, S4-P7, S4-P7b) wrapped in aligned/gathered and broken at relation symbols / comma+qquad separators to clear the right-margin overflow (eq-lrt-bias was 112pt over). Token-preservation verified mechanically. Prior note: G-number collision resolved 2026-06-27: congeniality limit (S6-P4b) G6 -> G7; MVN limit (S6-P4) keeps G6; range G1-G6 -> G1-G7 in level1/level2. Prior note: Oracle rename 2026-06-27 (T-08 follow-up): conditioning-sense 'oracle' -> 'true-model expectation' in S3-P6/S4-P4/S4-P7 (5 occurrences); 'oracle' no longer appears in level3 prose. Prior note: Readability pass 2026-06-26: draft_prose rewritten for the topic/support/wrap arc and lower grade level across 67 of 82 S1-S6 paragraphs (S3 and the cleanest S1/S2 paragraphs left as-is). Corpus Flesch-Kincaid grade 11.9 -> 10.2. No number, claim, hedge, citation, cross-ref, figure markup, or technical term changed; 'oracle' left verbatim (pending rename). Mechanically verified: math/ref/figure-token multisets preserved on all 67; prose punctuation gate 0 hits. Prior note: S5 tribunal amendments 2026-06-26 (cross-family adversarial review, verdict AMEND, no result retracted): S5-P12 W1 leading-order-anchor bridge; S5-P15 52-sigma localized to the engineered cell; S5-P17 W3C direction-not-mechanism; S5-P18 two-sided MCSE interval + weak-cell-floor wording; S5-P19 ncratio factors named (a_k / 1-over-lambda-max, predicted-vs-measured); S5-P20 moment-map decoupled from trace-formula superiority; S5-P22 engine-sensitivity pointer tightened to phase6-info + phase2-w3; NEW S6-P4b (G6) congeniality limit fulfilling the todo/005 H5 section-6 commitment. Outside-reader pass: 'oracle' (complete-data sense) -> 'complete-data benchmark' across S5 + G6; follow-up needed for S3 (x2) and S4 (x4) + a decisions.md terminology entry. Section totals: S1 7 + S2 13 + S3 8 + S4 23 + S5 22 + S6 9 = 82 paragraphs."
+    "notes": "AI-human collaboration section added 2026-06-27 (todo/034 #5, D-12): new S1B (sec-ai-collab) inserted between S1 and S2 with S1B-P1 (framing: AI-era novelty + productive-and-accurate goal) and S1B-P2 (roles, relocated from S3-P2); S1-P7 and S3-P1 rewritten to hand off (Methods now five parts); S3-P3/S3-P4 deps re-pointed to S3-P1. Prior note: Equation line-breaks 2026-06-27 (todo/034 #1+2): 21 wide display blocks in 11 paragraphs (S2-P13, S4-P10, S4-P11, S4-P19, S4-P20, S4-P3, S4-P4, S4-P5, S4-P6, S4-P7, S4-P7b) wrapped in aligned/gathered and broken at relation symbols / comma+qquad separators to clear the right-margin overflow (eq-lrt-bias was 112pt over). Token-preservation verified mechanically. Prior note: G-number collision resolved 2026-06-27: congeniality limit (S6-P4b) G6 -> G7; MVN limit (S6-P4) keeps G6; range G1-G6 -> G1-G7 in level1/level2. Prior note: Oracle rename 2026-06-27 (T-08 follow-up): conditioning-sense 'oracle' -> 'true-model expectation' in S3-P6/S4-P4/S4-P7 (5 occurrences); 'oracle' no longer appears in level3 prose. Prior note: Readability pass 2026-06-26: draft_prose rewritten for the topic/support/wrap arc and lower grade level across 67 of 82 S1-S6 paragraphs (S3 and the cleanest S1/S2 paragraphs left as-is). Corpus Flesch-Kincaid grade 11.9 -> 10.2. No number, claim, hedge, citation, cross-ref, figure markup, or technical term changed; 'oracle' left verbatim (pending rename). Mechanically verified: math/ref/figure-token multisets preserved on all 67; prose punctuation gate 0 hits. Prior note: S5 tribunal amendments 2026-06-26 (cross-family adversarial review, verdict AMEND, no result retracted): S5-P12 W1 leading-order-anchor bridge; S5-P15 52-sigma localized to the engineered cell; S5-P17 W3C direction-not-mechanism; S5-P18 two-sided MCSE interval + weak-cell-floor wording; S5-P19 ncratio factors named (a_k / 1-over-lambda-max, predicted-vs-measured); S5-P20 moment-map decoupled from trace-formula superiority; S5-P22 engine-sensitivity pointer tightened to phase6-info + phase2-w3; NEW S6-P4b (G6) congeniality limit fulfilling the todo/005 H5 section-6 commitment. Outside-reader pass: 'oracle' (complete-data sense) -> 'complete-data benchmark' across S5 + G6; follow-up needed for S3 (x2) and S4 (x4) + a decisions.md terminology entry. Section totals: S1 7 + S2 13 + S3 8 + S4 23 + S5 22 + S6 9 = 82 paragraphs."
   }
 }

@@ -135,6 +135,51 @@
       "depends_on": [],
       "dep_types": [],
       "feeds_forward_to": [
+        "S1B",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "id": "S1B",
+      "arc_move": "M1b_AI_COLLABORATION",
+      "anchor": "sec-ai-collab",
+      "title": "AI–human collaboration",
+      "mapping_from_180e2b5": "NEW section (todo/034 #5, D-12). Pulls the AI-human collaboration framing forward from the Introduction's meta paragraph (S1-P7) and relocates the roles material from the Methods opener (old S3-P2 / S3-SP1). Methods keeps the operational verification detail.",
+      "goal_statement": "Foreground the AI-human collaboration as a contribution in its own right, between the Introduction and the Background: state that collaboration of this kind is a novelty in the age of AI and that a stated goal of the paper is a workflow that is both productive AND yields accurate conclusions, give the division of labor and the transparent ORCID-verified provenance, and show the collaboration was productive from the coded session record - then hand off to Methods for the safeguards that secure accuracy. Defers all verification detail to S3. Serves the methodological thesis component. Sits low on the technical gradient. Style: plain expository, trust-ordered, no banned vocabulary (T-03).",
+      "estimated_paragraphs": "2-3",
+      "super_propositions": [
+        {
+          "id": "S1B-SP1",
+          "claim": "AI-human collaboration is a novelty in the age of AI, and a stated goal of the paper is a workflow that is both productive (it reaches results a single author would have reached slowly or not at all) and accurate (the results withstand the scrutiny a skeptical referee applies to human-derived mathematics): the human sets direction, standards, field knowledge and acceptance, the AI produces the derivations, drafts and computations, and provenance is transparent and ORCID-verified.",
+          "goal": "position_lineage",
+          "evidence": [
+            "deriv:sec-verify",
+            "verif:manuscript/plan/decisions.md"
+          ],
+          "evidence_status": "grounded"
+        },
+        {
+          "id": "S1B-SP2",
+          "claim": "Roles and decision discipline: a human prompter of record set direction and gates, decisions were recorded with rejected options in a dated log, and the AI performed the derivations - with the division of labor stated, not argued.",
+          "goal": "define_concept",
+          "evidence": [
+            "verif:verification/collaboration-analysis.md",
+            "verif:manuscript/plan/decisions.md"
+          ],
+          "evidence_status": "grounded"
+        }
+      ],
+      "depends_on": [
+        "S1"
+      ],
+      "dep_types": [
+        "builds_on"
+      ],
+      "feeds_forward_to": [
         "S2",
         "S3",
         "S4",
@@ -258,18 +303,9 @@
       "anchor": "sec-methods",
       "title": "Methods: the derivation and verification workflow",
       "mapping_from_180e2b5": "NEW section (D-09). Absorbs and expands the old S8 provenance material's workflow content; the formal declaration itself stays in S6. Protocol records go to appendices (D-08 note).",
-      "goal_statement": "State the AI-human workflow as method - factually, in the passive voice (T-05), one paragraph per part, each gate paragraph ending with what that gate cannot catch - so that 'why believe an AI derivation' is answered as procedure before any result is asked to be believed. The fitted-vs-oracle sign episode is the single narrative passage. Defers: protocol records to appendices, proofs to the companion document, results to S4/S5. Serves the methodological thesis component. Sits deliberately low on the technical gradient (not announced in the text).",
+      "goal_statement": "State the verification protocol as method - factually, in the passive voice (T-05), one paragraph per part, each gate paragraph ending with what that gate cannot catch - so that 'why believe an AI derivation' is answered as procedure before any result is asked to be believed. The collaboration and roles are described in the preceding AI-human collaboration section (S1B); this section covers the five verification parts (sourced citations, the claim pipeline with trust tiers, preregistration, cross-model adversarial review, reproducibility). The fitted-versus-true-model sign episode is the single narrative passage. Defers: protocol records to appendices, proofs to the companion document, results to S4/S5. Serves the methodological thesis component. Sits deliberately low on the technical gradient (not announced in the text).",
       "estimated_paragraphs": "7-9",
       "super_propositions": [
-        {
-          "id": "S3-SP1",
-          "claim": "Roles and decision discipline: a human prompter of record set direction and gates, decisions were recorded with rejected options in a dated log, and the AI performed the derivations - with the division of labor stated, not argued.",
-          "goal": "define_concept",
-          "evidence": [
-            "verif:manuscript/plan/decisions.md"
-          ],
-          "evidence_status": "grounded"
-        },
         {
           "id": "S3-SP2",
           "claim": "Sourced derivation: every external claim was pinned to a source passage in a locally archived, session-read copy, with citation discipline enforced mechanically by a pre-write hook; blind spot - the hook checks existence, not understanding.",
@@ -322,7 +358,7 @@
         }
       ],
       "depends_on": [
-        "S1"
+        "S1B"
       ],
       "dep_types": [
         "builds_on"
@@ -586,7 +622,7 @@
       "S1"
     ],
     "S3": [
-      "S1"
+      "S1B"
     ],
     "S4": [
       "S2",
@@ -599,6 +635,9 @@
     "S6": [
       "S4",
       "S5"
+    ],
+    "S1B": [
+      "S1"
     ]
   },
   "metrics_gate": {
@@ -607,7 +646,7 @@
     "no_orphaned_sections": true,
     "every_section_serves_an_arc_move": true,
     "passes": true,
-    "notes": "Re-evaluated after cycle 1 (2026-06-06): 38 super-propositions (S4 gained SP5b, S6 lost SP6 to the title page); all evidence-pointed; DAG unchanged and acyclic; every section serves a ratified arc move. S4 checked against the todo/030 argument map: C1-C5, S1-S7, L2-L5, I4-I7 all carried (S7 in SP1's tail, L5 as SP5b, I7 in SP7); map itself lags D-09/D-10 - sync queued as follow-up."
+    "notes": "AI-human collaboration section S1B inserted 2026-06-27 (todo/034 #5, D-12): roles super-proposition relocated from S3 (now S1B-SP2) plus a new framing SP (S1B-SP1); S3 drops to five verification parts and now depends_on S1B; DAG re-checked acyclic. Prior note: Re-evaluated after cycle 1 (2026-06-06): 38 super-propositions (S4 gained SP5b, S6 lost SP6 to the title page); all evidence-pointed; DAG unchanged and acyclic; every section serves a ratified arc move. S4 checked against the todo/030 argument map: C1-C5, S1-S7, L2-L5, I4-I7 all carried (S7 in SP1's tail, L5 as SP5b, I7 in SP7); map itself lags D-09/D-10 - sync queued as follow-up."
   },
   "front_matter": {
     "title_page_declaration": "Authorship and provenance declaration (D-11), title-page block per scholarly declaration conventions: AI lineage and role in the derivation, ORCID-verified human prompter of record (marcus.waldman), pointer to the public repository and the companion derivation document. The reader knows the paper's nature before page one; M1's closing meta paragraph elaborates what the title page declares."

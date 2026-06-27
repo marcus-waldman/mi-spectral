@@ -15,15 +15,15 @@
     "venue_alignment": "JAIGP submission: an AI-assisted derivation with an ORCID-verified human prompter, written for an AI-skeptical academic audience. The credibility case is itself part of the contribution: every external claim pinned to a locally archived, session-read source; every number traced to a committed pre-registered artifact, with failed predictions reported; load-bearing claims cross-checked by an independent model lineage under a blind adversarial protocol; citation discipline enforced mechanically. Claims are trust-ordered throughout - firm (proved + verified) first, measurements next, conjectures last and labeled."
   },
   "persuasion_arc": {
-    "total_moves": 6,
-    "design_note": "IMRaD adapted to an AI-human derivation (D-09, Amendment 1 of 2026-06-06): Introduction / Background / Methods-as-workflow / Derivations / Simulation studies / Discussion. The Results umbrella of the original D-09 is split into M4a Derivations and M4b Simulation studies; within Derivations the internal order stays theorem -> LRT -> IC (D-03 ratified: consolidated preregistered account in M4b + headline numbers inline at point of claim in M4a). Technical-gradient design: M2 ramps the reader up, M3 sits low (process, not mathematics), M4a is the peak, M4b steps back down, M5 descends to the M1 reader (no announcement of this in the text).",
+    "total_moves": 7,
+    "design_note": "IMRaD adapted to an AI-human derivation (D-09; D-12 adds the AI-human collaboration move): Introduction / AI-human collaboration / Background / Methods-as-workflow / Derivations / Simulation studies / Discussion. M1b foregrounds the collaboration (novelty + the productive-and-accurate goal + roles) between M1 and M2; the operational verification protocol stays in M3. The Results umbrella of the original D-09 is split into M4a Derivations and M4b Simulation studies; within Derivations the internal order stays theorem -> LRT -> IC (D-03). Technical-gradient design: M2 ramps the reader up, M1b and M3 sit low (process, not mathematics), M4a is the peak, M4b steps back down, M5 descends to the M1 reader (no announcement of this in the text).",
     "moves": [
       {
         "id": "M1",
         "label": "INTRODUCTION",
         "section_anchor": "sec-intro",
         "title": "Introduction",
-        "function": "Opening written for an applied researcher with quantitative training and working knowledge of multiple imputation. Four-paragraph arc. (1) Maturity: MI is a gold-standard treatment for missing data, now 40+ years old, and most of its major inferential results are long settled - the role of the missing-data mechanism, unbiased point estimation, valid single-parameter and multi-parameter Wald tests (anchored by the field's own before/after accounting: Schafer-Graham 2002 and Enders 2025). (2) The exception: likelihood-ratio tests and information criteria, despite first proposals in the 1990s, remain unsettled. The unsettled questions are posed via the complete-data replication principle (D-10; term shared with the MI-IC companion): would the same conclusion have been reached, on average over repeated samples, had the data been complete? Posed at three levels - replication of estimates (settled: Rubin), replication of the criterion in expectation, replication of decision rates. Each unsettled item is explicitly typed: gaps the prior literature itself states as open are cited to the stating passage (Schomaker-Heumann 2014: literature 'surprisingly sparse', averaged criteria 'not supported by MI literature'; FIMD 2018 and Enders 2025: no IC-after-MI treatment at all - documented by absence); gaps this paper is first to frame - the centering question and the replication principle itself - are asserted in the authors' voice and flagged as part of the contribution. (3) What this paper resolves: criterion replication is made achievable everywhere - the pooled deviance overstates its complete-data target by exactly +(1/2)tr(RIV) + (A)+(C), and the correction restores criterion replication in expectation for any signal strength; decision-rate replication splits along the null/noncentral axis identically for testing and selection - fully achievable at the null, provably bounded under signal by information loss rather than calibration error, with the boundary characterized exactly. Positioning: upstream of the Chan calibration line (calibration makes the reference right; this work makes the statistic centered); the trace penalty itself is Shimodaira's AIC_{x;y}, and prior corrections of that size target prediction, not replication - the replication question was unposed. (4) Final paragraph, meta layer: this is an AI-human derivation under a stated verification protocol, reported in full as the Methods section; one paragraph, no more.",
+        "function": "Opening written for an applied researcher with quantitative training and working knowledge of multiple imputation. Four-paragraph arc. (1) Maturity: MI is a gold-standard treatment for missing data, now 40+ years old, and most of its major inferential results are long settled - the role of the missing-data mechanism, unbiased point estimation, valid single-parameter and multi-parameter Wald tests (anchored by the field's own before/after accounting: Schafer-Graham 2002 and Enders 2025). (2) The exception: likelihood-ratio tests and information criteria, despite first proposals in the 1990s, remain unsettled. The unsettled questions are posed via the complete-data replication principle (D-10; term shared with the MI-IC companion): would the same conclusion have been reached, on average over repeated samples, had the data been complete? Posed at three levels - replication of estimates (settled: Rubin), replication of the criterion in expectation, replication of decision rates. Each unsettled item is explicitly typed: gaps the prior literature itself states as open are cited to the stating passage (Schomaker-Heumann 2014: literature 'surprisingly sparse', averaged criteria 'not supported by MI literature'; FIMD 2018 and Enders 2025: no IC-after-MI treatment at all - documented by absence); gaps this paper is first to frame - the centering question and the replication principle itself - are asserted in the authors' voice and flagged as part of the contribution. (3) What this paper resolves: criterion replication is made achievable everywhere - the pooled deviance overstates its complete-data target by exactly +(1/2)tr(RIV) + (A)+(C), and the correction restores criterion replication in expectation for any signal strength; decision-rate replication splits along the null/noncentral axis identically for testing and selection - fully achievable at the null, provably bounded under signal by information loss rather than calibration error, with the boundary characterized exactly. Positioning: upstream of the Chan calibration line (calibration makes the reference right; this work makes the statistic centered); the trace penalty itself is Shimodaira's AIC_{x;y}, and prior corrections of that size target prediction, not replication - the replication question was unposed. (4) Final paragraph, meta layer: this is an AI-human derivation, with the collaboration described in the AI-human collaboration section that immediately follows (M1b) and the verification protocol reported in full as Methods; one paragraph, no more.",
         "serves_thesis": [
           "primary",
           "secondary",
@@ -35,7 +35,7 @@
           "The complete-data replication principle, three levels (estimates / criterion-in-expectation / decision rates): level 1 classical, level 2 resolved here for any signal, level 3 resolved as a split - complete at the null, information-bounded under signal",
           "Unresolved-status claims are typed: documented-open cited to the stating passage; asserted-here stated in the authors' voice (typing evidence verified 2026-06-06; theory-side pass over Chan / Chan-Meng / Meng-Rubin still pending before Level-2 drafting)",
           "Calibration (Chan line) and centering (this work) are complementary; the trace penalty is precedented (Shimodaira; prediction-targeted 2x variants), the decomposition, MAR term, proper-MI scope, and replication framing are new",
-          "The derivation is AI-assisted under a stated verification protocol, reported as Methods - final paragraph only"
+          "The derivation is AI-assisted; the collaboration is foregrounded in its own section (M1b) and the verification protocol reported as Methods - final paragraph only"
         ],
         "evidence_base": [
           "lit:chanGeneralFeasibleTests2022",
@@ -48,6 +48,28 @@
           "deriv:sec-intro"
         ],
         "rhetorical_role": "An applied MI-literate reader finishes the introduction knowing what was settled, what was not, the principle by which 'resolved' is judged, what this paper resolves at which level - and only then that an AI derived it."
+      },
+      {
+        "id": "M1b",
+        "label": "AI-HUMAN COLLABORATION",
+        "section_anchor": "sec-ai-collab",
+        "title": "AI–human collaboration",
+        "function": "Foreground the AI-human collaboration as its own section between the Introduction and the Background (todo/034 #5, D-12). Two short paragraphs. (1) Framing: collaboration between a human author and an AI system is a novelty in the age of AI, and a stated goal of this paper is to demonstrate a workflow that is at once productive (it reaches results a single author would have reached slowly or not at all) and accurate (those results withstand the scrutiny a skeptical referee applies to human-derived mathematics); the division of labor is stated plainly (human direction, standards, field knowledge and acceptance; AI derivations, drafts and computations) and provenance is transparent and ORCID-verified; the framing hands off to Methods for the safeguards that secure accuracy. (2) The measured collaboration: the roles material relocated from the old Methods opener, the five collaboration patterns coded from the committed session record, closing on the limit that recording who decided what certifies nothing about correctness, which is the verification protocol's job. STYLE: plain expository, no banned vocabulary (T-03), trust-ordered; sits low on the technical gradient (process, not mathematics).",
+        "serves_thesis": [
+          "methodological"
+        ],
+        "key_claims": [
+          "AI-human collaboration is a novelty in the age of AI; a stated goal of the paper is a workflow that is both productive and yields accurate conclusions",
+          "Division of labor stated plainly: human sets direction, standards, field knowledge and acceptance; AI produces derivations, drafts and computations; provenance transparent and ORCID-verified",
+          "The collaboration is measured, not recalled: five patterns coded from the committed session record",
+          "Productivity is shown here; accuracy is secured by the verification protocol stated as Methods (the split)"
+        ],
+        "evidence_base": [
+          "deriv:sec-verify",
+          "verif:verification/collaboration-analysis.md",
+          "verif:manuscript/plan/decisions.md"
+        ],
+        "rhetorical_role": "The reader meets the paper's methodological novelty up front - what the collaboration is and that it was productive - before the Background, with the accuracy case deferred to Methods where it is argued as procedure."
       },
       {
         "id": "M2",
@@ -80,7 +102,7 @@
         "label": "METHODS",
         "section_anchor": "sec-methods",
         "title": "Methods: the derivation and verification workflow",
-        "function": "State the AI-human workflow as method, in six parts, one tight paragraph each: (1) roles and decision discipline - human prompter of record (direction, gates, decisions recorded with rejected options), AI derivation, dated decision log; (2) sourced derivation - every external claim pinned to a source passage in a locally archived session-read copy, citation discipline enforced mechanically by a pre-write hook; (3) claim pipeline - derive, then symbolic verification in two independent computer-algebra systems, then Monte Carlo confirmation, with trust tiers (firm / measured / structural / conjecture) assigned by the gates cleared; (4) preregistration before code - predictions and pass criteria frozen and committed first, dated amendments, failures reported; (5) cross-model adversarial verification - blind re-derivation by an independent model lineage plus an instructed-to-refute pass, grading records committed, with the fitted-vs-oracle sign episode as the single narrative passage; (6) reproducibility - seeds, caches, single-entrypoint scripts, environment records. STYLE (T-05): written factually in the passive voice - the protocol is described as a procedure, not narrated as an achievement. STRUCTURAL REQUIREMENT: every gate paragraph ends with what that gate cannot catch. LENGTH: full protocol records (grading records, amendment logs, hook mechanics, per-gate specifications) go to appendices (single submission document; repo cited for the full audit trail) - recorded as a D-08 note. Drafting guidance (not announced in the text): M3 sits lower on the technical gradient than M2/M4a; keep it that way.",
+        "function": "State the verification protocol as method, in five parts, one tight paragraph each (roles and the collaboration are covered in the preceding AI-human collaboration section, M1b): (1) sourced derivation - every external claim pinned to a source passage in a locally archived session-read copy, citation discipline enforced mechanically by a pre-write hook; (2) claim pipeline - derive, then symbolic verification in two independent computer-algebra systems, then Monte Carlo confirmation, with trust tiers (firm / measured / structural / conjecture) assigned by the gates cleared; (3) preregistration before code - predictions and pass criteria frozen and committed first, dated amendments, failures reported; (4) cross-model adversarial verification - blind re-derivation by an independent model lineage plus an instructed-to-refute pass, grading records committed, with the fitted-versus-true-model sign episode as the single narrative passage; (5) reproducibility - seeds, caches, single-entrypoint scripts, environment records. STYLE (T-05): written factually in the passive voice - the protocol is described as a procedure, not narrated as an achievement. STRUCTURAL REQUIREMENT: every gate paragraph ends with what that gate cannot catch. LENGTH: full protocol records (grading records, amendment logs, hook mechanics, per-gate specifications) go to appendices (single submission document; repo cited for the full audit trail) - recorded as a D-08 note. Drafting guidance (not announced in the text): M3 sits lower on the technical gradient than M2/M4a; keep it that way.",
         "serves_thesis": [
           "methodological"
         ],
@@ -309,15 +331,27 @@
       },
       "provenance": "Marcus in-chat, Level-1 review cycle 2, 2026-06-06; MI-IC companion framing",
       "status": "ratified"
+    },
+    {
+      "id": "D-12",
+      "date": "2026-06-27",
+      "label": "Foreground AI-human collaboration as its own section (between Introduction and Background)",
+      "chosen": "A new section 'AI-human collaboration' (anchor sec-ai-collab, internal id S1B, arc move M1b) is inserted between the Introduction and the Background. It takes the narrative and novelty framing - that AI-human collaboration is a novelty in the age of AI and that a stated goal of the paper is a workflow that is both productive AND yields accurate conclusions - plus the roles material relocated from the Methods opener (old S3-P2). Methods (S3/M3) keeps the operational verification detail and drops from six parts to five (roles moved out). Internal section ids S2-S6 and all paragraph ids are left unchanged; reader-facing section numbers are auto-generated by Quarto from order.",
+      "rejected_options": {
+        "move_all_workflow_forward": "Moving the entire workflow treatment (citation discipline, verification gates, CAS/cross-model checks) into the new early section would leave Methods thin or redundant and would put operational procedure before the Background the reader needs - rejected (Marcus, todo/034 #5).",
+        "renumber_sections": "Renumbering S2 onward (new section as S2, Background S3, and so on) would churn every section key, paragraph id prefix, and depends_on link across the plan scaffold for no reader-facing change, since Quarto numbers sections from order regardless - rejected in favor of inserting as S1B with stable ids."
+      },
+      "provenance": "Marcus in-chat, todo/034 #5, 2026-06-27 (AskUserQuestion: split + S1B/no-renumber)",
+      "status": "ratified"
     }
   ],
   "metrics_gate": {
-    "arc_moves": 6,
+    "arc_moves": 7,
     "target_range": "5-8",
     "every_move_serves_thesis": true,
     "every_decision_has_rejected_options": true,
     "venue_alignment_explicit": true,
     "passes": true,
-    "notes": "Six moves after D-09 Amendment 1 (M4 split). M3 METHODS serves the methodological thesis; M1/M4b/M5 serve all components. Section anchors sec-methods, sec-derivations, sec-simulations do not exist in the qmd yet - they are targets for the Level-2 blueprint and the restructuring decomposition. Gate re-evaluated at every Level-1 amendment."
+    "notes": "Seven moves after D-12 (M1b AI-human collaboration inserted between M1 and M2). Six moves after D-09 Amendment 1 (M4 split). M3 METHODS serves the methodological thesis; M1/M4b/M5 serve all components. Section anchors sec-methods, sec-derivations, sec-simulations do not exist in the qmd yet - they are targets for the Level-2 blueprint and the restructuring decomposition. Gate re-evaluated at every Level-1 amendment."
   }
 }
