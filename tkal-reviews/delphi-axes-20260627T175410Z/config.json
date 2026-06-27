@@ -1,0 +1,75 @@
+{
+  "mode": "axes",
+  "title": "mi-spectral contributions (axes ratification)",
+  "study": "mi-spectral-contributions-axes",
+  "panel": ["claude", "openai", "gemini"],
+  "seed": 20260626,
+  "context": "context.md",
+  "params": {
+    "openai": {"effort": "high", "max_output_tokens": 20000},
+    "claude": {"max_tokens": 20000},
+    "gemini": {"max_output_tokens": 20000}
+  },
+  "axes": [
+    {
+      "key": "ratify-1",
+      "title": "Ratify item 1 (theory)",
+      "prompt": "The claim: 'Under congenial proper MI with an estimated scale and complete-data MLE target, the averaged imputation log-likelihood overstates the complete-data log-likelihood by +1/2 tr(RIV) plus a MAR design-imbalance term that vanishes under MCAR.' Judge it on four criteria: real (supported by the brief's evidence at the standing implied), novel (new vs the brief's lineage, not already standard), important to a skimming applied reader, and correctly scoped (no overclaim as worded). Recommend EXACTLY one disposition: KEEP-AS-IS, KEEP-WITH-REVISION (give the exact revised sentence), or DROP (say why). Name any criterion it fails and fix it in the revision."
+    },
+    {
+      "key": "ratify-2",
+      "title": "Ratify item 2 (applied-implication: add tr(RIV_k))",
+      "prompt": "The claim: 'Applied MI model-selection tables should add a per-candidate tr(RIV_k) correction to AIC/BIC when the target is complete-data-equivalent selection, because uncorrected criteria tilt toward models with more missing information.' Judge it on real / novel / applied-important / correctly-scoped. Recommend EXACTLY one disposition: KEEP-AS-IS, KEEP-WITH-REVISION (exact revised sentence), or DROP. Name any criterion it fails and fix it in the revision."
+    },
+    {
+      "key": "ratify-3",
+      "title": "Ratify item 3 (applied-implication: where it applies / do not double-apply)",
+      "prompt": "The claim: 'For information-criterion selection there is no protective reference distribution, so the per-model correction tr(RIV_k) must be applied to restore complete-data-equivalent ranking; for a calibrated likelihood-ratio test (Chan 2022) the mean is already absorbed and the correction must not be applied a second time.' Judge it on real / novel / applied-important / correctly-scoped. Recommend EXACTLY one disposition: KEEP-AS-IS, KEEP-WITH-REVISION (exact revised sentence), or DROP. Name any criterion it fails and fix it in the revision."
+    },
+    {
+      "key": "ratify-4",
+      "title": "Ratify item 4 (IC-application: model-specific bias)",
+      "prompt": "The claim: 'The MI information-criterion bias is model-specific: candidate models can have different RIV traces, so adding tr(RIV_k) supplies the theoretical centering correction for MI-AIC and MI-BIC under the stated target.' Judge it on real / novel / applied-important / correctly-scoped. Recommend EXACTLY one disposition: KEEP-AS-IS, KEEP-WITH-REVISION (exact revised sentence), or DROP. Name any criterion it fails and fix it in the revision."
+    },
+    {
+      "key": "ratify-5",
+      "title": "Ratify item 5 (methodology-workflow, first-class)",
+      "prompt": "The claim: 'We make the structured AI-human workflow a first-class contribution by documenting, for this study, transparent provenance and auditable gates for sourced citations, human acceptance, dual computer-algebra verification, preregistered simulations, adversarial rederivation, and full reproducibility.' Judge it on real / novel / applied-important / correctly-scoped, weighing the brief's honest limit (the session coding was done by the same model lineage analyzed, no human second coder). Recommend EXACTLY one disposition: KEEP-AS-IS, KEEP-WITH-REVISION (exact revised sentence), or DROP. Name any criterion it fails and fix it in the revision."
+    },
+    {
+      "key": "ratify-6",
+      "title": "Ratify item 6 (LRT-application: tr(RIV_perp))",
+      "prompt": "The claim: 'For nested MI likelihood-ratio comparisons at the null, the numerator differential bias is tr(RIV_perp), the missing information in the tested directions projected in the complete-data information metric, not tr(RIV_full) minus tr(RIV_0).' Judge it on real / novel / applied-important / correctly-scoped. Recommend EXACTLY one disposition: KEEP-AS-IS, KEEP-WITH-REVISION (exact revised sentence), or DROP. Name any criterion it fails and fix it in the revision."
+    },
+    {
+      "key": "ratify-7",
+      "title": "Ratify item 7 (applied-implication: demand auditable evidence)",
+      "prompt": "The claim: 'Applied teams evaluating AI-assisted statistical derivations should require auditable evidence of the same kind used here: sourced citations, independent symbolic checks, preregistered numerical criteria with reported failures, adversarial review, and reproducibility records.' Judge it on real / novel / applied-important / correctly-scoped. Recommend EXACTLY one disposition: KEEP-AS-IS, KEEP-WITH-REVISION (exact revised sentence), or DROP. Name any criterion it fails and fix it in the revision."
+    },
+    {
+      "key": "ratify-8",
+      "title": "Ratify item 8 (LRT-application: reuse imputations / pairing)",
+      "prompt": "The claim: 'Nested MI likelihood-ratio comparisons should reuse the same imputations for the competing fits, since pairing reduces null and local-alternative Monte Carlo noise from order sqrt(n) to order one.' Judge it on real / novel / applied-important / correctly-scoped. Recommend EXACTLY one disposition: KEEP-AS-IS, KEEP-WITH-REVISION (exact revised sentence), or DROP. Name any criterion it fails and fix it in the revision."
+    },
+    {
+      "key": "consolidate",
+      "title": "Consolidate the three overlapping IC / tr(RIV_k) items (ranks 2, 3, 4)",
+      "prompt": "Items 2, 3, and 4 all concern the information-criterion correction tr(RIV_k): item 4 is the result (the bias is model-specific), item 2 is the applied directive (add the correction), item 3 is the scope guard (apply it for IC ranking, do not double-apply on a calibrated LRT). For the printed paper, recommend how to present them: keep all three distinct, or consolidate to two or one. Give the EXACT wording of the consolidated item(s) you recommend, and say which belongs in the Introduction contributions list versus the Discussion applied-implications passage."
+    },
+    {
+      "key": "completeness",
+      "title": "Anything missing from the set",
+      "prompt": "Is any contribution MISSING from the eight that the brief's evidence strongly supports and a skimming applied reader would want? Candidates the pool dropped include: the preregistered empirical finding that 100% of uncorrected MI-AIC misclassifications land on the largest-RIV candidate (W3-C = 1.000 across 60 cells); the calibration-ladder result that locates the null/noncentral boundary; and that adding tr(RIV_k) reproduces Shimodaira's AIC_{x;y}. Recommend EXACTLY one of: ADD (give the exact wording of the one item to add and where it goes), or COMPLETE (the eight-item set is sufficient; say why adding would dilute the skim layer)."
+    },
+    {
+      "key": "lead-hook",
+      "title": "Lead contribution + abstract hook",
+      "prompt": "Which SINGLE item should LEAD the Introduction contributions list and seed the abstract hook for a skimming applied researcher? Recommend the lead item (by its number) and give the EXACT one-sentence abstract hook (the sentence the abstract should carry so the skim layer conveys why the paper matters to an applied reader)."
+    },
+    {
+      "key": "workflow-framing",
+      "title": "Workflow framing and credit",
+      "prompt": "The pool ranked the AI-human workflow (item 5) as a first-class contribution. Confirm or revise. Recommend EXACTLY one of: FIRST-CLASS (co-equal with the technical results) or SUPPORTING (a methodological disclosure ranked below them), and give the EXACT one-sentence framing the paper should use to credit it. The framing must not overclaim: per the brief, the documented facts (turn counts, episodes, the 8-of-9 sign-flip catch) are mechanically verified, but the session coding was done by the same model lineage being analyzed with no human second coder, so the frequencies are model judgments."
+    }
+  ]
+}

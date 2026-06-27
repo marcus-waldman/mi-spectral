@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K09",
+      "priority": 1,
+      "reason": "Adopted over K01/K17 because it is the clearest skim-level practice change and is scoped to AIC/BIC under the complete-data-equivalent target."
+    },
+    {
+      "id": "K13",
+      "priority": 2,
+      "reason": "Adopted over K03/K19 because it cleanly separates centering from Chan-style calibration and scopes the no-double-counting warning to null calibrated MI LRTs."
+    },
+    {
+      "id": "K10",
+      "priority": 3,
+      "reason": "Adopted as the first-class workflow contribution, scoped to this study's verified provenance and gates rather than a general guarantee."
+    },
+    {
+      "id": "K16",
+      "priority": 4,
+      "reason": "Adopted to translate the workflow into applied due-diligence guidance without overgeneralizing the same-lineage coding frequencies."
+    },
+    {
+      "id": "K11",
+      "priority": 5,
+      "reason": "Adopted over K02/K20 because it includes proper MI, estimated scale, and complete-data MLE target while keeping the MAR imbalance term correctly scoped."
+    },
+    {
+      "id": "K12",
+      "priority": 6,
+      "reason": "Adopted as the separate IC-application result: model-specific RIV traces supply the theoretical centering correction for MI-AIC and MI-BIC."
+    },
+    {
+      "id": "K14",
+      "priority": 7,
+      "reason": "Adopted over K05/K22 because it names tr(RIV_perp), the complete-data metric, and the null scope without an uncaveated strict-inequality overclaim."
+    },
+    {
+      "id": "K15",
+      "priority": 8,
+      "reason": "Adopted as a practical LRT consequence, scoped to the proven null and local-alternative Monte Carlo noise reduction."
+    }
+  ],
+  "add": [],
+  "drop_notes": "Dropped broader or less-scoped variants in favor of this consolidated set: K01/K17 for K09, K02/K20 for K11, K03/K19 for K13, K04/K18/K23 for K10/K16, K05/K22 for K14, K06/K21 for K12, with K07/K08 left as caveats for the paper text rather than headline slots."
+}

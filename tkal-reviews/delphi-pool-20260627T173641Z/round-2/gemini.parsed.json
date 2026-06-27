@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K09",
+      "priority": 1,
+      "reason": "Provides the most urgent practical takeaway for applied researchers as the primary skim hook."
+    },
+    {
+      "id": "K03",
+      "priority": 2,
+      "reason": "Crucial boundary-condition guidance to prevent practitioners from double-counting the correction."
+    },
+    {
+      "id": "K16",
+      "priority": 3,
+      "reason": "Translates the workflow contribution into a concrete standard that applied teams can demand."
+    },
+    {
+      "id": "K11",
+      "priority": 4,
+      "reason": "Accurately scopes the core theoretical result to proper imputation, estimated scale, and complete-data target."
+    },
+    {
+      "id": "K14",
+      "priority": 5,
+      "reason": "Correctly identifies the LRT differential bias at the null and contrasts it with the naive trace difference."
+    },
+    {
+      "id": "K12",
+      "priority": 6,
+      "reason": "Clearly states the model-specific nature of the IC bias and the exact theoretical centering correction."
+    },
+    {
+      "id": "K04",
+      "priority": 7,
+      "reason": "Establishes the workflow as a first-class contribution by highlighting mechanically verified evidence and the caught sign error."
+    },
+    {
+      "id": "K07",
+      "priority": 8,
+      "reason": "Provides honest scoping by disclosing the structural limits of the correction, preventing over-generalization."
+    }
+  ],
+  "add": [],
+  "drop_notes": "Dropped other pooled items to consolidate the strongest, most accurately scoped claims across all required categories within the 8-item limit."
+}

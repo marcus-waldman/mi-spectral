@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K11",
+      "priority": 1,
+      "reason": "Theory anchor (firm half-trace decomposition); foundation for all applications."
+    },
+    {
+      "id": "K09",
+      "priority": 2,
+      "reason": "Top applied-implication: the one-term fix and the direction of the bias; skim hook."
+    },
+    {
+      "id": "K12",
+      "priority": 3,
+      "reason": "IC-application; model-specificity is what makes the correction matter for selection."
+    },
+    {
+      "id": "K14",
+      "priority": 4,
+      "reason": "LRT-application; firm and discriminating result (projected missing information, not naive difference)."
+    },
+    {
+      "id": "K03",
+      "priority": 5,
+      "reason": "Applied-implication that scopes where to apply vs not apply the correction (Chan 2022 boundary); prevents double-counting."
+    },
+    {
+      "id": "K10",
+      "priority": 6,
+      "reason": "Methodology-workflow as first-class contribution; required category and a stated applied priority."
+    },
+    {
+      "id": "K16",
+      "priority": 7,
+      "reason": "Second applied-implication: actionable standard for trusting AI-assisted derivations."
+    },
+    {
+      "id": "K15",
+      "priority": 8,
+      "reason": "Adopted from cut list as a distinct, proved LRT implementation point scoped to null/local-alternative noise reduction."
+    }
+  ],
+  "add": [],
+  "drop_notes": "none; set unchanged from my prior selection, with K15 retained over alternatives to round out the LRT implementation guidance within the proved scope."
+}

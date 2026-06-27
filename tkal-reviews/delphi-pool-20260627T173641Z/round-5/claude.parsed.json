@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K11",
+      "priority": 1,
+      "reason": "Theory anchor; firm proved-and-verified result, all other items build on it."
+    },
+    {
+      "id": "K09",
+      "priority": 2,
+      "reason": "Primary applied takeaway — one-term fix and direction of tilt; what a skimmer must see."
+    },
+    {
+      "id": "K03",
+      "priority": 3,
+      "reason": "Where-it-bites/where-not boundary prevents double-correction; high-value applied scoping."
+    },
+    {
+      "id": "K12",
+      "priority": 4,
+      "reason": "IC-application coverage; model-specificity is the mechanism behind K09."
+    },
+    {
+      "id": "K14",
+      "priority": 5,
+      "reason": "LRT-application coverage; firm projected-trace result discriminated at 52 SE."
+    },
+    {
+      "id": "K10",
+      "priority": 6,
+      "reason": "Methodology-workflow as first-class contribution; scoped to documented/verified facts."
+    },
+    {
+      "id": "K16",
+      "priority": 7,
+      "reason": "Second applied-implication; the trustworthiness-template angle for practitioners."
+    },
+    {
+      "id": "K15",
+      "priority": 8,
+      "reason": "LRT practice guidance; firm shared-imputation variance reduction, low-cost concrete advice."
+    }
+  ],
+  "add": [],
+  "drop_notes": "none — adopted the unanimous pooled set, which satisfies all category requirements within 8 slots."
+}

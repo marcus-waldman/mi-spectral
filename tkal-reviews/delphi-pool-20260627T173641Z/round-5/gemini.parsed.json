@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K11",
+      "priority": 1,
+      "reason": "Unchanged; establishes the foundational theoretical decomposition of the deviance bias."
+    },
+    {
+      "id": "K14",
+      "priority": 2,
+      "reason": "Unchanged; translates the theory into the exact differential bias for nested likelihood-ratio tests."
+    },
+    {
+      "id": "K12",
+      "priority": 3,
+      "reason": "Unchanged; establishes the model-specific nature of the bias for information criteria."
+    },
+    {
+      "id": "K10",
+      "priority": 4,
+      "reason": "Unchanged; elevates the auditable AI-human workflow to a first-class methodological contribution."
+    },
+    {
+      "id": "K09",
+      "priority": 5,
+      "reason": "Unchanged; provides the direct, actionable applied implication for computing the IC correction."
+    },
+    {
+      "id": "K03",
+      "priority": 6,
+      "reason": "Unchanged; clarifies exactly when to apply the correction (IC) and when to avoid double-counting (calibrated LRT)."
+    },
+    {
+      "id": "K16",
+      "priority": 7,
+      "reason": "Unchanged; translates the methodological workflow into a concrete template for applied teams."
+    },
+    {
+      "id": "K15",
+      "priority": 8,
+      "reason": "Unchanged; captures the practical LRT application detail of reusing imputations to reduce noise."
+    }
+  ],
+  "add": [],
+  "drop_notes": "none"
+}

@@ -1,0 +1,76 @@
+{
+  "convergence": [
+    {
+      "axis_key": "ratify-1",
+      "endorse": "merge",
+      "recommended_position": "KEEP-WITH-REVISION. Revised sentence: 'Under congenial proper MI with an estimated scale and complete-data MLE target, the averaged imputation log-likelihood overstates the complete-data log-likelihood by +1/2 tr(RIV) plus a MAR design-imbalance term that vanishes exactly under MCAR; the half-trace is established here for proper MI (its magnitude coinciding with Shimodaira's AIC penalty), and the design-imbalance term is new.' This ensures correct scoping of novelty while preserving the firm standing of the results.",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "ratify-2",
+      "endorse": "A",
+      "recommended_position": "KEEP-WITH-REVISION. Exact revised sentence: 'Under the paper's stated proper-MI conditions and on the usual -2 log-likelihood scale, applied MI AIC/BIC tables targeting complete-data-equivalent selection should add a per-candidate tr(RIV_k) to each criterion, because uncorrected criteria tilt toward models with more missing information.' This fixes the correctly-scoped criterion by making the assumptions and sign/scale of the correction explicit.",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "ratify-3",
+      "endorse": "A",
+      "recommended_position": "KEEP-WITH-REVISION. Exact revised sentence: 'For information-criterion ranking, where no calibrated reference distribution absorbs the mean, use the per-candidate tr(RIV_k) centering correction for complete-data-equivalent selection; for a Chan-style calibrated nested likelihood-ratio test, do not add a separate numerator mean correction because the null mean is already absorbed by the reference distribution.' This fixes correct scope by limiting the LRT warning to calibrated nested tests and avoiding overstrong wording.",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "ratify-4",
+      "endorse": "A",
+      "recommended_position": "KEEP-WITH-REVISION. Exact revised sentence: 'The MI information-criterion bias is model-specific: candidate models can have different RIV traces, so on the usual -2 log-likelihood scale adding tr(RIV_k) supplies the theoretical centering correction for MI-AIC and MI-BIC under the complete-data-equivalent target.' This fixes correct scope by specifying the criterion scale and target.",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "ratify-5",
+      "endorse": "A",
+      "recommended_position": "KEEP-WITH-REVISION. Exact revised sentence: 'We treat the structured AI-human workflow as a first-class methodological contribution by documenting, for this study, ORCID-verified human provenance and auditable gates for sourced citations, human acceptance, dual computer-algebra verification, preregistered simulations, adversarial rederivation, and full reproducibility, while marking same-lineage session-coding frequencies as model judgments rather than independently human-coded facts.' This accurately reflects the honest limit of the session coding.",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "ratify-6",
+      "endorse": "merge",
+      "recommended_position": "KEEP-WITH-REVISION. Exact revised sentence: 'For nested MI likelihood-ratio comparisons at the null, the numerator's differential deviance bias is tr(RIV_perp), the missing information in the tested directions projected in the complete-data information metric, not tr(RIV_full) minus tr(RIV_0).' This fixes correct scope/precision by naming the deviance scale, preserving the null restriction, and fixing grammar.",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "ratify-7",
+      "endorse": "A",
+      "recommended_position": "KEEP-WITH-REVISION. Exact revised sentence: 'Applied teams evaluating AI-assisted statistical derivations should ask for commensurate auditable evidence before relying on the results: sourced citations, independent symbolic checks where applicable, preregistered numerical criteria with reported failures, adversarial review, and reproducibility records.' This fixes correct scope by making this a reliance standard rather than a universal proof of correctness.",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "ratify-8",
+      "endorse": "A",
+      "recommended_position": "KEEP-WITH-REVISION. Exact revised sentence: 'For nested MI likelihood-ratio comparisons at the null or local alternatives, fit the competing models to the same imputed data sets whenever possible, because this pairing reduces Monte Carlo noise from order sqrt(n) to order one.' This makes the directive more actionable and correctly scopes it.",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "consolidate",
+      "endorse": "merge",
+      "recommended_position": "CONSOLIDATE TO TWO. Introduction contributions list item: 'For information-criterion selection after proper MI, the deviance bias is model-specific: candidate models can have different RIV traces, uncorrected AIC/BIC therefore tilt toward higher-missing-information candidates, and adding tr(RIV_k) to each criterion gives the centering correction for complete-data-equivalent selection.' Discussion applied-implications sentence: 'In practice, use the per-candidate tr(RIV_k) correction for IC ranking because no reference distribution absorbs the mean; do not add a separate numerator correction to a Chan-style calibrated nested likelihood-ratio test, where the null mean is already built into the reference distribution.'",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "completeness",
+      "endorse": "merge",
+      "recommended_position": "COMPLETE. The eight-item set (consolidated to fewer skim items) is sufficient. The 100% largest-RIV result, calibration ladder, and Shimodaira equivalence should appear as supporting evidence within the IC section and Discussion, not as separate contribution bullets. Adding them would dilute the skim layer with validation details rather than applied actions.",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "lead-hook",
+      "endorse": "A",
+      "recommended_position": "Lead with item 2 (the applied tr(RIV_k) directive). Exact abstract hook: 'Under congenial proper multiple imputation, MI AIC/BIC tables are systematically tilted toward candidate models with more missing information, and adding the per-candidate trace correction tr(RIV_k) recenters them for complete-data-equivalent model selection.'",
+      "residual_dissent": "none"
+    },
+    {
+      "axis_key": "workflow-framing",
+      "endorse": "A",
+      "recommended_position": "FIRST-CLASS. Exact one-sentence framing: 'We treat the AI-human workflow as a first-class methodological contribution, co-equal with the technical results, because this study pairs mechanically checkable provenance and verification gates with a transparent audit trail, while reporting same-lineage session-coding frequencies as model judgments rather than independently human-coded measurements.'",
+      "residual_dissent": "none"
+    }
+  ]
+}

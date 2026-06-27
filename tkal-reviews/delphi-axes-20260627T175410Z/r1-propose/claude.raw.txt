@@ -1,0 +1,76 @@
+{
+  "positions": [
+    {
+      "axis_key": "ratify-1",
+      "position": "KEEP-WITH-REVISION. The core +1/2 tr(RIV) result is firm and verified, but the brief notes the trace magnitude coincides with Shimodaira (2017), so the wording should not imply the half-trace itself is novel; the novel pieces are the MAR design-imbalance term and the proper-MI proof. Revised: 'Under congenial proper MI with an estimated scale and complete-data MLE target, the averaged imputation log-likelihood overstates the complete-data log-likelihood by +1/2 tr(RIV) plus a MAR design-imbalance term that vanishes exactly under MCAR; the half-trace is established here for proper MI (its magnitude coinciding with Shimodaira's AIC penalty), and the design-imbalance term is new.'",
+      "rationale": "Real, important, and scoped; the only risk is implicit novelty overclaim on the trace, which the revision honestly partitions.",
+      "confidence": 4
+    },
+    {
+      "axis_key": "ratify-2",
+      "position": "KEEP-AS-IS. The directive follows directly from the firm model-specific bias result (C3) and is the single most actionable takeaway for a skimming practitioner. It is correctly scoped by the 'when the target is complete-data-equivalent selection' conditional, and novel relative to Consentino-Claeskens, who left the justification open.",
+      "rationale": "This is the highest-value applied implication and is properly hedged as worded.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "ratify-3",
+      "position": "KEEP-AS-IS. The do-not-double-apply guard is real (witness W2: size 0.042 uncorrected vs 0.034 over-corrected), genuinely novel as an explicit boundary, and exactly the kind of error a practitioner would make. The scoping correctly distinguishes IC ranking (no reference distribution) from a calibrated LRT (mean already absorbed).",
+      "rationale": "The double-counting warning is uniquely valuable and prevents a real misuse; well-scoped as worded.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "ratify-4",
+      "position": "KEEP-AS-IS. The model-specificity of the bias is firm and is the load-bearing result behind items 2 and 3. Wording is accurate ('supplies the theoretical centering correction', 'under the stated target') and correctly credits the gap left by Consentino-Claeskens.",
+      "rationale": "Real, novel, correctly scoped result that the applied directives depend on.",
+      "confidence": 4
+    },
+    {
+      "axis_key": "ratify-5",
+      "position": "KEEP-WITH-REVISION. The documented facts are firm, but 'first-class contribution' overclaims given the self-coding limit, so the sentence must carry the limit it currently omits. Revised: 'We document, for this study, a structured AI-human workflow with transparent provenance and auditable gates -- sourced citations, human acceptance of every result, dual computer-algebra verification, preregistered simulations with reported failures, adversarial rederivation, and full reproducibility -- where the verifiable records (turn counts, episodes, the 8-of-9 sign-flip catch) are mechanically checked, while the qualitative session coding was performed by the same model lineage analyzed without a human second coder.'",
+      "rationale": "The verified facts deserve prominence, but the as-worded sentence claims first-class standing without disclosing the coding limit the brief flags as load-bearing.",
+      "confidence": 4
+    },
+    {
+      "axis_key": "ratify-6",
+      "position": "KEEP-AS-IS. The tr(RIV_perp) projected-missing-information result is firm (Monte Carlo discriminates from the naive difference at 52 SE) and appears genuinely new against the calibration lineage. It is correctly scoped to 'at the null' and nested comparisons.",
+      "rationale": "A firm, sharply verified, novel technical result; correctly hedged.",
+      "confidence": 4
+    },
+    {
+      "axis_key": "ratify-7",
+      "position": "KEEP-AS-IS. This is the generalizable applied takeaway from the workflow and is correctly framed as a recommendation ('should require') rather than a self-validating claim. It gives a skimming practitioner a concrete checklist independent of this paper's specific results.",
+      "rationale": "Actionable, properly scoped as a demand-side standard, and complements item 5 without overclaiming.",
+      "confidence": 4
+    },
+    {
+      "axis_key": "ratify-8",
+      "position": "KEEP-AS-IS. The shared-imputation pairing result (variance reduction from order sqrt(n) to order one) is firm and is a directly actionable practitioner directive with low cost and clear benefit. Wording is accurate and scoped to nested comparisons at null and local alternatives.",
+      "rationale": "Concrete, cheap, firmly supported implementation advice that practitioners can act on immediately.",
+      "confidence": 4
+    },
+    {
+      "axis_key": "consolidate",
+      "position": "Consolidate to TWO items. Keep item 4 (the result) in the Introduction contributions list as the technical claim, and merge items 2 and 3 into a single Discussion applied-implications item: 'For complete-data-equivalent model selection on multiply-imputed data, add a per-candidate tr(RIV_k) correction to AIC/BIC -- this removes the tilt toward models with more missing information; apply it only where no calibrated reference distribution intervenes (IC ranking, explicit numerator corrections, non-nested comparison), and never on top of a calibrated likelihood-ratio test (Chan 2022), where the mean is already absorbed.' This preserves the result/directive/guard logic while reducing redundancy in the skim layer.",
+      "rationale": "Items 2 and 3 are one actionable message (do this, here, not there); separating them dilutes the skim layer while item 4 carries the distinct technical result.",
+      "confidence": 4
+    },
+    {
+      "axis_key": "completeness",
+      "position": "COMPLETE. The eight-item set is sufficient for the skim layer. The W3-C=1.000 finding, the calibration ladder, and the Shimodaira reproduction are strong supporting evidence but belong inside the IC-application section as proof, not as separate headline contributions; promoting them would dilute the actionable message (item 2) with detail a skimming applied reader does not need to act. The Shimodaira reproduction in particular is a cross-check, not an independent contribution.",
+      "rationale": "These are evidentiary support for items already in the set; surfacing them as separate items adds length without adding actionable skim-layer value.",
+      "confidence": 4
+    },
+    {
+      "axis_key": "lead-hook",
+      "position": "Lead with item 2 (the applied tr(RIV_k) directive). Abstract hook: 'Model-selection tables built on multiply-imputed data are systematically biased toward models with more missing information; we prove the bias is one trace term per candidate, tr(RIV_k), give the one-line correction that restores complete-data-equivalent selection, and show exactly where it must -- and must not -- be applied.'",
+      "rationale": "Item 2 is the highest-priority, most actionable takeaway for a skimming applied reader and naturally pulls in the result (item 4) and the scope guard (item 3).",
+      "confidence": 5
+    },
+    {
+      "axis_key": "workflow-framing",
+      "position": "SUPPORTING. Rank the workflow below the technical results as a methodological disclosure, given the self-coding limit. Framing: 'This paper is also a worked, auditable instance of a structured AI-human derivation workflow whose verifiable records -- sourced citations, dual computer-algebra checks, preregistration with reported failures, and an adversarial rederivation that caught an 8-of-9 sign error -- are mechanically verified, offered as a template for trustworthy AI-assisted methods work, with the qualitative collaboration coding's frequencies noted as model judgments not independently human-verified.'",
+      "rationale": "The mechanically verified facts are strong and worth prominence, but the same-lineage self-coding without a human second coder precludes co-equal first-class standing without overclaim.",
+      "confidence": 4
+    }
+  ]
+}

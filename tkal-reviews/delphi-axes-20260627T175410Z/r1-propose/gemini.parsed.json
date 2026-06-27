@@ -1,0 +1,76 @@
+{
+  "positions": [
+    {
+      "axis_key": "ratify-1",
+      "position": "KEEP-AS-IS. The claim accurately reflects the analytic derivation and Monte Carlo verification of the +1/2 tr(RIV) term and the MAR design-imbalance term, correctly scoped to congenial proper MI with an estimated scale.",
+      "rationale": "It perfectly captures the core theoretical contribution (C1) without overclaiming, matching the stated evidence and standing.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "ratify-2",
+      "position": "KEEP-AS-IS. The claim translates the theoretical finding into a clear, actionable directive for applied researchers, accurately reflecting the model-specific bias and the necessary correction.",
+      "rationale": "It directly addresses the applied reader's need to know what is wrong with current practice and how to fix it.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "ratify-3",
+      "position": "KEEP-AS-IS. The claim correctly delineates the scope of the correction, explicitly warning against double-counting when a calibrated reference distribution (Chan 2022) is already in use.",
+      "rationale": "This is a crucial guardrail for practitioners to prevent misapplication of the correction in likelihood-ratio tests.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "ratify-4",
+      "position": "KEEP-AS-IS. The claim accurately states the theoretical basis for the IC correction (the model-specificity of the RIV trace) as derived in C3.",
+      "rationale": "It provides the necessary theoretical justification for the applied directive in item 2.",
+      "confidence": 4
+    },
+    {
+      "axis_key": "ratify-5",
+      "position": "KEEP-WITH-REVISION. Revised sentence: 'We make the structured AI-human workflow a first-class contribution by documenting, for this study, transparent provenance and auditable gates for sourced citations, human acceptance, dual computer-algebra verification, preregistered simulations, adversarial rederivation, and full reproducibility, while explicitly disclosing that the qualitative session coding relies on model judgments without a human second coder.'",
+      "rationale": "The original wording fails the 'correctly scoped' criterion by omitting the honest limit regarding the lack of a human second coder for the session coding.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "ratify-6",
+      "position": "KEEP-WITH-REVISION. Revised sentence: 'For nested MI likelihood-ratio comparisons at the null, the numerator's differential bias is tr(RIV_perp), the missing information in the tested directions projected in the complete-data information metric, not tr(RIV_full) minus tr(RIV_0).' (Added apostrophe 's' to numerator).",
+      "rationale": "Corrects a minor grammatical issue to match the phrasing in the brief ('numerator's differential bias') while preserving the exact technical claim.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "ratify-7",
+      "position": "KEEP-AS-IS. The claim effectively translates the workflow methodology into a normative standard for applied teams evaluating AI-assisted work.",
+      "rationale": "It fulfills the goal of providing a concrete standard for practitioners, making the methodological contribution highly relevant to the applied audience.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "ratify-8",
+      "position": "KEEP-AS-IS. The claim accurately reflects the variance-reduction benefit of pairing imputations across nested fits as verified by Monte Carlo.",
+      "rationale": "It offers a practical, easy-to-implement recommendation that significantly improves the stability of MI likelihood-ratio comparisons.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "consolidate",
+      "position": "Consolidate to two distinct items. For the Introduction contributions list: 'The MI information-criterion bias is model-specific, tilting uncorrected criteria toward models with more missing information; adding a per-candidate tr(RIV_k) supplies the theoretical centering correction for MI-AIC and MI-BIC to restore complete-data-equivalent selection.' For the Discussion applied-implications passage: 'Applied MI model-selection tables should add a per-candidate tr(RIV_k) correction to AIC/BIC to avoid favoring models with more missing information; however, this correction must not be applied to a calibrated likelihood-ratio test (Chan 2022), where the mean bias is already absorbed by the reference distribution.'",
+      "rationale": "This removes redundancy while ensuring the theoretical justification lives in the Introduction and the actionable, scoped directives live in the Discussion.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "completeness",
+      "position": "ADD. Exact wording: 'Empirically, 100% of uncorrected MI-AIC misclassifications in our preregistered simulation landed on the candidate with the largest missing information, confirming the directional tilt of the bias.' This belongs in the Introduction contributions list.",
+      "rationale": "The 100% misclassification finding is a striking, preregistered empirical result that serves as a powerful hook for applied readers to care about the correction.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "lead-hook",
+      "position": "Lead with Item 2 (the applied implication of the IC correction). Exact abstract hook: 'Standard information criteria like AIC and BIC applied to multiply-imputed data systematically favor models with more missing information; we derive the exact deviance bias and provide a simple per-candidate tr(RIV_k) correction to restore complete-data-equivalent selection.'",
+      "rationale": "This directly addresses the applied reader's pain point and offers an immediate, actionable solution, fulfilling the primary goal of the skim layer.",
+      "confidence": 5
+    },
+    {
+      "axis_key": "workflow-framing",
+      "position": "FIRST-CLASS. Exact framing: 'We present this paper as a first-class methodological contribution demonstrating a structured, auditable AI-human workflow for statistical derivation, featuring mechanically verified gates, adversarial review, and full reproducibility, though we note the qualitative session coding relies on model judgments without a human second coder.'",
+      "rationale": "Elevating the workflow to a first-class contribution establishes a much-needed template for trustworthy AI-assisted research, provided the limitations are transparently stated.",
+      "confidence": 4
+    }
+  ]
+}

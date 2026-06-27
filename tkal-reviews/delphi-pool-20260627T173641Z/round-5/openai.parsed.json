@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K09",
+      "priority": 1,
+      "reason": "Kept as the lead applied hook: it gives practitioners the one-term AIC/BIC correction, scoped to complete-data-equivalent selection."
+    },
+    {
+      "id": "K03",
+      "priority": 2,
+      "reason": "Kept high because it tells applied readers where to correct and where not to double-count, especially for calibrated Chan-style LRTs."
+    },
+    {
+      "id": "K10",
+      "priority": 3,
+      "reason": "Kept and promoted as a first-class methodological contribution, scoped to the documented provenance and audit gates in this study."
+    },
+    {
+      "id": "K11",
+      "priority": 4,
+      "reason": "Kept as the main theorem anchoring the applications, with the needed scope: congenial proper MI, estimated scale, complete-data MLE target, and MCAR/MAR distinction."
+    },
+    {
+      "id": "K12",
+      "priority": 5,
+      "reason": "Kept to state the IC-specific theoretical centering result separately from the practitioner action in K09."
+    },
+    {
+      "id": "K14",
+      "priority": 6,
+      "reason": "Kept as the key LRT contribution: the projected tested-direction trace replaces the naive per-model trace difference at the null."
+    },
+    {
+      "id": "K15",
+      "priority": 7,
+      "reason": "Kept as actionable LRT design advice supported by the paired-imputation Monte Carlo noise result."
+    },
+    {
+      "id": "K16",
+      "priority": 8,
+      "reason": "Kept as the applied implication of the workflow: it translates the paper's audit gates into standards teams can demand of AI-assisted derivations."
+    }
+  ],
+  "add": [],
+  "drop_notes": "none; I retain all eight unanimous pooled items and add no new items."
+}

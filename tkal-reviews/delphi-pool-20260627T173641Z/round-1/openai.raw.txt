@@ -1,0 +1,67 @@
+{
+  "nominations": [
+    {
+      "title": "Applied MI model-selection tables should add a per-candidate tr(RIV_k) correction to AIC/BIC when the target is complete-data-equivalent selection, because uncorrected criteria tilt toward models with more missing information.",
+      "by": "",
+      "category": "applied-implication",
+      "reason": "This is the main skim-level practice change, supported by the sec-ic derivation, the W3 directional result, and the calibration ladder while avoiding any claim that the correction recovers weak-signal information loss.",
+      "priority": 1
+    },
+    {
+      "title": "We make the structured AI-human workflow a first-class contribution by documenting, for this study, transparent provenance and auditable gates for sourced citations, human acceptance, dual computer-algebra verification, preregistered simulations, adversarial rederivation, and full reproducibility.",
+      "by": "",
+      "category": "methodology-workflow",
+      "reason": "I rank this among the headline results rather than as supporting disclosure because C4's mechanically checked records, verified episodes, and caught sign error are part of the evidentiary claim, while 'for this study' respects the no-second-coder limit.",
+      "priority": 2
+    },
+    {
+      "title": "Under congenial proper MI with an estimated scale and complete-data MLE target, the averaged imputation log-likelihood overstates the complete-data log-likelihood by +1/2 tr(RIV) plus a MAR design-imbalance term that vanishes under MCAR.",
+      "by": "",
+      "category": "theory",
+      "reason": "This is the core theorem, backed by sec-thm, dual computer algebra, W1 Monte Carlo, and the entropy-Hessian check, with the known-scale exception and unpinned design-imbalance constant scoped out.",
+      "priority": 3
+    },
+    {
+      "title": "The MI information-criterion bias is model-specific: candidate models can have different RIV traces, so adding tr(RIV_k) supplies the theoretical centering correction for MI-AIC and MI-BIC under the stated target.",
+      "by": "",
+      "category": "IC-application",
+      "reason": "It earns a separate technical slot because sec-ic proves model-specificity and correction, W3 and the ladder verify its direction and behavior, and the lineage says the prior MI-AIC proposal left this justification open.",
+      "priority": 4
+    },
+    {
+      "title": "Centering the MI likelihood statistic and calibrating its reference distribution solve different problems, so the trace correction should be used when the statistic is used directly and not stacked on a Chan-calibrated MI LRT at the null.",
+      "by": "",
+      "category": "applied-implication",
+      "reason": "This prevents harmful double-counting, supported by C2's calibration discussion and W2, and scopes the warning to direct likelihood uses versus calibrated null LRTs.",
+      "priority": 5
+    },
+    {
+      "title": "For nested MI likelihood-ratio comparisons at the null, the numerator's differential bias is tr(RIV_perp), the missing information in the tested directions projected in the complete-data information metric, not tr(RIV_full)-tr(RIV_0).",
+      "by": "",
+      "category": "LRT-application",
+      "reason": "This is firm from sec-lrt, the Gram/Schur argument, and Monte Carlo discrimination from the naive trace difference, and the title keeps the claim at the null where it is established.",
+      "priority": 6
+    },
+    {
+      "title": "Nested MI likelihood-ratio comparisons should reuse the same imputations for the competing fits, since pairing reduces null and local-alternative Monte Carlo noise from order sqrt(n) to order one.",
+      "by": "",
+      "category": "LRT-application",
+      "reason": "This is a practical computational consequence of C2 with firm analytic support, scoped to the null and local alternatives stated in the brief.",
+      "priority": 7
+    },
+    {
+      "title": "Applied teams evaluating AI-assisted statistical derivations should require auditable evidence of the same kind used here: sourced citations, independent symbolic checks, preregistered numerical criteria with reported failures, adversarial review, and reproducibility records.",
+      "by": "",
+      "category": "applied-implication",
+      "reason": "C4 supplies a concrete trust template for applied readers, and the wording avoids generalizing the workflow's coded frequencies beyond this audited case.",
+      "priority": 8
+    }
+  ],
+  "bench": [
+    "Headline the +tr(RIV) imputation-bias and -1/2 tr(RIV) estimation-mismatch split if the Introduction has room.",
+    "State the MAR design-imbalance caveat separately: its sign and order are firm, its constant is not, and it vanishes exactly under MCAR.",
+    "State the IC structural limits separately: the W3 family is a Gram/Schur equality case, and per-model marginal transforms cannot calibrate a difference distribution.",
+    "Add the measured W3 witness as an empirical claim: all preregistered uncorrected MI-AIC misclassifications landed on the largest-RIV candidate."
+  ],
+  "gaps": "No required category is omitted; the bounded list under-covers detailed mathematical decompositions, numerical witness values, and non-nested/pseudo-true caveats."
+}
