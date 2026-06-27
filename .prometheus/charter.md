@@ -3,14 +3,15 @@ schema_version: 1
 project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
-current_milestone: "Prose readability pass over the manuscript (S1-S6) -- topic/support/wrap arc, plain statements, lower grade level; S5 Socratic review complete (cross-family tribunal -> AMEND)"
-last_synced_commit: d3aa962
+current_milestone: "Rendering polish + new 'AI human collaboration' section (todo/034): equation line-breaks, figure legibility (legends outside + transparency + palette), arXiv template, restructure -- prose readability pass DONE (FK 11.9->10.1; T-08 closed; G6/G7 fixed)"
+last_synced_commit: cd9cc3a
 tree_state: dirty
-updated: "2026-06-27T14:38:58Z"
+updated: "2026-06-27T14:39:54Z"
 updated_by: wrap
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 cockpit: { provider: null, list_id: null }
 ---
+
 
 
 
