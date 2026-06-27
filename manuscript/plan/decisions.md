@@ -98,3 +98,22 @@ The conditioning-sense "oracle" (the Q-function conditioned on the truth, $\math
 ## Display-equation line-breaks (2026-06-27, todo/034 #1+2)
 
 Wide display equations that overflowed the right text margin in the assembled preview (21 blocks across 11 paragraphs: S2-P13, S4-P10, S4-P11, S4-P19, S4-P20, S4-P3, S4-P4, S4-P5, S4-P6, S4-P7, S4-P7b) were broken at their relation symbols and comma/\qquad separators onto aligned lines (\begin{aligned}/\end{aligned}, one gathered list). This clears the xelatex Overfull \hbox warnings (worst was eq-lrt-bias at 112pt over) and the associated "equation renders as $$ / not given" symptom, which was clipping at the page edge, not malformed markup. Every mathematical token is preserved verbatim -- the edits only insert alignment ampersands and line breaks, verified by a normalize-and-compare check.
+
+## Preview switched to the arXiv Quarto template (2026-06-27, todo/034 #4)
+
+The visual preview build (manuscript/preview-jasa/build_preview.py) was switched
+from the `jasa-pdf` format to the community arXiv format extension
+**mikemahoney218/quarto-arxiv** (`arxiv-pdf`, LaTeX/xelatex, version 0.2.3),
+installed with `quarto add mikemahoney218/quarto-arxiv`. Front matter adjusted to
+that schema: the JASA `journal:` block dropped; `linenumbers`/`doublespacing`/
+`runninghead` added; the D-11 provenance declaration moved from the (unsupported)
+author `acknowledgements` slot to the title `\thanks{}` footnote (the `thanks:`
+key), where the arxiv title partial renders it. Re-render: 0 Overfull \hbox
+warnings (the wider arXiv text block also absorbed the lone remaining inline-math
+overflow in S4-P11 that the JASA column clipped), and page count fell 55 -> 24.
+
+Scope note: `manuscript/preview-jasa/` is gitignored (.gitignore:52), so the build
+script and the installed extension live only in the local working tree -- this
+record is the tracked trace of the choice. The eventual canonical compile
+(scripts/compile_manuscript.py -> manuscript/mi-spectral.qmd, still
+compile_enabled=false) should adopt `arxiv-pdf` when compile is enabled.
