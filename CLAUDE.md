@@ -243,6 +243,13 @@ Target reader: an applied researcher with quantitative training and working MI k
 - **Banned vocabulary (T-03).** "ledger", "numerical witness", "tagged",
   "machine-checked", "Stage N", "consume", and figurative house jargon ("where it
   bites", "honest fences", "funnel/hub") — in manuscript AND conversation.
+- **Accuracy invariant — data quantity.** Models never lose or gain data; every
+  candidate is fit to the SAME imputed data. The per-candidate driver of the selection
+  bias is the model's own tr(RIV), its missing information about the parameters, never
+  an amount of data. Never write that a model "lost"/"has more/less/most" data;
+  attribute candidate differences to missing information or RIV. (Twins the abstract
+  fix 53b96bc; enforced by the data-quantity rule in `scripts/check_plan.py` and the
+  `scripts/mechanism_flag.py` scout.)
 - **Methods section only (T-05):** factual passive voice; every safeguard paragraph ends
   with what it cannot catch.
 - **Terminology:** "repetitions" for Monte Carlo, never "replications" (reserved for the

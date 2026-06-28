@@ -55,6 +55,16 @@ CROSSREF_PREFIX = re.compile(
 CITEKEY_SHAPE = re.compile(r"^[A-Za-z][A-Za-z0-9]+\d{4}[a-z]?$")
 RHETORICAL_GOALS = {"transition", "summarize", "summarize_section", "hedge", "roadmap"}
 
+# todo/037 accuracy invariant (CLAUDE.md): data-quantity attribution to candidate models.
+# All candidates are fit to the SAME imputed data; the per-candidate driver is the model's
+# own tr(RIV). Scoped to spare legitimate complete-data-vs-missingness phrasing (e.g.
+# "the analyst who never lost the data") and "missing data".
+DATA_QUANTITY = [
+    re.compile(r"\b(model|candidate)s?\b[^.\n]{0,60}?\b(lost|lose|loses|losing|"
+               r"discard\w*|drop\w*|most|more|fewer|less|least)\s+(?!missing\b)data\b", re.I),
+    re.compile(r"\b(lost|lose|loses|losing)\s+the\s+(most|more|least|fewer)\s+data\b", re.I),
+]
+
 PLAN_FILES = [
     "level1-thesis.json",
     "level2-sections.json",
@@ -170,6 +180,28 @@ def prose_punctuation_hits(prose):
     if "—" in text:
         hits.append("em-dash present (banned; use a connective or a new sentence)")
 
+    return hits
+
+
+def prose_mechanism_hits(prose):
+    """
+    Manuscript accuracy gate (CLAUDE.md 'Accuracy invariant - data quantity', todo/037).
+
+    Flags data-quantity attributions to candidate models -- 'the models that lost the
+    most data' and kin. Every candidate is fit to the SAME imputed data, so any such
+    phrase is wrong by construction; the per-candidate driver is the model's own
+    tr(RIV). Math is blanked first. The patterns are scoped to spare 'missing data' and
+    analyst/data-reality phrasing that is not model-bound. Returns short strings.
+    """
+    text = re.sub(r"\$\$.*?\$\$", " ", prose, flags=re.S)
+    text = re.sub(r"\$[^$]*\$", " ", text)
+    hits = []
+    for rx in DATA_QUANTITY:
+        for m in rx.finditer(text):
+            hits.append(
+                f"data-quantity attribution '{m.group(0).strip()}' "
+                f"(candidates share the imputed data; attribute to missing information / RIV)"
+            )
     return hits
 
 
@@ -305,6 +337,8 @@ def main():
                 problems.append(f"level3-paragraphs.json: {pid} missing audit object")
             for hit in prose_punctuation_hits(p.get("draft_prose") or ""):
                 problems.append(f"level3-paragraphs.json: {pid} prose-style: {hit}")
+            for hit in prose_mechanism_hits(p.get("draft_prose") or ""):
+                problems.append(f"level3-paragraphs.json: {pid} prose-accuracy: {hit}")
         for pid, dlist in deps.items():
             for d in dlist:
                 if d not in deps:
