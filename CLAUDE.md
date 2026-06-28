@@ -195,20 +195,34 @@ Rscript verification/00-test-primitives.R
 
 Target reader: an applied researcher with quantitative training and working MI knowledge.
 
-- **Plain expository structure.** Topic sentence first, supporting details in separate
-  sentences, one idea per sentence, explicit connectives ("The practical consequence
-  is...", "The fix is direct."). No em-dash appositive chains (X — gloss — verb), no
-  nested mid-sentence glosses, no fixed poetic cadence, no constructions that make the
-  reader backtrack. Run the full paragraph arc. Open with a topic
-  sentence, give the supporting details in their own sentences, and close with a
-  wrap-up or a hand-off to the next idea. State each logical step plainly rather
-  than leaving the reader to infer it, even at the cost of a little redundancy.
-  Keep the reading level low, favoring short declarative sentences over dense or
-  sophisticated constructions.
-- **Punctuation budget.** Semicolons, colons, and dashes are near-zero by default —
-  where one is tempting, end the sentence and start a new one. Lists become "The first
-  is X. The second is Y." or enumerated displays, not semicolon chains. A colon is
-  acceptable only to introduce a display or a definition.
+- **Plain expository structure.** Topic sentence first, then supporting details.
+  Usually one idea per sentence, but join two closely-related clauses with a connective
+  ("X, because Y"; "X, so Y") when that carries the logic better than a period would.
+  No em-dash appositive chains (X — gloss — verb), no nested mid-sentence glosses, no
+  fixed poetic cadence, no constructions that make the reader backtrack. Run the full
+  paragraph arc. Open with a topic sentence, give the supporting details, and close
+  with a wrap-up or a hand-off to the next idea. State each logical step plainly rather
+  than leaving the reader to infer it, even at the cost of a little redundancy. Keep
+  the words plain and the reading level low, but VARY sentence length: join some
+  clauses and leave others short, so the prose does not read as a column of
+  equal-length declaratives. Break runs of same-length or same-opener ("The... The...
+  The...") sentences.
+- **Punctuation budget (v2, 2026-06-27).** Connectives between clauses are the main
+  tool for sentence-length variety. Prefer ", because", ", but", ", so", ", while",
+  and sentence-initial transitions (". However,", ". Therefore,", ". By contrast,").
+  Semicolons are ALLOWED but SPARSE: only between two tightly-linked independent clauses
+  ("X; therefore, Y"), never to chain a list, roughly at most one per paragraph and
+  only where a period would sever a link worth keeping tight. Still banned: em-dash
+  appositive or gloss chains (X — gloss — verb), nested mid-sentence glosses, and
+  semicolon-chained lists (use "The first is X. The second is Y." or an enumerated
+  display). A colon is acceptable only to introduce a display or a definition. Why v2:
+  the near-zero-connective rule forced every clause relationship into a period and left
+  a monotone column of short declaratives, so restoring connectives is what varies the
+  rhythm.
+- **No orphaned pronouns.** Do not open or continue a sentence with "it/this/that/they"
+  when the antecedent could be more than one thing or sits more than a clause back. Name
+  the noun. Joining the clauses ("X, which...") usually keeps the referent local and
+  removes the ambiguity.
 - **Announce results.** New results are introduced as things the paper shows ("We show
   that..."), never asserted cold. Immediately translate each formal object into applied
   terms in its own sentence (e.g., the model-specific bias → "a model-comparison table

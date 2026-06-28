@@ -129,8 +129,9 @@ def prose_punctuation_hits(prose):
     """
     Manuscript prose-style gate (CLAUDE.md 'Punctuation budget').
 
-    Flags rhetorical colons and semicolons in draft_prose. Allowed and therefore
-    NOT flagged:
+    Flags rhetorical colons, em-dashes, and 2+ semicolons per paragraph. A single
+    semicolon between tightly-linked clauses is allowed (sparse budget v2). Allowed and
+    therefore NOT flagged:
       - colons introducing a display ($$...$$), a markdown table, a heading run-in
         (a **bold:** label, or a '## ...:' subhead), or a verbatim quotation;
       - semicolons inside math ($...$) and inside citation brackets ([@a; @b]);
@@ -159,12 +160,15 @@ def prose_punctuation_hits(prose):
             continue  # introduces the results table
         hits.append(f"rhetorical colon after '...{frag[-40:]}'")
 
-    for m in re.finditer(r";", text):
-        ctx = text[max(0, m.start() - 30):m.start()]
-        if "§MATH" in ctx[-8:] or "§CITE" in ctx[-8:]:
-            continue
-        seg = text[max(0, m.start() - 40):m.start() + 1].strip().replace("\n", " ")
-        hits.append(f"semicolon: '...{seg[-45:]}'")
+    # Semicolons: allowed but SPARSE (punctuation budget v2). At most one per
+    # paragraph; two or more (including semicolon-chained lists) is a violation.
+    n_semi = len(re.findall(r";", text))
+    if n_semi > 1:
+        hits.append(f"{n_semi} semicolons in one paragraph (sparse budget allows at most one)")
+
+    # Em-dashes stay banned (appositive / gloss chains).
+    if "—" in text:
+        hits.append("em-dash present (banned; use a connective or a new sentence)")
 
     return hits
 
