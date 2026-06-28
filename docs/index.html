@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The deviance bias of congenial multiple imputation</title>
+<meta name="description" content="A deviance-bias correction for the Q-function under congenial multiple imputation, with applications to likelihood-ratio comparison and information-criterion model selection. An AI-assisted derivation with a stated verification protocol.">
+<meta property="og:title" content="The deviance bias of congenial multiple imputation">
+<meta property="og:description" content="A deviance-bias correction for the multiple-imputation Q-function, with applications to likelihood-ratio comparison and model selection.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#5a5a5a; --line:#e3e3e3; --bg:#fdfdfc;
+    --accent:#0b5d6e; --accent-soft:#eef5f6; --card:#ffffff;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); line-height:1.65; font-size:18px;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 22px}
+  header{
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#fbfbfa 0%,#f4f6f6 100%);
+  }
+  header .wrap{padding-top:54px; padding-bottom:40px}
+  .eyebrow{
+    font-size:13px; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin:0 0 14px;
+  }
+  h1{
+    font-family:var(--serif); font-weight:700; line-height:1.18;
+    font-size:34px; margin:0 0 18px; letter-spacing:-.01em;
+  }
+  .byline{font-size:16px; color:var(--muted); margin:0}
+  .byline strong{color:var(--ink); font-weight:600}
+  main .wrap{padding-top:8px; padding-bottom:64px}
+  section{padding:34px 0; border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:0}
+  h2{
+    font-family:var(--serif); font-size:13px; font-weight:700;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--muted);
+    margin:0 0 16px;
+  }
+  p{margin:0 0 16px}
+  .abstract{
+    font-size:18px; color:#2a2a2a;
+  }
+  .abstract p:first-child::first-letter{
+    font-family:var(--serif); font-size:3.1em; line-height:.78;
+    float:left; padding:6px 10px 0 0; color:var(--accent); font-weight:700;
+  }
+  .cards{display:grid; gap:16px; grid-template-columns:1fr 1fr}
+  @media (max-width:560px){.cards{grid-template-columns:1fr}}
+  a.card{
+    display:block; text-decoration:none; color:inherit;
+    border:1px solid var(--line); border-radius:12px; padding:20px 20px 18px;
+    background:var(--card); transition:border-color .15s, box-shadow .15s, transform .15s;
+  }
+  a.card:hover{border-color:var(--accent); box-shadow:0 6px 22px rgba(11,93,110,.10); transform:translateY(-2px)}
+  a.card .k{
+    font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--accent); font-weight:700; margin:0 0 6px;
+  }
+  a.card .t{font-family:var(--serif); font-size:20px; font-weight:700; margin:0 0 6px}
+  a.card .d{font-size:14.5px; color:var(--muted); margin:0; line-height:1.5}
+  .tag{
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:.04em;
+    text-transform:uppercase; color:#8a5a00; background:#fdf3e0;
+    border-radius:5px; padding:1px 7px; margin-left:7px; vertical-align:middle;
+  }
+  .result{
+    background:var(--accent-soft); border:1px solid #d6e6e9; border-radius:12px;
+    padding:20px 22px; margin:0 0 18px;
+  }
+  .result .eq{
+    font-family:var(--mono); font-size:17px; color:var(--accent);
+    text-align:center; margin:6px 0 12px; font-weight:600;
+  }
+  ul.plain{margin:0; padding-left:20px}
+  ul.plain li{margin:0 0 10px}
+  .links{list-style:none; margin:0; padding:0}
+  .links li{margin:0 0 12px; display:flex; gap:10px; align-items:baseline}
+  .links a{color:var(--accent); text-decoration:none; font-weight:600; border-bottom:1px solid transparent}
+  .links a:hover{border-bottom-color:var(--accent)}
+  .links .lab{
+    font-size:12px; min-width:96px; color:var(--muted); font-weight:600;
+    letter-spacing:.03em; text-transform:uppercase; flex:0 0 auto;
+  }
+  code{font-family:var(--mono); font-size:.88em; background:#f1f1ef; padding:1px 5px; border-radius:4px}
+  .note{font-size:14.5px; color:var(--muted)}
+  footer{padding:30px 0 50px; color:var(--muted); font-size:13.5px; text-align:center}
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">AI-assisted theory paper &middot; JAIGP</p>
+    <h1>The deviance bias of congenial multiple imputation</h1>
+    <p class="byline">
+      with applications to likelihood-ratio comparison and model selection<br>
+      <strong>Marcus&nbsp;Waldman</strong> &middot; University of Colorado Anschutz Medical Campus<br>
+      AI-assisted derivation (Claude Opus, cross-checked with GPT-5.5 Pro and Gemini), ORCID-verified human prompter
+    </p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="abstract">
+      <h2>Abstract</h2>
+      <p>Model selection on multiply imputed data is biased toward more complex models, because their larger relative increase in variance makes the fit look better than it is. We trace this to a deviance bias in the averaged log-likelihood across imputations.</p>
+      <p>Under congenial proper multiple imputation with the complete-data maximum likelihood estimate as the target, the averaged log-likelihood overstates its complete-data counterpart by one half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that vanishes when data are missing completely at random. The bias is specific to each candidate model, which is why uncorrected information criteria favor the models with more missing information. Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection. The same analysis gives the bias of a likelihood-ratio comparison at the null and identifies where a calibrated test already supplies the correction, so that it is not applied twice. The derivation is AI-assisted under a stated, auditable verification protocol.</p>
+    </section>
+
+    <section>
+      <h2>Read it</h2>
+      <div class="cards">
+        <a class="card" href="derivation.html">
+          <p class="k">Read &middot; HTML</p>
+          <p class="t">The sourced derivation</p>
+          <p class="d">The canonical formal derivation: setup, assumptions, and proof, with executable verification inline. Every external claim points to a source passage and every number to a committed artifact.</p>
+        </a>
+        <a class="card" href="https://github.com/marcus-waldman/mi-spectral">
+          <p class="k">Browse &middot; GitHub</p>
+          <p class="t">Code and evidence</p>
+          <p class="d">The simulation sweep, preregistered numerical checks, figures, and per-citation source corpus. The submission manuscript is in preparation.</p>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>The result, in brief</h2>
+      <div class="result">
+        <div class="eq">Bias = +tr(RIV) &minus; &frac12;&nbsp;tr(RIV) = +&frac12;&nbsp;tr(RIV)</div>
+        <p class="note" style="margin:0">The averaged complete-data log-likelihood carries a positive imputation-bias term and a negative estimation-mismatch term. For a model that estimates a scale or covariance, they do not cancel: a net upward bias of one half the trace of the relative-increase-in-variance matrix remains (under MAR, plus an <code>O(1)</code> design-imbalance term that is zero under MCAR).</p>
+      </div>
+      <ul class="plain">
+        <li><strong>Model selection.</strong> The bias is model-specific, so uncorrected MI-AIC and MI-BIC favor candidates with more missing information. One trace term per candidate substantially restores complete-data-equivalent selection.</li>
+        <li><strong>Likelihood-ratio comparison.</strong> At the null, the differential bias is the missing information of the tested directions alone, projected in the complete-data metric. This is the value a correctly calibrated reference distribution already absorbs, so the correction must not be double-counted there.</li>
+        <li><strong>Verification.</strong> Each load-bearing claim is paired with a preregistered numerical check and, where derivable, an independent symbolic check.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Resources</h2>
+      <ul class="links">
+        <li><span class="lab">Code</span><a href="https://github.com/marcus-waldman/mi-spectral">github.com/marcus-waldman/mi-spectral</a></li>
+        <li><span class="lab">Transcripts</span><a href="https://drive.google.com/drive/folders/1zTO9APs6LiTtHuxo_X3VtWP_LDi7MPhm?usp=drive_link">Full AI-collaboration session logs (Google&nbsp;Drive)</a></li>
+        <li><span class="lab">Reproduce</span><a href="https://github.com/marcus-waldman/mi-spectral/blob/main/verification/run_all.R"><code>verification/run_all.R</code> &middot; the simulation sweep</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Provenance</h2>
+      <p class="note">This is an AI-assisted derivation prepared for the Journal for AI Generated Papers (JAIGP), which requires ORCID-verified human prompting and transparent AI co-authorship. The reasoning was developed in dialogue with Claude (Anthropic) and cross-checked with GPT-5.5 Pro (OpenAI) and Gemini (Google). The complete session transcripts linked above are the provenance record. No external work is quoted; cited claims are checked against locally read sources.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    The deviance bias of congenial multiple imputation &middot;
+    <a href="https://github.com/marcus-waldman/mi-spectral">source on GitHub</a>
+  </div>
+</footer>
+</body>
+</html>
