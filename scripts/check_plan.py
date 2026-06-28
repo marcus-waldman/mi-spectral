@@ -65,6 +65,24 @@ DATA_QUANTITY = [
     re.compile(r"\b(lost|lose|loses|losing)\s+the\s+(most|more|least|fewer)\s+data\b", re.I),
 ]
 
+# todo/037 pattern 4 (CLAUDE.md 'No color commentary'): evaluative narration that TELLS
+# the reader an object is important instead of stating the fact and its consequence.
+# High-confidence subset of scripts/color_commentary_flag.py; deliberately EXCLUDES
+# "central" (the motivate-by-use opener). Recurrence guard on a corpus the pass cleared.
+COLOR_COMMENTARY = [
+    re.compile(r"\b(gives?|lends?)\s+\w+\s+(its|their)\s+force\b", re.I),
+    re.compile(r"\bdoes?\s+(the\s+)?(real|actual|hard)\s+work\b", re.I),
+    re.compile(r"\bdoes?\s+(the\s+)?heavy\s+lifting\b", re.I),
+    re.compile(r"\bthe\s+workhorse\b", re.I),
+    re.compile(r"\bload-bearing\b", re.I),
+    re.compile(r"\bcrucially\b", re.I),
+    re.compile(r"\bis\s+what\s+(makes|drives|gives|powers)\b", re.I),
+    re.compile(r"\b(the\s+)?(heart|crux|linchpin)\s+of\s+(the|this|its|it)\b", re.I),
+    re.compile(r"\b(the\s+)?(key|crucial|essential|pivotal)\s+"
+               r"(assumption|ingredient|step|fact|point|idea|insight|observation|"
+               r"property|feature|move|object|quantity|term|result)\b", re.I),
+]
+
 PLAN_FILES = [
     "level1-thesis.json",
     "level2-sections.json",
@@ -205,6 +223,28 @@ def prose_mechanism_hits(prose):
     return hits
 
 
+def prose_color_hits(prose):
+    """
+    Manuscript prose-style gate (CLAUDE.md 'No color commentary', todo/037 pattern 4).
+
+    Flags evaluative narration that tells the reader an object is important instead of
+    stating the fact and its consequence ("does real work", "gives X its force",
+    "load-bearing", "the key/crucial <noun>", "crucially", "heart/crux of"). Math is
+    blanked first. High-confidence subset; "central" is intentionally allowed (the
+    motivate-by-use opener). Returns short strings.
+    """
+    text = re.sub(r"\$\$.*?\$\$", " ", prose, flags=re.S)
+    text = re.sub(r"\$[^$]*\$", " ", text)
+    hits = []
+    for rx in COLOR_COMMENTARY:
+        for m in rx.finditer(text):
+            hits.append(
+                f"color commentary '{m.group(0).strip()}' "
+                f"(state the fact and its consequence; show what changes, don't assert importance)"
+            )
+    return hits
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=None, help="repo root (default: parent of this script's dir)")
@@ -339,6 +379,8 @@ def main():
                 problems.append(f"level3-paragraphs.json: {pid} prose-style: {hit}")
             for hit in prose_mechanism_hits(p.get("draft_prose") or ""):
                 problems.append(f"level3-paragraphs.json: {pid} prose-accuracy: {hit}")
+            for hit in prose_color_hits(p.get("draft_prose") or ""):
+                problems.append(f"level3-paragraphs.json: {pid} prose-style: {hit}")
         for pid, dlist in deps.items():
             for d in dlist:
                 if d not in deps:

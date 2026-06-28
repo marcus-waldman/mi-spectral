@@ -250,6 +250,13 @@ Target reader: an applied researcher with quantitative training and working MI k
   attribute candidate differences to missing information or RIV. (Twins the abstract
   fix 53b96bc; enforced by the data-quantity rule in `scripts/check_plan.py` and the
   `scripts/mechanism_flag.py` scout.)
+- **No color commentary.** State an object and its consequence; do not narrate that it
+  is important or that it "does work". Banned: "gives X its force", "does (real) work",
+  "the key/crucial/essential <noun>", "crucially", "the heart/crux of", "the workhorse",
+  "heavy lifting", "what makes X work", "load-bearing". Show that an assumption matters
+  by showing what changes without it, never by asserting that it matters. ("central" in
+  "this paper's central result/object" stays — that is the motivate-by-use opener.)
+  Enforced by `scripts/color_commentary_flag.py` and a `scripts/check_plan.py` guard.
 - **Methods section only (T-05):** factual passive voice; every safeguard paragraph ends
   with what it cannot catch.
 - **Terminology:** "repetitions" for Monte Carlo, never "replications" (reserved for the
