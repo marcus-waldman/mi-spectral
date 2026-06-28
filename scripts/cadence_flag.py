@@ -24,6 +24,17 @@ CONNECTIVES = ["because", "since", "while", "although", "whereas", "but", "yet",
 CONN_RE = re.compile(r"\b(" + "|".join(CONNECTIVES) + r")\b", re.I)
 PRONOUN_OPENERS = {"it", "this", "that", "they", "these", "those"}
 
+# todo/037 pattern 2: back-referencing pronouns whose antecedent the reader must recall.
+# An orphaned one signals two clauses that want to be JOINED (and / which / so / then).
+BACKREF = {"it", "its", "itself", "this", "that", "these", "those", "them", "they"}
+BACKREF_RE = re.compile(r"\b(" + "|".join(sorted(BACKREF)) + r")\b", re.I)
+# "this/that <noun>" is anchored (demonstrative + noun), so it is NOT orphaned.
+DEMONSTRATIVE_NOUN = re.compile(r"\b(this|that|these|those)\s+[a-z]", re.I)
+# A pronoun right after a clause boundary (comma/semicolon) reaches back across a clause.
+CLAUSE_PRONOUN_RE = re.compile(r"[,;]\s+(it|this|that|they|these|those)\b", re.I)
+BOLD_LABEL_RE = re.compile(r"\*\*(.+?)\*\*", re.S)
+HEADING_RE = re.compile(r"^#+\s+(.*)$", re.M)
+
 
 def clean(s):
     s = re.sub(r"\$\$.*?\$\$", " ", s, flags=re.S)
@@ -46,6 +57,55 @@ def sentences(text):
 def first_word(sent):
     m = re.search(r"[A-Za-z]+", sent)
     return m.group(0) if m else ""
+
+
+def label_orphans(label):
+    """Back-referencing pronouns in a header / bold run-in label (zero tolerance at
+    entry points). Personal it/its/itself/them/they always orphan; a demonstrative is
+    orphan only when BARE (not 'this correction' etc.)."""
+    out = []
+    for m in re.finditer(r"\b[A-Za-z]+\b", label):
+        w = m.group(0).lower()
+        if w in {"it", "its", "itself", "them", "they"}:
+            out.append(w)
+        elif w in {"this", "that", "these", "those"}:
+            rest = label[m.end():].lstrip()
+            if not re.match(r"[A-Za-z]", rest):       # bare: ends the label / hits punctuation
+                out.append(w)
+    return out
+
+
+def pronoun_audit(prose):
+    """todo/037 pattern 2. Returns orphaned-pronoun signals (a lexical ASSIST, not a
+    verdict) plus zero-tolerance entry-point hits (headers / bold run-in labels / a
+    topic sentence that opens with a back-referencing pronoun)."""
+    entry = []
+    for m in BOLD_LABEL_RE.finditer(prose):
+        lbl = m.group(1).strip()
+        # only treat short run-in labels (not whole bold sentences) as entry points
+        if len(lbl.split()) <= 9:
+            for w in label_orphans(lbl):
+                entry.append(f"label '{lbl[:48]}' -> '{w}'")
+    for m in HEADING_RE.finditer(prose):
+        for w in label_orphans(m.group(1).strip()):
+            entry.append(f"heading '{m.group(1).strip()[:48]}' -> '{w}'")
+
+    sents = sentences(clean(prose))
+    real = [s for s in sents if len(s.split()) >= 4]
+    openers = [first_word(s).lower() for s in real]
+    pron_open = sum(1 for o in openers if o in PRONOUN_OPENERS)
+    orphan_open = sum(1 for o in openers if o in {"it", "they"})
+    # topic sentence (first real sentence) opening with a back-referencing pronoun
+    if openers and openers[0] in PRONOUN_OPENERS:
+        ts = real[0]
+        if not DEMONSTRATIVE_NOUN.match(ts):          # 'This correction...' is anchored
+            entry.append(f"topic sentence opens '{ts[:48]}...'")
+    clause_pron = len(CLAUSE_PRONOUN_RE.findall(clean(prose)))
+    return {
+        "pron_open": pron_open, "orphan_open": orphan_open,
+        "clause_pron": clause_pron, "entrypoint": entry,
+        "load": len(entry) * 2 + orphan_open + 0.5 * clause_pron,
+    }
 
 
 def analyze(prose):
@@ -84,13 +144,21 @@ def main():
     args = ap.parse_args()
     d = json.loads(L3.read_text(encoding="utf-8"))
     rows = []
+    pron_rows = []
     for p in d["paragraphs"]:
-        m = analyze(p.get("draft_prose") or "")
+        prose = p.get("draft_prose") or ""
+        m = analyze(prose)
         if m:
             rows.append({"id": p["id"], "section": p["section"], **m})
+        pa = pronoun_audit(prose)
+        if pa["load"] > 0:
+            pron_rows.append({"id": p["id"], "section": p["section"], **pa})
     rows.sort(key=lambda r: -r["score"])
+    pron_rows.sort(key=lambda r: (-len(r["entrypoint"]), -r["load"]))
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
-    Path(args.out).write_text(json.dumps({"paragraphs": rows}, indent=2), encoding="utf-8")
+    Path(args.out).write_text(
+        json.dumps({"paragraphs": rows, "pronoun_audit": pron_rows}, indent=2),
+        encoding="utf-8")
 
     print(f"{len(rows)} paragraphs scored. Worst-first (most metronomic):\n")
     print(f"{'id':8} {'sec':4} {'n':>3} {'mlen':>5} {'cv':>4} {'The%':>5} {'pron':>4} {'run':>3} {'conn':>4} {'score':>6}")
@@ -103,6 +171,17 @@ def main():
     print(f"\ncorpus: {corpus_sent} sentences, {corpus_conn} connectives "
           f"({corpus_conn/corpus_sent:.2f}/sentence), "
           f"mean cv_len {statistics.mean(r['cv_len'] for r in rows):.2f}")
+
+    # --- todo/037 pattern 2: orphaned pronouns + entry-point self-containment ---
+    print(f"\n{'='*72}\npattern-2 (orphaned pronouns / entry points), worst-first "
+          f"-- {len(pron_rows)} paragraph(s):\n")
+    print(f"{'id':8} {'sec':4} {'open':>4} {'orph':>4} {'claus':>5}  entry-point hits (zero tolerance)")
+    for r in pron_rows:
+        ep = " | ".join(r["entrypoint"][:3]) if r["entrypoint"] else ""
+        print(f"{r['id']:8} {r['section']:4} {r['pron_open']:>4} {r['orphan_open']:>4} "
+              f"{r['clause_pron']:>5}  {ep}")
+    ep_total = sum(len(r["entrypoint"]) for r in pron_rows)
+    print(f"\nentry-point violations (headers/labels/topic openers): {ep_total}")
     print(f"scores -> {args.out}")
     return 0
 
