@@ -1,17 +1,17 @@
 Copyright © 2026 Marcus Waldman. All rights reserved.
 
-This repository contains a working research paper ("The deviance bias of congenial
-multiple imputation, with applications to likelihood-ratio comparison and model
-selection"), its supporting derivation, code, figures, and related materials.
+This repository contains a working research paper ("Model selection after multiple
+imputation: a deviance correction for AIC, BIC, and likelihood-ratio tests"), its
+supporting derivation, code, figures, and related materials.
 
-The materials are made publicly readable to document the AI-assisted research process
-in keeping with the transparency norms of the Journal for AI Generated Papers (JAIGP).
+The materials are made publicly readable to document the human-prompted AI research
+process in keeping with the transparency norms of the Journal for AI Generated Papers (JAIGP).
 Public visibility does NOT grant any license. No permission is given to copy,
 redistribute, modify, translate, or create derivative works, in whole or in part, by any
 means, except as allowed by applicable law (for example, fair use / fair dealing such as
 quotation for review or scholarly commentary with attribution).
 
-The work is AI-assisted, with an ORCID-verified human prompter, and prepared for JAIGP.
+The work is a human-prompted AI derivation, with an ORCID-verified human prompter, and prepared for JAIGP.
 Provenance, including the complete session transcripts, is documented in the README.
 
 For permissions beyond the scope of this notice, contact:

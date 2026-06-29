@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The deviance bias of congenial multiple imputation</title>
-<meta name="description" content="A deviance-bias correction for the Q-function under congenial multiple imputation, with applications to likelihood-ratio comparison and information-criterion model selection. An AI-assisted derivation with a stated verification protocol.">
-<meta property="og:title" content="The deviance bias of congenial multiple imputation">
+<title>Model selection after multiple imputation: a deviance correction for AIC, BIC, and likelihood-ratio tests</title>
+<meta name="description" content="A deviance-bias correction for the Q-function under congenial multiple imputation, with applications to likelihood-ratio comparison and information-criterion model selection. A human-prompted AI derivation with a stated verification protocol.">
+<meta property="og:title" content="Model selection after multiple imputation: a deviance correction for AIC, BIC, and likelihood-ratio tests">
 <meta property="og:description" content="A deviance-bias correction for the multiple-imputation Q-function, with applications to likelihood-ratio comparison and model selection.">
 <meta property="og:type" content="website">
 <style>
@@ -100,12 +100,12 @@
 <body>
 <header>
   <div class="wrap">
-    <p class="eyebrow">AI-assisted theory paper &middot; JAIGP</p>
-    <h1>The deviance bias of congenial multiple imputation</h1>
+    <p class="eyebrow">Human-prompted AI theory paper &middot; JAIGP</p>
+    <h1>Model selection after multiple imputation</h1>
     <p class="byline">
-      with applications to likelihood-ratio comparison and model selection<br>
-      <strong>Marcus&nbsp;Waldman</strong> &middot; University of Colorado Anschutz Medical Campus<br>
-      AI-assisted derivation (Claude Opus, cross-checked with GPT-5.5 Pro and Gemini), ORCID-verified human prompter
+      a deviance correction for AIC, BIC, and likelihood-ratio tests<br>
+      <strong>Marcus&nbsp;Waldman</strong> &middot; University of Colorado Anschutz Medical Campus &middot; <a href="https://orcid.org/0000-0002-3288-4803" style="color:var(--accent);text-decoration:none">ORCID&nbsp;0000-0002-3288-4803</a><br>
+      Human-prompted AI derivation (Claude Opus, cross-checked with GPT-5.5 Pro and Gemini); ORCID-verified prompter of record
     </p>
   </div>
 </header>
@@ -116,7 +116,7 @@
     <section class="abstract">
       <h2>Abstract</h2>
       <p>Model selection on multiply imputed data is biased toward more complex models, because their larger relative increase in variance makes the fit look better than it is. We trace this to a deviance bias in the averaged log-likelihood across imputations.</p>
-      <p>Under congenial proper multiple imputation with the complete-data maximum likelihood estimate as the target, the averaged log-likelihood overstates its complete-data counterpart by one half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that vanishes when data are missing completely at random. The bias is specific to each candidate model, which is why uncorrected information criteria favor the models with more missing information. Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection. The same analysis gives the bias of a likelihood-ratio comparison at the null and identifies where a calibrated test already supplies the correction, so that it is not applied twice. The derivation is AI-assisted under a stated, auditable verification protocol.</p>
+      <p>Under congenial proper multiple imputation with the complete-data maximum likelihood estimate as the target, the averaged log-likelihood overstates its complete-data counterpart by one half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that vanishes when data are missing completely at random. The bias is specific to each candidate model, which is why uncorrected information criteria favor the models with more missing information. Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection. The same analysis gives the bias of a likelihood-ratio comparison at the null and identifies where a calibrated test already supplies the correction, so that it is not applied twice. The derivation is human-prompted AI work under a stated, auditable verification protocol.</p>
     </section>
 
     <section>
@@ -152,14 +152,14 @@
       <h2>Resources</h2>
       <ul class="links">
         <li><span class="lab">Code</span><a href="https://github.com/marcus-waldman/mi-spectral">github.com/marcus-waldman/mi-spectral</a></li>
-        <li><span class="lab">Transcripts</span><span style="color:var(--muted)">Full AI-collaboration session logs &mdash; redacted copy in preparation</span></li>
+        <li><span class="lab">Transcripts</span><a href="https://drive.google.com/drive/folders/1WUwqgkYQ0RUfzNt5pLZ8TmBEdYCb2GR7?usp=sharing">AI-collaboration session transcripts (redacted, Google&nbsp;Drive)</a></li>
         <li><span class="lab">Reproduce</span><a href="https://github.com/marcus-waldman/mi-spectral/blob/main/verification/run_all.R"><code>verification/run_all.R</code> &middot; the simulation sweep</a></li>
       </ul>
     </section>
 
     <section>
       <h2>Provenance</h2>
-      <p class="note">This is an AI-assisted derivation prepared for the Journal for AI Generated Papers (JAIGP), which requires ORCID-verified human prompting and transparent AI co-authorship. The reasoning was developed in dialogue with Claude (Anthropic) and cross-checked with GPT-5.5 Pro (OpenAI) and Gemini (Google). The complete session transcripts are the provenance record (a redacted copy is being prepared for public release). No external work is quoted; cited claims are checked against locally read sources.</p>
+      <p class="note">This is a human-prompted AI derivation prepared for the Journal for AI Generated Papers (JAIGP), which requires ORCID-verified human prompting and transparent AI co-authorship. The reasoning was developed in dialogue with Claude (Anthropic) and cross-checked with GPT-5.5 Pro (OpenAI) and Gemini (Google). The complete session transcripts (redacted) are the provenance record. No external work is quoted; cited claims are checked against locally read sources.</p>
     </section>
 
   </div>
@@ -167,7 +167,7 @@
 
 <footer>
   <div class="wrap">
-    The deviance bias of congenial multiple imputation &middot;
+    Model selection after multiple imputation &middot;
     <a href="https://github.com/marcus-waldman/mi-spectral">source on GitHub</a>
   </div>
 </footer>

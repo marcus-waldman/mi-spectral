@@ -1,11 +1,11 @@
 # mi-spectral
 
-**The deviance bias of congenial multiple imputation, with applications to likelihood-ratio comparison and model selection.**
+**Model selection after multiple imputation: a deviance correction for AIC, BIC, and likelihood-ratio tests.**
 
 A deviance-bias correction for the Q-function (the imputation-averaged complete-data
 log-likelihood) under congenial multiple imputation, with two applications:
-likelihood-ratio model comparison and information-criterion model selection. An
-AI-assisted theory paper targeting [JAIGP](https://jaigp.org), with a stated and
+likelihood-ratio model comparison and information-criterion model selection. A
+human-prompted AI theory paper targeting [JAIGP](https://jaigp.org), with a stated and
 auditable verification protocol.
 
 **📄 Read the sourced derivation:** <https://marcus-waldman.github.io/mi-spectral/derivation.html>
@@ -50,18 +50,23 @@ derivable, an independent symbolic (computer-algebra) check.
 
 ## Authorship and provenance
 
-AI-assisted derivation prepared under [JAIGP](https://jaigp.org) norms: ORCID-verified
+A human-prompted AI derivation prepared under [JAIGP](https://jaigp.org) norms: ORCID-verified
 human prompting and transparent AI co-authorship.
 
-- **Human prompter / corresponding author:** Marcus Waldman, Department of Biostatistics
-  and Informatics, University of Colorado Anschutz Medical Campus.
+- **Human prompter / corresponding author:** Marcus Waldman
+  ([ORCID 0000-0002-3288-4803](https://orcid.org/0000-0002-3288-4803)), Department of
+  Biostatistics and Informatics, University of Colorado Anschutz Medical Campus.
 - **AI collaboration:** the derivation was developed in dialogue with Claude (Anthropic)
   and cross-checked with GPT-5.5 Pro (OpenAI) and Gemini (Google).
 
 **Session transcripts.** The complete Claude Code session logs that produced this work are
-the provenance record. A redacted copy is being prepared for public release, and the link
-will be added here. No external work is quoted in the manuscript; cited claims are checked
-against locally read sources.
+the provenance record:
+
+➡️ **[AI-collaboration session transcripts (redacted, Google Drive)](https://drive.google.com/drive/folders/1WUwqgkYQ0RUfzNt5pLZ8TmBEdYCb2GR7?usp=sharing)**
+
+These are the session logs (`.jsonl`) with personal file paths and credentials redacted. No
+external work is quoted in the manuscript; cited claims are checked against locally read
+sources.
 
 ## Repository layout
 
@@ -126,5 +131,5 @@ multiple imputation.
 
 © 2026 Marcus Waldman. All rights reserved. See [`COPYRIGHT`](COPYRIGHT).
 
-This repository is made publicly readable for transparency of the AI-assisted research
-process. No license to reuse, redistribute, or create derivative works is granted.
+This repository is made publicly readable for transparency of the human-prompted AI
+research process. No license to reuse, redistribute, or create derivative works is granted.
