@@ -161,7 +161,7 @@ passages verbatim, and @sec-verify
 verifies the trace identities symbolically and the normal instantiation numerically,
 executed inline at render time.
 
-A note on provenance. Because this is an AI-assisted derivation, every external claim is
+A note on provenance. Because this is a human-prompted AI derivation, every external claim is
 sourced. The main column carries the mathematics; the right margin carries the provenance
 — the source's own equation or theorem number, the reproduced statement, and a line
 reference into the local `literature/` copy (with a short verbatim snippet, so the pointer

@@ -3,7 +3,7 @@ title: "The deviance bias of congenial multiple imputation, with applications to
 subtitle: "JAIGP submission — working draft"
 author:
   - name: "Marcus Waldman"
-    note: "ORCID-verified human prompter of an AI-assisted derivation; provenance per JAIGP norms (see the statement at the end)."
+    note: "ORCID-verified human prompter of an AI derivation; provenance per JAIGP norms (see the statement at the end)."
 date: last-modified
 bibliography: ../literature/mi-spectral-better-bibTeX.bib
 format:
@@ -982,7 +982,7 @@ extension beyond the normal family.
 
 # Provenance and authorship statement {#sec-provenance}
 
-This is an AI-assisted derivation with a human prompter of record (Marcus Waldman,
+This is a human-prompted AI derivation with a prompter of record (Marcus Waldman,
 ORCID-verified), prepared for the Journal for AI Generated Papers under its transparency
 norms. The provenance record is part of the submission: the companion sourced derivation
 (`manuscript/derivation.qmd`) pins every external claim to a source passage (reproduced

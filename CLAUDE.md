@@ -26,7 +26,7 @@ If the work drifts into any of the above, push it back to MI-IC or cite Chan (20
 
 ## Authorship model
 
-AI-assisted derivation, target venue JAIGP (Journal for AI Generated Papers). Provenance is transparent per JAIGP norms. ORCID-verified human prompter: marcus.waldman.
+Human-prompted AI derivation, target venue JAIGP (Journal for AI Generated Papers). Provenance is transparent per JAIGP norms. ORCID-verified human prompter: marcus.waldman.
 
 ## Core contribution
 
@@ -276,7 +276,7 @@ Decisions of record: `manuscript/plan/decisions.md`. Standing examples: S1 in
 
 **Bypass**: `@TODO:<slug>` is allowed as a drafting placeholder (the hook explicitly skips these).
 
-Rationale: AI-assisted derivations fail in review when citations are hallucinated. The only defense is acquiring actual PDFs and reading them locally before claiming what they say.
+Rationale: human-prompted AI derivations fail in review when citations are hallucinated. The only defense is acquiring actual PDFs and reading them locally before claiming what they say.
 
 If asked to cite something and `literature/<citekey>.md` does not exist, stop and run the acquisition workflow first.
 
