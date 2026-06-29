@@ -138,7 +138,7 @@ The collaboration that produced these derivations is described in @sec-ai-collab
 
 **Reproducibility.** Every number in this paper regenerates from committed code. The simulations run from fixed entry points with fixed seeds. Outputs are cached as committed artifacts. The software environment is recorded. Where a result is quoted in the text, its audit trail names the artifact it comes from. The limit is the usual one. Reproducibility guarantees the numbers, not their meaning. A wrong design reproduces its artifact exactly.
 
-Read with this section in hand, the rest of the paper carries its evidence with it. Each claim in the Derivations and Simulation studies sections arrives with a grade label. Each quantitative claim also arrives with a committed artifact behind it. The appendices hold the records. The repository holds everything. The protocol does not ask the reader to trust an AI derivation. It asks the reader to check one, and states where the checking has already been done and where it cannot be.
+Read with this section in hand, the rest of the paper carries its evidence with it. Each claim in the Derivations and Simulation studies sections arrives with a grade label. Each quantitative claim also arrives with a committed artifact behind it. The appendices hold the records. The repository holds everything, and the project page at <https://marcus-waldman.github.io/mi-spectral/> links to the companion derivation, the code, and the session transcripts in one place. The protocol does not ask the reader to trust an AI derivation. It asks the reader to check one, and states where the checking has already been done and where it cannot be.
 
 # Derivations {#sec-derivations}
 
