@@ -55,6 +55,34 @@ CROSSREF_PREFIX = re.compile(
 CITEKEY_SHAPE = re.compile(r"^[A-Za-z][A-Za-z0-9]+\d{4}[a-z]?$")
 RHETORICAL_GOALS = {"transition", "summarize", "summarize_section", "hedge", "roadmap"}
 
+# todo/037 accuracy invariant (CLAUDE.md): data-quantity attribution to candidate models.
+# All candidates are fit to the SAME imputed data; the per-candidate driver is the model's
+# own tr(RIV). Scoped to spare legitimate complete-data-vs-missingness phrasing (e.g.
+# "the analyst who never lost the data") and "missing data".
+DATA_QUANTITY = [
+    re.compile(r"\b(model|candidate)s?\b[^.\n]{0,60}?\b(lost|lose|loses|losing|"
+               r"discard\w*|drop\w*|most|more|fewer|less|least)\s+(?!missing\b)data\b", re.I),
+    re.compile(r"\b(lost|lose|loses|losing)\s+the\s+(most|more|least|fewer)\s+data\b", re.I),
+]
+
+# todo/037 pattern 4 (CLAUDE.md 'No color commentary'): evaluative narration that TELLS
+# the reader an object is important instead of stating the fact and its consequence.
+# High-confidence subset of scripts/color_commentary_flag.py; deliberately EXCLUDES
+# "central" (the motivate-by-use opener). Recurrence guard on a corpus the pass cleared.
+COLOR_COMMENTARY = [
+    re.compile(r"\b(gives?|lends?)\s+\w+\s+(its|their)\s+force\b", re.I),
+    re.compile(r"\bdoes?\s+(the\s+)?(real|actual|hard)\s+work\b", re.I),
+    re.compile(r"\bdoes?\s+(the\s+)?heavy\s+lifting\b", re.I),
+    re.compile(r"\bthe\s+workhorse\b", re.I),
+    re.compile(r"\bload-bearing\b", re.I),
+    re.compile(r"\bcrucially\b", re.I),
+    re.compile(r"\bis\s+what\s+(makes|drives|gives|powers)\b", re.I),
+    re.compile(r"\b(the\s+)?(heart|crux|linchpin)\s+of\s+(the|this|its|it)\b", re.I),
+    re.compile(r"\b(the\s+)?(key|crucial|essential|pivotal)\s+"
+               r"(assumption|ingredient|step|fact|point|idea|insight|observation|"
+               r"property|feature|move|object|quantity|term|result)\b", re.I),
+]
+
 PLAN_FILES = [
     "level1-thesis.json",
     "level2-sections.json",
@@ -129,8 +157,9 @@ def prose_punctuation_hits(prose):
     """
     Manuscript prose-style gate (CLAUDE.md 'Punctuation budget').
 
-    Flags rhetorical colons and semicolons in draft_prose. Allowed and therefore
-    NOT flagged:
+    Flags rhetorical colons, em-dashes, and 2+ semicolons per paragraph. A single
+    semicolon between tightly-linked clauses is allowed (sparse budget v2). Allowed and
+    therefore NOT flagged:
       - colons introducing a display ($$...$$), a markdown table, a heading run-in
         (a **bold:** label, or a '## ...:' subhead), or a verbatim quotation;
       - semicolons inside math ($...$) and inside citation brackets ([@a; @b]);
@@ -159,13 +188,60 @@ def prose_punctuation_hits(prose):
             continue  # introduces the results table
         hits.append(f"rhetorical colon after '...{frag[-40:]}'")
 
-    for m in re.finditer(r";", text):
-        ctx = text[max(0, m.start() - 30):m.start()]
-        if "§MATH" in ctx[-8:] or "§CITE" in ctx[-8:]:
-            continue
-        seg = text[max(0, m.start() - 40):m.start() + 1].strip().replace("\n", " ")
-        hits.append(f"semicolon: '...{seg[-45:]}'")
+    # Semicolons: allowed but SPARSE (punctuation budget v2). At most one per
+    # paragraph; two or more (including semicolon-chained lists) is a violation.
+    n_semi = len(re.findall(r";", text))
+    if n_semi > 1:
+        hits.append(f"{n_semi} semicolons in one paragraph (sparse budget allows at most one)")
 
+    # Em-dashes stay banned (appositive / gloss chains).
+    if "—" in text:
+        hits.append("em-dash present (banned; use a connective or a new sentence)")
+
+    return hits
+
+
+def prose_mechanism_hits(prose):
+    """
+    Manuscript accuracy gate (CLAUDE.md 'Accuracy invariant - data quantity', todo/037).
+
+    Flags data-quantity attributions to candidate models -- 'the models that lost the
+    most data' and kin. Every candidate is fit to the SAME imputed data, so any such
+    phrase is wrong by construction; the per-candidate driver is the model's own
+    tr(RIV). Math is blanked first. The patterns are scoped to spare 'missing data' and
+    analyst/data-reality phrasing that is not model-bound. Returns short strings.
+    """
+    text = re.sub(r"\$\$.*?\$\$", " ", prose, flags=re.S)
+    text = re.sub(r"\$[^$]*\$", " ", text)
+    hits = []
+    for rx in DATA_QUANTITY:
+        for m in rx.finditer(text):
+            hits.append(
+                f"data-quantity attribution '{m.group(0).strip()}' "
+                f"(candidates share the imputed data; attribute to missing information / RIV)"
+            )
+    return hits
+
+
+def prose_color_hits(prose):
+    """
+    Manuscript prose-style gate (CLAUDE.md 'No color commentary', todo/037 pattern 4).
+
+    Flags evaluative narration that tells the reader an object is important instead of
+    stating the fact and its consequence ("does real work", "gives X its force",
+    "load-bearing", "the key/crucial <noun>", "crucially", "heart/crux of"). Math is
+    blanked first. High-confidence subset; "central" is intentionally allowed (the
+    motivate-by-use opener). Returns short strings.
+    """
+    text = re.sub(r"\$\$.*?\$\$", " ", prose, flags=re.S)
+    text = re.sub(r"\$[^$]*\$", " ", text)
+    hits = []
+    for rx in COLOR_COMMENTARY:
+        for m in rx.finditer(text):
+            hits.append(
+                f"color commentary '{m.group(0).strip()}' "
+                f"(state the fact and its consequence; show what changes, don't assert importance)"
+            )
     return hits
 
 
@@ -300,6 +376,10 @@ def main():
             if not isinstance(p.get("audit"), dict):
                 problems.append(f"level3-paragraphs.json: {pid} missing audit object")
             for hit in prose_punctuation_hits(p.get("draft_prose") or ""):
+                problems.append(f"level3-paragraphs.json: {pid} prose-style: {hit}")
+            for hit in prose_mechanism_hits(p.get("draft_prose") or ""):
+                problems.append(f"level3-paragraphs.json: {pid} prose-accuracy: {hit}")
+            for hit in prose_color_hits(p.get("draft_prose") or ""):
                 problems.append(f"level3-paragraphs.json: {pid} prose-style: {hit}")
         for pid, dlist in deps.items():
             for d in dlist:

@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K11",
+      "priority": 1,
+      "reason": "Unanimous consensus; foundational theory claim accurately scoped to estimated scale and MAR/MCAR."
+    },
+    {
+      "id": "K14",
+      "priority": 2,
+      "reason": "Unanimous consensus; accurately captures the LRT differential bias as projected missing information."
+    },
+    {
+      "id": "K12",
+      "priority": 3,
+      "reason": "Unanimous consensus; establishes the model-specific nature of the IC bias."
+    },
+    {
+      "id": "K10",
+      "priority": 4,
+      "reason": "Establishes the workflow as a first-class contribution, scoped 'for this study' to respect the no-second-coder limit."
+    },
+    {
+      "id": "K09",
+      "priority": 5,
+      "reason": "Provides the most urgent practical takeaway for applied researchers regarding IC selection."
+    },
+    {
+      "id": "K03",
+      "priority": 6,
+      "reason": "Kept for high-value boundary guidance on where to apply the correction and where it double-counts."
+    },
+    {
+      "id": "K16",
+      "priority": 7,
+      "reason": "Unanimous consensus; translates the workflow contribution into a concrete standard for applied teams."
+    },
+    {
+      "id": "K15",
+      "priority": 8,
+      "reason": "Adopted as a practical LRT consequence, scoped to the proven null and local-alternative Monte Carlo noise reduction."
+    }
+  ],
+  "add": [],
+  "drop_notes": "Dropped K04, K07, K08, K13, and K17 in favor of the better-scoped and higher-consensus counterparts (K10, K03, K09) to stay within the 8-item limit."
+}

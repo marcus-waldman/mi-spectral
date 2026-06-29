@@ -1,0 +1,232 @@
+{
+  "date": "2026-06-27",
+  "study": "mi-spectral-contributions",
+  "title": "mi-spectral contributions (pool)",
+  "kind": "delphi",
+  "mode": "pool",
+  "stable": true,
+  "converged_round": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "kind": "nominate",
+      "pool_size": 23,
+      "slate": [
+        "K01",
+        "K09",
+        "K17",
+        "K02",
+        "K10",
+        "K18",
+        "K03",
+        "K11"
+      ],
+      "stable": false,
+      "stability_reason": "nomination round (no prior to compare)"
+    },
+    {
+      "round": 2,
+      "kind": "iterate",
+      "pool_size": 23,
+      "slate": [
+        "K11",
+        "K16",
+        "K14",
+        "K12",
+        "K09",
+        "K03",
+        "K10",
+        "K17"
+      ],
+      "stable": false,
+      "stability_reason": "votes moved: claude, gemini; membership changed"
+    },
+    {
+      "round": 3,
+      "kind": "iterate",
+      "pool_size": 23,
+      "slate": [
+        "K11",
+        "K09",
+        "K12",
+        "K10",
+        "K14",
+        "K03",
+        "K16",
+        "K15"
+      ],
+      "stable": false,
+      "stability_reason": "votes moved: claude, gemini, openai; membership changed"
+    },
+    {
+      "round": 4,
+      "kind": "iterate",
+      "pool_size": 23,
+      "slate": [
+        "K11",
+        "K09",
+        "K12",
+        "K14",
+        "K03",
+        "K10",
+        "K16",
+        "K15"
+      ],
+      "stable": false,
+      "stability_reason": "votes moved: claude"
+    },
+    {
+      "round": 5,
+      "kind": "iterate",
+      "pool_size": 23,
+      "slate": [
+        "K11",
+        "K09",
+        "K03",
+        "K12",
+        "K10",
+        "K14",
+        "K16",
+        "K15"
+      ],
+      "stable": true,
+      "stability_reason": "no vote moved and membership unchanged"
+    }
+  ],
+  "final_counts": {
+    "K14": 3,
+    "K16": 3,
+    "K03": 3,
+    "K15": 3,
+    "K09": 3,
+    "K11": 3,
+    "K12": 3,
+    "K10": 3
+  },
+  "item_source": {
+    "K11": "consensus",
+    "K09": "consensus",
+    "K03": "consensus",
+    "K12": "consensus",
+    "K10": "consensus",
+    "K14": "consensus",
+    "K16": "consensus",
+    "K15": "consensus"
+  },
+  "indexing_order": [
+    "K11",
+    "K09",
+    "K03",
+    "K12",
+    "K10",
+    "K14",
+    "K16",
+    "K15"
+  ],
+  "fixed_items": [],
+  "slate": [
+    {
+      "rank": 1,
+      "id": "K11",
+      "by": "",
+      "title": "Under congenial proper MI with an estimated scale and complete-data MLE target, the averaged imputation log-likelihood overstates the complete-data log-likelihood by +1/2 tr(RIV) plus a MAR design-imbalance term that vanishes under MCAR.",
+      "categories": [
+        "theory"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 2,
+      "id": "K09",
+      "by": "",
+      "title": "Applied MI model-selection tables should add a per-candidate tr(RIV_k) correction to AIC/BIC when the target is complete-data-equivalent selection, because uncorrected criteria tilt toward models with more missing information.",
+      "categories": [
+        "applied-implication"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 3,
+      "id": "K03",
+      "by": "",
+      "title": "For information-criterion selection there is no protective reference distribution, so the per-model correction tr(RIV_k) must be applied to restore complete-data-equivalent ranking; for a calibrated likelihood-ratio test (Chan 2022) the mean is already absorbed and the correction must not be applied a second time.",
+      "categories": [
+        "applied-implication"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 4,
+      "id": "K12",
+      "by": "",
+      "title": "The MI information-criterion bias is model-specific: candidate models can have different RIV traces, so adding tr(RIV_k) supplies the theoretical centering correction for MI-AIC and MI-BIC under the stated target.",
+      "categories": [
+        "IC-application"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 5,
+      "id": "K10",
+      "by": "",
+      "title": "We make the structured AI-human workflow a first-class contribution by documenting, for this study, transparent provenance and auditable gates for sourced citations, human acceptance, dual computer-algebra verification, preregistered simulations, adversarial rederivation, and full reproducibility.",
+      "categories": [
+        "methodology-workflow"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 6,
+      "id": "K14",
+      "by": "",
+      "title": "For nested MI likelihood-ratio comparisons at the null, the numerator's differential bias is tr(RIV_perp), the missing information in the tested directions projected in the complete-data information metric, not tr(RIV_full)-tr(RIV_0).",
+      "categories": [
+        "LRT-application"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 7,
+      "id": "K16",
+      "by": "",
+      "title": "Applied teams evaluating AI-assisted statistical derivations should require auditable evidence of the same kind used here: sourced citations, independent symbolic checks, preregistered numerical criteria with reported failures, adversarial review, and reproducibility records.",
+      "categories": [
+        "applied-implication"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 8,
+      "id": "K15",
+      "by": "",
+      "title": "Nested MI likelihood-ratio comparisons should reuse the same imputations for the competing fits, since pairing reduces null and local-alternative Monte Carlo noise from order sqrt(n) to order one.",
+      "categories": [
+        "LRT-application"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    }
+  ],
+  "anon_panel_to_letter": {
+    "claude": "B",
+    "openai": "A",
+    "gemini": "C"
+  },
+  "models": {
+    "claude": "claude-opus-4-8",
+    "openai": "gpt-5.5-pro-2026-04-23",
+    "gemini": "models/gemini-3.1-pro-preview"
+  },
+  "anon_seed": 20260626,
+  "usage": {
+    "input": 87787,
+    "output": 44801
+  }
+}

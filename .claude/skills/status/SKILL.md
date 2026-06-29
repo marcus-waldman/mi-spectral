@@ -18,12 +18,12 @@ discrepancy is reported.
 1. **Read state.** `manuscript/plan/status.json`, `manuscript/plan/decisions.md`, and the
    `metadata.status` + `metrics_gate` of each `manuscript/plan/level*.json`.
 2. **Check drift.**
-   - `git status --porcelain` on `manuscript/plan/` and `manuscript/mi-spectral.qmd`:
+   - `git status --porcelain` on `manuscript/plan/` and `manuscript/mi-spectral-apa.qmd`:
      uncommitted changes mean a review cycle ended without its commit phase — report it.
    - `git log -1 --format=%cd --date=short` vs `status.json.last_updated`: commits after
      the last status update mean status may be stale — report it.
    - If level3 `compile_enabled` is true: compare mtimes of `level3-paragraphs.json` and
-     `manuscript/mi-spectral.qmd`; an older qmd is stale — report it.
+     `manuscript/mi-spectral-apa.qmd`; an older qmd is stale — report it.
    - Run `py scripts/check_plan.py`; report anything non-green.
 3. **Citation backlog.** From `level4-evidence.json`, count entries by `evidence_status`
    (`proposed` / `queued` / `acquired` not yet `verified`). Cross-check `proposed` against

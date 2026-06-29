@@ -1,0 +1,41 @@
+{
+  "date": "2026-06-27",
+  "study": "mi-spectral-contributions",
+  "title": "mi-spectral contributions (pool)",
+  "kind": "delphi",
+  "mode": "pool",
+  "panel": [
+    "claude",
+    "openai",
+    "gemini"
+  ],
+  "models": {
+    "claude": "claude-opus-4-8",
+    "openai": "gpt-5.5-pro-2026-04-23",
+    "gemini": "models/gemini-3.1-pro-preview"
+  },
+  "routes": {},
+  "params": {
+    "openai": {
+      "effort": "high",
+      "max_output_tokens": 16000
+    },
+    "claude": {
+      "max_tokens": 16000
+    },
+    "gemini": {
+      "max_output_tokens": 16000
+    }
+  },
+  "anon_panel_to_letter": {
+    "claude": "B",
+    "openai": "A",
+    "gemini": "C"
+  },
+  "anon_seed": 20260626,
+  "max_rounds": 5,
+  "open_slots": 8,
+  "merge_threshold": 0.78,
+  "fixed_items": [],
+  "arbiter": "gemini"
+}

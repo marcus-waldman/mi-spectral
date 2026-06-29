@@ -1,0 +1,30 @@
+ANONYMIZED DELPHI FEEDBACK -- you are now producing your Round 5 revision.
+
+There are no fixed (pre-included) items.
+
+POOLED CANDIDATE ITEMS (open slots; the best <=8 make the final set).
+  incl = how many of the 3 panelists currently include it (3=unanimous). [IN] = currently within the set; [cut] = below the line.
+
+  K11 [IN]  incl=3 | Under congenial proper MI with an estimated scale and complete-data MLE target, the averaged imputation log-likelihood overstates the complete-data log-likelihood by +1/2 tr(RIV) plus a MAR design-imbalance term that vanishes under MCAR. | category: theory
+  K09 [IN]  incl=3 | Applied MI model-selection tables should add a per-candidate tr(RIV_k) correction to AIC/BIC when the target is complete-data-equivalent selection, because uncorrected criteria tilt toward models with more missing information. | category: applied-implication
+  K12 [IN]  incl=3 | The MI information-criterion bias is model-specific: candidate models can have different RIV traces, so adding tr(RIV_k) supplies the theoretical centering correction for MI-AIC and MI-BIC under the stated target. | category: IC-application
+  K14 [IN]  incl=3 | For nested MI likelihood-ratio comparisons at the null, the numerator's differential bias is tr(RIV_perp), the missing information in the tested directions projected in the complete-data information metric, not tr(RIV_full)-tr(RIV_0). | category: LRT-application
+  K03 [IN]  incl=3 | For information-criterion selection there is no protective reference distribution, so the per-model correction tr(RIV_k) must be applied to restore complete-data-equivalent ranking; for a calibrated likelihood-ratio test (Chan 2022) the mean is already absorbed and the correction must not be applied a second time. | category: applied-implication
+  K10 [IN]  incl=3 | We make the structured AI-human workflow a first-class contribution by documenting, for this study, transparent provenance and auditable gates for sourced citations, human acceptance, dual computer-algebra verification, preregistered simulations, adversarial rederivation, and full reproducibility. | category: methodology-workflow
+  K16 [IN]  incl=3 | Applied teams evaluating AI-assisted statistical derivations should require auditable evidence of the same kind used here: sourced citations, independent symbolic checks, preregistered numerical criteria with reported failures, adversarial review, and reproducibility records. | category: applied-implication
+  K15 [IN]  incl=3 | Nested MI likelihood-ratio comparisons should reuse the same imputations for the competing fits, since pairing reduces null and local-alternative Monte Carlo noise from order sqrt(n) to order one. | category: LRT-application
+
+CONTESTED ITEMS (not unanimous) -- dissent rationales by anonymous panelist:
+  (none -- all selected items are unanimous)
+
+YOUR TASK: revise YOUR own set. You may adopt a pooled item (cite its K-id), drop one you previously held, or add a brand-new item. Re-rank for priority. Give a one-line reason for every change (or 'unchanged').
+
+Hard rules, applied on EVERY round: (1) The final set is at most 8 items. (2) The set must cover all of: theory, LRT-application, IC-application, methodology-workflow, and at least two applied-implication items. (3) Every claim must be scoped to exactly what the brief's stated evidence and trust tier support; if you think a candidate as written overstates its evidence, reframe it to what the brief actually supports and say so in the reason. (4) No claim may assert a number, result, or fact that is not present in the brief. (5) Prefer phrasing that an applied researcher with quantitative training and working knowledge of multiple imputation understands on a single read; avoid house jargon.
+
+Return ONLY a single JSON object (no markdown fences, no prose outside it):
+{
+  "keep": [ { "id": "K03", "priority": 1, "reason": "<one line; why kept or why the rank moved, or 'unchanged'>" } ],
+  "add": [ { "title": "<title>", "by": "<attribution>", "category": "<category>", "reason": "<one line>", "priority": 9 } ],
+  "drop_notes": "<one line on anything you deliberately dropped vs last round, or 'none'>"
+}
+"keep" lists the pooled items (by their K-id) you include in YOUR set -- the fixed items are automatic, do NOT list them. "add" is OPTIONAL brand-new items not in the pool (use [] if none). IMPORTANT: if an item already has a K-id, reference it in "keep" -- do NOT re-enter it under "add". To keep your selection unchanged, list the same K-ids again.

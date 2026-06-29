@@ -1,0 +1,17 @@
+{
+  "mode": "pool",
+  "title": "mi-spectral contributions (pool)",
+  "study": "mi-spectral-contributions",
+  "panel": ["claude", "openai", "gemini"],
+  "arbiter": "gemini",
+  "cap": 8,
+  "max_rounds": 5,
+  "background": "C:/Users/marcu/git-repositories/mi-spectral/todo/035-contributions-brief.md",
+  "question": "You are a skeptical methodologist and applied statistician on a panel deciding the CONTRIBUTIONS a paper should claim. Your system instructions contain the complete grounded brief: the paper summary, the lineage, four candidate contributions (C1 theory, C2 likelihood-ratio application, C3 information-criterion application, C4 the structured AI-human workflow), and three candidate applied-research implications, each with its evidence and an explicit trust tier. That brief is the ENTIRE evidentiary basis. You have no repository access, so do not assert any number or fact that is not in the brief. Nominate the set of claim-items the paper should make. Each item is ONE contribution-claim or ONE applied-implication-claim, phrased as a crisp sentence the paper could print in the author's voice, scoped to exactly what the brief's evidence and trust tier support, with no overclaim. You MAY split a candidate into two, merge two, reframe, drop, or add a claim the brief's evidence supports. For each nomination set: 'title' = the claim sentence itself; 'by' = '' (leave empty); 'category' = one of {theory, LRT-application, IC-application, methodology-workflow, applied-implication}; 'reason' = one line on why it earns a slot and which evidence in the brief backs it; 'priority' = an integer rank where 1 is most important to an applied researcher who only skims the paper. One question the panel must settle by where it ranks the item: should the structured AI-human workflow (C4) be a FIRST-CLASS contribution ranked among the technical results, or a SUPPORTING methodological disclosure ranked below them? Decide by its rank and say why in its reason.",
+  "constraints": "Hard rules, applied on EVERY round: (1) The final set is at most 8 items. (2) The set must cover all of: theory, LRT-application, IC-application, methodology-workflow, and at least two applied-implication items. (3) Every claim must be scoped to exactly what the brief's stated evidence and trust tier support; if you think a candidate as written overstates its evidence, reframe it to what the brief actually supports and say so in the reason. (4) No claim may assert a number, result, or fact that is not present in the brief. (5) Prefer phrasing that an applied researcher with quantitative training and working knowledge of multiple imputation understands on a single read; avoid house jargon.",
+  "params": {
+    "openai": {"effort": "high", "max_output_tokens": 16000},
+    "claude": {"max_tokens": 16000},
+    "gemini": {"max_output_tokens": 16000}
+  }
+}

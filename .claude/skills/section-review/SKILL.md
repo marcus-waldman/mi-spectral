@@ -70,10 +70,10 @@ For each task, in order:
 
 1. Update `decisions.md` (new/amended decisions, dated) and `status.json` (section
    state, phase, `blocked_on`, `next_actions`, `last_updated`).
-2. If level3 `compile_enabled`: run `py scripts/compile_manuscript.py` and
-   `quarto render manuscript/mi-spectral.qmd`; a render failure blocks the commit.
+2. Rebuild the canonical render: `py scripts/build_manuscript_apa.py` then
+   `quarto render manuscript/mi-spectral-apa.qmd`; a render failure blocks the commit.
 3. Commit together: level JSON(s) + update script + `status.json` + `decisions.md` +
-   compiled qmd. Message: `Review <target>: <one-line summary of the human decisions>`
+   rebuilt qmd. Message: `Review <target>: <one-line summary of the human decisions>`
    with per-unit bullets in the body. (Pre-commit re-runs the lint.)
 4. If `status.json.clickup.list_id` is set, mirror the new section state.
 5. State plainly what the next cycle is and what it is blocked on.
@@ -88,4 +88,4 @@ For each task, in order:
   one paragraph per entry, prose verbatim as `draft_prose`, review.status
   `imported_needs_review`, propositions and dependencies reconstructed, Level-4 entries
   created per proposition. Ends by setting `compile_enabled: true` and verifying the
-  compiled qmd is byte-equivalent to the source (modulo whitespace) before the commit.
+  rebuilt apaquarto qmd renders cleanly before the commit.

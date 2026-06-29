@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K09",
+      "priority": 1,
+      "reason": "Top applied skim hook: it gives practitioners the computable AIC/BIC correction, scoped to complete-data-equivalent selection."
+    },
+    {
+      "id": "K11",
+      "priority": 2,
+      "reason": "Kept as the mathematical foundation; the estimated-scale and complete-data MLE conditions avoid the known-scale overclaim."
+    },
+    {
+      "id": "K03",
+      "priority": 3,
+      "reason": "Kept as the main guardrail: use the correction for criteria or numerator uses without a calibrated reference, but do not double-correct Chan-calibrated LRTs."
+    },
+    {
+      "id": "K10",
+      "priority": 4,
+      "reason": "Kept as a first-class workflow contribution, scoped to the documented provenance and audit gates in this study rather than a universal validation of AI."
+    },
+    {
+      "id": "K12",
+      "priority": 5,
+      "reason": "Kept to state the IC-specific theoretical contribution separately from the applied instruction in K09: the centering bias is model-specific."
+    },
+    {
+      "id": "K14",
+      "priority": 6,
+      "reason": "Kept because it replaces the tempting but wrong naive trace difference with the projected missing-information quantity at the null."
+    },
+    {
+      "id": "K16",
+      "priority": 7,
+      "reason": "Kept as the second workflow-facing applied implication, translating the study design into an audit checklist for applied teams."
+    },
+    {
+      "id": "K15",
+      "priority": 8,
+      "reason": "Kept at lower priority as a distinct actionable LRT implementation point, tightly scoped to nested null and local-alternative comparisons."
+    }
+  ],
+  "add": [],
+  "drop_notes": "none"
+}

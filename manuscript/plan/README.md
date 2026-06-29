@@ -1,6 +1,7 @@
 # Manuscript plan system
 
-Strategic, goal-oriented AI–human collaboration on `manuscript/mi-spectral.qmd`, designed
+Strategic, goal-oriented AI–human collaboration on the manuscript (canonical render
+`manuscript/mi-spectral-apa.qmd`), designed
 to span many sessions while keeping memory and coherence toward the submission goal.
 Adapted from the leveled-reconstruction workflow of `~/git-repositories/SAMPLE-STRATEGY-ECD`
 (four JSON levels, per-level gates, recorded decisions, per-section human review), with
@@ -9,10 +10,9 @@ evidence layer replaced by this repo's stronger one (sourced derivation, verific
 cache, citation-disciplined literature corpus).
 
 **Source-of-truth rule.** Once Level 3 is populated, all manuscript prose lives in
-`level3-paragraphs.json` and `manuscript/mi-spectral.qmd` is COMPILED from it
-(`scripts/compile_manuscript.py`). Edits go to the JSON, never to the compiled qmd.
-Until then, the existing qmd remains the working draft ("drafted_pre_system" in
-`status.json`).
+`level3-paragraphs.json` and `manuscript/mi-spectral-apa.qmd` is BUILT from it
+(`scripts/build_manuscript_apa.py`, apaquarto-pdf; D-21). Edits go to the JSON, never
+to the built qmd.
 
 ## The four levels
 

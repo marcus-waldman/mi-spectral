@@ -99,7 +99,7 @@ Same as before: $X \sim \mathcal{N}_p(\mu, \Sigma)$, both unknown, structured mi
 
 ## Verification suite (witnesses) — three witnesses, all empirically complete
 
-**Principle.** Every load-bearing equation gets a numerical witness — a pre-registered prediction, simulation result, and prose alongside the math. Because the derivation is AI-assisted, the reader is afforded additional evidence of validity of each load-bearing claim, independent of the proof.
+**Principle.** Every load-bearing equation gets a numerical witness — a pre-registered prediction, simulation result, and prose alongside the math. Because this is a human-prompted AI derivation, the reader is afforded additional evidence of validity of each load-bearing claim, independent of the proof.
 
 **Outcomes at preregistered config (N=200, M=200, R=1000, both engines).** All three witnesses passed their headline criterion; W1 and W3 had partial pass/miss on auxiliary criteria with honest documentation of what passed and what didn't.
 

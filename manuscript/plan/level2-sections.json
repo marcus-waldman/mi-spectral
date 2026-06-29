@@ -62,7 +62,7 @@
       "anchor": "sec-intro",
       "title": "Introduction",
       "mapping_from_180e2b5": "Old S1 (sec-intro), rewritten to the four-paragraph funnel; the old intro's lineage material partly moves to S2-SP8.",
-      "goal_statement": "Convince an applied researcher with quantitative training and working knowledge of MI that (i) the field's own accounts treat MI's major inferential results as settled while LRT and IC are not - and the right question is what 'settled' should mean; (ii) the right yardstick for 'settled' is the complete-data replication principle, posed here at three levels; (iii) this paper resolves criterion replication everywhere and characterizes the exact boundary of decision-rate replication; and (iv) only then, that the derivation is AI-assisted under a verification protocol stated as Methods. Defers: all notation and standard results (S2), all proof content (S4), all apparatus (S5). Serves all four thesis components. Style gates: T-06 (every unresolved-status claim typed documented-open vs asserted-here), the todo/003 typing-pass scoping caution (novelty = posing the PRINCIPLE, not the full-data benchmark practice).",
+      "goal_statement": "Convince an applied researcher with quantitative training and working knowledge of MI that (i) the field's own accounts treat MI's major inferential results as settled while LRT and IC are not - and the right question is what 'settled' should mean; (ii) the right yardstick for 'settled' is the complete-data replication principle, posed here at three levels; (iii) this paper resolves criterion replication everywhere and characterizes the exact boundary of decision-rate replication; and (iv) only then, that the derivation is human-prompted AI work under a verification protocol stated as Methods. Defers: all notation and standard results (S2), all proof content (S4), all apparatus (S5). Serves all four thesis components. Style gates: T-06 (every unresolved-status claim typed documented-open vs asserted-here), the todo/003 typing-pass scoping caution (novelty = posing the PRINCIPLE, not the full-data benchmark practice).",
       "estimated_paragraphs": "4-5",
       "super_propositions": [
         {
@@ -124,7 +124,7 @@
         },
         {
           "id": "S1-SP6",
-          "claim": "The derivation is AI-assisted under a stated verification protocol reported in full as the Methods section - one closing paragraph, the paper's only introduction-level statement of the meta layer.",
+          "claim": "The derivation is human-prompted AI work under a stated verification protocol reported in full as the Methods section - one closing paragraph, the paper's only introduction-level statement of the meta layer.",
           "goal": "transition",
           "evidence": [
             "deriv:sec-verify"

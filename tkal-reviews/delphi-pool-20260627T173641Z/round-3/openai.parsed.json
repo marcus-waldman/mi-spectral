@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K09",
+      "priority": 1,
+      "reason": "Moved up as the clearest applied skim hook: for complete-data-equivalent AIC/BIC selection, add the per-candidate trace because uncorrected tables tilt toward high-missing-information models."
+    },
+    {
+      "id": "K03",
+      "priority": 2,
+      "reason": "Kept high for boundary guidance: use centering where the statistic is used directly, but do not stack it on a Chan-calibrated null MI LRT."
+    },
+    {
+      "id": "K10",
+      "priority": 3,
+      "reason": "Kept as the first-class workflow contribution, scoped to this study's documented provenance and gates rather than a general guarantee."
+    },
+    {
+      "id": "K16",
+      "priority": 4,
+      "reason": "Kept as the workflow's applied implication: it translates this study's audit gates into concrete standards teams can demand of AI-assisted derivations."
+    },
+    {
+      "id": "K11",
+      "priority": 5,
+      "reason": "Kept as the foundational theorem, with the necessary congenial proper-MI, estimated-scale, complete-data-MLE, and MCAR/MAR scoping."
+    },
+    {
+      "id": "K12",
+      "priority": 6,
+      "reason": "Kept because it supplies the theoretical IC centering term and model-specificity behind the practical AIC/BIC correction."
+    },
+    {
+      "id": "K14",
+      "priority": 7,
+      "reason": "Kept because it prevents the common LRT mistake of using the naive per-model trace difference instead of the projected tested-direction trace."
+    },
+    {
+      "id": "K15",
+      "priority": 8,
+      "reason": "Added from the cut list as a distinct actionable LRT implementation point, scoped to the proved null and local-alternative Monte Carlo noise reduction."
+    }
+  ],
+  "add": [],
+  "drop_notes": "Omitted K17 as redundant and less scoped than K09; omitted K04/K13/K07/K08 because K10/K03/K11 cover their main guardrails without duplicating the final set."
+}

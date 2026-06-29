@@ -26,7 +26,7 @@ If the work drifts into any of the above, push it back to MI-IC or cite Chan (20
 
 ## Authorship model
 
-AI-assisted derivation, target venue JAIGP (Journal for AI Generated Papers). Provenance is transparent per JAIGP norms. ORCID-verified human prompter: marcus.waldman.
+Human-prompted AI derivation, target venue JAIGP (Journal for AI Generated Papers). Provenance is transparent per JAIGP norms. ORCID-verified human prompter: marcus.waldman.
 
 ## Core contribution
 
@@ -54,7 +54,9 @@ Three-layer reproducibility: `IDEAS.md` is *what we found and what it means*; `v
 
 ```
 manuscript/
-  mi-spectral.qmd                        # Quarto stub for the JAIGP submission (in progress)
+  mi-spectral-apa.qmd                    # CANONICAL manuscript render (apaquarto-pdf), built from
+                                         #   level3 by scripts/build_manuscript_apa.py; mi-spectral-apa.pdf is the deliverable
+  _extensions/                           # apaquarto Quarto extension (needed to render mi-spectral-apa.qmd)
   derivation.qmd                         # canonical sourced derivation (notation, ledger, tagged proof);
                                          #   Appendix B = executable Sympy/NumPy verification (jupyter: python3)
   proof-verification-fixture.json        # W1 replicate + cache read by derivation.qmd Appendix B (committed)
@@ -108,8 +110,8 @@ scripts/
   lit_sync.py                            # Zotero BBT -> literature/<citekey>.md sync (see skill)
   check_plan.py                          # authoritative plan lint (pointers, citekeys, gates); must be green
                                          #   before every review-cycle commit; also runs from pre-commit
-  compile_manuscript.py                  # level3-paragraphs.json -> manuscript/mi-spectral.qmd (refuses until
-                                         #   compile_enabled; the qmd becomes a derived artifact after that)
+  build_manuscript_apa.py                # level3-paragraphs.json -> manuscript/mi-spectral-apa.qmd (canonical
+                                         #   apaquarto render; D-21). The qmd is a derived artifact — edit level3, rebuild
   git-hooks/pre-commit                   # runs check_plan.py when plan files staged (core.hooksPath)
   test_check_citations_hook.py           # hook smoke tests (13 cases)
 ```
@@ -123,9 +125,10 @@ by `scripts/check_plan.py`. `/status` = where we are, what is blocked on whom (d
 files + git, never from memory). `/section-review <target>` = one review cycle: annotation
 extract → Marcus's `#[COMMENTS]` → per-unit iteration → atomic update script under
 `manuscript/plan/updates/` → status/decisions/commit. Locked decisions in
-`manuscript/plan/decisions.md` are not relitigated without a dated amendment. Once level3
-`compile_enabled` is true, never edit `manuscript/mi-spectral.qmd` directly — edit the JSON
-and recompile.
+`manuscript/plan/decisions.md` are not relitigated without a dated amendment. The canonical
+render `manuscript/mi-spectral-apa.qmd` is always a derived artifact — never edit it directly;
+edit level3 and rebuild with `scripts/build_manuscript_apa.py` (D-21). `compile_enabled` gates
+when level3 prose is locked as the source of record.
 
 **Module organization for `verification/run_all.R`.** Five phases, each in its own module under `_modules/`:
 
@@ -175,10 +178,18 @@ Rscript verification/W3-model-selection.R <mode> <engine> [n_cores]
 `mode` is `pilot` or `prod`; `engine` is `fiml` or `amelia`.
 
 **Render the manuscript / proof verification:**
+
+The canonical manuscript render is the apaquarto-pdf, built from `level3-paragraphs.json`
+by `scripts/build_manuscript_apa.py` (two-class JAIGP author block, D-18). Build then render
+from `manuscript/` (apaquarto extension at `manuscript/_extensions`):
 ```
-quarto render manuscript/mi-spectral.qmd
-quarto render manuscript/derivation.qmd   # executes Appendix B (needs sympy, numpy, the fixture json)
+py scripts/build_manuscript_apa.py            # level3 -> manuscript/mi-spectral-apa.qmd
+quarto render manuscript/mi-spectral-apa.qmd  # -> manuscript/mi-spectral-apa.pdf
+quarto render manuscript/derivation.qmd       # executes Appendix B (needs sympy, numpy, the fixture json)
 ```
+The old HTML pipeline (`compile_manuscript.py` -> `mi-spectral.qmd`) is retired (D-21);
+`build_manuscript_apa.py` is the sole builder. `compile_enabled` still gates when level3
+prose is locked as the source of record.
 
 **Sync the literature corpus** (Zotero BBT export → `literature/<citekey>.md`):
 ```
@@ -195,20 +206,34 @@ Rscript verification/00-test-primitives.R
 
 Target reader: an applied researcher with quantitative training and working MI knowledge.
 
-- **Plain expository structure.** Topic sentence first, supporting details in separate
-  sentences, one idea per sentence, explicit connectives ("The practical consequence
-  is...", "The fix is direct."). No em-dash appositive chains (X — gloss — verb), no
-  nested mid-sentence glosses, no fixed poetic cadence, no constructions that make the
-  reader backtrack. Run the full paragraph arc. Open with a topic
-  sentence, give the supporting details in their own sentences, and close with a
-  wrap-up or a hand-off to the next idea. State each logical step plainly rather
-  than leaving the reader to infer it, even at the cost of a little redundancy.
-  Keep the reading level low, favoring short declarative sentences over dense or
-  sophisticated constructions.
-- **Punctuation budget.** Semicolons, colons, and dashes are near-zero by default —
-  where one is tempting, end the sentence and start a new one. Lists become "The first
-  is X. The second is Y." or enumerated displays, not semicolon chains. A colon is
-  acceptable only to introduce a display or a definition.
+- **Plain expository structure.** Topic sentence first, then supporting details.
+  Usually one idea per sentence, but join two closely-related clauses with a connective
+  ("X, because Y"; "X, so Y") when that carries the logic better than a period would.
+  No em-dash appositive chains (X — gloss — verb), no nested mid-sentence glosses, no
+  fixed poetic cadence, no constructions that make the reader backtrack. Run the full
+  paragraph arc. Open with a topic sentence, give the supporting details, and close
+  with a wrap-up or a hand-off to the next idea. State each logical step plainly rather
+  than leaving the reader to infer it, even at the cost of a little redundancy. Keep
+  the words plain and the reading level low, but VARY sentence length: join some
+  clauses and leave others short, so the prose does not read as a column of
+  equal-length declaratives. Break runs of same-length or same-opener ("The... The...
+  The...") sentences.
+- **Punctuation budget (v2, 2026-06-27).** Connectives between clauses are the main
+  tool for sentence-length variety. Prefer ", because", ", but", ", so", ", while",
+  and sentence-initial transitions (". However,", ". Therefore,", ". By contrast,").
+  Semicolons are ALLOWED but SPARSE: only between two tightly-linked independent clauses
+  ("X; therefore, Y"), never to chain a list, roughly at most one per paragraph and
+  only where a period would sever a link worth keeping tight. Still banned: em-dash
+  appositive or gloss chains (X — gloss — verb), nested mid-sentence glosses, and
+  semicolon-chained lists (use "The first is X. The second is Y." or an enumerated
+  display). A colon is acceptable only to introduce a display or a definition. Why v2:
+  the near-zero-connective rule forced every clause relationship into a period and left
+  a monotone column of short declaratives, so restoring connectives is what varies the
+  rhythm.
+- **No orphaned pronouns.** Do not open or continue a sentence with "it/this/that/they"
+  when the antecedent could be more than one thing or sits more than a clause back. Name
+  the noun. Joining the clauses ("X, which...") usually keeps the referent local and
+  removes the ambiguity.
 - **Announce results.** New results are introduced as things the paper shows ("We show
   that..."), never asserted cold. Immediately translate each formal object into applied
   terms in its own sentence (e.g., the model-specific bias → "a model-comparison table
@@ -220,7 +245,8 @@ Target reader: an applied researcher with quantitative training and working MI k
   "why are you telling me this"). Section openers are roadmaps of what the reader will
   get, never self-justifications of why the section exists.
 - **Typed claims (T-06).** "Unresolved in the literature" must be either documented-open
-  (cited to the stating passage, quotes verbatim) or asserted-here (in the authors'
+  (cited to the stating passage, **paraphrased -- no verbatim quotation of other work
+  anywhere in the manuscript prose**, per D-17) or asserted-here (in the authors'
   voice, flagged as contribution). Settledness is attributed ("the field's own accounts
   treat X as settled"), not endorsed.
 - **Trust-ordered (T-04/D-05).** Firm (proved + verified) first, measurements next,
@@ -228,6 +254,20 @@ Target reader: an applied researcher with quantitative training and working MI k
 - **Banned vocabulary (T-03).** "ledger", "numerical witness", "tagged",
   "machine-checked", "Stage N", "consume", and figurative house jargon ("where it
   bites", "honest fences", "funnel/hub") — in manuscript AND conversation.
+- **Accuracy invariant — data quantity.** Models never lose or gain data; every
+  candidate is fit to the SAME imputed data. The per-candidate driver of the selection
+  bias is the model's own tr(RIV), its missing information about the parameters, never
+  an amount of data. Never write that a model "lost"/"has more/less/most" data;
+  attribute candidate differences to missing information or RIV. (Twins the abstract
+  fix 53b96bc; enforced by the data-quantity rule in `scripts/check_plan.py` and the
+  `scripts/mechanism_flag.py` scout.)
+- **No color commentary.** State an object and its consequence; do not narrate that it
+  is important or that it "does work". Banned: "gives X its force", "does (real) work",
+  "the key/crucial/essential <noun>", "crucially", "the heart/crux of", "the workhorse",
+  "heavy lifting", "what makes X work", "load-bearing". Show that an assumption matters
+  by showing what changes without it, never by asserting that it matters. ("central" in
+  "this paper's central result/object" stays — that is the motivate-by-use opener.)
+  Enforced by `scripts/color_commentary_flag.py` and a `scripts/check_plan.py` guard.
 - **Methods section only (T-05):** factual passive voice; every safeguard paragraph ends
   with what it cannot catch.
 - **Terminology:** "repetitions" for Monte Carlo, never "replications" (reserved for the
@@ -247,7 +287,7 @@ Decisions of record: `manuscript/plan/decisions.md`. Standing examples: S1 in
 
 **Bypass**: `@TODO:<slug>` is allowed as a drafting placeholder (the hook explicitly skips these).
 
-Rationale: AI-assisted derivations fail in review when citations are hallucinated. The only defense is acquiring actual PDFs and reading them locally before claiming what they say.
+Rationale: human-prompted AI derivations fail in review when citations are hallucinated. The only defense is acquiring actual PDFs and reading them locally before claiming what they say.
 
 If asked to cite something and `literature/<citekey>.md` does not exist, stop and run the acquisition workflow first.
 

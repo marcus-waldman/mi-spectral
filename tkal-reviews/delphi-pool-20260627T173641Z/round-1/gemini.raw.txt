@@ -1,0 +1,58 @@
+{
+  "nominations": [
+    {
+      "title": "Uncorrected multiple-imputation information criteria systematically favor models with more missing information, a bias correctable by a simple per-candidate penalty.",
+      "by": "",
+      "category": "applied-implication",
+      "reason": "Ranked first because it is the most urgent practical takeaway for an applied researcher: their current MI-AIC/BIC tables are predictably biased, and the fix is a computable tr(RIV_k) term.",
+      "priority": 1
+    },
+    {
+      "title": "The paper provides a fully auditable, mechanically verified template for AI-human collaborative derivation that prevents hallucinations and ensures reproducibility.",
+      "by": "",
+      "category": "methodology-workflow",
+      "reason": "Ranked as a first-class contribution (#2) because the brief explicitly identifies it as the applied skim hook for a journal dedicated to AI-generated papers, offering a concrete standard for trust.",
+      "priority": 2
+    },
+    {
+      "title": "The deviance bias correction must be applied for information-criterion ranking, but must not be added to calibrated likelihood-ratio tests where it would cause double-counting.",
+      "by": "",
+      "category": "applied-implication",
+      "reason": "Crucial boundary-condition guidance for practitioners, directly supported by the witness W2 evidence showing over-correction when combined with Chan (2022) calibrations.",
+      "priority": 3
+    },
+    {
+      "title": "Under congenial proper multiple imputation, the averaged log-likelihood overstates its complete-data counterpart by half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that vanishes under data missing completely at random.",
+      "by": "",
+      "category": "theory",
+      "reason": "The foundational, firm theoretical result (C1) from which all other corrections are derived, scoped carefully to proper imputation and estimated scale.",
+      "priority": 4
+    },
+    {
+      "title": "The deviance bias is model-specific, and adding tr(RIV_k) to each candidate's criterion restores complete-data-equivalent selection up to the structural limits of marginal transforms.",
+      "by": "",
+      "category": "IC-application",
+      "reason": "Captures the formal C3 result, backed by the preregistered 100% measured prediction of misclassifications landing on the largest-RIV candidate.",
+      "priority": 5
+    },
+    {
+      "title": "At the null, the differential deviance bias of the likelihood-ratio numerator is exactly the projected missing information of the tested directions, which is strictly smaller than the naive difference of per-model trace corrections.",
+      "by": "",
+      "category": "LRT-application",
+      "reason": "Captures the formal C2 result, highlighting the Gram/Schur inequality that proves naive trace differences always overstate the bias.",
+      "priority": 6
+    },
+    {
+      "title": "Trustworthy AI-assisted methods research requires explicit gating: sourced citations, dual computer-algebra and Monte Carlo verification, preregistration, and cross-model adversarial review.",
+      "by": "",
+      "category": "applied-implication",
+      "reason": "Translates the specific workflow (C4) into a generalized standard that applied teams can demand of future AI-assisted methodological claims.",
+      "priority": 7
+    }
+  ],
+  "bench": [
+    "The +½·tr(RIV) bias splits cleanly into an imputation-bias term and an estimation-mismatch term due to the complete-data target.",
+    "Sharing imputations across nested fits collapses paired Monte-Carlo noise from order √n to order one at the null."
+  ],
+  "gaps": "The strict item limit forces the theoretical nuances of the heavy-tailed (A)+(C) MAR design-imbalance term to be compressed rather than explored as a standalone contribution."
+}

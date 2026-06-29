@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K17",
+      "priority": 1,
+      "reason": "Most urgent applied takeaway, clearest single-read phrasing of the IC tilt and the computable fix."
+    },
+    {
+      "id": "K03",
+      "priority": 2,
+      "reason": "High-value boundary guidance: where to apply the correction and where double-correction inflates size (W2)."
+    },
+    {
+      "id": "K11",
+      "priority": 3,
+      "reason": "Core firm theorem, properly scoped to estimated scale, MCAR vanishing, proper congenial MI."
+    },
+    {
+      "id": "K10",
+      "priority": 4,
+      "reason": "Workflow as first-class contribution, scoped 'for this study' to respect the no-second-coder limit; the journal's stated skim hook."
+    },
+    {
+      "id": "K14",
+      "priority": 5,
+      "reason": "Firm LRT result scoped to the null, projected missing information vs naive trace difference (52 SE separation)."
+    },
+    {
+      "id": "K12",
+      "priority": 6,
+      "reason": "IC-application slot: model-specificity supplies the centering correction the prior MI-AIC proposal left open."
+    },
+    {
+      "id": "K16",
+      "priority": 7,
+      "reason": "Applied-implication: concrete trust template for evaluating AI-assisted derivations, scoped to this audited case."
+    },
+    {
+      "id": "K08",
+      "priority": 8,
+      "reason": "Scoping guardrail (estimated-scale only) prevents misapplication; firm per the brief's known-scale collapse."
+    }
+  ],
+  "add": [],
+  "drop_notes": "Adopted pooled items rather than my prior wordings; chose K17 over K01/K09 (clearest), K11 over K02/K20 (best-scoped theory), K14 over K05/K22 (clean null-scoped LRT), K12 over K06/K21 (cleanest IC), K10 over K04/K18 (first-class but honestly limited), K16 over K23 (case-scoped). Dropped redundant duplicates and over-scoped variants."
+}

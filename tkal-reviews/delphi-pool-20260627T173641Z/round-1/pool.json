@@ -1,0 +1,440 @@
+{
+  "books": {
+    "K01": {
+      "id": "K01",
+      "title": "On multiply-imputed data, common model-selection and likelihood-ratio statistics carry a systematic bias that favors candidate models with more missing information, and the bias is removed by adding a single computable trace term per model.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "On multiply-imputed data, common model-selection and likelihood-ratio statistics carry a systematic bias that favors candidate models with more missing information, and the bias is removed by adding a single computable trace term per model.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K02": {
+      "id": "K02",
+      "title": "The averaged log-likelihood across imputations overstates its complete-data counterpart by one half the trace of the relative-increase-in-variance matrix plus a design-imbalance term that vanishes exactly when data are missing completely at random, provided the model has an estimated scale.",
+      "by": "",
+      "categories": [
+        "theory"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "The averaged log-likelihood across imputations overstates its complete-data counterpart by one half the trace of the relative-increase-in-variance matrix plus a design-imbalance term that vanishes exactly when data are missing completely at random, provided the model has an estimated scale.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K03": {
+      "id": "K03",
+      "title": "For information-criterion selection there is no protective reference distribution, so the per-model correction tr(RIV_k) must be applied to restore complete-data-equivalent ranking; for a calibrated likelihood-ratio test (Chan 2022) the mean is already absorbed and the correction must not be applied a second time.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "For information-criterion selection there is no protective reference distribution, so the per-model correction tr(RIV_k) must be applied to restore complete-data-equivalent ranking; for a calibrated likelihood-ratio test (Chan 2022) the mean is already absorbed and the correction must not be applied a second time.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K04": {
+      "id": "K04",
+      "title": "We demonstrate a structured, ORCID-verified AI-human workflow whose every load-bearing claim passes derive/dual-CAS/Monte-Carlo gates with preregistration and cross-model adversarial review, and show this discipline catches errors single-lineage derivation would ship, such as eight of nine blind re-derivations returning the opposite sign of the main theorem.",
+      "by": "",
+      "categories": [
+        "methodology-workflow"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "We demonstrate a structured, ORCID-verified AI-human workflow whose every load-bearing claim passes derive/dual-CAS/Monte-Carlo gates with preregistration and cross-model adversarial review, and show this discipline catches errors single-lineage derivation would ship, such as eight of nine blind re-derivations returning the opposite sign of the main theorem.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K05": {
+      "id": "K05",
+      "title": "In nested likelihood-ratio comparison the differential deviance bias at the null is the missing information of the tested directions projected in the complete-data information metric, which is strictly smaller than the naive difference of per-model trace corrections.",
+      "by": "",
+      "categories": [
+        "LRT-application"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "In nested likelihood-ratio comparison the differential deviance bias at the null is the missing information of the tested directions projected in the complete-data information metric, which is strictly smaller than the naive difference of per-model trace corrections.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K06": {
+      "id": "K06",
+      "title": "Uncorrected MI-AIC and MI-BIC systematically tilt toward the most-missing-information candidate, supplying the theoretical justification left open by the prior MI-AIC proposal and recovering Shimodaira's covariate-shift penalty.",
+      "by": "",
+      "categories": [
+        "IC-application"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "Uncorrected MI-AIC and MI-BIC systematically tilt toward the most-missing-information candidate, supplying the theoretical justification left open by the prior MI-AIC proposal and recovering Shimodaira's covariate-shift penalty.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K07": {
+      "id": "K07",
+      "title": "We disclose two structural limits of the correction: the equal-fractions candidate family hides the over-statement of the naive trace difference, and per-model marginal transforms cannot calibrate a difference distribution.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "We disclose two structural limits of the correction: the equal-fractions candidate family hides the over-statement of the naive trace difference, and per-model marginal transforms cannot calibrate a difference distribution.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K08": {
+      "id": "K08",
+      "title": "The bias is firm only with an estimated scale and collapses to zero or minus one half the trace under known scale, so the correction should be applied only to estimated-scale fits.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "The bias is firm only with an estimated scale and collapses to zero or minus one half the trace under known scale, so the correction should be applied only to estimated-scale fits.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K09": {
+      "id": "K09",
+      "title": "Applied MI model-selection tables should add a per-candidate tr(RIV_k) correction to AIC/BIC when the target is complete-data-equivalent selection, because uncorrected criteria tilt toward models with more missing information.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "Applied MI model-selection tables should add a per-candidate tr(RIV_k) correction to AIC/BIC when the target is complete-data-equivalent selection, because uncorrected criteria tilt toward models with more missing information.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K10": {
+      "id": "K10",
+      "title": "We make the structured AI-human workflow a first-class contribution by documenting, for this study, transparent provenance and auditable gates for sourced citations, human acceptance, dual computer-algebra verification, preregistered simulations, adversarial rederivation, and full reproducibility.",
+      "by": "",
+      "categories": [
+        "methodology-workflow"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "We make the structured AI-human workflow a first-class contribution by documenting, for this study, transparent provenance and auditable gates for sourced citations, human acceptance, dual computer-algebra verification, preregistered simulations, adversarial rederivation, and full reproducibility.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K11": {
+      "id": "K11",
+      "title": "Under congenial proper MI with an estimated scale and complete-data MLE target, the averaged imputation log-likelihood overstates the complete-data log-likelihood by +1/2 tr(RIV) plus a MAR design-imbalance term that vanishes under MCAR.",
+      "by": "",
+      "categories": [
+        "theory"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "Under congenial proper MI with an estimated scale and complete-data MLE target, the averaged imputation log-likelihood overstates the complete-data log-likelihood by +1/2 tr(RIV) plus a MAR design-imbalance term that vanishes under MCAR.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K12": {
+      "id": "K12",
+      "title": "The MI information-criterion bias is model-specific: candidate models can have different RIV traces, so adding tr(RIV_k) supplies the theoretical centering correction for MI-AIC and MI-BIC under the stated target.",
+      "by": "",
+      "categories": [
+        "IC-application"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "The MI information-criterion bias is model-specific: candidate models can have different RIV traces, so adding tr(RIV_k) supplies the theoretical centering correction for MI-AIC and MI-BIC under the stated target.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K13": {
+      "id": "K13",
+      "title": "Centering the MI likelihood statistic and calibrating its reference distribution solve different problems, so the trace correction should be used when the statistic is used directly and not stacked on a Chan-calibrated MI LRT at the null.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "Centering the MI likelihood statistic and calibrating its reference distribution solve different problems, so the trace correction should be used when the statistic is used directly and not stacked on a Chan-calibrated MI LRT at the null.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K14": {
+      "id": "K14",
+      "title": "For nested MI likelihood-ratio comparisons at the null, the numerator's differential bias is tr(RIV_perp), the missing information in the tested directions projected in the complete-data information metric, not tr(RIV_full)-tr(RIV_0).",
+      "by": "",
+      "categories": [
+        "LRT-application"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "For nested MI likelihood-ratio comparisons at the null, the numerator's differential bias is tr(RIV_perp), the missing information in the tested directions projected in the complete-data information metric, not tr(RIV_full)-tr(RIV_0).",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K15": {
+      "id": "K15",
+      "title": "Nested MI likelihood-ratio comparisons should reuse the same imputations for the competing fits, since pairing reduces null and local-alternative Monte Carlo noise from order sqrt(n) to order one.",
+      "by": "",
+      "categories": [
+        "LRT-application"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "Nested MI likelihood-ratio comparisons should reuse the same imputations for the competing fits, since pairing reduces null and local-alternative Monte Carlo noise from order sqrt(n) to order one.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K16": {
+      "id": "K16",
+      "title": "Applied teams evaluating AI-assisted statistical derivations should require auditable evidence of the same kind used here: sourced citations, independent symbolic checks, preregistered numerical criteria with reported failures, adversarial review, and reproducibility records.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "Applied teams evaluating AI-assisted statistical derivations should require auditable evidence of the same kind used here: sourced citations, independent symbolic checks, preregistered numerical criteria with reported failures, adversarial review, and reproducibility records.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K17": {
+      "id": "K17",
+      "title": "Uncorrected multiple-imputation information criteria systematically favor models with more missing information, a bias correctable by a simple per-candidate penalty.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "Uncorrected multiple-imputation information criteria systematically favor models with more missing information, a bias correctable by a simple per-candidate penalty.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K18": {
+      "id": "K18",
+      "title": "The paper provides a fully auditable, mechanically verified template for AI-human collaborative derivation that prevents hallucinations and ensures reproducibility.",
+      "by": "",
+      "categories": [
+        "methodology-workflow"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "The paper provides a fully auditable, mechanically verified template for AI-human collaborative derivation that prevents hallucinations and ensures reproducibility.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K19": {
+      "id": "K19",
+      "title": "The deviance bias correction must be applied for information-criterion ranking, but must not be added to calibrated likelihood-ratio tests where it would cause double-counting.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "The deviance bias correction must be applied for information-criterion ranking, but must not be added to calibrated likelihood-ratio tests where it would cause double-counting.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K20": {
+      "id": "K20",
+      "title": "Under congenial proper multiple imputation, the averaged log-likelihood overstates its complete-data counterpart by half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that vanishes under data missing completely at random.",
+      "by": "",
+      "categories": [
+        "theory"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "Under congenial proper multiple imputation, the averaged log-likelihood overstates its complete-data counterpart by half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that vanishes under data missing completely at random.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K21": {
+      "id": "K21",
+      "title": "The deviance bias is model-specific, and adding tr(RIV_k) to each candidate's criterion restores complete-data-equivalent selection up to the structural limits of marginal transforms.",
+      "by": "",
+      "categories": [
+        "IC-application"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "The deviance bias is model-specific, and adding tr(RIV_k) to each candidate's criterion restores complete-data-equivalent selection up to the structural limits of marginal transforms.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K22": {
+      "id": "K22",
+      "title": "At the null, the differential deviance bias of the likelihood-ratio numerator is exactly the projected missing information of the tested directions, which is strictly smaller than the naive difference of per-model trace corrections.",
+      "by": "",
+      "categories": [
+        "LRT-application"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "At the null, the differential deviance bias of the likelihood-ratio numerator is exactly the projected missing information of the tested directions, which is strictly smaller than the naive difference of per-model trace corrections.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    },
+    "K23": {
+      "id": "K23",
+      "title": "Trustworthy AI-assisted methods research requires explicit gating: sourced citations, dual computer-algebra and Monte Carlo verification, preregistration, and cross-model adversarial review.",
+      "by": "",
+      "categories": [
+        "applied-implication"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "Trustworthy AI-assisted methods research requires explicit gating: sourced citations, dual computer-algebra and Monte Carlo verification, preregistration, and cross-model adversarial review.",
+          "by": ""
+        }
+      ],
+      "first_round": 1
+    }
+  },
+  "merge_log": [],
+  "dropped_fixed": [],
+  "selections": {
+    "claude": [
+      "K01",
+      "K02",
+      "K03",
+      "K04",
+      "K05",
+      "K06",
+      "K07",
+      "K08"
+    ],
+    "openai": [
+      "K09",
+      "K10",
+      "K11",
+      "K12",
+      "K13",
+      "K14",
+      "K15",
+      "K16"
+    ],
+    "gemini": [
+      "K17",
+      "K18",
+      "K19",
+      "K20",
+      "K21",
+      "K22",
+      "K23"
+    ]
+  },
+  "counts": {
+    "K05": 1,
+    "K02": 1,
+    "K03": 1,
+    "K04": 1,
+    "K07": 1,
+    "K08": 1,
+    "K01": 1,
+    "K06": 1,
+    "K14": 1,
+    "K13": 1,
+    "K16": 1,
+    "K15": 1,
+    "K09": 1,
+    "K11": 1,
+    "K12": 1,
+    "K10": 1,
+    "K19": 1,
+    "K22": 1,
+    "K21": 1,
+    "K20": 1,
+    "K18": 1,
+    "K17": 1,
+    "K23": 1
+  },
+  "slate": [
+    "K01",
+    "K09",
+    "K17",
+    "K02",
+    "K10",
+    "K18",
+    "K03",
+    "K11"
+  ]
+}

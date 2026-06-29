@@ -1,0 +1,46 @@
+{
+  "keep": [
+    {
+      "id": "K11",
+      "priority": 1,
+      "reason": "Unchanged; provides the foundational theoretical decomposition from which all other results follow."
+    },
+    {
+      "id": "K14",
+      "priority": 2,
+      "reason": "Unchanged; establishes the core LRT result and corrects the naive trace difference assumption."
+    },
+    {
+      "id": "K12",
+      "priority": 3,
+      "reason": "Unchanged; establishes the core IC result and the model-specific nature of the bias."
+    },
+    {
+      "id": "K10",
+      "priority": 4,
+      "reason": "Unchanged; elevates the rigorous, auditable AI-human collaboration to a first-class methodological contribution."
+    },
+    {
+      "id": "K09",
+      "priority": 5,
+      "reason": "Unchanged; translates the IC theory into a direct, actionable implication for applied researchers."
+    },
+    {
+      "id": "K03",
+      "priority": 6,
+      "reason": "Unchanged; crucial applied guidance preventing the double-counting of corrections when using calibrated LRTs."
+    },
+    {
+      "id": "K15",
+      "priority": 7,
+      "reason": "Kept to provide a highly actionable LRT implementation detail (noise reduction via shared imputations) explicitly supported by the brief."
+    },
+    {
+      "id": "K16",
+      "priority": 8,
+      "reason": "Unchanged; provides a concrete template for applied teams to evaluate AI-assisted derivations."
+    }
+  ],
+  "add": [],
+  "drop_notes": "none"
+}

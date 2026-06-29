@@ -1,0 +1,13 @@
+{
+  "keep": [
+    { "id": "K11", "priority": 1, "reason": "Core theory result, firm and verified; foundational anchor." },
+    { "id": "K12", "priority": 2, "reason": "IC-application coverage; model-specific bias and per-candidate fix." },
+    { "id": "K14", "priority": 3, "reason": "LRT-application coverage; the exact tr(RIV_perp) result." },
+    { "id": "K09", "priority": 4, "reason": "Clearest skim-level practice change for applied IC users; primary applied hook." },
+    { "id": "K10", "priority": 5, "reason": "Workflow as first-class contribution, scoped 'for this study' to respect the no-second-coder limit." },
+    { "id": "K03", "priority": 6, "reason": "Boundary guidance preventing double-correction against a Chan-calibrated test; high practical value." },
+    { "id": "K16", "priority": 7, "reason": "Applied-implication: standard to demand of any AI-assisted derivation." }
+  ],
+  "add": [],
+  "drop_notes": "Dropped K17 (subsumed by K09's clearer phrasing) to stay at 7 items while covering all required categories with two applied-implication items (K09, K16) plus K03."
+}

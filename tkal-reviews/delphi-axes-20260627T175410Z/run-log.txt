@@ -1,0 +1,19 @@
+=== R1: PROPOSE (panelists, independent) ===
+  querying B = claude (claude-opus-4-8) ...
+    B: positions on 12/12 axes
+  querying A = openai (gpt-5.5-pro-2026-04-23) ...
+    A: positions on 12/12 axes
+  querying C = gemini (models/gemini-3.1-pro-preview) ...
+    C: positions on 12/12 axes
+=== R2: CONVERGE (endorse / merge per axis) ===
+  querying B = claude ...
+  querying A = openai ...
+  querying C = gemini ...
+  after converge: 5 unanimous, 7 majority, 0 split
+=== R3: skipped (no split axes) ===
+
+=== CONSENSUS DONE ===
+Unanimous: 5, majority: 7, split: 0
+Tokens: input=54079, output=37911
+Artifacts: C:\Users\marcu\git-repositories\mi-spectral\tkal-reviews\delphi-axes-20260627T175410Z
+Recommendation: C:\Users\marcu\git-repositories\mi-spectral\tkal-reviews\delphi-axes-20260627T175410Z\RECOMMENDATION.md

@@ -22,12 +22,12 @@ the `.bib`, or any `todo/`/`verification/` file. The deliverable is the report.
 
 **Target.** The argument is the path to audit. Default to
 `manuscript/derivation.qmd` (the canonical sourced derivation) when none is
-given; also accept `manuscript/mi-spectral.qmd` or any `manuscript/*.qmd`.
+given; also accept `manuscript/mi-spectral-apa.qmd` or any `manuscript/*.qmd`.
 
 ## Why this skill exists
 
-This is a citation-disciplined, AI-assisted theory paper for JAIGP. The
-load-bearing defense against the way AI-assisted derivations fail in review is
+This is a citation-disciplined, human-prompted AI theory paper for JAIGP. The
+load-bearing defense against the way human-prompted AI derivations fail in review is
 that **every external claim points to a real source passage that actually says
 what the claim attributes to it**, and **every number points to a reproducible
 artifact that exists**. The repo enforces a slice of this at edit time (the
