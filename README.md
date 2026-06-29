@@ -16,34 +16,56 @@ auditable verification protocol.
 ## What the paper shows
 
 Multiple imputation lets you apply complete-data tools to each completed data set and
-combine the results. Many of those tools (likelihood-ratio statistics, information
-criteria, deviance-based fit indices) are built on the averaged complete-data
-log-likelihood. That averaged log-likelihood is biased: evaluated at the observed-data
-estimate and measured against the complete-data benchmark, it overstates the fit.
+combine the results. Many of those tools — likelihood-ratio statistics, information
+criteria, deviance-based fit indices — are built on the averaged complete-data
+log-likelihood across imputations, and that averaged log-likelihood is biased: evaluated
+at the observed-data estimate and measured against the complete-data benchmark, it
+overstates the fit.
 
-Under congenial proper multiple imputation with the complete-data maximum likelihood
-estimate as the target, the bias decomposes as
+For a model that estimates a scale or covariance, under congenial proper multiple
+imputation with the complete-data maximum likelihood estimate as the target, the bias is
 
 ```
 Bias = +tr(RIV)  −  ½ tr(RIV)  =  +½ tr(RIV)
 ```
 
 a positive imputation-bias term and a negative estimation-mismatch term that do not
-cancel for any model estimating a scale or covariance. (RIV is the relative-increase-in-variance
-matrix. Under missing-at-random data there is an additional `O(1)` design-imbalance term
-that is zero under MCAR.)
+cancel. RIV is the relative-increase-in-variance matrix, and under missing-at-random data
+there is an additional `O(1)` design-imbalance term that is zero under MCAR. The bias is
+**specific to each candidate model** and grows with that model's missing information, so a
+model-comparison table built on imputed data favors the candidates with the most missing
+information — which, in the nested model families studied here, are the more complex models.
 
-The bias is **specific to each candidate model**, so a model-comparison table built on
-imputed data favors the candidates with the most missing information. Two consequences:
+### Contributions
 
-- **Model selection.** Uncorrected MI-AIC and MI-BIC systematically favor higher-RIV
-  models. Adding one trace term per candidate substantially restores
-  complete-data-equivalent selection.
-- **Likelihood-ratio comparison.** At the null, the differential bias is the missing
-  information of the tested directions alone, projected in the complete-data metric —
-  not the naive difference of the two models' trace corrections, which always overstates
-  it. This is exactly the value a correctly calibrated reference distribution (Chan 2022,
-  *Annals of Statistics*) already absorbs, so the correction must not be applied twice.
+Stated for use, in the order an applied reader is likely to need them:
+
+1. **A correction for model selection after imputation.** Comparing models by AIC or BIC on
+   imputed data is biased; the bias is specific to each candidate and grows with that
+   candidate's missing information, so the uncorrected criteria favor the candidates with
+   the most missing information. Adding one term per candidate — the trace of its RIV
+   matrix — removes the trace component of the bias and substantially restores the ranking
+   complete data would have given.
+2. **The deviance bias behind the correction.** For a model that estimates a scale or
+   covariance, the averaged log-likelihood overstates its complete-data counterpart by
+   ½ tr(RIV), plus a design-imbalance term that appears only under missing-at-random data
+   and vanishes under MCAR. The proof for proper imputation and the design-imbalance term
+   are new; the trace itself matches a penalty already known from a related prediction
+   problem.
+3. **The bias of a likelihood-ratio comparison.** For two nested models compared at the
+   null, the relevant bias is the missing information carried by the tested directions
+   alone, measured in the complete-data metric — not the difference of the two models'
+   separate corrections, which always overstates it. A correctly calibrated reference
+   distribution (Chan 2022, *Annals of Statistics*) already absorbs this null mean, so the
+   correction must not be added on top of such a test.
+4. **A sharper way to run that comparison.** Fitting the competing models to the same
+   imputed data sets, rather than to separate ones, cancels most of the shared noise and
+   tightens the comparison.
+5. **An auditable human-prompted AI workflow.** The way the derivations were produced is a
+   contribution in its own right: transparent provenance and checks the reader can run —
+   citations verified against their sources, independent symbolic verification, preregistered
+   simulations whose failures are reported, adversarial re-derivation (which caught a sign
+   error in this work), and full reproducibility.
 
 Each load-bearing claim is paired with a preregistered numerical check and, where
 derivable, an independent symbolic (computer-algebra) check.
