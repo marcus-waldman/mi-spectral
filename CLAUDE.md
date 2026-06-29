@@ -54,7 +54,9 @@ Three-layer reproducibility: `IDEAS.md` is *what we found and what it means*; `v
 
 ```
 manuscript/
-  mi-spectral.qmd                        # Quarto stub for the JAIGP submission (in progress)
+  mi-spectral-apa.qmd                    # CANONICAL manuscript render (apaquarto-pdf), built from
+                                         #   level3 by scripts/build_manuscript_apa.py; mi-spectral-apa.pdf is the deliverable
+  _extensions/                           # apaquarto Quarto extension (needed to render mi-spectral-apa.qmd)
   derivation.qmd                         # canonical sourced derivation (notation, ledger, tagged proof);
                                          #   Appendix B = executable Sympy/NumPy verification (jupyter: python3)
   proof-verification-fixture.json        # W1 replicate + cache read by derivation.qmd Appendix B (committed)
@@ -108,8 +110,8 @@ scripts/
   lit_sync.py                            # Zotero BBT -> literature/<citekey>.md sync (see skill)
   check_plan.py                          # authoritative plan lint (pointers, citekeys, gates); must be green
                                          #   before every review-cycle commit; also runs from pre-commit
-  compile_manuscript.py                  # level3-paragraphs.json -> manuscript/mi-spectral.qmd (refuses until
-                                         #   compile_enabled; the qmd becomes a derived artifact after that)
+  build_manuscript_apa.py                # level3-paragraphs.json -> manuscript/mi-spectral-apa.qmd (canonical
+                                         #   apaquarto render; D-20). The qmd is a derived artifact — edit level3, rebuild
   git-hooks/pre-commit                   # runs check_plan.py when plan files staged (core.hooksPath)
   test_check_citations_hook.py           # hook smoke tests (13 cases)
 ```
@@ -123,9 +125,10 @@ by `scripts/check_plan.py`. `/status` = where we are, what is blocked on whom (d
 files + git, never from memory). `/section-review <target>` = one review cycle: annotation
 extract → Marcus's `#[COMMENTS]` → per-unit iteration → atomic update script under
 `manuscript/plan/updates/` → status/decisions/commit. Locked decisions in
-`manuscript/plan/decisions.md` are not relitigated without a dated amendment. Once level3
-`compile_enabled` is true, never edit `manuscript/mi-spectral.qmd` directly — edit the JSON
-and recompile.
+`manuscript/plan/decisions.md` are not relitigated without a dated amendment. The canonical
+render `manuscript/mi-spectral-apa.qmd` is always a derived artifact — never edit it directly;
+edit level3 and rebuild with `scripts/build_manuscript_apa.py` (D-20). `compile_enabled` gates
+when level3 prose is locked as the source of record.
 
 **Module organization for `verification/run_all.R`.** Five phases, each in its own module under `_modules/`:
 
@@ -175,10 +178,18 @@ Rscript verification/W3-model-selection.R <mode> <engine> [n_cores]
 `mode` is `pilot` or `prod`; `engine` is `fiml` or `amelia`.
 
 **Render the manuscript / proof verification:**
+
+The canonical manuscript render is the apaquarto-pdf, built from `level3-paragraphs.json`
+by `scripts/build_manuscript_apa.py` (two-class JAIGP author block, D-18). Build then render
+from `manuscript/` (apaquarto extension at `manuscript/_extensions`):
 ```
-quarto render manuscript/mi-spectral.qmd
-quarto render manuscript/derivation.qmd   # executes Appendix B (needs sympy, numpy, the fixture json)
+py scripts/build_manuscript_apa.py            # level3 -> manuscript/mi-spectral-apa.qmd
+quarto render manuscript/mi-spectral-apa.qmd  # -> manuscript/mi-spectral-apa.pdf
+quarto render manuscript/derivation.qmd       # executes Appendix B (needs sympy, numpy, the fixture json)
 ```
+The old HTML pipeline (`compile_manuscript.py` -> `mi-spectral.qmd`) is retired (D-20);
+`build_manuscript_apa.py` is the sole builder. `compile_enabled` still gates when level3
+prose is locked as the source of record.
 
 **Sync the literature corpus** (Zotero BBT export → `literature/<citekey>.md`):
 ```

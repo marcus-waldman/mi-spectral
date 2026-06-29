@@ -76,10 +76,10 @@
   "next_actions": [
     "PROSE READABILITY PASS (Marcus 2026-06-26, top priority): per-paragraph rewrite of level3 draft_prose S1-S6 for easier readability / lower grade reading level -- complete the topic-sentence -> supporting-details -> wrap-up/hand-off arc; state inferred steps plainly (a little redundancy is fine); lower sentence complexity. The manuscript still reads inference-heavy and above grade level despite the existing cadence/punctuation rules.",
     "DECIDE (Marcus): S3-P6 / S4-P4 / S4-P7 conditioning-sense 'oracle' rename (T-08 follow-up; e.g. 'true-parameter expectation')",
-    "Then flip compile_enabled + canonical recompile -- resolves the qmd<->level3 S5 divergence (the official mi-spectral.qmd S5 is the pre-todo/033 version)",
+    "Then flip compile_enabled to lock level3 as the source of record (the canonical render is rebuilt from level3 by scripts/build_manuscript_apa.py, so there is no longer a frozen qmd to diverge from)",
     "Marcus: per-paragraph annotation passes S1-S6 (82 paragraphs); the S5 tribunal pass is one external-review cycle, not a substitute for the annotation",
     "Optional: commit the tribunal review record (tkal-reviews/) as provenance per D-13 -- Marcus's call on what enters the public record",
     "Follow-up queued: todo/030 map sync"
   ],
-  "structure_note": "Section list = the ratified 6-section set (D-09 + Amendment 1) + title-page declaration (D-11/D-13). mi-spectral.qmd remains frozen at 180e2b5 until first compile. Citations backlog: proposed = White 2011, Grund 2021, Schomaker 2007 (all optional)."
+  "structure_note": "Section list = the ratified 6-section set (D-09 + Amendment 1) + title-page declaration (D-11/D-13). The canonical render manuscript/mi-spectral-apa.qmd is rebuilt from level3 by scripts/build_manuscript_apa.py (D-20). Citations backlog: proposed = White 2011, Grund 2021, Schomaker 2007 (all optional)."
 }

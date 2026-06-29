@@ -22,7 +22,7 @@ the `.bib`, or any `todo/`/`verification/` file. The deliverable is the report.
 
 **Target.** The argument is the path to audit. Default to
 `manuscript/derivation.qmd` (the canonical sourced derivation) when none is
-given; also accept `manuscript/mi-spectral.qmd` or any `manuscript/*.qmd`.
+given; also accept `manuscript/mi-spectral-apa.qmd` or any `manuscript/*.qmd`.
 
 ## Why this skill exists
 

@@ -49,6 +49,14 @@ _gsdata_/
 .idea/
 
 verification/cache/run_all-regen/
-manuscript/preview-jasa/
-manuscript/preview-apa/
+
+# Canonical APA manuscript render (manuscript/mi-spectral-apa.qmd + .pdf are tracked);
+# ignore the LaTeX build intermediates.
+manuscript/mi-spectral-apa.tex
+manuscript/mi-spectral-apa.log
+manuscript/mi-spectral-apa.aux
+manuscript/mi-spectral-apa.fff
+manuscript/mi-spectral-apa.ttt
+manuscript/mi-spectral-apa_files/
+manuscript/render-apa-log*.txt
 

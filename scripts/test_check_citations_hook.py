@@ -9,7 +9,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 HOOK = REPO / ".claude" / "hooks" / "check_citations.py"
 PLAN = str(REPO / "manuscript" / "plan" / "level4-evidence.json")
-QMD = str(REPO / "manuscript" / "mi-spectral.qmd")
+QMD = str(REPO / "manuscript" / "mi-spectral-apa.qmd")
 OUTSIDE = str(REPO / "todo" / "scratch.md")
 
 
