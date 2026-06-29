@@ -59,12 +59,9 @@ human prompting and transparent AI co-authorship.
   and cross-checked with GPT-5.5 Pro (OpenAI) and Gemini (Google).
 
 **Session transcripts.** The complete Claude Code session logs that produced this work are
-the provenance record:
-
-➡️ **[Full AI-collaboration transcripts (Google Drive)](https://drive.google.com/drive/folders/1zTO9APs6LiTtHuxo_X3VtWP_LDi7MPhm?usp=drive_link)**
-
-The transcripts are raw session logs (`.jsonl`). No external work is quoted in the
-manuscript; cited claims are checked against locally read sources.
+the provenance record. A redacted copy is being prepared for public release, and the link
+will be added here. No external work is quoted in the manuscript; cited claims are checked
+against locally read sources.
 
 ## Repository layout
 
