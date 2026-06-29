@@ -444,6 +444,26 @@ deleted. **Citeable.**
 - **`Tierney01031986`** — "Let $\hat\theta$ be the posterior mode... Then Laplace's method produces the approximation" (§2); "the error in (2.3) is of order $O(n^{-2})$" (§2); posterior variance approximation at (2.4)-context. Backs the Laplace-method wording if adopted.
 - **`akaikeNewLookStatistical1974a`** — the criterion: "$\operatorname{AIC}(\hat\theta) = (-2)\log(\text{maximum likelihood}) + 2k$" (eq. 4). The bias-correction logic: the plug-in estimate "needs a correction for the downward bias introduced by replacing $\theta$ by $\hat\theta$. This correction is simply realized by adding $k$ to (3)." The target: the mean log-likelihood $S(g; f(\cdot\mid\theta))$, "a most sensitive criterion to the small deviation of $f(x\mid\theta)$ from $g(x)$" (§II–III). Incidental: §V already defers non-nested AIC differences to Cox's separate-families analysis — the 1974 antecedent of the Vuong-regime caveat in Proposition L4.
 
+## Scaled-and-shifted affine form — exact anchor located (todo/039 follow-up, 2026-06-28)
+
+The todo/039 citation audit + an in-session read of Satterthwaite (1946) corrected the
+scaled-and-shifted attribution. The W2 comparison arm (`verification/W2-lrt-power.R` C5)
+computes the **affine** statistic `T3 = a·T + b` with degrees of freedom **held fixed**
+(ref χ²₁), a and b matching the first two moments. That is NOT Satterthwaite's form.
+
+- **Satterthwaite (1941/1946)** gives the scaled + **effective-df** two-moment match
+  (`T2 = T·D̂/tr(M)`, `D̂ = (trM)²/tr(M²)`) — the mechanism the OWNED
+  `@asparouhovRobustChiSquare2006` (T2) already realizes. So Satterthwaite is the
+  grandparent of a cite we already hold, **not** the affine-form source. **This SUPERSEDES
+  the line-41 claim** that "our `a·χ²+b` form is the two-moment Satterthwaite generalization."
+- The **affine `a·T+b` fixed-df** form (the W2 statistic) is the **T3** of Asparouhov–Muthén
+  (2010), verified below.
+
+| Proposed citation | Status | Claim it supports | Where it would land | Priority | Notes |
+|---|---|---|---|---|---|
+| **Asparouhov, T. & Muthén, B. (2010).** "Simple Second Order Chi-Square Correction." Mplus Technical Appendix (May 3, 2010). `statmodel.com/download/WLSMV_new_chi21.pdf` | **proposed — CONTENT-VERIFIED from the free PDF 2026-06-28; pending pipeline** | THE exact anchor for the affine scaled-and-shifted statistic: eq. (4) `T3 = aT + b`, df unchanged, `a=√(D/tr(M²))`, `b=D−√(D·tr(M)²/tr(M²))`, a,b matching mean+variance; §4 gives the nested-model DIFFERENCE version (the W2 LRT setting). Distinguishes T1 (scaled, = Satorra–Bentler), T2 (Satterthwaite eff-df, = `@asparouhov…2006`), T3 (affine, this note). | S5-P6 "scaled-and-shifted" sentence (replace/augment the tradition cites) | **High** | Freely available, no paywall. Likely BBT key `asparouhovSimpleSecondOrder2010`. Acquire: Zotero → BBT export → migrate → Mathpix → lit-sync → in-session read → cite. PDF already content-read in-session 2026-06-28 (formula confirmed); the citeable `literature/<key>.md` must still be produced by the pipeline before `@cite`. |
+| **Satorra, A. (2000).** "Scaled and Adjusted Restricted Tests in Multi-Sample Analysis of Moment Structures." In *Innovations in Multivariate Statistical Analysis: A Festschrift for Heinz Neudecker* (eds. Heijmans, Pollock, Satorra), pp. 233–247. Kluwer, Dordrecht. DOI 10.1007/978-1-4615-4603-0_17. | **proposed — optional (foundational lineage)** | Foundational "scaled and adjusted" theory for score/Wald/difference statistics in multi-sample moment structures; broader theory behind the SEM adjusted statistics. AM 2010 is the precise form; this is depth only. | S5-P6 / §4 (optional) | Medium | Free working-paper version: UPF Econ WP 395 (`ideas.repec.org/p/upf/upfgen/395.html`) + SSRN 189431; Springer chapter paywalled. Acquire only if the foundational cite is wanted alongside AM 2010. |
+
 ## Recently rejected (kept as a record so we don't re-propose)
 
 - **2026-05-22 — Wood, A. T. A. (1989).** "An F approximation to the distribution of a linear combination of chi-squared variables." *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`. Reason: We're sticking with χ² reference (not F), so the F-approximation is not load-bearing. Citation lineage for the scaled-shifted moment-matching form is already covered by Satterthwaite (1946) + Satorra-Bentler (2010) + Asparouhov-Muthén (2006). Imhof (1961) + Davies (1980) cover the exact reference distribution. Full text was also not freely available, which would have been a small acquisition cost — combined with non-load-bearing status → reject. Re-propose only if we change framing to F-reference.
@@ -456,4 +476,4 @@ deleted. **Citeable.**
 
 ---
 
-*Last updated: 2026-06-05*
+*Last updated: 2026-06-28 (todo/039 follow-up: located the exact affine `a·T+b` anchor — Asparouhov–Muthén 2010, content-verified; corrected the Satterthwaite attribution).*
