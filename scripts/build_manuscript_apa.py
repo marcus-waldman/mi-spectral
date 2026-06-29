@@ -34,7 +34,8 @@ GRAT = (
     "draft; GPT-5.5 Pro and Gemini 3.1 Pro -- validation through cross-model review "
     "and Delphi consensus. The companion sourced derivation, the verification "
     "directory with its pre-registered studies, the cross-model grading records, and "
-    "the full session transcripts are part of the public record, and citation "
+    "the full session transcripts are part of the public record, collected at the "
+    "project page, <https://marcus-waldman.github.io/mi-spectral/>, and citation "
     "discipline is enforced mechanically."
 )
 
