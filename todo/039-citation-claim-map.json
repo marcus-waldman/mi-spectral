@@ -1,0 +1,1459 @@
+{
+  "n_attachments": 69,
+  "n_distinct_keys": 35,
+  "keys_missing_lit": [],
+  "attachments": [
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P1",
+      "citekey": "rubinMultipleImputationNonresponse1987",
+      "claim": "An analyst then fits the model of substantive interest to each completed data set, and simple rules combine the results [@rubinMultipleImputationNonresponse1987].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P1",
+      "citekey": "schaferMissingDataOur2002a",
+      "claim": "The field's own accounts of its state of the art describe a mature methodology [@schaferMissingDataOur2002a; @endersMissingDataUpdate2025].",
+      "lit_exists": true,
+      "co_cited": [
+        "endersMissingDataUpdate2025"
+      ]
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P1",
+      "citekey": "endersMissingDataUpdate2025",
+      "claim": "The field's own accounts of its state of the art describe a mature methodology [@schaferMissingDataOur2002a; @endersMissingDataUpdate2025].",
+      "lit_exists": true,
+      "co_cited": [
+        "schaferMissingDataOur2002a"
+      ]
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P2",
+      "citekey": "mengPerformingLikelihoodRatio1992b",
+      "claim": "For likelihood-ratio tests, a combining rule has existed since @mengPerformingLikelihoodRatio1992b.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P2",
+      "citekey": "chanMultipleImprovementsMultiple2022",
+      "claim": "Its modern repairs give tests with accurate size [@chanMultipleImprovementsMultiple2022; @chanGeneralFeasibleTests2022].",
+      "lit_exists": true,
+      "co_cited": [
+        "chanGeneralFeasibleTests2022"
+      ]
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P2",
+      "citekey": "chanGeneralFeasibleTests2022",
+      "claim": "Its modern repairs give tests with accurate size [@chanMultipleImprovementsMultiple2022; @chanGeneralFeasibleTests2022].",
+      "lit_exists": true,
+      "co_cited": [
+        "chanMultipleImprovementsMultiple2022"
+      ]
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P2",
+      "citekey": "consentinoclaeskensOrderSelectionTests2010",
+      "claim": "Its authors call for further theoretical and practical study of the method and place that work beyond their own scope [@consentinoclaeskensOrderSelectionTests2010].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P2",
+      "citekey": "schomakerModelSelectionModel2014a",
+      "claim": "The first comprehensive study of model selection after multiple imputation describes the available literature as unexpectedly thin [@schomakerModelSelectionModel2014a].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P2",
+      "citekey": "woodHowShouldVariable2008a",
+      "claim": "A dedicated study of variable selection with multiply imputed data reports that no guidelines yet exist [@woodHowShouldVariable2008a].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P2",
+      "citekey": "vanbuurenFlexibleImputationMissing2018a",
+      "claim": "The standard book-length treatment does not treat information criteria for multiply imputed data at all [@vanbuurenFlexibleImputationMissing2018a].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P2",
+      "citekey": "endersMissingDataUpdate2025",
+      "claim": "Neither does the current state-of-the-art review [@endersMissingDataUpdate2025].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P3",
+      "citekey": "woodHowShouldVariable2008a",
+      "claim": "Simulation comparisons of that kind appear in @woodHowShouldVariable2008a and @consentinoclaeskensOrderSelectionTests2010.",
+      "lit_exists": true,
+      "co_cited": [
+        "consentinoclaeskensOrderSelectionTests2010"
+      ]
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P3",
+      "citekey": "consentinoclaeskensOrderSelectionTests2010",
+      "claim": "Simulation comparisons of that kind appear in @woodHowShouldVariable2008a and @consentinoclaeskensOrderSelectionTests2010.",
+      "lit_exists": true,
+      "co_cited": [
+        "woodHowShouldVariable2008a"
+      ]
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P5",
+      "citekey": "chanGeneralFeasibleTests2022",
+      "claim": "Calibrated tests reject at the complete-data rate [@chanGeneralFeasibleTests2022].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P6",
+      "citekey": "mengPerformingLikelihoodRatio1992b",
+      "claim": "The calibration line runs from @mengPerformingLikelihoodRatio1992b through @chanMultipleImprovementsMultiple2022 to @chanGeneralFeasibleTests2022, and it calibrates the reference distribution of an MI test statistic while taking the statistic's numerator as given.",
+      "lit_exists": true,
+      "co_cited": [
+        "chanGeneralFeasibleTests2022",
+        "chanMultipleImprovementsMultiple2022"
+      ]
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P6",
+      "citekey": "chanMultipleImprovementsMultiple2022",
+      "claim": "The calibration line runs from @mengPerformingLikelihoodRatio1992b through @chanMultipleImprovementsMultiple2022 to @chanGeneralFeasibleTests2022, and it calibrates the reference distribution of an MI test statistic while taking the statistic's numerator as given.",
+      "lit_exists": true,
+      "co_cited": [
+        "chanGeneralFeasibleTests2022",
+        "mengPerformingLikelihoodRatio1992b"
+      ]
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P6",
+      "citekey": "chanGeneralFeasibleTests2022",
+      "claim": "The calibration line runs from @mengPerformingLikelihoodRatio1992b through @chanMultipleImprovementsMultiple2022 to @chanGeneralFeasibleTests2022, and it calibrates the reference distribution of an MI test statistic while taking the statistic's numerator as given.",
+      "lit_exists": true,
+      "co_cited": [
+        "chanMultipleImprovementsMultiple2022",
+        "mengPerformingLikelihoodRatio1992b"
+      ]
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P6",
+      "citekey": "shimodairaInformationCriterionModel2017",
+      "claim": "As a penalty, the correction is precedented, because it reproduces $\\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P6",
+      "citekey": "cavanaughAkaikeInformationCriterion1998a",
+      "claim": "That criterion halved the missing-data surcharge of the earlier complete-data-discrepancy criteria [@cavanaughAkaikeInformationCriterion1998a].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P6",
+      "citekey": "claeskensconsentinoVariableSelectionIncomplete2008",
+      "claim": "The missing-covariate criteria of @claeskensconsentinoVariableSelectionIncomplete2008 target a different, Takeuchi-type discrepancy.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P6",
+      "citekey": "hensModelSelectionIncomplete2006a",
+      "claim": "The reweighting route of @hensModelSelectionIncomplete2006a reaches the complete-data target through inverse-probability weights, but it explicitly leaves an imputation-based criterion open.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P6",
+      "citekey": "shimodairahidetoshiImprovingPredictiveInference2000",
+      "claim": "His concluding section names the combination of missingness with other sampling mechanisms, such as covariate shift [@shimodairahidetoshiImprovingPredictiveInference2000], as future work.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S1",
+      "section_title": "Introduction",
+      "para_id": "S1-P6",
+      "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+      "claim": "Congeniality is assumed throughout [@mengMultipleImputationInferencesUncongenial1994a].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P3",
+      "citekey": "rubinInferenceMissingData1976b",
+      "claim": "**Ignorability.** This paper assumes throughout that the missingness mechanism is ignorable, in the sense and under the conditions set out by Rubin [@rubinInferenceMissingData1976b].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P4",
+      "citekey": "woodburyMissingInformationPrinciple1972",
+      "claim": "**The missing-information principle and the RIV.** The paper's central matrix is the relative-increase-in-variance matrix, and it comes from the missing-information principle. @woodburyMissingInformationPrinciple1972 decompose the information in the complete data into the observed-data information plus what they call the lost information.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P4",
+      "citekey": "Meng01121991",
+      "claim": "They state this decomposition together with a score identity, in which the observed-data score is the conditional expectation of the complete-data score. @Meng01121991 state the same principle in the form used throughout this paper: $$ I_{\\text{obs}} \\;=\\; I_{\\text{com}} - I_{\\text{mis}\\mid\\text{obs}}, $$ {#eq-bg-mip} In words, observed information equals complete information $-$ missing information.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P4",
+      "citekey": "dempsterMaximumLikelihoodIncomplete1977a",
+      "claim": "One warning is needed here, because the EM literature works with a different normalization of the same ingredients, namely the EM rate matrix $DM = I_{\\text{mis}\\mid\\text{obs}}\\, I_{\\text{com}}^{-1}$ of @dempsterMaximumLikelihoodIncomplete1977a and @Meng01121991.",
+      "lit_exists": true,
+      "co_cited": [
+        "Meng01121991"
+      ]
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P4",
+      "citekey": "Meng01121991",
+      "claim": "One warning is needed here, because the EM literature works with a different normalization of the same ingredients, namely the EM rate matrix $DM = I_{\\text{mis}\\mid\\text{obs}}\\, I_{\\text{com}}^{-1}$ of @dempsterMaximumLikelihoodIncomplete1977a and @Meng01121991.",
+      "lit_exists": true,
+      "co_cited": [
+        "dempsterMaximumLikelihoodIncomplete1977a"
+      ]
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P5",
+      "citekey": "dempsterMaximumLikelihoodIncomplete1977a",
+      "claim": "So its definition and one geometric fact about it are needed. @dempsterMaximumLikelihoodIncomplete1977a define $$ Q(\\phi' \\mid \\phi) \\;=\\; E\\big(\\log f(\\mathbf{x} \\mid \\phi') \\,\\big|\\, \\mathbf{y}, \\phi\\big), $$ {#eq-bg-q} the expected complete-data log-likelihood given the observed data.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P6",
+      "citekey": "weiMonteCarloImplementation1990",
+      "claim": "**Imputation is Monte Carlo integration of the E-step.** The averaged log-likelihood over imputations is itself a Q-function, computed by Monte Carlo. @weiMonteCarloImplementation1990 implement the E-step by simulation, drawing $z^{(1)},\\dots,z^{(m)}$ from the conditional predictive distribution of the missing data.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P7",
+      "citekey": "rubinMultipleImputationNonresponse1987",
+      "claim": "Chapter 4 of @rubinMultipleImputationNonresponse1987 states the validity conditions and gives the fully normal Bayesian scheme as the canonical example.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P7",
+      "citekey": "cavanaughAkaikeInformationCriterion1998a",
+      "claim": "The Monte Carlo E-step of the previous paragraph is improper by construction, and so is the entire deterministic-EM line of work in which the earlier missing-data criteria were derived [@cavanaughAkaikeInformationCriterion1998a; @shimodairaInformationCriterionModel2017].",
+      "lit_exists": true,
+      "co_cited": [
+        "shimodairaInformationCriterionModel2017"
+      ]
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P7",
+      "citekey": "shimodairaInformationCriterionModel2017",
+      "claim": "The Monte Carlo E-step of the previous paragraph is improper by construction, and so is the entire deterministic-EM line of work in which the earlier missing-data criteria were derived [@cavanaughAkaikeInformationCriterion1998a; @shimodairaInformationCriterionModel2017].",
+      "lit_exists": true,
+      "co_cited": [
+        "cavanaughAkaikeInformationCriterion1998a"
+      ]
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P7",
+      "citekey": "nielsenProperImproperMultiple2003",
+      "claim": "Properness is also not absolute. @nielsenProperImproperMultiple2003 shows that Bayesian imputations are proper when the analyst's complete-data estimator is the maximum likelihood estimator, but the same imputations can fail to be proper for a different estimator.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P7",
+      "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+      "claim": "This paper's analyst always uses the complete-data MLE, which is the case where congeniality implies properness [@mengMultipleImputationInferencesUncongenial1994a; @nielsenProperImproperMultiple2003].",
+      "lit_exists": true,
+      "co_cited": [
+        "nielsenProperImproperMultiple2003"
+      ]
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P7",
+      "citekey": "nielsenProperImproperMultiple2003",
+      "claim": "This paper's analyst always uses the complete-data MLE, which is the case where congeniality implies properness [@mengMultipleImputationInferencesUncongenial1994a; @nielsenProperImproperMultiple2003].",
+      "lit_exists": true,
+      "co_cited": [
+        "mengMultipleImputationInferencesUncongenial1994a"
+      ]
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P8",
+      "citekey": "rubinMultipleImputationNonresponse1987",
+      "claim": "Result 3.2 of @rubinMultipleImputationNonresponse1987 shows two things.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P8",
+      "citekey": "Tierney01031986",
+      "claim": "One approximation separates the exact identities from usable inference, namely the usual treatment of the posterior distribution as approximately normal, a Laplace-type approximation [@Tierney01031986].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P9",
+      "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+      "claim": "**Congeniality.** The second standing assumption is congeniality, which requires the imputer and the analyst to agree. @mengMultipleImputationInferencesUncongenial1994a formalizes that agreement.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P10",
+      "citekey": "akaikeNewLookStatistical1974a",
+      "claim": "**AIC is a bias-corrected plug-in estimate.** The model-selection application corrects AIC, so AIC's own logic is needed first. @akaikeNewLookStatistical1974a evaluates a fitted model by its mean log-likelihood against the true distribution.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P11",
+      "citekey": "wilksLargeSampleDistributionLikelihood1938a",
+      "claim": "For this case @wilksLargeSampleDistributionLikelihood1938a shows that $-2\\log\\lambda$ is distributed as $\\chi^2_{h-m}$ in large samples, so this distribution is the reference against which every multiply imputed deviance in this paper is ultimately compared.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P12",
+      "citekey": "kenwardLikelihoodBasedFrequentist1998",
+      "claim": "**Observed versus expected information under MAR.** One convention must be fixed before any trace in this paper is computed, namely which information matrix to use under MAR. @kenwardLikelihoodBasedFrequentist1998 settle the question.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P13",
+      "citekey": "mengPerformingLikelihoodRatio1992b",
+      "claim": "The first strand is the combining rule. @mengPerformingLikelihoodRatio1992b combine complete-data likelihood-ratio statistics across imputations into a single test statistic, then calibrate it against an $F$ reference under an equal-fractions assumption. @chanMultipleImprovementsMultiple2022 repair the procedure's known defects by switching the order of operations.",
+      "lit_exists": true,
+      "co_cited": [
+        "chanMultipleImprovementsMultiple2022"
+      ]
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P13",
+      "citekey": "chanMultipleImprovementsMultiple2022",
+      "claim": "The first strand is the combining rule. @mengPerformingLikelihoodRatio1992b combine complete-data likelihood-ratio statistics across imputations into a single test statistic, then calibrate it against an $F$ reference under an equal-fractions assumption. @chanMultipleImprovementsMultiple2022 repair the procedure's known defects by switching the order of operations.",
+      "lit_exists": true,
+      "co_cited": [
+        "mengPerformingLikelihoodRatio1992b"
+      ]
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P13",
+      "citekey": "chanGeneralFeasibleTests2022",
+      "claim": "The second strand is the reference distribution. @chanGeneralFeasibleTests2022 drops the equal-fractions assumption entirely.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S2",
+      "section_title": "Background and notation",
+      "para_id": "S2-P13",
+      "citekey": "consentinoclaeskensOrderSelectionTests2010",
+      "claim": "The third strand is the criterion. @consentinoclaeskensOrderSelectionTests2010 propose an AIC for multiply imputed data by attaching the Meng-Rubin combined statistic to the standard penalty.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P2",
+      "citekey": "schaferAnalysisIncompleteMultivariate1997",
+      "claim": "The other is the observed-data maximizer $\\hat\\theta_{\\text{obs}}$, which sums each row's marginal density over its observed coordinates [@schaferAnalysisIncompleteMultivariate1997] and is the best available from the data at hand.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P3",
+      "citekey": "kenwardLikelihoodBasedFrequentist1998",
+      "claim": "Under MAR the expectation defining $I_{\\text{obs}}$ is taken jointly over data and pattern, without conditioning, as @kenwardLikelihoodBasedFrequentist1998 require, and the resulting information carries their mean-covariance cross term.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P3",
+      "citekey": "schaferAnalysisIncompleteMultivariate1997",
+      "claim": "Here the fraction-of-missing-information matrix $D = I_{\\text{com}}^{-1} I_{\\text{mis}\\mid\\text{obs}}$ [@schaferAnalysisIncompleteMultivariate1997] has the same trace ingredients but the other normalization, and the two relate by $D = (I_k + \\mathrm{RIV})^{-1}\\mathrm{RIV}$.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P5",
+      "citekey": "vaartAsymptoticStatistics1998a",
+      "claim": "R1 and R2 are smoothness and positive-definite information [@vaartAsymptoticStatistics1998a], R3 is ignorability [@rubinInferenceMissingData1976b], and R4 through R6 are congeniality, properness, and self-efficiency [@mengMultipleImputationInferencesUncongenial1994a; @rubinMultipleImputationNonresponse1987].",
+      "lit_exists": true,
+      "co_cited": [
+        "mengMultipleImputationInferencesUncongenial1994a",
+        "rubinInferenceMissingData1976b",
+        "rubinMultipleImputationNonresponse1987"
+      ]
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P5",
+      "citekey": "rubinInferenceMissingData1976b",
+      "claim": "R1 and R2 are smoothness and positive-definite information [@vaartAsymptoticStatistics1998a], R3 is ignorability [@rubinInferenceMissingData1976b], and R4 through R6 are congeniality, properness, and self-efficiency [@mengMultipleImputationInferencesUncongenial1994a; @rubinMultipleImputationNonresponse1987].",
+      "lit_exists": true,
+      "co_cited": [
+        "mengMultipleImputationInferencesUncongenial1994a",
+        "rubinMultipleImputationNonresponse1987",
+        "vaartAsymptoticStatistics1998a"
+      ]
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P5",
+      "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+      "claim": "R1 and R2 are smoothness and positive-definite information [@vaartAsymptoticStatistics1998a], R3 is ignorability [@rubinInferenceMissingData1976b], and R4 through R6 are congeniality, properness, and self-efficiency [@mengMultipleImputationInferencesUncongenial1994a; @rubinMultipleImputationNonresponse1987].",
+      "lit_exists": true,
+      "co_cited": [
+        "rubinInferenceMissingData1976b",
+        "rubinMultipleImputationNonresponse1987",
+        "vaartAsymptoticStatistics1998a"
+      ]
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P5",
+      "citekey": "rubinMultipleImputationNonresponse1987",
+      "claim": "R1 and R2 are smoothness and positive-definite information [@vaartAsymptoticStatistics1998a], R3 is ignorability [@rubinInferenceMissingData1976b], and R4 through R6 are congeniality, properness, and self-efficiency [@mengMultipleImputationInferencesUncongenial1994a; @rubinMultipleImputationNonresponse1987].",
+      "lit_exists": true,
+      "co_cited": [
+        "mengMultipleImputationInferencesUncongenial1994a",
+        "rubinInferenceMissingData1976b",
+        "vaartAsymptoticStatistics1998a"
+      ]
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P9",
+      "citekey": "chanMultipleImprovementsMultiple2022",
+      "claim": "Both models are fit to the same imputations, and the numerator is $$ \\hat d_L \\;=\\; 2\\big[\\bar Q_\\infty(\\hat\\psi^{*}) - \\bar Q_\\infty(\\hat\\psi_0^{*})\\big], $$ {#eq-dl} the infinite-$m$ limit of the maximize-then-average statistic of @chanMultipleImprovementsMultiple2022 restated in @sec-background.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P13",
+      "citekey": "vuongLikelihoodRatioTests1989",
+      "claim": "That last case is the regime of @vuongLikelihoodRatioTests1989. :::",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P14",
+      "citekey": "chanGeneralFeasibleTests2022",
+      "claim": "The limiting law of $\\hat d_L$ is the weighted sum $\\sum_{j} \\lambda_j \\chi^2_1$ with $\\lambda_j = 1 + r_{\\perp,j}$ [@chanGeneralFeasibleTests2022].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P16",
+      "citekey": "shimodairaInformationCriterionModel2017",
+      "claim": "$$ {#eq-ic-corrected} This penalty reproduces $\\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017, and its missing-data surcharge is exactly half that of the earlier complete-data-discrepancy criteria [@cavanaughAkaikeInformationCriterion1998a].",
+      "lit_exists": true,
+      "co_cited": [
+        "cavanaughAkaikeInformationCriterion1998a"
+      ]
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P16",
+      "citekey": "cavanaughAkaikeInformationCriterion1998a",
+      "claim": "$$ {#eq-ic-corrected} This penalty reproduces $\\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017, and its missing-data surcharge is exactly half that of the earlier complete-data-discrepancy criteria [@cavanaughAkaikeInformationCriterion1998a].",
+      "lit_exists": true,
+      "co_cited": [
+        "shimodairaInformationCriterionModel2017"
+      ]
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P20",
+      "citekey": "satorraEnsuringPositivenessScaled2010",
+      "claim": "The Satorra-Bentler scaled difference statistic matches the mean [@satorraEnsuringPositivenessScaled2010], while the mean-and-variance-adjusted statistics match both from the same moment inputs $\\operatorname{tr}(M)$ and $\\operatorname{tr}(M^2)$ [@asparouhovRobustChiSquare2006].",
+      "lit_exists": true,
+      "co_cited": [
+        "asparouhovRobustChiSquare2006"
+      ]
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P20",
+      "citekey": "asparouhovRobustChiSquare2006",
+      "claim": "The Satorra-Bentler scaled difference statistic matches the mean [@satorraEnsuringPositivenessScaled2010], while the mean-and-variance-adjusted statistics match both from the same moment inputs $\\operatorname{tr}(M)$ and $\\operatorname{tr}(M^2)$ [@asparouhovRobustChiSquare2006].",
+      "lit_exists": true,
+      "co_cited": [
+        "satorraEnsuringPositivenessScaled2010"
+      ]
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P20",
+      "citekey": "kolenTestEquatingScaling2014",
+      "claim": "$$ \\begin{aligned} \\hat d^{(3)}_k &\\;=\\; F^{-1}_{\\chi^2_{q_{d,k}}}\\big(F_{W_k}(\\hat d_k)\\big), \\\\ W_k &= \\textstyle\\sum_j \\lambda_{k,j} \\chi^2_1, \\end{aligned} $$ The equating function from observed-score test equating is $e_Y(x) = G^{-1}[F(x)]$ [@kolenTestEquatingScaling2014].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P20",
+      "citekey": "imhofComputingDistributionQuadratic1961",
+      "claim": "The weighted-$\\chi^2$ distribution function is evaluated by numerical inversion of the characteristic function [@imhofComputingDistributionQuadratic1961; @daviesAlgorithm155Distribution1980].",
+      "lit_exists": true,
+      "co_cited": [
+        "daviesAlgorithm155Distribution1980"
+      ]
+    },
+    {
+      "section": "S4",
+      "section_title": "Derivations",
+      "para_id": "S4-P20",
+      "citekey": "daviesAlgorithm155Distribution1980",
+      "claim": "The weighted-$\\chi^2$ distribution function is evaluated by numerical inversion of the characteristic function [@imhofComputingDistributionQuadratic1961; @daviesAlgorithm155Distribution1980].",
+      "lit_exists": true,
+      "co_cited": [
+        "imhofComputingDistributionQuadratic1961"
+      ]
+    },
+    {
+      "section": "S5",
+      "section_title": "Simulation studies",
+      "para_id": "S5-P2",
+      "citekey": "honakerAmeliaIIProgram2011",
+      "claim": "The proper arm draws imputations by expectation-maximization with bootstrapping, as implemented in Amelia [@honakerAmeliaIIProgram2011].",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S5",
+      "section_title": "Simulation studies",
+      "para_id": "S5-P6",
+      "citekey": "satorraEnsuringPositivenessScaled2010",
+      "claim": "By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic [@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006] referred to $\\chi^2_1$.",
+      "lit_exists": true,
+      "co_cited": [
+        "asparouhovRobustChiSquare2006"
+      ]
+    },
+    {
+      "section": "S5",
+      "section_title": "Simulation studies",
+      "para_id": "S5-P6",
+      "citekey": "asparouhovRobustChiSquare2006",
+      "claim": "By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic [@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006] referred to $\\chi^2_1$.",
+      "lit_exists": true,
+      "co_cited": [
+        "satorraEnsuringPositivenessScaled2010"
+      ]
+    },
+    {
+      "section": "S6",
+      "section_title": "Discussion",
+      "para_id": "S6-P1",
+      "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+      "claim": "What the bias becomes without it [@mengMultipleImputationInferencesUncongenial1994a] is a separate question.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S6",
+      "section_title": "Discussion",
+      "para_id": "S6-P6",
+      "citekey": "shimodairaInformationCriterionModel2017",
+      "claim": "The concluding section of @shimodairaInformationCriterionModel2017 names the combination of a missing mechanism with other sampling mechanisms as future work.",
+      "lit_exists": true,
+      "co_cited": []
+    },
+    {
+      "section": "S6",
+      "section_title": "Discussion",
+      "para_id": "S6-P6",
+      "citekey": "shimodairahidetoshiImprovingPredictiveInference2000",
+      "claim": "The weighting machinery exists [@shimodairahidetoshiImprovingPredictiveInference2000].",
+      "lit_exists": true,
+      "co_cited": []
+    }
+  ],
+  "by_key": {
+    "rubinMultipleImputationNonresponse1987": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P1",
+        "citekey": "rubinMultipleImputationNonresponse1987",
+        "claim": "An analyst then fits the model of substantive interest to each completed data set, and simple rules combine the results [@rubinMultipleImputationNonresponse1987].",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P7",
+        "citekey": "rubinMultipleImputationNonresponse1987",
+        "claim": "Chapter 4 of @rubinMultipleImputationNonresponse1987 states the validity conditions and gives the fully normal Bayesian scheme as the canonical example.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P8",
+        "citekey": "rubinMultipleImputationNonresponse1987",
+        "claim": "Result 3.2 of @rubinMultipleImputationNonresponse1987 shows two things.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P5",
+        "citekey": "rubinMultipleImputationNonresponse1987",
+        "claim": "R1 and R2 are smoothness and positive-definite information [@vaartAsymptoticStatistics1998a], R3 is ignorability [@rubinInferenceMissingData1976b], and R4 through R6 are congeniality, properness, and self-efficiency [@mengMultipleImputationInferencesUncongenial1994a; @rubinMultipleImputationNonresponse1987].",
+        "lit_exists": true,
+        "co_cited": [
+          "mengMultipleImputationInferencesUncongenial1994a",
+          "rubinInferenceMissingData1976b",
+          "vaartAsymptoticStatistics1998a"
+        ]
+      }
+    ],
+    "schaferMissingDataOur2002a": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P1",
+        "citekey": "schaferMissingDataOur2002a",
+        "claim": "The field's own accounts of its state of the art describe a mature methodology [@schaferMissingDataOur2002a; @endersMissingDataUpdate2025].",
+        "lit_exists": true,
+        "co_cited": [
+          "endersMissingDataUpdate2025"
+        ]
+      }
+    ],
+    "endersMissingDataUpdate2025": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P1",
+        "citekey": "endersMissingDataUpdate2025",
+        "claim": "The field's own accounts of its state of the art describe a mature methodology [@schaferMissingDataOur2002a; @endersMissingDataUpdate2025].",
+        "lit_exists": true,
+        "co_cited": [
+          "schaferMissingDataOur2002a"
+        ]
+      },
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P2",
+        "citekey": "endersMissingDataUpdate2025",
+        "claim": "Neither does the current state-of-the-art review [@endersMissingDataUpdate2025].",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "mengPerformingLikelihoodRatio1992b": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P2",
+        "citekey": "mengPerformingLikelihoodRatio1992b",
+        "claim": "For likelihood-ratio tests, a combining rule has existed since @mengPerformingLikelihoodRatio1992b.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P6",
+        "citekey": "mengPerformingLikelihoodRatio1992b",
+        "claim": "The calibration line runs from @mengPerformingLikelihoodRatio1992b through @chanMultipleImprovementsMultiple2022 to @chanGeneralFeasibleTests2022, and it calibrates the reference distribution of an MI test statistic while taking the statistic's numerator as given.",
+        "lit_exists": true,
+        "co_cited": [
+          "chanGeneralFeasibleTests2022",
+          "chanMultipleImprovementsMultiple2022"
+        ]
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P13",
+        "citekey": "mengPerformingLikelihoodRatio1992b",
+        "claim": "The first strand is the combining rule. @mengPerformingLikelihoodRatio1992b combine complete-data likelihood-ratio statistics across imputations into a single test statistic, then calibrate it against an $F$ reference under an equal-fractions assumption. @chanMultipleImprovementsMultiple2022 repair the procedure's known defects by switching the order of operations.",
+        "lit_exists": true,
+        "co_cited": [
+          "chanMultipleImprovementsMultiple2022"
+        ]
+      }
+    ],
+    "chanMultipleImprovementsMultiple2022": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P2",
+        "citekey": "chanMultipleImprovementsMultiple2022",
+        "claim": "Its modern repairs give tests with accurate size [@chanMultipleImprovementsMultiple2022; @chanGeneralFeasibleTests2022].",
+        "lit_exists": true,
+        "co_cited": [
+          "chanGeneralFeasibleTests2022"
+        ]
+      },
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P6",
+        "citekey": "chanMultipleImprovementsMultiple2022",
+        "claim": "The calibration line runs from @mengPerformingLikelihoodRatio1992b through @chanMultipleImprovementsMultiple2022 to @chanGeneralFeasibleTests2022, and it calibrates the reference distribution of an MI test statistic while taking the statistic's numerator as given.",
+        "lit_exists": true,
+        "co_cited": [
+          "chanGeneralFeasibleTests2022",
+          "mengPerformingLikelihoodRatio1992b"
+        ]
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P13",
+        "citekey": "chanMultipleImprovementsMultiple2022",
+        "claim": "The first strand is the combining rule. @mengPerformingLikelihoodRatio1992b combine complete-data likelihood-ratio statistics across imputations into a single test statistic, then calibrate it against an $F$ reference under an equal-fractions assumption. @chanMultipleImprovementsMultiple2022 repair the procedure's known defects by switching the order of operations.",
+        "lit_exists": true,
+        "co_cited": [
+          "mengPerformingLikelihoodRatio1992b"
+        ]
+      },
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P9",
+        "citekey": "chanMultipleImprovementsMultiple2022",
+        "claim": "Both models are fit to the same imputations, and the numerator is $$ \\hat d_L \\;=\\; 2\\big[\\bar Q_\\infty(\\hat\\psi^{*}) - \\bar Q_\\infty(\\hat\\psi_0^{*})\\big], $$ {#eq-dl} the infinite-$m$ limit of the maximize-then-average statistic of @chanMultipleImprovementsMultiple2022 restated in @sec-background.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "chanGeneralFeasibleTests2022": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P2",
+        "citekey": "chanGeneralFeasibleTests2022",
+        "claim": "Its modern repairs give tests with accurate size [@chanMultipleImprovementsMultiple2022; @chanGeneralFeasibleTests2022].",
+        "lit_exists": true,
+        "co_cited": [
+          "chanMultipleImprovementsMultiple2022"
+        ]
+      },
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P5",
+        "citekey": "chanGeneralFeasibleTests2022",
+        "claim": "Calibrated tests reject at the complete-data rate [@chanGeneralFeasibleTests2022].",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P6",
+        "citekey": "chanGeneralFeasibleTests2022",
+        "claim": "The calibration line runs from @mengPerformingLikelihoodRatio1992b through @chanMultipleImprovementsMultiple2022 to @chanGeneralFeasibleTests2022, and it calibrates the reference distribution of an MI test statistic while taking the statistic's numerator as given.",
+        "lit_exists": true,
+        "co_cited": [
+          "chanMultipleImprovementsMultiple2022",
+          "mengPerformingLikelihoodRatio1992b"
+        ]
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P13",
+        "citekey": "chanGeneralFeasibleTests2022",
+        "claim": "The second strand is the reference distribution. @chanGeneralFeasibleTests2022 drops the equal-fractions assumption entirely.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P14",
+        "citekey": "chanGeneralFeasibleTests2022",
+        "claim": "The limiting law of $\\hat d_L$ is the weighted sum $\\sum_{j} \\lambda_j \\chi^2_1$ with $\\lambda_j = 1 + r_{\\perp,j}$ [@chanGeneralFeasibleTests2022].",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "consentinoclaeskensOrderSelectionTests2010": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P2",
+        "citekey": "consentinoclaeskensOrderSelectionTests2010",
+        "claim": "Its authors call for further theoretical and practical study of the method and place that work beyond their own scope [@consentinoclaeskensOrderSelectionTests2010].",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P3",
+        "citekey": "consentinoclaeskensOrderSelectionTests2010",
+        "claim": "Simulation comparisons of that kind appear in @woodHowShouldVariable2008a and @consentinoclaeskensOrderSelectionTests2010.",
+        "lit_exists": true,
+        "co_cited": [
+          "woodHowShouldVariable2008a"
+        ]
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P13",
+        "citekey": "consentinoclaeskensOrderSelectionTests2010",
+        "claim": "The third strand is the criterion. @consentinoclaeskensOrderSelectionTests2010 propose an AIC for multiply imputed data by attaching the Meng-Rubin combined statistic to the standard penalty.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "schomakerModelSelectionModel2014a": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P2",
+        "citekey": "schomakerModelSelectionModel2014a",
+        "claim": "The first comprehensive study of model selection after multiple imputation describes the available literature as unexpectedly thin [@schomakerModelSelectionModel2014a].",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "woodHowShouldVariable2008a": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P2",
+        "citekey": "woodHowShouldVariable2008a",
+        "claim": "A dedicated study of variable selection with multiply imputed data reports that no guidelines yet exist [@woodHowShouldVariable2008a].",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P3",
+        "citekey": "woodHowShouldVariable2008a",
+        "claim": "Simulation comparisons of that kind appear in @woodHowShouldVariable2008a and @consentinoclaeskensOrderSelectionTests2010.",
+        "lit_exists": true,
+        "co_cited": [
+          "consentinoclaeskensOrderSelectionTests2010"
+        ]
+      }
+    ],
+    "vanbuurenFlexibleImputationMissing2018a": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P2",
+        "citekey": "vanbuurenFlexibleImputationMissing2018a",
+        "claim": "The standard book-length treatment does not treat information criteria for multiply imputed data at all [@vanbuurenFlexibleImputationMissing2018a].",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "shimodairaInformationCriterionModel2017": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P6",
+        "citekey": "shimodairaInformationCriterionModel2017",
+        "claim": "As a penalty, the correction is precedented, because it reproduces $\\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P7",
+        "citekey": "shimodairaInformationCriterionModel2017",
+        "claim": "The Monte Carlo E-step of the previous paragraph is improper by construction, and so is the entire deterministic-EM line of work in which the earlier missing-data criteria were derived [@cavanaughAkaikeInformationCriterion1998a; @shimodairaInformationCriterionModel2017].",
+        "lit_exists": true,
+        "co_cited": [
+          "cavanaughAkaikeInformationCriterion1998a"
+        ]
+      },
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P16",
+        "citekey": "shimodairaInformationCriterionModel2017",
+        "claim": "$$ {#eq-ic-corrected} This penalty reproduces $\\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017, and its missing-data surcharge is exactly half that of the earlier complete-data-discrepancy criteria [@cavanaughAkaikeInformationCriterion1998a].",
+        "lit_exists": true,
+        "co_cited": [
+          "cavanaughAkaikeInformationCriterion1998a"
+        ]
+      },
+      {
+        "section": "S6",
+        "section_title": "Discussion",
+        "para_id": "S6-P6",
+        "citekey": "shimodairaInformationCriterionModel2017",
+        "claim": "The concluding section of @shimodairaInformationCriterionModel2017 names the combination of a missing mechanism with other sampling mechanisms as future work.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "cavanaughAkaikeInformationCriterion1998a": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P6",
+        "citekey": "cavanaughAkaikeInformationCriterion1998a",
+        "claim": "That criterion halved the missing-data surcharge of the earlier complete-data-discrepancy criteria [@cavanaughAkaikeInformationCriterion1998a].",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P7",
+        "citekey": "cavanaughAkaikeInformationCriterion1998a",
+        "claim": "The Monte Carlo E-step of the previous paragraph is improper by construction, and so is the entire deterministic-EM line of work in which the earlier missing-data criteria were derived [@cavanaughAkaikeInformationCriterion1998a; @shimodairaInformationCriterionModel2017].",
+        "lit_exists": true,
+        "co_cited": [
+          "shimodairaInformationCriterionModel2017"
+        ]
+      },
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P16",
+        "citekey": "cavanaughAkaikeInformationCriterion1998a",
+        "claim": "$$ {#eq-ic-corrected} This penalty reproduces $\\mathrm{AIC}_{x;y}$ of @shimodairaInformationCriterionModel2017, and its missing-data surcharge is exactly half that of the earlier complete-data-discrepancy criteria [@cavanaughAkaikeInformationCriterion1998a].",
+        "lit_exists": true,
+        "co_cited": [
+          "shimodairaInformationCriterionModel2017"
+        ]
+      }
+    ],
+    "claeskensconsentinoVariableSelectionIncomplete2008": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P6",
+        "citekey": "claeskensconsentinoVariableSelectionIncomplete2008",
+        "claim": "The missing-covariate criteria of @claeskensconsentinoVariableSelectionIncomplete2008 target a different, Takeuchi-type discrepancy.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "hensModelSelectionIncomplete2006a": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P6",
+        "citekey": "hensModelSelectionIncomplete2006a",
+        "claim": "The reweighting route of @hensModelSelectionIncomplete2006a reaches the complete-data target through inverse-probability weights, but it explicitly leaves an imputation-based criterion open.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "shimodairahidetoshiImprovingPredictiveInference2000": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P6",
+        "citekey": "shimodairahidetoshiImprovingPredictiveInference2000",
+        "claim": "His concluding section names the combination of missingness with other sampling mechanisms, such as covariate shift [@shimodairahidetoshiImprovingPredictiveInference2000], as future work.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S6",
+        "section_title": "Discussion",
+        "para_id": "S6-P6",
+        "citekey": "shimodairahidetoshiImprovingPredictiveInference2000",
+        "claim": "The weighting machinery exists [@shimodairahidetoshiImprovingPredictiveInference2000].",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "mengMultipleImputationInferencesUncongenial1994a": [
+      {
+        "section": "S1",
+        "section_title": "Introduction",
+        "para_id": "S1-P6",
+        "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+        "claim": "Congeniality is assumed throughout [@mengMultipleImputationInferencesUncongenial1994a].",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P7",
+        "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+        "claim": "This paper's analyst always uses the complete-data MLE, which is the case where congeniality implies properness [@mengMultipleImputationInferencesUncongenial1994a; @nielsenProperImproperMultiple2003].",
+        "lit_exists": true,
+        "co_cited": [
+          "nielsenProperImproperMultiple2003"
+        ]
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P9",
+        "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+        "claim": "**Congeniality.** The second standing assumption is congeniality, which requires the imputer and the analyst to agree. @mengMultipleImputationInferencesUncongenial1994a formalizes that agreement.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P5",
+        "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+        "claim": "R1 and R2 are smoothness and positive-definite information [@vaartAsymptoticStatistics1998a], R3 is ignorability [@rubinInferenceMissingData1976b], and R4 through R6 are congeniality, properness, and self-efficiency [@mengMultipleImputationInferencesUncongenial1994a; @rubinMultipleImputationNonresponse1987].",
+        "lit_exists": true,
+        "co_cited": [
+          "rubinInferenceMissingData1976b",
+          "rubinMultipleImputationNonresponse1987",
+          "vaartAsymptoticStatistics1998a"
+        ]
+      },
+      {
+        "section": "S6",
+        "section_title": "Discussion",
+        "para_id": "S6-P1",
+        "citekey": "mengMultipleImputationInferencesUncongenial1994a",
+        "claim": "What the bias becomes without it [@mengMultipleImputationInferencesUncongenial1994a] is a separate question.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "rubinInferenceMissingData1976b": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P3",
+        "citekey": "rubinInferenceMissingData1976b",
+        "claim": "**Ignorability.** This paper assumes throughout that the missingness mechanism is ignorable, in the sense and under the conditions set out by Rubin [@rubinInferenceMissingData1976b].",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P5",
+        "citekey": "rubinInferenceMissingData1976b",
+        "claim": "R1 and R2 are smoothness and positive-definite information [@vaartAsymptoticStatistics1998a], R3 is ignorability [@rubinInferenceMissingData1976b], and R4 through R6 are congeniality, properness, and self-efficiency [@mengMultipleImputationInferencesUncongenial1994a; @rubinMultipleImputationNonresponse1987].",
+        "lit_exists": true,
+        "co_cited": [
+          "mengMultipleImputationInferencesUncongenial1994a",
+          "rubinMultipleImputationNonresponse1987",
+          "vaartAsymptoticStatistics1998a"
+        ]
+      }
+    ],
+    "woodburyMissingInformationPrinciple1972": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P4",
+        "citekey": "woodburyMissingInformationPrinciple1972",
+        "claim": "**The missing-information principle and the RIV.** The paper's central matrix is the relative-increase-in-variance matrix, and it comes from the missing-information principle. @woodburyMissingInformationPrinciple1972 decompose the information in the complete data into the observed-data information plus what they call the lost information.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "Meng01121991": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P4",
+        "citekey": "Meng01121991",
+        "claim": "They state this decomposition together with a score identity, in which the observed-data score is the conditional expectation of the complete-data score. @Meng01121991 state the same principle in the form used throughout this paper: $$ I_{\\text{obs}} \\;=\\; I_{\\text{com}} - I_{\\text{mis}\\mid\\text{obs}}, $$ {#eq-bg-mip} In words, observed information equals complete information $-$ missing information.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P4",
+        "citekey": "Meng01121991",
+        "claim": "One warning is needed here, because the EM literature works with a different normalization of the same ingredients, namely the EM rate matrix $DM = I_{\\text{mis}\\mid\\text{obs}}\\, I_{\\text{com}}^{-1}$ of @dempsterMaximumLikelihoodIncomplete1977a and @Meng01121991.",
+        "lit_exists": true,
+        "co_cited": [
+          "dempsterMaximumLikelihoodIncomplete1977a"
+        ]
+      }
+    ],
+    "dempsterMaximumLikelihoodIncomplete1977a": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P4",
+        "citekey": "dempsterMaximumLikelihoodIncomplete1977a",
+        "claim": "One warning is needed here, because the EM literature works with a different normalization of the same ingredients, namely the EM rate matrix $DM = I_{\\text{mis}\\mid\\text{obs}}\\, I_{\\text{com}}^{-1}$ of @dempsterMaximumLikelihoodIncomplete1977a and @Meng01121991.",
+        "lit_exists": true,
+        "co_cited": [
+          "Meng01121991"
+        ]
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P5",
+        "citekey": "dempsterMaximumLikelihoodIncomplete1977a",
+        "claim": "So its definition and one geometric fact about it are needed. @dempsterMaximumLikelihoodIncomplete1977a define $$ Q(\\phi' \\mid \\phi) \\;=\\; E\\big(\\log f(\\mathbf{x} \\mid \\phi') \\,\\big|\\, \\mathbf{y}, \\phi\\big), $$ {#eq-bg-q} the expected complete-data log-likelihood given the observed data.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "weiMonteCarloImplementation1990": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P6",
+        "citekey": "weiMonteCarloImplementation1990",
+        "claim": "**Imputation is Monte Carlo integration of the E-step.** The averaged log-likelihood over imputations is itself a Q-function, computed by Monte Carlo. @weiMonteCarloImplementation1990 implement the E-step by simulation, drawing $z^{(1)},\\dots,z^{(m)}$ from the conditional predictive distribution of the missing data.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "nielsenProperImproperMultiple2003": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P7",
+        "citekey": "nielsenProperImproperMultiple2003",
+        "claim": "Properness is also not absolute. @nielsenProperImproperMultiple2003 shows that Bayesian imputations are proper when the analyst's complete-data estimator is the maximum likelihood estimator, but the same imputations can fail to be proper for a different estimator.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P7",
+        "citekey": "nielsenProperImproperMultiple2003",
+        "claim": "This paper's analyst always uses the complete-data MLE, which is the case where congeniality implies properness [@mengMultipleImputationInferencesUncongenial1994a; @nielsenProperImproperMultiple2003].",
+        "lit_exists": true,
+        "co_cited": [
+          "mengMultipleImputationInferencesUncongenial1994a"
+        ]
+      }
+    ],
+    "Tierney01031986": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P8",
+        "citekey": "Tierney01031986",
+        "claim": "One approximation separates the exact identities from usable inference, namely the usual treatment of the posterior distribution as approximately normal, a Laplace-type approximation [@Tierney01031986].",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "akaikeNewLookStatistical1974a": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P10",
+        "citekey": "akaikeNewLookStatistical1974a",
+        "claim": "**AIC is a bias-corrected plug-in estimate.** The model-selection application corrects AIC, so AIC's own logic is needed first. @akaikeNewLookStatistical1974a evaluates a fitted model by its mean log-likelihood against the true distribution.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "wilksLargeSampleDistributionLikelihood1938a": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P11",
+        "citekey": "wilksLargeSampleDistributionLikelihood1938a",
+        "claim": "For this case @wilksLargeSampleDistributionLikelihood1938a shows that $-2\\log\\lambda$ is distributed as $\\chi^2_{h-m}$ in large samples, so this distribution is the reference against which every multiply imputed deviance in this paper is ultimately compared.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "kenwardLikelihoodBasedFrequentist1998": [
+      {
+        "section": "S2",
+        "section_title": "Background and notation",
+        "para_id": "S2-P12",
+        "citekey": "kenwardLikelihoodBasedFrequentist1998",
+        "claim": "**Observed versus expected information under MAR.** One convention must be fixed before any trace in this paper is computed, namely which information matrix to use under MAR. @kenwardLikelihoodBasedFrequentist1998 settle the question.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P3",
+        "citekey": "kenwardLikelihoodBasedFrequentist1998",
+        "claim": "Under MAR the expectation defining $I_{\\text{obs}}$ is taken jointly over data and pattern, without conditioning, as @kenwardLikelihoodBasedFrequentist1998 require, and the resulting information carries their mean-covariance cross term.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "schaferAnalysisIncompleteMultivariate1997": [
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P2",
+        "citekey": "schaferAnalysisIncompleteMultivariate1997",
+        "claim": "The other is the observed-data maximizer $\\hat\\theta_{\\text{obs}}$, which sums each row's marginal density over its observed coordinates [@schaferAnalysisIncompleteMultivariate1997] and is the best available from the data at hand.",
+        "lit_exists": true,
+        "co_cited": []
+      },
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P3",
+        "citekey": "schaferAnalysisIncompleteMultivariate1997",
+        "claim": "Here the fraction-of-missing-information matrix $D = I_{\\text{com}}^{-1} I_{\\text{mis}\\mid\\text{obs}}$ [@schaferAnalysisIncompleteMultivariate1997] has the same trace ingredients but the other normalization, and the two relate by $D = (I_k + \\mathrm{RIV})^{-1}\\mathrm{RIV}$.",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "vaartAsymptoticStatistics1998a": [
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P5",
+        "citekey": "vaartAsymptoticStatistics1998a",
+        "claim": "R1 and R2 are smoothness and positive-definite information [@vaartAsymptoticStatistics1998a], R3 is ignorability [@rubinInferenceMissingData1976b], and R4 through R6 are congeniality, properness, and self-efficiency [@mengMultipleImputationInferencesUncongenial1994a; @rubinMultipleImputationNonresponse1987].",
+        "lit_exists": true,
+        "co_cited": [
+          "mengMultipleImputationInferencesUncongenial1994a",
+          "rubinInferenceMissingData1976b",
+          "rubinMultipleImputationNonresponse1987"
+        ]
+      }
+    ],
+    "vuongLikelihoodRatioTests1989": [
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P13",
+        "citekey": "vuongLikelihoodRatioTests1989",
+        "claim": "That last case is the regime of @vuongLikelihoodRatioTests1989. :::",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "satorraEnsuringPositivenessScaled2010": [
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P20",
+        "citekey": "satorraEnsuringPositivenessScaled2010",
+        "claim": "The Satorra-Bentler scaled difference statistic matches the mean [@satorraEnsuringPositivenessScaled2010], while the mean-and-variance-adjusted statistics match both from the same moment inputs $\\operatorname{tr}(M)$ and $\\operatorname{tr}(M^2)$ [@asparouhovRobustChiSquare2006].",
+        "lit_exists": true,
+        "co_cited": [
+          "asparouhovRobustChiSquare2006"
+        ]
+      },
+      {
+        "section": "S5",
+        "section_title": "Simulation studies",
+        "para_id": "S5-P6",
+        "citekey": "satorraEnsuringPositivenessScaled2010",
+        "claim": "By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic [@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006] referred to $\\chi^2_1$.",
+        "lit_exists": true,
+        "co_cited": [
+          "asparouhovRobustChiSquare2006"
+        ]
+      }
+    ],
+    "asparouhovRobustChiSquare2006": [
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P20",
+        "citekey": "asparouhovRobustChiSquare2006",
+        "claim": "The Satorra-Bentler scaled difference statistic matches the mean [@satorraEnsuringPositivenessScaled2010], while the mean-and-variance-adjusted statistics match both from the same moment inputs $\\operatorname{tr}(M)$ and $\\operatorname{tr}(M^2)$ [@asparouhovRobustChiSquare2006].",
+        "lit_exists": true,
+        "co_cited": [
+          "satorraEnsuringPositivenessScaled2010"
+        ]
+      },
+      {
+        "section": "S5",
+        "section_title": "Simulation studies",
+        "para_id": "S5-P6",
+        "citekey": "asparouhovRobustChiSquare2006",
+        "claim": "By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic [@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006] referred to $\\chi^2_1$.",
+        "lit_exists": true,
+        "co_cited": [
+          "satorraEnsuringPositivenessScaled2010"
+        ]
+      }
+    ],
+    "kolenTestEquatingScaling2014": [
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P20",
+        "citekey": "kolenTestEquatingScaling2014",
+        "claim": "$$ \\begin{aligned} \\hat d^{(3)}_k &\\;=\\; F^{-1}_{\\chi^2_{q_{d,k}}}\\big(F_{W_k}(\\hat d_k)\\big), \\\\ W_k &= \\textstyle\\sum_j \\lambda_{k,j} \\chi^2_1, \\end{aligned} $$ The equating function from observed-score test equating is $e_Y(x) = G^{-1}[F(x)]$ [@kolenTestEquatingScaling2014].",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ],
+    "imhofComputingDistributionQuadratic1961": [
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P20",
+        "citekey": "imhofComputingDistributionQuadratic1961",
+        "claim": "The weighted-$\\chi^2$ distribution function is evaluated by numerical inversion of the characteristic function [@imhofComputingDistributionQuadratic1961; @daviesAlgorithm155Distribution1980].",
+        "lit_exists": true,
+        "co_cited": [
+          "daviesAlgorithm155Distribution1980"
+        ]
+      }
+    ],
+    "daviesAlgorithm155Distribution1980": [
+      {
+        "section": "S4",
+        "section_title": "Derivations",
+        "para_id": "S4-P20",
+        "citekey": "daviesAlgorithm155Distribution1980",
+        "claim": "The weighted-$\\chi^2$ distribution function is evaluated by numerical inversion of the characteristic function [@imhofComputingDistributionQuadratic1961; @daviesAlgorithm155Distribution1980].",
+        "lit_exists": true,
+        "co_cited": [
+          "imhofComputingDistributionQuadratic1961"
+        ]
+      }
+    ],
+    "honakerAmeliaIIProgram2011": [
+      {
+        "section": "S5",
+        "section_title": "Simulation studies",
+        "para_id": "S5-P2",
+        "citekey": "honakerAmeliaIIProgram2011",
+        "claim": "The proper arm draws imputations by expectation-maximization with bootstrapping, as implemented in Amelia [@honakerAmeliaIIProgram2011].",
+        "lit_exists": true,
+        "co_cited": []
+      }
+    ]
+  }
+}
