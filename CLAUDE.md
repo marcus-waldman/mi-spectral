@@ -111,7 +111,7 @@ scripts/
   check_plan.py                          # authoritative plan lint (pointers, citekeys, gates); must be green
                                          #   before every review-cycle commit; also runs from pre-commit
   build_manuscript_apa.py                # level3-paragraphs.json -> manuscript/mi-spectral-apa.qmd (canonical
-                                         #   apaquarto render; D-20). The qmd is a derived artifact — edit level3, rebuild
+                                         #   apaquarto render; D-21). The qmd is a derived artifact — edit level3, rebuild
   git-hooks/pre-commit                   # runs check_plan.py when plan files staged (core.hooksPath)
   test_check_citations_hook.py           # hook smoke tests (13 cases)
 ```
@@ -127,7 +127,7 @@ extract → Marcus's `#[COMMENTS]` → per-unit iteration → atomic update scri
 `manuscript/plan/updates/` → status/decisions/commit. Locked decisions in
 `manuscript/plan/decisions.md` are not relitigated without a dated amendment. The canonical
 render `manuscript/mi-spectral-apa.qmd` is always a derived artifact — never edit it directly;
-edit level3 and rebuild with `scripts/build_manuscript_apa.py` (D-20). `compile_enabled` gates
+edit level3 and rebuild with `scripts/build_manuscript_apa.py` (D-21). `compile_enabled` gates
 when level3 prose is locked as the source of record.
 
 **Module organization for `verification/run_all.R`.** Five phases, each in its own module under `_modules/`:
@@ -187,7 +187,7 @@ py scripts/build_manuscript_apa.py            # level3 -> manuscript/mi-spectral
 quarto render manuscript/mi-spectral-apa.qmd  # -> manuscript/mi-spectral-apa.pdf
 quarto render manuscript/derivation.qmd       # executes Appendix B (needs sympy, numpy, the fixture json)
 ```
-The old HTML pipeline (`compile_manuscript.py` -> `mi-spectral.qmd`) is retired (D-20);
+The old HTML pipeline (`compile_manuscript.py` -> `mi-spectral.qmd`) is retired (D-21);
 `build_manuscript_apa.py` is the sole builder. `compile_enabled` still gates when level3
 prose is locked as the source of record.
 

@@ -3,9 +3,9 @@
     "level": 3,
     "date": "2026-06-05",
     "status": "readability_pass_2026-06-26",
-    "purpose": "SOURCE OF TRUTH for manuscript prose once populated. Each paragraph carries its proposition, dependencies, the draft_prose itself, a review object, and an audit object. manuscript/mi-spectral-apa.qmd is built from this file by scripts/build_manuscript_apa.py (apaquarto-pdf; D-20) and never edited directly.",
+    "purpose": "SOURCE OF TRUTH for manuscript prose once populated. Each paragraph carries its proposition, dependencies, the draft_prose itself, a review object, and an audit object. manuscript/mi-spectral-apa.qmd is built from this file by scripts/build_manuscript_apa.py (apaquarto-pdf; D-21) and never edited directly.",
     "compile_enabled": false,
-    "compile_note": "compile_enabled gates when level3 prose is locked as the source of record. The canonical render is manuscript/mi-spectral-apa.qmd, built by scripts/build_manuscript_apa.py (apaquarto-pdf; D-20). The old HTML compile_manuscript.py -> mi-spectral.qmd pipeline is retired.",
+    "compile_note": "compile_enabled gates when level3 prose is locked as the source of record. The canonical render is manuscript/mi-spectral-apa.qmd, built by scripts/build_manuscript_apa.py (apaquarto-pdf; D-21). The old HTML compile_manuscript.py -> mi-spectral.qmd pipeline is retired.",
     "schema_example": {
       "id": "S4-P3",
       "section": "S4",

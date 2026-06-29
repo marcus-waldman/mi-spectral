@@ -11,7 +11,7 @@ cache, citation-disciplined literature corpus).
 
 **Source-of-truth rule.** Once Level 3 is populated, all manuscript prose lives in
 `level3-paragraphs.json` and `manuscript/mi-spectral-apa.qmd` is BUILT from it
-(`scripts/build_manuscript_apa.py`, apaquarto-pdf; D-20). Edits go to the JSON, never
+(`scripts/build_manuscript_apa.py`, apaquarto-pdf; D-21). Edits go to the JSON, never
 to the built qmd.
 
 ## The four levels
