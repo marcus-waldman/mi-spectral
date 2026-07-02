@@ -252,6 +252,21 @@
   keywords = {_needs-notebooklm}
 }
 
+@article{efronBootstrapMethodsAnother1979,
+  title = {Bootstrap {{Methods}}: {{Another Look}} at the {{Jackknife}}},
+  author = {Efron, B.},
+  year = 1979,
+  journal = {The Annals of statistics},
+  volume = {7},
+  number = {1},
+  pages = {1--26},
+  publisher = {Institute of Mathematical Statistics},
+  issn = {0090-5364},
+  doi = {10.1214/aos/1176344552},
+  abstract = {We discuss the following problem: given a random sample X = (X1, X2, {$\cdots$}, Xn) from an unknown probability distribution F, estimate the sampling distribution of some prespecified random variable R(X, F), on the basis of the observed data x. (Standard jackknife theory gives an approximate mean and variance in the case R(X, F) = \texttheta (\^F) - \texttheta (F), \texttheta{} some parameter of interest.) A general method, called the "bootstrap," is introduced, and shown to work satisfactorily on a variety of estimation problems. The jackknife is shown to be a linear approximation method for the bootstrap. The exposition proceeds by a series of examples: variance of the sample median, error rates in a linear discriminant analysis, ratio estimation, estimating regression parameters, etc.},
+  keywords = {_needs-notebooklm,Discriminant analysis,Estimation theory,Random variables}
+}
+
 @article{endersMissingDataUpdate2025,
   title = {Missing Data: {{An}} Update on the State of the Art.},
   shorttitle = {Missing Data},
@@ -764,6 +779,38 @@
   urldate = {2026-06-06},
   isbn = {978-0-429-49225-9},
   langid = {english}
+}
+
+@article{vonhippelMaximumLikelihoodMultiple2021,
+  title = {Maximum {{Likelihood Multiple Imputation}}: {{Faster Imputations}} and {{Consistent Standard Errors Without Posterior Draws}}},
+  author = {{von Hippel}, Paul T. and Bartlett, Jonathan W.},
+  year = 2021,
+  journal = {Statistical science},
+  volume = {36},
+  number = {3},
+  pages = {400--420},
+  publisher = {Institute of Mathematical Statistics},
+  address = {Hayward},
+  issn = {0883-4237},
+  doi = {10.1214/20-STS793},
+  abstract = {Multiple imputation (MI) is a method for repairing and analyzing data with missing values. MI replaces missing values with a sample of random values drawn from an imputation model. The most popular form of MI, which we call posterior draw multiple imputation (PDMI), draws the parameters of the imputation model from a Bayesian posterior distribution. An alternative, which we call maximum likelihood multiple imputation (MLMI), estimates the parameters of the imputation model using maximum likelihood (or equivalent). Compared to PDMI, MLMI is faster and yields slightly more efficient point estimates. A past barrier to using MLMI was the difficulty of estimating the standard errors of MLMI point estimates. We derive, implement and evaluate three consistent standard error formulas: (1) one combines variances within and between the imputed datasets, (2) one uses the score function and (3) one uses the bootstrap with two imputations of each bootstrapped sample. Formula (1) modifies for MLMI a formula that has long been used under PDMI, while formulas (2) and (3) can be used without modification under either PDMI or MLMI. We have implemented MLMI and the standard error estimators in the mlmi and bootImpute packages for R.},
+  keywords = {_needs-notebooklm,Bayesian statistical decision theory,Estimates,Estimation theory,Likelihood Functions,Mathematical models,Parameter estimation}
+}
+
+@article{vonhippelNewConfidenceIntervals2016,
+  title = {New {{Confidence Intervals}} and {{Bias Comparisons Show That Maximum Likelihood Can Beat Multiple Imputation}} in {{Small Samples}}},
+  author = {{von Hippel}, Paul T.},
+  year = 2016,
+  journal = {Structural equation modeling},
+  volume = {23},
+  number = {3},
+  pages = {422--437},
+  publisher = {Routledge},
+  address = {Hove},
+  issn = {1070-5511},
+  doi = {10.1080/10705511.2015.1047931},
+  abstract = {When analyzing incomplete data, is it better to use multiple imputation (MI) or full information maximum likelihood (ML)? In large samples ML is clearly better, but in small samples ML's usefulness has been limited because ML commonly uses normal test statistics and confidence intervals that require large samples. We propose small-sample t-based ML confidence intervals that have good coverage and are shorter than t-based confidence intervals under MI. We also show that ML point estimates are less biased and more efficient than MI point estimates in small samples of bivariate normal data. With our new confidence intervals, ML should be preferred over MI, even in small samples, whenever both options are available.},
+  keywords = {_needs-notebooklm,Bias,Confidence,Confidence intervals,Monte Carlo method,Sampling,Statistics}
 }
 
 @article{vuongLikelihoodRatioTests1989,
