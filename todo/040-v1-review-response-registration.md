@@ -141,8 +141,21 @@ decision and requires Marcus's explicit call plus a `decisions.md` entry BEFORE 
 
 ## 5. Registration amendments (dated; one line per empirical answer)
 
-- *(pending Phase 1)* DA replication engine + cells — amendment to be recorded when the Phase-1
-  engine and cell list are locked, before the production run.
+- **2026-07-01, DA replication engine + cells.** The Phase-0 spike (§8 below) was extended past
+  its original smoke scope directly into the Phase-1 evidence: two independent exact-DA engines
+  (hand-rolled conjugate Gibbs + `norm::da.norm`) run to R=20000 on the W1 cell across
+  N=200..2000, cross-validated to the 3rd decimal, plus a brms/Stan independent check. This
+  *is* the Phase-1 empirical answer — no separate production run was needed once the spike
+  surfaced a real, derivable engine effect rather than noise. See §8 for the full result.
+- **2026-07-02, Phase 1 response-letter draft.** The DA-engine evidence (§8) plus its cross-model
+  derivation (`todo/040-audit-response-fable5.md`, `todo/040b-gpt55-gate-package.md`) plus the
+  now-verified provenance (`todo/003`: von Hippel-Bartlett 2021, Efron 1979, von Hippel 2016)
+  are folded into a response-letter draft for r1#8:
+  `manuscript/reviews/v1/response/r1-8-data-augmentation.md`. Framing: confirmation-with-
+  characterization (Amelia's EMB converges to the headline as N->infinity and is confirmed, not
+  undermined; genuine posterior draws carry the derived correction D; recentred-DA offered as the
+  constructive remedy). Draft only, pending Marcus's review before folding into the Phase-4
+  point-by-point letter.
 - *(pending Phase 2)* MI-BIC block — amendment to record the complete-data-n penalty choice and
   whether the phase2 cache is re-aggregated or a focused rerun is needed (depends on whether the
   cell RDS stored raw per-repetition `ell_com/barL/npar/trRIV` or only selection labels — CHECK
