@@ -4,13 +4,14 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Respond to the v1 AI review (paper 88): empirical reruns for the two cheap gaps (data-augmentation replication + MI-BIC) + prose/response-letter for the rest; non-normal via brms gated on a runtime spike; fold in the pending per-paragraph annotation + compile-enablement toward JAIGP submission."
-last_synced_commit: 91da4df
+last_synced_commit: 694d83e
 tree_state: dirty
-updated: "2026-07-02T02:27:49Z"
+updated: "2026-07-02T02:29:39Z"
 updated_by: wrap
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 cockpit: { provider: null, list_id: null }
 ---
+
 
 
 
