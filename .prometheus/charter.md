@@ -4,9 +4,9 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Respond to the v1 AI review (paper 88): empirical reruns for the two cheap gaps (data-augmentation replication + MI-BIC) + prose/response-letter for the rest; non-normal via brms gated on a runtime spike; fold in the pending per-paragraph annotation + compile-enablement toward JAIGP submission."
-last_synced_commit: cc62ad7
+last_synced_commit: be318c3
 tree_state: dirty
-updated: "2026-07-02T03:43:17Z"
+updated: "2026-07-02T03:56:58Z"
 updated_by: wrap
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 cockpit: { provider: null, list_id: null }
@@ -55,7 +55,7 @@ The arc from start to the Goal. Mark each: `[x]` done - `[~]` current - `[ ]` up
 
 # Next 3 actions
 
-1. **Marcus's framing call on the resolved audit (`todo/040-audit-response-fable5.md`).** Recommended: Q4 option (a) strengthened -- scope the theorem to second-moment-matched engines (Xi = b_Sigma + Var(mu*) ~ 0), disclose the Bayesian-posterior-draw term with its formula, and offer the constructive remedy (recentred-DA restores the headline). Decide: does the GPT-5.5 xhigh gate (the standing cross-model protocol) still run on Fable's new derivations before they land in `derivation.qmd`, and does the brms cell stay response-letter-only (if it enters `manuscript/`, the Burkner/Stan/LKJ citation trio in todo/003 activates)?
+1. **Marcus's framing call on the resolved audit (`todo/040-audit-response-fable5.md`).** Recommended: Q4 option (a) strengthened -- scope the theorem to second-moment-matched engines (Xi = b_Sigma + Var(mu*) ~ 0), disclose the Bayesian-posterior-draw term with its formula, and offer the constructive remedy (recentred-DA restores the headline). Decide: does the GPT-5.5 xhigh gate (the standing cross-model protocol) still run on Fable's new derivations before they land in `derivation.qmd`, and does the brms cell stay response-letter-only (if it enters `manuscript/`, the Burkner/Stan/LKJ citation trio in todo/003 activates)? The gate package is BUILT and runner-validated (`todo/040b-gpt55-gate-package.md`, be318c3: Mode A blind / Mode B red-team / key withheld under a ## GRADING KEY header; extract_modes leak-guard checked): send with `py verification/run_layer3_openai.py gpt-5.5 --effort xhigh --timeout 86400 --package todo/040b-gpt55-gate-package.md --tag -da-engine`, backgrounded.
 
 2. **Provenance build-out for the scope amendment.** (i) Acquire von Hippel-Bartlett 2021 + Efron 1979 (todo/003 rows, proposed 2026-07-01); verified reads of Wang-Robins 1998, Nielsen 2003, Schafer 1997 :3502-3532 (IW mean), Honaker 2011. (ii) CAS (sympy) files for the four lemmas (V'=CDC', V''=-2B.Soo B.', the cancellation, C'V^-1C = [I_mis]_mumu) + the p=1 closed-form engine table. (iii) Promote `audit-engine-formula.R` out of spikes/ into a verification module with pinned seeds + cached rds/CSV + an [mc] listing. (iv) Then the `derivation.qmd` amendment (D9 :383-394, the "FIML and proper MI alike" callout :404-425, the known-scale callout :750-766 gets the C_n -> tr(RIV_mumu) unification) + a dated decisions.md entry. IMB (~-0.006, MCAR-zero measured) either gets its closed form or a measured-and-bounded sentence.
 
