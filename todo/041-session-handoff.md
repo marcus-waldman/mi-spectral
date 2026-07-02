@@ -1,10 +1,14 @@
 # todo/041 — session handoff (2026-07-02 → next session)
 
-**Purpose.** A focused resume point for the next session on the DA-engine thread, complementary
-to `.prometheus/charter.md` (which has the full history). This file exists so a fresh session
-can act immediately without re-reading every prior decision.
+**STATUS: CLOSED (2026-07-02).** Everything below was written before Marcus's ratification;
+kept only as a historical record of the staging/triage process. **The DA-engine thread is now
+fully landed** — derivation.qmd edits + decisions.md D-22 committed (`2ed3f3a`), render-verified,
+provenance verify-reads done for the four already-owned papers. See `.prometheus/charter.md`
+(current milestone + decisions log) for the up-to-date state; do not act on "The one decision
+needed" below as if it were still open. The only remaining item from this thread is Marcus
+acquiring the 2-3 not-yet-owned references (charter Next 3 actions #1).
 
-## Where things stand
+## Where things stood at the time of writing (superseded)
 
 The engine-scope fork opened by the v1 review's data-augmentation gap (r1#8) is now
 **derived (Fable 5) → cross-model audited (GPT-5.5 Pro, blind + red-team, xhigh) → triaged**.
@@ -14,7 +18,7 @@ Bayesian posterior draws carry a characterized, disclosed correction. The exact 
 three `derivation.qmd` edits this implies is staged, gate-cleared, and **waiting on Marcus's
 read and ratification** — nothing has landed in the manuscript yet.
 
-## The one decision needed
+## The one decision needed (RESOLVED — Marcus ratified, see charter)
 
 Read `todo/040-derivation-amendment-draft.md` in full — it is short and self-contained: the
 exact proposed text for D9 (`derivation.qmd:383-394`), a new scope-and-correction callout
