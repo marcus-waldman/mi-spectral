@@ -391,7 +391,9 @@ $$ \bar Q_\infty(\theta) := \lim_{M\to\infty}\frac1M\sum_{l=1}^M \ell_{\text{com
 This is the EM/Meng Q-function $Q(\theta\mid\hat\theta_{\text{obs}})$ in the proper-MI limit: the
 inner expectation conditions on the *fitted* $\tilde\phi\approx\hat\theta_{\text{obs}}$, exactly as
 the EM E-step conditions $Q(\theta\mid\theta^{(t)})$ on the current iterate — **not** on the
-unknown truth $\theta_0$.
+unknown truth $\theta_0$. Whether this mean-level approximation is enough to
+leave $\bar Q_\infty$'s bias unchanged depends on the imputation engine, not only on the mean
+of $\tilde\phi$; the callout below makes this precise.
 
 ::: {.column-margin}
 **Source.** Deterministic-FIML evaluation `barQ_fiml_analytic`$(\cdot,\hat\theta_{\text{obs}})$
@@ -420,9 +422,60 @@ so Term A would vanish and the deviance bias would collapse to $-\tfrac12\operat
 Term A is instead $+\operatorname{tr}(\mathrm{RIV})$ precisely because the completions are drawn at
 the fitted $\tilde\phi$, not at $\theta_0$. This is confirmed directly: imputing from the true
 $\theta_0$ drives $\mathbb{E}[A]\to 0$ and the total to $-\tfrac12\operatorname{tr}(\mathrm{RIV})$,
-while imputing from the fitted $\hat\theta_{\text{obs}}$ — deterministic FIML and proper MI alike —
-gives $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$ and the total $+\tfrac12\operatorname{tr}(\mathrm{RIV})$
-(`verification/rederivation-L0-fitted-vs-oracle.R`).
+while imputing from the fitted $\hat\theta_{\text{obs}}$ gives $\mathbb{E}[A]=+\operatorname{tr}(\mathrm{RIV})$
+and the total $+\tfrac12\operatorname{tr}(\mathrm{RIV})$ for a *second-moment-matched* imputer —
+deterministic FIML or bootstrap resampling with an EM plug-in, the engine this paper's own
+simulations use — (`verification/rederivation-L0-fitted-vs-oracle.R`); a genuine Bayesian
+posterior draw is not second-moment-matched and carries the correction stated in the callout
+below.
+:::
+
+::: {.callout-important}
+## The $+\tfrac12\operatorname{tr}(\mathrm{RIV})$ headline needs a second-moment-matched imputer
+
+Write $\Xi=b_\Sigma+\operatorname{Var}(\mu^\ast)$ for an imputer's centering bias in $\Sigma$
+plus its draw covariance in $\mu$, both evaluated against the fitted $\hat\theta_{\text{obs}}$.
+For an imputer whose draw is *regular* — $\hat\theta_{\text{obs}}+O_p(n^{-1/2})$ with controlled
+third moments, the condition every engine below satisfies, and which excludes only pathological
+constructions such as a draw that rarely jumps to a fixed distant value — the
+$+\tfrac12\operatorname{tr}(\mathrm{RIV})$ headline holds, to leading order, whenever
+$\Xi=o(1/n)$ per completed cell **and** the design-imbalance term below also vanishes or is
+controlled; call an imputer meeting both conditions *second-moment-matched*. Deterministic FIML
+meets both trivially, since it does not draw a parameter at all. Bootstrap resampling with an EM
+plug-in, the engine this paper's own simulations use, meets the first: for complete data
+$\mathbb{E}^\ast[\tilde\Sigma+(\tilde\mu-\hat\mu)(\tilde\mu-\hat\mu)^\top]=\hat\Sigma$ exactly, so
+the bootstrap's covariance deflation cancels its mean's draw variance, and $\Xi$ is zero up to a
+residual of the observed-data estimator's own bias under missingness; like every drawing engine,
+though, the bootstrap still carries the small design-imbalance term under MAR.
+
+A genuine Bayesian posterior draw is not second-moment-matched, by construction: a proper draw
+is *over*-dispersed relative to the plug-in (Rubin's between-imputation variance rule is built
+to capture exactly that extra spread), so $\Xi\succ0$. Such a draw carries a persistent,
+computable correction to the headline,
+$$
+D=-\tfrac12\operatorname{tr}(\mathrm{RIV}_{\mu\mu})-\tfrac12\sum_i\operatorname{tr}\!\big(\hat V_i^{-1}C_i\,b_\Sigma\,C_i^\top\big)-\mathrm{IMB}+o(1).
+$$
+$\mathrm{RIV}_{\mu\mu}$ is the mean block of $\mathrm{RIV}$. For a unit with missing block $M$
+and observed block $O$, $\hat B=\hat\Sigma_{MO}\hat\Sigma_{OO}^{-1}$ and
+$\hat V=\hat\Sigma_{MM}-\hat B\hat\Sigma_{OM}$ are the fitted regression map and conditional
+covariance of @sec-alg's Schur complement, and $C=[I,-\hat B]$ carries a full covariance
+perturbation to its effect on $\hat V$. $\mathrm{IMB}$ shares its design-imbalance origin with
+$(A)+(C)$ (@sec-termA) but arises from the imputer's own $\Sigma$-draw rather than from the
+fitted model. It is present under MAR for every drawing engine (deterministic FIML excepted,
+since it never draws $\Sigma$) and exactly zero under MCAR; measured at
+$\approx-0.006\operatorname{tr}(\mathrm{RIV})$ in this paper's own W1 cell, not yet derived in
+closed form. Every other piece is computable from quantities the derivation already defines;
+$b_\Sigma$ is prior-dependent, so no engine-free correction constant exists — a Jeffreys-prior
+draw measured here gives $\approx-0.78\operatorname{tr}(\mathrm{RIV})$ at $N=200$, while
+recentring the same draws at their own measured $b_\Sigma$ collapses the correction to
+$\approx-0.15\operatorname{tr}(\mathrm{RIV})$, matching a mean-centered Gaussian draw.
+
+`[mc]` the four algebraic identities behind this reduction — the Schur-complement derivative
+and its concavity, the resulting cancellation, and the block-inverse identity that isolates
+$\mathrm{RIV}_{\mu\mu}$ — reduce to zero symbolically
+(`verification/cas-wolfram/verify_engine_gap_sympy.py`); the numerical values above are
+measured directly from each engine's parameter draws, with no imputation or log-likelihood
+evaluation needed (`verification/_modules/engine-gap-audit.R`).
 :::
 
 ::: {.callout-warning}
@@ -756,7 +809,11 @@ $\mathbb{E}[A]=\operatorname{tr}(\mathrm{RIV})-\tfrac12\operatorname{tr}(\mathrm
 and with $\mathbb{E}[B]=-\tfrac12\operatorname{tr}(\mathrm{RIV})$ the net bias collapses to
 $$ \mathbb{E}[T]_{\text{known scale}}=\begin{cases}0 & \text{deterministic FIML},\\[2pt]-\tfrac12\operatorname{tr}(\mathrm{RIV}) & \text{proper MI},\end{cases} $$
 the two arms differing by the posterior-draw imputation variance $C_n=\tfrac12\operatorname{tr}(\mathrm{RIV})$
-— so deterministic FIML and proper MI are **not** interchangeable for a known-scale fit.
+— so deterministic FIML and proper MI are **not** interchangeable for a known-scale fit. This
+$C_n$ does not vanish once the scale is estimated: for any imputer whose draw is not
+second-moment-matched to the plug-in, it survives as the $\mu$-block
+$\tfrac12\operatorname{tr}(\mathrm{RIV}_{\mu\mu})$ of the correction in @sec-qfun, and only a
+second-moment-matched imputer such as bootstrap resampling with an EM plug-in cancels it.
 
 A known-variance experiment (estimate the mean, $\Sigma$ fixed) confirms every value to Monte-Carlo
 error (`verification/rederivation-knownvar.R`, $R=2\times10^5$:
