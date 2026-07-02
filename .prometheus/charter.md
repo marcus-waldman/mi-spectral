@@ -4,13 +4,14 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Respond to the v1 AI review (paper 88): empirical reruns for the two cheap gaps (data-augmentation replication + MI-BIC) + prose/response-letter for the rest; non-normal via brms gated on a runtime spike; fold in the pending per-paragraph annotation + compile-enablement toward JAIGP submission."
-last_synced_commit: 9febb02
+last_synced_commit: 8aea5d2
 tree_state: dirty
-updated: "2026-07-02T22:05:54Z"
+updated: "2026-07-02T22:29:54Z"
 updated_by: wrap
 cockpit: { provider: null, list_id: null }
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 ---
+
 
 
 
@@ -147,6 +148,7 @@ The arc from start to the Goal. Mark each: `[x]` done - `[~]` current - `[ ]` up
 - MARCUS RATIFIED THE DA-ENGINE SCOPE AMENDMENT (2026-07-02, decisions.md D-22): after three Consensus.app due-diligence queries surfaced no contradicting or preempting literature (one new candidate reference logged, `todo/003`, commit `0da1e52`), Marcus ratified `todo/040-derivation-amendment-draft.md` as staged. Landed verbatim: the D9 forward-pointer, the corrected fitted-vs-oracle callout + new scope-and-correction callout, the known-scale addition; `decisions.md` D-22 records the ratification plus the superseding note on the retracted "83%/13%/4%" percentage story. Commit `2ed3f3a`; render-verified (`quarto render` exit 0, 20/20 Appendix B cells execute).
 - CITATION-DISCIPLINE + RAG CHECK CLOSED FOR THIS LANDING (2026-07-02): Marcus asked directly whether full RAG/provenance diligence was done. Checked, not assumed: the landed text has zero external `@citekey`s (confirmed by grepping the actual commit diff), so the citation hook had nothing to enforce here. litrev's vector-RAG (MotherDuck) is DOWN (live-checked, `STATUS_ERROR` / "Could not connect to MotherDuck" -- same outage as todo/039's citation audit). Fell back to the established file-RAG-over-owned-corpus method: re-read the four already-acquired papers Fable's audit leaned on and confirmed each supports its attributed claim verbatim -- Wang-Robins 1998 (type-A/B distinction), Nielsen 2003 (properness = Rubin's-rule-unbiasedness), Schafer 1997 `:3502-3532` (IW mean, m>=p+2), Honaker 2011 (EMB algorithm). Only the NOT-yet-acquired references (von Hippel-Bartlett 2021, Efron 1979, the new von Hippel small-sample paper) remain open, and that requires Marcus's Zotero action, not more RAG.
 - DRIVE-FOLDER PDF NAMING GOTCHA (2026-07-02): the litrev migration/auto-naming step drops the second word of a multi-word author surname when generating a Drive-folder PDF filename -- "von Hippel" became `von_..._<year>.pdf` with "hippel" missing entirely on both von Hippel PDFs, which broke `lit_sync.py`'s surname-substring PDF discovery (`SKIP: PDF not found`) even though the files were physically present and already Mathpix-converted. Fix: rename the Drive PDF to `<citekey>.pdf` exactly, which hits `lit_sync.py`'s direct-match Pass 0 (the same working fallback already used for `Meng01121991.pdf`/`Tanner01061987.pdf`/`Tierney01031986.pdf` in that folder); the rename doesn't touch the SHA256-keyed Mathpix cache lookup, so no reconversion is needed. Check the actual Drive-folder filename before assuming a "PDF not found" skip means the PDF is genuinely missing. Reusable memory: `feedback_acquisition_pipeline`.
+- PROVENANCE VERIFICATION COMPLETE + PHASE 1 DRAFTED (2026-07-02, continued further, commit `8aea5d2`): all three newly-acquired DA-engine references were read in-session in full and each confirmed to support its attributed claim verbatim -- von Hippel-Bartlett 2021 (PDMI/MLMI named and defined, Abstract + S1 :43-48, with a genuine small-sample bias difference beyond efficiency/SE); Efron 1979 (canonical nonparametric bootstrap, S2, AND bootstrap bias estimation specifically, S4 :383 + S5 eq. 5.11-5.12 :467); von Hippel 2016 (states directly that MI's bias exceeds ML's in small samples, :72, with the posterior-draw-doubles-variance mechanism, :412-413). No mismatches; all three promoted `acquired -> verified` in `todo/003`. The r1#8 response-letter entry was then drafted at `manuscript/reviews/v1/response/r1-8-data-augmentation.md`, folding in the DA-engine evidence (confirmation-with-characterization framing) and citing all three references (`todo/003` `verified -> cited`, a response-letter-draft citation, distinct from a manuscript-prose citation). Why: closes the last open item in the DA-engine thread (provenance) and produces the first concrete Phase-1 deliverable; unblocks Phase 2 once Marcus reviews the draft.
 
 # Open questions
 
@@ -183,5 +185,11 @@ contradicting or preempting found), and the amendment is landed (`decisions.md` 
 `2ed3f3a`, render-verified). Whether full RAG/citation-discipline diligence was done for the
 landing -- checked directly rather than assumed: zero external citations in the landed text,
 litrev's RAG confirmed down, file-RAG fallback confirmed all four already-owned provenance
-papers support their attributed claims verbatim. Only remaining provenance item: Marcus
-acquiring the 2-3 not-yet-owned references, now Next 3 actions #1.)
+papers support their attributed claims verbatim.)
+
+(Resolved this session, 2026-07-02, continued further, commit `8aea5d2`: the provenance
+verify-read for the three newly-acquired references (previously the only open item in the
+DA-engine thread) -- all three read in full, all three claims confirmed, no mismatches. Phase 1
+of the v1-review milestone -- fold the DA evidence into the r1#8 response letter -- executed as
+a draft at `manuscript/reviews/v1/response/r1-8-data-augmentation.md`, pending Marcus's review
+before folding into the Phase-4 point-by-point letter; see Next 3 actions #1.)
