@@ -4,13 +4,14 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Respond to the v1 AI review (paper 88): empirical reruns for the two cheap gaps (data-augmentation replication + MI-BIC) + prose/response-letter for the rest; non-normal via brms gated on a runtime spike; fold in the pending per-paragraph annotation + compile-enablement toward JAIGP submission."
-last_synced_commit: fb7b84b
-tree_state: clean
-updated: "2026-07-03T17:09:52Z"
+last_synced_commit: "7999860"
+tree_state: dirty
+updated: "2026-07-03T18:52:25Z"
 updated_by: wrap
 cockpit: { provider: null, list_id: null }
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 ---
+
 
 
 
@@ -67,24 +68,27 @@ The arc from start to the Goal. Mark each: `[x]` done - `[~]` current - `[ ]` up
 
 _This session (2026-07-03, continued) -- Phase 1 CLOSED; the point-by-point letter now has a skeleton; a month of untracked repo debris backfilled into git history._ Presented the r1#8 draft (`manuscript/reviews/v1/response/r1-8-data-augmentation.md`) for review; Marcus: "Looks right. So put it in the Phase 4 letter." Created `manuscript/reviews/v1/response/response-letter.md`: all 15 v1-review comments as sections, each quoting the reviewer comment and tagged DRAFTED / EXECUTED-PENDING-TEXT / PENDING. r1#8 is the only DRAFTED entry (the full approved text folded in verbatim); r3#1 (BIC) is tagged EXECUTED-PENDING-TEXT (the empirical work is done and landed as G8/D-23, but its response-letter prose isn't written yet); the other 13 comments remain PENDING for Phase 3 (r3#2) / Phase 4 (everything else). **Phase 1 of the v1-review milestone is now fully closed.** Committed `c713365`.
 
-Marcus then asked to "hunt down and commit" the working tree's 293 untracked files -- roughly a month of unretained work-product across many already-landed pieces of work, never committed at the time. Investigated provenance for each cluster (git log grep, memory cross-reference, size/content checks) rather than one blind `git add -A`, and found `lib/` (740K of pyvis-vendored vis-network/tom-select JS+CSS next to `todo/030-concept-map.html`) is actually unused -- the HTML loads its JS/CSS from a CDN -- so it was gitignored instead of committed. Everything else landed across 12 provenance-labeled commits, matching the repo's existing one-purpose-per-commit convention: the todo/030 concept-map artifact + pyvis generator; `scripts/scrub_transcripts.py` (public-release prep); the S5 tribunal and todo/038 text-validity tkal run records plus the todo/035 delphi state pointers; the todo/042/043 session handoffs; and five grouped `verification/cache` backfills (prose-pass scout outputs, derivation-audit re-run artifacts + runlogs, todo/032 collaboration-analysis raw turns, todo/040 DA-engine spike + rederivation caches, and the smoke/calibration `run_all.R` caches). Scanned the two new scripts for secret-like patterns before committing (clean). Working tree is now completely clean; the branch is 12 commits ahead of `origin/da-engine-phase0-todo040` and **not yet pushed**.
+Marcus then asked to "hunt down and commit" the working tree's 293 untracked files -- roughly a month of unretained work-product across many already-landed pieces of work, never committed at the time. Investigated provenance for each cluster (git log grep, memory cross-reference, size/content checks) rather than one blind `git add -A`, and found `lib/` (740K of pyvis-vendored vis-network/tom-select JS+CSS next to `todo/030-concept-map.html`) is actually unused -- the HTML loads its JS/CSS from a CDN -- so it was gitignored instead of committed. Everything else landed across 12 provenance-labeled commits, matching the repo's existing one-purpose-per-commit convention: the todo/030 concept-map artifact + pyvis generator; `scripts/scrub_transcripts.py` (public-release prep); the S5 tribunal and todo/038 text-validity tkal run records plus the todo/035 delphi state pointers; the todo/042/043 session handoffs; and five grouped `verification/cache` backfills (prose-pass scout outputs, derivation-audit re-run artifacts + runlogs, todo/032 collaboration-analysis raw turns, todo/040 DA-engine spike + rederivation caches, and the smoke/calibration `run_all.R` caches). Scanned the two new scripts for secret-like patterns before committing (clean). Working tree is now completely clean; the branch was 12 commits ahead of `origin/da-engine-phase0-todo040`, unpushed, at charter-wrap time (`b90d540`).
+
+_This session (2026-07-03, continued further) -- the MI-BIC reproducibility-fold-in debt CLOSED (commit `7999860`, landed just after the `b90d540` charter wrap)._ All three items of the open promotion debt executed and verified: a new `verdicts$BIC` block in `aggregate.R` (phase 5) reports median `pi_bic[uncorrected/corrected/oracle]` alongside AIC's, the BIC/AIC W3A yield ratio, and min `W3C_bic`, so `verdicts.md` carries a BIC verdict from any future `run_all.R` run with no extra work; `phase2-bic-smallN-probe.R` got a CLAUDE.md Commands entry (kept as a documented spike, not wired into phase dispatch, since it is explicitly exploratory/non-preregistered); `00-test-primitives.R` gained two new blocks covering the BIC arithmetic (penalty + correction identities checked exactly against synthetic inputs) and the `amelia-loglik` error-catch path. Enabling refactor in `w3-sweep.R`: extracted the AIC/BIC arithmetic into `w3_aic_bic_selections()` and the Amelia M-averaged log-lik loop into `w3_amelia_barL()` (frozen `chi2_SB`/scaled-shift arm untouched), making both unit-testable; both `w3-sweep.R`'s and `w3-rate.R`'s `clusterExport` calls updated to export the two new helper names (without this the R=2000 production grid would silently fail on every Amelia cell across all parallel workers). Regression-verified: re-ran the smoke-bic grid post-refactor, confirmed every result column byte-identical to the pre-refactor cache except `elapsed_sec`; validated the new BIC verdict directly against real production data (median `pi_bic` 0.993/0.996/1.000 vs AIC 0.693/0.818/0.899, yield ratio 0.02, consistent with the G8 Discussion caveat). The MI-BIC-specific reproducibility debt named in the prior milestone entry is now fully closed; the general fold-in-before-citing POLICY itself remains standing for any future cited result (see Decisions made).
+- [x] Reproducibility fold-in gate, MI-BIC debt (2026-07-03, Marcus; closed via `7999860`): the
+      three items of known debt named at gate creation -- the AIC-vs-BIC summary script (now
+      `aggregate.R`'s `verdicts$BIC` block), the small-N BIC probe's CLAUDE.md Commands entry, and
+      BIC unit coverage in `00-test-primitives.R` -- are all landed and regression-verified.
+      **The gate itself is a standing POLICY, not a one-time milestone**: any future verification
+      result cited in the manuscript or response letter must be folded into `run_all.R` +
+      `aggregate.R` + CLAUDE.md before it is cited, not after (tracked per-instance in
+      `todo/040-v1-review-response-registration.md`).
 - [ ] Per-paragraph annotation (Marcus passes) + compile-enablement (fold the 1a + todo/039 audit + AM2010 + D-20 edits + annotations; flip compile_enabled; the front matter is now ALREADY in the canonical APA build, so the remaining port is only into any second render target)
-- [ ] Reproducibility fold-in gate (2026-07-03, Marcus): every verification result cited in the
-      manuscript or response letter must be reproducible through `verification/run_all.R` (phase
-      dispatch + `_modules/aggregate.R` + a CLAUDE.md Commands entry), not left as a standalone
-      `verification/spikes/*.R` script or scratchpad aggregation. Must be closed before
-      resubmission. Current known debt: the MI-BIC AIC-vs-BIC summary script, the small-N BIC
-      probe (`verification/spikes/phase2-bic-smallN-probe.R`), and BIC unit coverage in
-      `00-test-primitives.R` (tracked in `todo/040-v1-review-response-registration.md`).
 - [ ] Compile + derivation-audit (0 blocker/0 warn) + Zenodo deposit -> JAIGP submission
 
 # Next 3 actions
 
-1. **Fold the MI-BIC work into `run_all.R` (reproducibility gate, must close before resubmission).** Phase 2 itself is EXECUTED (G8 landed, `decisions.md` D-23) -- what remains is promotion: commit the AIC-vs-BIC summary script (currently scratchpad-only) into `_modules/aggregate.R` so `verdicts.md` carries a BIC verdict; wire or document `verification/spikes/phase2-bic-smallN-probe.R` (add a CLAUDE.md Commands entry at minimum); add BIC + the new `amelia-loglik` error-catch to `00-test-primitives.R`. Tracked in `todo/040-v1-review-response-registration.md`.
+1. **Phase 3 (non-normal), GATED on Marcus's MVN-scope call.** Needs an explicit decision before any code: does a non-normal empirical illustration (via the brms-as-imputer cross-check, ~24s/fit, already spiked and working) enter the manuscript, or does the Discussion stay a prediction-only paragraph? See "NON-NORMAL SCOPE" in Decisions made. Ask directly if not yet decided -- do not write code first.
 
-2. **Phase 3 (non-normal, gated) -> Phase 4 (remaining fixes, letter, annotation + compile-enablement).** Phase 3 gated on the MVN-scope call. Phase 4: Tier C fixes, Tier A rebuttals, fill in the remaining PENDING/EXECUTED-PENDING-TEXT entries in `response-letter.md` (r3#1 BIC prose is the one with all its evidence already in hand), annotation + compile-enablement -> compile + derivation-audit 0/0 + Zenodo -> JAIGP. Optional/cheap along the way: extend the E3 bootstrap-floor exact-identity arm to the same 4 N-points Amelia's original scan has (closes gate item C7); verify Mode B's candidate IMB closed form (CAS or a numeric check against the measured -0.005/-0.0065). Frozen preregistered originals UNTOUCHED.
+2. **Phase 4 -- the response-letter entries that do not need Phase 3.** `response-letter.md` has 13 PENDING / EXECUTED-PENDING-TEXT entries. Cheapest/most valuable first: r3#1 (BIC) is EXECUTED-PENDING-TEXT -- all its evidence (G8/D-23, plus the now-landed `aggregate.R` BIC verdict) is in hand, it just needs response-letter prose. r1#7 and r1#9 are also Tier A rebuttals needing no new evidence, just writing. Tier C (proof#10/11, contra#12-15, r2#4-6) are easy level3 prose/notation fixes -- rebuild via `scripts/build_manuscript_apa.py` after each and confirm `quarto render` still exits 0.
 
-3. **Push the branch.** 12 unpushed commits sit on `da-engine-phase0-todo040` (this session's Phase-1 closure + the 293-file repo-hygiene backfill) -- confirm with Marcus before pushing, since none of this has gone to `origin` yet.
+3. **After Phase 3/4 close: per-paragraph annotation + compile-enablement -> derivation-audit 0/0 -> Zenodo -> JAIGP.** Also still pending: push the branch (`da-engine-phase0-todo040` was 12 commits ahead of `origin` at last wrap, plus this session's `7999860` -- confirm with Marcus before pushing). Optional/cheap along the way: extend the E3 bootstrap-floor exact-identity arm to the same 4 N-points Amelia's original scan has (closes gate item C7); verify Mode B's candidate IMB closed form (CAS or a numeric check against the measured -0.005/-0.0065). Frozen preregistered originals UNTOUCHED.
 
 # Decisions made
 
@@ -174,7 +178,6 @@ Marcus then asked to "hunt down and commit" the working tree's 293 untracked fil
 - **IMB closed form (2026-07-02):** Mode B (GPT-5.5 Pro red-team) delivered a CANDIDATE closed form under this exact probit-MAR design (Tallis truncated-bivariate-normal moments of $Y_O\mid$ pattern; `verification/cache/layer3-gpt-5.5-pro-da-engine-modeB.md` sec. 4). Not yet independently verified (CAS or a numeric check against the measured -0.005/-0.0065) -- do that before citing it, or keep the manuscript sentence scoped to measured-and-bounded if it doesn't check out.
 - **C7 bootstrap-floor evidence gap (2026-07-02, new):** the exact-identity "E3 master" 2-point comparison (N=200/1000) doesn't clearly show 1/n decay on its own (GPT-5.5 Pro Mode B flagged this). The paper's actual validated claim rests on the original 4-point Amelia N-scan (`phase0a-calibrated.R`, clean O(1/N) decay to -0.019 at N=2000), which is unaffected -- but the newer exact-identity mechanism decomposition doesn't yet have the same N-coverage. Cheap fix: extend `engine-gap-audit.R`'s E3 arm to N=500/2000 (parameter-draw-only, no imputation). Not blocking.
 - **brms cell: manuscript or response-letter-only (2026-07-02):** if the -1.36 weakly-informative number is printed in `manuscript/`, the Burkner/Stan/LKJ citation trio (todo/003, conditional) activates and a higher-R brms cell is needed (current se .15 at R=6); if letter-only, mark the trio rejected. Interacts with the Phase-3 MVN-scope gate.
-- BIC promotion into run_all.R (2026-07-03, gates resubmission per the new milestone item above): the AIC-vs-BIC summary script and the small-N probe (`verification/spikes/phase2-bic-smallN-probe.R`) need to be wired into `aggregate.R` / documented in CLAUDE.md Commands / covered by `00-test-primitives.R`, per the REPRODUCIBILITY FOLD-IN GATE decision.
 - Congeniality of the brms imputer to each non-normal analysis family (trivial for unstructured MVN; needs thought per GLM family), and which non-normal families best exhibit the two-regime split (Gamma / t for estimated-scale; Bernoulli / Poisson for the collapse). Phase 3, gated on the MVN-scope decision.
 - r3#3 congeniality-diagnosis needs a CITED method -- log candidate references to `todo/003` before drafting that Discussion sentence.
 - Sequencing: does the review-response cycle run BEFORE, or interleaved WITH, the per-paragraph annotation + compile-enablement (both feed the same revision toward submission).
@@ -218,5 +221,12 @@ approved as-is ("Looks right"). Phase 1 of the v1-review milestone is now fully 
 Phase-4 point-by-point letter has a skeleton at `response-letter.md` with r1#8 as its first
 DRAFTED entry. Also resolved: the working tree's 293 untracked files -- all investigated for
 provenance and committed across 12 grouped commits; nothing left uncommitted except the 12
-commits themselves still need a push, now Next 3 actions #3. The BIC-promotion-into-run_all.R
-open question above remains open and unaffected by this session's work.)
+commits themselves still need a push, now folded into Next 3 actions #3.)
+
+(Resolved this session, 2026-07-03, continued further still, commit `7999860`: the
+BIC-promotion-into-run_all.R open question -- all three items of the promotion debt (AIC-vs-BIC
+summary into `aggregate.R`, the small-N probe's CLAUDE.md Commands entry, BIC unit coverage in
+`00-test-primitives.R`) executed and regression-verified byte-identical against the pre-refactor
+cache. See the new milestone note and the superseding Decisions-made line. The general
+fold-in-before-citing gate remains a standing policy for any future cited result, not a
+one-time item.)
