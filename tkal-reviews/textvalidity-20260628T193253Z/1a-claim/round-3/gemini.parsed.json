@@ -1,0 +1,106 @@
+{
+  "keep": [
+    {
+      "id": "K01",
+      "priority": 1,
+      "reason": "Unanimous; trace correction overstates decisions and restores equivalent selection too strongly."
+    },
+    {
+      "id": "K05",
+      "priority": 2,
+      "reason": "Unanimous; unearned impossibility claim regarding transformation of observed data."
+    },
+    {
+      "id": "K11",
+      "priority": 3,
+      "reason": "Unanimous; trace-only removal overclaim that substantially restores complete-data ranking."
+    },
+    {
+      "id": "K17",
+      "priority": 4,
+      "reason": "Unanimous; restates the disclaimed impossibility principle."
+    },
+    {
+      "id": "K24",
+      "priority": 5,
+      "reason": "Unanimous; 'every information criterion' is too strong a sign overclaim."
+    },
+    {
+      "id": "K25",
+      "priority": 6,
+      "reason": "Unanimous; model selection scope is stated too broadly in the abstract."
+    },
+    {
+      "id": "K04",
+      "priority": 7,
+      "reason": "Unanimous; 'restores complete-data behavior entirely' is an absolute overclaim."
+    },
+    {
+      "id": "K18",
+      "priority": 8,
+      "reason": "Unanimous; applied trust equating corrected selection with complete data is too broad."
+    },
+    {
+      "id": "K23",
+      "priority": 9,
+      "reason": "Unanimous; decision equivalence claims are outrunning their support."
+    },
+    {
+      "id": "K27",
+      "priority": 10,
+      "reason": "Adopting; 'therefore favors' implies a deterministic ranking rather than a probabilistic tendency."
+    },
+    {
+      "id": "K29",
+      "priority": 11,
+      "reason": "Unanimous; empirical check is incorrectly bounded as a formal limit."
+    },
+    {
+      "id": "K15",
+      "priority": 12,
+      "reason": "Unanimous; speculates on an untestable counterfactual workflow."
+    },
+    {
+      "id": "K33",
+      "priority": 13,
+      "reason": "Unanimous; speculates definitively on the field's history without historical proof."
+    },
+    {
+      "id": "K21",
+      "priority": 14,
+      "reason": "Adopting; conflates nested-test correction with information-criterion application."
+    },
+    {
+      "id": "K22",
+      "priority": 15,
+      "reason": "Adopting; contradicted by the manuscript's own discussion of known-scale proper-MI bias."
+    },
+    {
+      "id": "K34",
+      "priority": 16,
+      "reason": "Adopting; introduces the Satorra-Bentler test modification without a required citation."
+    },
+    {
+      "id": "K28",
+      "priority": 17,
+      "reason": "Adopting; 'all sixty cells' conflicts with uncongenial overshoot nuances in results."
+    },
+    {
+      "id": "K02",
+      "priority": 18,
+      "reason": "Adopting; deterministic misclassification claim lacks the necessary design qualifier."
+    },
+    {
+      "id": "K36",
+      "priority": 19,
+      "reason": "Adopting; literature claim is too absolute and ignores other criteria mentioned."
+    },
+    {
+      "id": "K35",
+      "priority": 20,
+      "reason": "Adopting; points to separate development without providing the needed reference."
+    }
+  ],
+  "add": [],
+  "drop_notes": "Dropped K12 and K26 to focus the final set strictly on the 20 most impactful issues, deprioritizing minor magnitude claims."
+}

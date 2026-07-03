@@ -1,0 +1,27 @@
+{
+  "nominations": [
+    {
+      "title": "[S2-P4] @woodburyMissingInformationPrinciple1972 \"@woodburyMissingInformationPrinciple1972 decompose the information in the complete data into the observed-data information plus what they call the lost information. They state this decomposition together with a score identity, in which the observed-data score is the conditional expectation of the complete-data score.\" — the missing-information principle in the EM/score-identity form is due to Orchard & Woodbury (1972), and the score identity (Fisher's identity) and the named decomposition are usually attributed to Louis (1982) or Orchard-Woodbury; check the specific work cited supplies both the decomposition and the score identity",
+      "by": "@woodburyMissingInformationPrinciple1972",
+      "category": "overstatement",
+      "reason": "Orchard & Woodbury's 'missing information principle' paper states the information decomposition but I recall the explicit observed-score-as-conditional-expectation identity is more precisely Louis (1982)/Fisher's identity, so attributing both here may overstate the source's content (confidence: low).",
+      "priority": 5
+    },
+    {
+      "title": "[S2-P12] @kenwardLikelihoodBasedFrequentist1998 \"MCAR is necessary and sufficient for the naive and unconditional forms to agree.\" — verify the source states an exact necessary-and-sufficient MCAR characterization rather than a sufficiency/example result",
+      "by": "@kenwardLikelihoodBasedFrequentist1998",
+      "category": "overstatement",
+      "reason": "Kenward & Molenberghs (1998) argue for using observed information under MAR and show the naive expected information is biased under MAR with a bivariate Gaussian example, but I recall the 'necessary and sufficient' equivalence being stated as a recommendation/illustration rather than a proved iff theorem (confidence: low).",
+      "priority": 6
+    },
+    {
+      "title": "[S2-P10] @akaikeNewLookStatistical1974a \"@akaikeNewLookStatistical1974a evaluates a fitted model by its mean log-likelihood against the true distribution... It needs a correction for the downward bias from replacing $\\theta$ with its estimate $\\hat\\theta$, and that correction is simply to add the parameter count $k$.\" — Akaike (1974) frames AIC via Kullback-Leibler divergence/entropy maximization, the '-2 log L + 2k' form, not literally a 'mean log-likelihood against the true distribution' bias-correction derivation",
+      "by": "@akaikeNewLookStatistical1974a",
+      "category": "overstatement",
+      "reason": "Akaike's 1974 paper presents AIC from an information-theoretic (KL) entropy-maximization argument; the precise 'expected log-likelihood discrepancy plug-in bias = k' framing is a later reconstruction, so the claim is a slight modernized overstatement of the original text (confidence: low).",
+      "priority": 7
+    }
+  ],
+  "bench": ["@nielsenProperImproperMultiple2003 (proper/improper characterization wording)", "@mengPerformingLikelihoodRatio1992b (equal-fractions F-reference detail)", "@weiMonteCarloImplementation1990 (Remark 2 / Rubin 1987 attribution)"],
+  "gaps": "Low confidence across the board; I have no high-confidence specific-recollection mismatch, so the nominated set is small and tentative rather than padded."
+}

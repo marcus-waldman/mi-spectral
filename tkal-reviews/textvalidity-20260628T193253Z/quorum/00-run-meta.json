@@ -1,0 +1,42 @@
+{
+  "date": "2026-06-28",
+  "study": "textval-quorum-1a",
+  "title": "Text-validity defense (1a claim-support): does the prose earn its claims as written?",
+  "kind": "quorum",
+  "advocate": "session",
+  "peers": [
+    "openai",
+    "gemini"
+  ],
+  "lead": "openai",
+  "models": {
+    "claude": "claude-opus-4-8",
+    "openai": "gpt-5.5-pro-2026-04-23",
+    "gemini": "google/gemini-3.1-pro",
+    "peer_a": "zai-org/GLM-4.7-Flash",
+    "peer_b": "deepseek-ai/DeepSeek-V3.2"
+  },
+  "routes": {
+    "peer_a": "deepinfra",
+    "peer_b": "deepinfra",
+    "gemini": "deepinfra"
+  },
+  "params": {
+    "openai": {
+      "effort": "high"
+    }
+  },
+  "anon_peer_to_letter": {
+    "openai": "A",
+    "gemini": "B"
+  },
+  "anon_seed": 20260628,
+  "criteria": [
+    "claim_support",
+    "scope_calibration",
+    "internal_consistency",
+    "citation_support"
+  ],
+  "max_rounds": 3,
+  "preset": "standard"
+}

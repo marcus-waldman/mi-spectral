@@ -1,0 +1,21 @@
+{
+  "kind": "delphi",
+  "mode": "pool",
+  "title": "Text-validity 1b \u2014 citation support (does each citation support its claim?)",
+  "study": "textval-1b-cite",
+  "question": "question.md",
+  "background": "background.md",
+  "constraints": "constraints.md",
+  "panel": [
+    "claude",
+    "openai",
+    "gemini"
+  ],
+  "arbiter": "gemini",
+  "max_rounds": 4,
+  "open_slots": 20,
+  "merge_threshold": 0.78,
+  "seed": 20260628,
+  "routes": { "gemini": "deepinfra" },
+  "models": { "gemini": "google/gemini-3.1-pro" }
+}

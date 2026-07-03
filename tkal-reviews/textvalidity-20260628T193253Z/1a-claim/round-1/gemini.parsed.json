@@ -1,0 +1,50 @@
+{
+  "nominations": [
+    {
+      "title": "[S1-P5] \"We show that no transformation of the observed data can recover it.\" — contradicts explicit limitation",
+      "by": "S1-P5",
+      "category": "overclaim",
+      "reason": "This claim explicitly contradicts limitation G4 in paragraph [S6-P3], which states 'No argument here shows that no estimator built from the same observed data could do better.'",
+      "priority": 1
+    },
+    {
+      "title": "[S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\" — restates disclaimed impossibility",
+      "by": "S6-P7",
+      "category": "overclaim",
+      "reason": "This is a restatement of the impossibility claim that the authors explicitly disclaim having proven in the discussion of limitation G4.",
+      "priority": 1
+    },
+    {
+      "title": "[S5-P6] \"By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic referred to $\\chi^2_1$.\" — missing test citation",
+      "by": "S5-P6",
+      "category": "missing-citation",
+      "reason": "The Satorra-Bentler scaled-and-shifted correction is introduced abruptly without a formal literature citation or prior explanation in the background section.",
+      "priority": 1
+    },
+    {
+      "title": "[S6-P6] \"De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are developed separately.\" — points to missing reference",
+      "by": "S6-P6",
+      "category": "missing-citation",
+      "reason": "The phrasing 'are developed separately' strongly implies the existence of a companion paper or external literature, but no citation or cross-reference pointer is provided to guide the reader.",
+      "priority": 2
+    },
+    {
+      "title": "[S1-P2] \"Only one information criterion has been proposed for multiply imputed data.\" — ignores other cited criteria",
+      "by": "S1-P2",
+      "category": "overclaim",
+      "reason": "This assertion is overly broad and conflicts with the manuscript's own discussion later in [S1-P6] which mentions competing 'missing-covariate criteria' by Claeskens and Consentino (2008) and the reweighting route of Hens et al. (2006).",
+      "priority": 2
+    },
+    {
+      "title": "[S1-P3] \"The open questions above are open because the second and third levels had not been posed.\" — speculates on field history",
+      "by": "S1-P3",
+      "category": "speculation",
+      "reason": "Ascribing a singular historical reason for the field's open questions is speculative; the questions could remain open due to mathematical intractability or shifting research focus rather than mere conceptual absence.",
+      "priority": 3
+    }
+  ],
+  "bench": [
+    "[S6-P4b] \"A strong ridge prior does this.\" — missing citation for how standard ridge priors generically suppress cross-block correlations."
+  ],
+  "gaps": "May under-cover subtle structural assumptions or scope mismatch in 'unsupported-as-written' due to limited mathematical critique."
+}

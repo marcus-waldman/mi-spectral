@@ -1,0 +1,101 @@
+{
+  "keep": [
+    {
+      "id": "K05",
+      "priority": 1,
+      "reason": "Unanimous; bare impossibility claim ('no transformation can recover it') outruns the paper's own evidence."
+    },
+    {
+      "id": "K17",
+      "priority": 2,
+      "reason": "Unanimous; restates the disclaimed impossibility as fact."
+    },
+    {
+      "id": "K01",
+      "priority": 3,
+      "reason": "Unanimous; 'restores complete-data-equivalent selection' overstates a substantial-but-partial result."
+    },
+    {
+      "id": "K04",
+      "priority": 4,
+      "reason": "Unanimous; 'entirely' is stronger than 'substantially restores' shown elsewhere."
+    },
+    {
+      "id": "K11",
+      "priority": 5,
+      "reason": "Unanimous; trace-only removal overclaim despite 'substantially' hedge in same sentence."
+    },
+    {
+      "id": "K24",
+      "priority": 6,
+      "reason": "Unanimous; 'every deviance and every information criterion' too universal a sign claim."
+    },
+    {
+      "id": "K25",
+      "priority": 7,
+      "reason": "Unanimous; model-selection scope stated too broadly in abstract."
+    },
+    {
+      "id": "K23",
+      "priority": 8,
+      "reason": "Unanimous; decision-equivalence 'as they would have with complete data' too broad."
+    },
+    {
+      "id": "K18",
+      "priority": 9,
+      "reason": "Unanimous; 'trust the way complete-data results are trusted' overreaches the partial restoration."
+    },
+    {
+      "id": "K29",
+      "priority": 10,
+      "reason": "Unanimous; an empirical check on demanding cells is not a proven bound."
+    },
+    {
+      "id": "K15",
+      "priority": 11,
+      "reason": "Unanimous; counterfactual workflow claim is speculation about an unrun process."
+    },
+    {
+      "id": "K33",
+      "priority": 12,
+      "reason": "Unanimous; speculates about why the field left questions open."
+    },
+    {
+      "id": "K22",
+      "priority": 13,
+      "reason": "'only when the fit estimates a scale' contradicted by the paper's own known-scale MI discussion."
+    },
+    {
+      "id": "K27",
+      "priority": 14,
+      "reason": "'therefore favors' reads deterministic, not an all-else-equal tendency."
+    },
+    {
+      "id": "K21",
+      "priority": 15,
+      "reason": "Recommendation conflates IC ranking correction with the nested-test correction."
+    },
+    {
+      "id": "K34",
+      "priority": 16,
+      "reason": "Named Satorra-Bentler statistic introduced without the citation a reader needs."
+    },
+    {
+      "id": "K36",
+      "priority": 17,
+      "reason": "'Only one information criterion has been proposed' too absolute and inconsistent with later text."
+    },
+    {
+      "id": "K02",
+      "priority": 18,
+      "reason": "'every misclassification' needs the design/congenial-cell qualifier given in results."
+    },
+    {
+      "id": "K28",
+      "priority": 19,
+      "reason": "'held across all sixty cells' conflicts with congenial-only qualifier; cell scope unclear."
+    }
+  ],
+  "add": [],
+  "drop_notes": "Dropped K12 (size-adjusted power support) and K26 (second term smaller) as lower-priority single-panelist items; included K28 over them given the concrete scope conflict with the congenial-only qualifier."
+}

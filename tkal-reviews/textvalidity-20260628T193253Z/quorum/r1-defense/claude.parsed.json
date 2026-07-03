@@ -1,0 +1,95 @@
+{
+  "defenses": [
+    {
+      "objection_id": "OBJ-01",
+      "disposition": "amend",
+      "response": "I reject the 'inaccuracy' characterization but concede the wording. The result is correct and unchanged: in the better-fit case the residual shortfall is information loss as measured through the corrected criteria and calibrated tests studied here (S1-P5; S5). What overreaches is the phrasing 'we show that no transformation of the observed data can recover it' (TV-05) and 'No transformation of the observed data manufactures the lost evidence back' (TV-07), which read as a general observed-data impossibility the paper does not prove. The paper itself says so OPENLY in limitation G4 (S6-P3): 'No argument here shows that no estimator built from the same observed data could do better.' Because that limitation is printed in the open, this is an intro/conclusion wording inconsistency to align, not a buried flaw or a misrepresented result -- so it is not an inaccuracy. I scope both sentences to the measured claim.",
+      "amendment": "TV-05 (S1-P5) -> 'The missing data have then destroyed part of the evidence in its favor, and the corrected criteria and calibrated tests studied here cannot recover it.' TV-07 (S6-P7) -> 'No correction studied here manufactures the lost evidence back.' Both now match G4; the absolute 'no transformation of the observed data' language is removed.",
+      "residual_risk": "none to the result; the wording now matches G4. The phrasing 'as measured through these corrections' is already used in S1-P5 and can be echoed for consistency."
+    },
+    {
+      "objection_id": "OBJ-09",
+      "disposition": "amend",
+      "response": "Same issue as OBJ-01, and I take the same disposition. The two sentences (TV-05, TV-07) state an absolute impossibility that outruns G4, so I amend them to the measured, procedure-scoped claim. I again reject 'inaccuracy': G4 is stated openly in the limitations, so there is no buried contradiction -- defending the sentences AS-IS would be the error, which is exactly why I am amending rather than rebutting. No result is conceded; only the absolute observed-data-impossibility wording.",
+      "amendment": "As in OBJ-01: TV-05 -> '... the corrected criteria and calibrated tests studied here cannot recover it'; TV-07 -> 'No correction studied here manufactures the lost evidence back.' This restricts the claim to the IC/likelihood procedures studied and removes the absolute 'no transformation of the observed data' language.",
+      "residual_risk": "none; the amended sentences and G4 now state the same thing."
+    },
+    {
+      "objection_id": "OBJ-02",
+      "disposition": "amend",
+      "response": "The objection lands on the wording of a practical-recommendation sentence; the result is correct and stays. The paper's own likelihood-ratio result (S1-P6b item 3; S6-P7b) is that the nested-comparison bias at the null is the missing information in the tested directions, tr(RIV_perp) in the complete-data metric, and that the difference of the two candidates' separate corrections ALWAYS overstates it; a calibrated reference distribution already carries the null mean. TV-10 as written lumps 'compare nested models' together with 'add the per-candidate trace correction,' which is imprecise for the nested case. I split the rule per your satisfy.",
+      "amendment": "Re-scope S6-P7b: 'For information-criterion ranking on imputed data, add each candidate's trace correction before reading off the result. For a nested comparison, prefer a calibrated likelihood-ratio test, whose reference distribution already carries the null mean, so no numerator correction is added; where no calibrated reference is available, the relevant bias is the missing information in the tested directions, tr(RIV_perp), not the difference of the candidates' separate trace corrections.'",
+      "residual_risk": "none; the recommendation now matches the paper's own LRT result and its double-counting caveat."
+    },
+    {
+      "objection_id": "OBJ-10",
+      "disposition": "amend",
+      "response": "Same substance as OBJ-02; I amend, and I reject the 'inaccuracy' label. The paper's LRT result is stated openly (S1-P6b item 3; S6-P7b's own next clause already carves out the calibrated-LRT double-counting case), so TV-10 is an imprecision in a practical-recommendation sentence, not a concealed contradiction of a result. Your minimal fix (remove 'or to compare nested models') works; I prefer the slightly fuller split-rule so the reader is told what TO do for a nested comparison.",
+      "amendment": "Either remove 'or to compare nested models' from the per-candidate-trace instruction, or adopt the OBJ-02 split-rule wording (IC ranking -> add each candidate's trace; nested comparison -> calibrated LRT, or tr(RIV_perp) if uncalibrated, never the difference of per-candidate traces).",
+      "residual_risk": "none."
+    },
+    {
+      "objection_id": "OBJ-03",
+      "disposition": "amend",
+      "response": "The results are correct; I calibrate the decision-level wording per sentence. TV-01 (abstract 'restores complete-data-equivalent selection'): the body proves bias removal in EXPECTATION (S1-P4) and measures selection 'substantially restored' (0.67->0.82 vs benchmark 0.90, S5-P17), so I match the body's 'substantially.' TV-02 (abstract 'more complex models'): the abstract already names the cause -- 'because their larger relative increase in variance' -- and the proved driver is per-candidate RIV/missing information; complexity implies higher RIV in the nested families studied but is not proved in general, so I keep the headline on missing information (the accuracy invariant the body already uses). TV-09 (S6-P7) and TV-12 (S6-P7) hold IN CONTEXT -- TV-09 is explicitly the equal-fit part of the three-part answer, immediately followed by the 'no' for the better-fit case, and TV-12 is immediately followed by the 'one exception ... the data no longer say' sentence -- so I inline their scope for standalone clarity rather than concede they are unsupported. TV-11 (S1-P4 'therefore favors') is strongly supported directionally (all uncorrected errors landed on the largest-RIV candidate) but reads deterministic, so I add 'all else equal.'",
+      "amendment": "TV-01 -> 'Adding one trace term per candidate removes the deviance bias in expectation and substantially restores complete-data model selection.' TV-02 -> 'Model selection on multiply imputed data is biased toward the candidates with more missing information -- in nested families, the more complex models -- because their larger relative increase in variance makes the fit look better than it is.' TV-09 -> 'When the competing models fit alike, corrected selection and calibrated tests behave as they would have with complete data.' TV-11 -> 'A model-comparison table built on imputed data therefore tends, all else equal, to favor the candidates with the most missing information.' TV-12 -> 'Then trust the result the way complete-data results are trusted, subject to the stated conditions and the close-comparison exception below.'",
+      "residual_risk": "none to results; these are scope-calibrating wording changes consistent with the body."
+    },
+    {
+      "objection_id": "OBJ-04",
+      "disposition": "amend",
+      "response": "I rebut the TV-03 portion and amend TV-04 and TV-08. TV-03 ('for such a model, every deviance and every information criterion ... is too optimistic') HOLDS as written: 'for such a model' already scopes it to a fit that estimates a scale/covariance under congenial MI, and the bias sits in the averaged log-likelihood that every such deviance and information criterion consumes, so each inherits the +1/2 tr(RIV) optimism; the small (A)+(C) term is zero under MCAR and does not change the direction. TV-04 ('removes the bias') should name the component: the trace correction removes the +1/2 tr(RIV) term, while the small design-imbalance (A)+(C) remains under MAR. TV-08 ('the bias exists only when the fit estimates a scale or covariance') should name WHICH bias: the deviance optimism (the +1/2 tr(RIV) entropy bias) is the estimated-scale one; the known-scale proper-MI -1/2 tr(RIV) is the distinct estimation-mismatch term, as the very same paragraph states. So the apparent contradiction is a naming gap, not a wrong claim.",
+      "amendment": "TV-03: keep as written (scoped by 'for such a model'). TV-04 (S1-P6b) -> 'Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the trace component of the bias and substantially restores the ranking that complete data would have given.' TV-08 (S6-P1) -> 'The deviance optimism that inflates the criteria exists only when the fit estimates a scale or covariance.'",
+      "residual_risk": "none; naming the object removes the apparent universality and the apparent contradiction with the known-scale term."
+    },
+    {
+      "objection_id": "OBJ-05",
+      "disposition": "amend",
+      "response": "Conceded as wording: 'bounds' implies a derived inequality, and the engine-sensitivity study is an empirical agreement check, not a proof. What is established (S5-P22) is that on the most demanding studied cells the sample tr(RIV) matches the observed-data value within 2-3% and selection agrees within 0.011 on the recovery gap, with the explicit caveat that a fully Bayesian sampler remains the conservative choice when missing information is large. I replace the verb and keep the caveat.",
+      "amendment": "S5-P22 -> 'The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which indicates the cost of not running data augmentation is small on these designs.' (It does not bound the cost in general; the conservative-choice caveat is retained.)",
+      "residual_risk": "none."
+    },
+    {
+      "objection_id": "OBJ-11",
+      "disposition": "amend",
+      "response": "Same as OBJ-05. 'Bounds' overstates an empirical agreement measurement; I replace it with an empirically appropriate verb and keep the conservative-sampler caveat. No result changes.",
+      "amendment": "Replace 'bounds' with 'indicates' (or 'empirically estimates'/'measures') in S5-P22, as in OBJ-05.",
+      "residual_risk": "none."
+    },
+    {
+      "objection_id": "OBJ-06",
+      "disposition": "amend",
+      "response": "I rebut the part that 'all sixty cells' is unsupported, and amend the qualifier alignment. The registered DIRECTIONAL prediction (uncorrected MI-AIC's errors concentrate on the largest-missing-information candidate) is pre-registered (todo/005 H2/H5) and held across all sixty cells -- so TV-15's 'held across all sixty cells' for the directional prediction is accurate. The genuine issue is precision: TV-14's intro sentence drops the 'congenial' qualifier that the results section (S5-P17) carries for the strongest 'all errors land on the saturated candidate' statement. I align the intro to the results' scope and keep the two claims distinct.",
+      "amendment": "TV-14 (S1-P4) -> 'In our pre-registered congenial cells, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV.' TV-15 (S5-P17): keep 'the registered directional prediction ... held across all sixty cells,' and ensure the preceding sentence's 'all errors land on the saturated candidate' is explicitly the congenial-cell pattern, so the directional prediction (all 60) and the all-errors pattern (congenial) are not conflated.",
+      "residual_risk": "The exact cell-scope of the 100%-on-saturated pattern should be set to match the pre-registered results table; I am aligning the wording, not changing any result."
+    },
+    {
+      "objection_id": "OBJ-13",
+      "disposition": "amend",
+      "response": "Same substance as OBJ-06; I amend the qualifier and reject the 'contradiction' framing. The results section already states the congenial-cell scope openly (S5-P17), so the intro just needs to inherit it; the directional prediction itself held across all sixty cells. No result changes.",
+      "amendment": "As in OBJ-06: add the 'congenial' scope to TV-14, and in S5-P17 distinguish the directional prediction (all sixty cells) from the all-errors-on-saturated pattern (congenial cells).",
+      "residual_risk": "none beyond matching the wording to the pre-registered results table."
+    },
+    {
+      "objection_id": "OBJ-07",
+      "disposition": "amend",
+      "response": "The observed facts stay; I recast the two inferences as interpretation. TV-16: the firm, reported fact is that eight of nine BLIND cross-family re-derivations initially produced the opposite sign via a silently substituted true-model conditioning (S3-P6); 'a single-family workflow would likely have shipped one sign' is an inference from that rate, not a controlled comparison, so I frame it as such. TV-17: the paper documents that the field's accounts call MI model selection open/thin (S1-P2); 'are open because the second and third levels had not been posed' assigns a single cause, so I recast it as the paper's reframing rather than a flat historical claim.",
+      "amendment": "TV-16 (S3-P6) -> 'In our blind cross-family check, eight of nine re-derivations initially took the opposite sign, illustrating a sign fork that a less diverse, single-family check could have missed.' TV-17 (S1-P3) -> 'Posing the second and third levels reframes these open questions, which had been posed only at the first level.'",
+      "residual_risk": "none; both now report evidence plus interpretation rather than asserting a counterfactual or a historical cause as fact."
+    },
+    {
+      "objection_id": "OBJ-08",
+      "disposition": "amend",
+      "response": "I narrow the literature claim and supply the pointers; no result is at stake. TV-18 ('only one information criterion has been proposed for multiply imputed data'): the sentence already cites Consentino-Claeskens (2010); I scope it to the averaged-criterion-for-MI class so it no longer reads in tension with the adjacent routes the paper itself names in S1-P6 -- the Claeskens-Consentino (2008) missing-covariate criteria (a different, Takeuchi-type discrepancy) and the Hens et al. (2006) reweighting route (which 'explicitly leaves an imputation-based criterion open'). TV-19 (Satorra-Bentler): the scaled-and-shifted correction literature is already in the corpus and cited in the derivations section; I add the citation at the S5 mention. TV-20 ('developed separately'): there is no published companion to cite yet, so rather than imply an uncited reference I reword to explicit future/ongoing work.",
+      "amendment": "TV-18 (S1-P2) -> 'Only one information criterion has been proposed specifically for averaging over multiply imputed data [@consentinoclaeskensOrderSelectionTests2010]' (the missing-covariate and reweighting routes named later target a different discrepancy or leave an imputation criterion open). TV-19 (S5-P6) -> add a citation at the sentence, e.g. '... a scaled-and-shifted statistic [@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006] referred to chi-square_1,' or a cross-reference to @sec-derivations. TV-20 (S6-P6) -> 'De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are left to future work,' (or cite a companion preprint if/when one exists).",
+      "residual_risk": "TV-20 depends on whether a companion preprint exists to cite; absent one, the future-work rewording removes the implied missing reference."
+    },
+    {
+      "objection_id": "OBJ-12",
+      "disposition": "amend",
+      "response": "Conceded as citation hygiene, consistent with OBJ-08. TV-19 names an external test and should carry its citation at the point of use; the corpus already contains it (cited in the derivations section). TV-20's 'developed separately' implies an uncited reference; since there is no published companion yet, I reword to explicit future work rather than fabricate a citation.",
+      "amendment": "TV-19 (S5-P6): add '[@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006]' (or a cross-reference to @sec-derivations) at the Satorra-Bentler sentence. TV-20 (S6-P6): reword to 'are left to future work' (or add a companion-preprint citation if one is available).",
+      "residual_risk": "none, once the citation is added and the 'developed separately' phrasing is changed to future work."
+    }
+  ]
+}

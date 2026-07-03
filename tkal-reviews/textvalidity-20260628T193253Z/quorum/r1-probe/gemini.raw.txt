@@ -1,0 +1,121 @@
+<think>
+**Evaluating Defense Claims**
+
+My current focus is on dissecting the advocate's justifications for flagged sentences, meticulously cross-referencing their arguments against the established rubric. I'm particularly scrutinizing claims of internal consistency and support, identifying where wording is absolute yet context suggests limitation, or where specific methods are recommended for purposes they explicitly contradict. My analysis is leading to distinct objections regarding absolute claims versus empirical findings, citations, and the precise scope of presented results.
+
+```json
+[
+  {
+    "sentence_id": "TV-05",
+    "rubric_violation": "internal_consistency",
+    "severity": "blocking",
+    "original_claim": "The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it.",
+    "advocate_defense_summary": "Advocate argues this matches G4, stating the measured object is the shortfall. However, the sentence text directly contradicts G4's limitation by claiming absolute impossibility.",
+    "is_inaccuracy": true,
+    "what_satisfies": "Re-scope TV-05 and TV-07 to match G4 by limiting the impossibility claim to the shortfall as measured through corrections, not all data transformations."
+  },
+  {
+    "sentence_id": "TV-07",
+    "rubric_violation": "internal_consistency",
+    "severity": "blocking",
+    "original_claim": "No transformation of the observed data manufactures the lost evidence back.",
+    "advocate_defense_summary": "Similar to TV-05, this sentence asserts absolute impossibility, contradicting the nuanced limitation in G4.",
+    "is_inaccuracy": true,
+    "what_satisfies": "Re-scope TV-05 and TV-07 to match G4 by limiting the impossibility claim to the shortfall as measured through corrections, not all data transformations."
+  },
+  {
+    "sentence_id": "TV-10",
+    "rubric_violation": "internal_consistency",
+    "severity": "blocking",
+    "original_claim": "When the aim is to rank models or to compare nested models on imputed data... add the per-candidate trace correction before reading off the result.",
+    "advocate_defense_summary": "The text recommends per-candidate trace corrections for comparing nested models, but the paper's derivation shows this overstates the bias for LRT.",
+    "is_inaccuracy": true,
+    "what_satisfies": "Remove 'or to compare nested models' from the sentence advising per-candidate trace corrections, or explicitly clarify it separates IC ranking from nested LRT."
+  },
+  {
+    "sentence_id": "TV-13",
+    "rubric_violation": "claim_support",
+    "severity": "major",
+    "original_claim": "...which bounds the cost of not running data augmentation.",
+    "advocate_defense_summary": "The advocate describes this robustness as empirical and scoped to designs studied, but 'bounds' implies a derived mathematical limit, not an empirical check.",
+    "is_inaccuracy": false,
+    "what_satisfies": "Change 'bounds' to 'empirically estimates' or 'measures'."
+  },
+  {
+    "sentence_id": "TV-20",
+    "rubric_violation": "citation_support",
+    "severity": "blocking",
+    "original_claim": "...are developed separately.",
+    "advocate_defense_summary": "The claim points to sequel work without providing any citation or cross-reference, violating the citation support requirement.",
+    "is_inaccuracy": true,
+    "what_satisfies": "Provide a citation or pre-print reference for the companion work, or rephrase to remove the pointer entirely."
+  },
+  {
+    "sentence_id": "TV-14",
+    "rubric_violation": "internal_consistency",
+    "severity": "major",
+    "original_claim": "every misclassification... chose the candidate with the largest RIV",
+    "advocate_defense_summary": "The sentence claims 'every misclassification' made a specific choice, but this only strictly held for 'congenial cells', omitting this crucial qualifier.",
+    "is_inaccuracy": true,
+    "what_satisfies": "Restore the 'congenial' qualifier to the introduction statement and clarify the results from the 60-cell sweep."
+  },
+  {
+    "sentence_id": "TV-15",
+    "rubric_violation": "internal_consistency",
+    "severity": "major",
+    "original_claim": "held across 'all sixty cells'",
+    "advocate_defense_summary": "This claim states the directional prediction held across all cells, but reports indicate uncongenial cells had overshoot, contradicting the unqualified statement.",
+    "is_inaccuracy": true,
+    "what_satisfies": "Restore the 'congenial' qualifier to the introduction statement and clarify the results from the 60-cell sweep."
+  }
+]
+```
+
+ 
+</think>
+
+{
+  "objections": [
+    {
+      "criterion": "internal_consistency",
+      "target": "TV-05 and TV-07",
+      "claim": "The sentences assert an absolute impossibility ('no transformation of the observed data can recover it' / 'No transformation of the observed data manufactures the lost evidence back') which directly contradicts the G4 limitation ('No argument here shows that no estimator built from the same observed data could do better'). Defending the text AS-IS while conceding the paper's explicit limitation is a buried contradiction.",
+      "severity": "blocking",
+      "what_would_satisfy": "Amend TV-05 and TV-07 to explicitly restrict the claim to Information Criteria / likelihood methods (e.g., 'as measured through these corrections'), removing the absolute 'no transformation of the observed data' language.",
+      "is_inaccuracy": true
+    },
+    {
+      "criterion": "internal_consistency",
+      "target": "TV-10",
+      "claim": "The instruction to 'add the per-candidate trace correction' when the aim is to 'compare nested models' directly contradicts the paper's own LRT result (S1-P6b), which establishes that the difference of per-candidate corrections ALWAYS OVERSTATES the nested-comparison bias (tr(RIV_perp)). Advising the per-candidate trace for nested models conflates IC ranking with nested testing.",
+      "severity": "blocking",
+      "what_would_satisfy": "Remove 'or to compare nested models' from the instruction advocating the per-candidate trace correction, making it clear that nested comparisons require the perpendicular reference distribution correction.",
+      "is_inaccuracy": true
+    },
+    {
+      "criterion": "claim_support",
+      "target": "TV-13",
+      "claim": "The word 'bounds' implies a formalized or derived mathematical limit, but the advocate admits the check is merely an empirical agreement measurement on selected cells. An empirical observation does not 'bound' the theoretical cost.",
+      "severity": "major",
+      "what_would_satisfy": "Replace 'bounds' with an empirically appropriate term such as 'empirically estimates', 'assesses', or 'measures'.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "citation_support",
+      "target": "TV-19 and TV-20",
+      "claim": "TV-20 points to methods 'developed separately' without providing any citation or cross-reference. TV-19 names an external test ('Satorra-Bentler arm') without a citation upon introduction. This explicitly fails the citation_support bar.",
+      "severity": "blocking",
+      "what_would_satisfy": "Add a pre-print, working paper, or explicit cross-reference citation for the work 'developed separately', and add the appropriate literature citation at the sentence for Satorra-Bentler in S5.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "internal_consistency",
+      "target": "TV-14 and TV-15",
+      "claim": "TV-14 asserts unqualifiedly in the abstract/intro that 'every misclassification... chose the candidate with the largest RIV', and TV-15 claims the directional prediction held across 'all sixty cells'. Both omit the critical 'congenial cell' limitation established in the results section, contradicting the known uncongenial overshoot.",
+      "severity": "major",
+      "what_would_satisfy": "Add the modifier 'In congenial simulations' to TV-14, and accurately scope TV-15 to distinguish between the congenial subset and the full sixty cells.",
+      "is_inaccuracy": false
+    }
+  ],
+  "stance": "objecting"
+}

@@ -1,0 +1,32 @@
+{
+  "date": "2026-06-28",
+  "study": "textval-1b-cite",
+  "title": "Text-validity 1b — citation support (does each citation support its claim?)",
+  "kind": "delphi",
+  "mode": "pool",
+  "panel": [
+    "claude",
+    "openai",
+    "gemini"
+  ],
+  "models": {
+    "claude": "claude-opus-4-8",
+    "openai": "gpt-5.5-pro-2026-04-23",
+    "gemini": "google/gemini-3.1-pro"
+  },
+  "routes": {
+    "gemini": "deepinfra"
+  },
+  "params": {},
+  "anon_panel_to_letter": {
+    "claude": "C",
+    "openai": "A",
+    "gemini": "B"
+  },
+  "anon_seed": 20260628,
+  "max_rounds": 4,
+  "open_slots": 20,
+  "merge_threshold": 0.78,
+  "fixed_items": [],
+  "arbiter": "gemini"
+}

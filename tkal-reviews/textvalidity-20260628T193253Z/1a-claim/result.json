@@ -1,0 +1,431 @@
+{
+  "date": "2026-06-28",
+  "study": "textval-1a-claim",
+  "title": "Text-validity 1a — claim support (does the prose earn each claim?)",
+  "kind": "delphi",
+  "mode": "pool",
+  "stable": false,
+  "converged_round": null,
+  "rounds": [
+    {
+      "round": 1,
+      "kind": "nominate",
+      "pool_size": 36,
+      "slate": [
+        "K05",
+        "K17",
+        "K01",
+        "K04",
+        "K15",
+        "K18",
+        "K33",
+        "K11",
+        "K21",
+        "K22",
+        "K23",
+        "K24",
+        "K34",
+        "K02",
+        "K12",
+        "K25",
+        "K26",
+        "K27",
+        "K28",
+        "K29"
+      ],
+      "stable": false,
+      "stability_reason": "nomination round (no prior to compare)"
+    },
+    {
+      "round": 2,
+      "kind": "iterate",
+      "pool_size": 36,
+      "slate": [
+        "K05",
+        "K01",
+        "K17",
+        "K04",
+        "K11",
+        "K18",
+        "K24",
+        "K25",
+        "K15",
+        "K23",
+        "K33",
+        "K29",
+        "K21",
+        "K22",
+        "K27",
+        "K34",
+        "K28",
+        "K36",
+        "K02",
+        "K12"
+      ],
+      "stable": false,
+      "stability_reason": "votes moved: claude, gemini, openai; membership changed"
+    },
+    {
+      "round": 3,
+      "kind": "iterate",
+      "pool_size": 36,
+      "slate": [
+        "K01",
+        "K05",
+        "K17",
+        "K24",
+        "K04",
+        "K25",
+        "K11",
+        "K23",
+        "K18",
+        "K29",
+        "K27",
+        "K21",
+        "K15",
+        "K22",
+        "K33",
+        "K34",
+        "K36",
+        "K28",
+        "K02",
+        "K35"
+      ],
+      "stable": false,
+      "stability_reason": "votes moved: claude, gemini, openai; membership changed"
+    },
+    {
+      "round": 4,
+      "kind": "iterate",
+      "pool_size": 36,
+      "slate": [
+        "K01",
+        "K05",
+        "K04",
+        "K11",
+        "K17",
+        "K24",
+        "K25",
+        "K22",
+        "K23",
+        "K21",
+        "K27",
+        "K18",
+        "K29",
+        "K28",
+        "K15",
+        "K36",
+        "K02",
+        "K34",
+        "K33",
+        "K35"
+      ],
+      "stable": false,
+      "stability_reason": "votes moved: claude, openai"
+    }
+  ],
+  "final_counts": {
+    "K17": 3,
+    "K01": 3,
+    "K36": 3,
+    "K11": 3,
+    "K22": 3,
+    "K33": 3,
+    "K21": 3,
+    "K02": 3,
+    "K35": 3,
+    "K15": 3,
+    "K05": 3,
+    "K24": 3,
+    "K23": 3,
+    "K18": 3,
+    "K25": 3,
+    "K34": 3,
+    "K29": 3,
+    "K27": 3,
+    "K04": 3,
+    "K28": 3
+  },
+  "item_source": {
+    "K01": "consensus",
+    "K05": "consensus",
+    "K04": "consensus",
+    "K11": "consensus",
+    "K17": "consensus",
+    "K24": "consensus",
+    "K25": "consensus",
+    "K22": "consensus",
+    "K23": "consensus",
+    "K21": "consensus",
+    "K27": "consensus",
+    "K18": "consensus",
+    "K29": "consensus",
+    "K28": "consensus",
+    "K15": "consensus",
+    "K36": "consensus",
+    "K02": "consensus",
+    "K34": "consensus",
+    "K33": "consensus",
+    "K35": "consensus"
+  },
+  "indexing_order": [
+    "K01",
+    "K25",
+    "K24",
+    "K11",
+    "K05",
+    "K04",
+    "K17",
+    "K22",
+    "K23",
+    "K21",
+    "K27",
+    "K18",
+    "K29",
+    "K02",
+    "K28",
+    "K15",
+    "K33",
+    "K36",
+    "K34",
+    "K35"
+  ],
+  "fixed_items": [],
+  "slate": [
+    {
+      "rank": 1,
+      "id": "K01",
+      "by": "ABSTRACT",
+      "title": "[ABSTRACT] \"Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection.\" — trace correction overstates decisions",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 2,
+      "id": "K25",
+      "by": "ABSTRACT",
+      "title": "[ABSTRACT] \"Model selection on multiply imputed data is biased toward more complex models, because their larger relative increase in variance makes the fit look better than it is.\" — model-selection scope too broad",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 3,
+      "id": "K24",
+      "by": "S1-P4",
+      "title": "[S1-P4] \"The practical consequence is that, for such a model, every deviance and every information criterion computed from multiply imputed data is too optimistic.\" — every-criterion sign overclaim",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 4,
+      "id": "K11",
+      "by": "S1-P6b",
+      "title": "[S1-P6b] \"Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the bias and substantially restores the ranking that complete data would have given.\" — trace-only removal overclaim",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 5,
+      "id": "K05",
+      "by": "S1-P5",
+      "title": "[S1-P5] \"The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it.\" — unearned impossibility claim",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 6,
+      "id": "K04",
+      "by": "S1-P5",
+      "title": "[S1-P5] \"Correction then restores complete-data behavior entirely.\" — entirely too strong",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 7,
+      "id": "K17",
+      "by": "S6-P7",
+      "title": "[S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\" — restates disclaimed impossibility",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 8,
+      "id": "K22",
+      "by": "S6-P1",
+      "title": "[S6-P1] \"The bias exists only when the fit estimates a scale or covariance.\" — contradicted by known-scale MI",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 9,
+      "id": "K23",
+      "by": "S6-P7",
+      "title": "[S6-P7] \"Corrected selection and calibrated tests behave as they would have with complete data.\" — decision equivalence too broad",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 10,
+      "id": "K21",
+      "by": "S6-P7b",
+      "title": "[S6-P7b] \"When the aim is to rank models or to compare nested models on imputed data, and no calibrated reference distribution already absorbs the bias, add the per-candidate trace correction before reading off the result.\" — nested-test correction conflation",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 11,
+      "id": "K27",
+      "by": "S1-P4",
+      "title": "[S1-P4] \"A model-comparison table built on imputed data therefore favors the candidates with the most missing information.\" — deterministic ranking overclaim",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 12,
+      "id": "K18",
+      "by": "S6-P7",
+      "title": "[S6-P7] \"Then trust the result the way complete-data results are trusted.\" — applied trust too broad",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 13,
+      "id": "K29",
+      "by": "S5-P22",
+      "title": "[S5-P22] \"The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which bounds the cost of not running data augmentation.\" — empirical check not a bound",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 14,
+      "id": "K02",
+      "by": "S1-P4",
+      "title": "[S1-P4] \"In our pre-registered study, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV.\"",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 15,
+      "id": "K28",
+      "by": "S5-P17",
+      "title": "[S5-P17] \"This is a registered directional prediction, and it held across all sixty cells.\" — cell scope unclear",
+      "categories": [
+        "unsupported-as-written"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 16,
+      "id": "K15",
+      "by": "S3-P6",
+      "title": "[S3-P6] \"A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice.\" — counterfactual workflow claim",
+      "categories": [
+        "speculation"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 17,
+      "id": "K33",
+      "by": "S1-P3",
+      "title": "[S1-P3] \"The open questions above are open because the second and third levels had not been posed.\" — speculates on field history",
+      "categories": [
+        "speculation"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 18,
+      "id": "K36",
+      "by": "S1-P2",
+      "title": "[S1-P2] \"Only one information criterion has been proposed for multiply imputed data.\" — ignores other cited criteria",
+      "categories": [
+        "overclaim"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 19,
+      "id": "K34",
+      "by": "S5-P6",
+      "title": "[S5-P6] \"By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic referred to $\\chi^2_1$.\" — missing test citation",
+      "categories": [
+        "missing-citation"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    },
+    {
+      "rank": 20,
+      "id": "K35",
+      "by": "S6-P6",
+      "title": "[S6-P6] \"De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are developed separately.\" — points to missing reference",
+      "categories": [
+        "missing-citation"
+      ],
+      "incl": 3,
+      "source": "consensus"
+    }
+  ],
+  "anon_panel_to_letter": {
+    "claude": "C",
+    "openai": "A",
+    "gemini": "B"
+  },
+  "models": {
+    "claude": "claude-opus-4-8",
+    "openai": "gpt-5.5-pro-2026-04-23",
+    "gemini": "google/gemini-3.1-pro"
+  },
+  "anon_seed": 20260628,
+  "usage": {
+    "input": 98453,
+    "output": 51863
+  }
+}

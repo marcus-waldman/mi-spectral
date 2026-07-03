@@ -1,0 +1,47 @@
+You are the designated FINAL ARBITER of this Delphi: it did not fully stabilize within the round cap, so you rule ONLY on the residual contested items. The consensus items already stand; choose which contested items fill the remaining open slots, under the constraints.
+
+There are no fixed (pre-included) items.
+
+CONSENSUS ITEMS THAT STAND (incl=3, already in the set) -- 20 of the 20 open slots used:
+  K01 | ABSTRACT -- [ABSTRACT] "Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection." — trace correction overstates decisions | category: overclaim
+  K05 | S1-P5 -- [S1-P5] "The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it." — unearned impossibility claim | category: overclaim
+  K04 | S1-P5 -- [S1-P5] "Correction then restores complete-data behavior entirely." — entirely too strong | category: overclaim
+  K11 | S1-P6b -- [S1-P6b] "Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the bias and substantially restores the ranking that complete data would have given." — trace-only removal overclaim | category: overclaim
+  K17 | S6-P7 -- [S6-P7] "No transformation of the observed data manufactures the lost evidence back." — restates disclaimed impossibility | category: overclaim
+  K24 | S1-P4 -- [S1-P4] "The practical consequence is that, for such a model, every deviance and every information criterion computed from multiply imputed data is too optimistic." — every-criterion sign overclaim | category: overclaim
+  K25 | ABSTRACT -- [ABSTRACT] "Model selection on multiply imputed data is biased toward more complex models, because their larger relative increase in variance makes the fit look better than it is." — model-selection scope too broad | category: overclaim
+  K22 | S6-P1 -- [S6-P1] "The bias exists only when the fit estimates a scale or covariance." — contradicted by known-scale MI | category: overclaim
+  K23 | S6-P7 -- [S6-P7] "Corrected selection and calibrated tests behave as they would have with complete data." — decision equivalence too broad | category: overclaim
+  K21 | S6-P7b -- [S6-P7b] "When the aim is to rank models or to compare nested models on imputed data, and no calibrated reference distribution already absorbs the bias, add the per-candidate trace correction before reading off the result." — nested-test correction conflation | category: overclaim
+  K27 | S1-P4 -- [S1-P4] "A model-comparison table built on imputed data therefore favors the candidates with the most missing information." — deterministic ranking overclaim | category: overclaim
+  K18 | S6-P7 -- [S6-P7] "Then trust the result the way complete-data results are trusted." — applied trust too broad | category: overclaim
+  K29 | S5-P22 -- [S5-P22] "The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which bounds the cost of not running data augmentation." — empirical check not a bound | category: overclaim
+  K28 | S5-P17 -- [S5-P17] "This is a registered directional prediction, and it held across all sixty cells." — cell scope unclear | category: unsupported-as-written
+  K15 | S3-P6 -- [S3-P6] "A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice." — counterfactual workflow claim | category: speculation
+  K36 | S1-P2 -- [S1-P2] "Only one information criterion has been proposed for multiply imputed data." — ignores other cited criteria | category: overclaim
+  K02 | S1-P4 -- [S1-P4] "In our pre-registered study, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV." | category: overclaim
+  K34 | S5-P6 -- [S5-P6] "By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic referred to $\chi^2_1$." — missing test citation | category: missing-citation
+  K33 | S1-P3 -- [S1-P3] "The open questions above are open because the second and third levels had not been posed." — speculates on field history | category: speculation
+  K35 | S6-P6 -- [S6-P6] "De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are developed separately." — points to missing reference | category: missing-citation
+
+REMAINING OPEN SLOTS TO FILL: 0 (you may leave some empty if a smaller set is justified).
+
+RESIDUAL CONTESTED ITEMS -- full anonymized rationales:
+
+CATEGORIES the consensus set already covers: missing-citation, overclaim, speculation, unsupported-as-written
+Prioritize residual items that cover a category the consensus set is missing.
+
+- OFF-LIMITS: the theorem and the simulation results are correct and already validated; challenge only the WRITING'S fidelity to them, never the math, the proofs, or the results.
+- SCOPE: only the sections shown (abstract, §1, §1B, §2, §3, §5, §6). §4 Derivations is out of scope.
+- SEVERITY BAR: nominate a claim only if a careful peer reviewer would flag it as outrunning its support. Quality over volume; the final set may be small; do NOT pad to fill slots.
+- Every issue's "title" must quote the challenged text VERBATIM with its [paragraph-ID] prefix, so identical-sentence challenges from different panelists are recognized as one issue; "by" is the paragraph ID alone.
+- Distinguish: a claim missing a NEEDED citation is in scope here (category "missing-citation"); whether an EXISTING citation supports its claim is a different panel — do not raise that here.
+- @sec-/@eq-/@fig-/@prp-/@thm- tokens are internal cross-references, not citations.
+
+Return ONLY a single JSON object (no markdown fences, no prose outside it):
+{
+  "include": ["K05", "K11"],
+  "ranking": ["K01", "K03", "K05"],
+  "rationale": "<= 3 sentences on the ruling"
+}
+"include" = the residual contested K-ids you rule INTO the set (enough to fill the remaining open slots; fewer is allowed if a smaller set is justified). "ranking" orders ALL final items (the consensus items PLUS your includes) by priority.
