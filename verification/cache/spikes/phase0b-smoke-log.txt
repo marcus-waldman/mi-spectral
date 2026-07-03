@@ -1,0 +1,32 @@
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+
+Phase-0b brms-as-imputer spike  [n_fits=1, M=50, chains=2, iter=1000]
+  brms 2.23.0
+  backend=cmdstanr (cmdstan 2.37.0)
+
+[fit 1] compiling + sampling (first fit includes Stan compile)...
+Loading required namespace: rstan
+[fit 1] done in 107.8s (form=rescor, includes compile)
+[fit 1] 107.8s  Ymi=126  sample tr(RIV)=6.722 (an 5.094)  T=+0.813  (T-FITTED)/tr=-1.466
+
+== Phase-0b results ==
+
+Backend: cmdstanr ; imputer form: rescor
+First fit (compile+sample): 107.8s
+Per-fit sampling (cached compile), median of 0: 107.8s
+Sample tr(RIV) brms (rep1): 6.7222  vs analytic 5.0937
+
+DEVIANCE-BIAS BRANCH: (T_brms - FITTED)/tr(RIV) over 1 fit(s) = -1.466
+  compare 0a: conjugate/norm Jeffreys-IW ~ -0.75 ; Amelia/gauss-posterior ~ 0
+  => brms (weakly-informative prior) lands on the EXACT-DA branch (prior-general full-Bayes effect)
+
+Gate     Check                                          Pass
+-------  ---------------------------------------------  ----
+G0b-1    fits + returns 50 completions                  PASS
+G0b-2    sample tr(RIV) within 50% of analytic (n=1)   PASS
+
+Runtime gate (per-fit median 107.8s): NON-NORMAL-ONLY or INFEASIBLE for large R (reserve for a focused Phase-3 illustration)
+  extrapolation: R=1000 single cell ~= 1797.1 min ; 60-cell sweep ~= 1797.1 hr
+Error: object 'trRIV_extra' not found
+Execution halted
