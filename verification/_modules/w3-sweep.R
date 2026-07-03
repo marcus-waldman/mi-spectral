@@ -48,13 +48,21 @@ run_one_w3 <- function(r, cell, mu0, Sigma_truth) {
     imps <- tryCatch(impute_mvn_amelia(mar$Y, M = cell$M, empri = empri_actual),
                      error = function(e) NULL)
     if (is.null(imps)) { return(list(error = "amelia")) }
-    for (k in W3_MODEL_NAMES) {
-      theta_k <- list(mu = theta_obs_list[[k]]$mu,
-                      Sigma = theta_obs_list[[k]]$Sigma)
-      barL[k] <- mean(sapply(imps, function(Z) {
-        return(loglik_mvn(theta_k, Z))
-      }))
-    }
+    barL_ok <- tryCatch({
+      for (k in W3_MODEL_NAMES) {
+        theta_k <- list(mu = theta_obs_list[[k]]$mu,
+                        Sigma = theta_obs_list[[k]]$Sigma)
+        barL[k] <- mean(sapply(imps, function(Z) {
+          return(loglik_mvn(theta_k, Z))
+        }))
+      }
+      TRUE
+    }, error = function(e) FALSE)
+    # A degenerate Amelia draw (e.g. a rank-deficient imputation at very small N) can
+    # produce an imputed Z whose dimension does not match theta_k; caught here the same
+    # way the upstream impute_mvn_amelia() failure is caught, so one bad rep does not
+    # crash the whole R-repetition cluster job.
+    if (!isTRUE(barL_ok)) { return(list(error = "amelia-loglik")) }
   }
   trRIV         <- numeric(4); names(trRIV)         <- W3_MODEL_NAMES
   sum_lambda_sq <- numeric(4); names(sum_lambda_sq) <- W3_MODEL_NAMES
@@ -100,12 +108,23 @@ run_one_w3 <- function(r, cell, mu0, Sigma_truth) {
   # See derivation.qmd Appendix C and todo/008.
   AIC_corrected <- -2 * barL    + 2 * W3_NPAR + trRIV_obs
   AIC_sb        <- chi2_SB      + 2 * W3_NPAR
+  # MI-BIC (todo/040 Phase 2): the +tr(RIV) correction transfers to BIC verbatim on the
+  # deviance numerator (-2*barL is shared with AIC; only the penalty differs). The penalty
+  # uses the COMPLETE-DATA n (cell$N), per the charter's 2026-07-01 "BIC APPROACH" decision --
+  # this sidesteps the MI effective-sample-size controversy rather than inventing an
+  # MI-specific effective n.
+  BIC_oracle    <- -2 * ell_com + W3_NPAR * log(cell$N)
+  BIC_uncorr    <- -2 * barL    + W3_NPAR * log(cell$N)
+  BIC_corrected <- -2 * barL    + W3_NPAR * log(cell$N) + trRIV_obs
   return(list(
     error = NA_character_,
     sel_oracle    = names(which.min(AIC_oracle)),
     sel_uncorr    = names(which.min(AIC_uncorr)),
     sel_corrected = names(which.min(AIC_corrected)),
     sel_sb        = names(which.min(AIC_sb)),
+    sel_bic_oracle    = names(which.min(BIC_oracle)),
+    sel_bic_uncorr    = names(which.min(BIC_uncorr)),
+    sel_bic_corrected = names(which.min(BIC_corrected)),
     trRIV = trRIV, trRIV_obs = trRIV_obs
   ))
 }
@@ -187,18 +206,27 @@ run_w3_sweep <- function(R_per_cell, cl, out_dir,
                 uncorrected = tab("sel_uncorr"),
                 corrected = tab("sel_corrected"),
                 SB = tab("sel_sb"))
+    rt_bic <- rbind(oracle = tab("sel_bic_oracle"),
+                     uncorrected = tab("sel_bic_uncorr"),
+                     corrected = tab("sel_bic_corrected"))
     miscl <- sapply(ok, `[[`, "sel_uncorr")
     miscl <- miscl[miscl != TRUE_MODEL]
     W3C <- if (length(miscl) > 0) mean(miscl == "MD") else NA_real_
     W3A <- rt["corrected", TRUE_MODEL] - rt["uncorrected", TRUE_MODEL]
     W3B <- rt["oracle", TRUE_MODEL] - rt["corrected", TRUE_MODEL]
+    miscl_bic <- sapply(ok, `[[`, "sel_bic_uncorr")
+    miscl_bic <- miscl_bic[miscl_bic != TRUE_MODEL]
+    W3C_bic <- if (length(miscl_bic) > 0) mean(miscl_bic == "MD") else NA_real_
+    W3A_bic <- rt_bic["corrected", TRUE_MODEL] - rt_bic["uncorrected", TRUE_MODEL]
+    W3B_bic <- rt_bic["oracle", TRUE_MODEL] - rt_bic["corrected", TRUE_MODEL]
     saveRDS(list(cell = cell, R_per_cell = R_per_cell, elapsed_sec = elapsed,
-                 results = results, rates_table = rt),
+                 results = results, rates_table = rt, rates_table_bic = rt_bic),
             file = file.path(out_dir, sprintf("%s.rds", cell$id)))
-    cat(sprintf("%5.1fs ok=%4d err=%2d  W3A=%+.3f W3C=%.3f  pi[corr/orc]=%.3f/%.3f\n",
+    cat(sprintf("%5.1fs ok=%4d err=%2d  W3A=%+.3f W3C=%.3f  pi[corr/orc]=%.3f/%.3f  BIC W3A=%+.3f W3C=%.3f\n",
                 elapsed, length(ok), n_err, W3A, W3C,
                 rt["corrected", TRUE_MODEL],
-                rt["oracle", TRUE_MODEL]))
+                rt["oracle", TRUE_MODEL],
+                W3A_bic, W3C_bic))
     rows[[i]] <- data.frame(
       cell_id = cell$id, pattern = cell$pattern, mech = cell$mech,
       N = cell$N, engine = cell$engine, M = cell$M,
@@ -212,6 +240,13 @@ run_w3_sweep <- function(R_per_cell, cl, out_dir,
       W3B_oracle_minus_corr = W3B,
       W3C_high_RIV_frac = W3C,
       W3C_n_miscl = length(miscl),
+      pi_bic_oracle = rt_bic["oracle", TRUE_MODEL],
+      pi_bic_uncorrected = rt_bic["uncorrected", TRUE_MODEL],
+      pi_bic_corrected = rt_bic["corrected", TRUE_MODEL],
+      W3A_bic_corr_minus_uncorr = W3A_bic,
+      W3B_bic_oracle_minus_corr = W3B_bic,
+      W3C_bic_high_RIV_frac = W3C_bic,
+      W3C_bic_n_miscl = length(miscl_bic),
       stringsAsFactors = FALSE
     )
   }

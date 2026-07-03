@@ -156,12 +156,146 @@ decision and requires Marcus's explicit call plus a `decisions.md` entry BEFORE 
   undermined; genuine posterior draws carry the derived correction D; recentred-DA offered as the
   constructive remedy). Draft only, pending Marcus's review before folding into the Phase-4
   point-by-point letter.
-- *(pending Phase 2)* MI-BIC block — amendment to record the complete-data-n penalty choice and
-  whether the phase2 cache is re-aggregated or a focused rerun is needed (depends on whether the
-  cell RDS stored raw per-repetition `ell_com/barL/npar/trRIV` or only selection labels — CHECK
-  before running).
+- **2026-07-02, Phase 2 MI-BIC — cache check + plan (before any code).** Inspected
+  `verification/cache/run_all-prod/phase2-w3/*.rds` directly (`str()` on `results[[1]]`/`[[2]]`
+  of a representative cell). Each per-repetition record stores only `error`, the four selection
+  labels (`sel_oracle/sel_uncorr/sel_corrected/sel_sb`), and the `trRIV`/`trRIV_obs` vectors —
+  **not** `barL`/`ell_com`. `AIC_uncorr`/`AIC_corrected` are computed inside `run_one_w3` but
+  discarded before the return, so the per-model deviance numerator is not recoverable from the
+  cache: knowing which model won under AIC's `2*npar` penalty does not determine which model
+  wins under BIC's `npar*log(n)` penalty, because the relative *sizes* of the `barL` gaps between
+  models are needed and are not stored. **Decision: a focused rerun is required, not a
+  re-aggregation.**
+  Penalty and correction (per the charter's 2026-07-01 "BIC APPROACH" decision): the
+  `+tr(RIV)` correction transfers to BIC **verbatim on the numerator** (`AIC` and `BIC` both use
+  `-2·barQ_∞` as the deviance numerator; only the penalty differs), so
+  `BIC_uncorr = -2*barL + npar*log(N)` and `BIC_corrected = -2*barL + npar*log(N) + trRIV_obs`,
+  reusing the exact same `trRIV_obs` already computed for AIC. `N` is the **complete-data** sample
+  size (`cell$N`), not an MI-specific effective n — this sidesteps the effective-sample-size
+  controversy per the charter decision and turns reviewer r3#1's objection into a scoping
+  sentence.
+  Cell list and compute plan: extend `run_one_w3` (in `verification/_modules/w3-sweep.R`, not a
+  frozen original) to compute the BIC selections **in the same pass** as AIC — the expensive part
+  (complete-data lavaan fits, FIML fits, Amelia imputation) is identical regardless of which
+  criterion is derived from `barL`, so computing both from one set of fits costs nothing extra
+  over computing AIC alone. Rerun the **same 60-cell grid** (2 patterns × 2 mechs × 3 N × 5
+  engine/M/cong slots) at the **same R=2000** used for the existing AIC production numbers, so the
+  BIC and AIC selection-rate tables are directly comparable cell-for-cell. Output goes to a **new**
+  `out_suffix` (`prod-bic`, not `prod`) so the existing `phase2-w3` cache — already the source of
+  cited W3 numbers in the landed manuscript (S5 tables, the IC ladder discussion) — is not
+  clobbered; since the code change is additive (new computations appended after the existing ones,
+  no change to RNG draws or data generation), the AIC-side outputs should reproduce bit-identically
+  under the same seeds, but a separate directory avoids any risk to already-cited results. A smoke
+  run (R=100, phase "2" only, `out_suffix=smoke-bic`) precedes the ~2.5–3h production rerun (the
+  original phase2-w3 run took 9212s ≈ 2.56h total elapsed across 60 cells on 20 cores) to catch
+  code errors cheaply. Aggregation: a focused summary (uncorrected-vs-corrected MI-BIC selection
+  rates, analogous to the existing W3A/W3C metrics) decides whether BIC selection is
+  "corrected-improves-over-uncorrected" in the same direction and magnitude as AIC — the basis for
+  earning or dropping the title's BIC claim (r3#1, D-19). Not yet run as of this amendment.
 
----
+- **2026-07-02, Phase 2 MI-BIC — RESULT (R=2000, 60 cells, `run_all-prod-bic/phase2-w3/`, 0
+  errors, 174.9 min elapsed).** The correction is real, correctly signed, and statistically
+  resolved, but its practical magnitude is much smaller for BIC than for AIC, because BIC's own
+  `npar*log(N)` penalty already resists most of the saturated-model pull before any correction is
+  applied — this is BIC's known consistency property, not an artifact.
+  - **Headline recovery rates** (true model MC, congenial+FIML cells, n=36): AIC
+    oracle=0.901/uncorrected=0.648/corrected=0.777 (correction closes about 57% of the oracle gap);
+    BIC oracle=1.000/uncorrected=0.983/corrected=0.990 (uncorrected BIC is already close to
+    ceiling, so the correction closes a much smaller absolute gap -- from 1.7 pp of error down to
+    1.0 pp).
+  - **Direction holds almost everywhere.** 55/60 cells show pi_bic_corrected >= pi_bic_uncorrected;
+    the 5 exceptions are all tiny (-0.003 to -0.001) and sit at the empri_frac=0.5
+    ("uncongenial") cells already at 0.998-1.000 recovery -- ceiling noise, not a reversal.
+  - **W3C analogue holds.** Where uncorrected BIC does misclassify, the error still concentrates
+    on the highest-RIV candidate (MD) in the same way AIC's does -- W3C_bic is about 1.000 in
+    nearly every cell. The partial exceptions are the monotone_MNAR_N200 cells (W3C_bic
+    0.571-0.974), where uncorrected BIC makes very few errors (5-39 out of 2000) and a nontrivial
+    share land on a different over-parameterized candidate -- a small-count boundary effect at the
+    point where BIC is already near-perfect, not a failure of the theorem's direction.
+  - **New, theory-consistent H3-style pattern not present for AIC.** The gap-to-oracle
+    (W3B_bic, median over MAR+cong/fiml cells) shrinks monotonically with N -- 0.00875 (N=200) ->
+    0.00425 (N=500) -> 0.00175 (N=1000) -- while AIC's analogous gap does not shrink (0.093 ->
+    0.073 -> 0.082, roughly flat/noisy). This is a corollary the theory predicts and this run
+    confirms: BIC's penalty grows with N (so it becomes consistent and swamps the O(1) trace
+    correction as N approaches infinity), while AIC's penalty is a fixed 2*npar (so its O(1)
+    correction never vanishes). The correction's own footprint (W3A_bic, uncorrected-to-corrected
+    gap) shrinks in parallel -- 0.0104 -> 0.0040 -> 0.0056 by N -- while AIC's stays flat
+    (about 0.125-0.134 across N).
+  - **Framing implication for the response letter / title.** This is not "BIC behaves exactly
+    like AIC" -- it is a different, and arguably more informative, story: the theory correctly
+    predicts *different* correction behavior for AIC (non-vanishing, O(1) forever) vs BIC
+    (vanishing as N grows, tracking BIC's own consistency), and both predictions are confirmed in
+    the same 60-cell grid. The correction earns its place in the BIC claim on direction,
+    residual-error concentration, and this falsifiable N-scaling prediction -- but the manuscript
+    should not claim a percentage-point improvement of AIC's size for BIC; it should state
+    candidly that BIC's own penalty already does most of the work, with the trace correction
+    closing the remainder in a way that shrinks (not disappears) as N grows.
+  - **Not yet decided:** whether this reframed BIC story is written into the title/body as-is, a
+    softened version, or (least likely given how consistently the direction holds) dropped. This
+    is Marcus's framing call, same as the DA-engine fork.
+  Cache: `verification/cache/run_all-prod-bic/phase2-w3/` (60 .rds + summary.csv); code:
+  `verification/_modules/w3-sweep.R` (BIC computation added in the same pass as AIC, no new
+  fitting cost). Smoke-tested first at R=100 (run_all-smoke-bic, 0 errors, consistent direction).
+
+- **2026-07-02, Phase 2 MI-BIC follow-up — free check + small-N probe plan (before running).**
+  Marcus asked for a design point where BIC is more ambiguous, since the 60-cell grid puts
+  uncorrected BIC near ceiling (98.3%) almost everywhere. Two candidate levers: (a) free --
+  check whether MB (equal npar to MC, both 10) is ever a live competitor in the already-collected
+  `prod-bic` cache, since BIC's and AIC's penalty terms are literally identical for that pair, so
+  any correction effect there would be fit-driven, not penalty-driven; (b) a rerun -- smaller N,
+  since BIC's discriminating power is `Δnpar·log(N)` against a roughly-N-invariant chi-square
+  deviance-noise scale, so small N is where BIC's own consistency hasn't kicked in yet.
+  **(a) result: null.** Read every per-repetition `sel_uncorr/sel_corrected/sel_bic_uncorr/
+  sel_bic_corrected` label across all 60 cells x R=2000 (120,000 reps total): MB was selected
+  **zero times**, under any of AIC/BIC x corrected/uncorrected. MB is not a live competitor in
+  this design at all (it must fit worse than MC by enough margin that no penalty scheme ever
+  prefers it) -- every misclassification in the grid lands on MD, confirming there is no
+  equal-penalty ambiguity to exploit here. This rules out lever (a) and motivates proceeding to
+  lever (b).
+  **(b) plan (Marcus approved, proceeding).** Add N=50 and N=100 to the existing
+  `non_monotone`/MAR/congenial slice only (not the full 60-cell grid): one `fiml` cell +
+  one `amelia` M=20 congenial cell per N, 4 new cells total. Implemented as a standalone probe
+  script (`verification/spikes/phase2-bic-smallN-probe.R`), reusing `run_one_w3` from
+  `w3-sweep.R` unchanged (it is already generic in `cell$N`) rather than editing the main
+  60-cell grid in `run_w3_sweep`. Smoke test first at R=100 to check `lavaan`/Amelia don't
+  degenerate at N=50 (untested regime for this pipeline); if stable, rerun at R=2000. Output to
+  its own cache dir (`verification/cache/smallN-bic-probe*/`), not mixed into `prod-bic`.
+
+- **2026-07-02, small-N BIC probe -- RESULT (R=2000, 4 cells, `smallN-bic-probe-prod/`).** One
+  degenerate Amelia draw at N=50 (a rank-deficient imputation whose downstream `loglik_mvn` call
+  had a dimension mismatch) crashed the first cluster run; fixed by wrapping that computation in
+  `tryCatch` the same way the upstream `impute_mvn_amelia()` call already is
+  (`verification/_modules/w3-sweep.R`), so a single bad repetition is skipped rather than halting
+  the whole R=2000 job. Rerun: 3999/4000 reps ok (1 caught error at N=50 Amelia), 0 crashes.
+  **This is the ambiguous BIC regime Marcus asked for, and it is genuinely different from the
+  main grid, not just a smaller version of it:**
+  | N | engine | pi_bic_uncorr | pi_bic_corr | pi_bic_oracle | W3A_bic | W3C_bic |
+  |---|---|---|---|---|---|---|
+  | 50  | fiml   | 0.745 | 0.777 | 0.929 | +0.032 | 0.624 |
+  | 50  | amelia | 0.751 | 0.774 | 0.929 | +0.024 | 0.550 |
+  | 100 | fiml   | 0.936 | 0.958 | 0.994 | +0.021 | 0.890 |
+  | 100 | amelia | 0.930 | 0.957 | 0.994 | +0.026 | 0.878 |
+  (main-grid N=200 congenial/FIML comparison point: pi_bic_uncorr ~0.978-0.983, W3A_bic ~0.011,
+  W3C_bic ~1.000.)
+  Two things move together as N drops from 200 to 50: (i) **the correction's absolute yield
+  grows** -- W3A_bic roughly triples (0.011 at N=200 to 0.024-0.032 at N=50), the mirror image of
+  the "shrinks with N" pattern documented in the main-grid result above, now confirmed from the
+  other end of the N axis; and (ii) **the W3C-analogue genuinely weakens** -- only 55-62% of
+  uncorrected BIC's (much more frequent, ~25% of reps) errors at N=50 land on the highest-RIV
+  candidate MD, down from ~100% at N>=200. This qualifies, rather than undercuts, the paper's
+  "errors concentrate on the highest-RIV model" claim: that concentration is itself something
+  that strengthens with N (other, non-maximal-RIV candidates are live competitors at small N),
+  not a fixed small-sample law. Both patterns are internally consistent with the same mechanism
+  documented in the main-grid result: BIC's own `npar*log(N)` penalty is what suppresses both the
+  overall error rate and its concentration on the highest-RIV model as N grows, so at small N,
+  before that penalty has taken hold, both the correction's role and the value of tracking the
+  general RIV geometry (not just the single highest-RIV candidate) are larger.
+  **Not yet decided:** whether/how this small-N finding enters the response letter or manuscript
+  (e.g. as a Discussion caveat scoping the "concentrates on highest-RIV" claim to N large enough
+  for BIC's penalty to dominate) -- reported to Marcus for the framing call.
+  Code: `verification/spikes/phase2-bic-smallN-probe.R` (new; reuses `run_one_w3` unchanged) +
+  the `amelia-loglik` error-catch fix in `verification/_modules/w3-sweep.R` (also active in the
+  main 60-cell grid going forward, though it never fired there at N>=200).
 
 ## 6. What trips the MVN-scope decision
 
@@ -263,3 +397,16 @@ completions (G0b-1 PASS; sample tr(RIV) within tolerance, G0b-2 PASS).
   posterior), with a **prior-dependent magnitude** (Jeffreys −0.75, brms weakly-informative −1.36);
   it is NOT a Jeffreys-improper-prior artifact. Only the bootstrap (Amelia) and the explicit
   MLE-centered Gaussian (the paper's Laplace construction) sit at ≈0.
+
+- **2026-07-03, open promotion debt (not yet done).** Marcus: results that end up cited in the
+  manuscript must eventually be folded into the canonical `run_all.R` pipeline, not left as
+  one-off scripts. Status as of the G8 landing: the main-grid BIC computation itself is already
+  safe (added directly inside `verification/_modules/w3-sweep.R`, which `run_all.R` phase 2
+  already sources -- it reproduces via the standard documented command with no extra work).
+  Still owed before compile-enablement: (1) the AIC-vs-BIC headline summary (the table quoted in
+  chat and in this file) currently exists only as a throwaway scratchpad script -- promote to a
+  committed script (e.g. `verification/_modules/w3-bic-summary.R` or folded into `aggregate.R`
+  phase 5) so `verdicts.md` carries a BIC verdict; (2) `verification/spikes/phase2-bic-smallN-probe.R`
+  is not sourced by `run_all.R` and not documented in CLAUDE.md's Commands section -- either wire
+  it in or add an explicit Commands entry; (3) no unit test in `00-test-primitives.R` covers the
+  BIC arithmetic or the new `amelia-loglik` error-catch path.
