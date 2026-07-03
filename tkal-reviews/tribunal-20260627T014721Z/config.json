@@ -1,0 +1,41 @@
+{
+  "kind": "tribunal",
+  "title": "S5 Simulation studies — does each figure earn its claim?",
+  "study": "s5-socratic",
+  "proposal": "proposal.md",
+  "background": "background.md",
+  "attack_surface": "attack_surface.md",
+  "criteria": [
+    "reproducible_numbers",
+    "claim_strength",
+    "mechanism_not_artifact",
+    "generic_not_lucky"
+  ],
+  "criterion_bar": {
+    "reproducible_numbers": "Every headline number quoted in S5 prose recomputes from its cited data artifact within the stated Monte Carlo error or standard error, and no figure's axis or scale misrepresents the underlying numbers. PASS (can_hit) only if no headline figure is contradicted by the inlined data; for RDS-backed numbers not inlined, judge internal consistency and flag any that cannot be checked even in principle. FAIL (cannot_hit) if any quoted number is inconsistent with its artifact or a plotted result distorts the data.",
+    "claim_strength": "Each qualitative claim ('confirms the theorem', 'reaches/indistinguishable from the oracle', 'calibrates', '100% land on saturated', 'robust to engine') is bounded by a quantitative threshold actually met in the data, AND every unmet pre-registered prediction is stated as a failure in the main text. PASS only if no verbal claim outruns its numbers and no failure is hidden. FAIL if a claim overreaches (e.g. a refined-after-the-fact target converts a registered-target miss into a 'confirmation'), or if any unmet prediction is omitted or downgraded to a total.",
+    "mechanism_not_artifact": "Each headline result is best explained by the asserted statistical mechanism rather than a plotting/scaling bug, a counting artifact, or a design that trivially forces the outcome. The 'W3C = 1.000 / 100% land on saturated' signature and the 52-sigma formula discrimination must each survive an artifact explanation. PASS only if the result would not arise equally from a generic/degenerate cause unrelated to the paper's specific contribution. FAIL if any headline is plausibly an artifact of candidate ordering, engineered separation, or scale.",
+    "generic_not_lucky": "No claim of formula or correction superiority rests on a cell where the competing quantities provably coincide, without flagging non-genericity and showing the off-equality cost from a comparison that actually differs. PASS only if Study 7's claim that the projected trace beats the naive difference is supported by data where the two can differ, or is explicitly scoped as not-demonstrated-here. FAIL if a structural-luck coincidence (naive == projected to 3.6e-15) is presented as evidence of general superiority."
+  },
+  "defender": "claude",
+  "examiners": [
+    "openai",
+    "gemini",
+    "claude"
+  ],
+  "routes": {
+    "gemini": "deepinfra"
+  },
+  "models": {
+    "gemini": "google/gemini-3.1-pro"
+  },
+  "params": {
+    "openai": {
+      "effort": "xhigh"
+    },
+    "gemini": {
+      "effort": "high"
+    }
+  },
+  "seed": 20260627
+}

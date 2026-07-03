@@ -1,0 +1,60 @@
+{
+  "challenges": [
+    {
+      "criterion": "reproducible_numbers",
+      "target": "Study 9 — Engine sensitivity (S5-P22)",
+      "claim": "The headline numbers \"2 to 3 percent\", \"no widening\", and \"within 0.011\" have no cited backing artifact and no inlined rows. Unlike the RDS/CSV-backed studies, Study 9 is untraceable as specified, so the reproducible_numbers bar cannot be hit for these claims.",
+      "severity": "blocking",
+      "what_would_satisfy": "Add the committed artifact path, checksum, schema, extraction code, and a summary table giving observed-data RIV traces, imputation-draw RIV traces, percent discrepancies, analytic/imputation recovery gaps, and SEs by cell; otherwise remove the numeric headline."
+    },
+    {
+      "criterion": "claim_strength",
+      "target": "Study 1 — W1 target refinement / theorem validation",
+      "claim": "The registered target was 0.5 tr(RIV) near 2.77, while the pooled estimate is 2.43 ± 0.26. The manuscript then treats a during-analysis refined band of 2.42–2.55 as confirming the completed theorem. Unless the MAR augmentation was fixed by an independently derived formula before inspecting the estimate, this converts a registered near-miss into a success, which the claim_strength bar forbids.",
+      "severity": "blocking",
+      "what_would_satisfy": "Produce the dated symbolic derivation/amendment showing the O(1) MAR term and all cell predictions were fixed independently of the observed estimates; otherwise rewrite as a registered-target miss with a post-hoc/theory-refined explanation rather than a preregistered confirmation."
+    },
+    {
+      "criterion": "mechanism_not_artifact",
+      "target": "Study 6 — W3C_high_RIV_frac = 1.000 / saturated-candidate signature",
+      "claim": "The \"100% land on saturated\" result is 1.000 in every cell, including uncongenial cells where the uncorrected rate exceeds the oracle and the correction overshoots. In a nested candidate set ordered by missing information, any monotone deviance bias would favor the saturated/highest-RIV candidate by construction. As a headline mechanism claim, the signature is therefore plausibly a candidate-ordering/counting artifact rather than evidence specific to the proposed correction.",
+      "severity": "blocking",
+      "what_would_satisfy": "Scope the 1.000 result as a descriptive destination count, not mechanism proof, or add controls where the highest-RIV candidate is not the saturated endpoint, candidate order/RIV order is perturbed, and the predicted destination changes accordingly; disclose the uncongenial 1.000 plus overshoot in the main text."
+    },
+    {
+      "criterion": "generic_not_lucky",
+      "target": "Study 7 — block-diagonal equality of naive and projected traces",
+      "claim": "In the ladder family, the projected trace and naive trace agree to 3.6e-15, so the formulas cannot be distinguished there. The reported 0.824 vs 0.904 selection-rate gap comes from a frozen-SB/naive-input comparison, not from a cell where the naive and projected trace formulas actually differ. Study 7 therefore cannot demonstrate projected-trace superiority unless explicitly scoped as a coincidence/equality case.",
+      "severity": "blocking",
+      "what_would_satisfy": "Add an off-equality Study 7 comparison holding the calibration map fixed while swapping projected vs naive trace inputs, with the traces numerically different and the resulting cost reported; or rewrite Study 7 to say formula superiority is not demonstrated in that ladder cell."
+    },
+    {
+      "criterion": "mechanism_not_artifact",
+      "target": "Study 4 — 52-standard-error formula discrimination",
+      "claim": "The 52-SE rejection of the naive formula is produced in an intentionally extreme design: one tested coordinate is 70–79% missing and the naive prediction is about 8.5 versus the projected prediction 2.64. This is valid as a stress-cell falsification, but as written it risks overclaiming general mechanism evidence from engineered separation.",
+      "severity": "major",
+      "what_would_satisfy": "State explicitly that Study 4 is an adversarial/stress design to separate formulas, not evidence about typical balanced-missingness magnitudes; add a missingness-balance sensitivity grid or another non-engineered cell showing the projected prediction still matches and the naive formula still fails when the formulas differ."
+    },
+    {
+      "criterion": "claim_strength",
+      "target": "Study 7 — \"statistically indistinguishable\" from oracle and weak-signal residual attribution",
+      "claim": "The main-cell rates 0.904/0.903 versus oracle 0.899 may be within MC error, but the manuscript also attributes the weak-cell ceiling, where oracle is 0.8195 and no arm exceeds 0.650, to information loss rather than calibration error. The inlined internals are MAIN-cell diagnostics, not a demonstrated weak-cell decomposition, so the causal attribution outruns the shown numbers.",
+      "severity": "major",
+      "what_would_satisfy": "Report paired SEs/CIs for oracle-arm differences and weak-cell diagnostics by error type, null/noncentral side, and underfit retention; or relabel the weak-cell explanation as a conjectural interpretation rather than a demonstrated calibration result."
+    },
+    {
+      "criterion": "claim_strength",
+      "target": "Pre-registered failures outside the congenial headline cells",
+      "claim": "The design says the 60-cell selection sweep and pass criteria were pre-registered, but the main headline reports only congenial recovery. The appendix shows uncongenial cells where corrected selection is about 0.979–0.981 against oracle about 0.898–0.9065, with oracle-minus-corrected negative. If those cells had any preregistered recovery or robustness target, this is an unmet prediction that must appear in the main text rather than be silently excluded.",
+      "severity": "major",
+      "what_would_satisfy": "Provide a preregistered grade matrix for every sweep family, including uncongenial/MNAR or other non-headline arms, marking each as success, expected negative control, or failure; add the overshoot result and its scope limitation to the main text if it was in scope."
+    },
+    {
+      "criterion": "reproducible_numbers",
+      "target": "RDS-backed Studies 1–5 and Study 7 internal shrinkage factors",
+      "claim": "Several headline quantities cannot be recomputed from the inlined appendix: Study 1's 2.43 ± 0.26, Study 3's 0.042/0.034, Study 4's 2.64/2.70 and 52-SE gap, and Study 5's SD sequences are only RDS-backed. In Study 7, the noncentral-shrinkage claim of about 0.57 and 0.40 is not mapped cleanly to the transcribed internals, which show duplicated/ambiguous ncratio labels and values including 1.0021 and 0.3617. This is an auditability gap even if the artifacts ultimately contain the numbers.",
+      "severity": "major",
+      "what_would_satisfy": "Publish canonical CSV extracts or deterministic extraction scripts with hashes, row filters, column names, SE formulas, and label mappings sufficient to recompute each headline number exactly from the cited artifacts."
+    }
+  ]
+}
