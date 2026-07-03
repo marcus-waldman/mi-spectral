@@ -50,6 +50,11 @@ _gsdata_/
 
 verification/cache/run_all-regen/
 
+# pyvis build byproduct (vendored vis-network/tom-select JS+CSS) dropped at repo root when
+# scripts/concept_map_pyvis.py runs; todo/030-concept-map.html actually loads its JS/CSS from
+# a CDN, so this folder is unused dead weight, not a dependency of the committed artifact.
+lib/
+
 # Canonical APA manuscript render (manuscript/mi-spectral-apa.qmd + .pdf are tracked);
 # ignore the LaTeX build intermediates.
 manuscript/mi-spectral-apa.tex
