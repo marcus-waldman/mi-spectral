@@ -1,0 +1,43 @@
+{
+ "session_id": "d680983c-5b45-49cd-99af-076df15a981e",
+ "first_timestamp": "2026-06-05T18:34:21.618Z",
+ "last_timestamp": "2026-06-06T01:09:55.981Z",
+ "n_raw_user_turns": 12,
+ "n_kept": 4,
+ "drops": {
+  "is_meta": 4,
+  "slash_command": 2,
+  "command_stdout": 1,
+  "trivial": 1
+ },
+ "turns": [
+  {
+   "uuid": "d1bd5b67-e810-42a8-911a-070797f67538",
+   "timestamp": "2026-06-05T18:34:35.506Z",
+   "text": "▎ Enter plan mode. We are drafting manuscript/mi-spectral.qmd from scratch this session.\n  ▎\n  ▎ Start by reading todo/031-drafting-session-handoff.md (the handoff — binding decisions, citation constraints, process), then todo/030-concept-map.md (the\n  ▎ argument map: central propositions C1–C5, premises, satellites, gaps, standing classes), then the section structure of manuscript/derivation.qmd (the canonical\n  ▎ mathematical source — the manuscript condenses it, never re-derives).\n  ▎\n  ▎ The manuscript is written by walking the argument DAG left to right: §1 Introduction (C5 positioning), §2 Background (B1–B11, each standard result restated in\n  ▎ its source's own words because a named later proposition uses it), §3 Setup and theorem (S1–S7 → C1, C2), §4 Likelihood-ratio application (C3, L2–L5), §5 IC\n  ▎ application (C4, I4–I7), §6 numerical studies, §7 Discussion (gaps G1–G6), §8 provenance.\n  ▎\n  ▎ Style is load-bearing: precision (every assertion checkable by a skeptical statistician), concision, trust-ordered (proved before Monte-Carlo-confirmed before\n  ▎ empirical; never let an empirical finding carry a theorem's tone). No house or figurative jargon. Every @citekey requires its literature/<citekey>.md read in\n  ▎ THIS session before first use — plan the reading into the drafting order. Note the deliberately pinned keys in the handoff\n  ▎ (woodburyMissingInformationPrinciple1972, Meng01121991, Tierney01031986) — cite them exactly as written.\n  ▎\n  ▎ Propose the plan: section-by-section outline with the map nodes each section states and the literature files it must re-read, plus your recommendation on\n  ▎ whether §6 stands alone or folds into §4–§5, and a target length.",
+   "n_words": 236,
+   "context_before": ""
+  },
+  {
+   "uuid": "eba3f0cf-0034-49b2-8aae-80eb4366f272",
+   "timestamp": "2026-06-05T19:49:17.714Z",
+   "text": "Can you render it as an html file?",
+   "n_words": 8,
+   "context_before": "fication:** clean Quarto render (0 warnings) → 9-agent adversarial map-conformance review (**0 blocking, 5 material** — Meng–Rubin/Chan–Meng attribution, known-scale collapse arms, r_⊥ notation, sweep-vs-ladder run distinction, power-arm anchoring — all fixed and re-confirmed by a 20-point pass) → `/derivation-audit` **PASS (0 BLOCKER / 0 WARN)**.\n\n**Housekeeping:** stale `literature/mi-spectral.bib` (dead `woodbury…1970` key) and the old draft's PDF deleted; the six background-corpus literature files, corrected BBT export, todo/030 map, and todo/003 updates committed alongside the manuscript."
+  },
+  {
+   "uuid": "e2579d8b-eecf-4e1c-81d0-b7d1a2350181",
+   "timestamp": "2026-06-06T00:47:27.461Z",
+   "text": "Are we up to date on commits?",
+   "n_words": 7,
+   "context_before": "No response requested."
+  },
+  {
+   "uuid": "e568f085-f5be-496a-8d13-dae4d513cca2",
+   "timestamp": "2026-06-06T01:09:55.981Z",
+   "text": "Yes, push it",
+   "n_words": 3,
+   "context_before": "Pushed — all 87 commits (`1b4ba7e..82c4bb0`) are now on `origin/main`, and local and remote are in sync. The preregistration commits (todo/027, todo/029 + Amendment 2, the frozen originals) and the manuscript draft are now publicly timestamped on GitHub."
+  }
+ ]
+}

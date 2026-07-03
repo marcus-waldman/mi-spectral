@@ -1,0 +1,17 @@
+{
+ "session_id": "a01c567f-546b-4537-a8e8-f1abe936e394",
+ "first_timestamp": "2026-06-06T23:02:26.643Z",
+ "last_timestamp": "2026-06-06T23:02:26.643Z",
+ "n_raw_user_turns": 1,
+ "n_kept": 1,
+ "drops": {},
+ "turns": [
+  {
+   "uuid": "1921a517-5f23-40e5-a254-5105177098e5",
+   "timestamp": "2026-06-06T23:02:26.643Z",
+   "text": "Migrate pdfs in zotero to google drive",
+   "n_words": 7,
+   "context_before": ""
+  }
+ ]
+}
