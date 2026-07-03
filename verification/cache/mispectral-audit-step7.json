@@ -1,0 +1,196 @@
+{
+  "target": "C:\\Users\\marcu\\git-repositories\\mi-spectral\\manuscript\\mi-spectral.qmd",
+  "repo": "C:\\Users\\marcu\\git-repositories\\mi-spectral",
+  "findings": [
+    {
+      "sev": "INFO",
+      "dim": "F",
+      "line": 34,
+      "issue": "@chanMultipleImprovementsMultiple2022 not in todo/003 lifecycle (foundational corpus, tracked in todo/001)",
+      "evidence": "author/year 'chan 2022' present in 001-literature-and-hooks.md",
+      "fix": "expected for the Phase-1 corpus; no action unless you want it in 003"
+    },
+    {
+      "sev": "INFO",
+      "dim": "F",
+      "line": 104,
+      "issue": "@mengMultipleImputationInferencesUncongenial1994a not in todo/003 lifecycle (foundational corpus, tracked in todo/001)",
+      "evidence": "author/year 'meng 1994' present in 001-literature-and-hooks.md",
+      "fix": "expected for the Phase-1 corpus; no action unless you want it in 003"
+    },
+    {
+      "sev": "INFO",
+      "dim": "F",
+      "line": 33,
+      "issue": "@mengPerformingLikelihoodRatio1992b not in todo/003 lifecycle (foundational corpus, tracked in todo/001)",
+      "evidence": "author/year 'meng 1992' present in 001-literature-and-hooks.md",
+      "fix": "expected for the Phase-1 corpus; no action unless you want it in 003"
+    },
+    {
+      "sev": "INFO",
+      "dim": "F",
+      "line": 29,
+      "issue": "@rubinMultipleImputationNonresponse1987 not in todo/003 lifecycle (foundational corpus, tracked in todo/001)",
+      "evidence": "author/year 'rubin 1987' present in 001-literature-and-hooks.md",
+      "fix": "expected for the Phase-1 corpus; no action unless you want it in 003"
+    },
+    {
+      "sev": "INFO",
+      "dim": "F",
+      "line": 247,
+      "issue": "@satorraEnsuringPositivenessScaled2010 not in todo/003 lifecycle (foundational corpus, tracked in todo/001)",
+      "evidence": "author/year 'satorra 2010' present in 001-literature-and-hooks.md",
+      "fix": "expected for the Phase-1 corpus; no action unless you want it in 003"
+    }
+  ],
+  "summary": {
+    "cites": {
+      "citekeys": [
+        "asparouhovRobustChiSquare2006",
+        "cavanaughAkaikeInformationCriterion1998a",
+        "chanGeneralFeasibleTests2022",
+        "chanMultipleImprovementsMultiple2022",
+        "daviesAlgorithm155Distribution1980",
+        "imhofComputingDistributionQuadratic1961",
+        "kolenTestEquatingScaling2014",
+        "mengMultipleImputationInferencesUncongenial1994a",
+        "mengPerformingLikelihoodRatio1992b",
+        "rubinMultipleImputationNonresponse1987",
+        "satorraEnsuringPositivenessScaled2010",
+        "shimodairaInformationCriterionModel2017",
+        "vuongLikelihoodRatioTests1989"
+      ],
+      "cite_lines": {
+        "rubinMultipleImputationNonresponse1987": 29,
+        "mengPerformingLikelihoodRatio1992b": 33,
+        "chanMultipleImprovementsMultiple2022": 34,
+        "chanGeneralFeasibleTests2022": 65,
+        "shimodairaInformationCriterionModel2017": 77,
+        "cavanaughAkaikeInformationCriterion1998a": 79,
+        "mengMultipleImputationInferencesUncongenial1994a": 104,
+        "vuongLikelihoodRatioTests1989": 203,
+        "satorraEnsuringPositivenessScaled2010": 247,
+        "asparouhovRobustChiSquare2006": 247,
+        "kolenTestEquatingScaling2014": 250,
+        "imhofComputingDistributionQuadratic1961": 252,
+        "daviesAlgorithm155Distribution1980": 252
+      },
+      "crossrefs": [
+        "sec-disc",
+        "sec-ic-app",
+        "sec-lrt-app",
+        "sec-numerics",
+        "sec-theorem",
+        "thm-bias"
+      ],
+      "labels": [
+        "sec-disc",
+        "sec-ic-app",
+        "sec-intro",
+        "sec-lrt-app",
+        "sec-numerics",
+        "sec-objects",
+        "sec-provenance",
+        "sec-theorem",
+        "sec-thm-statement",
+        "thm-bias"
+      ],
+      "bibkeys": [
+        "TannerCalculationPosteriorDistributions1987",
+        "aertsTestingFitParametric1999",
+        "andersonIntroductionMultivariateStatistical2003",
+        "asparouhovRobustChiSquare2006",
+        "barnardMiscellaneaSmallsampleDegrees1999",
+        "burnhamModelSelectionMultimodel2010",
+        "camAsymptoticMethodsStatistical1986",
+        "cavanaughAkaikeInformationCriterion1998a",
+        "chanGeneralFeasibleTests2022",
+        "chanMultipleImprovementsMultiple2022",
+        "claeskensconsentinoVariableSelectionIncomplete2008",
+        "consentinoclaeskensOrderSelectionTests2010",
+        "cordeiroBiasCorrectionARMA1994",
+        "coxGeneralDefinitionResiduals1968",
+        "daviesAlgorithm155Distribution1980",
+        "efronAssessingAccuracyMaximum1978",
+        "hensModelSelectionIncomplete2006a",
+        "honakerAmeliaIIProgram2011",
+        "hyodoestimation",
+        "imhofComputingDistributionQuadratic1961",
+        "kandaBasicPropertiesMles1998",
+        "kenwardLikelihoodBasedFrequentist1998",
+        "kolenTestEquatingScaling2014",
+        "konishiGeneralisedInformationCriteria1996",
+        "lamHighdimensionalCovarianceMatrix2020",
+        "li1991large",
+        "li1991significance",
+        "littleStatisticalAnalysisMissing2019",
+        "magnusMatrixDifferentialCalculus2019",
+        "mengMultipleImputationInferencesUncongenial1994a",
+        "mengPerformingLikelihoodRatio1992b",
+        "nielsenProperImproperMultiple2003",
+        "patriotaBiasCorrectionMultivariate2009",
+        "pawitanAllLikelihoodStatistical2013",
+        "petersen2008matrix",
+        "reiterSmallsampleDegreesFreedom2007b",
+        "rubinInferenceMissingData1976b",
+        "rubinMultipleImputationNonresponse1987",
+        "satorraEnsuringPositivenessScaled2010",
+        "satterthwaiteApproximateDistributionEstimates1946",
+        "schaferAnalysisIncompleteMultivariate1997",
+        "selfAsymptoticPropertiesMaximum1987",
+        "shimodairaInformationCriterionModel2017",
+        "shimodairahidetoshiImprovingPredictiveInference2000",
+        "vaartAsymptoticStatistics1998a",
+        "vuongLikelihoodRatioTests1989",
+        "wangLargesampleTheoryParametric1998",
+        "wilksLargeSampleDistributionLikelihood1938a",
+        "xieDissectingMultipleImputation2016"
+      ],
+      "todo": []
+    },
+    "linerefs": {
+      "linerefs_total": 0,
+      "linerefs_bad": 0
+    },
+    "snippets": {
+      "snippets_checked": 0,
+      "snippets_not_found": 0
+    },
+    "repro": {
+      "repro_pointers": [
+        "manuscript/derivation.qmd",
+        "todo/004",
+        "todo/027",
+        "todo/027-ladder-preregistration.md",
+        "todo/029",
+        "todo/029-nonnested-preregistration.md",
+        "verification/",
+        "verification/W1-bias-decomposition.R",
+        "verification/cache/ic-ladder-summary.csv",
+        "verification/cache/run_all-prod/phase2-w3/summary.csv",
+        "verification/cas-wolfram/verify_w4_nonnested.py",
+        "verification/w1-h1-pooled-reconciliation.R",
+        "verification/w4-dissimilar-vuong.R",
+        "verification/w4-nonnested-vuong.R"
+      ],
+      "phase_dirs": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    "mc": {
+      "listings": [],
+      "listings_without_assert": [],
+      "mc_tag_count": 0,
+      "referenced_listings": []
+    },
+    "alias_map": {}
+  }
+}

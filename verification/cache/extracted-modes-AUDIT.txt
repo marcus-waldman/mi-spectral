@@ -1,0 +1,103 @@
+===== MODE A (sent, blind) =====
+## MODE A — blind re-derivation (paste from here to the Mode-A end marker)
+
+You are a mathematical statistician. Solve the following self-contained problem from scratch,
+using only your own knowledge of likelihood theory and missing-data asymptotics. Show every step
+and name the standard results you use. Do not assume a particular final number.
+
+**Setup.** `X ~ N(μ, Σ)` in `ℝ^p`, parameter `θ = (μ, vech Σ)`. We observe `n` i.i.d. units; on
+each unit some coordinates are missing under an **ignorable MAR** mechanism whose propensity
+depends only on coordinates that are *always observed* (so the mechanism is genuinely MAR and its
+parameter is distinct from `θ`). The pattern is **non-monotone** (incomplete patterns do not nest),
+so the observed-data likelihood does not factor into a sequence of complete-data regressions. Let
+`ℓ_obs(θ) = Σ_i log p(y_i^{O_i}; μ_{O_i}, Σ_{O_i O_i})` be the observed-data (FIML) log-likelihood,
+`θ̂` its maximizer (consistent for the truth `θ₀` under ignorability).
+
+**Two information matrices.** Consider two `k×k` matrices for the same model and data
+(`k = p + p(p+1)/2`):
+
+1. The **observed information** `i_O(θ) = −∇²_θ ℓ_obs(θ)`, the realized negative Hessian. It is
+   *data-dependent*: for a Gaussian, its `vech Σ` block depends on the observed residual
+   second moments `Σ_i e_{O_i} e_{O_i}^⊤` and its `μ–vech Σ` cross block depends on the observed
+   residual sums `Σ_i e_{O_i}` (where `e_{O_i} = y_i^{O_i} − μ_{O_i}`).
+2. The **naive expected information** `i_N(θ)`, obtained by taking the expectation of the
+   per-pattern observed information **as if the pattern were fixed by design** — i.e. replacing the
+   observed residual moments by their *population* values under `X ~ N(μ,Σ)` (`E[e_O]=0`,
+   `E[e_O e_O^⊤]=Σ_{OO}`). For the Gaussian this `i_N` is **block diagonal** in `(μ, vech Σ)` (the
+   cross block vanishes because `E[e_O]=0`).
+
+**Question.** Work to leading order in `n`, at `θ = θ₀`.
+
+1. Compute `E[i_O(θ₀)]`, the expectation of the realized observed information under the **true
+   data-and-missingness law** (the *unconditional* law that includes the random missingness
+   pattern), for the Gaussian. Be explicit about which law each expectation is taken under. Does
+   `E[i_O(θ₀)] = i_N(θ₀)`? In particular, evaluate `E[e_{O} | unit is in pattern P]` and
+   `E[e_{O} e_{O}^⊤ | unit is in pattern P]` for an **incomplete** pattern `P` — are these the
+   population `0` and `Σ_{OO}`, or are they shifted because the units falling in pattern `P` are a
+   **selected** subsample (their always-observed coordinates have a propensity-weighted law)?
+2. If `E[i_O] ≠ i_N`, give the discrepancy `ΔI := E[i_O(θ₀)] − i_N(θ₀)` in closed form. Identify
+   which blocks (`μμ`, `μ–vech Σ`, `vech Σ–vech Σ`) are nonzero and which **selected moments**
+   carry them (the per-pattern selected residual mean and the selected residual second moment).
+3. Let `I_com` be the complete-data expected information and define the trace functional
+   `T(i) := tr(i^{-1} I_com)` (the object the RIV is built from). Give the leading-order
+   `D := T(i_N) − T(E[i_O]) = tr(i_N^{-1} I_com) − tr(E[i_O]^{-1} I_com)`. State its order in `n`
+   (is it `O(1)`, `O(n)`, or `O(n^{-1})`?). Prove that `D = 0` under **MCAR** and is generically
+   nonzero under **MAR**, and give the necessary-and-sufficient condition for `D = 0`.
+4. State which standard references first made the observed-vs-expected information distinction
+   matter specifically for **MAR** missing-data inference, and what they recommend.
+
+===== MODE B (sent) =====
+## MODE B — adversarial red-team (paste the brief + the lemma sheet + this prompt)
+
+You are an adversarial referee. Below is a claim and an empirical fact that appear to conflict.
+Find which is wrong, or reconcile them, with specific technical argument.
+
+**The claim.** For FIML on a non-monotone MAR Gaussian design, the relative-increase-in-variance
+trace `T(i) = tr(i^{-1} I_com)` (with `I_com` the complete-data information) is **insensitive to
+the information convention** to leading order: whether one uses the realized observed information
+`i_O = −∇²ℓ_obs` or the naive expected (Fisher) information `i_N` that plugs in the population
+conditional covariances `Σ_{OO}` with the pattern treated as fixed, the difference
+`D = tr(i_N^{-1} I_com) − tr(i_O^{-1} I_com)` is `O(n^{-1})` and vanishes asymptotically. Hence the
+design-imbalance correction to the deviance numerator does not depend on which information one
+subtracts.
+
+**The empirical fact.** A direct, **paired** high-replication simulation of
+`D = tr(i_N^{-1} I_com) − tr(i_O^{-1} I_com)` (both evaluated at the same FIML fit on the same
+dataset, then averaged) gives, for a four-variate non-monotone MAR design, a value of order
+**a few tenths in magnitude that is roughly stable across `n`** (it does not shrink like `1/n`),
+and it goes to `0` when the same design is made MCAR (pattern assigned independently of the data).
+
+**Your tasks — do not skip any.**
+1. Is the claim `D = O(n^{-1})` correct under MAR? Compute `E[i_O(θ₀)]` under the true
+   data-and-missingness law and compare to `i_N(θ₀)`. The crux: for an **incomplete** pattern `P`,
+   are the *selected* residual moments `E[e_O | P]` and `E[e_O e_O^⊤ | P]` equal to the population
+   `0` and `Σ_{OO}`? Under MAR the propensity depends on the always-observed coordinates, so units
+   in pattern `P` are a **selected** subsample. Decide whether this selection shifts the moments at
+   `O(1)` or only `O(n^{-1})`.
+2. If `E[i_O] − i_N` is a nonzero `O(1)` matrix, give it in closed form, name the blocks that are
+   nonzero (in particular the `μ–vech Σ` cross block that `i_N` sets to zero), and the selected
+   moments that carry them. Confirm it vanishes under MCAR.
+3. Hence give the order of `D = tr(i_N^{-1}I_com) − tr(E[i_O]^{-1}I_com)` in `n`, and the
+   necessary-and-sufficient condition for `D = 0`. Decide: is the empirical "few tenths, n-stable,
+   zero under MCAR" consistent with a **genuine `O(1)` MAR effect**, or with a finite-`n` artifact?
+4. Verdict: does the information convention matter at `O(1)` for the RIV trace under MAR, or not?
+   What single computation settles it beyond doubt?
+
+### Lemma sheet (hand to the model with Mode B)
+
+- **Setup recap.** `X~N(μ,Σ)`; FIML observed-data log-likelihood
+  `ℓ_obs(θ) = Σ_i log φ(y_i^{O_i}; μ_{O_i}, Σ_{O_i O_i})`. `i_O = −∇²ℓ_obs` (realized);
+  `i_N` = per-pattern Fisher info with population moments, pattern fixed (block-diagonal in
+  `(μ, vech Σ)`). `I_com` = complete-data expected information. `T(i)=tr(i^{-1}I_com)`.
+- **Gaussian observed-info blocks (per pattern `P`, observed set `O`, `n_P` units).** With
+  `S = Σ_{OO}^{-1}`, `M_P = Σ_{i∈P} e_{O,i} e_{O,i}^⊤`, `r_P = Σ_{i∈P} e_{O,i}`:
+  μ-block `n_P S`; `vech Σ` block depends on `M_P` (equals the population form when `M_P → n_P Σ_{OO}`);
+  μ–`vech Σ` cross block `∝ r_P` (equals `0` when `r_P → 0`).
+- **MAR / ignorability.** The mechanism depends only on always-observed coordinates ⇒ no score for
+  `θ`; but units in a given incomplete pattern are a **selected** subsample of the data law (their
+  always-observed coordinates are propensity-shifted), so any moment averaged over the units of a
+  pattern uses the **selected** law, which differs from the population law unless MCAR.
+- **MLE asymptotics.** `√n(θ̂−θ₀) ⇝ N(0, i^{-1})` with `i` the unconditional expected information
+  `= E[i_O]`; the bias of `θ̂` is `O(n^{-1})`.
+
+---
