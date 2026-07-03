@@ -419,3 +419,65 @@ completions (G0b-1 PASS; sample tr(RIV) within tolerance, G0b-2 PASS).
   is not sourced by `run_all.R` and not documented in CLAUDE.md's Commands section -- either wire
   it in or add an explicit Commands entry; (3) no unit test in `00-test-primitives.R` covers the
   BIC arithmetic or the new `amelia-loglik` error-catch path.
+
+- **2026-07-03, promotion decisions (before code).** Registering the exact scope of the fold-in
+  before writing it:
+  1. **BIC verdict in `aggregate.R` (phase 5).** A new `verdicts$BIC` entry, tagged
+     `"observational (todo/040 Phase 2, not pre-registered)"` since BIC was never part of the
+     original todo/005 hypothesis set. Computed from the same MAR + (FIML or congenial) subset
+     `H2_MAR` already uses, reporting median `pi_bic_[uncorrected/corrected/oracle]` alongside
+     the AIC equivalents, the BIC/AIC W3A yield ratio (quantifying "much smaller yield than
+     AIC's"), and min `W3C_bic_high_RIV_frac` alongside AIC's min `W3C_high_RIV_frac`. The
+     "model MB never selected" null check is explicitly NOT folded in here -- it needs the raw
+     per-repetition `.rds` selection labels, not anything in `summary.csv`, and it was already
+     reported as a one-off exploratory finding (0/120,000), not part of the G8 headline claim.
+  2. **Refactor `w3-sweep.R` for testability (behavior-preserving, no numeric change).** Extract
+     the AIC/BIC arithmetic (currently inlined in `run_one_w3`, excluding the frozen
+     `chi2_SB`/scaled-shift arm, which stays untouched in place) into a pure function
+     `w3_aic_bic_selections(ell_com, barL, trRIV_obs, npar, N)`; extract the Amelia
+     M-averaged-log-lik loop into `w3_amelia_barL(imps, theta_obs_list, model_names)`. Both are
+     unit-testable with synthetic inputs, no stochastic simulation needed. Because
+     `run_w3_sweep()` (and `w3-rate.R`'s analogous H3b loop) `clusterExport()` only
+     `run_one_w3`/`W3_MODEL_NAMES`/`TRUE_MODEL`/`Sigma_truth_w3` by name to parallel workers
+     (rather than sourcing the whole file on each worker, unlike the small-N probe script), both
+     `clusterExport` calls must add the two new helper names or the R=2000 production grid would
+     silently fail on every worker. Verify byte-identical output on `run_all-smoke-bic` post-
+     refactor (same seeds -> same results) before trusting any new production run.
+  3. **`00-test-primitives.R` gets two new blocks.** BIC arithmetic: call
+     `w3_aic_bic_selections()` directly with synthetic `ell_com`/`barL`/`trRIV_obs`/`npar`/`N`,
+     check the BIC penalty is `npar*log(N)` (not `2*npar`), and that
+     `BIC_corrected - BIC_uncorr == AIC_corrected - AIC_uncorr == trRIV_obs` elementwise (the
+     "transfers verbatim" claim, exactly, not just in the aggregate). Amelia-loglik error-catch:
+     confirm `w3_amelia_barL()` throws on a dimension-mismatched completed dataset, and that the
+     same tryCatch-and-flag idiom used in `run_one_w3` resolves to the error path on that input.
+  4. **`phase2-bic-smallN-probe.R` gets a CLAUDE.md Commands entry**, not a `run_all.R` phase-
+     dispatch wire-in -- it is explicitly exploratory/non-pre-registered by its own header
+     comment, matching the DA-engine spike precedent (documented, rerunnable, not part of the
+     canonical phase list).
+
+- **2026-07-03, promotion EXECUTED and verified.** All four items above implemented as
+  registered. Verification, in order: (a) `Rscript verification/00-test-primitives.R` -- all
+  smoke tests pass, including the two new blocks (BIC arithmetic: penalty/correction identities
+  hold exactly; amelia-loglik: `w3_amelia_barL` matches a manual computation and throws on a
+  dimension-mismatched imputation, resolving through the same tryCatch idiom `run_one_w3` uses).
+  (b) Regression check: re-ran `Rscript verification/run_all.R 100 smoke-bic 2 20` (the exact
+  command that produced the pre-refactor `run_all-smoke-bic` cache) and diffed the new
+  `summary.csv` against a backup of the old one -- every column is byte-identical except
+  `elapsed_sec` (confirmed with `all.equal()` after dropping that column); the parallel
+  `clusterExport` fix (adding `w3_aic_bic_selections`/`w3_amelia_barL` to the varlist in both
+  `w3-sweep.R` and `w3-rate.R`) was load-bearing -- without it the R=2000 production grid would
+  have errored on every Amelia cell across all 20 workers. Reverted the regenerated
+  `run_all-smoke-bic` cache back to its committed state afterward (timing-only diff, no
+  informational value). (c) Called `run_aggregate()` directly against
+  `w3_dir = run_all-prod-bic/phase2-w3` (has the BIC columns) with
+  `w1_dir`/`rate_dir`/`bias_dir` from the base `run_all-prod` cache (AIC-side results unaffected
+  by BIC, so reusing them is correct) to validate the new `verdicts$BIC` block end-to-end against
+  real production data: median `pi_bic[uncorr/corr/oracle]` = 0.993/0.996/1.000 vs AIC's
+  0.693/0.818/0.899; median `W3A_bic`/`W3A` yield ratio = 0.02; min `W3C_bic` = 1.000. Confirms
+  the G8 narrative (BIC recovers almost regardless of correction at N>=200) quantitatively.
+  Deleted the ad hoc `run_all-prod-bic/phase5/` output afterward -- it came from a mixed-directory
+  call, not a standard `run_all.R` CLI invocation, so it is not itself a reproducible artifact;
+  the BIC verdict will appear automatically in `verdicts.md` from any future full
+  `Rscript verification/run_all.R <R> <out_suffix> all <n_cores>` run, no special-casing needed,
+  since `w3-sweep.R` already always computes BIC selections and `aggregate.R` now always reports
+  the verdict from whatever `w3_dir` it is pointed at.

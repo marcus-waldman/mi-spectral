@@ -25,6 +25,8 @@ run_w3_rate <- function(R_per_cell, cl, out_dir) {
 
   if (!is.null(cl)) {
     parallel::clusterExport(cl, varlist = c("run_one_w3",
+                                            "w3_aic_bic_selections",
+                                            "w3_amelia_barL",
                                             "W3_MODEL_NAMES",
                                             "TRUE_MODEL",
                                             "Sigma_truth_w3"),

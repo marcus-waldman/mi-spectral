@@ -13,6 +13,44 @@
 W3_MODEL_NAMES <- c("MA", "MB", "MC", "MD")
 TRUE_MODEL <- "MC"
 
+# Pure post-processing arithmetic: AIC uses the 2*npar penalty, BIC uses the npar*log(N)
+# penalty (complete-data N, per the charter's 2026-07-01 "BIC APPROACH" decision); the
+# +tr(RIV) correction lands on -2*barL identically for both, since only the penalty differs.
+# Extracted from run_one_w3 (todo/040 Phase 2 promotion) so the arithmetic is testable with
+# synthetic inputs in 00-test-primitives.R without running a full stochastic simulation.
+w3_aic_bic_selections <- function(ell_com, barL, trRIV_obs, npar, N) {
+  AIC_oracle    <- -2 * ell_com + 2 * npar
+  AIC_uncorr    <- -2 * barL    + 2 * npar
+  AIC_corrected <- -2 * barL    + 2 * npar + trRIV_obs
+  BIC_oracle    <- -2 * ell_com + npar * log(N)
+  BIC_uncorr    <- -2 * barL    + npar * log(N)
+  BIC_corrected <- -2 * barL    + npar * log(N) + trRIV_obs
+  return(list(
+    AIC_oracle = AIC_oracle, AIC_uncorr = AIC_uncorr, AIC_corrected = AIC_corrected,
+    BIC_oracle = BIC_oracle, BIC_uncorr = BIC_uncorr, BIC_corrected = BIC_corrected,
+    sel_oracle = names(which.min(AIC_oracle)),
+    sel_uncorr = names(which.min(AIC_uncorr)),
+    sel_corrected = names(which.min(AIC_corrected)),
+    sel_bic_oracle = names(which.min(BIC_oracle)),
+    sel_bic_uncorr = names(which.min(BIC_uncorr)),
+    sel_bic_corrected = names(which.min(BIC_corrected))
+  ))
+}
+
+# The Amelia engine's M-averaged log-likelihood per candidate model. Wrapped by run_one_w3
+# in a tryCatch (a rare degenerate/rank-deficient Amelia draw at small N can produce a
+# completed dataset whose dimension does not match theta_k -- the "amelia-loglik" error
+# path). Extracted (todo/040 Phase 2 promotion) so the failure mode is directly testable.
+w3_amelia_barL <- function(imps, theta_obs_list, model_names) {
+  barL <- numeric(length(model_names))
+  names(barL) <- model_names
+  for (k in model_names) {
+    theta_k <- list(mu = theta_obs_list[[k]]$mu, Sigma = theta_obs_list[[k]]$Sigma)
+    barL[k] <- mean(sapply(imps, function(Z) { return(loglik_mvn(theta_k, Z)) }))
+  }
+  return(barL)
+}
+
 run_one_w3 <- function(r, cell, mu0, Sigma_truth) {
   set.seed(20260522 + r)
   X <- gen_data(N = cell$N, mu = mu0, Sigma = Sigma_truth)
@@ -49,13 +87,7 @@ run_one_w3 <- function(r, cell, mu0, Sigma_truth) {
                      error = function(e) NULL)
     if (is.null(imps)) { return(list(error = "amelia")) }
     barL_ok <- tryCatch({
-      for (k in W3_MODEL_NAMES) {
-        theta_k <- list(mu = theta_obs_list[[k]]$mu,
-                        Sigma = theta_obs_list[[k]]$Sigma)
-        barL[k] <- mean(sapply(imps, function(Z) {
-          return(loglik_mvn(theta_k, Z))
-        }))
-      }
+      barL <- w3_amelia_barL(imps, theta_obs_list, W3_MODEL_NAMES)
       TRUE
     }, error = function(e) FALSE)
     # A degenerate Amelia draw (e.g. a rank-deficient imputation at very small N) can
@@ -98,33 +130,28 @@ run_one_w3 <- function(r, cell, mu0, Sigma_truth) {
       chi2_SB[k] <- a_k * chi2_MI_per_k[k] + b_k
     }
   }
-  AIC_oracle    <- -2 * ell_com + 2 * W3_NPAR
-  AIC_uncorr    <- -2 * barL    + 2 * W3_NPAR
-  # Bias correction uses the OBSERVED-data RIV. The deviance bias is 2 E[T] = tr(RIV)
-  # per model, with RIV = tr(I_obs^-1 I_mis) on the OBSERVED information -- the single
-  # correct RIV under MAR (Kenward-Molenberghs 1998; the naive block-diagonal trRIV is
-  # the as-if-MCAR form, incomplete under MAR). The earlier `termspec` arm
-  # (2*trRIV - trRIV_obs) was built on the retired two-RIV split and is removed.
-  # See derivation.qmd Appendix C and todo/008.
-  AIC_corrected <- -2 * barL    + 2 * W3_NPAR + trRIV_obs
-  AIC_sb        <- chi2_SB      + 2 * W3_NPAR
-  # MI-BIC (todo/040 Phase 2): the +tr(RIV) correction transfers to BIC verbatim on the
-  # deviance numerator (-2*barL is shared with AIC; only the penalty differs). The penalty
-  # uses the COMPLETE-DATA n (cell$N), per the charter's 2026-07-01 "BIC APPROACH" decision --
-  # this sidesteps the MI effective-sample-size controversy rather than inventing an
-  # MI-specific effective n.
-  BIC_oracle    <- -2 * ell_com + W3_NPAR * log(cell$N)
-  BIC_uncorr    <- -2 * barL    + W3_NPAR * log(cell$N)
-  BIC_corrected <- -2 * barL    + W3_NPAR * log(cell$N) + trRIV_obs
+  # AIC/BIC oracle/uncorrected/corrected selections (todo/040 Phase 2 promotion): the
+  # arithmetic itself lives in w3_aic_bic_selections() so it is unit-testable with synthetic
+  # inputs (00-test-primitives.R). Bias correction uses the OBSERVED-data RIV. The deviance
+  # bias is 2 E[T] = tr(RIV) per model, with RIV = tr(I_obs^-1 I_mis) on the OBSERVED
+  # information -- the single correct RIV under MAR (Kenward-Molenberghs 1998; the naive
+  # block-diagonal trRIV is the as-if-MCAR form, incomplete under MAR). The earlier
+  # `termspec` arm (2*trRIV - trRIV_obs) was built on the retired two-RIV split and is
+  # removed. See derivation.qmd Appendix C and todo/008. The BIC penalty uses the
+  # COMPLETE-DATA n (cell$N), per the charter's 2026-07-01 "BIC APPROACH" decision -- this
+  # sidesteps the MI effective-sample-size controversy rather than inventing an MI-specific
+  # effective n.
+  ic <- w3_aic_bic_selections(ell_com, barL, trRIV_obs, W3_NPAR, cell$N)
+  AIC_sb <- chi2_SB + 2 * W3_NPAR
   return(list(
     error = NA_character_,
-    sel_oracle    = names(which.min(AIC_oracle)),
-    sel_uncorr    = names(which.min(AIC_uncorr)),
-    sel_corrected = names(which.min(AIC_corrected)),
+    sel_oracle    = ic$sel_oracle,
+    sel_uncorr    = ic$sel_uncorr,
+    sel_corrected = ic$sel_corrected,
     sel_sb        = names(which.min(AIC_sb)),
-    sel_bic_oracle    = names(which.min(BIC_oracle)),
-    sel_bic_uncorr    = names(which.min(BIC_uncorr)),
-    sel_bic_corrected = names(which.min(BIC_corrected)),
+    sel_bic_oracle    = ic$sel_bic_oracle,
+    sel_bic_uncorr    = ic$sel_bic_uncorr,
+    sel_bic_corrected = ic$sel_bic_corrected,
     trRIV = trRIV, trRIV_obs = trRIV_obs
   ))
 }
@@ -168,6 +195,8 @@ run_w3_sweep <- function(R_per_cell, cl, out_dir,
 
   if (!is.null(cl)) {
     parallel::clusterExport(cl, varlist = c("run_one_w3",
+                                            "w3_aic_bic_selections",
+                                            "w3_amelia_barL",
                                             "W3_MODEL_NAMES",
                                             "TRUE_MODEL",
                                             "Sigma_truth_w3"),

@@ -169,6 +169,15 @@ Rscript verification/ic-ladder.R 2000 6 MAIN,WEAK,JUNK
 ```
 CAS companion: `py verification/cas-wolfram/verify_ic_ladder.py`. Environment record: `verification/cache/ic-ladder-sessioninfo.txt`.
 
+**Reproduce the MI-BIC small-N probe** (todo/040 Phase 2 follow-up; exploratory, not
+pre-registered, NOT part of `run_all.R`'s phase dispatch — 4 cells, non_monotone/MAR/congenial
+only, N in {50, 100}; finds the regime where BIC's `npar*log(N)` penalty is genuinely ambiguous,
+below the N>=200 ceiling the main 60-cell grid sees):
+```
+Rscript verification/spikes/phase2-bic-smallN-probe.R <R> <out_suffix> [n_cores]
+```
+Outputs land in `verification/cache/smallN-bic-probe-<out_suffix>/` (per-cell `.rds` + `summary.csv`).
+
 **Preregistered W1/W2/W3 originals** (todo/004; only for reproducing the SHA ddc9037 results, not for new analysis):
 ```
 Rscript verification/W1-bias-decomposition.R <mode> <engine> [n_cores] [N_override]

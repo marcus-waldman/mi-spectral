@@ -165,6 +165,30 @@ run_aggregate <- function(out_suffix,
   verdicts$H6 <- list(pass = H6_pass,
                        detail = sprintf("max |FIML - Amelia cong M=200| W3-A gap = %.3f", max_gap))
 
+  # BIC (todo/040 Phase 2, decisions.md D-23): observational -- BIC was not part of the
+  # original todo/005 preregistration. Reports recovery/concentration/yield alongside AIC's
+  # to show the correction transfers but at much smaller yield, because BIC's own
+  # npar*log(N) penalty already resists most of the saturated-model pull at N>=200. The
+  # "model MB never selected" null check is exploratory and not folded in here -- it needs
+  # the raw per-repetition selection labels, not anything in this summary.csv.
+  H_bic <- w3[w3$mech == "MAR" & (w3$engine == "fiml" | w3$cong == "cong"), ]
+  W3A_bic_med <- median(H_bic$W3A_bic_corr_minus_uncorr, na.rm = TRUE)
+  W3A_aic_med <- median(H_bic$W3A_corr_minus_uncorr, na.rm = TRUE)
+  yield_ratio <- if (abs(W3A_aic_med) > 1e-6) { W3A_bic_med / W3A_aic_med } else { NA_real_ }
+  verdicts$BIC <- list(
+    pass = "observational (todo/040 Phase 2, not pre-registered)",
+    detail = sprintf(
+      "median pi_bic[uncorr/corr/oracle]=%.3f/%.3f/%.3f (AIC %.3f/%.3f/%.3f); median W3A_bic=%+.3f vs AIC W3A=%+.3f (ratio=%.2f); min W3C_bic=%.3f (AIC min W3C=%.3f)",
+      median(H_bic$pi_bic_uncorrected, na.rm = TRUE),
+      median(H_bic$pi_bic_corrected, na.rm = TRUE),
+      median(H_bic$pi_bic_oracle, na.rm = TRUE),
+      median(H_bic$pi_uncorrected, na.rm = TRUE),
+      median(H_bic$pi_corrected, na.rm = TRUE),
+      median(H_bic$pi_oracle, na.rm = TRUE),
+      W3A_bic_med, W3A_aic_med, yield_ratio,
+      min(H_bic$W3C_bic_high_RIV_frac, na.rm = TRUE),
+      min(H_bic$W3C_high_RIV_frac, na.rm = TRUE)))
+
   # INFO: phase-6 information diagnostic (exploratory; folded in if present).
   if (!is.null(info_dir) && file.exists(file.path(info_dir, "summary.csv"))) {
     info <- read.csv(file.path(info_dir, "summary.csv"), stringsAsFactors = FALSE)
