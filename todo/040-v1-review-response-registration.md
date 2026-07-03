@@ -156,6 +156,15 @@ decision and requires Marcus's explicit call plus a `decisions.md` entry BEFORE 
   undermined; genuine posterior draws carry the derived correction D; recentred-DA offered as the
   constructive remedy). Draft only, pending Marcus's review before folding into the Phase-4
   point-by-point letter.
+- **2026-07-03, r1#8 draft approved; Phase-4 letter skeleton created.** Marcus reviewed
+  `r1-8-data-augmentation.md` ("Looks right") and asked for it to go into the Phase-4 letter.
+  Created `manuscript/reviews/v1/response/response-letter.md`: all 15 review comments as
+  sections, each quoting the reviewer comment and tagged DRAFTED / EXECUTED-PENDING-TEXT /
+  PENDING. r1#8 is the only DRAFTED entry (full approved text folded in verbatim). r3#1 (BIC)
+  is tagged EXECUTED, PENDING TEXT — the Phase 2 empirical work (G8/D-23) is done but its
+  response-letter prose is not yet written or reviewed; the other 13 comments remain PENDING,
+  to be drafted across Phase 3 (r3#2) and Phase 4 (everything else). Written via Bash per the
+  citation-hook cwd gotcha (the file contains three live @citekeys).
 - **2026-07-02, Phase 2 MI-BIC — cache check + plan (before any code).** Inspected
   `verification/cache/run_all-prod/phase2-w3/*.rds` directly (`str()` on `results[[1]]`/`[[2]]`
   of a representative cell). Each per-repetition record stores only `error`, the four selection
