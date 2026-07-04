@@ -1,6 +1,8 @@
 # Todo 045 — REGISTRATION + PLAN: why the Phase-3 Bernoulli check HARKed, and why the numbers look the way they do
 
-**Status:** Q1 CLOSED 2026-07-03 (same session, continued); Q2 OPEN, no code yet. Written at the
+**Status:** Q1 CLOSED 2026-07-03 (same session, continued); Q2 3a DERIVED + CAS-VERIFIED
+2026-07-04 (§3.1 below; cross-model gate launched same day), 3b/3c REGISTERED 2026-07-04 (§3.2,
+§3.3 below) with all targets derived and dated before the production scans ran. Written at the
 end of the session that ran the Phase-3 non-normal illustration (todo/040 §9-10), then ran it
 through an adversarial `tkal-in-ket` quorum (Gemini + Claude-Opus peers) after Marcus flagged the
 write-up as HARKing-shaped. Determination: **AMENDED** — the position survives only via substantial
@@ -243,6 +245,204 @@ settle and left for Marcus. If Q2 turns up something that makes the general-case
 shakier than currently written (e.g., R1-R7 genuinely fail, or the N-scan shows a different
 asymptote), that independently strengthens the case for also running the known-scale exemplar,
 since it would mean NEITHER regime currently has solid non-normal support.
+
+---
+
+### §3.1 Q2 3a FINDINGS — the derivation (dated 2026-07-04; CAS-verified; gate pending)
+
+**Information state, disclosed first (OBJ-05 hygiene).** When this derivation was written, the
+N=200 phase-3 cache (`verification/cache/phase3-nonnormal-prod.rds`, run 2026-07-03) was already
+known: mean $T_{\text{fitted}} = +0.4772$ (se $0.0910$; ratio $+0.846\pm0.161$ against the
+analytic $\operatorname{tr}(\mathrm{RIV})=2\cdot0.22/0.78=0.5641$), mice-draw ratio $+0.623$,
+paired $\mathbb{E}[T_{\text{draw}}-T_{\text{fitted}}] = -0.1259$ (se $0.0122$; ratio
+$-0.2232\pm0.0216$), sample $\operatorname{tr}(\mathrm{RIV})$ mean $0.5594$ (within $0.8\%$ of
+analytic — the denominator is NOT the anomaly). What did NOT exist when the derivation was
+written: any $N>200$ Bernoulli value, any Poisson simulation in this repo, any Student-t
+simulation, the intercept-only and two-point exact enumeration curves. Those are this
+derivation's out-of-sample tests, registered in §3.2/§3.3 below **before** running. An
+independent blind re-derivation (GPT-5.5 Pro, xhigh, Mode A of `todo/045b-gpt55-gate-package.md`)
+was launched the same day from the setup alone, with no access to this section or to any number
+above — the blinded, timestamped, independent re-derivation OBJ-05 said was missing for the
+original post-hoc correction is thereby supplied for THIS claim (it cannot retroactively repair
+the Phase-3 registration, which stays reported as a miss).
+
+**Setup.** One-parameter exponential-family response
+$f(y\mid x;\beta)=h(y)\exp\{y\eta - A(\eta)\}$, canonical link $\eta = x^\top\beta$,
+$\beta\in\mathbb{R}^q$; $X$ fully observed, $Y$ MCAR at rate $r$ (response-only missingness, so
+$\ell_{\text{mis}\mid\text{obs}}=\sum_{i\in\text{mis}}\log f(y_i\mid x_i;\theta)$ and
+$\hat\theta_{\text{obs}}$ is the complete-case MLE). Write $w=A''$ (the information weight),
+$A'''$ (the third cumulant), $g(\eta)=\mathbb{E}_\eta[\log h(Y)]$ (the base-measure mean),
+$J_\bullet=\sum_\bullet w_i x_i x_i^\top$, $\Omega=\mathbb{E}[wXX^\top]$,
+$Q_i = x_i^\top J_{\text{obs}}^{-1} x_i$. The FITTED arm's analytic anchor (missing rows
+contribute $-H_i(\hat\theta_{\text{obs}})$) is EXACTLY the $M\to\infty$ FITTED $\bar Q_\infty$
+for any family, because $\mathbb{E}_{\tilde Y\sim f(\cdot;\theta)}[\log f(\tilde Y;\theta)]
+= -H(\theta)$ — so the anchor-vs-draws distinction is not a gap for this arm.
+
+**Step 1 — the paper's own theorem structure transfers.** The A/B split and the A3 expansion
+(`derivation.qmd` @sec-termA) are family-generic under R1–R2: Term B $=-\tfrac12\operatorname{tr}(\mathrm{RIV})+O(1/N)$
+(second-order expansion of $\ell_{\text{com}}$ + L1–L3, no MVN input), and Term A
+$=\operatorname{tr}(\mathrm{RIV})+[(A)+(C)]+O(1/N)$ with the A4 objects instantiated for the GLM:
+$$ (A)=\alpha^\top\mathbb{E}[\delta],\quad \alpha=\sum_{i\in\text{mis}}\big(g'_i+\eta_i w_i\big)x_i,\qquad
+   (C)=\tfrac12\operatorname{tr}\big(\mathcal H_\phi J_{\text{obs}}^{-1}\big),\quad
+   \mathcal H_\phi=\sum_{i\in\text{mis}}\big(g''_i+\eta_i A'''_i\big)x_i x_i^\top. $$
+(Derivation of $\alpha,\mathcal H_\phi$: the cross-entropy per missing unit is
+$f_{0,i}(\phi)=g(\eta_i(\phi))+A'(\eta_i(\phi))\,\eta_{0,i}-A(\eta_{0,i})$; differentiate twice
+in $\phi$ at $\theta_0$.) What R1–R7 do NOT supply is the A4 cancellation "$(A)+(C)=O(n^{-1})$
+under MCAR" for this family: the paper derives that step for the multivariate normal (where
+$\alpha$ is covariance-only) and checks it closed-form for scalar no-covariate families
+($N(\mu,\sigma^2)$ exact, $\mathrm{Exp}(\lambda)$ $O(1/n)$). For a covariate GLM, whose $\alpha$
+has support on ALL of $\beta$, the step needed its own proof. That is precisely the gap OBJ-06
+named. The proof follows.
+
+**Step 2 — the MLE-bias input (Cox–Snell for a canonical link), derived inline.** For canonical
+links the observed information is deterministic given the design and
+$\operatorname{Var}(U_{\text{obs}})=J_{\text{obs}}$, so expanding the score equation
+$0=U(\hat\beta)$ to second order gives
+$\delta = J_{\text{obs}}^{-1}U - \tfrac12 J_{\text{obs}}^{-1}\sum_{j\in\text{obs}}A'''_j x_j (x_j^\top\delta)^2+\dots$,
+hence
+$$ b := \mathbb{E}[\hat\beta_{\text{obs}}-\beta_0]
+   = -\tfrac12\,J_{\text{obs}}^{-1}\sum_{j\in\text{obs}}A'''_j\,\big(x_j^\top J_{\text{obs}}^{-1}x_j\big)\,x_j
+   \;+\;O(N^{-2}). $$
+Verified two independent ways in `verification/cas-wolfram/verify_bernoulli_fitted_gap.py`:
+symbolically it reduces on the intercept-only design to the delta-method value
+$\mathbb{E}[\operatorname{logit}\bar y]-\eta = \sinh(\eta)/n + O(n^{-2})$ (check [3]), and on a
+two-point covariate design it matches the EXACT enumerated $\mathbb{E}[\hat\beta]$ (check [5];
+agreement 2% at $n_g=240$ and converging).
+
+**Step 3 — Lemma P (the projection cancellation; the new step).** Substituting $b$ into $(A)$
+and passing to the population design ($J_{\text{obs}}\to(1-r)N\Omega$,
+$\sum_{\text{mis}}\to rN\,\mathbb{E}[\cdot]$ under MCAR), the two $O(1)$ pieces built from the
+CANONICAL-STRUCTURE parts of $\alpha,\mathcal H_\phi$ are
+$$ (A)_{\eta w} = -\tfrac{r}{2(1-r)}\,\mathbb{E}[\eta w X^\top]\,\Omega^{-1}\,
+   \mathbb{E}\big[A'''(X^\top\Omega^{-1}X)X\big],\qquad
+   (C)_{\eta A'''} = +\tfrac{r}{2(1-r)}\,\mathbb{E}\big[\eta A'''(X^\top\Omega^{-1}X)\big], $$
+and these cancel EXACTLY, for every design distribution and every canonical family, because
+$\eta=X^\top\beta_0$ is linear in $X$ and $\Omega=\mathbb{E}[wXX^\top]$ uses the same weight
+$w$: $\mathbb{E}[\eta wX^\top]=\beta_0^\top\Omega$, so
+$$ \mathbb{E}[\eta wX^\top]\Omega^{-1}\mathbb{E}[A'''(X^\top\Omega^{-1}X)X]
+   = \beta_0^\top\,\mathbb{E}[A'''(X^\top\Omega^{-1}X)X]
+   = \mathbb{E}[\eta A'''(X^\top\Omega^{-1}X)]. \tag{Lemma P} $$
+Verified symbolically on a free-symbol 3-point design, on 12 exact-rational 4-point designs,
+and numerically on both quadrature designs (checks [2], [6], [7]). What survives is only the
+base-measure part:
+$$ (A)+(C) = \Delta_h + O(1/N),\qquad
+   \Delta_h = \tfrac{r}{1-r}\Big[-\tfrac12\,\mathbb{E}[g'X^\top]\,\Omega^{-1}\,
+   \mathbb{E}[A'''(X^\top\Omega^{-1}X)X] + \tfrac12\,\mathbb{E}[g''\,X^\top\Omega^{-1}X]\Big], $$
+which does NOT cancel by Lemma P because $g'(\eta)$ is not linear in $X$.
+
+**Theorem (canonical-GLM FITTED gap, response-only MCAR).** Under R1–R7,
+$$ \mathbb{E}[T_{\text{fitted}}] = +\tfrac12\operatorname{tr}(\mathrm{RIV}) + \Delta_h + O(1/N). $$
+- **Bernoulli (logit): $h\equiv1$, so $g\equiv0$, $\Delta_h=0$** — the FITTED asymptote is the
+  paper's general-case $+\tfrac12\operatorname{tr}(\mathrm{RIV})$ EXACTLY. The $+0.5$ target is
+  derivable after all; what the Phase-3 registration lacked was this lemma, not just the entropy
+  gradient. (Same conclusion for any unit-base-measure canonical GLM: geometric, exponential.)
+- **Poisson (log): $h=1/y!$**, $g(\eta)=-\mathbb{E}_\mu[\log Y!]$, $\Delta_h\neq0$. Quadrature at
+  the registered design below gives $\Delta_h/\operatorname{tr}(\mathrm{RIV})=-0.3961$, i.e. a
+  FITTED asymptote of $+0.1039$ — far from both $+0.5$ and $0$. Registered as a BLIND
+  out-of-family test (§3.2) before any Poisson simulation existed in this repo.
+- **Proper-draw corollary.** A second-moment-proper draw $\tilde\phi$ centered at
+  $\hat\theta_{\text{obs}}$ leaves $(A)$ and the Term-A main piece unchanged and doubles the
+  variance entering $(C)$, so
+  $\mathbb{E}[T_{\text{draw}}-T_{\text{fitted}}] = (C) = \tfrac{r}{2(1-r)}\mathbb{E}[(g''+\eta A''')(X^\top\Omega^{-1}X)]+O(1/N)$.
+  For the phase-3 Bernoulli design: $K/(2q)$ with
+  $K=\mathbb{E}[\eta A'''X^\top\Omega^{-1}X]=-1.0424$, i.e. $\mathbf{-0.2606}$, constant in $N$.
+  The already-measured paired value $-0.2232\pm0.0216$ (which predates this formula) sits within
+  $1.7$ se. This is also the GLM analog of the DA-engine posterior-draw discount (D-22): the
+  Bayesian-draw arm is BELOW FITTED by an $O(\operatorname{tr}(\mathrm{RIV}))$ amount with an
+  explicit family constant — the mice-draw's registered $-0.5$ target was wrong for two separate
+  reasons (Bernoulli is not known-scale, and the discount is $(C)$, not $-\tfrac12\operatorname{tr}(\mathrm{RIV})$).
+- **Known-scale location family (fixed scale and shape).** $H$ is location-free, $\alpha=0$,
+  $\mathcal H_\phi$'s entropy part vanishes, and the paper's known-scale collapse applies:
+  FITTED $\to 0$, proper draw $\to -\tfrac12\operatorname{tr}(\mathrm{RIV})$ — the §3.3 exemplar.
+
+**R1–R7 walk-through for Bernoulli/logit (the OBJ-06 checklist).** R1: smooth full exponential
+family, differentiable in quadratic mean, differentiation under the integral licensed; the MLE
+exists only off the separation event, whose probability is exponentially small at this design
+($T$ itself stays finite even there, since the anchor and $\ell$ terms are bounded by 0). R2:
+$I_{\text{com}}=\mathbb{E}[wXX^\top]\cdot N\succ0$ for a nondegenerate design;
+$I_{\text{obs}}=(1-r)I_{\text{com}}\succ0$. R3: MCAR by construction, parameters distinct. R4:
+the imputation model IS the analysis model (same logistic regression) — congenial; the FITTED
+arm is the theorem's deterministic-FIML branch. R5: needed only for the draw arm; mice `logreg`
+draws $\beta^\ast\sim N(\hat\beta,\hat V)$ — second-moment proper to leading order. R6: the
+complete-case MLE is the observed-data MLE under MCAR; self-efficiency holds for regular MLEs.
+R7: the FITTED anchor is exact-$M{=}\infty$ by construction; the draw arm uses $M=50$ with
+Rubin's $(1+1/M)$ in the sample RIV. Conclusion: R1–R7 hold; the additional input the $+0.5$
+value needs is the A4 MCAR-cancellation for this family, which Lemma P now supplies.
+
+**What this derivation does NOT establish** (fences, stated before the scans): (i) the finite-$N$
+constant in the $O(1/N)$ remainder for the Gaussian-$x$ design — the exact enumerations give
+small constants for the homogeneous and two-point designs ($\approx0.6/n$ and $\approx1.6/n$ on
+the ratio scale), but the heterogeneous-design constant is MEASURED by the N-scan, not derived;
+whether the observed $+0.846$ at $N=200$ is mostly that finite-$N$ term or mostly Monte-Carlo
+noise (se $0.161$) is exactly what §3.2 P1 answers. (ii) Non-canonical links (the Gamma log-link
+arm stays a directional check; its $\Delta$-analog has extra terms this lemma does not cover).
+(iii) General missingness patterns — response-only only. (iv) The lemma is asymptotic; nothing
+here claims exactness at $N=200$.
+
+**Verification record.** `verification/cas-wolfram/verify_bernoulli_fitted_gap.py` — 15 checks,
+all pass (2026-07-04): entropy identities; Lemma P symbolic + 12 exact-rational designs + 2
+numeric designs; Cox–Snell = delta-method (intercept-only, closed form $\sinh(\eta)/n$);
+intercept-only exact enumeration ratio$(n)\to\tfrac12$ with $(ratio-\tfrac12)\cdot n\to0.589$;
+two-point exact enumeration (bias formula + ratio$\to\tfrac12$); the quadrature constants above;
+Student-t entropy closed-form + location-free. Cross-model gate: `todo/045b-gpt55-gate-package.md`
+(Mode A blind / Mode B red-team), launched backgrounded 2026-07-04.
+
+### §3.2 Q2 3b REGISTRATION — N-scan + blind Poisson arm (dated 2026-07-04, BEFORE production)
+
+**Script:** `verification/spikes/phase3-family-scan.R` (new; smoke mode = code validation only,
+not evidence). Estimator: ratio-of-means; PRIMARY denominator = analytic MCAR
+$\operatorname{tr}(\mathrm{RIV}) = q\,r/(1-r)$ ($0.5641$ Bernoulli/Poisson $q{=}2$; $0.2821$
+t-exemplar $q{=}1$); realized-design and Rubin-sample denominators reported as diagnostics.
+Seeds: BASE 20260704 with disjoint per-arm/per-$N$ offsets. Production sizes: Bernoulli FITTED
+$R=200\text{k}/80\text{k}/40\text{k}/20\text{k}$ at $N=200/500/1000/2000$; Bernoulli draw (mice
+logreg, $M{=}50$) $R=1000$ per $N$; Poisson FITTED $R=100\text{k}/30\text{k}$ at $N=200/1000$;
+t-exemplar $R=20\text{k}$, $M{=}50$, $N{=}200$.
+
+Registered predictions and pass criteria:
+- **P1 (Bernoulli FITTED asymptote).** WLS fit of ratio$(N)=a+C/N$ over the four $N$: PASS if
+  $\hat a$ is within $2\,\mathrm{se}(\hat a)$ of $+0.500$. $C$ is reported, not predicted.
+  Falsifier: a flat ratio $\approx+0.85$ across $N$ refutes Lemma P empirically. Continuity
+  check: the new script's $N{=}200$ ratio must sit within $2$ combined se of the cached
+  $+0.846\pm0.161$ (same generator).
+- **P2 (draw discount).** Paired $(T_{\text{draw}}-T_{\text{fitted}})/0.5641$: PASS if the
+  $N{=}2000$ value is within $2$ se of $\mathbf{-0.2606}$. Trajectory across $N$ reported; no
+  direction registered for the finite-$N$ drift.
+- **P3 (Poisson, blind).** PASS if the $N{=}1000$ ratio is within $2$ se of $\mathbf{+0.1039}$
+  (the $N{=}200$ point shows the finite-$N$ view). This family enters the repo for the first
+  time with its target pre-computed; a landing near $+0.5$ or $0$ instead refutes the
+  $\Delta_h$ mechanism.
+- **P4 (sample RIV sanity).** mice sample $\operatorname{tr}(\mathrm{RIV})$ within $3\%$ of
+  analytic at every $N$.
+- **Interpretation rule, registered now:** if P1 passes, OBJ-07's residual is ATTRIBUTED — the
+  $+0.846$ at $N{=}200$ decomposes into the derived $+0.5$ asymptote plus a measured $O(1/N)$
+  finite-sample term (constant $C$) plus Monte-Carlo noise (se $0.161$ at $R{=}1000$); the
+  honest headline for r3#2 becomes "derived $+0.5$, confirmed by an $N$-scan with a measured
+  finite-$N$ correction," NOT "confirmed at $N=200$." If P1 fails flat, the Bernoulli check
+  cannot be salvaged as a general-case confirmation and §4's drop-option triggers.
+
+### §3.3 Q2 3c REGISTRATION — Student-t known-scale exemplar (dated 2026-07-04, BEFORE any code ran)
+
+Per the Q1 process fix, the entropy-gradient condition first, inline, dated: for the location
+family $f(y\mid\mu)=f_{t_\nu}\!\big(y-\mu\big)$ with $\nu=5$ and $\sigma=1$ BOTH FIXED, the
+conditional missing-data entropy is $H(\mu)=H_{t_5}$, a CONSTANT in the single estimated
+parameter ($dH/d\mu=0$ exactly, by translation invariance of differential entropy; closed form
+and numeric check in CAS [8]). The structural correspondence licensing the classification is
+stated per Q1-2d(3): this family genuinely HAS a scale-type parameter pair $(\sigma,\nu)$ that is
+HELD FIXED while the location is estimated — the construction the known-scale collapse requires,
+which Bernoulli lacks. Student-t is chosen over Laplace because the expansions use third
+derivatives of the log-density (R1-adjacent smoothness), which Laplace's kink at zero does not
+supply. Design: $N=200$, MCAR $0.22$, $\mu_0=0.3$; MLE by 1-D optimization; proper draw
+$\mu^\ast\sim N(\hat\mu_{\text{obs}},\,1/(n_{\text{obs}}I_1))$ with $I_1=(\nu+1)/(\nu+3)=0.75$;
+imputations $\tilde Y=\mu^\ast + t_\nu$ noise; $R=20\text{k}$, $M=50$.
+**Amendment (2026-07-04, pre-production, dated):** $R$ raised $20\text{k}\to200\text{k}$ after a
+200-repetition smoke run (code validation) showed per-repetition ratio noise of $\approx21$, so
+the registered $R$ would give se $\approx0.15$ — too wide for a sharp zero-test. Precision-only
+change, direction-blind (the smoke point estimate, $+0.76\pm1.52$, is $0.5$ se from $0$ and is
+disclosed here rather than used); targets, design, and seeds unchanged.
+- **P5 (FITTED).** PASS if the FITTED ratio is within $2$ se of $0$.
+- **P6 (proper draw).** PASS if the draw ratio is within $2$ se of $-0.500$.
+P5+P6 passing supplies exactly the "genuine two-parameter fixed-scale non-normal exemplar"
+OBJ-08's option (b) asked for, with both targets derived and dated before any code ran.
 
 ---
 
