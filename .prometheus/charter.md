@@ -3,14 +3,15 @@ schema_version: 1
 project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
-current_milestone: "Respond to the v1 AI review (paper 88): empirical reruns for the two cheap gaps (data-augmentation replication + MI-BIC) + prose/response-letter for the rest; non-normal via brms gated on a runtime spike; fold in the pending per-paragraph annotation + compile-enablement toward JAIGP submission."
-last_synced_commit: 652dae3
+current_milestone: "Submission tail (v1-review response COMPLETE + merged to main @ 8055daf, letter 15/15): per-paragraph annotation (Marcus) + compile-enablement; the decided Lemma P derivation.qmd section under full citation discipline (sources verified, loci pinned); then derivation-audit 0/0 -> Zenodo -> JAIGP."
+last_synced_commit: 7ab01a3
 tree_state: clean
-updated: "2026-07-04T22:24:34Z"
+updated: "2026-07-04T22:25:08Z"
 updated_by: wrap
 cockpit: { provider: null, list_id: null }
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 ---
+
 
 
 
