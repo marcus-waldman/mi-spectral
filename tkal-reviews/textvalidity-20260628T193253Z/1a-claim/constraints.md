@@ -1,0 +1,6 @@
+- OFF-LIMITS: the theorem and the simulation results are correct and already validated; challenge only the WRITING'S fidelity to them, never the math, the proofs, or the results.
+- SCOPE: only the sections shown (abstract, §1, §1B, §2, §3, §5, §6). §4 Derivations is out of scope.
+- SEVERITY BAR: nominate a claim only if a careful peer reviewer would flag it as outrunning its support. Quality over volume; the final set may be small; do NOT pad to fill slots.
+- Every issue's "title" must quote the challenged text VERBATIM with its [paragraph-ID] prefix, so identical-sentence challenges from different panelists are recognized as one issue; "by" is the paragraph ID alone.
+- Distinguish: a claim missing a NEEDED citation is in scope here (category "missing-citation"); whether an EXISTING citation supports its claim is a different panel — do not raise that here.
+- @sec-/@eq-/@fig-/@prp-/@thm- tokens are internal cross-references, not citations.

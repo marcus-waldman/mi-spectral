@@ -1,0 +1,61 @@
+{
+  "objections": [
+    {
+      "criterion": "independent_derivability",
+      "target": "The advocate's own registration reasoning ('Bernoulli has no explicit dispersion parameter, so it must be the known-scale case') versus the post-hoc claim that alpha != 0",
+      "claim": "The bar requires that a reader shown ONLY the pre-existing theorem and the Bernoulli family definition reconstruct the SAME conclusion the advocate now defends. But the advocate, holding exactly those two inputs and blinded to data, derived the OPPOSITE conclusion (known-scale collapse, target ~0) at registration. This is direct evidence that the theorem condition plus the Bernoulli definition do NOT uniquely determine the '+0.5 / alpha != 0' reading -- the same inputs demonstrably yielded two contradictory targets from the same expert. The fact that the correct reading was only selected after the data missed is the definition of failing independent derivability: the data broke the tie.",
+      "severity": "blocking",
+      "what_would_satisfy": "A pre-registered, blinded re-derivation by an independent party (not the original registrant) who, given only the theorem condition and H(p) = -[p log p + (1-p) log(1-p)], computes dH/dp = -logit(p) != 0 and concludes general-case WITHOUT ever seeing the R=1000 numbers -- documented and timestamped. Absent that, the position must concede the target was data-selected.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "independent_derivability",
+      "target": "Weak point (3): the general theorem's regularity conditions R1-R7 were verified only in the MVN location-scale context",
+      "claim": "The position asserts Bernoulli 'falls under the general +0.5 case,' but this requires the general theorem's hypotheses (R1-R7) to actually HOLD for a one-parameter logit-link GLM with no separate dispersion parameter -- which the advocate concedes has never been checked. Deriving alpha != 0 from the entropy gradient shows the collapse does NOT apply, but that is a necessary, not sufficient, condition for the +0.5 result. Establishing that Bernoulli is a positive instance of the general theorem is itself a new derivation the paper has not done, so '+0.5' is not purely reconstructable from pre-existing results -- it smuggles in an unverified extension.",
+      "severity": "blocking",
+      "what_would_satisfy": "Explicit verification that R1-R7 hold (or the minimal modified form that holds) for the Bernoulli/logit case, showing the +1/2 tr(RIV) leading-order result actually follows for this family -- not merely that the known-scale collapse is excluded. If R1-R7 require modification, the target may not be exactly +0.5.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "independent_derivability",
+      "target": "Weak point (4): the unattributed 2.2 se gap between +0.853 and the +0.5 target",
+      "claim": "The corrected target is defended as 'same sign, same rough order of magnitude,' but a 2.2 se miss is itself a rejection at conventional levels, and the advocate admits the residual gap is not attributed to any specific higher-order term or finite-sample effect. If the correct leading-order target for a discrete outcome under deterministic FIML is not exactly +0.5 (e.g., a discreteness correction to the analytic anchor), then '+0.5' is not the derivable target and the '2.2 se' framing is a post-hoc tolerance chosen to make a still-missing number look like a pass. The bar requires the specific TARGET VALUE be reconstructable; an unexplained 2.2 se residual means the value that IS reconstructable may differ from +0.5.",
+      "severity": "major",
+      "what_would_satisfy": "Either a derivation attributing the +0.353 residual to a named finite-sample/higher-order term with the right magnitude, or a demonstration (e.g., increasing n or R, or an exact analytic FIML anchor for the discrete case) that the estimate converges to +0.5. Until then the write-up must report +0.853 as a 2.2 se miss from the corrected target, not as a confirmation.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "reviewer_intent_sufficiency",
+      "target": "The claim that Gamma + Bernoulli suffices without a genuine two-parameter known-scale non-normal exemplar",
+      "claim": "The advocate's own re-derivation establishes that Bernoulli CANNOT instantiate the known-scale collapse (it is one-parameter with no separable location/scale). So after the correction, BOTH surviving families (Gamma, Bernoulli) test the general case, and the known-scale collapse remains verified ONLY in the MVN. r3#2 asks whether 'the current findings can be safely generalized to standard GLM frameworks' -- and the known-scale collapse is one of the paper's findings. Read fairly, generalizing 'the current findings' plausibly includes the boundary result too, which now has zero non-normal support. The position's sufficiency claim is weakest exactly where its own correction removed the only intended known-scale test.",
+      "severity": "major",
+      "what_would_satisfy": "Either (a) an explicit, panel-acceptable reading of r3#2 that scopes the request to the trace-penalty/IC-correction (general) result only, defensibly excluding the known-scale collapse from 'current findings' to be generalized; or (b) a genuine two-parameter fixed-scale non-normal exemplar (Student-t or Laplace with fixed scale) added to close the known-scale generalization.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "preregistration_honesty",
+      "target": "The framing that Bernoulli is 'a clean confirmation' of the mechanism after re-scoring",
+      "claim": "The position risks presenting the corrected Bernoulli result as a success ('same sign, matching Bayesian-draw discount') in a way that could bury the original registered miss (+0.853 vs ~0 at 5.3 se; +0.628 vs -0.5 at 7 se and WRONG SIGN). The 7-se wrong-sign Bayesian miss is especially severe and easy to under-report once the FITTED story is reframed. The bar demands the ORIGINAL target and its measured miss be stated prominently and before/alongside the corrected framing in every surviving draft.",
+      "severity": "major",
+      "what_would_satisfy": "A verbatim requirement that the response letter and Discussion state, up front: the registered targets (~0 FITTED, ~-0.5 Bayesian), the measured misses (+0.853 at 5.3 se; +0.628 at 7 se, wrong sign), and only then the theory-correction and re-scoring -- with the correction explicitly labeled as post-hoc recognition of a registration error.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "cross_cutting",
+      "target": "Weak point (2): the slope-shrinkage check as mechanism evidence, and its use to legitimize the correction",
+      "claim": "The advocate leans on the p_i -> 1/2 shrinkage check (gap +0.474 -> +0.291) as corroboration that alpha-driven mechanism is real. But this check was run AFTER the miss, is admittedly confounded by sampling noise, and its natural endpoint (alpha -> 0 as p -> 1/2, i.e. the gap should approach the KNOWN-SCALE/collapse value) actually blurs the very general-vs-collapse distinction the position rests on. Using a noisy, post-hoc, data-generated check to shore up a post-hoc target both weakens independent_derivability (the mechanism confirmation came from data, not theory) and, if presented as confirmation, threatens preregistration_honesty. It cannot serve as the load-bearing evidence.",
+      "severity": "minor",
+      "what_would_satisfy": "Demote the shrinkage check to suggestive-only in all drafts, disclose its confound explicitly, and do not cite it as confirming the +0.5 target. Load-bearing support must come from the R1-R7 verification and an attributed residual, not this scan.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "choice_timing_legitimacy",
+      "target": "Separating family-selection timing from target-selection timing",
+      "claim": "The position's defense of choice_timing rests entirely on the family SELECTION (Bernoulli) being fixed in todo/040 before code ran -- which appears true and matches r3#2's named categorical example. This bar is close to satisfied. The residual risk is only that the write-up cleanly separate the two timings: the FAMILY was pre-registered (legitimate), but the TARGET was reselected post-data (the issue for other bars). If the draft conflates these -- implying the general-case target was also pre-fixed for Bernoulli -- it would misrepresent the record.",
+      "severity": "minor",
+      "what_would_satisfy": "Explicit statement in the amendment that the family choice was pre-registered and unchanged, while the scoring target was changed post-hoc, keeping the two facts distinct and never implying the +0.5 Bernoulli target predates the data.",
+      "is_inaccuracy": false
+    }
+  ],
+  "stance": "objecting"
+}

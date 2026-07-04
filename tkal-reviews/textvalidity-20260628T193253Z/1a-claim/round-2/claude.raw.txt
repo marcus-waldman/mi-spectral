@@ -1,0 +1,20 @@
+{
+  "keep": [
+    { "id": "K05", "priority": 1, "reason": "Unanimous; unearned impossibility claim ('no transformation can recover it') is the strongest overclaim." },
+    { "id": "K17", "priority": 2, "reason": "Unanimous; restates the disclaimed impossibility, same severity class." },
+    { "id": "K01", "priority": 3, "reason": "Abstract 'restores complete-data-equivalent selection' is stronger than the demonstrated rate-level recovery." },
+    { "id": "K04", "priority": 4, "reason": "'entirely' overstates; ladder arms reach benchmark only in strong-signal cell." },
+    { "id": "K11", "priority": 5, "reason": "Trace-only removal overclaim; ignores design-imbalance term and incomplete ranking recovery." },
+    { "id": "K18", "priority": 6, "reason": "Blanket practical endorsement that ignores the paper's own scope limits stated just above." },
+    { "id": "K24", "priority": 7, "reason": "'every deviance and every information criterion' universality not earned given known-scale and design-imbalance qualifiers." },
+    { "id": "K22", "priority": 8, "reason": "'bias exists only when the fit estimates a scale' contradicted by paper's own known-scale MI sentence." },
+    { "id": "K25", "priority": 9, "reason": "Abstract model-selection scope too broad; complex models need not have larger RIV." },
+    { "id": "K15", "priority": 10, "reason": "Counterfactual single-family workflow claim unsupported by the cross-family observation." },
+    { "id": "K33", "priority": 11, "reason": "Speculates a singular historical reason for the field's open questions." },
+    { "id": "K28", "priority": 12, "reason": "'held across all sixty cells' conflicts with congenial-only qualifier and uncongenial overshoot; cell scope unclear." },
+    { "id": "K29", "priority": 13, "reason": "'bounds the cost' overclaims; an empirical agreement check is not a derived bound." },
+    { "id": "K23", "priority": 14, "reason": "Decision equivalence stated too broadly versus scoped null-side/weak-signal results." }
+  ],
+  "add": [],
+  "drop_notes": "Dropped K26/K27 from my prior leaning as redundant with K24/K11's stronger framings; retained the highest-severity scope and impossibility overclaims rather than padding."
+}

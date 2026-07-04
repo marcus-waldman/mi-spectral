@@ -1,0 +1,27 @@
+{
+  "criterion_scores": [
+    {
+      "criterion": "claim_support",
+      "assessment": "holds_as_amended",
+      "rationale": "The advocate appropriately downgraded 'bounds' to empirical estimates (OBJ-05, OBJ-11) and recast historical/counterfactual claims into stated inferences (OBJ-07), aligning the claims with the empirical and documented evidence."
+    },
+    {
+      "criterion": "scope_calibration",
+      "assessment": "holds_as_amended",
+      "rationale": "Broad decision-level summaries and deterministic language regarding complexity and recovery were correctly re-scoped in multiple sentences (OBJ-03), ensuring the prose matches the conditional, expectation-level results."
+    },
+    {
+      "criterion": "internal_consistency",
+      "assessment": "holds_as_amended",
+      "rationale": "The advocate successfully resolved internal contradictions by removing absolute observed-data impossibility claims that violated the paper's own explicit limitations (OBJ-01, OBJ-09), distinguishing IC trace corrections from LRT nested tests (OBJ-02, OBJ-10), and properly limiting generalizations to 'congenial' cells where appropriate (OBJ-06, OBJ-13)."
+    },
+    {
+      "criterion": "citation_support",
+      "assessment": "holds_as_amended",
+      "rationale": "The advocate provided the missing Satorra-Bentler local citation, re-scoped an otherwise conflicting literature claim, and replaced a vague 'developed separately' reference with explicit future work (OBJ-08, OBJ-12)."
+    }
+  ],
+  "determination": "amended",
+  "sustained_objections": [],
+  "determination_rationale": "The position survives because the advocate engaged in good faith and accepted bounded wording changes for every objection. The amendments successfully re-scope the text to precisely match the off-limits mathematical and simulation results without conceding the results themselves. The alleged inaccuracies were successfully defended as mere presentation inconsistencies rather than buried substantive flaws."
+}

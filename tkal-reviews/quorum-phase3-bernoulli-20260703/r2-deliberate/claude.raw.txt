@@ -1,0 +1,65 @@
+Analyzing each objection against the advocate's dispositions and the ratified bars.
+
+The critical issue: OBJ-05, OBJ-06, and OBJ-07 all concern independent_derivability. The advocate CONCEDES that +0.5 is not independently derivable and narrows the claim to "escapes known-scale collapse" only. This is honest and adequate for those specific points via amendment. But I must check whether the reviewer_intent_sufficiency bar can still hold once the quantitative target collapses to "direction only."
+
+{
+  "rulings": [
+    {
+      "objection_id": "OBJ-01",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-02",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-03",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-04",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-05",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-06",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-07",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-08",
+      "ruling": "sustained",
+      "sustained_point": "The advocate's amendment discloses the known-scale-outside-MVN gap but does not resolve the sufficiency question the bar poses. After the concessions on OBJ-05/06/07, Bernoulli no longer confirms any quantitative target (only that it escapes the collapse and is 'positive, same order of magnitude, unattributed 2.2 se off'). So the affirmative empirical evidence answering r3#2 for GLM generalization now rests on Gamma ALONE as a clean quantitative confirmation, with Bernoulli reduced to a directional non-collapse result. The bar asks whether Gamma+Bernoulli 'scored against the general-case target' is sufficient on its own terms; but Bernoulli is no longer scored against that target in any confirming sense. The advocate defends only the reading of r3#2's scope, not the sufficiency of the surviving evidence once its own quantitative content was conceded away. The disclosure makes the gap legible but does not establish that a single clean family (Gamma) plus a merely-directional family (Bernoulli) meets r3#2's 'safely generalized to standard GLM frameworks' bar. That sufficiency judgment is unaddressed."
+    },
+    {
+      "objection_id": "OBJ-09",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-10",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-11",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    }
+  ],
+  "new_objections": [],
+  "stance": "objecting"
+}

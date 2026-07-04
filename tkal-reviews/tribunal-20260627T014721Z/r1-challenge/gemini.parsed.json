@@ -1,0 +1,46 @@
+{
+  "challenges": [
+    {
+      "criterion": "claim_strength",
+      "target": "Study 1 (S5-P12) 'Theorem validation' claiming confirmation against refined target",
+      "claim": "The manuscript asserts the estimate 2.43 ± 0.26 'confirms the completed theorem' using an 'order-one-augmented prediction 2.42 to 2.55.' However, the original preregistered target was ½tr(RIV) ≈ 2.77, which the estimate completely missed. Replacing a preregistered miss with a post-hoc, independently derived target band without first declaring that the originally registered 2.77 target failed is an explicit violation of the rule against hiding unmet pre-registered predictions.",
+      "severity": "blocking",
+      "what_would_satisfy": "State outright in the text that the estimate failed the initial preregistered ½tr(RIV) target of 2.77, and then present the 2.42–2.55 augmented band as a subsequent theoretical correction to the estimand rather than an initial confirmation."
+    },
+    {
+      "criterion": "mechanism_not_artifact",
+      "target": "Study 6 (S5-P17) '100% land on saturated' signature (W3C_high_RIV_frac)",
+      "claim": "The study orders its nested candidates structurally by missing information, placing the saturated model at the top. In such an ordered layout, any generic, uncorrected downward deviance bias will mechanically favor the most complex/highest-tr(RIV) candidate by sheer magnitude. W3C = 1.000 is thus trivially forced by candidate sorting rather than being a unique validation of the paper's specific spectral trace distribution, failing the artifact-explanation test.",
+      "severity": "blocking",
+      "what_would_satisfy": "Downgrade the claim to acknowledge this is a built-in tautology of ordering candidates by RIV, or test/prove the signature on a non-monotonic candidate set where a generic scaling error would miss but the spectral mechanism hits."
+    },
+    {
+      "criterion": "claim_strength",
+      "target": "Study 6 (S5-P17) omission of uncongenial sweep results",
+      "claim": "The prose selectively reports 'In every congenial cell...', entirely omitting the sweep's uncongenial data. The appendix reveals that in uncongenial cells, the uncorrected selection rate actually exceeds the oracle (0.93 vs 0.90) and the correction overshoots to a near 98% rate, reversing the sign of the problem. Suppressing this regime hides a massive structural failure mode and falsely implies uniform performance, violating the requirement to disclose failed pre-registered performance.",
+      "severity": "blocking",
+      "what_would_satisfy": "Incorporate the uncongenial data directly into the S5-P17 main text, explicitly stating that under uncongeniality the initial bias reverses (exceeding oracle) and the correction overshoots past the oracle."
+    },
+    {
+      "criterion": "generic_not_lucky",
+      "target": "Study 7 (S5-P20) Structural Limits off-equality capability claim",
+      "claim": "Table S5-P20 labels a 0.080 selection-rate penalty (0.824 vs 0.904) as 'naive input' vs 'correct input'. However, the inline text and data confirm that in this block-diagonal family, the naive trace and projected trace provably coincide to 3.6e-15. Therefore, the 0.080 penalty relies purely on a manufactured difference in the moment maps (frozen-SB), not the trace formulas. Blurring 'naive trace' terminology into a cell where the traces are mathematically identical violates the 'generic_not_lucky' requirement. Claiming formula superiority rests on structural luck.",
+      "severity": "blocking",
+      "what_would_satisfy": "Explicitly decouple the 0.824 'naive input' (moment map limitation) from the trace-difference evaluation. Specify in Study 7 that the trace formulas cannot diverge here, and unambiguously redirect the trace formula superiority claim to Study 8 where a genuine 9% divergence occurs."
+    },
+    {
+      "criterion": "mechanism_not_artifact",
+      "target": "Study 4 (S5-P15) '52 standard errors' discrimination",
+      "claim": "The 52-sigma separation between formulas evaluates them using a highly engineered, extreme edge case (~70-79% missing on one coordinate, 0% on another) constructed adversarially to maximally pull the two trace formulas apart. Presenting this separation without qualification treats a forced, degenerate outcome as standard evidence of superiority, obscuring how (or if) the formulas diverge under realistic/balanced missingness.",
+      "severity": "major",
+      "what_would_satisfy": "Declare the 52-sigma design as an existentially engineered bound explicitly constructed to force a separation, and state what the measured gap is (even if zero) under an unforced, balanced missingness design."
+    },
+    {
+      "criterion": "reproducible_numbers",
+      "target": "Studies 1-5 reliance on un-inlined RDS artifacts",
+      "claim": "More than half of the headline metrics in the defense (e.g., 2.43 ± 0.26, 0.025 ± 0.018, 0.042/0.034, 2.64/2.70) are cited exclusively from non-transcribed `.rds` artifacts. Under an absolute cross-examination gate requiring numerical reproducibility, these specific standard errors, interval limits, and pool estimates cannot be checked for internal consistency 'even in principle' with the provided appendix, shielding them from empirical scrutiny.",
+      "severity": "major",
+      "what_would_satisfy": "Transcribe the critical summary/parameter rows from the `.rds` backing files into the text's data appendix alongside the existing CSVs to permit mathematical verification of the quoted estimates and standard errors."
+    }
+  ]
+}

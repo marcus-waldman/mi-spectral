@@ -1,0 +1,797 @@
+{
+  "books": {
+    "K01": {
+      "id": "K01",
+      "title": "[ABSTRACT] \"Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection.\" — trace correction overstates decisions",
+      "by": "ABSTRACT",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[ABSTRACT] \"Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection.\"",
+          "by": "ABSTRACT"
+        },
+        {
+          "panel": "openai",
+          "title": "[ABSTRACT] \"Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection.\" — trace correction overstates decisions",
+          "by": "ABSTRACT"
+        }
+      ],
+      "first_round": 1
+    },
+    "K02": {
+      "id": "K02",
+      "title": "[S1-P4] \"In our pre-registered study, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV.\"",
+      "by": "S1-P4",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1-P4] \"In our pre-registered study, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV.\"",
+          "by": "S1-P4"
+        }
+      ],
+      "first_round": 1
+    },
+    "K03": {
+      "id": "K03",
+      "title": "[S1-P4] \"We show that the corrected criterion recovers its complete-data expectation at any signal strength.\"",
+      "by": "S1-P4",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1-P4] \"We show that the corrected criterion recovers its complete-data expectation at any signal strength.\"",
+          "by": "S1-P4"
+        }
+      ],
+      "first_round": 1
+    },
+    "K04": {
+      "id": "K04",
+      "title": "[S1-P5] \"Correction then restores complete-data behavior entirely.\" — entirely too strong",
+      "by": "S1-P5",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1-P5] \"Correction then restores complete-data behavior entirely.\"",
+          "by": "S1-P5"
+        },
+        {
+          "panel": "openai",
+          "title": "[S1-P5] \"Correction then restores complete-data behavior entirely.\" — entirely too strong",
+          "by": "S1-P5"
+        }
+      ],
+      "first_round": 1
+    },
+    "K05": {
+      "id": "K05",
+      "title": "[S1-P5] \"The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it.\" — unearned impossibility claim",
+      "by": "S1-P5",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1-P5] \"we show that no transformation of the observed data can recover it\"",
+          "by": "S1-P5"
+        },
+        {
+          "panel": "openai",
+          "title": "[S1-P5] \"The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it.\" — unearned impossibility claim",
+          "by": "S1-P5"
+        },
+        {
+          "panel": "gemini",
+          "title": "[S1-P5] \"We show that no transformation of the observed data can recover it.\" — contradicts explicit limitation",
+          "by": "S1-P5"
+        }
+      ],
+      "first_round": 1
+    },
+    "K06": {
+      "id": "K06",
+      "title": "[S1-P3] \"The principle as an explicit yardstick is, to our knowledge, stated here for the first time.\"",
+      "by": "S1-P3",
+      "categories": [
+        "speculation"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1-P3] \"The principle as an explicit yardstick is, to our knowledge, stated here for the first time.\"",
+          "by": "S1-P3"
+        }
+      ],
+      "first_round": 1
+    },
+    "K07": {
+      "id": "K07",
+      "title": "[S1-P1] \"On that testimony, the major inferential questions read as settled.\"",
+      "by": "S1-P1",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1-P1] \"On that testimony, the major inferential questions read as settled.\"",
+          "by": "S1-P1"
+        }
+      ],
+      "first_round": 1
+    },
+    "K08": {
+      "id": "K08",
+      "title": "[S1B-P1] \"a kind of collaboration that is new in the age of AI and whose products are not yet routinely trusted\"",
+      "by": "S1B-P1",
+      "categories": [
+        "speculation"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1B-P1] \"a kind of collaboration that is new in the age of AI and whose products are not yet routinely trusted\"",
+          "by": "S1B-P1"
+        }
+      ],
+      "first_round": 1
+    },
+    "K09": {
+      "id": "K09",
+      "title": "[S1B-P1] \"Productive means that the collaboration reached results a single author would have reached slowly or not at all.\"",
+      "by": "S1B-P1",
+      "categories": [
+        "speculation"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1B-P1] \"Productive means that the collaboration reached results a single author would have reached slowly or not at all.\"",
+          "by": "S1B-P1"
+        }
+      ],
+      "first_round": 1
+    },
+    "K10": {
+      "id": "K10",
+      "title": "[S1B-P2] \"This section describes the collaboration and shows that it was active and human-directed.\"",
+      "by": "S1B-P1",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1B-P2] \"This section describes the collaboration and shows that it was active and human-directed.\"",
+          "by": "S1B-P1"
+        }
+      ],
+      "first_round": 1
+    },
+    "K11": {
+      "id": "K11",
+      "title": "[S1-P6b] \"Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the bias and substantially restores the ranking that complete data would have given.\" — trace-only removal overclaim",
+      "by": "S1-P6b",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1-P6b] \"removes the bias and substantially restores the ranking that complete data would have given\"",
+          "by": "S1-P6b"
+        },
+        {
+          "panel": "openai",
+          "title": "[S1-P6b] \"Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the bias and substantially restores the ranking that complete data would have given.\" — trace-only removal overclaim",
+          "by": "S1-P6b"
+        }
+      ],
+      "first_round": 1
+    },
+    "K12": {
+      "id": "K12",
+      "title": "[S5-P14] \"The size-adjusted power arms are the partial support cited for the power conjecture of @sec-discussion.\"",
+      "by": "S5-P14",
+      "categories": [
+        "unsupported-as-written"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S5-P14] \"The size-adjusted power arms are the partial support cited for the power conjecture of @sec-discussion.\"",
+          "by": "S5-P14"
+        }
+      ],
+      "first_round": 1
+    },
+    "K13": {
+      "id": "K13",
+      "title": "[S5-P15] \"Both match the projected-trace prediction of $2.64$. Correctness rests on that match.\"",
+      "by": "S5-P15",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S5-P15] \"Both match the projected-trace prediction of $2.64$. Correctness rests on that match.\"",
+          "by": "S5-P15"
+        }
+      ],
+      "first_round": 1
+    },
+    "K14": {
+      "id": "K14",
+      "title": "[S5-P22] \"This robustness is empirical and scoped to the designs studied.\"",
+      "by": "S5-P22",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S5-P22] \"This robustness is empirical and scoped to the designs studied.\"",
+          "by": "S5-P22"
+        }
+      ],
+      "first_round": 1
+    },
+    "K15": {
+      "id": "K15",
+      "title": "[S3-P6] \"A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice.\" — counterfactual workflow claim",
+      "by": "S3-P6",
+      "categories": [
+        "speculation"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S3-P6] \"A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice.\"",
+          "by": "S3-P6"
+        },
+        {
+          "panel": "openai",
+          "title": "[S3-P6] \"A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice.\" — counterfactual workflow claim",
+          "by": "S3-P6"
+        }
+      ],
+      "first_round": 1
+    },
+    "K16": {
+      "id": "K16",
+      "title": "[S6-P5] \"We conjecture that the bias-corrected likelihood-ratio comparison dominates its uncorrected counterpart in power uniformly.\"",
+      "by": "S6-P5",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S6-P5] \"We conjecture that the bias-corrected likelihood-ratio comparison dominates its uncorrected counterpart in power uniformly.\"",
+          "by": "S6-P5"
+        }
+      ],
+      "first_round": 1
+    },
+    "K17": {
+      "id": "K17",
+      "title": "[S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\" — restates disclaimed impossibility",
+      "by": "S6-P7",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\"",
+          "by": "S6-P7"
+        },
+        {
+          "panel": "openai",
+          "title": "[S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\" — conclusion repeats impossibility",
+          "by": "S6-P7"
+        },
+        {
+          "panel": "gemini",
+          "title": "[S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\" — restates disclaimed impossibility",
+          "by": "S6-P7"
+        }
+      ],
+      "first_round": 1
+    },
+    "K18": {
+      "id": "K18",
+      "title": "[S6-P7] \"Then trust the result the way complete-data results are trusted.\" — applied trust too broad",
+      "by": "S6-P7",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S6-P7b] \"Then trust the result the way complete-data results are trusted.\"",
+          "by": "S6-P7b"
+        },
+        {
+          "panel": "openai",
+          "title": "[S6-P7] \"Then trust the result the way complete-data results are trusted.\" — applied trust too broad",
+          "by": "S6-P7"
+        }
+      ],
+      "first_round": 1
+    },
+    "K19": {
+      "id": "K19",
+      "title": "[S5-P18] \"The junk cell closes $90$ percent of the gap from uncorrected to benchmark.\"",
+      "by": "S5-P18",
+      "categories": [
+        "unsupported-as-written"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S5-P18] \"The junk cell closes $90$ percent of the gap from uncorrected to benchmark.\"",
+          "by": "S5-P18"
+        }
+      ],
+      "first_round": 1
+    },
+    "K20": {
+      "id": "K20",
+      "title": "[S1-P2] \"That study also cautions that selecting models by averaged criteria has no support in the multiple-imputation literature.\"",
+      "by": "S1-P2",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "claude",
+          "title": "[S1-P2] \"That study also cautions that selecting models by averaged criteria has no support in the multiple-imputation literature.\"",
+          "by": "S1-P2"
+        }
+      ],
+      "first_round": 1
+    },
+    "K21": {
+      "id": "K21",
+      "title": "[S6-P7b] \"When the aim is to rank models or to compare nested models on imputed data, and no calibrated reference distribution already absorbs the bias, add the per-candidate trace correction before reading off the result.\" — nested-test correction conflation",
+      "by": "S6-P7b",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S6-P7b] \"When the aim is to rank models or to compare nested models on imputed data, and no calibrated reference distribution already absorbs the bias, add the per-candidate trace correction before reading off the result.\" — nested-test correction conflation",
+          "by": "S6-P7b"
+        }
+      ],
+      "first_round": 1
+    },
+    "K22": {
+      "id": "K22",
+      "title": "[S6-P1] \"The bias exists only when the fit estimates a scale or covariance.\" — contradicted by known-scale MI",
+      "by": "S6-P1",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S6-P1] \"The bias exists only when the fit estimates a scale or covariance.\" — contradicted by known-scale MI",
+          "by": "S6-P1"
+        }
+      ],
+      "first_round": 1
+    },
+    "K23": {
+      "id": "K23",
+      "title": "[S6-P7] \"Corrected selection and calibrated tests behave as they would have with complete data.\" — decision equivalence too broad",
+      "by": "S6-P7",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S6-P7] \"Corrected selection and calibrated tests behave as they would have with complete data.\" — decision equivalence too broad",
+          "by": "S6-P7"
+        }
+      ],
+      "first_round": 1
+    },
+    "K24": {
+      "id": "K24",
+      "title": "[S1-P4] \"The practical consequence is that, for such a model, every deviance and every information criterion computed from multiply imputed data is too optimistic.\" — every-criterion sign overclaim",
+      "by": "S1-P4",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S1-P4] \"The practical consequence is that, for such a model, every deviance and every information criterion computed from multiply imputed data is too optimistic.\" — every-criterion sign overclaim",
+          "by": "S1-P4"
+        }
+      ],
+      "first_round": 1
+    },
+    "K25": {
+      "id": "K25",
+      "title": "[ABSTRACT] \"Model selection on multiply imputed data is biased toward more complex models, because their larger relative increase in variance makes the fit look better than it is.\" — model-selection scope too broad",
+      "by": "ABSTRACT",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[ABSTRACT] \"Model selection on multiply imputed data is biased toward more complex models, because their larger relative increase in variance makes the fit look better than it is.\" — model-selection scope too broad",
+          "by": "ABSTRACT"
+        }
+      ],
+      "first_round": 1
+    },
+    "K26": {
+      "id": "K26",
+      "title": "[S1-P4] \"The second term is smaller.\" — magnitude not established",
+      "by": "S1-P4",
+      "categories": [
+        "unsupported-as-written"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S1-P4] \"The second term is smaller.\" — magnitude not established",
+          "by": "S1-P4"
+        }
+      ],
+      "first_round": 1
+    },
+    "K27": {
+      "id": "K27",
+      "title": "[S1-P4] \"A model-comparison table built on imputed data therefore favors the candidates with the most missing information.\" — deterministic ranking overclaim",
+      "by": "S1-P4",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S1-P4] \"A model-comparison table built on imputed data therefore favors the candidates with the most missing information.\" — deterministic ranking overclaim",
+          "by": "S1-P4"
+        }
+      ],
+      "first_round": 1
+    },
+    "K28": {
+      "id": "K28",
+      "title": "[S5-P17] \"This is a registered directional prediction, and it held across all sixty cells.\" — cell scope unclear",
+      "by": "S5-P17",
+      "categories": [
+        "unsupported-as-written"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S5-P17] \"This is a registered directional prediction, and it held across all sixty cells.\" — cell scope unclear",
+          "by": "S5-P17"
+        }
+      ],
+      "first_round": 1
+    },
+    "K29": {
+      "id": "K29",
+      "title": "[S5-P22] \"The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which bounds the cost of not running data augmentation.\" — empirical check not a bound",
+      "by": "S5-P22",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S5-P22] \"The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which bounds the cost of not running data augmentation.\" — empirical check not a bound",
+          "by": "S5-P22"
+        }
+      ],
+      "first_round": 1
+    },
+    "K30": {
+      "id": "K30",
+      "title": "[S6-P6] \"The design-imbalance term derived here is nonzero exactly when the missing and observed units differ on the conditioning variables.\" — iff claim needs support",
+      "by": "S6-P6",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S6-P6] \"The design-imbalance term derived here is nonzero exactly when the missing and observed units differ on the conditioning variables.\" — iff claim needs support",
+          "by": "S6-P6"
+        }
+      ],
+      "first_round": 1
+    },
+    "K31": {
+      "id": "K31",
+      "title": "[S1-P7] \"@sec-ai-collab describes the collaboration that produced them and shows that it was productive.\" — productivity not demonstrated",
+      "by": "S1-P7",
+      "categories": [
+        "speculation"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S1-P7] \"@sec-ai-collab describes the collaboration that produced them and shows that it was productive.\" — productivity not demonstrated",
+          "by": "S1-P7"
+        }
+      ],
+      "first_round": 1
+    },
+    "K32": {
+      "id": "K32",
+      "title": "[S3-P3] \"Reliance on the AI system's trained recollection of a paper was prohibited throughout, because invented or misattributed citations are among the most common failures of AI-assisted scholarship.\" — AI-citation failure citation needed",
+      "by": "S3-P3",
+      "categories": [
+        "missing-citation"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S3-P3] \"Reliance on the AI system's trained recollection of a paper was prohibited throughout, because invented or misattributed citations are among the most common failures of AI-assisted scholarship.\" — AI-citation failure citation needed",
+          "by": "S3-P3"
+        }
+      ],
+      "first_round": 1
+    },
+    "K33": {
+      "id": "K33",
+      "title": "[S1-P3] \"The open questions above are open because the second and third levels had not been posed.\" — speculates on field history",
+      "by": "S1-P3",
+      "categories": [
+        "speculation"
+      ],
+      "variants": [
+        {
+          "panel": "openai",
+          "title": "[S1-P3] \"The open questions above are open because the second and third levels had not been posed.\" — causal history speculative",
+          "by": "S1-P3"
+        },
+        {
+          "panel": "gemini",
+          "title": "[S1-P3] \"The open questions above are open because the second and third levels had not been posed.\" — speculates on field history",
+          "by": "S1-P3"
+        }
+      ],
+      "first_round": 1
+    },
+    "K34": {
+      "id": "K34",
+      "title": "[S5-P6] \"By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic referred to $\\chi^2_1$.\" — missing test citation",
+      "by": "S5-P6",
+      "categories": [
+        "missing-citation"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "[S5-P6] \"By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic referred to $\\chi^2_1$.\" — missing test citation",
+          "by": "S5-P6"
+        }
+      ],
+      "first_round": 1
+    },
+    "K35": {
+      "id": "K35",
+      "title": "[S6-P6] \"De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are developed separately.\" — points to missing reference",
+      "by": "S6-P6",
+      "categories": [
+        "missing-citation"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "[S6-P6] \"De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are developed separately.\" — points to missing reference",
+          "by": "S6-P6"
+        }
+      ],
+      "first_round": 1
+    },
+    "K36": {
+      "id": "K36",
+      "title": "[S1-P2] \"Only one information criterion has been proposed for multiply imputed data.\" — ignores other cited criteria",
+      "by": "S1-P2",
+      "categories": [
+        "overclaim"
+      ],
+      "variants": [
+        {
+          "panel": "gemini",
+          "title": "[S1-P2] \"Only one information criterion has been proposed for multiply imputed data.\" — ignores other cited criteria",
+          "by": "S1-P2"
+        }
+      ],
+      "first_round": 1
+    }
+  },
+  "merge_log": [
+    {
+      "id": "K01",
+      "score": 1.0,
+      "merged": "ABSTRACT -- [ABSTRACT] \"Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection.\" — trace correction overstates decisions"
+    },
+    {
+      "id": "K05",
+      "score": 1.0,
+      "merged": "S1-P5 -- [S1-P5] \"The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it.\" — unearned impossibility claim"
+    },
+    {
+      "id": "K04",
+      "score": 1.0,
+      "merged": "S1-P5 -- [S1-P5] \"Correction then restores complete-data behavior entirely.\" — entirely too strong"
+    },
+    {
+      "id": "K11",
+      "score": 1.0,
+      "merged": "S1-P6b -- [S1-P6b] \"Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the bias and substantially restores the ranking that complete data would have given.\" — trace-only removal overclaim"
+    },
+    {
+      "id": "K17",
+      "score": 1.0,
+      "merged": "S6-P7 -- [S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\" — conclusion repeats impossibility"
+    },
+    {
+      "id": "K18",
+      "score": 0.832,
+      "merged": "S6-P7 -- [S6-P7] \"Then trust the result the way complete-data results are trusted.\" — applied trust too broad"
+    },
+    {
+      "id": "K15",
+      "score": 1.0,
+      "merged": "S3-P6 -- [S3-P6] \"A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice.\" — counterfactual workflow claim"
+    },
+    {
+      "id": "K05",
+      "score": 0.893,
+      "merged": "S1-P5 -- [S1-P5] \"We show that no transformation of the observed data can recover it.\" — contradicts explicit limitation"
+    },
+    {
+      "id": "K17",
+      "score": 0.917,
+      "merged": "S6-P7 -- [S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\" — restates disclaimed impossibility"
+    },
+    {
+      "id": "K33",
+      "score": 0.938,
+      "merged": "S1-P3 -- [S1-P3] \"The open questions above are open because the second and third levels had not been posed.\" — speculates on field history"
+    }
+  ],
+  "dropped_fixed": [],
+  "selections": {
+    "claude": [
+      "K01",
+      "K02",
+      "K03",
+      "K04",
+      "K05",
+      "K06",
+      "K07",
+      "K08",
+      "K09",
+      "K10",
+      "K11",
+      "K12",
+      "K13",
+      "K14",
+      "K15",
+      "K16",
+      "K17",
+      "K18",
+      "K19",
+      "K20"
+    ],
+    "openai": [
+      "K01",
+      "K04",
+      "K05",
+      "K11",
+      "K15",
+      "K17",
+      "K18",
+      "K21",
+      "K22",
+      "K23",
+      "K24",
+      "K25",
+      "K26",
+      "K27",
+      "K28",
+      "K29",
+      "K30",
+      "K31",
+      "K32",
+      "K33"
+    ],
+    "gemini": [
+      "K05",
+      "K17",
+      "K33",
+      "K34",
+      "K35",
+      "K36"
+    ]
+  },
+  "counts": {
+    "K12": 1,
+    "K17": 3,
+    "K06": 1,
+    "K01": 2,
+    "K11": 2,
+    "K20": 1,
+    "K13": 1,
+    "K14": 1,
+    "K08": 1,
+    "K03": 1,
+    "K02": 1,
+    "K10": 1,
+    "K15": 2,
+    "K09": 1,
+    "K05": 3,
+    "K19": 1,
+    "K18": 2,
+    "K07": 1,
+    "K16": 1,
+    "K04": 2,
+    "K30": 1,
+    "K22": 1,
+    "K33": 2,
+    "K21": 1,
+    "K31": 1,
+    "K24": 1,
+    "K23": 1,
+    "K25": 1,
+    "K26": 1,
+    "K32": 1,
+    "K29": 1,
+    "K27": 1,
+    "K28": 1,
+    "K36": 1,
+    "K34": 1,
+    "K35": 1
+  },
+  "slate": [
+    "K05",
+    "K17",
+    "K01",
+    "K04",
+    "K15",
+    "K18",
+    "K33",
+    "K11",
+    "K21",
+    "K22",
+    "K23",
+    "K24",
+    "K34",
+    "K02",
+    "K12",
+    "K25",
+    "K26",
+    "K27",
+    "K28",
+    "K29"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "criterion_scores": [
+    {
+      "criterion": "claim_support",
+      "assessment": "holds_as_amended",
+      "rationale": "Several as-written assertions were not earned at their stated strength, including the general observed-data impossibility language, the formal-sounding 'bounds' claim, the workflow counterfactual, the historical-cause claim, and some universal bias/removal phrasing. The conceded amendments rescope these to the studied corrected criteria/tests, empirical agreement in selected designs, interpretive process evidence, and the trace-component/averaged-log-likelihood object, which are supported."
+    },
+    {
+      "criterion": "scope_calibration",
+      "assessment": "holds_as_amended",
+      "rationale": "The abstract and conclusion originally overstated expectation-level and simulation-scoped findings as broad decision-level equivalence, general complexity effects, and unqualified trust language. The round-1 and round-2 amendments appropriately add expectation-level, studied-design, equal-fit, all-else-equal, and stated-conditions limitations."
+    },
+    {
+      "criterion": "internal_consistency",
+      "assessment": "holds_as_amended",
+      "rationale": "TV-05/TV-07 conflicted with G4's limitation unless scoped to the procedures studied, and TV-10 conflicted with the paper's LRT result unless the IC-ranking and nested-test rules were split. The conceded amendments remove those inconsistencies and also align the misclassification statements with the congenial-cell limitation."
+    },
+    {
+      "criterion": "citation_support",
+      "assessment": "holds_as_amended",
+      "rationale": "The literature and future-work prose required additional local citation or rescoping, especially for the Satorra-Bentler arm, the 'developed separately' methods, and the 'only one information criterion' claim. The proposed citations/cross-references and the rewording of uncited companion work as future work satisfy the citation bar only if adopted."
+    }
+  ],
+  "determination": "amended",
+  "sustained_objections": [
+    {
+      "objection_id": "OBJ-01",
+      "point": "TV-05 and TV-07's absolute observed-data-impossibility wording exceeds the supported procedure-scoped claim and must be replaced by the conceded corrected-criteria/calibrated-tests wording.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-02",
+      "point": "TV-10 conflates IC ranking with nested LRT comparison and must split the recommendation: per-candidate trace corrections for IC ranking, calibrated LRT or tested-direction tr(RIV_perp) for nested comparisons.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-03",
+      "point": "TV-01, TV-02, TV-09, TV-11, and TV-12 require scope-calibrating amendments for expectation-level correction, studied designs, equal-fit settings, all-else-equal tendencies, and stated-condition limitations.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-04",
+      "point": "TV-03, TV-04, and TV-08 require narrowed wording identifying the averaged-log-likelihood criterion class, expectation-level nature, trace component, and the distinction from the known-scale term.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-05",
+      "point": "TV-13's 'bounds' language overstates an empirical agreement check and must be replaced with 'indicates,' 'empirically estimates,' 'assesses,' or equivalent empirical wording.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-06",
+      "point": "TV-14 and TV-15 must distinguish the stronger congenial-cell all-errors-on-largest-RIV pattern from the broader all-sixty-cell directional prediction.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-07",
+      "point": "TV-16 and TV-17 must recast the single-family workflow and historical-cause assertions as evidence-based interpretation rather than established counterfactual or causal fact.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-08",
+      "point": "TV-18, TV-19, and TV-20 require narrowed literature scope, local Satorra-Bentler citation or cross-reference, and either a citation for separately developed methods or rewording as future work.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-09",
+      "point": "Same sustained point as OBJ-01: TV-05 and TV-07 must remove the absolute 'no transformation of the observed data' claim and align with G4.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-10",
+      "point": "Same sustained point as OBJ-02: TV-10 must not advise per-candidate trace differences for nested comparisons where the paper's LRT result uses the tested-direction correction or calibrated reference distribution.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-11",
+      "point": "Same sustained point as OBJ-05: TV-13 must replace 'bounds' with empirically calibrated language.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-12",
+      "point": "TV-19 and TV-20 need the conceded citation/cross-reference additions or future-work rewording to satisfy reader-verifiable citation support.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-13",
+      "point": "Same sustained point as OBJ-06: TV-14 and TV-15 require the congenial-cell qualifier and explicit separation from the all-sixty-cell directional prediction.",
+      "is_inaccuracy": false
+    }
+  ],
+  "determination_rationale": "The defense does not preserve the manuscript as written: multiple flagged sentences require bounded wording changes to match the validated results and cited sources. The advocate accepted the necessary amendments, including the round-2 narrowing of TV-02 and TV-03, and those amendments adequately cure the fidelity problems without reopening any theorem or simulation result. I find no fabrication, misrepresented defensive claim, or buried inaccuracy by the advocate; the alleged inaccuracies are overbroad wording/internal-consistency defects cured by the conceded edits."
+}

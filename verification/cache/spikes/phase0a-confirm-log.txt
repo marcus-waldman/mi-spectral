@@ -1,0 +1,30 @@
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+Warning message:
+package 'pbapply' was built under R version 4.5.2 
+
+=== Arm A: magnitude at N=200, R=200 (paired to FITTED, /tr(RIV)) ===
+
+mean tr(RIV)=5.628   mean FITTED=+2.494
+
+engine        (T-FITTED)/tr(RIV)
+----------    ------------------
+conjugate      -0.792 (se 0.023)
+deflated       -0.232 (se 0.020)
+gauss-post     -0.138 (se 0.019)
+amelia         -0.099 (se 0.025)
+
+=== Arm B: N-persistence (conjugate, R=200) ===
+
+   N   tr(RIV)   (T_conj-FITTED)/tr(RIV)
+  ---  -------   ----------------------
+   200   5.628     -0.792 (se 0.023)
+   500   5.543     -0.763 (se 0.031)
+  1000   5.498     -0.765 (se 0.044)
+  2000   5.516     -0.733 (se 0.062)
+
+=== norm::da.norm (Schafer canonical Jeffreys DA), serial, R=100, N=200 ===
+
+norm::da.norm  (T-FITTED)/tr(RIV) = -0.743 (se 0.032)   [mean tr(RIV)=5.607]
+
+Done. Cache: verification/cache/spikes/phase0a-confirm.rds

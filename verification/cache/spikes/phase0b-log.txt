@@ -1,0 +1,37 @@
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+
+Phase-0b brms-as-imputer spike  [n_fits=6, M=50, chains=2, iter=1000]
+  brms 2.23.0
+  backend=cmdstanr (cmdstan 2.37.0)
+
+[fit 1] compiling + sampling (first fit includes Stan compile)...
+Loading required namespace: rstan
+[fit 1] done in 26.9s (form=rescor, includes compile)
+[fit 1] 26.9s  Ymi=126  sample tr(RIV)=6.722 (an 5.094)  T=+0.813  (T-FITTED)/tr=-1.466
+[fit 2] 25.4s  Ymi=120  sample tr(RIV)=6.059 (an 5.169)  T=+9.535  (T-FITTED)/tr=-1.840
+[fit 3] 5.9s  Ymi=122  sample tr(RIV)=5.113 (an 4.904)  T=+13.295  (T-FITTED)/tr=-1.369
+[fit 4] 24.7s  Ymi=126  sample tr(RIV)=5.779 (an 4.971)  T=-16.641  (T-FITTED)/tr=-0.823
+[fit 5] 4.5s  Ymi=135  sample tr(RIV)=7.294 (an 6.207)  T=-3.778  (T-FITTED)/tr=-1.072
+[fit 6] 24.3s  Ymi=154  sample tr(RIV)=10.072 (an 7.583)  T=-9.323  (T-FITTED)/tr=-1.588
+
+== Phase-0b results ==
+
+Backend: cmdstanr ; imputer form: rescor
+First fit (compile+sample): 26.9s
+Per-fit sampling (cached compile), median of 5: 24.3s
+Sample tr(RIV) brms (rep1): 6.7222  vs analytic 5.0937
+
+DEVIANCE-BIAS BRANCH: (T_brms - FITTED)/tr(RIV) over 6 fit(s) = -1.360 (se 0.149)
+  compare 0a: conjugate/norm Jeffreys-IW ~ -0.75 ; Amelia/gauss-posterior ~ 0
+  => brms (weakly-informative prior) lands on the EXACT-DA branch (prior-general full-Bayes effect)
+
+Gate     Check                                          Pass
+-------  ---------------------------------------------  ----
+G0b-1    fits + returns 50 completions                  PASS
+G0b-2    sample tr(RIV) within 50% of analytic (n=1)   PASS
+
+Runtime gate (per-fit median 24.3s): NON-NORMAL-ONLY or INFEASIBLE for large R (reserve for a focused Phase-3 illustration)
+  extrapolation: R=1000 single cell ~= 405.5 min ; 60-cell sweep ~= 405.5 hr
+
+Cache: verification/cache/spikes/phase0b-brms-imputer.rds

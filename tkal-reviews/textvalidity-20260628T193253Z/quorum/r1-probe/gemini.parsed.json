@@ -1,0 +1,45 @@
+{
+  "objections": [
+    {
+      "criterion": "internal_consistency",
+      "target": "TV-05 and TV-07",
+      "claim": "The sentences assert an absolute impossibility ('no transformation of the observed data can recover it' / 'No transformation of the observed data manufactures the lost evidence back') which directly contradicts the G4 limitation ('No argument here shows that no estimator built from the same observed data could do better'). Defending the text AS-IS while conceding the paper's explicit limitation is a buried contradiction.",
+      "severity": "blocking",
+      "what_would_satisfy": "Amend TV-05 and TV-07 to explicitly restrict the claim to Information Criteria / likelihood methods (e.g., 'as measured through these corrections'), removing the absolute 'no transformation of the observed data' language.",
+      "is_inaccuracy": true
+    },
+    {
+      "criterion": "internal_consistency",
+      "target": "TV-10",
+      "claim": "The instruction to 'add the per-candidate trace correction' when the aim is to 'compare nested models' directly contradicts the paper's own LRT result (S1-P6b), which establishes that the difference of per-candidate corrections ALWAYS OVERSTATES the nested-comparison bias (tr(RIV_perp)). Advising the per-candidate trace for nested models conflates IC ranking with nested testing.",
+      "severity": "blocking",
+      "what_would_satisfy": "Remove 'or to compare nested models' from the instruction advocating the per-candidate trace correction, making it clear that nested comparisons require the perpendicular reference distribution correction.",
+      "is_inaccuracy": true
+    },
+    {
+      "criterion": "claim_support",
+      "target": "TV-13",
+      "claim": "The word 'bounds' implies a formalized or derived mathematical limit, but the advocate admits the check is merely an empirical agreement measurement on selected cells. An empirical observation does not 'bound' the theoretical cost.",
+      "severity": "major",
+      "what_would_satisfy": "Replace 'bounds' with an empirically appropriate term such as 'empirically estimates', 'assesses', or 'measures'.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "citation_support",
+      "target": "TV-19 and TV-20",
+      "claim": "TV-20 points to methods 'developed separately' without providing any citation or cross-reference. TV-19 names an external test ('Satorra-Bentler arm') without a citation upon introduction. This explicitly fails the citation_support bar.",
+      "severity": "blocking",
+      "what_would_satisfy": "Add a pre-print, working paper, or explicit cross-reference citation for the work 'developed separately', and add the appropriate literature citation at the sentence for Satorra-Bentler in S5.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "internal_consistency",
+      "target": "TV-14 and TV-15",
+      "claim": "TV-14 asserts unqualifiedly in the abstract/intro that 'every misclassification... chose the candidate with the largest RIV', and TV-15 claims the directional prediction held across 'all sixty cells'. Both omit the critical 'congenial cell' limitation established in the results section, contradicting the known uncongenial overshoot.",
+      "severity": "major",
+      "what_would_satisfy": "Add the modifier 'In congenial simulations' to TV-14, and accurately scope TV-15 to distinguish between the congenial subset and the full sixty cells.",
+      "is_inaccuracy": false
+    }
+  ],
+  "stance": "objecting"
+}

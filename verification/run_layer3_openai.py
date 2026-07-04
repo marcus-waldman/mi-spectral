@@ -15,13 +15,25 @@ Key handling: reads OPENAI_API_KEY from the environment, or from a file via
 Run:    py verification/run_layer3_openai.py [model] [--effort xhigh] [--timeout SECONDS]
                 [--package PATH] [--tag SUFFIX] [--key-file PATH]
         e.g.  py verification/run_layer3_openai.py gpt-5.5 --effort xhigh --package todo/0XX.md --tag -foo
+              py verification/run_layer3_openai.py gpt-5.5-pro --effort xhigh --package todo/0XX.md --tag -foo
         For long xhigh runs, launch BACKGROUNDED (survives across turns); default timeout is 24h.
+        Effort is passed straight through as reasoning_effort / reasoning.effort; confirmed
+        2026-07-01 against the live API for gpt-5.5-pro that the valid set is exactly
+        none|minimal|low|medium|high|xhigh (400 invalid_value otherwise) -- xhigh is the
+        ceiling, there is no "max" tier on this API (that is the Claude Code harness's own
+        effort vocabulary, not OpenAI's).
+        Any "-pro" model routes through the Responses API instead of Chat Completions (the
+        only endpoint -pro models serve: chat/completions 404s with "not a chat model"),
+        submitted with background=true and polled, so a multi-hour xhigh/pro run isn't held
+        open on one fragile blocking socket read -- only cheap poll GETs are exposed to
+        transient network failure, and those are naturally retried by the poll loop.
 Out:    verification/cache/layer3-<model><tag>-modeA.md , -modeB.md  (raw responses)
 Exit:   0 ok; 2 setup/missing; 3 API error.
 """
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -31,6 +43,7 @@ MODE_A_BEG = "## MODE A"
 MODE_A_END = "<!-- MODE-A END -->"
 MODE_B_BEG = "## MODE B"
 ENDPOINT = "https://api.openai.com/v1/chat/completions"
+RESPONSES_ENDPOINT = "https://api.openai.com/v1/responses"   # required for -pro models
 
 
 def load_key(key_file):
@@ -96,6 +109,48 @@ def call(model, prompt, key, effort, timeout_s):
     return out["choices"][0]["message"]["content"]
 
 
+def call_responses(model, prompt, key, effort, timeout_s, poll_interval=60):
+    """Responses-API variant for -pro models (not served by chat/completions at all --
+    confirmed via a live 404 "not a chat model" probe, 2026-07-01). Submits with
+    background=true and polls GET /v1/responses/{id} until status=="completed", so the
+    process only ever holds a short-lived connection open; validated end-to-end against
+    the live API before this was wired in (submit -> queued -> in_progress -> completed)."""
+    body = {"model": model, "input": prompt, "background": True}
+    if effort and effort != "none":
+        body["reasoning"] = {"effort": effort}
+    req = urllib.request.Request(
+        RESPONSES_ENDPOINT,
+        data=json.dumps(body).encode("utf-8"),
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        out = json.loads(resp.read().decode("utf-8"))
+    resp_id = out["id"]
+    print(f"    submitted background response {resp_id}, status={out.get('status')}")
+    started = time.time()
+    poll_url = f"{RESPONSES_ENDPOINT}/{resp_id}"
+    while True:
+        status = out.get("status")
+        if status == "completed":
+            break
+        if status in ("failed", "cancelled"):
+            raise RuntimeError(f"response {resp_id} ended with status={status}: {json.dumps(out.get('error'))}")
+        elapsed = time.time() - started
+        if elapsed > timeout_s:
+            raise TimeoutError(f"response {resp_id} still {status} after {int(elapsed)}s")
+        time.sleep(poll_interval)
+        preq = urllib.request.Request(poll_url, headers={"Authorization": f"Bearer {key}"})
+        with urllib.request.urlopen(preq, timeout=60) as presp:
+            out = json.loads(presp.read().decode("utf-8"))
+        print(f"    poll {resp_id}: status={out.get('status')} elapsed={int(time.time() - started)}s")
+    for item in out.get("output", []):
+        if item.get("type") == "message":
+            parts = [c.get("text", "") for c in item.get("content", []) if c.get("type") == "output_text"]
+            return "".join(parts)
+    raise RuntimeError(f"no message item in Responses API output: {json.dumps(out)[:500]}")
+
+
 def main():
     model = "gpt-5.5"
     effort = "high"
@@ -148,7 +203,8 @@ def main():
     for tag, prompt in (("modeA", mode_a), ("modeB", mode_b)):
         print(f"--- calling {model} [{tag}] ---")
         try:
-            results[tag] = call(model, prompt, key, effort, timeout_s)
+            call_fn = call_responses if "-pro" in model else call
+            results[tag] = call_fn(model, prompt, key, effort, timeout_s)
         except urllib.error.HTTPError as e:
             print(f"HTTP {e.code}: {e.read().decode('utf-8', 'replace')[:500]}")
             return 3

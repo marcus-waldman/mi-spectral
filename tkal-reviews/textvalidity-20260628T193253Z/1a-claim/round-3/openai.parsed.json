@@ -1,0 +1,96 @@
+{
+  "keep": [
+    {
+      "id": "K01",
+      "priority": 1,
+      "reason": "Kept high: the abstract overstates a bias correction as restoring decision-level complete-data-equivalent selection."
+    },
+    {
+      "id": "K25",
+      "priority": 2,
+      "reason": "Kept high: the abstract generalizes selection bias toward complexity beyond what the trace/RIV result alone establishes."
+    },
+    {
+      "id": "K24",
+      "priority": 3,
+      "reason": "Kept: every deviance and every information criterion is too absolute without conditions on the criterion, model, and scale/covariance setting."
+    },
+    {
+      "id": "K04",
+      "priority": 4,
+      "reason": "Kept: entirely promises full complete-data behavior rather than the paper's narrower bias correction and empirical restoration."
+    },
+    {
+      "id": "K23",
+      "priority": 5,
+      "reason": "Kept: corrected selection and calibrated tests are stated as complete-data-equivalent too broadly for a discussion takeaway."
+    },
+    {
+      "id": "K18",
+      "priority": 6,
+      "reason": "Kept: telling users to trust corrected MI results as complete-data results is an applied overreach."
+    },
+    {
+      "id": "K05",
+      "priority": 7,
+      "reason": "Kept: the theorem supports a lost-evidence/bias account, not a global impossibility theorem for all observed-data transformations."
+    },
+    {
+      "id": "K17",
+      "priority": 8,
+      "reason": "Kept: the discussion repeats the unsupported impossibility claim and should be qualified to the demonstrated setting."
+    },
+    {
+      "id": "K11",
+      "priority": 9,
+      "reason": "Kept: the trace term removes the derived bias, but ranking restoration is conditional/empirical rather than guaranteed as written."
+    },
+    {
+      "id": "K21",
+      "priority": 10,
+      "reason": "Kept/adopted: the practical recommendation blurs information-criterion correction with nested-test calibration and reference-distribution caveats."
+    },
+    {
+      "id": "K27",
+      "priority": 11,
+      "reason": "Kept/adopted: therefore favors reads deterministically, despite fit, penalty, signal, and missing-information effects all entering rankings."
+    },
+    {
+      "id": "K22",
+      "priority": 12,
+      "reason": "Kept/adopted: the absolute only conflicts with the manuscript's own known-scale/proper-MI qualification."
+    },
+    {
+      "id": "K29",
+      "priority": 13,
+      "reason": "Kept: a finite bootstrap-imputation check may support robustness but does not bound the cost of not running data augmentation."
+    },
+    {
+      "id": "K36",
+      "priority": 14,
+      "reason": "Kept/adopted: only one information criterion is an absolute literature claim needing qualification or support, especially given later discussion."
+    },
+    {
+      "id": "K34",
+      "priority": 15,
+      "reason": "Kept/adopted: the named Satorra-Bentler scaled-and-shifted statistic needs a citation or enough setup for readers."
+    },
+    {
+      "id": "K33",
+      "priority": 16,
+      "reason": "Kept: the causal explanation for why questions remained open is speculative field history unsupported by the paper's results."
+    },
+    {
+      "id": "K15",
+      "priority": 17,
+      "reason": "Kept: the counterfactual claim about what a single model family would have shipped is speculative workflow commentary."
+    },
+    {
+      "id": "K28",
+      "priority": 18,
+      "reason": "Kept/adopted: held across all sixty cells needs clearer alignment with the paper's stated congenial/uncongenial cell qualifiers."
+    }
+  ],
+  "add": [],
+  "drop_notes": "No brand-new items; I leave K02, K12, K26, and K35 out because their alleged support gaps are more context-dependent or lower-severity than the retained items."
+}

@@ -1,0 +1,86 @@
+{
+  "keep": [
+    {
+      "id": "K05",
+      "priority": 1,
+      "reason": "Unchanged: strict impossibility claim unearned by the results."
+    },
+    {
+      "id": "K17",
+      "priority": 2,
+      "reason": "Unchanged: restates the unearned impossibility claim."
+    },
+    {
+      "id": "K01",
+      "priority": 3,
+      "reason": "Unchanged: 'restores' overstates the partial recovery demonstrated."
+    },
+    {
+      "id": "K04",
+      "priority": 4,
+      "reason": "Unchanged: 'entirely' conflicts with the weak-signal floor observed."
+    },
+    {
+      "id": "K11",
+      "priority": 5,
+      "reason": "Unchanged: same overstatement as K01."
+    },
+    {
+      "id": "K15",
+      "priority": 6,
+      "reason": "Unchanged: counterfactual speculation about single-family workflows."
+    },
+    {
+      "id": "K18",
+      "priority": 7,
+      "reason": "Unchanged: applied trust claim is too broad and ignores paper's own scope limits."
+    },
+    {
+      "id": "K33",
+      "priority": 8,
+      "reason": "Unchanged: speculates on the singular historical reason questions were open."
+    },
+    {
+      "id": "K21",
+      "priority": 9,
+      "reason": "Adopting: conflates information-criterion ranking correction with likelihood-ratio tests."
+    },
+    {
+      "id": "K23",
+      "priority": 10,
+      "reason": "Adopting: decision equivalence guarantee outruns the scoped null-side recovery shown."
+    },
+    {
+      "id": "K24",
+      "priority": 11,
+      "reason": "Adopting: generalizes sign of bias to 'every' deviance/criterion without sufficient scope conditions."
+    },
+    {
+      "id": "K25",
+      "priority": 12,
+      "reason": "Adopting: deterministic link between complexity and missing information trace is an overclaim."
+    },
+    {
+      "id": "K27",
+      "priority": 13,
+      "reason": "Adopting: deterministic ranking overclaim ignoring fit, penalty, and signal."
+    },
+    {
+      "id": "K29",
+      "priority": 14,
+      "reason": "Adopting: empirical agreement is not a mathematical bound."
+    },
+    {
+      "id": "K34",
+      "priority": 15,
+      "reason": "Adopting: introduces a named test modification without a reference."
+    },
+    {
+      "id": "K35",
+      "priority": 16,
+      "reason": "Adopting: points to separate development without providing a citation."
+    }
+  ],
+  "add": [],
+  "drop_notes": "Focused on the most egregious overclaims, speculative history/counterfactuals, and missing theoretical bounds/citations; dropped less critical phrasing issues."
+}

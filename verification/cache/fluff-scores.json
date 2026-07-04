@@ -1,0 +1,195 @@
+{
+  "n_paragraphs": 10,
+  "paragraphs": [
+    {
+      "id": "S1-P6b",
+      "section": "S1",
+      "words": 348,
+      "hits": 1,
+      "weighted": 1.0,
+      "density": 0.29,
+      "by_category": {
+        "intensifier": 1
+      },
+      "flagged": [
+        {
+          "phrase": "very",
+          "category": "intensifier",
+          "count": 1,
+          "weight": 1.0
+        }
+      ]
+    },
+    {
+      "id": "S2-P10",
+      "section": "S2",
+      "words": 110,
+      "hits": 1,
+      "weighted": 0.9,
+      "density": 0.82,
+      "by_category": {
+        "intensifier": 1
+      },
+      "flagged": [
+        {
+          "phrase": "simply",
+          "category": "intensifier",
+          "count": 1,
+          "weight": 0.9
+        }
+      ]
+    },
+    {
+      "id": "S5-P7",
+      "section": "S5",
+      "words": 125,
+      "hits": 1,
+      "weighted": 0.9,
+      "density": 0.72,
+      "by_category": {
+        "intensifier": 1
+      },
+      "flagged": [
+        {
+          "phrase": "essentially",
+          "category": "intensifier",
+          "count": 1,
+          "weight": 0.9
+        }
+      ]
+    },
+    {
+      "id": "S4-P14",
+      "section": "S4",
+      "words": 141,
+      "hits": 1,
+      "weighted": 0.5,
+      "density": 0.35,
+      "by_category": {
+        "weak": 1
+      },
+      "flagged": [
+        {
+          "phrase": "actually",
+          "category": "weak",
+          "count": 1,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "id": "S4-P10",
+      "section": "S4",
+      "words": 214,
+      "hits": 1,
+      "weighted": 0.5,
+      "density": 0.23,
+      "by_category": {
+        "weak": 1
+      },
+      "flagged": [
+        {
+          "phrase": "indeed",
+          "category": "weak",
+          "count": 1,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "id": "S5-P20",
+      "section": "S5",
+      "words": 219,
+      "hits": 1,
+      "weighted": 0.5,
+      "density": 0.23,
+      "by_category": {
+        "weak": 1
+      },
+      "flagged": [
+        {
+          "phrase": "actually",
+          "category": "weak",
+          "count": 1,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "id": "S4-P13",
+      "section": "S4",
+      "words": 197,
+      "hits": 1,
+      "weighted": 0.4,
+      "density": 0.2,
+      "by_category": {
+        "weak": 1
+      },
+      "flagged": [
+        {
+          "phrase": "just",
+          "category": "weak",
+          "count": 1,
+          "weight": 0.4
+        }
+      ]
+    },
+    {
+      "id": "S2-P9",
+      "section": "S2",
+      "words": 99,
+      "hits": 1,
+      "weighted": 0.3,
+      "density": 0.3,
+      "by_category": {
+        "weak": 1
+      },
+      "flagged": [
+        {
+          "phrase": "there is",
+          "category": "weak",
+          "count": 1,
+          "weight": 0.3
+        }
+      ]
+    },
+    {
+      "id": "S4-P21",
+      "section": "S4",
+      "words": 141,
+      "hits": 1,
+      "weighted": 0.3,
+      "density": 0.21,
+      "by_category": {
+        "weak": 1
+      },
+      "flagged": [
+        {
+          "phrase": "there is",
+          "category": "weak",
+          "count": 1,
+          "weight": 0.3
+        }
+      ]
+    },
+    {
+      "id": "S4-P3",
+      "section": "S4",
+      "words": 158,
+      "hits": 1,
+      "weighted": 0.3,
+      "density": 0.19,
+      "by_category": {
+        "weak": 1
+      },
+      "flagged": [
+        {
+          "phrase": "there is",
+          "category": "weak",
+          "count": 1,
+          "weight": 0.3
+        }
+      ]
+    }
+  ]
+}

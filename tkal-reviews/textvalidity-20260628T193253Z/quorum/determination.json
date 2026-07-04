@@ -1,0 +1,586 @@
+{
+  "date": "2026-06-28",
+  "study": "textval-quorum-1a",
+  "title": "Text-validity defense (1a claim-support): does the prose earn its claims as written?",
+  "kind": "quorum",
+  "determination": "refuted",
+  "lead": "openai",
+  "lead_rationale": "The defense does not preserve the manuscript as written: multiple flagged sentences require bounded wording changes to match the validated results and cited sources. The advocate accepted the necessary amendments, including the round-2 narrowing of TV-02 and TV-03, and those amendments adequately cure the fidelity problems without reopening any theorem or simulation result. I find no fabrication, misrepresented defensive claim, or buried inaccuracy by the advocate; the alleged inaccuracies are overbroad wording/internal-consistency defects cured by the conceded edits.",
+  "peers": [
+    "openai",
+    "gemini"
+  ],
+  "models": {
+    "claude": "claude-opus-4-8",
+    "openai": "gpt-5.5-pro-2026-04-23",
+    "gemini": "google/gemini-3.1-pro",
+    "peer_a": "zai-org/GLM-4.7-Flash",
+    "peer_b": "deepseek-ai/DeepSeek-V3.2"
+  },
+  "anon_peer_to_letter": {
+    "openai": "A",
+    "gemini": "B"
+  },
+  "scorecard": {
+    "claim_support": "holds_as_amended",
+    "scope_calibration": "holds_as_amended",
+    "internal_consistency": "holds_as_amended",
+    "citation_support": "holds_as_amended"
+  },
+  "scorecard_detail": {
+    "claim_support": {
+      "assessment": "holds_as_amended",
+      "by": {
+        "A": {
+          "assessment": "holds_as_amended",
+          "rationale": "Several as-written assertions were not earned at their stated strength, including the general observed-data impossibility language, the formal-sounding 'bounds' claim, the workflow counterfactual, the historical-cause claim, and some universal bias/removal phrasing. The conceded amendments rescope these to the studied corrected criteria/tests, empirical agreement in selected designs, interpretive process evidence, and the trace-component/averaged-log-likelihood object, which are supported."
+        },
+        "B": {
+          "assessment": "holds_as_amended",
+          "rationale": "The advocate appropriately downgraded 'bounds' to empirical estimates (OBJ-05, OBJ-11) and recast historical/counterfactual claims into stated inferences (OBJ-07), aligning the claims with the empirical and documented evidence."
+        }
+      }
+    },
+    "scope_calibration": {
+      "assessment": "holds_as_amended",
+      "by": {
+        "A": {
+          "assessment": "holds_as_amended",
+          "rationale": "The abstract and conclusion originally overstated expectation-level and simulation-scoped findings as broad decision-level equivalence, general complexity effects, and unqualified trust language. The round-1 and round-2 amendments appropriately add expectation-level, studied-design, equal-fit, all-else-equal, and stated-conditions limitations."
+        },
+        "B": {
+          "assessment": "holds_as_amended",
+          "rationale": "Broad decision-level summaries and deterministic language regarding complexity and recovery were correctly re-scoped in multiple sentences (OBJ-03), ensuring the prose matches the conditional, expectation-level results."
+        }
+      }
+    },
+    "internal_consistency": {
+      "assessment": "holds_as_amended",
+      "by": {
+        "A": {
+          "assessment": "holds_as_amended",
+          "rationale": "TV-05/TV-07 conflicted with G4's limitation unless scoped to the procedures studied, and TV-10 conflicted with the paper's LRT result unless the IC-ranking and nested-test rules were split. The conceded amendments remove those inconsistencies and also align the misclassification statements with the congenial-cell limitation."
+        },
+        "B": {
+          "assessment": "holds_as_amended",
+          "rationale": "The advocate successfully resolved internal contradictions by removing absolute observed-data impossibility claims that violated the paper's own explicit limitations (OBJ-01, OBJ-09), distinguishing IC trace corrections from LRT nested tests (OBJ-02, OBJ-10), and properly limiting generalizations to 'congenial' cells where appropriate (OBJ-06, OBJ-13)."
+        }
+      }
+    },
+    "citation_support": {
+      "assessment": "holds_as_amended",
+      "by": {
+        "A": {
+          "assessment": "holds_as_amended",
+          "rationale": "The literature and future-work prose required additional local citation or rescoping, especially for the Satorra-Bentler arm, the 'developed separately' methods, and the 'only one information criterion' claim. The proposed citations/cross-references and the rewording of uncited companion work as future work satisfy the citation bar only if adopted."
+        },
+        "B": {
+          "assessment": "holds_as_amended",
+          "rationale": "The advocate provided the missing Satorra-Bentler local citation, re-scoped an otherwise conflicting literature claim, and replaced a vague 'developed separately' reference with explicit future work (OBJ-08, OBJ-12)."
+        }
+      }
+    }
+  },
+  "n_objections": 13,
+  "objections": [
+    {
+      "id": "OBJ-01",
+      "author": "openai",
+      "author_letter": "A",
+      "criterion": "cross_cutting",
+      "target": "TV-05 and TV-07 — no-transformation / lost-evidence impossibility claims",
+      "claim": "These sentences assert a general observed-data impossibility, and TV-05 says the paper 'show[s]' it. That is not earned by the paper's derivation or simulations and directly conflicts with G4, which states that no argument here shows that no estimator built from the same observed data could do better. The supported claim is only that the studied corrected criteria/tests exhibit residual information loss as measured through these corrections.",
+      "severity": "blocking",
+      "what_would_satisfy": "Replace with scoped wording such as: 'For the corrected criterion and calibrated-test procedures studied here, the better-fit case retains a residual shortfall attributable to missing information; this analysis does not rule out a different observed-data estimator recovering more.'",
+      "is_inaccuracy": true,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-02",
+      "author": "openai",
+      "author_letter": "A",
+      "criterion": "internal_consistency",
+      "target": "TV-10 — recommendation to add the per-candidate trace correction for nested comparisons",
+      "claim": "The recommendation conflates IC ranking with LRT/nested comparison. The paper's own LRT result says the nested-comparison bias is tr(RIV_perp) in the tested directions and that the difference of per-candidate corrections always overstates it; a calibrated reference distribution already carries the null mean. The clause 'no calibrated reference distribution already absorbs the bias' does not justify using the per-candidate difference for nested comparisons.",
+      "severity": "blocking",
+      "what_would_satisfy": "Split the rule: for information-criterion ranking, add each candidate's trace correction; for calibrated LRTs, leave the numerator uncorrected; for any uncalibrated nested-comparison correction, use the tested-direction object tr(RIV_perp), not the difference of per-candidate traces.",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-03",
+      "author": "openai",
+      "author_letter": "A",
+      "criterion": "scope_calibration",
+      "target": "TV-01, TV-02, TV-09, TV-11, and TV-12 — abstract/conclusion decision-level summaries",
+      "claim": "The prose upgrades an expectation-level trace correction and scoped simulation recoveries into broad decision-level language: 'complete-data-equivalent selection,' 'behave as they would have with complete data,' 'trust the result,' and deterministic favoring of 'more complex' or highest-missing-information candidates. The paper establishes correction of the expected criterion under stated conditions, substantial but incomplete selection recovery, and null/equal-fit calibration; realized rankings still depend on fit, penalties, signal strength, and candidate geometry, and complexity is not generally proved to imply larger RIV.",
+      "severity": "blocking",
+      "what_would_satisfy": "Use calibrated wording: 'corrects the expected criterion under the stated MI/estimated-scale conditions,' 'substantially improves or restores rankings in the studied congenial nested designs,' 'all else equal favors larger-RIV candidates,' and 'trust subject to the stated congeniality, model-family, and weak-signal limitations.'",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-04",
+      "author": "openai",
+      "author_letter": "A",
+      "criterion": "cross_cutting",
+      "target": "TV-03, TV-04, and TV-08 — universal bias/removal language",
+      "claim": "The wording 'every deviance and every information criterion,' 'removes the bias,' and 'the bias exists only when the fit estimates a scale or covariance' is broader than the established object. The derivation concerns the averaged Q/log-likelihood and likelihood-based criteria under congenial proper MI with an estimated scale/covariance; the trace term is accompanied by the design-imbalance term (A)+(C), and the same paragraph notes a distinct -1/2 tr(RIV) bias for known-scale proper MI. The defense relies on a narrowed meaning of 'the bias' that is not explicit in the sentences.",
+      "severity": "blocking",
+      "what_would_satisfy": "State the object explicitly: 'For the averaged deviance/Q-based IC in the estimated-scale case, the positive optimism term is proportional to tr(RIV), with the separate (A)+(C) term vanishing under MCAR; the trace correction removes that trace component, and the full bias only under the stated conditions. Known-scale proper MI has a distinct negative term.'",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-05",
+      "author": "openai",
+      "author_letter": "A",
+      "criterion": "claim_support",
+      "target": "TV-13 — 'bounds the cost of not running data augmentation'",
+      "claim": "The engine-sensitivity study is an empirical agreement check on selected demanding designs. Agreement within 2–3% on tr(RIV) and 0.011 on the recovery gap does not constitute a formal bound on the unrun data-augmentation alternative. 'Bounds' implies a guaranteed inequality or worst-case control that the paper does not establish.",
+      "severity": "major",
+      "what_would_satisfy": "Replace 'bounds' with 'empirically estimates,' 'suggests,' or 'in these studied designs, found little additional cost'; retain the caveat that fully Bayesian data augmentation remains the conservative choice when missing information is large.",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-06",
+      "author": "openai",
+      "author_letter": "A",
+      "criterion": "cross_cutting",
+      "target": "TV-14 and TV-15 — congenial-cell qualifier and 'all sixty cells'",
+      "claim": "The intro/result prose drops or blurs the key qualifier. The supported statement is that in every congenial cell, all uncorrected MI-AIC errors land on the saturated, largest-missing-information candidate. Saying 'every misclassification' without 'congenial' and then 'held across all sixty cells' can be read as applying the same all-errors pattern to uncongenial cells, despite the disclosed uncongenial overshoot.",
+      "severity": "major",
+      "what_would_satisfy": "Write: 'In every congenial cell, all uncorrected MI-AIC errors chose the saturated, largest-RIV candidate.' If a broader directional prediction held across all 60 cells, state that separately and distinguish it from the stronger congenial-cell all-errors pattern.",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-07",
+      "author": "openai",
+      "author_letter": "A",
+      "criterion": "claim_support",
+      "target": "TV-16 and TV-17 — workflow counterfactual and historical-cause claim",
+      "claim": "The observed fact that 8 of 9 blind cross-family re-derivations initially produced the opposite sign supports the value of the cross-family check, but it does not establish the counterfactual that a single-family workflow would likely have shipped the wrong sign. Likewise, documenting that prior MI model-selection questions were open/thin does not establish the singular cause that they were open because the second and third levels had not been posed.",
+      "severity": "major",
+      "what_would_satisfy": "Recast as evidence and interpretation rather than established fact: 'In our blind cross-family check, 8 of 9 derivations initially took the opposite sign, illustrating a sign fork that a less diverse check might miss' and 'posing the second and third levels reframes these open questions,' unless additional historical/process evidence is supplied.",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-08",
+      "author": "openai",
+      "author_letter": "A",
+      "criterion": "cross_cutting",
+      "target": "TV-18, TV-19, and TV-20 — literature scope and reader-followable citations",
+      "claim": "The literature/future-work prose is not sufficiently reader-verifiable as written. 'Only one information criterion has been proposed for multiply imputed data' needs its scope narrowed to the averaged-imputed-data IC class, otherwise it reads in tension with the later Claeskens-Consentino and Hens routes. The named Satorra-Bentler arm needs a local citation or clear cross-reference if S4 is the support. 'Developed separately' points to companion or external work but provides no citation or cross-reference.",
+      "severity": "major",
+      "what_would_satisfy": "Amend to 'Only one averaged-criterion IC for multiply imputed data of the kind considered here...' with the Consentino-Claeskens citation and a cross-reference distinguishing adjacent routes; add a Satorra-Bentler/Asparouhov-Muthen/Satorra citation or cross-reference at S5; cite the companion/sequel for the separately developed methods or change the sentence to 'are left for future work.'",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-09",
+      "author": "gemini",
+      "author_letter": "B",
+      "criterion": "internal_consistency",
+      "target": "TV-05 and TV-07",
+      "claim": "The sentences assert an absolute impossibility ('no transformation of the observed data can recover it' / 'No transformation of the observed data manufactures the lost evidence back') which directly contradicts the G4 limitation ('No argument here shows that no estimator built from the same observed data could do better'). Defending the text AS-IS while conceding the paper's explicit limitation is a buried contradiction.",
+      "severity": "blocking",
+      "what_would_satisfy": "Amend TV-05 and TV-07 to explicitly restrict the claim to Information Criteria / likelihood methods (e.g., 'as measured through these corrections'), removing the absolute 'no transformation of the observed data' language.",
+      "is_inaccuracy": true,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-10",
+      "author": "gemini",
+      "author_letter": "B",
+      "criterion": "internal_consistency",
+      "target": "TV-10",
+      "claim": "The instruction to 'add the per-candidate trace correction' when the aim is to 'compare nested models' directly contradicts the paper's own LRT result (S1-P6b), which establishes that the difference of per-candidate corrections ALWAYS OVERSTATES the nested-comparison bias (tr(RIV_perp)). Advising the per-candidate trace for nested models conflates IC ranking with nested testing.",
+      "severity": "blocking",
+      "what_would_satisfy": "Remove 'or to compare nested models' from the instruction advocating the per-candidate trace correction, making it clear that nested comparisons require the perpendicular reference distribution correction.",
+      "is_inaccuracy": true,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-11",
+      "author": "gemini",
+      "author_letter": "B",
+      "criterion": "claim_support",
+      "target": "TV-13",
+      "claim": "The word 'bounds' implies a formalized or derived mathematical limit, but the advocate admits the check is merely an empirical agreement measurement on selected cells. An empirical observation does not 'bound' the theoretical cost.",
+      "severity": "major",
+      "what_would_satisfy": "Replace 'bounds' with an empirically appropriate term such as 'empirically estimates', 'assesses', or 'measures'.",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-12",
+      "author": "gemini",
+      "author_letter": "B",
+      "criterion": "citation_support",
+      "target": "TV-19 and TV-20",
+      "claim": "TV-20 points to methods 'developed separately' without providing any citation or cross-reference. TV-19 names an external test ('Satorra-Bentler arm') without a citation upon introduction. This explicitly fails the citation_support bar.",
+      "severity": "blocking",
+      "what_would_satisfy": "Add a pre-print, working paper, or explicit cross-reference citation for the work 'developed separately', and add the appropriate literature citation at the sentence for Satorra-Bentler in S5.",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    },
+    {
+      "id": "OBJ-13",
+      "author": "gemini",
+      "author_letter": "B",
+      "criterion": "internal_consistency",
+      "target": "TV-14 and TV-15",
+      "claim": "TV-14 asserts unqualifiedly in the abstract/intro that 'every misclassification... chose the candidate with the largest RIV', and TV-15 claims the directional prediction held across 'all sixty cells'. Both omit the critical 'congenial cell' limitation established in the results section, contradicting the known uncongenial overshoot.",
+      "severity": "major",
+      "what_would_satisfy": "Add the modifier 'In congenial simulations' to TV-14, and accurately scope TV-15 to distinguish between the congenial subset and the full sixty cells.",
+      "is_inaccuracy": false,
+      "round_added": 1,
+      "status": "withdrawn"
+    }
+  ],
+  "per_objection_status": {
+    "OBJ-01": "withdrawn",
+    "OBJ-02": "withdrawn",
+    "OBJ-03": "withdrawn",
+    "OBJ-04": "withdrawn",
+    "OBJ-05": "withdrawn",
+    "OBJ-06": "withdrawn",
+    "OBJ-07": "withdrawn",
+    "OBJ-08": "withdrawn",
+    "OBJ-09": "withdrawn",
+    "OBJ-10": "withdrawn",
+    "OBJ-11": "withdrawn",
+    "OBJ-12": "withdrawn",
+    "OBJ-13": "withdrawn"
+  },
+  "sustained_objections": [
+    {
+      "objection_id": "OBJ-01",
+      "by_letter": "A",
+      "point": "TV-05 and TV-07's absolute observed-data-impossibility wording exceeds the supported procedure-scoped claim and must be replaced by the conceded corrected-criteria/calibrated-tests wording.",
+      "is_inaccuracy": true,
+      "claim": "These sentences assert a general observed-data impossibility, and TV-05 says the paper 'show[s]' it. That is not earned by the paper's derivation or simulations and directly conflicts with G4, which states that no argument here shows that no estimator built from the same observed data could do better. The supported claim is only that the studied corrected criteria/tests exhibit residual information loss as measured through these corrections."
+    },
+    {
+      "objection_id": "OBJ-02",
+      "by_letter": "A",
+      "point": "TV-10 conflates IC ranking with nested LRT comparison and must split the recommendation: per-candidate trace corrections for IC ranking, calibrated LRT or tested-direction tr(RIV_perp) for nested comparisons.",
+      "is_inaccuracy": false,
+      "claim": "The recommendation conflates IC ranking with LRT/nested comparison. The paper's own LRT result says the nested-comparison bias is tr(RIV_perp) in the tested directions and that the difference of per-candidate corrections always overstates it; a calibrated reference distribution already carries the null mean. The clause 'no calibrated reference distribution already absorbs the bias' does not justify using the per-candidate difference for nested comparisons."
+    },
+    {
+      "objection_id": "OBJ-03",
+      "by_letter": "A",
+      "point": "TV-01, TV-02, TV-09, TV-11, and TV-12 require scope-calibrating amendments for expectation-level correction, studied designs, equal-fit settings, all-else-equal tendencies, and stated-condition limitations.",
+      "is_inaccuracy": false,
+      "claim": "The prose upgrades an expectation-level trace correction and scoped simulation recoveries into broad decision-level language: 'complete-data-equivalent selection,' 'behave as they would have with complete data,' 'trust the result,' and deterministic favoring of 'more complex' or highest-missing-information candidates. The paper establishes correction of the expected criterion under stated conditions, substantial but incomplete selection recovery, and null/equal-fit calibration; realized rankings still depend on fit, penalties, signal strength, and candidate geometry, and complexity is not generally proved to imply larger RIV."
+    },
+    {
+      "objection_id": "OBJ-04",
+      "by_letter": "A",
+      "point": "TV-03, TV-04, and TV-08 require narrowed wording identifying the averaged-log-likelihood criterion class, expectation-level nature, trace component, and the distinction from the known-scale term.",
+      "is_inaccuracy": false,
+      "claim": "The wording 'every deviance and every information criterion,' 'removes the bias,' and 'the bias exists only when the fit estimates a scale or covariance' is broader than the established object. The derivation concerns the averaged Q/log-likelihood and likelihood-based criteria under congenial proper MI with an estimated scale/covariance; the trace term is accompanied by the design-imbalance term (A)+(C), and the same paragraph notes a distinct -1/2 tr(RIV) bias for known-scale proper MI. The defense relies on a narrowed meaning of 'the bias' that is not explicit in the sentences."
+    },
+    {
+      "objection_id": "OBJ-05",
+      "by_letter": "A",
+      "point": "TV-13's 'bounds' language overstates an empirical agreement check and must be replaced with 'indicates,' 'empirically estimates,' 'assesses,' or equivalent empirical wording.",
+      "is_inaccuracy": false,
+      "claim": "The engine-sensitivity study is an empirical agreement check on selected demanding designs. Agreement within 2–3% on tr(RIV) and 0.011 on the recovery gap does not constitute a formal bound on the unrun data-augmentation alternative. 'Bounds' implies a guaranteed inequality or worst-case control that the paper does not establish."
+    },
+    {
+      "objection_id": "OBJ-06",
+      "by_letter": "A",
+      "point": "TV-14 and TV-15 must distinguish the stronger congenial-cell all-errors-on-largest-RIV pattern from the broader all-sixty-cell directional prediction.",
+      "is_inaccuracy": false,
+      "claim": "The intro/result prose drops or blurs the key qualifier. The supported statement is that in every congenial cell, all uncorrected MI-AIC errors land on the saturated, largest-missing-information candidate. Saying 'every misclassification' without 'congenial' and then 'held across all sixty cells' can be read as applying the same all-errors pattern to uncongenial cells, despite the disclosed uncongenial overshoot."
+    },
+    {
+      "objection_id": "OBJ-07",
+      "by_letter": "A",
+      "point": "TV-16 and TV-17 must recast the single-family workflow and historical-cause assertions as evidence-based interpretation rather than established counterfactual or causal fact.",
+      "is_inaccuracy": false,
+      "claim": "The observed fact that 8 of 9 blind cross-family re-derivations initially produced the opposite sign supports the value of the cross-family check, but it does not establish the counterfactual that a single-family workflow would likely have shipped the wrong sign. Likewise, documenting that prior MI model-selection questions were open/thin does not establish the singular cause that they were open because the second and third levels had not been posed."
+    },
+    {
+      "objection_id": "OBJ-08",
+      "by_letter": "A",
+      "point": "TV-18, TV-19, and TV-20 require narrowed literature scope, local Satorra-Bentler citation or cross-reference, and either a citation for separately developed methods or rewording as future work.",
+      "is_inaccuracy": false,
+      "claim": "The literature/future-work prose is not sufficiently reader-verifiable as written. 'Only one information criterion has been proposed for multiply imputed data' needs its scope narrowed to the averaged-imputed-data IC class, otherwise it reads in tension with the later Claeskens-Consentino and Hens routes. The named Satorra-Bentler arm needs a local citation or clear cross-reference if S4 is the support. 'Developed separately' points to companion or external work but provides no citation or cross-reference."
+    },
+    {
+      "objection_id": "OBJ-09",
+      "by_letter": "A",
+      "point": "Same sustained point as OBJ-01: TV-05 and TV-07 must remove the absolute 'no transformation of the observed data' claim and align with G4.",
+      "is_inaccuracy": true,
+      "claim": "The sentences assert an absolute impossibility ('no transformation of the observed data can recover it' / 'No transformation of the observed data manufactures the lost evidence back') which directly contradicts the G4 limitation ('No argument here shows that no estimator built from the same observed data could do better'). Defending the text AS-IS while conceding the paper's explicit limitation is a buried contradiction."
+    },
+    {
+      "objection_id": "OBJ-10",
+      "by_letter": "A",
+      "point": "Same sustained point as OBJ-02: TV-10 must not advise per-candidate trace differences for nested comparisons where the paper's LRT result uses the tested-direction correction or calibrated reference distribution.",
+      "is_inaccuracy": true,
+      "claim": "The instruction to 'add the per-candidate trace correction' when the aim is to 'compare nested models' directly contradicts the paper's own LRT result (S1-P6b), which establishes that the difference of per-candidate corrections ALWAYS OVERSTATES the nested-comparison bias (tr(RIV_perp)). Advising the per-candidate trace for nested models conflates IC ranking with nested testing."
+    },
+    {
+      "objection_id": "OBJ-11",
+      "by_letter": "A",
+      "point": "Same sustained point as OBJ-05: TV-13 must replace 'bounds' with empirically calibrated language.",
+      "is_inaccuracy": false,
+      "claim": "The word 'bounds' implies a formalized or derived mathematical limit, but the advocate admits the check is merely an empirical agreement measurement on selected cells. An empirical observation does not 'bound' the theoretical cost."
+    },
+    {
+      "objection_id": "OBJ-12",
+      "by_letter": "A",
+      "point": "TV-19 and TV-20 need the conceded citation/cross-reference additions or future-work rewording to satisfy reader-verifiable citation support.",
+      "is_inaccuracy": false,
+      "claim": "TV-20 points to methods 'developed separately' without providing any citation or cross-reference. TV-19 names an external test ('Satorra-Bentler arm') without a citation upon introduction. This explicitly fails the citation_support bar."
+    },
+    {
+      "objection_id": "OBJ-13",
+      "by_letter": "A",
+      "point": "Same sustained point as OBJ-06: TV-14 and TV-15 require the congenial-cell qualifier and explicit separation from the all-sixty-cell directional prediction.",
+      "is_inaccuracy": false,
+      "claim": "TV-14 asserts unqualifiedly in the abstract/intro that 'every misclassification... chose the candidate with the largest RIV', and TV-15 claims the directional prediction held across 'all sixty cells'. Both omit the critical 'congenial cell' limitation established in the results section, contradicting the known uncongenial overshoot."
+    }
+  ],
+  "had_inaccuracy": true,
+  "conceded": [],
+  "consolidated_amendments": [
+    {
+      "objection_id": "OBJ-01",
+      "round": 1,
+      "amendment": "TV-05 (S1-P5) -> 'The missing data have then destroyed part of the evidence in its favor, and the corrected criteria and calibrated tests studied here cannot recover it.' TV-07 (S6-P7) -> 'No correction studied here manufactures the lost evidence back.' Both now match G4; the absolute 'no transformation of the observed data' language is removed."
+    },
+    {
+      "objection_id": "OBJ-09",
+      "round": 1,
+      "amendment": "As in OBJ-01: TV-05 -> '... the corrected criteria and calibrated tests studied here cannot recover it'; TV-07 -> 'No correction studied here manufactures the lost evidence back.' This restricts the claim to the IC/likelihood procedures studied and removes the absolute 'no transformation of the observed data' language."
+    },
+    {
+      "objection_id": "OBJ-02",
+      "round": 1,
+      "amendment": "Re-scope S6-P7b: 'For information-criterion ranking on imputed data, add each candidate's trace correction before reading off the result. For a nested comparison, prefer a calibrated likelihood-ratio test, whose reference distribution already carries the null mean, so no numerator correction is added; where no calibrated reference is available, the relevant bias is the missing information in the tested directions, tr(RIV_perp), not the difference of the candidates' separate trace corrections.'"
+    },
+    {
+      "objection_id": "OBJ-10",
+      "round": 1,
+      "amendment": "Either remove 'or to compare nested models' from the per-candidate-trace instruction, or adopt the OBJ-02 split-rule wording (IC ranking -> add each candidate's trace; nested comparison -> calibrated LRT, or tr(RIV_perp) if uncalibrated, never the difference of per-candidate traces)."
+    },
+    {
+      "objection_id": "OBJ-03",
+      "round": 1,
+      "amendment": "TV-01 -> 'Adding one trace term per candidate removes the deviance bias in expectation and substantially restores complete-data model selection.' TV-02 -> 'Model selection on multiply imputed data is biased toward the candidates with more missing information -- in nested families, the more complex models -- because their larger relative increase in variance makes the fit look better than it is.' TV-09 -> 'When the competing models fit alike, corrected selection and calibrated tests behave as they would have with complete data.' TV-11 -> 'A model-comparison table built on imputed data therefore tends, all else equal, to favor the candidates with the most missing information.' TV-12 -> 'Then trust the result the way complete-data results are trusted, subject to the stated conditions and the close-comparison exception below.'"
+    },
+    {
+      "objection_id": "OBJ-04",
+      "round": 1,
+      "amendment": "TV-03: keep as written (scoped by 'for such a model'). TV-04 (S1-P6b) -> 'Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the trace component of the bias and substantially restores the ranking that complete data would have given.' TV-08 (S6-P1) -> 'The deviance optimism that inflates the criteria exists only when the fit estimates a scale or covariance.'"
+    },
+    {
+      "objection_id": "OBJ-05",
+      "round": 1,
+      "amendment": "S5-P22 -> 'The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which indicates the cost of not running data augmentation is small on these designs.' (It does not bound the cost in general; the conservative-choice caveat is retained.)"
+    },
+    {
+      "objection_id": "OBJ-11",
+      "round": 1,
+      "amendment": "Replace 'bounds' with 'indicates' (or 'empirically estimates'/'measures') in S5-P22, as in OBJ-05."
+    },
+    {
+      "objection_id": "OBJ-06",
+      "round": 1,
+      "amendment": "TV-14 (S1-P4) -> 'In our pre-registered congenial cells, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV.' TV-15 (S5-P17): keep 'the registered directional prediction ... held across all sixty cells,' and ensure the preceding sentence's 'all errors land on the saturated candidate' is explicitly the congenial-cell pattern, so the directional prediction (all 60) and the all-errors pattern (congenial) are not conflated."
+    },
+    {
+      "objection_id": "OBJ-13",
+      "round": 1,
+      "amendment": "As in OBJ-06: add the 'congenial' scope to TV-14, and in S5-P17 distinguish the directional prediction (all sixty cells) from the all-errors-on-saturated pattern (congenial cells)."
+    },
+    {
+      "objection_id": "OBJ-07",
+      "round": 1,
+      "amendment": "TV-16 (S3-P6) -> 'In our blind cross-family check, eight of nine re-derivations initially took the opposite sign, illustrating a sign fork that a less diverse, single-family check could have missed.' TV-17 (S1-P3) -> 'Posing the second and third levels reframes these open questions, which had been posed only at the first level.'"
+    },
+    {
+      "objection_id": "OBJ-08",
+      "round": 1,
+      "amendment": "TV-18 (S1-P2) -> 'Only one information criterion has been proposed specifically for averaging over multiply imputed data [@consentinoclaeskensOrderSelectionTests2010]' (the missing-covariate and reweighting routes named later target a different discrepancy or leave an imputation criterion open). TV-19 (S5-P6) -> add a citation at the sentence, e.g. '... a scaled-and-shifted statistic [@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006] referred to chi-square_1,' or a cross-reference to @sec-derivations. TV-20 (S6-P6) -> 'De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are left to future work,' (or cite a companion preprint if/when one exists)."
+    },
+    {
+      "objection_id": "OBJ-12",
+      "round": 1,
+      "amendment": "TV-19 (S5-P6): add '[@satorraEnsuringPositivenessScaled2010; @asparouhovRobustChiSquare2006]' (or a cross-reference to @sec-derivations) at the Satorra-Bentler sentence. TV-20 (S6-P6): reword to 'are left to future work' (or add a companion-preprint citation if one is available)."
+    },
+    {
+      "objection_id": "OBJ-03",
+      "round": 2,
+      "amendment": "TV-02 (abstract) -> 'Model selection on multiply imputed data is biased toward the candidates with more missing information, which in the nested families studied are the more complex models, because their larger relative increase in variance makes the fit look better than it is.'"
+    },
+    {
+      "objection_id": "OBJ-04",
+      "round": 2,
+      "amendment": "TV-03 (S1-P4) -> 'for such a model, every deviance and information criterion built on the averaged log-likelihood across imputations is, in expectation, too optimistic.'"
+    }
+  ],
+  "determinations": {
+    "A": {
+      "criterion_scores": [
+        {
+          "criterion": "claim_support",
+          "assessment": "holds_as_amended",
+          "rationale": "Several as-written assertions were not earned at their stated strength, including the general observed-data impossibility language, the formal-sounding 'bounds' claim, the workflow counterfactual, the historical-cause claim, and some universal bias/removal phrasing. The conceded amendments rescope these to the studied corrected criteria/tests, empirical agreement in selected designs, interpretive process evidence, and the trace-component/averaged-log-likelihood object, which are supported."
+        },
+        {
+          "criterion": "scope_calibration",
+          "assessment": "holds_as_amended",
+          "rationale": "The abstract and conclusion originally overstated expectation-level and simulation-scoped findings as broad decision-level equivalence, general complexity effects, and unqualified trust language. The round-1 and round-2 amendments appropriately add expectation-level, studied-design, equal-fit, all-else-equal, and stated-conditions limitations."
+        },
+        {
+          "criterion": "internal_consistency",
+          "assessment": "holds_as_amended",
+          "rationale": "TV-05/TV-07 conflicted with G4's limitation unless scoped to the procedures studied, and TV-10 conflicted with the paper's LRT result unless the IC-ranking and nested-test rules were split. The conceded amendments remove those inconsistencies and also align the misclassification statements with the congenial-cell limitation."
+        },
+        {
+          "criterion": "citation_support",
+          "assessment": "holds_as_amended",
+          "rationale": "The literature and future-work prose required additional local citation or rescoping, especially for the Satorra-Bentler arm, the 'developed separately' methods, and the 'only one information criterion' claim. The proposed citations/cross-references and the rewording of uncited companion work as future work satisfy the citation bar only if adopted."
+        }
+      ],
+      "determination": "amended",
+      "sustained_objections": [
+        {
+          "objection_id": "OBJ-01",
+          "point": "TV-05 and TV-07's absolute observed-data-impossibility wording exceeds the supported procedure-scoped claim and must be replaced by the conceded corrected-criteria/calibrated-tests wording.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-02",
+          "point": "TV-10 conflates IC ranking with nested LRT comparison and must split the recommendation: per-candidate trace corrections for IC ranking, calibrated LRT or tested-direction tr(RIV_perp) for nested comparisons.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-03",
+          "point": "TV-01, TV-02, TV-09, TV-11, and TV-12 require scope-calibrating amendments for expectation-level correction, studied designs, equal-fit settings, all-else-equal tendencies, and stated-condition limitations.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-04",
+          "point": "TV-03, TV-04, and TV-08 require narrowed wording identifying the averaged-log-likelihood criterion class, expectation-level nature, trace component, and the distinction from the known-scale term.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-05",
+          "point": "TV-13's 'bounds' language overstates an empirical agreement check and must be replaced with 'indicates,' 'empirically estimates,' 'assesses,' or equivalent empirical wording.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-06",
+          "point": "TV-14 and TV-15 must distinguish the stronger congenial-cell all-errors-on-largest-RIV pattern from the broader all-sixty-cell directional prediction.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-07",
+          "point": "TV-16 and TV-17 must recast the single-family workflow and historical-cause assertions as evidence-based interpretation rather than established counterfactual or causal fact.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-08",
+          "point": "TV-18, TV-19, and TV-20 require narrowed literature scope, local Satorra-Bentler citation or cross-reference, and either a citation for separately developed methods or rewording as future work.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-09",
+          "point": "Same sustained point as OBJ-01: TV-05 and TV-07 must remove the absolute 'no transformation of the observed data' claim and align with G4.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-10",
+          "point": "Same sustained point as OBJ-02: TV-10 must not advise per-candidate trace differences for nested comparisons where the paper's LRT result uses the tested-direction correction or calibrated reference distribution.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-11",
+          "point": "Same sustained point as OBJ-05: TV-13 must replace 'bounds' with empirically calibrated language.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-12",
+          "point": "TV-19 and TV-20 need the conceded citation/cross-reference additions or future-work rewording to satisfy reader-verifiable citation support.",
+          "is_inaccuracy": false
+        },
+        {
+          "objection_id": "OBJ-13",
+          "point": "Same sustained point as OBJ-06: TV-14 and TV-15 require the congenial-cell qualifier and explicit separation from the all-sixty-cell directional prediction.",
+          "is_inaccuracy": false
+        }
+      ],
+      "determination_rationale": "The defense does not preserve the manuscript as written: multiple flagged sentences require bounded wording changes to match the validated results and cited sources. The advocate accepted the necessary amendments, including the round-2 narrowing of TV-02 and TV-03, and those amendments adequately cure the fidelity problems without reopening any theorem or simulation result. I find no fabrication, misrepresented defensive claim, or buried inaccuracy by the advocate; the alleged inaccuracies are overbroad wording/internal-consistency defects cured by the conceded edits."
+    },
+    "B": {
+      "criterion_scores": [
+        {
+          "criterion": "claim_support",
+          "assessment": "holds_as_amended",
+          "rationale": "The advocate appropriately downgraded 'bounds' to empirical estimates (OBJ-05, OBJ-11) and recast historical/counterfactual claims into stated inferences (OBJ-07), aligning the claims with the empirical and documented evidence."
+        },
+        {
+          "criterion": "scope_calibration",
+          "assessment": "holds_as_amended",
+          "rationale": "Broad decision-level summaries and deterministic language regarding complexity and recovery were correctly re-scoped in multiple sentences (OBJ-03), ensuring the prose matches the conditional, expectation-level results."
+        },
+        {
+          "criterion": "internal_consistency",
+          "assessment": "holds_as_amended",
+          "rationale": "The advocate successfully resolved internal contradictions by removing absolute observed-data impossibility claims that violated the paper's own explicit limitations (OBJ-01, OBJ-09), distinguishing IC trace corrections from LRT nested tests (OBJ-02, OBJ-10), and properly limiting generalizations to 'congenial' cells where appropriate (OBJ-06, OBJ-13)."
+        },
+        {
+          "criterion": "citation_support",
+          "assessment": "holds_as_amended",
+          "rationale": "The advocate provided the missing Satorra-Bentler local citation, re-scoped an otherwise conflicting literature claim, and replaced a vague 'developed separately' reference with explicit future work (OBJ-08, OBJ-12)."
+        }
+      ],
+      "determination": "amended",
+      "sustained_objections": [],
+      "determination_rationale": "The position survives because the advocate engaged in good faith and accepted bounded wording changes for every objection. The amendments successfully re-scope the text to precisely match the off-limits mathematical and simulation results without conceding the results themselves. The alleged inaccuracies were successfully defended as mere presentation inconsistencies rather than buried substantive flaws."
+    }
+  },
+  "rounds": [
+    {
+      "round": "R1",
+      "kind": "probe",
+      "note": "13 objections raised independently"
+    },
+    {
+      "round": "R2",
+      "kind": "deliberate",
+      "note": "2 sustained, 0 new; stances=['objecting', 'satisfied']; continue -- open objections remain"
+    },
+    {
+      "round": "R3",
+      "kind": "deliberate",
+      "note": "0 sustained, 0 new; stances=['satisfied', 'satisfied']; consensus -- all peers satisfied, no sustained objection"
+    }
+  ],
+  "usage": {
+    "input": 70535,
+    "output": 41604
+  }
+}

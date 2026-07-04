@@ -1,0 +1,40 @@
+{
+  "date": "2026-06-26",
+  "study": "s5-socratic",
+  "title": "S5 Simulation studies — does each figure earn its claim?",
+  "kind": "tribunal",
+  "defender": "claude",
+  "examiners": [
+    "openai",
+    "gemini",
+    "claude"
+  ],
+  "models": {
+    "claude": "claude-opus-4-8",
+    "openai": "gpt-5.5-pro-2026-04-23",
+    "gemini": "google/gemini-3.1-pro"
+  },
+  "routes": {
+    "gemini": "deepinfra"
+  },
+  "params": {
+    "openai": {
+      "effort": "xhigh"
+    },
+    "gemini": {
+      "effort": "high"
+    }
+  },
+  "anon_examiner_to_letter": {
+    "openai": "X",
+    "gemini": "Y",
+    "claude": "Z"
+  },
+  "anon_seed": 20260627,
+  "criteria": [
+    "reproducible_numbers",
+    "claim_strength",
+    "mechanism_not_artifact",
+    "generic_not_lucky"
+  ]
+}

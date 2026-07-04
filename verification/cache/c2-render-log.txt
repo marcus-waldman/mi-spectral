@@ -1,0 +1,56 @@
+
+Starting python3 kernel...Done
+
+Executing 'derivation.quarto_ipynb'
+  Cell 1/20: ''...................Done
+  Cell 2/20: ''...................Done
+  Cell 3/20: ''...................Done
+  Cell 4/20: 'lst-mc-trriv'.......Done
+  Cell 5/20: 'lst-mc-terma'.......Done
+  Cell 6/20: 'lst-mc-termb'.......Done
+  Cell 7/20: 'lst-mc-combine'.....Done
+  Cell 8/20: ''...................Done
+  Cell 9/20: ''...................Done
+  Cell 10/20: ''...................Done
+  Cell 11/20: 'lst-mc-fisher'......Done
+  Cell 12/20: 'lst-mc-psd'.........Done
+  Cell 13/20: 'lst-mc-fiml'........Done
+  Cell 14/20: 'lst-mc-mcse'........Done
+  Cell 15/20: ''...................Done
+  Cell 16/20: ''...................Done
+  Cell 17/20: 'lst-mc-obsinfo'.....Done
+  Cell 18/20: 'lst-mc-crossterm'...Done
+  Cell 19/20: ''...................Done
+  Cell 20/20: 'lst-mc-tierb'.......Done
+
+pandoc 
+  to: html
+  output-file: derivation.html
+  standalone: true
+  embed-resources: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+  toc: true
+  toc-depth: 3
+  number-sections: true
+  variables: {}
+  
+metadata
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: 'Deviance bias under congenial multiple imputation: a sourced derivation'
+  subtitle: Canonical formal derivation for the JAIGP theory paper (setup, assumptions, proof)
+  author: mi-spectral
+  date: last-modified
+  bibliography:
+    - ../literature/mi-spectral-better-bibTeX.bib
+  jupyter: python3
+  grid:
+    margin-width: 350px
+  
+Output created: derivation.html
+

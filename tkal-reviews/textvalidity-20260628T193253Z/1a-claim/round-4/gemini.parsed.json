@@ -1,0 +1,106 @@
+{
+  "keep": [
+    {
+      "id": "K01",
+      "priority": 1,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K04",
+      "priority": 2,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K05",
+      "priority": 3,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K11",
+      "priority": 4,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K15",
+      "priority": 5,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K17",
+      "priority": 6,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K18",
+      "priority": 7,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K21",
+      "priority": 8,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K22",
+      "priority": 9,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K23",
+      "priority": 10,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K24",
+      "priority": 11,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K25",
+      "priority": 12,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K27",
+      "priority": 13,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K28",
+      "priority": 14,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K29",
+      "priority": 15,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K33",
+      "priority": 16,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K34",
+      "priority": 17,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K36",
+      "priority": 18,
+      "reason": "unchanged"
+    },
+    {
+      "id": "K02",
+      "priority": 19,
+      "reason": "Adopting; deterministic misclassification claim lacks the necessary design qualifier."
+    },
+    {
+      "id": "K35",
+      "priority": 20,
+      "reason": "Adopting; points to separate development without providing the needed reference."
+    }
+  ],
+  "add": [],
+  "drop_notes": "none"
+}

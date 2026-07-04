@@ -1,0 +1,71 @@
+{
+  "rulings": [
+    {
+      "objection_id": "OBJ-01",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-02",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-03",
+      "ruling": "sustained",
+      "sustained_point": "The amendment still overgeneralizes TV-02: \"in nested families, the more complex models\" states a general complexity/RIV relation for nested families, while the paper only establishes that alignment in the studied nested, ordered-by-missing-information designs. It should say \"in the nested families studied\" or \"when the more complex candidate has larger missing information.\""
+    },
+    {
+      "objection_id": "OBJ-04",
+      "ruling": "sustained",
+      "sustained_point": "TV-03 is left as written. The rebuttal does not narrow the universal \"every deviance and every information criterion computed from multiply imputed data\" to the established object: averaged/Q-based likelihood deviance or IC, in expectation, under the estimated-scale congenial-MI conditions. \"For such a model\" scopes the model class but not the criterion class or expectation-level nature of the bias."
+    },
+    {
+      "objection_id": "OBJ-05",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-06",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-07",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-08",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-09",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-10",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-11",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-12",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    },
+    {
+      "objection_id": "OBJ-13",
+      "ruling": "withdrawn",
+      "sustained_point": ""
+    }
+  ],
+  "new_objections": [],
+  "stance": "objecting"
+}

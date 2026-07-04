@@ -1,0 +1,212 @@
+[
+  {
+    "id": "CH-01",
+    "author": "openai",
+    "author_letter": "X",
+    "criterion": "reproducible_numbers",
+    "target": "Study 9 — Engine sensitivity (S5-P22)",
+    "claim": "The headline numbers \"2 to 3 percent\", \"no widening\", and \"within 0.011\" have no cited backing artifact and no inlined rows. Unlike the RDS/CSV-backed studies, Study 9 is untraceable as specified, so the reproducible_numbers bar cannot be hit for these claims.",
+    "severity": "blocking",
+    "what_would_satisfy": "Add the committed artifact path, checksum, schema, extraction code, and a summary table giving observed-data RIV traces, imputation-draw RIV traces, percent discrepancies, analytic/imputation recovery gaps, and SEs by cell; otherwise remove the numeric headline."
+  },
+  {
+    "id": "CH-02",
+    "author": "openai",
+    "author_letter": "X",
+    "criterion": "claim_strength",
+    "target": "Study 1 — W1 target refinement / theorem validation",
+    "claim": "The registered target was 0.5 tr(RIV) near 2.77, while the pooled estimate is 2.43 ± 0.26. The manuscript then treats a during-analysis refined band of 2.42–2.55 as confirming the completed theorem. Unless the MAR augmentation was fixed by an independently derived formula before inspecting the estimate, this converts a registered near-miss into a success, which the claim_strength bar forbids.",
+    "severity": "blocking",
+    "what_would_satisfy": "Produce the dated symbolic derivation/amendment showing the O(1) MAR term and all cell predictions were fixed independently of the observed estimates; otherwise rewrite as a registered-target miss with a post-hoc/theory-refined explanation rather than a preregistered confirmation."
+  },
+  {
+    "id": "CH-03",
+    "author": "openai",
+    "author_letter": "X",
+    "criterion": "mechanism_not_artifact",
+    "target": "Study 6 — W3C_high_RIV_frac = 1.000 / saturated-candidate signature",
+    "claim": "The \"100% land on saturated\" result is 1.000 in every cell, including uncongenial cells where the uncorrected rate exceeds the oracle and the correction overshoots. In a nested candidate set ordered by missing information, any monotone deviance bias would favor the saturated/highest-RIV candidate by construction. As a headline mechanism claim, the signature is therefore plausibly a candidate-ordering/counting artifact rather than evidence specific to the proposed correction.",
+    "severity": "blocking",
+    "what_would_satisfy": "Scope the 1.000 result as a descriptive destination count, not mechanism proof, or add controls where the highest-RIV candidate is not the saturated endpoint, candidate order/RIV order is perturbed, and the predicted destination changes accordingly; disclose the uncongenial 1.000 plus overshoot in the main text."
+  },
+  {
+    "id": "CH-04",
+    "author": "openai",
+    "author_letter": "X",
+    "criterion": "generic_not_lucky",
+    "target": "Study 7 — block-diagonal equality of naive and projected traces",
+    "claim": "In the ladder family, the projected trace and naive trace agree to 3.6e-15, so the formulas cannot be distinguished there. The reported 0.824 vs 0.904 selection-rate gap comes from a frozen-SB/naive-input comparison, not from a cell where the naive and projected trace formulas actually differ. Study 7 therefore cannot demonstrate projected-trace superiority unless explicitly scoped as a coincidence/equality case.",
+    "severity": "blocking",
+    "what_would_satisfy": "Add an off-equality Study 7 comparison holding the calibration map fixed while swapping projected vs naive trace inputs, with the traces numerically different and the resulting cost reported; or rewrite Study 7 to say formula superiority is not demonstrated in that ladder cell."
+  },
+  {
+    "id": "CH-05",
+    "author": "openai",
+    "author_letter": "X",
+    "criterion": "mechanism_not_artifact",
+    "target": "Study 4 — 52-standard-error formula discrimination",
+    "claim": "The 52-SE rejection of the naive formula is produced in an intentionally extreme design: one tested coordinate is 70–79% missing and the naive prediction is about 8.5 versus the projected prediction 2.64. This is valid as a stress-cell falsification, but as written it risks overclaiming general mechanism evidence from engineered separation.",
+    "severity": "major",
+    "what_would_satisfy": "State explicitly that Study 4 is an adversarial/stress design to separate formulas, not evidence about typical balanced-missingness magnitudes; add a missingness-balance sensitivity grid or another non-engineered cell showing the projected prediction still matches and the naive formula still fails when the formulas differ."
+  },
+  {
+    "id": "CH-06",
+    "author": "openai",
+    "author_letter": "X",
+    "criterion": "claim_strength",
+    "target": "Study 7 — \"statistically indistinguishable\" from oracle and weak-signal residual attribution",
+    "claim": "The main-cell rates 0.904/0.903 versus oracle 0.899 may be within MC error, but the manuscript also attributes the weak-cell ceiling, where oracle is 0.8195 and no arm exceeds 0.650, to information loss rather than calibration error. The inlined internals are MAIN-cell diagnostics, not a demonstrated weak-cell decomposition, so the causal attribution outruns the shown numbers.",
+    "severity": "major",
+    "what_would_satisfy": "Report paired SEs/CIs for oracle-arm differences and weak-cell diagnostics by error type, null/noncentral side, and underfit retention; or relabel the weak-cell explanation as a conjectural interpretation rather than a demonstrated calibration result."
+  },
+  {
+    "id": "CH-07",
+    "author": "openai",
+    "author_letter": "X",
+    "criterion": "claim_strength",
+    "target": "Pre-registered failures outside the congenial headline cells",
+    "claim": "The design says the 60-cell selection sweep and pass criteria were pre-registered, but the main headline reports only congenial recovery. The appendix shows uncongenial cells where corrected selection is about 0.979–0.981 against oracle about 0.898–0.9065, with oracle-minus-corrected negative. If those cells had any preregistered recovery or robustness target, this is an unmet prediction that must appear in the main text rather than be silently excluded.",
+    "severity": "major",
+    "what_would_satisfy": "Provide a preregistered grade matrix for every sweep family, including uncongenial/MNAR or other non-headline arms, marking each as success, expected negative control, or failure; add the overshoot result and its scope limitation to the main text if it was in scope."
+  },
+  {
+    "id": "CH-08",
+    "author": "openai",
+    "author_letter": "X",
+    "criterion": "reproducible_numbers",
+    "target": "RDS-backed Studies 1–5 and Study 7 internal shrinkage factors",
+    "claim": "Several headline quantities cannot be recomputed from the inlined appendix: Study 1's 2.43 ± 0.26, Study 3's 0.042/0.034, Study 4's 2.64/2.70 and 52-SE gap, and Study 5's SD sequences are only RDS-backed. In Study 7, the noncentral-shrinkage claim of about 0.57 and 0.40 is not mapped cleanly to the transcribed internals, which show duplicated/ambiguous ncratio labels and values including 1.0021 and 0.3617. This is an auditability gap even if the artifacts ultimately contain the numbers.",
+    "severity": "major",
+    "what_would_satisfy": "Publish canonical CSV extracts or deterministic extraction scripts with hashes, row filters, column names, SE formulas, and label mappings sufficient to recompute each headline number exactly from the cited artifacts."
+  },
+  {
+    "id": "CH-09",
+    "author": "gemini",
+    "author_letter": "Y",
+    "criterion": "claim_strength",
+    "target": "Study 1 (S5-P12) 'Theorem validation' claiming confirmation against refined target",
+    "claim": "The manuscript asserts the estimate 2.43 ± 0.26 'confirms the completed theorem' using an 'order-one-augmented prediction 2.42 to 2.55.' However, the original preregistered target was ½tr(RIV) ≈ 2.77, which the estimate completely missed. Replacing a preregistered miss with a post-hoc, independently derived target band without first declaring that the originally registered 2.77 target failed is an explicit violation of the rule against hiding unmet pre-registered predictions.",
+    "severity": "blocking",
+    "what_would_satisfy": "State outright in the text that the estimate failed the initial preregistered ½tr(RIV) target of 2.77, and then present the 2.42–2.55 augmented band as a subsequent theoretical correction to the estimand rather than an initial confirmation."
+  },
+  {
+    "id": "CH-10",
+    "author": "gemini",
+    "author_letter": "Y",
+    "criterion": "mechanism_not_artifact",
+    "target": "Study 6 (S5-P17) '100% land on saturated' signature (W3C_high_RIV_frac)",
+    "claim": "The study orders its nested candidates structurally by missing information, placing the saturated model at the top. In such an ordered layout, any generic, uncorrected downward deviance bias will mechanically favor the most complex/highest-tr(RIV) candidate by sheer magnitude. W3C = 1.000 is thus trivially forced by candidate sorting rather than being a unique validation of the paper's specific spectral trace distribution, failing the artifact-explanation test.",
+    "severity": "blocking",
+    "what_would_satisfy": "Downgrade the claim to acknowledge this is a built-in tautology of ordering candidates by RIV, or test/prove the signature on a non-monotonic candidate set where a generic scaling error would miss but the spectral mechanism hits."
+  },
+  {
+    "id": "CH-11",
+    "author": "gemini",
+    "author_letter": "Y",
+    "criterion": "claim_strength",
+    "target": "Study 6 (S5-P17) omission of uncongenial sweep results",
+    "claim": "The prose selectively reports 'In every congenial cell...', entirely omitting the sweep's uncongenial data. The appendix reveals that in uncongenial cells, the uncorrected selection rate actually exceeds the oracle (0.93 vs 0.90) and the correction overshoots to a near 98% rate, reversing the sign of the problem. Suppressing this regime hides a massive structural failure mode and falsely implies uniform performance, violating the requirement to disclose failed pre-registered performance.",
+    "severity": "blocking",
+    "what_would_satisfy": "Incorporate the uncongenial data directly into the S5-P17 main text, explicitly stating that under uncongeniality the initial bias reverses (exceeding oracle) and the correction overshoots past the oracle."
+  },
+  {
+    "id": "CH-12",
+    "author": "gemini",
+    "author_letter": "Y",
+    "criterion": "generic_not_lucky",
+    "target": "Study 7 (S5-P20) Structural Limits off-equality capability claim",
+    "claim": "Table S5-P20 labels a 0.080 selection-rate penalty (0.824 vs 0.904) as 'naive input' vs 'correct input'. However, the inline text and data confirm that in this block-diagonal family, the naive trace and projected trace provably coincide to 3.6e-15. Therefore, the 0.080 penalty relies purely on a manufactured difference in the moment maps (frozen-SB), not the trace formulas. Blurring 'naive trace' terminology into a cell where the traces are mathematically identical violates the 'generic_not_lucky' requirement. Claiming formula superiority rests on structural luck.",
+    "severity": "blocking",
+    "what_would_satisfy": "Explicitly decouple the 0.824 'naive input' (moment map limitation) from the trace-difference evaluation. Specify in Study 7 that the trace formulas cannot diverge here, and unambiguously redirect the trace formula superiority claim to Study 8 where a genuine 9% divergence occurs."
+  },
+  {
+    "id": "CH-13",
+    "author": "gemini",
+    "author_letter": "Y",
+    "criterion": "mechanism_not_artifact",
+    "target": "Study 4 (S5-P15) '52 standard errors' discrimination",
+    "claim": "The 52-sigma separation between formulas evaluates them using a highly engineered, extreme edge case (~70-79% missing on one coordinate, 0% on another) constructed adversarially to maximally pull the two trace formulas apart. Presenting this separation without qualification treats a forced, degenerate outcome as standard evidence of superiority, obscuring how (or if) the formulas diverge under realistic/balanced missingness.",
+    "severity": "major",
+    "what_would_satisfy": "Declare the 52-sigma design as an existentially engineered bound explicitly constructed to force a separation, and state what the measured gap is (even if zero) under an unforced, balanced missingness design."
+  },
+  {
+    "id": "CH-14",
+    "author": "gemini",
+    "author_letter": "Y",
+    "criterion": "reproducible_numbers",
+    "target": "Studies 1-5 reliance on un-inlined RDS artifacts",
+    "claim": "More than half of the headline metrics in the defense (e.g., 2.43 ± 0.26, 0.025 ± 0.018, 0.042/0.034, 2.64/2.70) are cited exclusively from non-transcribed `.rds` artifacts. Under an absolute cross-examination gate requiring numerical reproducibility, these specific standard errors, interval limits, and pool estimates cannot be checked for internal consistency 'even in principle' with the provided appendix, shielding them from empirical scrutiny.",
+    "severity": "major",
+    "what_would_satisfy": "Transcribe the critical summary/parameter rows from the `.rds` backing files into the text's data appendix alongside the existing CSVs to permit mathematical verification of the quoted estimates and standard errors."
+  },
+  {
+    "id": "CH-15",
+    "author": "claude",
+    "author_letter": "Z",
+    "criterion": "claim_strength",
+    "target": "Study 1 (S5-P12) W1 goalpost refinement, attack point 1",
+    "claim": "The registered point target was ½tr(RIV) ≈ 2.77; the pooled estimate 2.43 ± 0.26 places 2.77 about 0.34 above the mean, roughly 1.3 SE out and outside the interval upper edge of 2.69. The paper then 'refines' the target to 2.42–2.55 and declares 'confirms the completed theorem.' For claim_strength the refinement is legitimate ONLY if the O(1) MAR correction term is independently derived (from the MAR mechanism, not from the observed 2.43). As specified, the manuscript gives no derivation of the MAR term — it asserts the band 'once the missing-at-random term was derived' but the derivation that converts 2.77 to 2.42–2.55 is never shown, and the new band conveniently brackets the estimate. If the term cannot be exhibited as a from-first-principles offset that predicts the band BEFORE seeing 2.43, this is a registered-target miss re-described as a confirmation — a direct claim_strength FAIL.",
+    "severity": "blocking",
+    "what_would_satisfy": "Show the symbolic derivation of the O(1) MAR correction term that maps 2.77 → [2.42,2.55] from the missingness mechanism alone, with a dated pre-amendment timestamp, OR demote 'confirms the completed theorem' to 'consistent with the MAR-augmented prediction' and report the 2.77 registered target as not met in the main text."
+  },
+  {
+    "id": "CH-16",
+    "author": "claude",
+    "author_letter": "Z",
+    "criterion": "generic_not_lucky",
+    "target": "Study 7 (S5-P18–P20) block-diagonal equality, attack point 4",
+    "claim": "The paper's contribution is that the projected trace beats the naive trace difference. But in the ladder family naive and projected agree to 3.6e-15 — they provably cannot differ in this candidate set. The 0.080 selection-rate separation (0.824 vs 0.904) the prose uses to demonstrate superiority comes from the frozen-SB / naive-INPUT moment-map arm, not from a cell where the two trace FORMULAS differ. So 'overstates the projected trace elsewhere' is imported from the derivation, not demonstrated by these data. This is precisely the structural-luck coincidence the generic_not_lucky bar forbids being presented as evidence of general superiority.",
+    "severity": "blocking",
+    "what_would_satisfy": "Either (a) supply a selection-rate comparison in a non-block-diagonal candidate family where trperp ≠ trnaive and show the projected formula wins there, or (b) explicitly scope S5-P20 as 'the projected-vs-naive trace advantage is not demonstrated on the ladder family, which is block-diagonal; the 0.080 gap is a naive-INPUT moment-map effect, not a trace-formula effect.'"
+  },
+  {
+    "id": "CH-17",
+    "author": "claude",
+    "author_letter": "Z",
+    "criterion": "mechanism_not_artifact",
+    "target": "Study 6 (S5-P17) '100% land on saturated' signature, attack points 2 and 3",
+    "claim": "W3C_high_RIV_frac = 1.000 in EVERY one of the 60 cells, congenial AND uncongenial. The candidate set is nested and ordered by tr(RIV) with the saturated model at the top, and the deviance bias is monotone in tr(RIV). Therefore ANY downward-biased deviance — including a generic/wrong one unrelated to the paper's decomposition — most favors the highest-RIV candidate, forcing 1.000 by construction. The 1.000 even appears in uncongenial cells where the correction OVERSHOOTS the oracle (oracle−corr negative) and the uncorrected rate already exceeds the oracle — i.e. the signature persists where the sign of the problem reverses. This makes 'all errors land on the saturated candidate' a near-tautology of candidate ordering, not a confirmation of the paper's specific mechanism: a mechanism_not_artifact FAIL.",
+    "severity": "major",
+    "what_would_satisfy": "Show the 1.000 signature is non-trivial — e.g. a candidate set NOT monotonically ordered by RIV (or with a non-saturated high-RIV decoy) where errors still land where the paper's decomposition predicts and NOT where a generic monotone bias predicts — or explicitly downgrade the claim to 'consistent with, but not discriminating of, the monotone-bias mechanism' and note that ordering alone forces the 1.000."
+  },
+  {
+    "id": "CH-18",
+    "author": "claude",
+    "author_letter": "Z",
+    "criterion": "mechanism_not_artifact",
+    "target": "Study 4 (S5-P15) 52-sigma discrimination, attack point 5",
+    "claim": "The 52-SE rejection of the naive formula is achieved by engineering coordinate 1 to 70–79% missing and another to ~0% — the configuration that maximally separates two formulas the derivation already says differ. A large sigma count under maximal engineered separation is evidence the DESIGN separates them, not that the projected formula is CORRECT (the observed 2.64/2.70 matching the projected 2.64 is the correctness evidence; the 52-sigma is only strawman-exclusion). The prose 'this design makes the gap large enough to rule it out outright' risks being read as general superiority when no realistic/balanced-missingness discrimination is reported. Without a moderate-missingness cell the 52-sigma is an artifact of engineered separation.",
+    "severity": "major",
+    "what_would_satisfy": "Report the discrimination at a realistic balanced missingness rate (or state the sigma count there), and rescope the prose so the 52-sigma is presented as 'maximal-separation exclusion of the naive formula in an engineered cell,' with the correctness claim resting on the 2.64 match rather than the sigma count."
+  },
+  {
+    "id": "CH-19",
+    "author": "claude",
+    "author_letter": "Z",
+    "criterion": "claim_strength",
+    "target": "Study 7 (S5-P18) 'statistically indistinguishable from oracle' and weak-cell attribution, attack point 6",
+    "claim": "Two-moment/equating arms (0.904/0.903) EXCEED the oracle (0.899) in the MAIN cell at MC SE ≈ 0.010, and exceed it in the JUNK cell too (0.7015/0.6955 vs 0.727 is below — but MAIN and the pattern suggest a small systematic overshoot, not pure noise). 'Reaches/indistinguishable from the oracle' must be bounded by a threshold actually met; a one-sided overshoot read as two-sided noise can outrun its numbers. Separately, the weak-cell floor ('no arm > 0.650, information loss rather than calibration error') is ASSERTED — the internals shown (KS, varratio, ncratio) demonstrate null-side calibration but do not directly demonstrate that the residual gap to oracle 0.820 is underfit-retention information loss rather than residual mis-calibration.",
+    "severity": "major",
+    "what_would_satisfy": "State the indistinguishability as a two-sided interval test (e.g. |arm − oracle| < k·SE) and confirm the overshoot is within it, AND provide an internal that directly attributes the weak-cell floor to underfit retention (e.g. decompose the gap into null-side calibration vs alternative-side retention), rather than asserting the attribution."
+  },
+  {
+    "id": "CH-20",
+    "author": "claude",
+    "author_letter": "Z",
+    "criterion": "claim_strength",
+    "target": "Cross-cutting: completeness of disclosed failures, attack point 7",
+    "claim": "The D-05 discipline requires EVERY unmet pre-registered prediction in the main text. Two failures are disclosed (W1 N=1000; W4 similar-pair pilot −2). But the design references pre-registration docs (todo/004,027,029) covering candidate families and pass criteria, and the appendix shows MNAR/uncongenial behavior (correction overshoots oracle, oracle−corr negative) that is NOT in the S5 headline. If any MNAR cell or uncongenial arm was pre-registered to pass and did not, omitting its grade is a hidden failure — a claim_strength FAIL regardless of how good the disclosed misses are. As specified, the panel cannot confirm the disclosed-failure set is exhaustive.",
+    "severity": "major",
+    "what_would_satisfy": "Provide the full pre-registered prediction → outcome ledger (every registered cell/arm with pass/fail and where it is reported), explicitly confirming no registered prediction is reported only as a total or omitted; in particular grade the MNAR and uncongenial selection-sweep cells against their registered criteria in the main text."
+  },
+  {
+    "id": "CH-21",
+    "author": "claude",
+    "author_letter": "Z",
+    "criterion": "reproducible_numbers",
+    "target": "Studies 1–5 RDS-backed headlines, attack point 8",
+    "claim": "The headline numbers 2.43±0.26 (W1), 0.025/−0.536 (W2), 0.042/0.034 (W3), 2.64/2.70 (W4 discrimination), and the W5 sd ladder are backed by .rds files NOT transcribed in the appendix. Per the bar, for non-inlined RDS numbers the panel must judge internal consistency and flag any that cannot be checked even in principle. As specified these cannot be recomputed at all — and W1 in particular carries a goalpost question that makes its un-checkable status more than cosmetic. The design has not provided the inlined rows needed to satisfy 'recomputes within stated MC error.'",
+    "severity": "minor",
+    "what_would_satisfy": "Inline the key rows of W1–W5 .rds artifacts (per-N pooled estimates, SEs, and the component terms for W1) so the headline pooled figures and SEs recompute, or formally flag these as RDS-backed-not-inlined and confirm internal consistency (e.g. that 2.43±0.26 is the inverse-variance pool of the per-N cells and that the W4 2.64 matches the projected-trace prediction cell-by-cell)."
+  }
+]

@@ -1,0 +1,152 @@
+{
+  "nominations": [
+    {
+      "title": "[ABSTRACT] \"Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection.\" — trace correction overstates decisions",
+      "by": "ABSTRACT",
+      "category": "overclaim",
+      "reason": "The paper also derives a design-imbalance term and later reports decision-level shortfalls, so a trace-only correction is earned as a scoped/leading criterion correction, not as restoring complete-data-equivalent selection generally.",
+      "priority": 1
+    },
+    {
+      "title": "[S6-P7b] \"When the aim is to rank models or to compare nested models on imputed data, and no calibrated reference distribution already absorbs the bias, add the per-candidate trace correction before reading off the result.\" — nested-test correction conflation",
+      "by": "S6-P7b",
+      "category": "overclaim",
+      "reason": "The manuscript's own likelihood-ratio discussion says the separate per-candidate correction overstates the nested-comparison bias, so this practical recommendation conflates information-criterion ranking with the projected tested-direction correction.",
+      "priority": 1
+    },
+    {
+      "title": "[S1-P5] \"The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it.\" — unearned impossibility claim",
+      "by": "S1-P5",
+      "category": "overclaim",
+      "reason": "This asserts a general impossibility result, while the Discussion later says no argument shows that no estimator built from the same observed data could do better.",
+      "priority": 1
+    },
+    {
+      "title": "[S6-P1] \"The bias exists only when the fit estimates a scale or covariance.\" — contradicted by known-scale MI",
+      "by": "S6-P1",
+      "category": "overclaim",
+      "reason": "The next sentence says known-scale proper MI has a nonzero bias, so this needs to specify the deterministic estimated-entropy/optimism bias rather than bias without qualification.",
+      "priority": 1
+    },
+    {
+      "title": "[S6-P7] \"Corrected selection and calibrated tests behave as they would have with complete data.\" — decision equivalence too broad",
+      "by": "S6-P7",
+      "category": "overclaim",
+      "reason": "The simulations show scoped null-side recovery and weak-signal floors, not a general guarantee that corrected selection and calibrated tests behave like complete-data procedures in all relevant decision settings.",
+      "priority": 1
+    },
+    {
+      "title": "[S1-P4] \"The practical consequence is that, for such a model, every deviance and every information criterion computed from multiply imputed data is too optimistic.\" — every-criterion sign overclaim",
+      "by": "S1-P4",
+      "category": "overclaim",
+      "reason": "The derivation is for the averaged log-likelihood/Q-function under stated assumptions, while the sign and universality of every deviance or information criterion are not earned, especially given the design-imbalance and known-scale qualifications.",
+      "priority": 1
+    },
+    {
+      "title": "[ABSTRACT] \"Model selection on multiply imputed data is biased toward more complex models, because their larger relative increase in variance makes the fit look better than it is.\" — model-selection scope too broad",
+      "by": "ABSTRACT",
+      "category": "overclaim",
+      "reason": "The evidence concerns particular likelihood-based criteria under congenial proper MI, and more complex models need not always have the larger missing-information trace.",
+      "priority": 2
+    },
+    {
+      "title": "[S1-P4] \"The second term is smaller.\" — magnitude not established",
+      "by": "S1-P4",
+      "category": "unsupported-as-written",
+      "reason": "Later G1 says the absolute magnitude of the design-imbalance term is not independently determined, so the prose needs a theorem, condition, or scoped empirical qualifier for smaller.",
+      "priority": 2
+    },
+    {
+      "title": "[S1-P4] \"A model-comparison table built on imputed data therefore favors the candidates with the most missing information.\" — deterministic ranking overclaim",
+      "by": "S1-P4",
+      "category": "overclaim",
+      "reason": "The bias creates a directional tendency, but actual rankings also depend on fit, penalty, signal strength, and candidate geometry, so this needs all-else-equal or design-specific wording.",
+      "priority": 2
+    },
+    {
+      "title": "[S1-P5] \"Correction then restores complete-data behavior entirely.\" — entirely too strong",
+      "by": "S1-P5",
+      "category": "overclaim",
+      "reason": "The following sentences support calibrated null behavior and one preregistered selection design, not complete restoration of all complete-data behavior.",
+      "priority": 2
+    },
+    {
+      "title": "[S1-P6b] \"Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the bias and substantially restores the ranking that complete data would have given.\" — trace-only removal overclaim",
+      "by": "S1-P6b",
+      "category": "overclaim",
+      "reason": "Because the theorem includes the design-imbalance term and the simulations show substantial but incomplete ranking recovery, this should be limited to the trace component or to conditions where the remaining term is absent/negligible.",
+      "priority": 2
+    },
+    {
+      "title": "[S5-P17] \"This is a registered directional prediction, and it held across all sixty cells.\" — cell scope unclear",
+      "by": "S5-P17",
+      "category": "unsupported-as-written",
+      "reason": "The previous sentence limits the statement to congenial cells, while the design includes uncongenial cells and the Discussion reports overshoot there, so the reader needs clarification of which prediction held in which cells.",
+      "priority": 2
+    },
+    {
+      "title": "[S5-P22] \"The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which bounds the cost of not running data augmentation.\" — empirical check not a bound",
+      "by": "S5-P22",
+      "category": "overclaim",
+      "reason": "The engine-sensitivity study measures agreement in selected designs but does not provide a bound on the unrun data-augmentation alternative beyond those designs.",
+      "priority": 2
+    },
+    {
+      "title": "[S6-P6] \"The design-imbalance term derived here is nonzero exactly when the missing and observed units differ on the conditioning variables.\" — iff claim needs support",
+      "by": "S6-P6",
+      "category": "overclaim",
+      "reason": "The shown prose supports MCAR vanishing and measured MAR examples, but exactly when asserts a necessary-and-sufficient condition and rules out cancellations without a pointer.",
+      "priority": 2
+    },
+    {
+      "title": "[S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\" — conclusion repeats impossibility",
+      "by": "S6-P7",
+      "category": "overclaim",
+      "reason": "As written this is a broad information-theoretic impossibility claim, stronger than the paper's measured weak-signal floor and its own G4 limitation.",
+      "priority": 2
+    },
+    {
+      "title": "[S6-P7] \"Then trust the result the way complete-data results are trusted.\" — applied trust too broad",
+      "by": "S6-P7",
+      "category": "overclaim",
+      "reason": "The recommendation omits the manuscript's own practical boundaries, including congeniality, model-family instantiation, imputation-engine scope, and close-comparison information loss.",
+      "priority": 2
+    },
+    {
+      "title": "[S1-P7] \"@sec-ai-collab describes the collaboration that produced them and shows that it was productive.\" — productivity not demonstrated",
+      "by": "S1-P7",
+      "category": "speculation",
+      "reason": "The collaboration records can show activity and human direction, but productivity was defined counterfactually as results a single author would reach slowly or not at all, which the paper does not demonstrate.",
+      "priority": 3
+    },
+    {
+      "title": "[S3-P6] \"A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice.\" — counterfactual workflow claim",
+      "by": "S3-P6",
+      "category": "speculation",
+      "reason": "The sign-error episode shows what cross-model review caught here, but the claim about what a single-family workflow would likely have done is an unsupported counterfactual.",
+      "priority": 3
+    },
+    {
+      "title": "[S3-P3] \"Reliance on the AI system's trained recollection of a paper was prohibited throughout, because invented or misattributed citations are among the most common failures of AI-assisted scholarship.\" — AI-citation failure citation needed",
+      "by": "S3-P3",
+      "category": "missing-citation",
+      "reason": "The protocol rule is clear, but the empirical claim that citation hallucination is among the most common AI-assisted scholarship failures needs a source or softer wording.",
+      "priority": 3
+    },
+    {
+      "title": "[S1-P3] \"The open questions above are open because the second and third levels had not been posed.\" — causal history speculative",
+      "by": "S1-P3",
+      "category": "speculation",
+      "reason": "The manuscript documents that the questions were open, but it does not establish that they were open because these levels had not been posed rather than for other theoretical or practical reasons.",
+      "priority": 3
+    }
+  ],
+  "bench": [
+    "[S1B-P1] \"a kind of collaboration that is new in the age of AI and whose products are not yet routinely trusted.\" — sociotechnical trust/newness claim may need a citation.",
+    "[S2-P6] \"The averaged log-likelihood over imputations is itself a Q-function, computed by Monte Carlo.\" — could be too sweeping unless scoped immediately to fixed-parameter/improper imputation.",
+    "[S2-P13] \"The corrected criterion of @sec-derivations is the answer to the question their proposal poses.\" — could be softened to an answer under the paper's assumptions.",
+    "[S5-P12] \"The cause is the per-repetition statistic, which has heavy tails, so its standard deviation grows with the sample size.\" — causal diagnostic would benefit from an artifact pointer.",
+    "[S6-P7b] \"What makes such a result safe to use is the standard it meets, not the name of the system that produced it.\" — safety rhetoric may outrun the protocol's stated limits."
+  ],
+  "gaps": "I under-covered routine background-citation policing because most statistical-background claims already carry nearby citations; the main risks are scope and conclusion-strength."
+}

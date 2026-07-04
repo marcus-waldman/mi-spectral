@@ -1,0 +1,152 @@
+{
+  "nominations": [
+    {
+      "title": "[ABSTRACT] \"Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection.\"",
+      "by": "ABSTRACT",
+      "category": "overclaim",
+      "reason": "The body shows only that the bias is removed in expectation and that selection is 'substantially' restored with a residual gap/floor; 'restores complete-data-equivalent selection' is stronger than the demonstrated rate-level recovery.",
+      "priority": 1
+    },
+    {
+      "title": "[S1-P4] \"In our pre-registered study, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV.\"",
+      "by": "S1-P4",
+      "category": "overclaim",
+      "reason": "Body limits this to congenial cells ('In every congenial cell, all of the uncorrected criterion's errors land on the saturated... candidate'); the unqualified 'every misclassification' overstates what S5-P17 shows.",
+      "priority": 2
+    },
+    {
+      "title": "[S1-P4] \"We show that the corrected criterion recovers its complete-data expectation at any signal strength.\"",
+      "by": "S1-P4",
+      "category": "overclaim",
+      "reason": "The criterion-level expectation recovery is shown, but 'at any signal strength' is asserted broadly while the weak-signal cell exhibits a floor; the phrase blurs second-level (criterion) and third-level (rate) results.",
+      "priority": 3
+    },
+    {
+      "title": "[S1-P5] \"Correction then restores complete-data behavior entirely.\"",
+      "by": "S1-P5",
+      "category": "overclaim",
+      "reason": "The ladder results show two-moment/equating arms reach the benchmark only in the strong-signal cell and not in the weak-signal cell, so 'entirely' overstates the demonstrated case.",
+      "priority": 2
+    },
+    {
+      "title": "[S1-P5] \"we show that no transformation of the observed data can recover it\"",
+      "by": "S1-P5",
+      "category": "overclaim",
+      "reason": "G4 explicitly concedes 'No argument here shows that no estimator built from the same observed data could do better,' contradicting the impossibility claim stated in the intro.",
+      "priority": 1
+    },
+    {
+      "title": "[S1-P3] \"The principle as an explicit yardstick is, to our knowledge, stated here for the first time.\"",
+      "by": "S1-P3",
+      "category": "speculation",
+      "reason": "A novelty/priority claim ('to our knowledge... first time') that the prose cannot itself substantiate beyond hedging; a careful reviewer flags such first-claims as unverifiable as written.",
+      "priority": 4
+    },
+    {
+      "title": "[S1-P1] \"On that testimony, the major inferential questions read as settled.\"",
+      "by": "S1-P1",
+      "category": "overclaim",
+      "reason": "Sweeping characterization of the field's state attributed to cited reviews but stated more broadly than those accounts ('point estimates recover... Wald-type tests... well calibrated') can carry without qualification.",
+      "priority": 5
+    },
+    {
+      "title": "[S1B-P1] \"a kind of collaboration that is new in the age of AI and whose products are not yet routinely trusted\"",
+      "by": "S1B-P1",
+      "category": "speculation",
+      "reason": "Empirical sociological assertion about trust and novelty offered without citation or evidence.",
+      "priority": 4
+    },
+    {
+      "title": "[S1B-P1] \"Productive means that the collaboration reached results a single author would have reached slowly or not at all.\"",
+      "by": "S1B-P1",
+      "category": "speculation",
+      "reason": "Counterfactual productivity claim with no controlled comparison; the coded transcript counts measure activity, not that a solo author could not have reached the results.",
+      "priority": 3
+    },
+    {
+      "title": "[S1B-P2] \"This section describes the collaboration and shows that it was active and human-directed.\"",
+      "by": "S1B-P1",
+      "category": "overclaim",
+      "reason": "The counts show interventions occurred but 'human-directed' as a conclusion is asserted beyond what turn-tallies establish, especially since the coding was done by the same kind of system.",
+      "priority": 5
+    },
+    {
+      "title": "[S1-P6b] \"removes the bias and substantially restores the ranking that complete data would have given\"",
+      "by": "S1-P6b",
+      "category": "overclaim",
+      "reason": "Acceptable as 'substantially' here, but pairs with the abstract's stronger 'restores complete-data-equivalent selection'; flagged for internal inconsistency in strength of claim across the paper.",
+      "priority": 6
+    },
+    {
+      "title": "[S5-P14] \"The size-adjusted power arms are the partial support cited for the power conjecture of @sec-discussion.\"",
+      "by": "S5-P14",
+      "category": "unsupported-as-written",
+      "reason": "The figure and text say raw power is not compared and is confounded; the 'size-adjusted power arms' providing support are asserted but no size-adjusted comparison is actually reported in the results.",
+      "priority": 2
+    },
+    {
+      "title": "[S5-P15] \"Both match the projected-trace prediction of $2.64$. Correctness rests on that match.\"",
+      "by": "S5-P15",
+      "category": "overclaim",
+      "reason": "'Correctness rests on that match' overstates a single engineered-cell discrimination result as establishing the formula's correctness generally.",
+      "priority": 3
+    },
+    {
+      "title": "[S5-P22] \"This robustness is empirical and scoped to the designs studied.\"",
+      "by": "S5-P22",
+      "category": "overclaim",
+      "reason": "The opening sentence 'bounds the cost of not running data augmentation' claims a bound, but only a 2–3% agreement on studied cells is shown, not a derived bound—internally hedged but headline overclaims.",
+      "priority": 4
+    },
+    {
+      "title": "[S3-P6] \"A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice.\"",
+      "by": "S3-P6",
+      "category": "speculation",
+      "reason": "Counterfactual about single-family workflows asserted without evidence; the observed 8-of-9 figure is cross-family, not a controlled single-family comparison.",
+      "priority": 3
+    },
+    {
+      "title": "[S6-P5] \"We conjecture that the bias-corrected likelihood-ratio comparison dominates its uncorrected counterpart in power uniformly.\"",
+      "by": "S6-P5",
+      "category": "overclaim",
+      "reason": "Labeled a conjecture but 'uniformly' is a strong universal claim whose 'partial support' is the confounded power arms the simulation section says cannot be compared.",
+      "priority": 3
+    },
+    {
+      "title": "[S6-P7] \"No transformation of the observed data manufactures the lost evidence back.\"",
+      "by": "S6-P7",
+      "category": "overclaim",
+      "reason": "Restates the impossibility claim that G4 explicitly disclaims ('No argument here shows that no estimator... could do better'), creating a direct internal contradiction.",
+      "priority": 1
+    },
+    {
+      "title": "[S6-P7b] \"Then trust the result the way complete-data results are trusted.\"",
+      "by": "S6-P7b",
+      "category": "overclaim",
+      "reason": "A blanket practical endorsement that ignores the paper's own scope limits (estimated-scale, congeniality, weak-signal floor, normal-only verification) stated immediately above it.",
+      "priority": 4
+    },
+    {
+      "title": "[S5-P18] \"The junk cell closes $90$ percent of the gap from uncorrected to benchmark.\"",
+      "by": "S5-P18",
+      "category": "unsupported-as-written",
+      "reason": "The reader cannot reconstruct '90 percent' from the table without specifying which arm; the table shows uncorrected 0.422, two-moment 0.702, benchmark 0.727, which is ~92% for two-moment—the unspecified arm leaves the figure underspecified.",
+      "priority": 5
+    },
+    {
+      "title": "[S1-P2] \"That study also cautions that selecting models by averaged criteria has no support in the multiple-imputation literature.\"",
+      "by": "S1-P2",
+      "category": "overclaim",
+      "reason": "Characterizes a cited study's caution in absolute terms ('no support'); as written the strong paraphrase risks overstating the source's hedge.",
+      "priority": 6
+    }
+  ],
+  "bench": [
+    "[S2-P3] 'the weakest general conditions for ignoring the mechanism' — strong characterization stated without internal support",
+    "[S1B-P2] '599 substantive human turns' coded counts presented as fact while coding done by same-kind system",
+    "[S6-P8] 'Whether this workflow generalizes beyond one paper is asserted, not demonstrated' — self-aware but the surrounding workflow-promotion still leans on it",
+    "[S5-P17] 'the saturated model is the natural destination for any downward-biased deviance' — plausibility argument stated as if established",
+    "[S6-P4b] uncongenial overshoot 'marks where the framework's safety margin ends' — interpretive claim from one stress cell"
+  ],
+  "gaps": "missing-citation is thin: most issues are overclaim/speculation; few prose claims clearly lack a needed external reference since field-state claims do carry citekeys."
+}

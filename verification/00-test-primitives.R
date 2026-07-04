@@ -197,4 +197,57 @@ lrt <- lrt_complete(theta_com_small, theta_null_test, X_small)
 check(lrt >= -1e-9, "LRT non-negative (full fits at least as well)")
 cat(sprintf("    [info] complete-data LRT for sigma_12 = 0: %.3f\n", lrt))
 
+cat("\n--- w3_aic_bic_selections (BIC arithmetic, todo/040 Phase 2) ---\n")
+source("verification/_modules/w3-sweep.R")
+npar_test <- c(MA = 8, MB = 10, MC = 10, MD = 14)
+ell_com_test <- c(MA = -100, MB = -98, MC = -97, MD = -95)
+barL_test <- c(MA = -101, MB = -99, MC = -98, MD = -96)
+trRIV_obs_test <- c(MA = 0.5, MB = 0.4, MC = 0.3, MD = 0)
+N_test <- 200
+ic_test <- w3_aic_bic_selections(ell_com_test, barL_test, trRIV_obs_test, npar_test, N_test)
+check(all(names(ic_test$AIC_uncorr) == names(npar_test)), "AIC/BIC vectors keep model names")
+check(max(abs((ic_test$AIC_uncorr - (-2 * barL_test)) - 2 * npar_test)) < 1e-9,
+      "AIC uncorrected penalty is 2*npar")
+check(max(abs((ic_test$BIC_uncorr - (-2 * barL_test)) - npar_test * log(N_test))) < 1e-9,
+      "BIC uncorrected penalty is npar*log(N), not 2*npar")
+check(max(abs((ic_test$AIC_corrected - ic_test$AIC_uncorr) - trRIV_obs_test)) < 1e-9,
+      "AIC correction adds exactly trRIV_obs")
+check(max(abs((ic_test$BIC_corrected - ic_test$BIC_uncorr) - trRIV_obs_test)) < 1e-9,
+      "BIC correction adds exactly trRIV_obs (transfers verbatim from AIC)")
+check(ic_test$sel_oracle == names(which.min(-2 * ell_com_test + 2 * npar_test)),
+      "sel_oracle matches a manual AIC-oracle argmin")
+check(ic_test$sel_bic_oracle == names(which.min(-2 * ell_com_test + npar_test * log(N_test))),
+      "sel_bic_oracle matches a manual BIC-oracle argmin")
+
+cat("\n--- w3_amelia_barL (amelia-loglik error-catch, todo/040 Phase 2) ---\n")
+set.seed(20260522 + 99)
+X_bic <- gen_data(N = 60, mu = default_mu, Sigma = default_Sigma)
+mar_bic <- apply_mar(X_bic)
+theta_obs_list_test <- list()
+for (k in W3_MODEL_NAMES) {
+  fit_k <- lavaan_fit_mvn_fiml_model(mar_bic$Y, W3_MODELS[[k]])
+  theta_obs_list_test[[k]] <- list(mu = fit_k$mu, Sigma = fit_k$Sigma)
+}
+imps_good <- impute_mvn_amelia(mar_bic$Y, M = 3, empri = 0)
+barL_good <- w3_amelia_barL(imps_good, theta_obs_list_test, W3_MODEL_NAMES)
+barL_manual <- numeric(4); names(barL_manual) <- W3_MODEL_NAMES
+for (k in W3_MODEL_NAMES) {
+  theta_k <- list(mu = theta_obs_list_test[[k]]$mu, Sigma = theta_obs_list_test[[k]]$Sigma)
+  barL_manual[k] <- mean(sapply(imps_good, function(Z) { return(loglik_mvn(theta_k, Z)) }))
+}
+check(max(abs(barL_good - barL_manual)) < 1e-9,
+      "w3_amelia_barL matches a manual M-averaged log-lik computation")
+
+# A degenerate/rank-deficient Amelia draw can produce a completed dataset whose dimension
+# does not match theta_k; simulated here by dropping a column, and checked against the exact
+# tryCatch-and-flag idiom run_one_w3 uses to turn that into error = "amelia-loglik".
+imps_bad <- imps_good
+imps_bad[[1]] <- imps_bad[[1]][, -4]
+barL_ok_sim <- tryCatch({
+  dummy <- w3_amelia_barL(imps_bad, theta_obs_list_test, W3_MODEL_NAMES)
+  TRUE
+}, error = function(e) FALSE)
+check(!isTRUE(barL_ok_sim),
+      "malformed imputations trigger the same tryCatch-and-flag path run_one_w3 uses for 'amelia-loglik'")
+
 cat("\nAll smoke tests PASSED.\n")

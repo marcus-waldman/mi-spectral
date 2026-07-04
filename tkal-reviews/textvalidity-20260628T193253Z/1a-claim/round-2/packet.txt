@@ -1,0 +1,96 @@
+ANONYMIZED DELPHI FEEDBACK -- you are now producing your Round 2 revision.
+
+There are no fixed (pre-included) items.
+
+POOLED CANDIDATE ITEMS (open slots; the best <=20 make the final set).
+  incl = how many of the 3 panelists currently include it (3=unanimous). [IN] = currently within the set; [cut] = below the line.
+
+  K05 [IN]  incl=3 | S1-P5 -- [S1-P5] "The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it." — unearned impossibility claim | category: overclaim
+  K17 [IN]  incl=3 | S6-P7 -- [S6-P7] "No transformation of the observed data manufactures the lost evidence back." — restates disclaimed impossibility | category: overclaim
+  K01 [IN]  incl=2 | ABSTRACT -- [ABSTRACT] "Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection." — trace correction overstates decisions | category: overclaim
+  K04 [IN]  incl=2 | S1-P5 -- [S1-P5] "Correction then restores complete-data behavior entirely." — entirely too strong | category: overclaim
+  K15 [IN]  incl=2 | S3-P6 -- [S3-P6] "A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice." — counterfactual workflow claim | category: speculation
+  K18 [IN]  incl=2 | S6-P7 -- [S6-P7] "Then trust the result the way complete-data results are trusted." — applied trust too broad | category: overclaim
+  K33 [IN]  incl=2 | S1-P3 -- [S1-P3] "The open questions above are open because the second and third levels had not been posed." — speculates on field history | category: speculation
+  K11 [IN]  incl=2 | S1-P6b -- [S1-P6b] "Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the bias and substantially restores the ranking that complete data would have given." — trace-only removal overclaim | category: overclaim
+  K21 [IN]  incl=1 | S6-P7b -- [S6-P7b] "When the aim is to rank models or to compare nested models on imputed data, and no calibrated reference distribution already absorbs the bias, add the per-candidate trace correction before reading off the result." — nested-test correction conflation | category: overclaim
+  K22 [IN]  incl=1 | S6-P1 -- [S6-P1] "The bias exists only when the fit estimates a scale or covariance." — contradicted by known-scale MI | category: overclaim
+  K23 [IN]  incl=1 | S6-P7 -- [S6-P7] "Corrected selection and calibrated tests behave as they would have with complete data." — decision equivalence too broad | category: overclaim
+  K24 [IN]  incl=1 | S1-P4 -- [S1-P4] "The practical consequence is that, for such a model, every deviance and every information criterion computed from multiply imputed data is too optimistic." — every-criterion sign overclaim | category: overclaim
+  K34 [IN]  incl=1 | S5-P6 -- [S5-P6] "By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic referred to $\chi^2_1$." — missing test citation | category: missing-citation
+  K02 [IN]  incl=1 | S1-P4 -- [S1-P4] "In our pre-registered study, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV." | category: overclaim
+  K12 [IN]  incl=1 | S5-P14 -- [S5-P14] "The size-adjusted power arms are the partial support cited for the power conjecture of @sec-discussion." | category: unsupported-as-written
+  K25 [IN]  incl=1 | ABSTRACT -- [ABSTRACT] "Model selection on multiply imputed data is biased toward more complex models, because their larger relative increase in variance makes the fit look better than it is." — model-selection scope too broad | category: overclaim
+  K26 [IN]  incl=1 | S1-P4 -- [S1-P4] "The second term is smaller." — magnitude not established | category: unsupported-as-written
+  K27 [IN]  incl=1 | S1-P4 -- [S1-P4] "A model-comparison table built on imputed data therefore favors the candidates with the most missing information." — deterministic ranking overclaim | category: overclaim
+  K28 [IN]  incl=1 | S5-P17 -- [S5-P17] "This is a registered directional prediction, and it held across all sixty cells." — cell scope unclear | category: unsupported-as-written
+  K29 [IN]  incl=1 | S5-P22 -- [S5-P22] "The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which bounds the cost of not running data augmentation." — empirical check not a bound | category: overclaim
+  K30 [cut] incl=1 | S6-P6 -- [S6-P6] "The design-imbalance term derived here is nonzero exactly when the missing and observed units differ on the conditioning variables." — iff claim needs support | category: overclaim
+  K35 [cut] incl=1 | S6-P6 -- [S6-P6] "De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are developed separately." — points to missing reference | category: missing-citation
+  K36 [cut] incl=1 | S1-P2 -- [S1-P2] "Only one information criterion has been proposed for multiply imputed data." — ignores other cited criteria | category: overclaim
+  K03 [cut] incl=1 | S1-P4 -- [S1-P4] "We show that the corrected criterion recovers its complete-data expectation at any signal strength." | category: overclaim
+  K09 [cut] incl=1 | S1B-P1 -- [S1B-P1] "Productive means that the collaboration reached results a single author would have reached slowly or not at all." | category: speculation
+  K13 [cut] incl=1 | S5-P15 -- [S5-P15] "Both match the projected-trace prediction of $2.64$. Correctness rests on that match." | category: overclaim
+  K16 [cut] incl=1 | S6-P5 -- [S6-P5] "We conjecture that the bias-corrected likelihood-ratio comparison dominates its uncorrected counterpart in power uniformly." | category: overclaim
+  K31 [cut] incl=1 | S1-P7 -- [S1-P7] "@sec-ai-collab describes the collaboration that produced them and shows that it was productive." — productivity not demonstrated | category: speculation
+  K32 [cut] incl=1 | S3-P3 -- [S3-P3] "Reliance on the AI system's trained recollection of a paper was prohibited throughout, because invented or misattributed citations are among the most common failures of AI-assisted scholarship." — AI-citation failure citation needed | category: missing-citation
+  K06 [cut] incl=1 | S1-P3 -- [S1-P3] "The principle as an explicit yardstick is, to our knowledge, stated here for the first time." | category: speculation
+  K08 [cut] incl=1 | S1B-P1 -- [S1B-P1] "a kind of collaboration that is new in the age of AI and whose products are not yet routinely trusted" | category: speculation
+  K14 [cut] incl=1 | S5-P22 -- [S5-P22] "This robustness is empirical and scoped to the designs studied." | category: overclaim
+  K07 [cut] incl=1 | S1-P1 -- [S1-P1] "On that testimony, the major inferential questions read as settled." | category: overclaim
+  K10 [cut] incl=1 | S1B-P1 -- [S1B-P2] "This section describes the collaboration and shows that it was active and human-directed." | category: overclaim
+  K19 [cut] incl=1 | S5-P18 -- [S5-P18] "The junk cell closes $90$ percent of the gap from uncorrected to benchmark." | category: unsupported-as-written
+  K20 [cut] incl=1 | S1-P2 -- [S1-P2] "That study also cautions that selecting models by averaged criteria has no support in the multiple-imputation literature." | category: overclaim
+
+CONTESTED ITEMS (not unanimous) -- dissent rationales by anonymous panelist:
+  K01 (incl=2): C keeps -- "The body shows only that the bias is removed in expectation and that selection is 'substantially' restored with a residual gap/floor; 'restores complete-data-equivalent selection' is stronger than the demonstrated rate-level recovery."; A keeps -- "The paper also derives a design-imbalance term and later reports decision-level shortfalls, so a trace-only correction is earned as a scoped/leading criterion correction, not as restoring complete-data-equivalent selection generally."; B did NOT include
+  K04 (incl=2): C keeps -- "The ladder results show two-moment/equating arms reach the benchmark only in the strong-signal cell and not in the weak-signal cell, so 'entirely' overstates the demonstrated case."; A keeps -- "The following sentences support calibrated null behavior and one preregistered selection design, not complete restoration of all complete-data behavior."; B did NOT include
+  K11 (incl=2): C keeps -- "Acceptable as 'substantially' here, but pairs with the abstract's stronger 'restores complete-data-equivalent selection'; flagged for internal inconsistency in strength of claim across the paper."; A keeps -- "Because the theorem includes the design-imbalance term and the simulations show substantial but incomplete ranking recovery, this should be limited to the trace component or to conditions where the remaining term is absent/negligible."; B did NOT include
+  K15 (incl=2): C keeps -- "Counterfactual about single-family workflows asserted without evidence; the observed 8-of-9 figure is cross-family, not a controlled single-family comparison."; A keeps -- "The sign-error episode shows what cross-model review caught here, but the claim about what a single-family workflow would likely have done is an unsupported counterfactual."; B did NOT include
+  K18 (incl=2): C keeps -- "A blanket practical endorsement that ignores the paper's own scope limits (estimated-scale, congeniality, weak-signal floor, normal-only verification) stated immediately above it."; A keeps -- "The recommendation omits the manuscript's own practical boundaries, including congeniality, model-family instantiation, imputation-engine scope, and close-comparison information loss."; B did NOT include
+  K33 (incl=2): C did NOT include; A keeps -- "The manuscript documents that the questions were open, but it does not establish that they were open because these levels had not been posed rather than for other theoretical or practical reasons."; B keeps -- "Ascribing a singular historical reason for the field's open questions is speculative; the questions could remain open due to mathematical intractability or shifting research focus rather than mere conceptual absence."
+  K02 (incl=1): C keeps -- "Body limits this to congenial cells ('In every congenial cell, all of the uncorrected criterion's errors land on the saturated... candidate'); the unqualified 'every misclassification' overstates what S5-P17 shows."; A did NOT include; B did NOT include
+  K03 (incl=1): C keeps -- "The criterion-level expectation recovery is shown, but 'at any signal strength' is asserted broadly while the weak-signal cell exhibits a floor; the phrase blurs second-level (criterion) and third-level (rate) results."; A did NOT include; B did NOT include
+  K06 (incl=1): C keeps -- "A novelty/priority claim ('to our knowledge... first time') that the prose cannot itself substantiate beyond hedging; a careful reviewer flags such first-claims as unverifiable as written."; A did NOT include; B did NOT include
+  K07 (incl=1): C keeps -- "Sweeping characterization of the field's state attributed to cited reviews but stated more broadly than those accounts ('point estimates recover... Wald-type tests... well calibrated') can carry without qualification."; A did NOT include; B did NOT include
+  K08 (incl=1): C keeps -- "Empirical sociological assertion about trust and novelty offered without citation or evidence."; A did NOT include; B did NOT include
+  K09 (incl=1): C keeps -- "Counterfactual productivity claim with no controlled comparison; the coded transcript counts measure activity, not that a solo author could not have reached the results."; A did NOT include; B did NOT include
+  K10 (incl=1): C keeps -- "The counts show interventions occurred but 'human-directed' as a conclusion is asserted beyond what turn-tallies establish, especially since the coding was done by the same kind of system."; A did NOT include; B did NOT include
+  K12 (incl=1): C keeps -- "The figure and text say raw power is not compared and is confounded; the 'size-adjusted power arms' providing support are asserted but no size-adjusted comparison is actually reported in the results."; A did NOT include; B did NOT include
+  K13 (incl=1): C keeps -- "'Correctness rests on that match' overstates a single engineered-cell discrimination result as establishing the formula's correctness generally."; A did NOT include; B did NOT include
+  K14 (incl=1): C keeps -- "The opening sentence 'bounds the cost of not running data augmentation' claims a bound, but only a 2–3% agreement on studied cells is shown, not a derived bound—internally hedged but headline overclaims."; A did NOT include; B did NOT include
+  K16 (incl=1): C keeps -- "Labeled a conjecture but 'uniformly' is a strong universal claim whose 'partial support' is the confounded power arms the simulation section says cannot be compared."; A did NOT include; B did NOT include
+  K19 (incl=1): C keeps -- "The reader cannot reconstruct '90 percent' from the table without specifying which arm; the table shows uncorrected 0.422, two-moment 0.702, benchmark 0.727, which is ~92% for two-moment—the unspecified arm leaves the figure underspecified."; A did NOT include; B did NOT include
+  K20 (incl=1): C keeps -- "Characterizes a cited study's caution in absolute terms ('no support'); as written the strong paraphrase risks overstating the source's hedge."; A did NOT include; B did NOT include
+  K21 (incl=1): C did NOT include; A keeps -- "The manuscript's own likelihood-ratio discussion says the separate per-candidate correction overstates the nested-comparison bias, so this practical recommendation conflates information-criterion ranking with the projected tested-direction correction."; B did NOT include
+  K22 (incl=1): C did NOT include; A keeps -- "The next sentence says known-scale proper MI has a nonzero bias, so this needs to specify the deterministic estimated-entropy/optimism bias rather than bias without qualification."; B did NOT include
+  K23 (incl=1): C did NOT include; A keeps -- "The simulations show scoped null-side recovery and weak-signal floors, not a general guarantee that corrected selection and calibrated tests behave like complete-data procedures in all relevant decision settings."; B did NOT include
+  K24 (incl=1): C did NOT include; A keeps -- "The derivation is for the averaged log-likelihood/Q-function under stated assumptions, while the sign and universality of every deviance or information criterion are not earned, especially given the design-imbalance and known-scale qualifications."; B did NOT include
+  K25 (incl=1): C did NOT include; A keeps -- "The evidence concerns particular likelihood-based criteria under congenial proper MI, and more complex models need not always have the larger missing-information trace."; B did NOT include
+  K26 (incl=1): C did NOT include; A keeps -- "Later G1 says the absolute magnitude of the design-imbalance term is not independently determined, so the prose needs a theorem, condition, or scoped empirical qualifier for smaller."; B did NOT include
+  K27 (incl=1): C did NOT include; A keeps -- "The bias creates a directional tendency, but actual rankings also depend on fit, penalty, signal strength, and candidate geometry, so this needs all-else-equal or design-specific wording."; B did NOT include
+  K28 (incl=1): C did NOT include; A keeps -- "The previous sentence limits the statement to congenial cells, while the design includes uncongenial cells and the Discussion reports overshoot there, so the reader needs clarification of which prediction held in which cells."; B did NOT include
+  K29 (incl=1): C did NOT include; A keeps -- "The engine-sensitivity study measures agreement in selected designs but does not provide a bound on the unrun data-augmentation alternative beyond those designs."; B did NOT include
+  K30 (incl=1): C did NOT include; A keeps -- "The shown prose supports MCAR vanishing and measured MAR examples, but exactly when asserts a necessary-and-sufficient condition and rules out cancellations without a pointer."; B did NOT include
+  K31 (incl=1): C did NOT include; A keeps -- "The collaboration records can show activity and human direction, but productivity was defined counterfactually as results a single author would reach slowly or not at all, which the paper does not demonstrate."; B did NOT include
+  K32 (incl=1): C did NOT include; A keeps -- "The protocol rule is clear, but the empirical claim that citation hallucination is among the most common AI-assisted scholarship failures needs a source or softer wording."; B did NOT include
+  K34 (incl=1): C did NOT include; A did NOT include; B keeps -- "The Satorra-Bentler scaled-and-shifted correction is introduced abruptly without a formal literature citation or prior explanation in the background section."
+  K35 (incl=1): C did NOT include; A did NOT include; B keeps -- "The phrasing 'are developed separately' strongly implies the existence of a companion paper or external literature, but no citation or cross-reference pointer is provided to guide the reader."
+  K36 (incl=1): C did NOT include; A did NOT include; B keeps -- "This assertion is overly broad and conflicts with the manuscript's own discussion later in [S1-P6] which mentions competing 'missing-covariate criteria' by Claeskens and Consentino (2008) and the reweighting route of Hens et al. (2006)."
+
+YOUR TASK: revise YOUR own set. You may adopt a pooled item (cite its K-id), drop one you previously held, or add a brand-new item. Re-rank for priority. Give a one-line reason for every change (or 'unchanged').
+
+- OFF-LIMITS: the theorem and the simulation results are correct and already validated; challenge only the WRITING'S fidelity to them, never the math, the proofs, or the results.
+- SCOPE: only the sections shown (abstract, §1, §1B, §2, §3, §5, §6). §4 Derivations is out of scope.
+- SEVERITY BAR: nominate a claim only if a careful peer reviewer would flag it as outrunning its support. Quality over volume; the final set may be small; do NOT pad to fill slots.
+- Every issue's "title" must quote the challenged text VERBATIM with its [paragraph-ID] prefix, so identical-sentence challenges from different panelists are recognized as one issue; "by" is the paragraph ID alone.
+- Distinguish: a claim missing a NEEDED citation is in scope here (category "missing-citation"); whether an EXISTING citation supports its claim is a different panel — do not raise that here.
+- @sec-/@eq-/@fig-/@prp-/@thm- tokens are internal cross-references, not citations.
+
+Return ONLY a single JSON object (no markdown fences, no prose outside it):
+{
+  "keep": [ { "id": "K03", "priority": 1, "reason": "<one line; why kept or why the rank moved, or 'unchanged'>" } ],
+  "add": [ { "title": "<title>", "by": "<attribution>", "category": "<category>", "reason": "<one line>", "priority": 9 } ],
+  "drop_notes": "<one line on anything you deliberately dropped vs last round, or 'none'>"
+}
+"keep" lists the pooled items (by their K-id) you include in YOUR set -- the fixed items are automatic, do NOT list them. "add" is OPTIONAL brand-new items not in the pool (use [] if none). IMPORTANT: if an item already has a K-id, reference it in "keep" -- do NOT re-enter it under "add". To keep your selection unchanged, list the same K-ids again.

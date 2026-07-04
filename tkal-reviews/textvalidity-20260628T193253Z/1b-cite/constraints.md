@@ -1,0 +1,5 @@
+- Flag a citation ONLY with a SPECIFIC recollection of the cited work's content plus your stated confidence (high/medium/low). No specific recollection → do not nominate. Never flag from the citekey alone or from vague unfamiliarity.
+- "by" is the @citekey; the "title" quotes the attached claim VERBATIM with the [paragraph-ID], so multiple challenges to the same citation merge into one issue.
+- OFF-LIMITS: the theorem and simulations are correct; check citation–claim fit only, never the math.
+- SCOPE: only citations in the sections shown (§4 Derivations omitted). @sec-/@eq-/@fig-/@prp-/@thm- are internal cross-references, not citations — never flag them.
+- The defender will rebut with verbatim source text; nominate only genuine, specific mismatches you would stake confidence on. Quality over volume.

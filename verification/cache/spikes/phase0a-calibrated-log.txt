@@ -1,0 +1,21 @@
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+Warning message:
+package 'pbapply' was built under R version 4.5.2 
+
+=== Discriminating test: does the correctly-centered proper baseline persist? ===
+PRIMARY = FITTED-relative (paired, tight): (T - T_fiml)/tr(RIV)  [proper-vs-FITTED]
+Also: (A)+(C)/tr = (T_fiml - 1/2 tr)/tr [design term], and headline-relative for amelia.
+
+   N      R    tr(RIV)   amelia-FIT        gauss-FIT         (A)+(C)/tr        amelia-headline
+  ---  -----  -------   --------------    --------------    --------------    --------------
+   200   8000   5.561   -0.0994(0.0039)   -0.1227(0.0031)   +0.0020(0.0220)   -0.0974(0.0223)
+   500   6000   5.531   -0.0470(0.0075)   -0.1041(0.0056)   +0.0276(0.0398)   -0.0194(0.0406)
+  1000   4000   5.518   -0.0294(0.0131)   -0.0989(0.0098)   -0.1113(0.0683)   -0.1408(0.0697)
+  2000   3000   5.514   -0.0191(0.0211)   -0.1080(0.0160)   +0.0467(0.1108)   +0.0275(0.1123)
+
+Read the PAIRED amelia-FIT / gauss-FIT columns (tight at all N):
+  -> 0 as N grows  => proper MI converges to FITTED (paper's proper~=fitted holds).
+  holds ~ -0.09    => small persistent proper-vs-FITTED gap (Spec 2).
+
+Cache: verification/cache/spikes/phase0a-calibrated.rds

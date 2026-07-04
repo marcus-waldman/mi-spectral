@@ -1,0 +1,18 @@
+{
+  "defenses": [
+    {
+      "objection_id": "OBJ-03",
+      "disposition": "amend",
+      "response": "Conceded precisely on the one point the lead still holds. Only TV-02's 'in nested families' overgeneralizes the complexity/missing-information relation; I restrict it to the studied designs exactly as specified, so the sentence asserts no general complexity-implies-larger-RIV relation, only the alignment observed in the nested, missing-information-ordered designs of this paper. The rest of the cluster stands amended as in round 1: TV-01 'substantially restores complete-data model selection'; TV-09 scoped to the equal-fit case ('When the competing models fit alike, ...'); TV-11 'tends, all else equal, to favor'; TV-12 'subject to the stated conditions and the close-comparison exception below'. No result is changed.",
+      "amendment": "TV-02 (abstract) -> 'Model selection on multiply imputed data is biased toward the candidates with more missing information, which in the nested families studied are the more complex models, because their larger relative increase in variance makes the fit look better than it is.'",
+      "residual_risk": "none; the claim is now restricted to the studied designs and carries no general complexity/RIV relation."
+    },
+    {
+      "objection_id": "OBJ-04",
+      "disposition": "amend",
+      "response": "Conceded precisely. I narrow TV-03 to the established object and its expectation-level nature, as the lead specifies: the bias lives in the averaged log-likelihood across imputations (the criterion class is everything built on it), and the statement is in expectation. 'For such a model' already supplies the estimated-scale condition, and congeniality is the standing assumption of the section, so naming the averaged-log-likelihood object and 'in expectation' is the remaining narrowing. TV-04 ('removes the trace component of the bias') and TV-08 ('the deviance optimism ... exists only when the fit estimates a scale or covariance') remain amended as in round 1; the apparent universality and the apparent contradiction with the known-scale -1/2 tr(RIV) term are removed by naming the object.",
+      "amendment": "TV-03 (S1-P4) -> 'for such a model, every deviance and information criterion built on the averaged log-likelihood across imputations is, in expectation, too optimistic.'",
+      "residual_risk": "none; the criterion class and the expectation-level nature are now explicit, matching the derived object."
+    }
+  ]
+}

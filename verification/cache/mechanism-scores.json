@@ -1,0 +1,17 @@
+{
+  "n_paragraphs": 1,
+  "paragraphs": [
+    {
+      "id": "S6-P7",
+      "section": "S6",
+      "count": 1,
+      "flagged": [
+        {
+          "phrase": "lose/discard ... data",
+          "match": "lost the data",
+          "context": "ten, as the analyst who never lost the data. The answer no"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+ "rulings": [
+  {
+   "target": "Study 9 engine sensitivity",
+   "original_severity": "blocking",
+   "ruling": "sustain",
+   "still_blocking": true,
+   "reasoning": "The defense itself identifies Study 9 as the exception: S5-P22 points only to run_all-prod, not exact rows/columns, and no recomputed table/checksum/schema is supplied. That leaves the 2-3%, no-widening, and 0.011 claims untraceable until the pointer is tightened or the figures are removed."
+  },
+  {
+   "target": "Study 1 W1 target refinement",
+   "original_severity": "blocking",
+   "ruling": "partial",
+   "still_blocking": false,
+   "reasoning": "I accept the cited dated artifacts: Cox-Snell derivation commits 08ee37b/914bbf0 on 2026-06-01, Amendment 2 on 2026-06-04, and pooled 2.434\u00b10.258 with CI [1.93,2.94] containing 2.774. That rebuts estimate-chasing/rejection. The remaining problem is prose: \u201cconfirms completed theorem\u201d should say consistent with the preregistered target and centered on the O(1)-augmented prediction."
+  },
+  {
+   "target": "Study 6 W3C saturated destination count",
+   "original_severity": "blocking",
+   "ruling": "partial",
+   "still_blocking": false,
+   "reasoning": "The preregistration evidence (todo/005 H2/H5) and all-60-cell 1.000 result rebut hidden lucky artifact as a registered directional result. But the defense concedes that in nested RIV order saturated is the natural overfit sink and the count does not discriminate the spectral mechanism. Thus only a scoping fix remains: direction/destination count, not mechanism proof."
+  },
+  {
+   "target": "Study 7 block-diagonal trace equality",
+   "original_severity": "blocking",
+   "ruling": "partial",
+   "still_blocking": false,
+   "reasoning": "The equality itself is documented, and the proof plus Study 8 off-equality trace numbers (trnaive 8.74 vs trperp 7.95) answer the claim that general superiority rests solely on the ladder cell. However Study 7's 0.824 vs 0.904 gap still cannot be used as trace-formula evidence; it is a naive-input moment-map effect. Scope the prose."
+  },
+  {
+   "target": "Study 4 52-SE formula discrimination",
+   "original_severity": "major",
+   "ruling": "partial",
+   "still_blocking": false,
+   "reasoning": "S5-P7's design statement that the first coordinate is made heavily missing to separate formulas rebuts any charge that the stress nature was hidden. Still, the 52-SE wording should be localized to an engineered/maximal-separation cell, not typical balanced missingness. This is a major wording/scope amendment, not a remaining blocker."
+  },
+  {
+   "target": "Study 7 oracle indistinguishability and weak-cell attribution",
+   "original_severity": "major",
+   "ruling": "sustain",
+   "still_blocking": false,
+   "reasoning": "The response supplies no paired SEs/CIs for oracle-arm differences and no weak-cell error decomposition; it concedes both points. Therefore statistically indistinguishable needs an explicit two-sided interval/SE basis, and the weak-cell information-loss attribution must be labeled conjectural unless new diagnostics are added."
+  },
+  {
+   "target": "Pre-registered non-headline failures",
+   "original_severity": "major",
+   "ruling": "partial",
+   "still_blocking": false,
+   "reasoning": "The cited preregistration lines rebut the hidden-pass-failure premise: uncongenial cells were observational stress tests (H5 line 158) and MNAR had no required pass (H2 line 100). But the prereg also committed to disclosure of where the safety margin ends; the uncongenial overshoot should be named in \u00a76/main pointer. No headline failure remains."
+  },
+  {
+   "target": "RDS-backed headline numbers and Study 7 shrinkage labels",
+   "original_severity": "major",
+   "ruling": "partial",
+   "still_blocking": false,
+   "reasoning": "The committed RDS plus verification/run_all.R and W1 reconciliation script, with the in-session 2.434\u00b10.258 recomputation, rebut the broad claim that RDS-backed Studies 1-5 lack any reproducible path. Full withdrawal is not warranted because the response does not map every challenged headline extraction, and it concedes the Study 7 ncratio label mapping still needs resolution."
+  }
+ ],
+ "net_assessment": "After the repo evidence, most blockers collapse to local scoping edits. The load-bearing unresolved item is Study 9 reproducibility: exact engine-sensitivity rows/columns or removal of the 2-3%/0.011 headline. Also required: clarify W1 wording, W3C direction-not-mechanism, Study 7 trace vs moment-map, localize 52-SE, fix weak-cell attribution/SEs, disclose uncongenial overshoot, and resolve ncratio labels. My view: amend, not reject; accept only after the Study 9 citation/extraction fix and listed wording/auditability amendments."
+}

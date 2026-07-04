@@ -1,0 +1,58 @@
+ANONYMIZED DELPHI FEEDBACK -- you are now producing your Round 3 revision.
+
+There are no fixed (pre-included) items.
+
+POOLED CANDIDATE ITEMS (open slots; the best <=20 make the final set).
+  incl = how many of the 3 panelists currently include it (3=unanimous). [IN] = currently within the set; [cut] = below the line.
+
+  K05 [IN]  incl=3 | S1-P5 -- [S1-P5] "The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it." — unearned impossibility claim | category: overclaim
+  K01 [IN]  incl=3 | ABSTRACT -- [ABSTRACT] "Adding one trace term per candidate removes the bias and restores complete-data-equivalent selection." — trace correction overstates decisions | category: overclaim
+  K17 [IN]  incl=3 | S6-P7 -- [S6-P7] "No transformation of the observed data manufactures the lost evidence back." — restates disclaimed impossibility | category: overclaim
+  K04 [IN]  incl=3 | S1-P5 -- [S1-P5] "Correction then restores complete-data behavior entirely." — entirely too strong | category: overclaim
+  K11 [IN]  incl=3 | S1-P6b -- [S1-P6b] "Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the bias and substantially restores the ranking that complete data would have given." — trace-only removal overclaim | category: overclaim
+  K18 [IN]  incl=3 | S6-P7 -- [S6-P7] "Then trust the result the way complete-data results are trusted." — applied trust too broad | category: overclaim
+  K24 [IN]  incl=3 | S1-P4 -- [S1-P4] "The practical consequence is that, for such a model, every deviance and every information criterion computed from multiply imputed data is too optimistic." — every-criterion sign overclaim | category: overclaim
+  K25 [IN]  incl=3 | ABSTRACT -- [ABSTRACT] "Model selection on multiply imputed data is biased toward more complex models, because their larger relative increase in variance makes the fit look better than it is." — model-selection scope too broad | category: overclaim
+  K15 [IN]  incl=3 | S3-P6 -- [S3-P6] "A derivation produced and checked within a single model family would likely have shipped one sign without noticing that there was a choice." — counterfactual workflow claim | category: speculation
+  K23 [IN]  incl=3 | S6-P7 -- [S6-P7] "Corrected selection and calibrated tests behave as they would have with complete data." — decision equivalence too broad | category: overclaim
+  K33 [IN]  incl=3 | S1-P3 -- [S1-P3] "The open questions above are open because the second and third levels had not been posed." — speculates on field history | category: speculation
+  K29 [IN]  incl=3 | S5-P22 -- [S5-P22] "The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which bounds the cost of not running data augmentation." — empirical check not a bound | category: overclaim
+  K21 [IN]  incl=2 | S6-P7b -- [S6-P7b] "When the aim is to rank models or to compare nested models on imputed data, and no calibrated reference distribution already absorbs the bias, add the per-candidate trace correction before reading off the result." — nested-test correction conflation | category: overclaim
+  K22 [IN]  incl=2 | S6-P1 -- [S6-P1] "The bias exists only when the fit estimates a scale or covariance." — contradicted by known-scale MI | category: overclaim
+  K27 [IN]  incl=2 | S1-P4 -- [S1-P4] "A model-comparison table built on imputed data therefore favors the candidates with the most missing information." — deterministic ranking overclaim | category: overclaim
+  K34 [IN]  incl=2 | S5-P6 -- [S5-P6] "By contrast, the Satorra-Bentler arm applies a scaled-and-shifted statistic referred to $\chi^2_1$." — missing test citation | category: missing-citation
+  K28 [IN]  incl=1 | S5-P17 -- [S5-P17] "This is a registered directional prediction, and it held across all sixty cells." — cell scope unclear | category: unsupported-as-written
+  K36 [IN]  incl=1 | S1-P2 -- [S1-P2] "Only one information criterion has been proposed for multiply imputed data." — ignores other cited criteria | category: overclaim
+  K02 [IN]  incl=1 | S1-P4 -- [S1-P4] "In our pre-registered study, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV." | category: overclaim
+  K12 [IN]  incl=1 | S5-P14 -- [S5-P14] "The size-adjusted power arms are the partial support cited for the power conjecture of @sec-discussion." | category: unsupported-as-written
+  K35 [cut] incl=1 | S6-P6 -- [S6-P6] "De-shrinkage of estimated noncentrality and joint calibration of score vectors across candidates are developed separately." — points to missing reference | category: missing-citation
+  K26 [cut] incl=1 | S1-P4 -- [S1-P4] "The second term is smaller." — magnitude not established | category: unsupported-as-written
+
+CONTESTED ITEMS (not unanimous) -- dissent rationales by anonymous panelist:
+  K21 (incl=2): C did NOT include; A keeps -- "Kept: the practical recommendation conflates per-candidate information-criterion correction with the nested-test correction described elsewhere."; B keeps -- "Adopting: conflates information-criterion ranking correction with likelihood-ratio tests."
+  K22 (incl=2): C keeps -- "'bias exists only when the fit estimates a scale' contradicted by paper's own known-scale MI sentence."; A keeps -- "Kept: 'only' is too broad given the manuscript's own discussion of known-scale proper-MI bias."; B did NOT include
+  K27 (incl=2): C did NOT include; A keeps -- "Kept: 'therefore favors' reads as deterministic rather than an all-else-equal bias tendency amid fit, penalty, and signal effects."; B keeps -- "Adopting: deterministic ranking overclaim ignoring fit, penalty, and signal."
+  K34 (incl=2): C did NOT include; A keeps -- "Kept: the Satorra-Bentler scaled-and-shifted statistic is introduced without the citation or setup a reader would need."; B keeps -- "Adopting: introduces a named test modification without a reference."
+  K02 (incl=1): C did NOT include; A keeps -- "Kept: 'every misclassification' needs the design/congenial-cell qualifier supplied in the results section."; B did NOT include
+  K12 (incl=1): C did NOT include; A keeps -- "Kept: the claimed size-adjusted power support is not backed by a reported size-adjusted comparison as written."; B did NOT include
+  K26 (incl=1): C did NOT include; A keeps -- "Kept: the magnitude claim that the second term is smaller needs a stated condition, theorem pointer, or empirical qualifier."; B did NOT include
+  K28 (incl=1): C keeps -- "'held across all sixty cells' conflicts with congenial-only qualifier and uncongenial overshoot; cell scope unclear."; A did NOT include; B did NOT include
+  K35 (incl=1): C did NOT include; A did NOT include; B keeps -- "Adopting: points to separate development without providing a citation."
+  K36 (incl=1): C did NOT include; A keeps -- "Adopted: the 'only one information criterion' literature claim is too absolute and appears inconsistent with the manuscript's own later discussion."; B did NOT include
+
+YOUR TASK: revise YOUR own set. You may adopt a pooled item (cite its K-id), drop one you previously held, or add a brand-new item. Re-rank for priority. Give a one-line reason for every change (or 'unchanged').
+
+- OFF-LIMITS: the theorem and the simulation results are correct and already validated; challenge only the WRITING'S fidelity to them, never the math, the proofs, or the results.
+- SCOPE: only the sections shown (abstract, §1, §1B, §2, §3, §5, §6). §4 Derivations is out of scope.
+- SEVERITY BAR: nominate a claim only if a careful peer reviewer would flag it as outrunning its support. Quality over volume; the final set may be small; do NOT pad to fill slots.
+- Every issue's "title" must quote the challenged text VERBATIM with its [paragraph-ID] prefix, so identical-sentence challenges from different panelists are recognized as one issue; "by" is the paragraph ID alone.
+- Distinguish: a claim missing a NEEDED citation is in scope here (category "missing-citation"); whether an EXISTING citation supports its claim is a different panel — do not raise that here.
+- @sec-/@eq-/@fig-/@prp-/@thm- tokens are internal cross-references, not citations.
+
+Return ONLY a single JSON object (no markdown fences, no prose outside it):
+{
+  "keep": [ { "id": "K03", "priority": 1, "reason": "<one line; why kept or why the rank moved, or 'unchanged'>" } ],
+  "add": [ { "title": "<title>", "by": "<attribution>", "category": "<category>", "reason": "<one line>", "priority": 9 } ],
+  "drop_notes": "<one line on anything you deliberately dropped vs last round, or 'none'>"
+}
+"keep" lists the pooled items (by their K-id) you include in YOUR set -- the fixed items are automatic, do NOT list them. "add" is OPTIONAL brand-new items not in the pool (use [] if none). IMPORTANT: if an item already has a K-id, reference it in "keep" -- do NOT re-enter it under "add". To keep your selection unchanged, list the same K-ids again.

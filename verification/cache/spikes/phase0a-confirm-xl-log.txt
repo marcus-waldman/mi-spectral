@@ -1,0 +1,31 @@
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+Warning message:
+package 'pbapply' was built under R version 4.5.2 
+
+=== Arm A: magnitude, N=200, R=20000 (100x) ===
+
+mean tr(RIV)=5.5682
+
+engine        (T-FITTED)/tr(RIV)
+----------    ------------------
+conjugate     -0.7830 (se 0.0023)
+deflated      -0.2435 (se 0.0020)
+gauss-post    -0.1212 (se 0.0020)
+amelia        -0.0866 (se 0.0025)
+
+=== Arm B: N-persistence (conjugate) ===
+
+   N       R     tr(RIV)   (T_conj-FITTED)/tr(RIV)
+  ---   ------   -------   ----------------------
+   200   20000   5.5682    -0.7830 (se 0.0023)
+   500   10000   5.5355    -0.7660 (se 0.0045)
+  1000    5000   5.5165    -0.7637 (se 0.0089)
+  2000    2500   5.5138    -0.7460 (se 0.0174)
+
+=== norm::da.norm parallel (per-rep rngseed), R=10000, N=200 ===
+
+norm::da.norm  (T-FITTED)/tr(RIV) = -0.7828 (se 0.0031)   [serial R=100 anchor was -0.743]
+
+Total wall-clock: 54.4 min
+Cache: verification/cache/spikes/phase0a-confirm-xl.rds

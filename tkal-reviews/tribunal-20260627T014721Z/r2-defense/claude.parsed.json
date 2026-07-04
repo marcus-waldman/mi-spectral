@@ -1,0 +1,151 @@
+{
+  "defenses": [
+    {
+      "challenge_id": "CH-01",
+      "disposition": "amend",
+      "response": "The challenge lands: Study 9's headline numbers (2-3%, no widening, within 0.011) have no inlined backing in the appendix, unlike every other study. As specified, the reproducible_numbers bar cannot be hit. I will not defend the prose as written. The artifact exists but the manuscript must cite it and inline the rows.",
+      "amendment": "Add to the data appendix a section D citing the committed engine-sensitivity artifact path with checksum and schema, and a per-cell table giving observed-data RIV trace, imputation-draw RIV trace, percent discrepancy, and analytic-vs-imputation recovery-gap difference with SEs. Until that table is inlined, remove the specific '2-3 percent' and 'within 0.011' figures from S5-P22 and state only the qualitative direction.",
+      "residual_risk": "If the underlying artifact does not in fact show monotone non-widening across N, the 'no widening' clause may need to be softened to 'no widening observed in the studied range.'"
+    },
+    {
+      "challenge_id": "CH-02",
+      "disposition": "amend",
+      "response": "This is the central and fairest challenge against Study 1. Under oath: the registered target was 0.5 tr(RIV) ≈ 2.77; the estimate 2.43 ± 0.26 does not bracket it. The band 2.42-2.55 was derived during analysis. The legitimacy of calling this a 'confirmation' depends entirely on whether the O(1) MAR correction term is an independently-derived offset fixed before inspecting 2.43. The manuscript asserts 'once the missing-at-random term was derived' but does not exhibit that derivation. As specified I cannot prove the refinement is principled rather than estimate-chasing, so I must not call it a preregistered confirmation.",
+      "amendment": "Either (a) attach the dated symbolic derivation of the O(1) MAR augmentation term showing it maps 2.77 -> [2.42,2.55] from the missingness mechanism alone, with the amendment timestamp predating the run; OR (b) rewrite S5-P12 to read: 'The registered ½tr(RIV) target of 2.77 was not met; the pooled estimate 2.43 ± 0.26 is consistent with the MAR-augmented prediction 2.42-2.55, a subsequent theoretical correction to the estimand.' If the dated derivation cannot be produced, (b) is mandatory.",
+      "residual_risk": "If the derivation exists but is dated after the run, even (a) fails and only (b) survives; the theorem-validation framing of Study 1 weakens to a consistency check."
+    },
+    {
+      "challenge_id": "CH-03",
+      "disposition": "amend",
+      "response": "The challenge lands on the mechanism framing. W3C_high_RIV_frac = 1.000 in all 60 cells, including uncongenial cells where the correction overshoots, shows the destination count is forced by candidate ordering (saturated = highest RIV at the top of a nested set) under any monotone downward bias. As a headline 'mechanism' claim it does not discriminate the paper's specific spectral correction from a generic monotone bias. The substantive result of Study 6 is the recovery magnitude (0.67 -> 0.82 toward oracle 0.90), not the 1.000 signature.",
+      "amendment": "Rescope S5-P17: state the 1.000 as a descriptive destination count that is 'consistent with, but not discriminating of, the monotone-bias mechanism, since the nested candidates are ordered by RIV so any downward bias favors the saturated endpoint.' Move the discrimination burden to the recovery-gap magnitude and to Study 8's genuine off-equality divergence. Add a control cell with a non-saturated high-RIV decoy if available; if not, the descriptive-count rescope is mandatory.",
+      "residual_risk": "Without a perturbed-ordering control, Study 6 contributes recovery-magnitude evidence only; the saturated-signature loses standalone mechanism weight."
+    },
+    {
+      "challenge_id": "CH-04",
+      "disposition": "amend",
+      "response": "Correct: in the ladder family trperp and trnaive agree to 3.6e-15, so the two trace FORMULAS cannot be distinguished there. The 0.824 vs 0.904 gap is a frozen-SB / naive-INPUT moment-map effect, not a trace-formula effect. Claiming projected-trace superiority from this cell is unsupported. The genuine trace divergence (~9%) lives in Study 8, not here.",
+      "amendment": "Rewrite S5-P20: explicitly state 'In the block-diagonal ladder family the naive and projected traces coincide (to 3.6e-15); the 0.824 vs 0.904 gap is a moment-map (naive-input) effect, not a trace-formula effect. Demonstration of projected-trace superiority over the naive trace difference is carried by Study 8, where the traces genuinely diverge by ~9%.'",
+      "residual_risk": "The ladder no longer supplies trace-formula superiority; that claim rests entirely on Study 8's single ~9% case, narrowing the evidence base."
+    },
+    {
+      "challenge_id": "CH-05",
+      "disposition": "amend",
+      "response": "Partly lands. The 70-79% missing design is adversarial and engineered to separate the formulas, and the prose risks reading as general superiority. The correctness evidence is the 2.64/2.70 match to the projected prediction 2.64, not the 52-SE count itself, which only excludes the naive strawman. I should scope it accordingly.",
+      "amendment": "Rescope S5-P15: label Study 4 as 'an adversarial stress design constructed to maximally separate the two trace formulas (one coordinate 70-79% missing).' Attribute correctness to the 2.64 projected-prediction match and frame the 52-SE figure as maximal-separation exclusion of the naive formula, not as evidence about typical balanced-missingness magnitudes. Add a moderate/balanced-missingness cell reporting the measured gap (even if small) where the formulas differ.",
+      "residual_risk": "If no balanced-missingness cell with trperp != trnaive is available, the generality of formula superiority remains demonstrated only at the engineered extreme plus Study 8."
+    },
+    {
+      "challenge_id": "CH-06",
+      "disposition": "amend",
+      "response": "Lands. The main-cell 0.904/0.903 vs 0.899 may be within MC error, but the weak-cell attribution ('information loss rather than calibration error') is asserted: the inlined internals (KS, varratio, ncratio) are MAIN-cell null-side diagnostics and do not decompose the weak-cell gap into calibration vs underfit-retention. The causal claim outruns the shown numbers.",
+      "amendment": "Relabel the weak-cell explanation in S5-P19/P18 as a conjecture: 'we interpret the weak-cell ceiling as underfit retention (information loss) rather than residual mis-calibration; a direct weak-cell decomposition is not shown.' OR add a weak-cell internal decomposing the gap to oracle 0.820 by error type (null-side calibration vs alternative-side retention). Absent that decomposition the conjecture label is mandatory.",
+      "residual_risk": "If the weak-cell decomposition, once run, shows residual mis-calibration, the interpretation flips; the conjecture label protects the claim_strength bar in the interim."
+    },
+    {
+      "challenge_id": "CH-07",
+      "disposition": "amend",
+      "response": "Lands. The 60-cell sweep and its pass criteria were pre-registered, yet the headline reports only congenial recovery. The appendix shows uncongenial cells where uncorrected exceeds oracle and the correction overshoots (oracle-corr negative, ~0.98 vs ~0.90). If those cells carried any registered recovery/robustness target, omitting their grade from the main text is a hidden outcome and a D-05 violation. I must surface them.",
+      "amendment": "Add to S5-P17 main text the uncongenial result: 'Under uncongeniality the uncorrected rate exceeds the oracle and the correction overshoots past it (oracle-minus-corrected negative). Whether this counts as a failure or an expected negative control depends on its registered status, marked in the grade matrix.' Provide a full preregistered grade matrix for every sweep family (congenial/uncongenial/MNAR) labeling each cell success, expected negative control, or failure.",
+      "residual_risk": "If an uncongenial cell was registered to pass and overshot, it is a genuine unmet prediction whose disclosure lowers the headline's apparent uniformity."
+    },
+    {
+      "challenge_id": "CH-08",
+      "disposition": "amend",
+      "response": "Lands as an auditability gap. Studies 1-5 headlines and Study 7's shrinkage factors are not recomputable from the inlined appendix. The Study 7 ncratio labels (1.0021, 0.3617) are ambiguous as transcribed and I cannot cleanly map them to the claimed ~0.57 and ~0.40 factors. This must be fixed even if the artifacts contain the numbers.",
+      "amendment": "Publish deterministic extraction scripts (with file hashes, row filters, column names, SE formulas) that recompute each headline from the cited RDS/CSV artifacts, and resolve the ncratio label mapping explicitly so the 0.57/0.40 factors are traceable. Until the ncratio mapping is disambiguated, remove or footnote the specific shrinkage-factor figures.",
+      "residual_risk": "If the ncratio internals do not in fact resolve to ~0.57/0.40 under any consistent label mapping, that sub-claim of Study 7 fails and must be dropped."
+    },
+    {
+      "challenge_id": "CH-09",
+      "disposition": "amend",
+      "response": "This is the same hit as CH-02/CH-15 framed under D-05: the original registered target 2.77 was missed and the text presents the refined band as confirmation without first declaring the registered miss. D-05 requires the unmet registered prediction to appear in the main text. As written it is hidden by re-description.",
+      "amendment": "State outright in S5-P12: 'The initial preregistered target ½tr(RIV) ≈ 2.77 was not met by the pooled estimate 2.43 ± 0.26. A subsequent theoretical correction (the O(1) MAR term) yields the augmented band 2.42-2.55, with which the estimate is consistent.' Order matters: the miss is declared before the refinement.",
+      "residual_risk": "Even with honest ordering, if the MAR term's independent derivation cannot be exhibited, the refined band cannot be claimed as a from-first-principles prediction, only as a post-hoc correction."
+    },
+    {
+      "challenge_id": "CH-10",
+      "disposition": "amend",
+      "response": "Same substance as CH-03/CH-17. Conceded: ordering candidates by RIV with the saturated model at top mechanically forces a generic monotone bias to favor the highest-RIV candidate, so W3C=1.000 is near-tautological and does not uniquely validate the spectral decomposition.",
+      "amendment": "Downgrade S5-P17's 1.000 claim to 'consistent with, but not discriminating of, the monotone-bias mechanism; candidate ordering by RIV forces this destination for any downward bias.' Move discriminating evidence to Study 8's genuine off-equality divergence, or add a non-monotonic candidate set / high-RIV decoy where a generic scaling error misses but the spectral mechanism hits.",
+      "residual_risk": "Without the non-monotonic control, the spectral mechanism's discriminating power is shown only at Study 8's single ~9% case."
+    },
+    {
+      "challenge_id": "CH-11",
+      "disposition": "amend",
+      "response": "Lands and is the most serious D-05 hit on Study 6. The prose 'In every congenial cell...' silently excludes the uncongenial regime where the uncorrected rate exceeds the oracle and the correction overshoots to ~0.98. This is a structural failure mode hidden from the main text and falsely implies uniform performance.",
+      "amendment": "Incorporate the uncongenial data directly into S5-P17: state explicitly that under uncongeniality the initial deviance bias reverses (uncorrected ~0.93 exceeds oracle ~0.90) and the correction overshoots past the oracle (corrected ~0.98, oracle-minus-corrected negative), and scope the recovery claim to the congenial regime only.",
+      "residual_risk": "Disclosing the overshoot weakens the headline's generality; if uncongenial recovery was a registered pass criterion, this becomes a graded failure."
+    },
+    {
+      "challenge_id": "CH-12",
+      "disposition": "amend",
+      "response": "Same as CH-04/CH-16. Conceded: in the block-diagonal ladder the naive and projected traces provably coincide (3.6e-15), so labeling the 0.080 penalty 'naive input vs correct input' blurs a moment-map effect into a trace-formula effect. Trace-formula superiority cannot rest on this cell.",
+      "amendment": "In S5-P20 decouple the 0.824 'naive input' (a moment-map / frozen-SB limitation) from any trace-difference evaluation, state that the trace formulas cannot diverge in this block-diagonal family, and redirect the trace-formula superiority claim explicitly to Study 8's genuine ~9% divergence.",
+      "residual_risk": "Trace-formula superiority now depends solely on Study 8; the ladder contributes only moment-map calibration evidence."
+    },
+    {
+      "challenge_id": "CH-13",
+      "disposition": "amend",
+      "response": "Same as CH-05/CH-18. Conceded: the 52-sigma is achieved by maximal engineered separation and demonstrates that the design separates the formulas, not that the projected formula is correct in general. Correctness rests on the 2.64/2.70 match to the projected prediction.",
+      "amendment": "Declare S5-P15's 52-sigma design as an existentially engineered separation bound, attribute correctness to the 2.64 match, and report the measured gap (even if near zero) under an unforced balanced-missingness design where the formulas differ.",
+      "residual_risk": "If no balanced-missingness cell with diverging traces is available, balanced-regime discrimination remains unreported and generality leans on Study 8."
+    },
+    {
+      "challenge_id": "CH-14",
+      "disposition": "amend",
+      "response": "Lands. Over half the headline metrics (2.43±0.26, 0.025/−0.536, 0.042/0.034, 2.64/2.70, the W5 sd ladder) are cited only from non-transcribed RDS files and cannot be checked even in principle from the appendix as provided.",
+      "amendment": "Transcribe the critical summary/parameter rows from the W1-W5 RDS artifacts into the data appendix: per-N pooled estimates and SEs (W1 including component terms), the W2 deterministic/proper arm values, the W3 rejection rates, the W4 per-cell differentials and projected predictions, and the W5 sd sequences, so each headline recomputes within stated MC error.",
+      "residual_risk": "If transcription reveals the inverse-variance pool of W1's per-N cells does not reproduce 2.43±0.26, the headline must be corrected, not just inlined."
+    },
+    {
+      "challenge_id": "CH-15",
+      "disposition": "amend",
+      "response": "This is the sharpest formulation of the W1 goalpost issue and I concede its core. The refinement 2.77 -> [2.42,2.55] is legitimate ONLY if the O(1) MAR term is independently derived before seeing 2.43. The manuscript asserts the term but never exhibits the derivation, and the new band conveniently brackets the estimate. As specified I cannot demonstrate it was fixed before inspection, so 'confirms the completed theorem' is not earned.",
+      "amendment": "Provide the dated symbolic derivation of the O(1) MAR term mapping 2.77 -> [2.42,2.55] from the missingness mechanism alone, with a pre-run amendment timestamp; OR demote the prose to 'consistent with the MAR-augmented prediction' and report 2.77 as not met in the main text (per CH-09 ordering).",
+      "residual_risk": "If the derivation cannot be exhibited with a pre-run date, the theorem-validation status of Study 1 collapses to a post-hoc consistency check."
+    },
+    {
+      "challenge_id": "CH-16",
+      "disposition": "amend",
+      "response": "Same as CH-04/CH-12. Conceded: 'overstates the projected trace elsewhere' is imported from the derivation, not demonstrated by the ladder data, since trperp = trnaive there to 3.6e-15. Presenting the 0.080 moment-map gap as evidence of trace-formula superiority is the structural-luck coincidence the bar forbids.",
+      "amendment": "Adopt option (b): scope S5-P20 as 'the projected-vs-naive trace advantage is not demonstrated on the block-diagonal ladder family, where trperp = trnaive; the 0.080 gap is a naive-input moment-map effect.' Where available, add option (a): a selection-rate comparison in a non-block-diagonal family (e.g. Study 8's geometry) where trperp != trnaive and the projected formula wins.",
+      "residual_risk": "Without option (a) in a selection-rate setting, the projected formula's selection-level advantage is asserted by derivation plus Study 8's bias-level ~9%, not shown at the selection-rate level off equality."
+    },
+    {
+      "challenge_id": "CH-17",
+      "disposition": "amend",
+      "response": "Same substance as CH-03/CH-10. Conceded in full: W3C=1.000 persists even in uncongenial cells where the sign of the problem reverses, confirming it is forced by candidate ordering rather than the paper's decomposition. It is a near-tautology of RIV-ordering, not mechanism confirmation.",
+      "amendment": "Downgrade the signature to 'consistent with, but not discriminating of, the monotone-bias mechanism; candidate ordering by RIV forces the 1.000.' Disclose the uncongenial 1.000-plus-overshoot in the main text. Add a non-monotonically-ordered candidate set or non-saturated high-RIV decoy where the spectral decomposition predicts a different destination than a generic monotone bias, if such a control is available.",
+      "residual_risk": "Absent the decoy/perturbed-ordering control, Study 6's mechanism-discrimination weight rests on the recovery magnitude and Study 8, not the 1.000 count."
+    },
+    {
+      "challenge_id": "CH-18",
+      "disposition": "amend",
+      "response": "Same as CH-05/CH-13. Conceded: the 52-sigma evidences that the engineered design separates the formulas, not that the projected formula is correct; correctness is the 2.64 match. 'Large enough to rule it out outright' risks being read as general superiority without a balanced-missingness datapoint.",
+      "amendment": "Rescope S5-P15: present the 52-sigma as 'maximal-separation exclusion of the naive formula in an engineered cell,' rest correctness on the 2.64/2.70 match to the projected prediction, and report the discrimination (sigma count or measured gap) at a realistic balanced missingness rate.",
+      "residual_risk": "If the balanced-missingness gap is small or the cell unavailable, the manuscript can show correctness and engineered-extreme exclusion but not balanced-regime falsification of the naive formula."
+    },
+    {
+      "challenge_id": "CH-19",
+      "disposition": "amend",
+      "response": "Lands on two points. First, 0.904/0.903 EXCEED oracle 0.899 (one-sided overshoot at SE~0.010), so 'reaches/indistinguishable' should be stated as a two-sided interval test, not read as symmetric noise. Second, the weak-cell floor attribution to underfit retention is asserted, not decomposed; the shown internals are MAIN-cell null-side diagnostics (CH-06 overlap).",
+      "amendment": "State indistinguishability as |arm − oracle| < k·SE with k and the SE given, and confirm the overshoot falls within it (flagging it as a small systematic overshoot if it does not). Provide a weak-cell internal decomposing the gap to oracle 0.820 into null-side calibration vs alternative-side underfit retention; absent that, relabel the attribution as conjecture.",
+      "residual_risk": "If the overshoot exceeds k·SE under a defensible k, 'indistinguishable' must become 'slightly exceeds oracle, attributable to overshoot,' and the weak-cell attribution remains conjectural until decomposed."
+    },
+    {
+      "challenge_id": "CH-20",
+      "disposition": "amend",
+      "response": "Lands. D-05 requires every unmet registered prediction in the main text. Only two failures are disclosed (W1 N=1000, W4 pilot −2). The appendix shows uncongenial overshoot behavior not in the headline, and the panel cannot confirm the disclosed-failure set is exhaustive against todo/004,027,029. If any MNAR/uncongenial cell was registered to pass and did not, omitting its grade is a hidden failure.",
+      "amendment": "Provide the full pre-registered prediction -> outcome ledger: every registered cell/arm across all sweep families with pass/fail/expected-negative-control status and where each is reported, explicitly confirming no registered prediction is reported only as a total or omitted. Grade the MNAR and uncongenial selection-sweep cells against their registered criteria in the main text.",
+      "residual_risk": "If the ledger reveals additional registered cells that missed and were unreported, those are genuine hidden failures whose disclosure further qualifies the headline."
+    },
+    {
+      "challenge_id": "CH-21",
+      "disposition": "amend",
+      "response": "Lands as the minor-severity reproducibility companion to CH-14. The W1-W5 headline numbers are RDS-backed and not inlined, so they cannot be recomputed at all from the appendix; W1's goalpost question makes its uncheckable status more than cosmetic.",
+      "amendment": "Inline the key per-N rows of W1-W5: pooled estimates, SEs, and W1's component terms, so that (i) 2.43±0.26 verifiably equals the inverse-variance pool of the per-N cells, (ii) W4's 2.64 matches the projected-trace prediction cell-by-cell, and (iii) the W2/W3/W5 figures recompute within MC error. Where full inlining is deferred, formally flag the number as RDS-backed-not-inlined and assert the specific internal-consistency relation it must satisfy.",
+      "residual_risk": "If, once inlined, the inverse-variance pool does not reproduce 2.43±0.26 or W4's per-cell match fails, the headline must be revised rather than merely transcribed."
+    }
+  ]
+}

@@ -1,0 +1,554 @@
+{
+ "session_id": "1659f932-e1fb-4871-87f8-79a8dd621fec",
+ "first_timestamp": "2026-05-22T18:11:25.396Z",
+ "last_timestamp": "2026-05-23T02:52:10.422Z",
+ "n_raw_user_turns": 102,
+ "n_kept": 77,
+ "drops": {
+  "is_meta": 7,
+  "pure_interrupt": 5,
+  "trivial": 6,
+  "task_notification": 7
+ },
+ "turns": [
+  {
+   "uuid": "c18f1f45-566c-40af-8ea5-de4db7eceeba",
+   "timestamp": "2026-05-22T18:11:25.396Z",
+   "text": "Read CLAUDE.md, IDEAS.md, and todo/001-literature-and-hooks.md to load the project context. This is a JAIGP-targeted\n  ▎  theory paper on the spectral completion of the Meng–Rubin / Chan–Meng MI likelihood-ratio test program; the\n  ▎ verification-and-citation discipline is load-bearing, not optional.\n  ▎\n  ▎ Once you've loaded context, walk me through the four open questions at the bottom of\n  ▎ todo/001-literature-and-hooks.md (Zotero collection, citekey convention, PDF→markdown pipeline, hook strictness).\n  ▎ After I've answered, start on Phase 1 of that todo — acquire the initial citation corpus into Zotero and convert the\n  ▎  PDFs to markdown at literature/<citekey>.md. We need this finished before any citation appears in manuscript/.",
+   "n_words": 103,
+   "context_before": ""
+  },
+  {
+   "uuid": "8d371db0-aba8-4832-9f8c-5bc5bb64d46f",
+   "timestamp": "2026-05-22T18:36:24.445Z",
+   "text": "Where should I put the pdfs?",
+   "n_words": 6,
+   "context_before": "hive, or do you have it locally?\n3. **Asparouhov–Muthén scaled-shifted.** Which specific paper — one of the 2010 Mplus Web Notes (#4? #10?), or the Satorra–Bentler precursor?\n4. **Xie–Meng 2017.** Statistica Sinica direct, or institutional access path?\n5. **Magnus–Neudecker edition.** 1988 1st, 1999 revised 2nd, or 2007/2019 3rd?\n6. **Books: chapter scope confirm.** Tentative scope in `todo/001` (Rubin Ch 3–4, Schafer Ch 5, vdV Ch 6 + §7.2, Magnus–Neudecker duplication-matrix chapters). Edits?\n\nAnswer in any order — happy to take #1 and start fetching what I can while you think about the rest."
+  },
+  {
+   "uuid": "014feb3e-7ff8-4e66-ba2d-83b48fa513d6",
+   "timestamp": "2026-05-22T18:38:40.452Z",
+   "text": "Before I do this. currently my mi-spectral in my zotero is completely empty. Can you add literature we have already to it?",
+   "n_words": 22,
+   "context_before": "free if already converted) or run a fresh conversion (costs Mathpix credits) and write the markdown to `literature/<citekey>.md`.\n\nOne question before you start dropping files: **filename convention?** Two paths:\n\n- **(i)** name each PDF with its BBT citekey — `chanmengMultipleImprovementsMultiple2022.pdf` — unambiguous, machine-friendly, but ugly.\n- **(ii)** use MI-IC's filename style — lowercase `firstauthor_firsttitlewords_year.pdf` — e.g., `chan_multiple_improvements_2022.pdf`. Pretty, matches the sibling folder, but I'd need a separate mapping from filename to citekey.\n\nWhich do you want?"
+  },
+  {
+   "uuid": "84628eed-c834-486b-9342-24bf7fed543a",
+   "timestamp": "2026-05-22T18:46:01.406Z",
+   "text": "One option is to just get the doi from MI-IC and then add to zotero by D",
+   "n_words": 17,
+   "context_before": "SSL cert store issue. Let me fix it with certifi."
+  },
+  {
+   "uuid": "239fa1c6-d924-449c-8016-a86f1d3685b4",
+   "timestamp": "2026-05-22T18:46:04.039Z",
+   "text": "One option is to just get the doi from MI-IC and then add to zotero by DOI",
+   "n_words": 17,
+   "context_before": "SSL cert store issue. Let me fix it with certifi."
+  },
+  {
+   "uuid": "d3415a48-815a-4e2e-b017-14b7f42c140f",
+   "timestamp": "2026-05-22T18:48:53.361Z",
+   "text": "What are we doing right now?",
+   "n_words": 6,
+   "context_before": "Transient 502 from Zotero. Retry."
+  },
+  {
+   "uuid": "4ae77642-16df-47a7-a7c1-39519f0231da",
+   "timestamp": "2026-05-22T18:49:32.474Z",
+   "text": "can we just run the clean my messy zotero skill from litrev?",
+   "n_words": 12,
+   "context_before": "hafer 1997\n\n**The plan I was executing:**\n1. `zotero_find_duplicates` to confirm the duplicate groups.\n2. For each group, `zotero_merge_duplicates` keeping the new collection-member and discarding the others — the merge tool transfers tags/attachments/collections from the discarded entry to the kept one before deleting, so nothing is lost.\n\nYou rejected the retry of the duplicate scan. Do you want me to stop, change approach, or just proceed once the Zotero API's 502 clears? The merge step is the only thing standing between \"5 duplicates floating around\" and \"5 clean entries in `mi-spectral`.\""
+  },
+  {
+   "uuid": "4a89a5c6-69bf-4b2e-a9a2-2a8d87bba037",
+   "timestamp": "2026-05-22T19:04:12.915Z",
+   "text": "What texts are we going to need in zotero?",
+   "n_words": 9,
+   "context_before": "All 5 papers are now clean entries in your `mi-spectral` collection; all 4 orphans/duplicates removed. Ready when you are to drop the remaining PDFs — and back to your original question, my recommendation is to put them in `~/Google Drive/Literature/MI-SPECTRAL/` with snake_case filenames matching MI-IC's pattern (the convention `litrev/config.yaml` expects). Let me know when files are there and I'll hash-check the Mathpix cache before paying for fresh conversions."
+  },
+  {
+   "uuid": "99d11284-082e-4c5b-8398-0801e2dd99de",
+   "timestamp": "2026-05-22T20:10:27.275Z",
+   "text": "Why are you recommending matrix diffrential calculus?",
+   "n_words": 7,
+   "context_before": " E. |\n| Author (3) | Rubin, Donald B. |\n| Publication | Journal of the American Statistical Association |\n| Volume | 86 |\n| Issue | 416 |\n| Pages | 1065–1073 |\n| Date | 1991 |\n| DOI | leave blank *(the `10.1080/01621459.1991.10475154` I used resolved to a different paper)* |\n| Stable URL | https://www.jstor.org/stable/2290525 |\n\n---\n\nOnce you've fixed these in Zotero desktop, let me know and I'll re-verify the collection is in the right state. After that, the remaining work in this phase is just attaching PDFs — and you mentioned you'll drop those into `~/Google Drive/Literature/MI-SPECTRAL/`."
+  },
+  {
+   "uuid": "48c36a32-2b0a-415d-8751-85cc72caee7d",
+   "timestamp": "2026-05-22T20:12:56.227Z",
+   "text": "Can we not just use matrix cookbook?",
+   "n_words": 7,
+   "context_before": "on matrix prominent.\n2. **Lean on Anderson (2003)** — already in the corpus. Has the MVN Fisher info in a more classical form.\n\nIf we go with either of those, Magnus & Neudecker drops out — it becomes an unnecessary cite that signals \"look I did the matrix algebra carefully\" but isn't actually doing referential work.\n\nMy take: **drop it unless we end up needing to display $D_p$ explicitly in §5 or in the running-example derivation.** I added it because the todo asked for \"stub all\" and the IDEAS.md explicit flag, but it's the weakest cite in the corpus. Want me to remove the stub (`3WICKX2G`)?"
+  },
+  {
+   "uuid": "7b73bcbc-6b6e-4bd7-9bb8-c05a6dc58e11",
+   "timestamp": "2026-05-22T20:34:12.164Z",
+   "text": "Ok. Look at my zotero. I put in a lot of pdfs and cleaned up the citations. I'm thinking given that a lot of these are books, we need to create a skill that turns these into markdown using mathpix, stores the markdown, but also puts it in a database for faster searcing through embeddings. Thoughts?",
+   "n_words": 56,
+   "context_before": "an a Wiley textbook readers may not own. Reviewers can verify every identity in 60 seconds with a free PDF. The \"look I did the matrix algebra carefully\" signal is delivered by the math itself, not by which reference you cite for it.\n\n**Recommendation: swap.** Delete the Magnus–Neudecker stub (`3WICKX2G`), add Matrix Cookbook in its place. Want me to make that change?\n\nCitation: Petersen, K. B. & Pedersen, M. S. (2012). *The Matrix Cookbook* (Version Nov 15, 2012). Technical University of Denmark. https://www2.imm.dtu.dk/pubdb/pubs/3274-full.html — citekey `petersenpedersenMatrixCookbook2012`."
+  },
+  {
+   "uuid": "84cfb15e-c81e-44a7-aeeb-be25d1ca4b00",
+   "timestamp": "2026-05-22T20:41:54.565Z",
+   "text": "Can you give me the titles of waht I need to add?",
+   "n_words": 12,
+   "context_before": "s, add the 2 missing ones. I can do the deletes if you authorize; the adds I'll do via manual metadata (no more bad DOIs).\n2. **Then bootstrap the RAG**: `index_papers(project='MI-SPECTRAL', use_mathpix=True)` — this gets you the searchable embeddings layer in one shot using existing infrastructure.\n3. **Then build `lit-sync`** as the bridge to `literature/<citekey>.md`. That's the only piece that's genuinely new.\n\nWant me to (1) do the Zotero cleanup now, (2) skip ahead to running `index_papers`, or (3) draft the `lit-sync` skill spec first so you can review the design before we run anything?"
+  },
+  {
+   "uuid": "d65b9889-e181-4d5f-9f1c-32c8b4d208da",
+   "timestamp": "2026-05-22T20:56:16.645Z",
+   "text": "Okay. I've added",
+   "n_words": 3,
+   "context_before": "\n**2. Li, Raghunathan & Rubin (1991)**\n- **Title:** Large Sample Significance Levels from Multiply Imputed Data Using Moment-Based Statistics and an F Reference Distribution\n- **Authors:** Kim-Hung Li; Trivellore E. Raghunathan; Donald B. Rubin\n- **Journal:** Journal of the American Statistical Association\n- **Volume / Issue / Pages:** 86(416), 1065–1073\n- **Year:** 1991\n- **Stable URL:** https://www.jstor.org/stable/2290525\n- **DOI:** leave blank (the `10.1080/01621459.1991.10475154` I tried earlier resolved to a different paper — don't reuse it)\n\nBoth are journal articles, both `_needs-pdf`."
+  },
+  {
+   "uuid": "a5a97fa6-7a24-4cca-9e6c-dd3e994aa8f3",
+   "timestamp": "2026-05-22T21:03:41.260Z",
+   "text": "Hm. My mi-spectral collection in zotero has the correct citations. I'm looking at them right now",
+   "n_words": 16,
+   "context_before": " API from my side hits a corporate-cert SSL block.)\n\nWhile you're in there, also worth deleting the two leftover wrong items I'd flagged earlier:\n\n| Wrong item | Key | Title |\n|---|---|---|\n| ❌ | `R7VH3VVU` | Mastrantonio et al. — \"Invariance properties... circular data\" |\n| ❌ | `ZC9WR88W` | Langholz, Kronmal — \"Tests of Distributional Hypotheses... Fourier Series\" |\n\nBoth came from my bad DOI lookups — they're real papers, just not ours.\n\nOnce you've done the drag-into-collection + delete-the-two passes, the mi-spectral collection should have all 18 references plus your notes, no wrong items."
+  },
+  {
+   "uuid": "ad313c32-2bb6-447c-b9e1-8757194a2146",
+   "timestamp": "2026-05-22T21:10:34.660Z",
+   "text": "17 itmes see Screenshot 2026-05-22 151001.png in Downloads",
+   "n_words": 8,
+   "context_before": "items aren't actually in that collection.\n\n2. **Is \"mi-spectral\" in your left sidebar a Collection (folder icon) or a Saved Search (magnifying-glass icon)?** Easy way to tell: right-click → does it say \"New Collection...\" (means you're on a collection) or \"Edit Saved Search...\" (means you're on a saved search)? Saved searches look like collections but items can match a search without being in any literal collection.\n\nIf you tell me which it is, I can suggest the right fix. Also worth a `File → Sync` if you haven't synced since you made the changes — Zotero doesn't always auto-sync immediately."
+  },
+  {
+   "uuid": "8e88d688-d5be-4e6e-9131-03bd3d4141ce",
+   "timestamp": "2026-05-22T21:22:22.949Z",
+   "text": "Doesn't litrev have a \"migrate\" feature that will copy the pdfs to google drive? I feel like if we make a separate script, we are being redundant.",
+   "n_words": 27,
+   "context_before": "Writing a small script to bridge Zotero's local storage → litrev's project folder. Then re-running the indexer."
+  },
+  {
+   "uuid": "14eac565-9ef8-4148-a990-86ec2a174c0d",
+   "timestamp": "2026-05-22T21:42:14.102Z",
+   "text": "Still working? do you have a progress report? where are we?",
+   "n_words": 11,
+   "context_before": "Indexing running in background — books will take the bulk of the time. I'll be notified when it finishes; no need to poll.\n\nWhile that runs, three productive things I could be doing:\n1. Drafting the `lit-sync` skill spec (bridge from indexed corpus → `mi-spectral/literature/<citekey>.md` for the citation hook)\n2. Updating `todo/001` with current Phase-1 state\n3. Saving a session memory about the litrev migration workflow\n\nWant me to pick one, or hold until indexing reports back?"
+  },
+  {
+   "uuid": "722b84c3-67de-47c7-861b-444dfaa8a5f6",
+   "timestamp": "2026-05-22T22:12:33.933Z",
+   "text": "Do you want to write a git issue on litrev_mcp repository and I can go patch it over there?",
+   "n_words": 19,
+   "context_before": "dundant script\" smell you flagged earlier.\n\n**Risk:** other projects that re-index would get slightly different chunking decisions (tiktoken counts can differ from heuristic), but only for very long inputs near the truncation/batch thresholds. No correctness change for documents you've already indexed.\n\n**Alternative if you'd rather not touch litrev:** I can write a single-use script in `mi-spectral/scripts/reindex_oversized.py` that does just these 3 books with tiktoken-aware batching. Keeps litrev pristine; costs us the redundant logic.\n\nWhich do you want — patch litrev, or local workaround?"
+  },
+  {
+   "uuid": "28799322-b910-42ce-81d2-d2d64862c1f3",
+   "timestamp": "2026-05-22T22:29:55.600Z",
+   "text": "Okay. I've patched litrev_mcp",
+   "n_words": 4,
+   "context_before": "No response requested."
+  },
+  {
+   "uuid": "2fa401ba-88f0-41d6-87c1-740e111a4dc7",
+   "timestamp": "2026-05-22T22:31:47.924Z",
+   "text": "I've updated the three broken dates",
+   "n_words": 6,
+   "context_before": " the only fresh cost is OpenAI embeddings. I'll be notified when it finishes.\n\nWhile it runs, the remaining open items are:\n- **3 date-broken Zotero entries** (Satorra-Bentler `XMZZCHVF`, Wilks `FCQQ4ZKN`, Cavanaugh-Shumway `JMMYUWYS`): dates `06/2` / `03/1` / `3/19` → just edit each to `2010` / `1938` / `1998` in Zotero. Once fixed, one more `migrate_zotero_attachments` + indexer pass closes it out.\n- **`lit-sync` skill** (Task #11): the bridge from indexed corpus → `mi-spectral/literature/<citekey>.md` for the citation-discipline hook. I can draft the spec while the indexer runs if you want."
+  },
+  {
+   "uuid": "38f604c9-a41d-4842-b4fb-3c18c3f6534f",
+   "timestamp": "2026-05-22T22:37:05.580Z",
+   "text": "Can you tell me how the mathpix conversion is proceeding?",
+   "n_words": 10,
+   "context_before": "All 3 migrated cleanly. **17 of 17 PDFs now in the project folder.** The currently-running indexer started before this migration so it won't see the new 3 — once it finishes (notification incoming), I'll fire one final indexer pass to sweep up Cavanaugh-Shumway, Satorra-Bentler, and Wilks. Then the RAG corpus is complete."
+  },
+  {
+   "uuid": "75fa43fe-4542-4389-a7c5-661396641f39",
+   "timestamp": "2026-05-22T22:42:24.681Z",
+   "text": "So I can close the git issue, correct?",
+   "n_words": 8,
+   "context_before": "ontmatter. Closes out the citation-discipline infrastructure.\n2. **Build the PreToolUse citation hook** (todo/001 Phase 3) — enforces the discipline at edit-time. Depends on (1) since the hook checks for `literature/<citekey>.md`.\n3. **Switch to writing** — start §1/§2 of the manuscript, with `ask_papers` available for in-session retrieval against the indexed corpus. Defer (1)+(2) until the first citation goes in.\n\nWhich way? My weak recommendation is (1) → (2) before (3), so the discipline is in place before the first citation lands, but if you want to draft prose first that's defensible too."
+  },
+  {
+   "uuid": "9279dd28-5767-4ce9-8344-9ec3e7fcb418",
+   "timestamp": "2026-05-22T22:43:52.064Z",
+   "text": "Let's definitely do 1 and 2, but then let's talk about (3) together.",
+   "n_words": 13,
+   "context_before": "rs that previously errored with \"maximum request size is 300000 tokens\" — all indexed with **0 errors** in the post-patch run\n- Patch text confirmed in `rag_embed.py` (tiktoken-exact `_estimate_tokens`, batch cap 100K)\n- RAG end-to-end test (`ask_papers` query on RIV definition) returned 5 valid passages across 4 papers\n\nIf you want a closing comment for posterity, something like:\n\n> Fixed in [commit-sha]. Verified against MI-SPECTRAL corpus: 3 previously-failing books (van der Vaart 1998 ≈1,400 chunks, Little-Rubin 2019 ≈950, Anderson 2003 ≈850) all index without error.\n\nOtherwise just close."
+  },
+  {
+   "uuid": "d732a9f3-759d-4243-94dc-81ffdb83d0a8",
+   "timestamp": "2026-05-22T22:57:17.866Z",
+   "text": "I exported the better bibTeX to the literature folder",
+   "n_words": 9,
+   "context_before": " predicting one of three outcomes:\n\n| If BBT produces... | Then convention is... |\n|---|---|\n| `cavanaughshumwayAkaikeInformationCriterion1998` | camelCase BBT-default (matches MI-IC) — keep the 3 camelCase orphans, reconfigure litrev's pattern |\n| `cavanaugh_akaike_information_1998` | snake_case (matches litrev) — delete the 3 camelCase orphans, accept litrev's pattern as project standard |\n| Something else entirely | We discuss; user has a custom BBT pattern set |\n\nOnce I know which, I'll make the right call (delete or rename the existing files) and we move on to Task #2 (the citation hook)."
+  },
+  {
+   "uuid": "2cb0786b-711d-44e7-ac87-5a51885d263e",
+   "timestamp": "2026-05-22T23:08:02.759Z",
+   "text": "Do I need to fix something?",
+   "n_words": 6,
+   "context_before": "down files in `literature/`, the hook enforces discipline going forward.\n\nYou said you wanted to talk about (3) together rather than have me dive in. What's on your mind? A few framing options:\n\n- **Strategy first:** what to write first (intro? bias decomposition? running example?) and target length/voice\n- **Concrete first:** pick a section and start a Quarto chunk — I write a draft, you redirect\n- **Architecture first:** what `manuscript/mi-spectral.qmd` should look like structurally (sections, callout patterns for numerical witnesses, where the figures live)\n- **Something else** — your call"
+  },
+  {
+   "uuid": "239e80d3-87dc-47f8-9590-b4ce4cbf3ad9",
+   "timestamp": "2026-05-22T23:10:29.694Z",
+   "text": "i fixed it, rerun lit-sync",
+   "n_words": 5,
+   "context_before": "**two separate author entries**:\n   - Author 1: Last `Asparouhov`, First `Tihomir`\n   - Author 2: Last `Muthén`, First `Bengt`\n3. Also fix the Date field from `2006` → `2010` (Mplus Web Note #10 was 2010)\n4. Right-click → Better BibTeX → Refresh BibTeX key (forces regeneration with the now-clean authors)\n5. Re-export the BBT bib to `literature/mi-spectral-better-bibTeX.bib`\n6. I'll re-run `lit_sync`\n\nThen we can start (3) with a fully clean corpus. Or you can defer that and we start (3) now — your call. The hook will quietly let you write the rest of the paper while that one cite stays broken."
+  },
+  {
+   "uuid": "749e35f9-9ea0-467f-9e9b-96977dc5b45f",
+   "timestamp": "2026-05-22T23:13:57.431Z",
+   "text": "I've confirmed that it is 2006. The key is wrong",
+   "n_words": 10,
+   "context_before": "he **citekey itself didn't regenerate**. BBT caches/pins citekeys per item and only recomputes them when explicitly told to.\n\nOne more step in Zotero:\n\n1. Right-click item `JED9EGZU` (\"Robust Chi Square Difference Testing…\")\n2. **Better BibTeX → Refresh BibTeX key**\n\n(Note: also worth fixing the Date field from `2006` → `2010` while you're there — Mplus Web Note #10 was 2010. BBT will fold the corrected year into the regenerated key.)\n\nThen re-export the .bib and tell me. The new citekey should come out something like `asparouhovRobustChiSquare2010` (single first-author elision, no semicolon)."
+  },
+  {
+   "uuid": "0629ea29-f295-4758-977b-52d0dc752b3e",
+   "timestamp": "2026-05-22T23:16:45.019Z",
+   "text": "Right a few things. we never initiated litrev. I feel like I should do that.",
+   "n_words": 15,
+   "context_before": "nitely.\n\n---\n\nReady for (3). To recap the framing question from earlier: you said you wanted to **talk about** manuscript drafting together rather than have me dive in. What direction would you like to take? Options I floated:\n\n- **Strategy first** — what section to write first, target length/voice, where the load-bearing math goes\n- **Concrete first** — pick a section, I draft, you redirect\n- **Architecture first** — structure of `manuscript/mi-spectral.qmd` (sections, callout patterns for the seven numerical witnesses, figure layout)\n- **Something else**\n\nOr just tell me what's on your mind."
+  },
+  {
+   "uuid": "450f0f9c-ea11-4ad2-a752-183e2764d5f7",
+   "timestamp": "2026-05-22T23:21:34.368Z",
+   "text": "Stylistically needs needs to be tailored to the JASA/RSS crowd. WE are going to write in quarto and use this template: https://github.com/quarto-journals/jasa. It should read like an article in that journal, with the additional caveat that the presumption of regularity is not there and so there needs to be simulation evidence that verifying this proof is \"worth my time\" for a statistiican. Does that make sense? Once we agree on style, I think we can talk about contributions.",
+   "n_words": 78,
+   "context_before": "term decompose cleanly into imputation + estimation pieces?\" \"Does the scaled-shifted correction restore Type-I asymptotically at finite M?\" \"When does EFMI fail loudly enough that the spectral correction actually matters?\")\n- **Voice/tone:** strictly formal proof-style, or willing to have some \"reading-the-room\" prose between theorems? The IDEAS.md drafts read like the latter — is that what you want or was that just notes?\n- **Anything in the current context that's wrong or stale beyond Cavanaugh's year?**\n\nOr just start telling me what's in your head about this paper and I'll keep listening."
+  },
+  {
+   "uuid": "894f6551-694b-4a81-a982-096088095088",
+   "timestamp": "2026-05-22T23:24:18.004Z",
+   "text": "Agree. But I wouldn't say \"reputation-based trust\" as they are blinded peer review, so they would never admit that. It's tacit. I would just say that because this is AI-generated, the reader is afforded additional evidence of validity of claims (or somthing to htat effect).",
+   "n_words": 45,
+   "context_before": "fications before contributions:\n\n- **JASA *or* RSS?** Voice is similar but JASA tends to be slightly denser/more theorem-proof-heavy; RSS (especially Series B) reads a touch more discursive. The quarto-journals template is JASA-specific so I'm assuming JASA is the closer reference — confirm?\n- **Witness placement: in callout boxes within the section, or as a dedicated short §X.5 sub-section after each main result?** Callout boxes (the `::: {.callout-tip}` blocks in IDEAS.md) keep them visually distinct from the prose; sub-sections give them more room for tables/figures. Both work — preference?"
+  },
+  {
+   "uuid": "0ab7a301-6240-4adf-96fa-c68d7b52ff78",
+   "timestamp": "2026-05-22T23:25:07.072Z",
+   "text": "Because this is so mathematically heavy, I'm thinking more JASA?",
+   "n_words": 10,
+   "context_before": "lly works.\n\n**Style locked then:**\n\n- JASA/RSS voice, JASA quarto template\n- Witnesses precede each load-bearing claim (state what we observe, *then* the theorem that formalizes it)\n- Witnesses are visually distinct (callouts vs sub-sections — I'll defer to your preference when we hit a section)\n- Same MVN running example throughout for intuition continuity\n- Reproducible `verification/V*.R` scripts shipped alongside the manuscript\n- One paragraph in Discussion frames the AI-assisted/witness-apparatus posture cleanly, without apologizing\n\nReady for contributions. What's the list as you see it?"
+  },
+  {
+   "uuid": "47cc7132-ae62-479f-853c-57331932f443",
+   "timestamp": "2026-05-22T23:26:41.101Z",
+   "text": "It may be too early to \"lock in\" contributions at this point, but I think we have an idea of what they are given what the simulations told us in the MI-IC get repository. You can go reference that repository if you dont' remember",
+   "n_words": 44,
+   "context_before": "Yes, JASA Theory & Methods is the right reference for this. RSS Series B is also math-heavy but tends to wrap a bit more discursive prose around its theorems; JASA T&M is closer to the dense theorem-proof rhythm you're going to write. And the quarto-journals template you pointed at is JASA-specific anyway, so the format does the work.\n\nLocked. **JASA voice, theorem-proof rhythm, witnesses up front, MVN example throughout.**\n\nReady when you are — what are the contributions?"
+  },
+  {
+   "uuid": "37d48955-659b-4a2c-91e5-7a4be8fe0436",
+   "timestamp": "2026-05-22T23:37:14.127Z",
+   "text": "I think this is right. But I feel like we are generalizing thing here too. For examples FIML vs. MI distinction of targets, etc? Or am I thinking too broadly?",
+   "n_words": 30,
+   "context_before": "dopted. Do we treat C4 as a contribution, or push it to a Discussion/Future-Work paragraph until V7 is in hand?\n\n2. **C1 vs Cavanaugh-Shumway (1998)** — they have $2\\,\\text{tr}(\\text{RIV})$ as the AIC penalty under MI. Our $\\tfrac{1}{2}\\text{tr}(\\text{RIV})$ deviance bias is a related but distinct result (their target is observed-data MLE, ours is complete-data MLE — per the MI-IC brief). Worth making sure C1 is genuinely incremental rather than just a re-derivation. Want me to read Cavanaugh-Shumway's §3 carefully and report the comparison precisely?\n\nWhat would you sharpen, drop, or reframe?"
+  },
+  {
+   "uuid": "581da53d-4288-4fb2-be67-375d8b6d1f5a",
+   "timestamp": "2026-05-22T23:40:42.895Z",
+   "text": "I think it does. But I'm not understanding what Anisotropic even means and wehther that is a terms that comes up in literature or something you invented?",
+   "n_words": 27,
+   "context_before": "s the imputation model is *at least as flexible as* the analysis model, the analyst's analysis is a function of complete-data sufficient statistics, and the imputer's posterior is proper. PMM and saturated-imputation are out of scope (they violate congeniality, which is the MI-IC paper's terrain).\n- \"Anisotropic FMI\" is a *consequence* of nuisance-vs-tested parameter structure under the MVN running example, not an external assumption — should be stated as a structural property of the problem, not a generalization claim.\n\nDoes this rein it in, or are there other places where I'm still drifting?"
+  },
+  {
+   "uuid": "667e0414-e239-447b-ac43-c76720bdf0d7",
+   "timestamp": "2026-05-22T23:42:40.364Z",
+   "text": "As long as we clearly define what it is, I'm great with it",
+   "n_words": 13,
+   "context_before": " is violated. This is the empirically generic case (Section 9).\n\n3. **After the one defined use, refer to \"anisotropic $\\text{RIV}_\\perp$\" or \"unequal eigenvalues\" interchangeably,** with the technical statements always in terms of the eigenvalue spectrum directly. Never let \"anisotropy\" do load-bearing work as an undefined term.\n\nIf you prefer to drop \"anisotropic\" entirely and just say \"unequal eigenvalues\" / \"non-EFMI\" everywhere, that's also defensible — slightly drier but JASA-careful. The geometric flavor of \"anisotropic\" is nice in the intro but optional.\n\nWhich way do you want to lean?"
+  },
+  {
+   "uuid": "36809735-f209-4011-89b9-3350305b2300",
+   "timestamp": "2026-05-22T23:44:49.460Z",
+   "text": "1. Let's keep it with a note that C4 has no empirical evidentiary basis yet, and is AI-hypothesized, but needs empriical validating. We deifintely want ot read CS very carefully",
+   "n_words": 30,
+   "context_before": "at would normally be more extensive numerical power studies.\n\n2. **Cavanaugh–Shumway comparison — how careful?**\nShould I read CS '98 §3 closely and write a precise comparison paragraph (one tight para in our §3) showing exactly where the +tr term in their AICcd derivation maps to our +tr imputation-bias term, and why their derivation stops there while ours adds the -½tr mismatch term? Or is one-sentence positioning enough? My instinct is the close comparison is worth it — it preempts a reviewer comment that we're \"rediscovering\" CS, and shows we've actually read it.\n\nWhat's your read on each?"
+  },
+  {
+   "uuid": "8666b53e-ee89-4c97-808d-9424bafc6706",
+   "timestamp": "2026-05-23T00:00:02.403Z",
+   "text": "This looks right to me.",
+   "n_words": 5,
+   "context_before": "imputation step. AICcd and Theorem 3.1 thus inhabit parallel universes: EM-based model selection versus MI-based hypothesis testing.\n\n**Length:** ~180 words. Could trim to ~120 by dropping the \"structurally analogous\" elaboration, but I'd keep it — that's the comment a careful referee would actually make if it weren't there (\"isn't this just a re-derivation of CS?\"), and answering it preemptively saves a round of revision.\n\n**Does this comparison feel right, or am I overstating the parallelism?** And do you want the comparison in §3 (right after Theorem 3.1) or in a §11 \"Related Work\" section?"
+  },
+  {
+   "uuid": "b1e85029-f194-4ac2-95a9-4f2be3e9a422",
+   "timestamp": "2026-05-23T00:02:32.535Z",
+   "text": "Let's save it, but then let's keep talking about it because I have a few other things I wanna talk",
+   "n_words": 20,
+   "context_before": ":\n\n1. **\"Key questions\" section** — this is what actually shapes `ask_papers` retrieval; the previous context had none.\n2. **Scope is explicit** — \"in\" / \"out\" rather than fuzzy \"general for any likelihood model.\"\n3. **CS '98 corrected to 1998** (was incorrectly cited as 2001 in IDEAS.md and the old context).\n4. **C4 explicitly marked Conjecture** rather than blurred with C1–C3.\n5. **JASA Theory & Methods** named as the audience reference.\n6. **Witness-first discipline** named explicitly as the rule.\n\nWant me to save this with `update_project_context`, edit it first, or talk through any of it?"
+  },
+  {
+   "uuid": "af58afa4-a8fc-4a36-a272-bf878c7e8137",
+   "timestamp": "2026-05-23T00:03:40.833Z",
+   "text": "Where do we talk about how the d three statistic didn't have nominal type one error rate?",
+   "n_words": 17,
+   "context_before": "Saved. What's on your mind?"
+  },
+  {
+   "uuid": "f781bf04-812e-4a8d-a72b-f05064065348",
+   "timestamp": "2026-05-23T00:06:28.776Z",
+   "text": "We're gonna have to do our own simulation, so we don't wanna say exact numbers at this point, period. Also, when I did the other numbers, I wasn't aware of the Ching and Mang paper. And so I'm not sure I am comparing it to the right reference distribution even though it's stacked.",
+   "n_words": 53,
+   "context_before": "Got it — paused on that. Tell me what you're thinking."
+  },
+  {
+   "uuid": "8f16ca6a-f91e-49a2-8744-4b50efb0728c",
+   "timestamp": "2026-05-23T00:09:19.831Z",
+   "text": "Yes. Make a note that we are gonna have to follow-up with Chen and Mang very carefully",
+   "n_words": 17,
+   "context_before": "renthetical sentence in the Discussion saying *\"a related SEM-specific phenomenon is investigated in our companion paper [MI-IC citation]\"* — but that's it. The empirical case for spectral correction in this paper must stand on this paper's own simulations.\n\n**A small follow-up question, optional:** do you want me to make a note now (a `todo/002-verification-implementation.md`) capturing the \"Chan-Meng reference distribution must be implemented faithfully\" reminder, so it doesn't fall off when we eventually write the verification code? Or hold off until we're closer to writing the simulations?"
+  },
+  {
+   "uuid": "1fe1f05e-b85c-4b29-a362-d05c07ff3b32",
+   "timestamp": "2026-05-23T00:11:23.857Z",
+   "text": "So our penalty relies on the relative increase in variance. Uh, the other way you could think about it is the inverse of the fraction of information matrix, which means that the fraction of information matrix has to be invertible. So do we need to make sure that we have a sufficient number of the amputations in order for the between amputation information component to be, um, uh, positive definite? I",
+   "n_words": 71,
+   "context_before": "Tracked at `todo/002-verification-implementation.md` and Task #16. Reading queue is in there in priority order: Chan-Meng first (§3–§5), then Meng-Rubin, then the two Li 1991s.\n\nWhat else is on your mind?"
+  },
+  {
+   "uuid": "e651b204-2e60-4687-bbd8-06c1d9d1b0dc",
+   "timestamp": "2026-05-23T00:14:59.637Z",
+   "text": "I think for right now, we just have to make the assumption that our fraction of missing information matrix is invertible, and we can come back to what pragmatic approaches might be.",
+   "n_words": 32,
+   "context_before": "ady have a recommendation we should align with rather than reinvent. I'd flag that as part of the careful reading queued up in `todo/002`.\n\n**Open call for you:** are you comfortable with the spectral correction having a non-trivial $M \\geq k+1$ floor — and the paper being framed as \"for the modern-MI regime where $M$ is large\" — or do you want us to chase a small-$M$ extension via spectrum-shrinkage? My recommendation is to ship the clean version first (large-$M$, full-spectrum, no shrinkage), be honest about the limitation, and let the shrinkage idea be a follow-up paper. But it's your call."
+  },
+  {
+   "uuid": "8244cd2a-842c-4efb-af83-59fa475185fc",
+   "timestamp": "2026-05-23T00:16:26.972Z",
+   "text": "Uhhh You're reciting things that we don't actually have papers on right now.",
+   "n_words": 13,
+   "context_before": "timators — is outside the scope of this paper.\n\nThat single paragraph forecloses the inevitable referee comment with one sentence of acknowledgement, and frees §5–§8 to derive cleanly without carrying the small-$M$ caveat around.\n\n**One sentence in Discussion** (when we get there):\n\n> *Practical extension to the regime $M \\leq k$ would require regularized spectrum estimation (e.g., Ledoit-Wolf shrinkage or Marchenko-Pastur deconvolution). We defer this to future work.*\n\nThat's it. Both add up to under 100 words and don't bloat the math sections.\n\nIf that lands right, what else is on your mind?"
+  },
+  {
+   "uuid": "24fecb1b-ff6d-4386-8537-c6dcb234d9ed",
+   "timestamp": "2026-05-23T00:17:25.257Z",
+   "text": "I don't mind you proposing papers, but we need some way of keeping track of things that need to be verified, the papers that we actually need to get, that kind of thing.",
+   "n_words": 33,
+   "context_before": " acquire the relevant references (add to Zotero `mi-spectral`, migrate, Mathpix, lit-sync) and only then name them in the manuscript. That's a deliberate decision we make if/when we get to the Discussion and decide a more specific pointer adds value.\n\nMy recommendation: **(a) for now.** When we're actually drafting the Discussion section, we re-evaluate whether to expand the specificity, and if so, do the acquisition workflow properly first.\n\nSorry for the slip — caught me leaning on training-weight knowledge in exactly the way CLAUDE.md says not to. Reinforces why the hook exists.\n\nWhat else?"
+  },
+  {
+   "uuid": "0899ad8b-4b11-4978-88b8-79aa93013724",
+   "timestamp": "2026-05-23T00:18:55.844Z",
+   "text": "Yes. Do both.",
+   "n_words": 3,
+   "context_before": "e: *\"When proposing a reference by name in conversation, add it to `todo/003-references-to-acquire.md` in the same response.\"* That makes the discipline part of the repo's permanent instructions, visible to anyone (or any future Claude session) opening the project.\n\n2. **Save a project memory** describing the same discipline, so it travels with the project even outside the repo.\n\nWant both, one, or neither? My recommendation is **both** — they're cheap, and the discipline only works if it's reinforced from multiple places (CLAUDE.md for in-repo visibility, memory for cross-session continuity)."
+  },
+  {
+   "uuid": "f2b7b4b5-3dca-4841-a669-9ac0ed3cb5a5",
+   "timestamp": "2026-05-23T00:20:23.907Z",
+   "text": "So right now, we are only focused on missing endogenous variables. I know somewhere in MIIC, the other repository, we looked at missing exogenous variables.",
+   "n_words": 25,
+   "context_before": "drive-by fix to the Lineage line (Cavanaugh–Shumway corrected from 2001 → 1998, with the \"parallel universe\" framing carried in from our §3 comparison decision).\n\n2. **`memory/feedback_reference_proposal_tracking.md`** — new memory entry recording the discipline, citing the trigger event (my Ledoit-Wolf / Marchenko-Pastur slip), and linking to the existing citation-discipline memory.\n\n3. **`MEMORY.md` index** updated.\n\nThe discipline is now reinforced from three places: the CLAUDE.md the hook reads, the persistent memory across sessions, and the todo/003 file itself.\n\nWhat's next on your mind?"
+  },
+  {
+   "uuid": "1b0e8776-402d-45f7-a7ba-e04c6303e264",
+   "timestamp": "2026-05-23T00:25:18.257Z",
+   "text": "I'm fine with option one, but we're gonna need to find the citation that was used to derive the expressions that we had for the missing covariates.",
+   "n_words": 27,
+   "context_before": "generalization is an MI-IC contribution we cite, not a contribution we restate. The \"we say so\" sentence in Discussion forecloses a referee comment without expanding the paper.\n\nBut you may want Option 2 if reviewers will push on \"does this only work for multivariate response models?\" — that's a legitimate concern. The block-diagonal argument is short enough to include without inflation.\n\nWant Option 1, 2, or 3 — and is the block-diagonality assumption itself worth a brief defense paragraph? (It can fail under joint imputation with chained equations that couple $f(X)$ and $f(Y|X)$ parameters.)"
+  },
+  {
+   "uuid": "a7a97acf-5fd7-4230-b930-94055f7618ca",
+   "timestamp": "2026-05-23T00:39:05.676Z",
+   "text": "I already have them it looks like in zotero in the MI-IC. They are claeskensVariableSelectionIncomplete2008 and consentinoOrderSelectionTests2010",
+   "n_words": 17,
+   "context_before": "inalizing the §1 framing of contributions.\n\nSo even though we're scoping the missing-exogenous extension to a one-sentence Discussion mention, the 2010 paper might warrant a more careful look as a potential competitor / predecessor we currently don't have on radar. Worth pulling early.\n\nWant me to queue both Claeskens-Consentino 2008 and Consentino-Claeskens 2010 for acquisition now — same way we acquired the Phase-1 corpus? It's just adding two more entries to your Zotero `mi-spectral` collection, then re-export BBT + re-run lit-sync. Or hold until we hit the §1 / Related Work drafting stage?"
+  },
+  {
+   "uuid": "0e1d9290-03d5-46a9-9a54-f66a52376059",
+   "timestamp": "2026-05-23T00:42:29.309Z",
+   "text": "ARe you sure we don't already have the mathpix conversion somewhere?",
+   "n_words": 11,
+   "context_before": "ight-click `mi-spectral` collection in Zotero → Export Collection → Better BibTeX → overwrite `literature/mi-spectral-better-bibTeX.bib`). Then tell me and I'll run `migrate_zotero_attachments` → `index_papers.py` → `lit_sync.py` in sequence to finish the acquisition.\n\n**Flagging again:** the 2010 CSDA paper is potentially a competitor we don't yet understand. Once it lands in `literature/`, we should read it carefully *before* committing to the §1 contribution framing — it might force a \"the closest predecessor is actually this paper\" reframing that I'd rather discover now than at draft time."
+  },
+  {
+   "uuid": "4d0ac334-c02d-4b4b-ad5e-23b8644d767c",
+   "timestamp": "2026-05-23T00:45:59.760Z",
+   "text": "Okay rexported.",
+   "n_words": 2,
+   "context_before": " '08 and `9U4662KK` Consentino-Claeskens '10) land in the bib file. Then ping me.\n\nI'll then run two things back-to-back:\n1. `lit_sync.py` — cache hits both, writes two new `literature/<citekey>.md` files instantly\n2. `index_papers.py` — registers the two PDFs in MI-SPECTRAL's RAG so `ask_papers` queries scoped to this project include them. Mathpix cache hits both, so only OpenAI embeddings + DuckDB inserts (cheap).\n\nAfter that, the **2010 *CSDA* paper** becomes the priority read — it's a possible competitor to our framing and I want to be sure of the contribution landscape before drafting §1."
+  },
+  {
+   "uuid": "4c2f494c-16b0-4a04-9459-06e31e10e940",
+   "timestamp": "2026-05-23T00:47:19.726Z",
+   "text": "Yes read C&C 2010 cold and report",
+   "n_words": 7,
+   "context_before": "**Indexing done — 19 papers in MI-SPECTRAL RAG, all 17 + the 2 C&C entries.** Both new papers are now queryable via `ask_papers`.\n\nStill waiting on your call from the previous question:\n\n> Read C&C 2010 cold and report, or talk through what to check first?\n\nMy weak preference was \"talk through first\" but happy either way. What's your direction?"
+  },
+  {
+   "uuid": "174974cd-7ac8-475e-be87-d21d8a08dcce",
+   "timestamp": "2026-05-23T00:49:51.448Z",
+   "text": "Yes update. And tell me what additional papers I am going to need to add to zotero",
+   "n_words": 17,
+   "context_before": "ir experiments.** That's relevant for sizing the magnitude of our claimed improvement — the anisotropy effect we're correcting needs to be empirically larger than the small-df F-vs-chi² wiggle, or reviewers will say \"this is just a fancier F-correction.\"\n\n**My take:** safe to keep the contributions as planned. The 2010 paper sits in an adjacent corridor of MI testing, doesn't preempt our spectral angle, and clarifies what the \"established MI testing canon\" actually consists of. Update `todo/003` to mark it `verified`.\n\nWant me to update the backlog status, or talk through anything in the read?"
+  },
+  {
+   "uuid": "4e639a2d-8e15-4ff1-a5ad-0554a7894848",
+   "timestamp": "2026-05-23T00:58:23.086Z",
+   "text": "I've added the first three. already to zotero. What were the others already in 003 that you wanted me to add?",
+   "n_words": 21,
+   "context_before": " A. T. A. (1989).** \"An F approximation to the distribution of a linear combination of chi-squared variables.\" *Comm. Stat. — Simul. Comp.* 18(4), 1439–1456. DOI: `10.1080/03610918908812585`.\n\nWood's F-approximation extends Satterthwaite to F-distributions. Cite only if we end up using F-reference instead of χ²-reference for the corrected statistic.\n\n---\n\n**My recommendation:** add Satterthwaite '46 and Imhof '61 now — those are near-certain cites. Hold the other three until we're drafting and find we need them. Total Zotero entries to acquire: **2**.\n\nWant me to queue these two in `todo/003`?"
+  },
+  {
+   "uuid": "8dcc2e76-941f-47e4-9030-bb103d848db6",
+   "timestamp": "2026-05-23T01:05:42.236Z",
+   "text": "Okay. The wood I can't find the full text.",
+   "n_words": 9,
+   "context_before": "Logged. Same finish-the-acquisition step as last time: **re-export BBT** to refresh `literature/mi-spectral-better-bibTeX.bib` with the three new entries, then tell me and I'll run lit-sync + index_papers to complete the pipeline.\n\nAfter that, the corpus will be at **22 papers**, and the remaining open question for §1 framing — read Chan-Meng (2022) carefully to nail down their reference distribution — becomes the highest-leverage next move. That's queued in Task #16 and `todo/002-verification-implementation.md`."
+  },
+  {
+   "uuid": "080100bc-b0fe-4154-86a9-cd207edaaf5c",
+   "timestamp": "2026-05-23T01:06:45.339Z",
+   "text": "I check cu anshutz library. I want to do a consensus search on the regularized covariance for the noninvertable FMI",
+   "n_words": 20,
+   "context_before": " are the exact-distribution references we'll point to when discussing what our scaled-shifted form approximates\n- That trio is sufficient for the technical exposition we have planned\n\nIf you do want Wood for completeness later, your CU Anschutz library subscription likely has it via Taylor & Francis Online — but it's optional, not blocking. Move on.\n\n**Ready for the next step whenever you are:** re-export BBT (now including Satterthwaite/Imhof/Davies) → I run lit-sync + index_papers → corpus at 22 papers → on to reading Chan–Meng (2022) carefully for the reference-distribution work (Task #16)."
+  },
+  {
+   "uuid": "dad38737-3568-42df-b9de-05ec14825c62",
+   "timestamp": "2026-05-23T01:07:19.423Z",
+   "text": "Just give me the query to consensus",
+   "n_words": 7,
+   "context_before": "Right move — invoking the consensus-insight skill so we can land on actual papers rather than training-weight names."
+  },
+  {
+   "uuid": "f6906ecc-064b-4538-8fed-a01e556c0654",
+   "timestamp": "2026-05-23T01:08:25.484Z",
+   "text": "I've going to give you the consensus result. I need you to save the result verbatum.",
+   "n_words": 16,
+   "context_before": "Got it. Query for Consensus:\n\n> **What are the well-established methods for regularized covariance matrix estimation when the number of observations is smaller than the dimension (rank-deficient sample covariance), with applications to recovering the underlying eigenvalue spectrum?**\n\nRun it and paste back whatever it returns — I'll synthesize against our context (the small-$M$ FMI matrix problem in §6 Discussion) and we can decide what to acquire."
+  },
+  {
+   "uuid": "3e8bd0db-631b-4593-b8e9-0ec6f53ef619",
+   "timestamp": "2026-05-23T01:09:00.797Z",
+   "text": "# **Regularized High-Dimensional Covariance & Spectrum Estimation:** Main Method Families\n\nWhen the number of variables exceeds or rivals the number of samples, the sample covariance is rank-deficient or ill-conditioned and its eigenvalues are heavily biased. Research has developed several regularization strategies that either impose structure on the covariance or directly correct the eigenvalue spectrum, often with the goal of recovering population eigenvalues.\n\n## **Main Classes of Regularized Covariance Estimators**  \n\n### **1. Structured (Model-Based) Covariance Estimation**  \n- **Tapering/banding:** Enforce approximate banded structure (e.g., time/space ordering) and often combine with shrinkage toward identity, such as the **Tabasco** tapered–shrinkage estimator for low n/p ratios  (Lam, 2019; Karoui, 2006).  \n- **Factor / spiked covariance models:** Use low-rank plus noise structure and adjust eigenvalues/eigenvectors; examples include S-POET for spiked models and factor-based methods  (Lam, 2019; Wang & Fan, 2017).  \n- These methods improve conditioning and can target interpretable structure but rely on correct model assumptions  (Lam, 2019; Karoui, 2006; Bartz, 2016).  \n\n### **2. Shrinkage Toward Simple Targets (Linear / Polynomial Shrinkage)**  \n- **Linear shrinkage (Ledoit–Wolf and extensions):** Shrink sample covariance toward a multiple of the identity (or other targets) with analytically chosen weights to minimize mean squared error, effective in “large p, small n” and under elliptical distributions  (Lam, 2019; Won et al., 2013; Zhang et al., 2022; Ollila & Raninen, 2018; Chen et al., 2010).  \n- **Higher-order Stein-type shrinkage:** Model the estimator as a polynomial in the sample covariance and a target matrix, optimized via convex MSE criteria to yield well-conditioned estimators  (Ledoit & Wolf, 2012).  \n- **Condition-number regularization:** Directly constrain the condition number using a likelihood-based approach, yielding a Steinian-type shrinkage estimator  (Won et al., 2013).  \n\n### **3. Rotation-Invariant / Eigenvalue-Shrinkage Methods**  \n\n| Goal | Typical Approach | Population spectrum link | Citations |\n|------|------------------|--------------------------|-----------|\n| Better eigenspectrum | Nonlinear shrinkage of sample eigenvalues (keep eigenvectors) | Uses large‑dimensional random matrix theory; approximates oracle eigenvalue map |  (Lam, 2019; Won et al., 2013; Ledoit & Wolf, 2020; Jain et al., 2023; Ledoit & Wolf, 2020)|\n| Direct spectrum recovery | Solve a Marčenko–Pastur–based inverse problem for eigenvalue distribution | Estimates population eigenvalue distribution via convex optimization, then recovers eigenvalues |  (Lam, 2019; Karoui, 2006; Jain et al., 2023; Banerjee & Monni, 2021)|\n| Optimal shrinkers in spiked models | Design loss-specific optimal eigenvalue shrinkers | Closed forms under spiked covariance asymptotics |  (Wang & Fan, 2017; Donoho et al., 2013)|\n| Moment-based spectrum estimation | Recover moments then eigenvalues (even n ≪ p) | Gives finite-sample error bounds, consistent even when n/p→0 |  (Kong & Valiant, 2016)|\n\n**Figure 1:** Key eigenvalue-based methods for spectrum estimation\n\nRotation-invariant approaches are central for **recovering the underlying eigenvalue spectrum**: they explicitly model the link between sample and population eigenvalues using random matrix theory (Marčenko–Pastur) and/or spiked models  (Wang & Fan, 2017; Karoui, 2006; Ledoit & Wolf, 2020; Jain et al., 2023; Kong & Valiant, 2016; Banerjee & Monni, 2021; Donoho et al., 2013).  \n\n### **4. Bayesian and Robust Shrinkage**  \n- **Bayesian gSIW prior:** Generalized shrinkage inverse-Wishart priors give posterior-consistent eigenvalues/eigenvectors under spiked covariance, even when p/n→∞  (Kim et al., 2025).  \n- **Robust shrinkage (Tyler-type):** Regularized robust estimators handle heavy-tailed elliptical data and remain usable in n < p, with MMSE-based shrinkage selection  (Chen et al., 2010).  \n\n## **Summary**  \n\nWell-established tools include (i) structural regularizers (factor, tapering/banding), (ii) shrinkage toward simple targets (linear or higher-order), (iii) rotation-invariant eigenvalue shrinkage and spectrum inversion using Marčenko–Pastur and spiked models, and (iv) Bayesian and robust shrinkage priors. For **eigenvalue spectrum recovery**, nonlinear eigenvalue shrinkage and random-matrix-based spectrum estimators are the main workhorses, often providing consistent population eigenvalue estimates even when the sample covariance is rank-deficient.\n \n_These search results were found and analyzed using Consensus, an AI-powered search engine for research. Try it at https://consensus.app. © 2026 Consensus NLP, Inc. Personal, non-commercial use only; redistribution requires copyright holders’ consent._\n \n## References\n \nBanerjee, S., & Monni, S. (2021). An Orthogonally Equivariant Estimator of the Covariance Matrix in High Dimensions and for Small Sample Sizes.. *Journal of statistical planning and inference, 213*, 16-32. https://doi.org/10.1016/j.jspi.2020.10.006\n \nBartz, D. (2016). Advances in high-dimensional covariance matrix estimation. https://doi.org/10.14279/depositonce-5038\n \nChen, Y., Wiesel, A., & Hero, A. (2010). Robust Shrinkage Estimation of High-Dimensional Covariance Matrices. *IEEE Transactions on Signal Processing, 59*, 4097-4107. https://doi.org/10.1109/tsp.2011.2138698\n \nDonoho, D., Gavish, M., & Johnstone, I. (2013). Optimal Shrinkage of Eigenvalues in the Spiked Covariance Model.. *Annals of statistics, 46 4*, 1742-1778. https://doi.org/10.1214/17-aos1601\n \nJain, S., Krishnamurthy, V., Rangaswamy, M., Kang, B., & Gogineni, S. (2023). Radar Clutter Covariance Estimation: A Nonlinear Spectral Shrinkage Approach. *IEEE Transactions on Aerospace and Electronic Systems, 59*, 7640-7653. https://doi.org/10.1109/taes.2023.3292069\n \nKaroui, N. (2006). Spectrum estimation for large dimensional covariance matrices using random matrix theory. *Annals of Statistics, 36*, 2757-2790. https://doi.org/10.1214/07-aos581\n \nKim, S., Lee, K., Park, S., & Lee, J. (2025). Eigenstructure inference for high-dimensional covariance with generalized shrinkage inverse-Wishart prior.\n \nKong, W., & Valiant, G. (2016). Spectrum Estimation from Samples. *ArXiv, abs/1602.00061*. https://doi.org/10.1214/16-aos1525\n \nLam, C. (2019). High‐dimensional covariance matrix estimation. *Wiley Interdisciplinary Reviews: Computational Statistics, 12*. https://doi.org/10.1002/wics.1485\n \nLedoit, O., & Wolf, M. (2020). Shrinkage estimation of large covariance matrices: Keep it simple, statistician?. *J. Multivar. Anal., 186*, 104796. https://doi.org/10.5167/uzh-172202\n \nLedoit, O., & Wolf, M. (2012). Nonlinear Shrinkage Estimation of Large-Dimensional Covariance Matrices. *Annals of Statistics, 40*, 1024-1060. https://doi.org/10.1214/12-aos989\n \nLedoit, O., & Wolf, M. (2020). The Power of (Non-)Linear Shrinking: A Review and Guide to Covariance Matrix Estimation. *Journal of Financial Econometrics*. https://doi.org/10.1093/jjfinec/nbaa007\n \nOllila, E., & Raninen, E. (2018). Optimal Shrinkage Covariance Matrix Estimation Under Random Sampling From Elliptical Distributions. *IEEE Transactions on Signal Processing, 67*, 2707-2719. https://doi.org/10.1109/tsp.2019.2908144\n \nWang, W., & Fan, J. (2017). Asymptotics of empirical eigenstructure for high dimensional spiked covariance.. *Annals of statistics, 45 3*, 1342-1374. https://doi.org/10.1214/16-aos1487\n \nWon, J., Lim, J., Kim, S., & Rajaratnam, B. (2013). Condition‐number‐regularized covariance estimation. *Journal of the Royal Statistical Society: Series B (Statistical Methodology), 75*. https://doi.org/10.1111/j.1467-9868.2012.01049.x\n \nZhang, B., Huang, H., & Chen, J. (2022). Estimation of Large-Dimensional Covariance Matrices via Second-Order Stein-Type Regularization. *Entropy, 25*. https://doi.org/10.3390/e25010053",
+   "n_words": 982,
+   "context_before": "Ready. Default location I'd save to: `C:\\Users\\marcu\\Google Drive\\Literature\\MI-SPECTRAL\\_notes\\consensus-regularized-covariance-2026-05-22.md` — that's inside the litrev project's notes folder so it's discoverable from project_status and other litrev tools, and dated so future Consensus runs don't overwrite.\n\nPaste the result and I'll write it verbatim to that path. Tell me if you'd rather it land somewhere else."
+  },
+  {
+   "uuid": "60f48efd-7868-4fa6-a284-bc14f8a0d375",
+   "timestamp": "2026-05-23T01:10:16.636Z",
+   "text": "Yes. Remember. What's the candidate as just a future reference",
+   "n_words": 10,
+   "context_before": "? Quick reaction without committing: **Lam (2019)** is the natural one-citation choice — it's a *WIREs Computational Statistics* review covering all the families (structured, linear/polynomial shrinkage, rotation-invariant, Bayesian/robust), so citing it gives readers a one-stop entry point without us picking sides among Ledoit-Wolf vs Donoho et al. vs Karoui. **Karoui (2006)** and **Ledoit-Wolf (2012)** would be the next-most-precise references if you want the \"named methods\" version.\n\nLet me know how you want to use this — and we can also queue the right papers in `todo/003` once you decide."
+  },
+  {
+   "uuid": "c0e88fec-719e-460b-bc83-c3f6fa9ff13f",
+   "timestamp": "2026-05-23T01:12:10.698Z",
+   "text": "Alright. Should we do a consensus search to see if there ia an alternative to Wood (1989)?",
+   "n_words": 17,
+   "context_before": "10.1002/wics.1485` — the single future-work citation\n- Ledoit-Wolf and Marchenko-Pastur entries marked `rejected (subsumed by Lam 2019)` so we don't re-propose them later\n\n**Action on your side:** add Lam (2019) to Zotero (just one new paper, fast — DOI works for CrossRef metadata). Then on the next BBT re-export I'll pick it up along with Satterthwaite/Imhof/Davies.\n\nTo make it concrete, that means after your next round of Zotero work, the next message I should expect is essentially: *\"OK, added Lam 2019 and re-exported.\"* Then I run lit-sync + index_papers and the corpus is at **23 papers**."
+  },
+  {
+   "uuid": "bd0546c0-e500-47dc-adf8-68a8a637226b",
+   "timestamp": "2026-05-23T01:13:08.245Z",
+   "text": "Should I delete the wood reference then since we don't have full text?",
+   "n_words": 13,
+   "context_before": " been an *F*-flavored alternative to that lineage, but since we're sticking with the χ² reference, it's not a missing piece — it's a different choice we're not making.\n\n**My recommendation: skip the Consensus search and the acquisition.** We don't have an actual citation gap; we have a paper-I-mentioned-in-conversation gap, and the right disposition for that (per `todo/003`'s discipline) is to drop it rather than chase it.\n\nIf you want belt-and-suspenders coverage anyway, the search wouldn't hurt — but I'd flag it as low-yield given we already have four references covering the relevant ground."
+  },
+  {
+   "uuid": "e821e3e6-a9c7-449e-848b-7c990ffe3e69",
+   "timestamp": "2026-05-23T01:14:55.230Z",
+   "text": "Okay. I've updated the BBT. But we need to migrate the pdfs to google drive, mathpix, move markdown to literature, etc.",
+   "n_words": 21,
+   "context_before": "Logged. **Net state:** delete Wood from Zotero whenever convenient; no follow-up action needed from me on that one. The citation lineage for the scaled-shifted form is closed.\n\nAfter you add Lam (2019) and re-export BBT, the pipeline runs (lit-sync + index_papers) and we land at **23 papers**, all `verified` or `acquired`, with no unresolved citation gaps for the §1–§8 derivation or the §10 Discussion."
+  },
+  {
+   "uuid": "f39bc86f-39f1-4a7b-b47c-e8b71879691c",
+   "timestamp": "2026-05-23T01:17:14.392Z",
+   "text": "Okay. Updated",
+   "n_words": 2,
+   "context_before": "hese three Zotero items, edit the Date field to just the year:\n\n| Zotero key | Date currently | Should be |\n|---|---|---|\n| `RWQFUFCF` (Lam) | `03/2` | `2019` |\n| `CST8VTTS` (Aerts) | `09/1` | `1999` |\n| `QRN2DWYE` (Satterthwaite) | `12/1` | `1946` |\n\nAfter you fix the dates, **don't need to refresh BBT keys this time** (the citekey itself looks fine in each — the bug is just the filename). Just re-export the BBT bib, then ping me. I'll re-run migrate (picks up the 3 with their fixed dates), then lit-sync (writes the 5 new `literature/<citekey>.md` files), then index_papers (adds them to RAG)."
+  },
+  {
+   "uuid": "3ceb5111-da75-42ca-ab96-7b21dcfb1cce",
+   "timestamp": "2026-05-23T01:21:14.210Z",
+   "text": "Add a git issue to litrev_MCP",
+   "n_words": 6,
+   "context_before": "nning. Will be notified when done.\n\nWorth noting: this is the second Windows-specific issue with the auto-generated `index_papers.py` (after the SSL one). Both are fixable with one-line additions:\n- `import truststore; truststore.inject_into_ssl()` at the top\n- `PYTHONIOENCODING=utf-8` env or `sys.stdout.reconfigure(encoding='utf-8')` in the script\n\nProbably worth a follow-up litrev_mcp issue at some point. Lower priority than the embedding-batch issue we already filed, but the pattern is the same: standalone scripts need extra hardening for Windows users compared to MCP-server-side execution."
+  },
+  {
+   "uuid": "e06c1d3b-55db-4119-8de5-311950b0f129",
+   "timestamp": "2026-05-23T01:25:02.666Z",
+   "text": "Yes. Let’s read carefully",
+   "n_words": 4,
+   "context_before": " | 3 | Satterthwaite, Imhof, Davies |\n| Future-work pointer | 1 | Lam (2019) |\n| OS-test lineage anchor | 1 | Aerts et al. (1999) |\n| **Total** | **24** | RAG-indexed, lit-synced, hook-guarded |\n\nSide effects of this session: two upstream issues filed at litrev_mcp (`#21` embed batch overflow — patched and verified; `#22` Windows hardening of generate_index_script — proposed fixes).\n\n**Next highest-leverage move:** read Chan-Meng (2022) carefully (Task #16) — implement their reference distribution faithfully before any simulation work. After that, we're free to start §1 drafting.\n\nWhat's next?"
+  },
+  {
+   "uuid": "5e5ad394-a75b-4c2a-b939-88119e6d4df9",
+   "timestamp": "2026-05-23T01:30:31.302Z",
+   "text": "Okay. I've added it and updated the BBT. Now we need to migrate, mathpix, etc.",
+   "n_words": 15,
+   "context_before": "Pages: 1489–1514\n   - Date: 2022\n   - URL: http://www3.stat.sinica.edu.tw/statistica/J32N3/J32N313/J32N313.html\n   - (DOI: leave blank, or try `10.5705/ss.202020.0349`)\n\n2. **Attach the PDF** — Statistica Sinica makes it freely downloadable from that URL.\n\n3. **Re-export BBT, then ping me.** I'll run migrate + index_papers + lit_sync, then read it carefully — which is what we were going to do anyway, but now actually doable.\n\nI'd also recommend we audit `todo/001`'s table one more time to make sure we don't have other invisible gaps. Want me to do that audit while you handle the Chan-Meng add?"
+  },
+  {
+   "uuid": "25d9be0d-2f55-4554-8b37-1cdf91a4037b",
+   "timestamp": "2026-05-23T01:35:30.883Z",
+   "text": "I've added Chan (2021) and updated BBT",
+   "n_words": 7,
+   "context_before": "ted entirely).\n\n**Action:** add Chan (2021) to Zotero — title is \"General and feasible tests with multiply-imputed datasets\" by Kwun Chuen Gary Chan, *Annals of Statistics*. Listed as \"to appear\" in Chan-Meng (2022)'s references, so the actual publication year may be 2022 or 2023. Try the AoS archive or arXiv (Chan likely posted a preprint).\n\nAfter you add it, the usual pipeline + I'll do the careful read. This is the highest-leverage open question on the project right now — more important than any drafting work, because the framing of the paper depends on what Chan (2021) does and doesn't do."
+  },
+  {
+   "uuid": "6acd1486-47c3-4046-90ed-825e8b57e0bf",
+   "timestamp": "2026-05-23T01:36:25.774Z",
+   "text": "ok done, lit-sync it",
+   "n_words": 4,
+   "context_before": "Indexing in background. Once it's done plus a final lit-sync pass, **26 papers, fully closed corpus** — and then the Chan AoS read becomes the last truly load-bearing thing standing between us and §1 drafting."
+  },
+  {
+   "uuid": "81e70818-5c4d-4e20-9f82-6cbf161c1945",
+   "timestamp": "2026-05-23T01:43:13.140Z",
+   "text": "Let's star with (3) and then perhaps decide from there.",
+   "n_words": 10,
+   "context_before": "lausibly novel and JASA-T&M-publishable.\n\n3. **Pause and read Chan (2022) more deeply.** I've read §1–§3 plus the abstract. §4 (his estimation theory for the $r_j$'s) and §5 (the proposed test) and §6 (simulations) might reveal places where our angle adds something I'm not yet seeing. Possible but I want to flag I think the headline collision is unambiguous.\n\n**My weak recommendation: option 2 + careful read of §4–§6 first.** The C1 bias-decomposition angle is the strongest surviving claim; if §4–§6 confirm Chan also addresses bias I haven't yet seen, then option 3 or pause.\n\nWhat's your call?"
+  },
+  {
+   "uuid": "534eca3d-e798-4db0-ae39-e959b46c65b8",
+   "timestamp": "2026-05-23T01:48:45.140Z",
+   "text": "So we know C1 survives, so that is good. It may mean we need to perhaps look away \"we are doing this as a chi-squared test\" and towards the deviance is used in lots of thing: model fit statitics, information critieria, and so we better have an unbiased estiamte of the complete data log deviance. Thoughts?",
+   "n_words": 56,
+   "context_before": "ubmission concept needs a different vehicle).\n\n## What I'd skim before final decision\n\n§5 (general MI procedures), §6 (simulations), and §7 (conclusion / future work). These could reveal:\n- Specific applications/regimes where Chan's MC approach struggles (potential openings)\n- Whether Chan addresses Le Cam-style power claims (likely yes given his Definition 1 sets up local alternatives)\n- Whether Chan has C1-adjacent material I haven't seen\n\nBut honestly, my confidence that C2/C3 are preempted is high already. Want me to do that final pass on §5–§7 to make sure, or are we now at decision time?"
+  },
+  {
+   "uuid": "947f4841-53a5-4982-802b-e3105cccd134",
+   "timestamp": "2026-05-23T02:18:25.439Z",
+   "text": "I think 1 and 2 are sufficient. . What do you mean numerator in 2?",
+   "n_words": 15,
+   "context_before": "s for our own correction — though we still need to *understand* Chan-Meng to position correctly).\n2. **Keep tasks** for V1/V2 simulation evidence (still needed) and Cavanaugh-Shumway comparison (now even more central).\n3. **Re-do the contribution paragraph in `_context.md`** and `CLAUDE.md` to reflect the deviance-focused framing.\n4. **Re-read `IDEAS.md` §\"The three claims...\"** — Claim 1 (the +½tr bias) was always in scope; Claim 2 (spectral correction) is now what we *drop*. PMM stuff stays out as before.\n\n**Does this match what you had in mind, or am I taking it further than you intended?**"
+  },
+  {
+   "uuid": "c9e3bb57-9a85-4d13-ac4c-7fd6f6b50193",
+   "timestamp": "2026-05-23T02:22:53.326Z",
+   "text": "I think that makes sense. But one thing about information criteria and why 2. Might need to come before 1. People are interested in model comparisons generally, which invokes a chi square stat. so doesn’t the chi square need to be shifted and have the right calibration, type 1 error rates as are guaranteed by complete case?",
+   "n_words": 57,
+   "context_before": " differ. The numerator carries a non-vanishing differential bias that distorts the LRT statistic's distribution. This **affects power calculations and non-centrality structure** — exactly the regime where C4 (our Le Cam conjecture) lives.\n\n**That's the application:** the LRT numerator $\\hat{d}_L$ is *not* an unbiased estimator of the complete-data deviance difference under $H_1$, and the bias structure is exactly what C1 characterizes. Chan supplies the calibration; we supply the bias-corrected numerator — together they give a fully-calibrated, fully-power-aware MI LRT.\n\nDoes that clear it up?"
+  },
+  {
+   "uuid": "28a129a5-4ed6-4a92-8392-041f43960596",
+   "timestamp": "2026-05-23T02:34:38.327Z",
+   "text": "We don’t need section 6. So what is the best case of things we show that matter",
+   "n_words": 17,
+   "context_before": "infty$. The Cavanaugh-Shumway penalty ($+2\\,\\text{tr}(\\text{RIV})$, observed-data target) and our bias correction ($+\\tfrac{1}{2}\\text{tr}(\\text{RIV})$, complete-data target) are complementary corrections at different points in the same pipeline.\n\n> §6 Application 3: Other deviance-based tools.\n>  Brief — model fit indices (handoff to MI-IC for SEM specifics), profile likelihoods, DIC variants.\n\nThis structure also lets §1 stage the contribution as \"completing the calibration story Chan (2022) started\" — which is a strong, non-competitive positioning.\n\n**Does that match where you're heading?**"
+  },
+  {
+   "uuid": "516f93c7-1b70-4e73-9e76-f516d88ea574",
+   "timestamp": "2026-05-23T02:41:41.808Z",
+   "text": "Yeah. I think this looks good. But before we commit to writing we better do some simulation tests because I think we will need to modify as it won’t all go as planned. But we can write what we think is going to happen as hypotheses to be tested under simulations",
+   "n_words": 51,
+   "context_before": "ting. §5 uses W3 to land the headline empirical consequence — model selection under MI is systematically distorted unless you bias-correct. §7 Discussion closes the loop: Chan (2022) solved the calibration problem; we solve the bias problem; both are necessary for complete-data inference recovery.\n\nW3 is doing most of the heavy lifting. If we get one witness *right*, it should be W3 — because \"MI users are doing model selection wrong unless they correct\" is the headline a JASA T&M reviewer will quote in their summary.\n\n**Does this match the level of stakes you want, or do we want it sharper?**"
+  },
+  {
+   "uuid": "970ea921-600a-40c3-a0c7-f2f26cc5313a",
+   "timestamp": "2026-05-23T02:49:27.579Z",
+   "text": "Can you make a todo list so I can clear context before stating. Oh and save a memory",
+   "n_words": 18,
+   "context_before": "erent end-to-end. Three documents (IDEAS.md, litrev `_context.md`, CLAUDE.md) all agree on:\n\n1. Bias decomposition is the headline\n2. Chan (2022) AoS is the canonical MI test-calibration reference, not a competitor\n3. Two applications: LRT (§4, W2) + Information criteria (§5, W3)\n4. W1/W2/W3 replace V1–V7\n5. Spectral correction material is archived, not active\n\n**Next per the suggested order: Task #21 — `todo/004` simulation hypotheses.** This is where W1, W2, W3 each get pre-registered: specific simulation parameters, predicted outcomes, fallback paths if predictions fail. Ready when you are."
+  },
+  {
+   "uuid": "1f02516c-2d51-4f24-bd71-5725cd640d0a",
+   "timestamp": "2026-05-23T02:52:10.422Z",
+   "text": "Give me the prompt for the next",
+   "n_words": 7,
+   "context_before": "al framing\" guidance\n- `project_reframing_2026_05_22.md` — new entry capturing the event, what survived, what changed, and how-to-apply guidance for future sessions\n- `MEMORY.md` index — both new/updated entries linked\n\nWhen you resume, the first thing future-you (or future-Claude) reads is `todo/000-current-status.md`, which routes to IDEAS.md's Reframing note for the substantive context, then to the next concrete action (write `todo/004`). The memory entries reinforce the reframe at the project-instance level so it survives even a fresh-session context clear that doesn't load the repo files."
+  }
+ ]
+}

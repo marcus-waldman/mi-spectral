@@ -1,0 +1,29 @@
+Warning message:
+package 'lavaan' was built under R version 4.5.2 
+Warning message:
+package 'pbapply' was built under R version 4.5.2 
+
+Phase-0a conjugate DA spike  [R=100, cores=20, M=50, burnin=100, thin=50]
+  cell: W1 theorem, N=200, apply_mar, theta_obs=EM MLE
+
+
+Done in 9.4s.
+
+== Phase-0a results ==
+
+Replicates: 100 ok (Amelia ok in 100)
+Conjugate DA:  T=-1.4478 (MCSE 1.0322)   A=+1.6290   B=-3.0767
+  sample tr(RIV) = 6.4060 (MCSE 0.0944)
+  analytic tr(RIV) = 5.6070 (MCSE 0.0729)
+Amelia:        T=+2.1414 (MCSE 1.0416)   sample tr(RIV) = 6.4914
+
+Gate     Check                                            Value                          Pass
+-------  -----------------------------------------------  -----------------------------  ----
+G0a-1    sample tr(RIV) - analytic (paired)               +0.7991 (2*MCSE 0.1350)      FAIL
+G0a-2    T_hat contains +1/2 sample tr(RIV)               pred +3.2030 in [-3.4708,+0.5752]  FAIL
+G0a-3    T_conjugate - T_amelia (paired)                  -3.5892 (2*MCSE 0.5415)      FAIL
+G0a-4    PSD events=0 ; RNG bit-reproducible=TRUE                                     PASS
+
+Phase-0a overall: SEE FAILS
+
+Cache: verification/cache/spikes/phase0a-da-conjugate.rds

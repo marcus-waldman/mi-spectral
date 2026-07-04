@@ -169,6 +169,44 @@ Rscript verification/ic-ladder.R 2000 6 MAIN,WEAK,JUNK
 ```
 CAS companion: `py verification/cas-wolfram/verify_ic_ladder.py`. Environment record: `verification/cache/ic-ladder-sessioninfo.txt`.
 
+**Reproduce the MI-BIC small-N probe** (todo/040 Phase 2 follow-up; exploratory, not
+pre-registered, NOT part of `run_all.R`'s phase dispatch — 4 cells, non_monotone/MAR/congenial
+only, N in {50, 100}; finds the regime where BIC's `npar*log(N)` penalty is genuinely ambiguous,
+below the N>=200 ceiling the main 60-cell grid sees):
+```
+Rscript verification/spikes/phase2-bic-smallN-probe.R <R> <out_suffix> [n_cores]
+```
+Outputs land in `verification/cache/smallN-bic-probe-<out_suffix>/` (per-cell `.rds` + `summary.csv`).
+
+**Reproduce the Phase-3 non-normal illustration** (todo/040 §9, reviewer r3#2; exploratory
+one-off illustration, NOT part of `run_all.R`'s phase dispatch — two families (Gamma
+estimated-scale via brms, Bernoulli scale-free via mice), each with a deterministic FIML-analytic
+anchor and a genuine posterior-draw engine, N=200, MCAR-only):
+```
+Rscript verification/spikes/phase3-nonnormal-illustration.R <R> <M> <out_suffix>
+```
+Outputs land in `verification/cache/phase3-nonnormal-<out_suffix>.rds`.
+
+**Reproduce the todo/045 Q2 family scan** (the pre-registered follow-up to the Phase-3
+illustration; exploratory spike, NOT part of `run_all.R`'s phase dispatch — four arms with
+targets derived and dated in `todo/045` §3.1–§3.3 BEFORE the production run: Bernoulli FITTED
+N-scan (asymptote +0.5), Bernoulli mice-draw discount (−0.2606), Poisson FITTED blind arm
+(+0.1039), Student-t known-scale exemplar (0 / −0.5); `smoke` suffix divides R by 100, code
+validation only):
+```
+Rscript verification/spikes/phase3-family-scan.R <arm|all> <out_suffix> [n_cores]
+```
+Outputs land in `verification/cache/phase3-family-scan-<arm>-<out_suffix>.rds`. Score the run
+against the registered P1–P6 criteria, and reproduce the mice fixed-seed diagnostic:
+```
+Rscript verification/spikes/phase3-family-scan-score.R prod
+Rscript verification/spikes/phase3-mice-seed-diagnostic.R
+```
+CAS companion (the derivation's 15 checks + the registered constants):
+```
+py verification/cas-wolfram/verify_bernoulli_fitted_gap.py
+```
+
 **Preregistered W1/W2/W3 originals** (todo/004; only for reproducing the SHA ddc9037 results, not for new analysis):
 ```
 Rscript verification/W1-bias-decomposition.R <mode> <engine> [n_cores] [N_override]

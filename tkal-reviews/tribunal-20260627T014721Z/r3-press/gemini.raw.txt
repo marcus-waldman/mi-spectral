@@ -1,0 +1,57 @@
+<think>
+**Ruling on Challenges**
+
+I have evaluated each of my Round-1 challenges against the defender's evidence. The most critical charges, like estimate-chasing and suppressing failed targets, have been rebutted by pre-registration data and verifiable bounds. Remaining issues primarily involve refining prose for clarity and accurate framing, with most charges now withdrawn or downgraded.
+
+ 
+</think>
+
+```json
+{
+ "rulings": [
+  {
+   "target": "Study 1 (S5-P12) 'Theorem validation' claiming confirmation against refined target",
+   "original_severity": "blocking",
+   "ruling": "partial",
+   "still_blocking": true,
+   "reasoning": "The 'hiding a miss/estimate-chasing' charge is defeated: z=-1.32 does not reject 2.77, and the augmented band is datestamped prior to fitting. However, labeling the augmented target as the confirmation locus without explicitly acknowledging the 2.77 anchor in the text remains a blocking misrepresentation of how the confirmation was staged."
+  },
+  {
+   "target": "Study 6 (S5-P17) '100% land on saturated' signature (W3C_high_RIV_frac)",
+   "original_severity": "blocking",
+   "ruling": "partial",
+   "still_blocking": true,
+   "reasoning": "The tautological nature of the endpoint in a strictly RIV-ordered candidate set holds. While the defender notes the preregistration correctly predicted this, phrasing it as uniquely discriminating the mechanism rather than confirming a directional monotonic bias remains an invalid causal claim. The prose downgrade is mandatory."
+  },
+  {
+   "target": "Study 6 (S5-P17) omission of uncongenial sweep results",
+   "original_severity": "blocking",
+   "ruling": "withdraw",
+   "still_blocking": false,
+   "reasoning": "The `todo/005` block explicitly establishes uncongeniality and MNAR as observational tests expected to fail, defeating the charge of suppressing an unmet pre-registered pass target. Per the defense, acknowledging the breakdown in Discussion §6 satisfies the disclosure commitment."
+  },
+  {
+   "target": "Study 7 (S5-P20) Structural Limits off-equality capability claim",
+   "original_severity": "blocking",
+   "ruling": "partial",
+   "still_blocking": true,
+   "reasoning": "While the equality (to 3.6e-15) is disclosed in the table, the manuscript prose functionally conflates the moment-map gap (0.824 vs 0.904) with trace-formula superiority. Decoupling the \"naive input\" moment-map effect from the actual trace superiority (proven in Study 8) is required to avoid a generically misleading capability attribution."
+  },
+  {
+   "target": "Study 4 (S5-P15) '52 standard errors' discrimination",
+   "original_severity": "major",
+   "ruling": "partial",
+   "still_blocking": false,
+   "reasoning": "The S5-P7 disclosure confirms the cell is mechanically engineered for maximal separation. The 52-sigma metric is factually correct, but the prose requires a minor amendment to properly localize and frame it as an adversarial edge-case bound rather than standalone typical performance."
+  },
+  {
+   "target": "Studies 1-5 reliance on un-inlined RDS artifacts",
+   "original_severity": "major",
+   "ruling": "partial",
+   "still_blocking": false,
+   "reasoning": "Checking against the `.rds` files demonstrates the numbers are fully reproducible across Studies 1-5. The original challenge was largely an artifact of tribunal repo-denial. Only the weak directory pointer for Study 9 requires a minor amendment to pinpoint the specific output rows."
+  }
+ ],
+ "net_assessment": "The repo-grounded defense profoundly changes the context. The most severe charges—estimate-chasing in Study 1 and suppressing failed primary targets in Study 6—are decisively rebutted by timestamped pre-registration files and correct confidence bounds that do not reject the anchor. The remaining issues are strictly localized framing defects: text must decouple trace vs moment-map performance in Study 7, downgrade the saturated-model claim to directional consistency in Study 6, and explicitly bridge the initial 2.77 target to the amended band in Study 1. Standardizing wording patches resolves this section. I assess Section 5 as AMEND."
+}
+```

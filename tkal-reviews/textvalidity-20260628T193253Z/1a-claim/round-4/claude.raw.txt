@@ -1,0 +1,26 @@
+{
+  "keep": [
+    { "id": "K05", "priority": 1, "reason": "Strong unearned impossibility claim ('no transformation can recover it'); top severity." },
+    { "id": "K17", "priority": 2, "reason": "Restates the same impossibility overclaim; unanimous." },
+    { "id": "K01", "priority": 3, "reason": "Abstract overstates that trace correction 'restores complete-data-equivalent selection.'" },
+    { "id": "K24", "priority": 4, "reason": "'every deviance and every information criterion ... too optimistic' is a sign overclaim." },
+    { "id": "K25", "priority": 5, "reason": "Abstract model-selection bias claim stated too broadly." },
+    { "id": "K04", "priority": 6, "reason": "'restores complete-data behavior entirely' overstated." },
+    { "id": "K11", "priority": 7, "reason": "Trace-only removal + ranking restoration overclaim." },
+    { "id": "K23", "priority": 8, "reason": "Decision equivalence with complete data too broad." },
+    { "id": "K27", "priority": 9, "reason": "Deterministic 'therefore favors' ranking overclaim." },
+    { "id": "K29", "priority": 10, "reason": "Empirical reproduction described as 'bounds the cost'; not a bound." },
+    { "id": "K22", "priority": 11, "reason": "'bias exists only when the fit estimates a scale' contradicted by known-scale MI." },
+    { "id": "K28", "priority": 12, "reason": "'held across all sixty cells' scope vs registered prediction unclear." },
+    { "id": "K36", "priority": 13, "reason": "'Only one information criterion has been proposed' ignores other cited criteria." },
+    { "id": "K21", "priority": 14, "reason": "Nested-test correction conflation overclaim." },
+    { "id": "K18", "priority": 15, "reason": "'trust the result the way complete-data results are trusted' too broad." },
+    { "id": "K02", "priority": 16, "reason": "Adopting; 'every misclassification' lacks the design/congenial-cell qualifier." },
+    { "id": "K34", "priority": 17, "reason": "Satorra-Bentler statistic needs a test citation." },
+    { "id": "K15", "priority": 18, "reason": "Counterfactual single-family workflow claim is speculation." },
+    { "id": "K33", "priority": 19, "reason": "Speculation about field history; lower priority." },
+    { "id": "K35", "priority": 20, "reason": "Adopting; points to separately-developed methods without the needed reference." }
+  ],
+  "add": [],
+  "drop_notes": "none"
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "quorum",
+  "title": "Text-validity defense (1a claim-support): does the prose earn its claims as written?",
+  "study": "textval-quorum-1a",
+  "proposal": "proposal.md",
+  "background": "background.md",
+  "attack_surface": "attack_surface.md",
+  "criteria": ["claim_support", "scope_calibration", "internal_consistency", "citation_support"],
+  "criterion_bar": {
+    "claim_support": "The sentence is earned by the paper's own derivation, figure, or pre-registration, or by a cited source, and asserts no result the paper does not establish. A sentence that states an unproven impossibility, an untested counterfactual, or an empirical check as if it were a derived bound/proof FAILS this bar.",
+    "scope_calibration": "The sentence is stated at the strength and scope the established result supports. An absolute, universal, or deterministic wording (e.g. 'every', 'only', 'entirely', 'restores', 'therefore favors', 'all sixty cells') FAILS where the established result is partial, in-expectation, conditional, or scoped (to congenial cells, to the estimated-scale case, to a strong-signal/equal-fit regime).",
+    "internal_consistency": "The sentence does not contradict another part of the paper -- a stated limitation (e.g. G4: no argument shows no observed-data estimator could do better), a hedge used elsewhere for the same claim, or the paper's own likelihood-ratio result (that the difference of per-candidate corrections overstates the nested-comparison bias). A sentence that contradicts the paper's own qualifier FAILS.",
+    "citation_support": "A sentence that names an external method or result, or points to work 'developed separately', carries a citation or cross-reference the reader can follow. A named external method introduced with no citation, or a pointer to uncited separate work, FAILS."
+  },
+  "defender": "session",
+  "preset": "standard",
+  "peers": ["openai", "gemini"],
+  "lead": "openai",
+  "max_rounds": 3,
+  "routes": { "gemini": "deepinfra" },
+  "models": { "gemini": "google/gemini-3.1-pro" },
+  "params": { "openai": { "effort": "high" } },
+  "seed": 20260628
+}
