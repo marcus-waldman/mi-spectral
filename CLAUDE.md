@@ -196,8 +196,13 @@ validation only):
 ```
 Rscript verification/spikes/phase3-family-scan.R <arm|all> <out_suffix> [n_cores]
 ```
-Outputs land in `verification/cache/phase3-family-scan-<arm>-<out_suffix>.rds`. CAS companion
-(the derivation's 15 checks + the registered constants):
+Outputs land in `verification/cache/phase3-family-scan-<arm>-<out_suffix>.rds`. Score the run
+against the registered P1–P6 criteria, and reproduce the mice fixed-seed diagnostic:
+```
+Rscript verification/spikes/phase3-family-scan-score.R prod
+Rscript verification/spikes/phase3-mice-seed-diagnostic.R
+```
+CAS companion (the derivation's 15 checks + the registered constants):
 ```
 py verification/cas-wolfram/verify_bernoulli_fitted_gap.py
 ```
