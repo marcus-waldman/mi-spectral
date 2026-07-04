@@ -1,8 +1,12 @@
 # Todo 045 — REGISTRATION + PLAN: why the Phase-3 Bernoulli check HARKed, and why the numbers look the way they do
 
 **Status:** Q1 CLOSED 2026-07-03 (same session, continued); Q2 3a DERIVED + CAS-VERIFIED
-2026-07-04 (§3.1 below; cross-model gate launched same day), 3b/3c REGISTERED 2026-07-04 (§3.2,
-§3.3 below) with all targets derived and dated before the production scans ran. Written at the
+2026-07-04 (§3.1; cross-model gate launched same day), 3b/3c REGISTERED (§3.2, §3.3, committed
+`4aaeaae` pre-production) and EXECUTED same day — **all five substantive registered criteria
+PASS** (§3.4: Bernoulli asymptote $+0.512\pm0.037$ vs derived $+0.5$; Poisson blind arm
+$+0.113\pm0.027$ vs derived $+0.104$; t-exemplar $+0.025/-0.483$ vs derived $0/-0.5$ — OBJ-07
+attributed, OBJ-08 closed by evidence). Remaining: GPT-5.5 gate verdict, then the §4 rewrite
+(staged, pending Marcus). Written at the
 end of the session that ran the Phase-3 non-normal illustration (todo/040 §9-10), then ran it
 through an adversarial `tkal-in-ket` quorum (Gemini + Claude-Opus peers) after Marcus flagged the
 write-up as HARKing-shaped. Determination: **AMENDED** — the position survives only via substantial
@@ -443,6 +447,82 @@ disclosed here rather than used); targets, design, and seeds unchanged.
 - **P6 (proper draw).** PASS if the draw ratio is within $2$ se of $-0.500$.
 P5+P6 passing supplies exactly the "genuine two-parameter fixed-scale non-normal exemplar"
 OBJ-08's option (b) asked for, with both targets derived and dated before any code ran.
+
+---
+
+### §3.4 Q2 3b/3c RESULTS (2026-07-04; production run AFTER the §3.1–§3.3 registration commit `4aaeaae`)
+
+**Scorecard against the registered criteria** (`verification/spikes/phase3-family-scan-score.R prod`;
+caches `verification/cache/phase3-family-scan-*-prod.rds`):
+
+| Criterion | Registered target | Measured | Verdict |
+|---|---|---|---|
+| P1 Bernoulli FITTED asymptote | $\hat a$ within 2 se of $+0.500$ | $\hat a=+0.512\pm0.037$ ($0.32$ se) | **PASS** |
+| P1 continuity vs cached $+0.846\pm0.161$ | within 2 combined se | $2.03$ combined se | FAIL (marginal; see below) |
+| P2 draw discount at $N{=}2000$ | within 2 se of $-0.2606$ | $-0.313\pm0.070$ ($0.75$ se) | **PASS** |
+| P3 Poisson blind arm at $N{=}1000$ | within 2 se of $+0.1039$ | $+0.284\pm0.112$ ($1.61$ se) | **PASS** |
+| P4 sample tr(RIV) within 3% at every $N$ | $\le3\%$ | max $3.25\%$ ($N{=}200$) | FAIL (threshold error; see below) |
+| P5 t-exemplar FITTED | within 2 se of $0$ | $+0.025\pm0.049$ ($0.51$ se) | **PASS** |
+| P6 t-exemplar proper draw | within 2 se of $-0.500$ | $-0.483\pm0.049$ ($0.36$ se) | **PASS** |
+
+All five substantive criteria pass. The two failures are hygiene checks, and both have plain
+explanations that do not touch any claim. The continuity check fails at $2.03$ se against a
+$2.00$ se threshold: the new $N{=}200$ estimate is $+0.5176\pm0.0116$ at $R{=}200{,}000$, so the
+cached $+0.846\pm0.161$ at $R{=}1{,}000$ was itself the outlier draw (a $p\approx0.04$ event),
+not a generator mismatch — the two scripts compute identical estimands and the $R{=}2{,}000$
+smoke run ($+0.466\pm0.117$) sits with the new value. The P4 threshold was registered against
+the $M{=}\infty$ analytic value and forgot Rubin's $(1+1/M)$ factor that the sample estimator
+deliberately carries; against the $M$-adjusted comparator $0.5641\times1.02=0.5754$ the four
+deviations are $+1.2\%,-1.3\%,+1.1\%,-0.4\%$ — all inside. No ratio is affected (all registered
+ratios use the analytic denominator).
+
+**The full Bernoulli FITTED N-scan** (analytic denominator): $+0.5176\pm0.0116$ ($N{=}200$),
+$+0.5273\pm0.0279$ ($500$), $+0.5040\pm0.0556$ ($1000$), $+0.4083\pm0.1111$ ($2000$). WLS
+$a+C/N$: $\hat a=+0.512\pm0.037$, $\hat C=+1.3$; the $N{=}200$ point alone gives
+$(ratio-\tfrac12)\cdot N=+3.5\pm2.3$, the same order as the exact-enumeration constants
+($+0.59$ intercept-only, $+1.6$ two-point). **OBJ-07 is hereby attributed**: the quorum-era
+"$+0.853$, 2.2 se from $+0.5$, unattributed" decomposes into (i) the derived asymptote $+0.5$
+(Lemma P, §3.1), (ii) a small real finite-$N$ term of order $+3.5/N$ on the ratio scale
+($\approx+0.018$ at $N{=}200$), and (iii) Monte-Carlo noise at $R{=}1{,}000$ (se $0.161$), which
+contributed essentially all of the apparent $+0.35$ excess. The flat-at-$0.85$ refutation
+scenario is excluded at every $N$.
+
+**The Poisson blind arm landed on its derived target**: $+0.1132\pm0.0274$ at $N{=}200$
+($R{=}100\text{k}$; $0.34$ se from the registered $+0.1039$) and $+0.284\pm0.112$ at $N{=}1000$
+($R{=}30\text{k}$, $1.61$ se). A family with no prior simulation in this repo, whose registered
+target sits far from both naive candidates ($+0.5$ and $0$), landed on the $\Delta_h$ value —
+the sharpest out-of-family confirmation of the §3.1 mechanism, and it empirically falsifies the
+stale D-24/G9 suggestion that Poisson behaves like Bernoulli ("the identical one-line argument"):
+Poisson escapes the known-scale collapse, but its non-constant base measure moves its FITTED
+asymptote to $+0.104$, not $+0.5$.
+
+**The Student-t known-scale exemplar confirms both derived targets outside MVN**: FITTED
+$+0.025\pm0.049$ (target $0$), proper draw $-0.483\pm0.049$ (target $-0.500$), $R{=}200\text{k}$.
+**OBJ-08 is resolved by evidence** — its option (b), the "genuine two-parameter fixed-scale
+non-normal exemplar," now exists with both targets derived and dated before any code ran
+(§3.3): the known-scale collapse is no longer verified only in the multivariate normal family.
+
+**The draw arm, and a defect found in the ORIGINAL phase-3 script.** The new scan's paired
+draw$-$FITTED discount: $-0.383\pm0.023$ ($N{=}200$), $-0.274\pm0.035$ ($500$),
+$-0.340\pm0.048$ ($1000$), $-0.313\pm0.070$ ($2000$) — consistent with the derived asymptote
+$-0.2606$ from $N\ge500$ (P2 passes), with a real finite-$N$ excess at $N{=}200$. The original
+phase-3 draw value ($-0.2232\pm0.0216$) is NOT reproduced by fresh-seed runs, and the mechanism
+is now identified (`verification/spikes/phase3-mice-seed-diagnostic.R`): the original script
+called `mice(..., seed = 1)` on EVERY repetition, so all 1000 repetitions shared a single
+50-draw z-set, and the quoted se treated those draws as independent when they were not. A
+fixed-seed replica on the original data stream reproduces the original value ($-0.2410\pm0.0314$);
+freeing the seed on the same stream gives $-0.2968\pm0.0308$; a mice-bypass with textbook
+$N(\hat\beta,\hat V)$ draws gives $-0.2769\pm0.0158$, one se from the derived asymptote — so
+mice's internals are not the anomaly, the fixed seed was. Consequence for the stale texts: the
+original draw ratio $+0.628$ carried BOTH the FITTED arm's Monte-Carlo fluke AND this fixed-seed
+artifact; the rewrite must quote the new scan's values instead. (The same `seed = 1` usage sits
+in the Gamma/brms arm's `brm(..., seed = 1)`; the Gamma numbers stay quoted as directional-only
+with that caveat.)
+
+**Status after §3.4:** 3a derived + CAS-verified + production-confirmed; 3b executed (P1–P4
+scored); 3c executed (P5/P6 passed — OBJ-08 closed by evidence). Remaining before the §4
+rewrite lands: the GPT-5.5 Pro gate verdict (Mode A blind + Mode B red-team, launched
+2026-07-04, `todo/045b`), then Marcus's ratification of the staged text.
 
 ---
 

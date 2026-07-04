@@ -187,6 +187,21 @@ Rscript verification/spikes/phase3-nonnormal-illustration.R <R> <M> <out_suffix>
 ```
 Outputs land in `verification/cache/phase3-nonnormal-<out_suffix>.rds`.
 
+**Reproduce the todo/045 Q2 family scan** (the pre-registered follow-up to the Phase-3
+illustration; exploratory spike, NOT part of `run_all.R`'s phase dispatch — four arms with
+targets derived and dated in `todo/045` §3.1–§3.3 BEFORE the production run: Bernoulli FITTED
+N-scan (asymptote +0.5), Bernoulli mice-draw discount (−0.2606), Poisson FITTED blind arm
+(+0.1039), Student-t known-scale exemplar (0 / −0.5); `smoke` suffix divides R by 100, code
+validation only):
+```
+Rscript verification/spikes/phase3-family-scan.R <arm|all> <out_suffix> [n_cores]
+```
+Outputs land in `verification/cache/phase3-family-scan-<arm>-<out_suffix>.rds`. CAS companion
+(the derivation's 15 checks + the registered constants):
+```
+py verification/cas-wolfram/verify_bernoulli_fitted_gap.py
+```
+
 **Preregistered W1/W2/W3 originals** (todo/004; only for reproducing the SHA ddc9037 results, not for new analysis):
 ```
 Rscript verification/W1-bias-decomposition.R <mode> <engine> [n_cores] [N_override]
