@@ -4,13 +4,14 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Respond to the v1 AI review (paper 88): empirical reruns for the two cheap gaps (data-augmentation replication + MI-BIC) + prose/response-letter for the rest; non-normal via brms gated on a runtime spike; fold in the pending per-paragraph annotation + compile-enablement toward JAIGP submission."
-last_synced_commit: dd0cb53
+last_synced_commit: 5b35192
 tree_state: clean
-updated: "2026-07-04T16:07:23Z"
+updated: "2026-07-04T16:43:38Z"
 updated_by: wrap
 cockpit: { provider: null, list_id: null }
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 ---
+
 
 
 
@@ -111,9 +112,9 @@ _This session (2026-07-03, continued yet further) -- the two threads were split 
 
 # Next 3 actions
 
-1. **Triage the GPT-5.5 Pro gate when it returns** (`todo/045b`, launched 2026-07-04, backgrounded; outputs land at `verification/cache/layer3-gpt-5.5-pro-bern-glm-mode{A,B}.md`). Score Mode A's blind landing against the grading key (expected: +0.5 Bernoulli, base-measure term for Poisson with negative sign, draw discount = the (C) functional, t-exemplar 0/-0.5); triage any Mode B refutation of C1-C8 against the CAS + exact enumerations per the package's own policy. Record the verdict in todo/045; any sustained refutation reopens Sec.3.1 and BLOCKS the landing.
+1. **Marcus: ratify (or amend) `todo/045c-staged-rewrites.md`.** The GPT-5.5 Pro gate is CLEARED (2026-07-04, todo/045 Sec.3.5, commit `5b35192`): Mode A blind = full independent agreement on every grading-key item, including its own -0.260 discount quadrature; Mode B = zero refutations (C1-C5 + C8 sustained outright; its two numerical escalations closed same-day by a third quadrature route to six decimals, `verify_045b_escalations.py`). This ratification is now the ONLY gate in front of the landing.
 
-2. **On gate-pass + Marcus's ratification of `todo/045c-staged-rewrites.md`: land the rewrites ONCE, per its Sec.5 checklist** -- G9 via a new `manuscript/plan/updates/*.py` script (check_plan green, rebuild, render exit 0); the r3#2 letter body, the D-24 superseding pointer + new D-25, and the todo/040 Sec.9 amendment via Bash writes (citation-hook cwd gotcha). One landing commit citing todo/045c; todo/045 status -> CLOSED.
+2. **On ratification: land the rewrites ONCE, per todo/045c Sec.5** -- G9 via a new `manuscript/plan/updates/*.py` script (check_plan green, rebuild, render exit 0); the r3#2 letter body, the D-24 superseding pointer + new D-25, and the todo/040 Sec.9 amendment via Bash writes (citation-hook cwd gotcha). One landing commit citing todo/045c; todo/045 status -> CLOSED. Mode B's one cosmetic note travels with any future derivation.qmd landing (state the outer expectation on the (A)/(C) displays).
 
 3. **Then the submission tail: r3#3 (Marcus picks/acquires one of the four todo/003 candidates -- Nguyen-Carlin-Lee 2017 or He-Zaslavsky 2012 leading -- then verify + draft the Discussion sentence), per-paragraph annotation + compile-enablement -> derivation-audit 0/0 -> Zenodo -> JAIGP.** Branch is pushed through `bb5ebec` (registration/results/staging commits are public, so the pre-registration timestamps are checkable); `dd0cb53` + this wrap push with the wrap. Optional/cheap: extend the E3 bootstrap-floor exact-identity arm (gate item C7); verify Mode B's IMB closed form. Frozen preregistered originals UNTOUCHED.
 
