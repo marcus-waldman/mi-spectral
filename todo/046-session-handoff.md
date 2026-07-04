@@ -1,6 +1,12 @@
 # todo/046 — session handoff (2026-07-03/04 → next session)
 
-**STATUS: OPEN.** Written at the end of a session that closed most of Phase 4 of the v1-review
+**STATUS: EXECUTED 2026-07-04.** The Q2 task below was run start to finish on Fable 5 at max
+effort: 3a derived + CAS-verified (Lemma P; todo/045 §3.1, commit `4aaeaae`), 3b/3c registered
+pre-production and executed same day (all five substantive criteria PASS; §3.4, commit
+`afa4438`), the r3#2/G9/D-24 rewrites STAGED in `todo/045c-staged-rewrites.md` (commit
+`bb5ebec`) pending the GPT-5.5 Pro gate verdict (`todo/045b`, launched same day) and Marcus's
+ratification. Remaining: triage the gate, then land per todo/045c §5. Original handoff text
+below, kept for the record. Written at the end of a session that closed most of Phase 4 of the v1-review
 response (13/15 comments drafted), ran Phase 3 (non-normal), got called out by Marcus for a
 HARKing-shaped write-up, ran it through an adversarial quorum (AMENDED, one objection unresolved),
 registered a full investigation (`todo/045`), and then — continued the same day — executed and

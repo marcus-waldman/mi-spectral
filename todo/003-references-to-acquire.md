@@ -495,3 +495,18 @@ computes the **affine** statistic `T3 = a·T + b` with degrees of freedom **held
 ---
 
 *Last updated: 2026-06-28 (todo/039 follow-up: located the exact affine `a·T+b` anchor — Asparouhov–Muthén 2010, content-verified; corrected the Satterthwaite attribution).*
+
+## r3#3 congeniality-diagnosis candidates (proposed 2026-07-04, from training-weight knowledge -- verify before citing)
+
+Reviewer r3#3 asks for a citable, practical method an applied researcher can use to diagnose
+congeniality/imputation-model adequacy. The paper currently states the assumption without a
+diagnostic pointer. One verified reference suffices; the Discussion sentence lands in Phase 4.
+All four rows below are proposals from training-weight knowledge and must go through the full
+acquisition + verification ladder before any `@cite`.
+
+| Proposed citation | Status | Claim it supports | Where it would land | Priority | Notes |
+|---|---|---|---|---|---|
+| **Nguyen, C. D., Carlin, J. B. & Lee, K. J. (2017).** "Model checking in multiple imputation: an overview and case study." *Emerging Themes in Epidemiology* 14:8. | proposed | Overview of practical MI model-checking methods (graphical comparison of observed vs imputed, posterior-predictive-style checks) an applied researcher can actually run | Discussion, the G7 congeniality-limit paragraph (one sentence + cite) | High (leading candidate) | Review-style, applied-facing -- likely the single best fit for "practical methods" |
+| **He, Y. & Zaslavsky, A. M. (2012).** "Diagnosing imputation models by applying target analyses to posterior replicates of completed data." *Statistics in Medicine* 31(1), 1-18. | proposed | A diagnostic that targets the ANALYSIS quantity under the imputation model -- conceptually the closest published operationalization of a congeniality check | Same Discussion sentence | High (leading candidate) | Analysis-targeted rather than marginal-distribution-targeted, which matches Meng's congeniality framing |
+| **Abayomi, K., Gelman, A. & Levy, M. (2008).** "Diagnostics for multivariate imputations." *JRSS-C (Applied Statistics)* 57(3), 273-291. | proposed | Graphical/numerical diagnostics for multivariate imputations (KS-type comparisons, bivariate scatter of observed vs imputed) | Same Discussion sentence (alternative or additional cite) | Medium | Older but widely used; more about imputation quality than congeniality per se |
+| **Bondarenko, I. & Raghunathan, T. (2016).** "Graphical and numerical diagnostic tools to assess suitability of multiple imputations and imputation models." *Statistics in Medicine* 35(17), 3007-3020. | proposed | Propensity-conditional diagnostic plots for imputation-model suitability | Same Discussion sentence (alternative) | Medium | Complements Abayomi-Gelman-Levy; same caveat |
