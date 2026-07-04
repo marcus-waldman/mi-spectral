@@ -12,7 +12,7 @@ not yet written or reviewed) · **PENDING** (neither the underlying work nor the
 
 ---
 
-## reviewer3 — r3#1 (MI-BIC formulation) — Tier B — Status: EXECUTED, PENDING TEXT
+## reviewer3 — r3#1 (MI-BIC formulation) — Tier B — Status: DRAFTED
 
 > Although the title explicitly promises a deviance correction for BIC, the manuscript focuses
 > entirely on AIC and likelihood-ratio tests. The formulation of an MI-BIC is completely absent
@@ -20,12 +20,51 @@ not yet written or reviewed) · **PENDING** (neither the underlying work nor the
 > appropriate sample size penalty in this context, and ideally include it in the simulation
 > studies to support the title's claim.
 
-*Response not yet drafted.* Underlying work is done: MI-BIC computed alongside MI-AIC in the
-same 60-cell R=2000 grid (`verification/_modules/w3-sweep.R`, `run_all-prod-bic`), landed as
-Discussion caveat G8 (`S6-P4c`, `decisions.md` D-23) — BIC's own penalty resists most of the
-saturated-model pull at N>=200 (uncorrected 0.98 / corrected 0.99 / benchmark 1.00), and a
-small-N (50/100) follow-up found the ambiguous regime directly. Response-letter prose to be
-drafted in Phase 4.
+The correction transfers to BIC without a new derivation, because it acts on the deviance
+*numerator*, not the penalty. Both MI-AIC and MI-BIC are built from the same quantity,
+$-2\bar Q_\infty$, the MI-averaged complete-data deviance at the observed-data estimate; the
+$+\operatorname{tr}(\mathrm{RIV})$ correction removes that quantity's bias regardless of which
+model-complexity penalty ($2q$ for AIC, $q\log n$ for BIC) is added afterward. This sidesteps the
+effective-sample-size question the reviewer raises: rather than inventing an MI-specific effective
+$n$, we use the complete-data $n$ in the penalty, matching the paper's stated target of
+complete-data-equivalent selection — comparing against what BIC would select if the data had never
+been missing, not against some alternative notion of information content under imputation.
+
+We formulated the corrected MI-BIC and added it to the same simulation grid the paper already
+uses for MI-AIC (60 cells, $R=2{,}000$ repetitions, `verification/_modules/w3-sweep.R`), so the
+BIC numbers below are measured under the identical design, not a separate study. The correction is
+directionally right for BIC — uncorrected selection favors the higher-missing-information
+candidates, and correcting narrows that — but the *yield* is much smaller than for AIC, because
+BIC's own $q\log n$ penalty already resists most of the pull toward the saturated model at the
+sample sizes the paper studies ($N\geq200$): median uncorrected recovery of the true model is
+$0.993$, corrected $0.996$, against a complete-data benchmark of $1.000$ (compare AIC's $0.693$
+uncorrected / $0.818$ corrected / $0.899$ benchmark over the same cells). At this scale BIC is
+already close enough to its own ceiling that there is little room left for a correction to recover.
+
+Because that headline comparison risked reading as "BIC barely needs the correction," we went
+looking for a design point where BIC is more ambiguous, rather than reporting only the reassuring
+number. A model with the same parameter count as the truth is never selected under either
+criterion across all $120{,}000$ existing repetitions, ruling out an equal-penalty ambiguity. A
+small follow-up outside the pre-registered sweep, at $N=50$ and $N=100$, found the ambiguous
+regime directly: uncorrected BIC's recovery falls to about $0.75$ ($N=50$) and $0.94$ ($N=100$),
+against benchmarks of $0.93$ and $0.99$, and the correction recovers proportionally more of the
+gap at those sizes. More importantly, the paper's existing claim that BIC's errors concentrate on
+the largest-missing-information candidate (stated for AIC, S5-P17) is itself a large-$N$ property:
+only about $0.55$–$0.62$ of BIC's more frequent errors land on that candidate at $N=50$, rising to
+$0.88$–$0.89$ at $N=100$ and to essentially all of them by $N=200$. We added this as a new
+Discussion scope-limit paragraph (G8, `S6-P4c`; `decisions.md` D-23) rather than a full new BIC
+results section, since it is an honest qualification of an existing claim, not a new headline.
+
+*Manuscript changes already landed:* Discussion paragraph G8 (`S6-P4c`) states the BIC formulation,
+the large-$N$ recovery numbers, and the small-$N$ follow-up; `decisions.md` D-23 records the
+design decision and the numbers' provenance.
+
+*Reproducibility.* The BIC computation lives inside `verification/_modules/w3-sweep.R`, which
+`run_all.R`'s phase 2 already sources, so it reproduces from the standard documented command with
+no extra steps; a `verdicts$BIC` block in `_modules/aggregate.R` reports the numbers above (median
+`pi_bic[uncorrected/corrected/oracle]`, the BIC/AIC yield ratio, and the concentration fraction)
+from any future `run_all.R` run, and `00-test-primitives.R` covers the BIC penalty/correction
+arithmetic directly against synthetic inputs.
 
 ## reviewer3 — r3#2 (non-normal / GLM generalizability) — Tier D — Status: PENDING
 
@@ -44,36 +83,68 @@ as an empirical two-regime illustration or a Discussion-only prediction paragrap
 Reference backlog tracked in `todo/003-references-to-acquire.md`; resolves as a Discussion
 sentence in Phase 4 once a citable diagnostic method is acquired and verified.
 
-## reviewer2 — r2#4 (+/- dispersion measure undefined) — Tier C — Status: PENDING
+## reviewer2 — r2#4 (+/- dispersion measure undefined) — Tier C — Status: DRAFTED
 
 > Throughout the simulation results, the manuscript uses the "+/-" symbol without defining the
 > measure of dispersion in the main text. [...]
 
-Easy level3 fix, Phase 4.
+Checked the actual computations rather than assuming: the pooled theorem-validation estimate
+($2.43\pm0.26$, S5-P12) uses `pooled_se = 1/sqrt(sum(w))`, one Monte Carlo standard error
+(`verification/w1-h1-pooled-reconciliation.R`), while every figure's whiskers plot
+`est +/- 1.96*se`, a $95$ percent interval (`verification/figures.R`) — two different, unlabeled
+conventions in the same document. *Manuscript change landed:* `S5-P12` now states at first use
+that its $\pm$ is one Monte Carlo standard error and explicitly distinguishes it from the
+figure's $95$ percent whiskers.
 
-## reviewer2 — r2#5 (name all four selection-sweep models) — Tier C — Status: PENDING
+## reviewer2 — r2#5 (name all four selection-sweep models) — Tier C — Status: DRAFTED
 
 > The authors define the extremes of the candidate set (diagonal and saturated) but omit the
 > definitions of the two intermediate nested models [...]
 
-Easy level3 fix, Phase 4.
+*Manuscript change landed:* `S5-P9` now names all four candidates from the actual sweep code
+(`verification/W3-model-selection.R`): the diagonal model (eight free parameters), a model that
+frees the wrong off-diagonal pair $\sigma_{12},\sigma_{34}$ (ten free parameters), a model that
+frees the correct pair $\sigma_{13},\sigma_{24}$ matching the truth (ten free parameters, the true
+model), and the saturated model (fourteen free parameters). While tracing this down we also found
+and fixed a separate factual error the reviewer did not flag: the paragraph described the truth as
+having "a compound-symmetry structure," which is actually the truth used in the *different*
+non-nested study (`S5-P11`/`S5-P21`); this sweep's truth sets $\sigma_{13}=\sigma_{24}=0.4$ with
+every other off-diagonal entry zero, now stated correctly.
 
-## reviewer2 — r2#6 (Sigma / correlation placement) — Tier C — Status: PENDING
+## reviewer2 — r2#6 (Sigma / correlation placement) — Tier C — Status: DRAFTED
 
 > The manuscript does not specify which of the six possible coordinate pairs [...] are assigned
 > the correlations of 0.6, 0.3, and 0.5. [...]
 
-Easy level3 fix, Phase 4.
+*Manuscript change landed:* `S5-P4` now states the placement from the actual covariance matrix
+(`verification/00-setup.R`, `default_Sigma`): $\sigma_{12}=0.6$ between the two coordinates that
+carry missingness, $\sigma_{13}=\sigma_{24}=0.3$ between each missing coordinate and the fully
+observed coordinate that drives its own missingness, $\sigma_{34}=0.5$ between the two fully
+observed driving coordinates, and $\sigma_{14}=\sigma_{23}=0$.
 
-## reviewer1 — r1#7 (heavy-tail N=1000 remark) — Tier A — Status: PENDING
+## reviewer1 — r1#7 (heavy-tail N=1000 remark) — Tier A — Status: DRAFTED
 
 > The authors justify the failure of the N=1000 cell to hit the analytic target by claiming the
 > standard deviation of the per-repetition statistic grows with sample size due to heavy tails.
 > [...] The authors must either clarify why the variance of this specific statistic scales
 > positively with N [...]
 
-Triaged as a reviewer conflation of sample size N with repetition count R (finite variance; one
-clarifying sentence resolves it). Response-letter prose not yet drafted; Phase 4.
+This reads the manuscript's wording as saying the Monte Carlo standard *error* of the pooled
+mean grows with $N$, which would indeed be invalid if the per-repetition statistic had infinite
+variance. That is not the claim. The repetition count is $1{,}000$ at every sample size in this
+study ($N=200,500,1000,2000$) — it never changes across cells. What changes is $N$, and what grows
+with $N$ is the *per-replicate* statistic's own spread: at a fixed number of repetitions, a
+larger-$N$ cell's individual draws are more dispersed, so the resulting standard error is wider,
+not because repeated averaging fails to converge, but because there is more to average over in
+each cell. The per-replicate variance is finite throughout — "heavy-tailed" describes a slowly
+decaying tail relative to a Gaussian, not an infinite-variance pathology — so the standard
+asymptotic confidence intervals in Figure 1 remain valid; they are simply wider at $N=1{,}000$
+because that cell's underlying statistic is itself more variable, a property the paper already
+discloses (G1, `S6-P4`) rather than papers over.
+
+*Manuscript change landed:* `S5-P12` now states this explicitly — the repetition count ($1{,}000$)
+is named as identical across every sample size, and the per-replicate spread (not the Monte Carlo
+standard error) is what grows with $N$, and that spread is finite.
 
 ## reviewer1 — r1#8 (data-augmentation control) — Tier A -> Phase 1 — Status: DRAFTED
 
@@ -168,55 +239,105 @@ Mode B — not yet independently verified); the bootstrap-floor exact-identity c
 points as the original Amelia scan is cheap and would close gate item C7 (optional, not required
 for this response).
 
-## reviewer1 — r1#9 (nested-confound control) — Tier A — Status: PENDING
+## reviewer1 — r1#9 (nested-confound control) — Tier A — Status: DRAFTED
 
 > In the selection-sweep design, the candidate models are nested, meaning that model complexity
 > (parameter count) is perfectly confounded with the amount of missing information. [...] the
 > authors should include a control experiment comparing non-nested candidate models that have the
 > same number of parameters but differ significantly in their fractions of missing information.
 
-Triaged as already answered by existing evidence: the W4 non-nested measurement plus the MCAR
-twins design already isolate the missing-information mechanism from raw model complexity.
-Response-letter prose not yet drafted; Phase 4.
+The main selection sweep the reviewer describes (the nested diagonal-to-saturated candidate
+family, $\S5$) is indeed confounded in exactly the way described — in that family, complexity and
+missing information increase together at every nesting step, so its "100% concentrate on the
+saturated model" result establishes the *direction* of the bias, not that missing information
+specifically (rather than under-penalized complexity generally) drives it. The manuscript already
+scopes that result this way (S5-P17: the finding "confirms the predicted direction of the bias
+rather than discriminating the specific mechanism," because the nested family makes the saturated
+candidate the natural destination for any downward-biased deviance regardless of cause).
 
-## proof-verifier — proof#10 (abstract estimated-scale qualifier) — Tier C — Status: PENDING
+The control the reviewer asks for is a separate study already in the paper: the non-nested
+measurement ($\S5$, `S5-P21`, @fig-w4-nonnested). It runs two candidate pairs that are *not* part
+of the nested family — diagonal versus first-order autoregressive, and compound-symmetry versus
+the same autoregressive truth — and pairs each missing-at-random cell with a missing-completely-at-random
+twin that uses the *identical* candidate models and parameter counts but removes the
+design-imbalance mechanism the reviewer is asking us to isolate (missing-completely-at-random data
+makes that term vanish by construction). Because the candidates and their parameter counts are
+held fixed across the two arms and only the missingness mechanism changes, the missing-at-random-
+minus-missing-completely-at-random difference isolates what missing information contributes,
+separately from whatever a merely under-penalized deviance would do by complexity alone. For the
+dissimilar diagonal-versus-autoregressive pair that isolated differential resolves at $-1.2$, three
+and a half standard errors from zero and stable across sample sizes — a genuine, measured effect
+attributable to missing information under a design where complexity itself never changes between
+the two arms being compared. For the more similar compound-symmetry-versus-autoregressive pair,
+the same differential fell below Monte Carlo resolution (a pre-registered pilot value of $-2$
+dissolved on the full run), which we report as the study's own honest limit rather than a
+confirming result (G5, `S6-P4`, also discloses that a mechanism-independent misspecification term
+coexists with the design-imbalance term for dissimilar pairs and can partly offset it in the net
+ranking bias).
+
+*No new work needed:* the requested control already exists (`S5-P11`/`S5-P21`); this response
+points to it rather than proposing new simulations.
+
+## proof-verifier — proof#10 (abstract estimated-scale qualifier) — Tier C — Status: DRAFTED
 
 > The abstract's formulation implies the $+1/2\operatorname{tr}(\mathrm{RIV})$ bias is a universal
 > property of proper MI, whereas the proof establishes it only for the estimated-scale regime.
 
-Easy level3 fix (abstract qualifier), Phase 4.
+*Manuscript change landed:* the abstract now reads "under congenial proper multiple imputation
+with the complete-data maximum likelihood estimate as target and an estimated scale or
+covariance," naming the scope condition where the headline bias previously stated it without
+qualification.
 
-## proof-verifier — proof#11 ("trace component" scoping) — Tier C — Status: PENDING
+## proof-verifier — proof#11 ("trace component" scoping) — Tier C — Status: DRAFTED
 
 > [...] the claim should be scoped to clarify that the correction removes only the trace
 > component [not the design-imbalance term $(A)+(C)$].
 
-Easy level3 fix, Phase 4.
+*Manuscript change landed:* the abstract's "adding one trace term per candidate removes the
+deviance bias in expectation" now reads "removes *that trace component* of the deviance bias in
+expectation," consistent with the abstract's own preceding sentence naming the separate
+design-imbalance term the correction does not touch.
 
-## contradictions-reviewer — contra#12 (alpha sign) — Tier C — Status: PENDING
+## contradictions-reviewer — contra#12 (alpha sign) — Tier C — Status: DRAFTED
 
 > The text defines $\alpha$ as $-\mathcal{E}'(\theta_0)$ and describes it as 'the gradient of the
 > conditional missing-data entropy'. [...] making $\alpha$ the negative gradient, not the gradient
 > itself.
 
-Easy level3 fix, Phase 4.
+Correct as flagged: $\mathcal{E}'(\theta_0)$ is the entropy's gradient, so $\alpha=-\mathcal{E}'(\theta_0)$
+is its negative. *Manuscript change landed:* `S4-P7` now reads "is the negative gradient of the
+conditional missing-data entropy."
 
-## contradictions-reviewer — contra#13 (KS 0.019 vs. 0.018) — Tier C — Status: PENDING
+## contradictions-reviewer — contra#13 (KS 0.019 vs. 0.018) — Tier C — Status: DRAFTED
 
 > The main text states that the Kolmogorov-Smirnov distance falls to 0.019 under equating. However,
 > Figure 8 displays the value 0.018 above the equating bar.
 
-Easy level3/figure fix, Phase 4.
+Traced to source: the underlying value is stored in `verification/cache/ic-ladder-summary.csv` as
+$0.0185$, which sits exactly on a floating-point rounding boundary — R represents it as
+$0.01849999\ldots$, so `sprintf("%.3f", ks)` in the figure-generating code
+(`verification/figures.R`) mechanically rounds to $0.018$, while the manuscript prose had been
+rounded by hand to $0.019$. *Manuscript change landed:* `S5-P19` now states $0.018$, matching the
+figure and the value's actual floating-point representation.
 
-## contradictions-reviewer — contra#14 (k: parameter count vs. model index) — Tier C — Status: PENDING
+## contradictions-reviewer — contra#14 (k: parameter count vs. model index) — Tier C — Status: DRAFTED
 
 > The symbol $k$ is initially defined as the number of parameters [...] However, in Section 5's
 > information-criterion selection, $k$ is redefined as a model index in $\text{AIC}_{MI}(k)$ [...]
 
-Easy level3 notation fix, Phase 4.
+Confirmed exactly as described, and traced to two further occurrences of the same double-duty
+$k$ the reviewer's example did not cite (`S4-P3`'s RIV display and fraction-of-missing-information
+identity, and `S4-P6`'s derivation of the estimation-mismatch term). *Manuscript change landed:*
+every parameter-count use of $k$ (the dimension $q=p+\tfrac12p(p+1)$, and the matching $I_k\to I_q$
+identity-matrix and bare-$k$ trace terms in `S4-P2`, `S4-P3`, `S4-P6`) is renamed to $q$; the
+model-index use of $k$ in the information-criterion section (`S4-P16`, `S4-P19`, `S4-P20`, where
+$q_k$ already denotes candidate $k$'s own parameter count) is unchanged.
 
-## contradictions-reviewer — contra#15 (m vs. M for number of imputations) — Tier C — Status: PENDING
+## contradictions-reviewer — contra#15 (m vs. M for number of imputations) — Tier C — Status: DRAFTED
 
 > The manuscript uses both $m$ and $M$ to denote the number of imputations. [...]
 
-Easy level3 notation standardization, Phase 4.
+*Manuscript change landed:* standardized on $M$ throughout — the four lowercase-$m$ asymptotic-limit
+uses (`S2-P6`'s Wei–Tanner/Rubin draws and $m\to\infty$ limit; `S4-P3`'s $m\to\infty$ Rubin's-rules
+statement; `S4-P5`'s "finite-$m$ corrections"; `S4-P9`'s "infinite-$m$ limit") now read $M$,
+matching the simulation's own $M\in\{20,200\}$ used everywhere else.
