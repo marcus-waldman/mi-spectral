@@ -5,8 +5,10 @@
 `4aaeaae` pre-production) and EXECUTED same day — **all five substantive registered criteria
 PASS** (§3.4: Bernoulli asymptote $+0.512\pm0.037$ vs derived $+0.5$; Poisson blind arm
 $+0.113\pm0.027$ vs derived $+0.104$; t-exemplar $+0.025/-0.483$ vs derived $0/-0.5$ — OBJ-07
-attributed, OBJ-08 closed by evidence). Remaining: GPT-5.5 gate verdict, then the §4 rewrite
-(staged, pending Marcus). Written at the
+attributed, OBJ-08 closed by evidence). GATE CLEARED same day (§3.5: Mode A blind = full
+independent agreement incl. the −0.260 discount numeric; Mode B = zero refutations, both
+numerical escalations closed by a third quadrature route). **The only remaining landing gate for
+the §4 rewrite (`todo/045c`) is Marcus's ratification.** Written at the
 end of the session that ran the Phase-3 non-normal illustration (todo/040 §9-10), then ran it
 through an adversarial `tkal-in-ket` quorum (Gemini + Claude-Opus peers) after Marcus flagged the
 write-up as HARKing-shaped. Determination: **AMENDED** — the position survives only via substantial
@@ -523,6 +525,42 @@ with that caveat.)
 scored); 3c executed (P5/P6 passed — OBJ-08 closed by evidence). Remaining before the §4
 rewrite lands: the GPT-5.5 Pro gate verdict (Mode A blind + Mode B red-team, launched
 2026-07-04, `todo/045b`), then Marcus's ratification of the staged text.
+
+### §3.5 CROSS-MODEL GATE VERDICT — CLEARED (2026-07-04, same day; gpt-5.5-pro, xhigh)
+
+Outputs: `verification/cache/layer3-gpt-5.5-pro-bern-glm-mode{A,B}.md` (Mode A ~36 min, Mode B
+~23 min, Responses API background+poll).
+
+**Mode A (blind) — full independent agreement on every grading-key item.** Given only the setup
+(no numbers, no derivation), GPT-5.5 Pro derived: the same decomposition with the same algebraic
+cancellation ("the $A'''$-terms cancel algebraically", via
+$\operatorname{tr}\{K^{-1}\mathbb{E}[\eta wZZ^\top]\}=\beta_0^\top c$ — Lemma P in its notation);
+the same base-measure survivor $\Delta_h=\operatorname{tr}(K^{-1}G_2)-\mu_g^\top K^{-1}c$;
+**Bernoulli $=+0.5$, "exact for any design distribution"**; Poisson $\Delta_h\neq0$ with the SAME
+$L_1/L_2$ series identities and an independent PROOF that $\Delta_{\text{Pois}}<0$ at the design
+(Gaussian integration by parts); the draw-discount functional with its own independent quadrature
+value $\operatorname{tr}(K^{-1}S)\approx-1.0416\Rightarrow-0.260$ (registered $-0.2606$); and the
+Student-t values $0$ / $-\tfrac12$. This is the blinded, timestamped, independent re-derivation
+OBJ-05 demanded, and it lands on the corrected reading everywhere.
+
+**Mode B (red-team) — zero refutations.** C1–C5 and C8 SUSTAINED outright ("Lemma P is exactly
+true"; the $J_{\text{obs}}$-vs-$J_{\text{all}}$ bookkeeping "is correct at $O(1)$"; the draw arm
+adds "exactly one extra copy of the $(C)$-functional"; "I do not see an additional $O(1)$ term
+from discreteness" — anchor exactness holds for discrete responses, separation is exponentially
+rare, lattice corrections are $O(N^{-1})$). Two ESCALATE items, both purely numerical: C6's
+Poisson constants and C7's $K=-1.042$, each wanting an independent numerical reproduction.
+**Both closed same-day** (`verification/cas-wolfram/verify_045b_escalations.py`): a third route
+(composite Simpson, uniform grid, different series truncation) reproduces $K=-1.042393$ and the
+Poisson parts $+0.687997/-1.084067$ to six decimals with grid-halving stability, and Mode B's OWN
+reduced one-dimensional forms evaluate to the identical constants — so the numerics now rest on
+three independent routes (GH-160, Mode A's quadrature, Simpson) plus the empirical blind arm.
+One cosmetic caveat adopted for any future `derivation.qmd` landing: state explicitly that the
+$(A)/(C)$ displays carry an outer expectation over design and missingness (Mode B's C2 note).
+Mode B's B5 also independently predicted the N-scan's discrimination logic, and the scan (§3.4)
+had already resolved it in the direction Mode B considered likely ("I would not treat [the
+2.1 se point] as strong evidence against the asymptote").
+
+**Consequence: the only remaining landing gate for `todo/045c` is Marcus's ratification.**
 
 ---
 
