@@ -123,13 +123,37 @@ lands as a new Discussion paragraph, G9, reporting both results plainly.
 D-24 records the finding and its provenance; `verification/spikes/phase3-nonnormal-illustration.R`
 has a CLAUDE.md Commands entry per the reproducibility fold-in policy.
 
-## reviewer3 — r3#3 (congeniality diagnosis) — Tier D — Status: PENDING
+## reviewer3 — r3#3 (congeniality diagnosis) — Tier D — Status: DRAFTED
 
 > [...] the manuscript does not provide, nor does it cite, any practical methods or established
 > literature for how an applied researcher should actually perform this diagnosis. [...]
 
-Reference backlog tracked in `todo/003-references-to-acquire.md`; resolves as a Discussion
-sentence in Phase 4 once a citable diagnostic method is acquired and verified.
+The reviewer is right that the Discussion recommended diagnosing congeniality without pointing
+at any way to do it. The congeniality-limit paragraph (G7) now closes with three sentences of
+practical pointers, each backed by a reference acquired and read in full for this response
+(acquisition and claim-verification trail in `todo/003-references-to-acquire.md`):
+
+- **He & Zaslavsky (2012, *Statistics in Medicine*)** give the closest published
+  operationalization of a congeniality check: a posterior predictive diagnostic that applies the
+  analyst's own target analysis to the completed data and to replicates simulated under the
+  imputation model, with a re-imputation implementation that runs on standard MI software (their
+  §3.3) and applies to non-fully-Bayesian imputation engines. Their framing is explicitly about
+  detecting analysis/imputation uncongeniality ("model uncongeniality" is one of the paper's
+  keywords).
+- **Bondarenko & Raghunathan (2016, *Statistics in Medicine*)** build graphical and numerical
+  checks that compare observed and imputed values conditional on the response propensity; their
+  stated first objective is that "the analyst can diagnose uncongeniality" without knowing the
+  imputation model — the exact one-sided situation an applied secondary analyst is in.
+- **Nguyen, Carlin & Lee (2017, *Emerging Themes in Epidemiology*)** review the available
+  checking methods for applied use (graphical observed-vs-imputed comparisons, the
+  propensity-conditional checks above, regression diagnostics, cross-validation, and posterior
+  predictive checking); their case study shows the posterior predictive check catching exactly an
+  imputation/analysis incompatibility.
+
+*Manuscript change landed:* the G7 Discussion paragraph (`S6-P4b`) gains the three-sentence
+pointer with all three citations (`manuscript/plan/updates/update-g7-r3-3-congeniality-diagnostics-20260704.py`);
+`check_plan` green; all three references verified against their texts before citing, per the
+repository's citation discipline.
 
 ## reviewer2 — r2#4 (+/- dispersion measure undefined) — Tier C — Status: DRAFTED
 
