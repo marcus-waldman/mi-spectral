@@ -4,13 +4,14 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Respond to the v1 AI review (paper 88): empirical reruns for the two cheap gaps (data-augmentation replication + MI-BIC) + prose/response-letter for the rest; non-normal via brms gated on a runtime spike; fold in the pending per-paragraph annotation + compile-enablement toward JAIGP submission."
-last_synced_commit: 5b35192
+last_synced_commit: 429a150
 tree_state: clean
-updated: "2026-07-04T16:43:38Z"
+updated: "2026-07-04T20:21:54Z"
 updated_by: wrap
 cockpit: { provider: null, list_id: null }
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 ---
+
 
 
 
@@ -116,7 +117,7 @@ _This session (2026-07-03, continued yet further) -- the two threads were split 
 
 2. **On ratification: land the rewrites ONCE, per todo/045c Sec.5** -- G9 via a new `manuscript/plan/updates/*.py` script (check_plan green, rebuild, render exit 0); the r3#2 letter body, the D-24 superseding pointer + new D-25, and the todo/040 Sec.9 amendment via Bash writes (citation-hook cwd gotcha). One landing commit citing todo/045c; todo/045 status -> CLOSED. Mode B's one cosmetic note travels with any future derivation.qmd landing (state the outer expectation on the (A)/(C) displays).
 
-3. **Then the submission tail: r3#3 (Marcus picks/acquires one of the four todo/003 candidates -- Nguyen-Carlin-Lee 2017 or He-Zaslavsky 2012 leading -- then verify + draft the Discussion sentence), per-paragraph annotation + compile-enablement -> derivation-audit 0/0 -> Zenodo -> JAIGP.** Branch is pushed through `bb5ebec` (registration/results/staging commits are public, so the pre-registration timestamps are checkable); `dd0cb53` + this wrap push with the wrap. Optional/cheap: extend the E3 bootstrap-floor exact-identity arm (gate item C7); verify Mode B's IMB closed form. Frozen preregistered originals UNTOUCHED.
+3. **Then the submission tail: per-paragraph annotation + compile-enablement -> derivation-audit 0/0 -> Zenodo -> JAIGP.** r3#3 is DONE (2026-07-04, commit `429a150`): Marcus acquired all four candidates same-session; all four read in-session (three cited -- He-Zaslavsky 2012, Bondarenko-Raghunathan 2016 (promoted on reading: its stated objective IS analyst-side uncongeniality diagnosis), Nguyen et al. 2017; Abayomi 2008 acquired, reaches the paper through Nguyen's review); G7 (S6-P4b) gained the three-sentence diagnostics pointer via `update-g7-r3-3-congeniality-diagnostics-20260704.py`, check_plan green, render exit 0; response letter now 14/15 DRAFTED (only r3#2 staged in todo/045c). Branch pushed through `429a150`. Optional/cheap: extend the E3 bootstrap-floor exact-identity arm (gate item C7); verify Mode B's IMB closed form. Frozen preregistered originals UNTOUCHED.
 
 # Decisions made
 
