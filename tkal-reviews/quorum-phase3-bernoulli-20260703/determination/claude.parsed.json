@@ -1,0 +1,43 @@
+{
+  "criterion_scores": [
+    {
+      "criterion": "independent_derivability",
+      "assessment": "holds_as_amended",
+      "rationale": "OBJ-05 and OBJ-07 were conceded: the +0.5 target was not independently pre-derivable (the same expert reached the opposite conclusion from the same inputs) and the 2.2 se residual is unattributed. However, the advocate's amendments narrow the claim to exactly what IS purely reconstructable from the pre-existing theorem: dH/dp = -logit(p) != 0 proves Bernoulli escapes the known-scale collapse, a checkable fact independent of who computes it or when. With the claim restricted to the derivable escape-from-collapse and the +0.5 magnitude relabeled an untested extension (OBJ-02, OBJ-06), the bar holds only under those amendments; the unamended '+0.5 general case' claim fails it."
+    },
+    {
+      "criterion": "preregistration_honesty",
+      "assessment": "holds_as_amended",
+      "rationale": "The advocate fully conceded OBJ-01 and OBJ-09, committing verbatim to state the original registered targets (~0 FITTED, ~-0.5 Bayesian) and their measured misses (+0.853 at ~5.3 se; +0.628 at ~7 se, wrong sign) first, before any corrected framing, in all three documents, and to label the correction explicitly as a post-hoc registration-error fix. This matches the repo norm that a failed spike is reported, not re-run away. The shrinkage check is demoted to non-load-bearing (OBJ-10). The bar is met only if these committed amendments are actually reflected in the file text."
+    },
+    {
+      "criterion": "reviewer_intent_sufficiency",
+      "assessment": "holds_as_amended",
+      "rationale": "The round-2 rebuttal of OBJ-08 is textually strong: the antecedent of 'the current findings' is the trace penalty and design-imbalance terms named earlier in the reviewer's own sentence, and the known-scale collapse is a separate boundary result the paper never uses in any application. This is a defensible interpretive reading, not a certainty, and the advocate correctly declines to claim the question is fully closed. With the scope-limiting disclosure sentence added (OBJ-04, OBJ-08) naming the known-scale-outside-MVN gap as open (G6) and the Bernoulli magnitude reported honestly rather than as confirmation (OBJ-03), the reviewer's operative question is sufficiently answered."
+    },
+    {
+      "criterion": "choice_timing_legitimacy",
+      "assessment": "holds_as_amended",
+      "rationale": "The family selection (Bernoulli, matching r3#2's categorical example) was pre-registered in todo/040 before any code ran, which is undisputed and legitimate. OBJ-11's only residual concern is that the write-up cleanly separate the pre-registered family choice from the post-hoc target reselection; the advocate committed to an explicit statement keeping these two facts distinct and never implying the +0.5 target predates the data. The bar holds provided that separating amendment is adopted."
+    }
+  ],
+  "determination": "amended",
+  "sustained_objections": [
+    {
+      "objection_id": "OBJ-05",
+      "point": "The +0.5/general-case target was not independently derivable: the same expert, given only the theorem condition and the Bernoulli definition and blinded to data, reached the opposite conclusion at registration, so the data broke the tie. Survives as a permanent limitation, mitigated only by honest disclosure of the sequence.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-07",
+      "point": "The +0.353 residual (2.2 se departure of +0.853 from +0.5) is unattributed to any named finite-sample or higher-order term, so +0.5 cannot be asserted as the confirmed target; it must be reported as a measured value with an unexplained departure, not a match.",
+      "is_inaccuracy": false
+    },
+    {
+      "objection_id": "OBJ-06",
+      "point": "R1-R7 were never verified for the one-parameter logit-link family, so alpha != 0 establishes only that the known-scale collapse is excluded (necessary, not sufficient); the exact +1/2 tr(RIV) magnitude remains an untested extension and cannot be claimed as proven.",
+      "is_inaccuracy": false
+    }
+  ],
+  "determination_rationale": "The position survives a determined and notably honest defense: the advocate conceded the two blocking independent_derivability points (OBJ-05, OBJ-07) rather than overclaiming, and retreated to the strictly derivable and checkable claim (Bernoulli escapes the known-scale collapse) while relabeling the +0.5 magnitude an untested extension. Every preregistration-honesty objection was met with verbatim commitments to report the original targets and their severe misses (including the 7-se wrong-sign Bayesian miss) first, consistent with the repo's 'failed spike is reported' norm. The reviewer-intent bar holds on a defensible textual reading of 'the current findings' plus a disclosed scope limit. The position therefore holds only WITH its conceded amendments applied and verified against the file text — no bar holds as-originally-stated, and none is refuted."
+}

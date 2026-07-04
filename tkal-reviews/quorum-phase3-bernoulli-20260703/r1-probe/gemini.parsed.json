@@ -1,0 +1,37 @@
+{
+  "objections": [
+    {
+      "criterion": "preregistration_honesty",
+      "target": "The defense of switching the scoring target as 'legitimate theory-correction'",
+      "claim": "The position defends the legitimacy of the post-hoc correction but fails to explicitly commit to the rubric's requirement that the manuscript-facing write-up must prominently state the ORIGINAL pre-registered target (~0 FITTED, ~-0.5 Bayesian) and its measured miss (+0.853, +0.628) before or alongside the corrected framing. Without this explicit commitment, the defense could be used to justify silently rewriting the history, which violates the preregistration_honesty bar.",
+      "severity": "blocking",
+      "what_would_satisfy": "An explicit guarantee that the manuscript, response letter, and registration amendment will transparently report the original registered prediction, the empirical miss, and the subsequent theoretical realization (alpha != 0) in chronological order, rather than presenting the corrected target as if it were the original.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "independent_derivability",
+      "target": "Weak point (3): Regularity conditions (R1-R7) not verified for logit-link GLM",
+      "claim": "The rubric requires the claim that Bernoulli 'falls under the general +1/2*tr(RIV) case' to be derivable purely from the pre-existing theorem. While alpha != 0 is easily derived from Bernoulli's entropy, the pre-existing theorem relies on regularity conditions (R1-R7) established in a multivariate-normal context. If these conditions fail for a discrete, one-parameter exponential family with a logit link, the derivation is incomplete and the +1/2*tr(RIV) target cannot be confidently claimed to apply.",
+      "severity": "major",
+      "what_would_satisfy": "A mathematical sketch or confirmation demonstrating that the Bernoulli distribution satisfies the specific regularity conditions (R1-R7) required by the pre-existing theorem, ensuring the general case result mathematically applies to this family.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "reviewer_intent_sufficiency",
+      "target": "Weak point (4): The 2.2 SE gap (+0.853 vs +0.5) and lack of rigorous attribution",
+      "claim": "To sufficiently answer r3#2's request about whether the findings 'can be safely generalized to standard GLM frameworks', the empirical validation must be convincing. A 2.2 SE gap that is not rigorously attributed to finite-sample effects leaves open the possibility that the leading-order theorem does not fully capture the behavior of discrete outcomes, weakening the claim that Bernoulli (as scored) is sufficient on its own terms to answer the reviewer.",
+      "severity": "major",
+      "what_would_satisfy": "Evidence or a bounding argument showing that the 2.2 SE gap is expected finite-sample noise (e.g., scaling with N or M) or a known higher-order term, ensuring it does not invalidate the generalization to GLMs requested by the reviewer.",
+      "is_inaccuracy": false
+    },
+    {
+      "criterion": "reviewer_intent_sufficiency",
+      "target": "The absence of a known-scale non-normal test to replace the failed Bernoulli assumption",
+      "claim": "The original registration deemed it necessary to test BOTH the general case (Gamma) and the known-scale case (Bernoulli, erroneously). If the authors originally believed a comprehensive answer to r3#2 required demonstrating both cases outside MVN, abandoning the known-scale test entirely just because Bernoulli failed to provide it may leave the response incomplete. The panel must judge if r3#2's request implicitly requires validating the edge-case outside MVN.",
+      "severity": "minor",
+      "what_would_satisfy": "A compelling argument that r3#2's core concern was strictly about the general trace penalty used in applied research, and that the known-scale collapse is a theoretical edge-case not required to satisfy the reviewer's specific prompt about 'standard GLM frameworks used in applied research'.",
+      "is_inaccuracy": false
+    }
+  ],
+  "stance": "objecting"
+}

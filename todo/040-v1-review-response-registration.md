@@ -481,3 +481,165 @@ completions (G0b-1 PASS; sample tr(RIV) within tolerance, G0b-2 PASS).
   `Rscript verification/run_all.R <R> <out_suffix> all <n_cores>` run, no special-casing needed,
   since `w3-sweep.R` already always computes BIC selections and `aggregate.R` now always reports
   the verdict from whatever `w3_dir` it is pointed at.
+
+---
+
+## 9. Phase 3 amendment (2026-07-03): non-normal scope decision + design, fixed before code
+
+**Scope decision.** Marcus: proceed with a non-normal empirical illustration (AskUserQuestion,
+this session), after a runtime/feasibility probe (scratchpad, not committed) showed the cost is
+low and surfaced a real constraint that shapes the design: **brms's `mi()` addition term hard-
+refuses discrete families** — confirmed failures on both `bernoulli(logit)` and `poisson(log)`
+("Argument 'mi' is not supported for family ..."). So brms can only serve as the imputer for the
+estimated-scale (continuous) side; the scale-free side needs a different engine. Marcus's own
+instinct going in — "we'd need to do it with both brms and mice" — turns out to be forced by this
+brms limitation, not just a nice-to-have cross-check. Timing (scratchpad probe, N=200, one
+predictor): brms on a univariate Gamma model is ~33s one-time cmdstan compile then ~1.8–2s/fit
+cached (far cheaper than the paper's 4-variate MVN cell at ~24s/fit, because this model is much
+smaller); `mice`'s `pmm`/`logreg` methods are near-instant (<0.1s for m=5 at N=200). A few hundred
+repetitions per family costs low minutes, not hours.
+
+**What this illustrates.** The theorem's known-scale scope callout (`derivation.qmd`
+:792–827) already gives the two-regime prediction with no new derivation needed: a model that
+estimates a scale/dispersion parameter keeps the headline $\mathbb E[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$
+(deterministic FIML-style plug-in) with a *persistent* discount for a genuine Bayesian posterior
+draw (the same mechanism the DA-engine work measured and derived for MVN's $\Sigma$); a model with
+a *known* scale (dispersion fixed by the mean–variance relationship, as in Bernoulli/Poisson GLMs)
+collapses to $\mathbb E[T]=0$ (deterministic FIML-style plug-in) or $-\tfrac12\operatorname{tr}(\mathrm{RIV})$
+(genuine posterior draw) — already MC-verified in the MVN known-variance experiment
+(`verification/rederivation-knownvar.R`). This illustration extends the *qualitative* two-regime
+pattern to a genuinely non-normal likelihood; it does **not** re-derive the exact closed-form
+discount $D$ for a Gamma shape parameter (that formula is MVN-Wishart-specific and re-deriving it
+is out of scope for a modest illustration) — the Gamma/brms branch is reported as a directional
+check (more negative than its own FITTED anchor, in the family of the MVN finding), not scored
+against a numeric target the way the scale-free branch is (which inherits an exact, already-
+verified prediction).
+
+**Design (fixed before code):**
+- **Families**, chosen to match the reviewer's own examples ("categorical or skewed continuous
+  variables... via GLMs", r3#2): **Gamma** (log link, shape estimated — the estimated-scale
+  exemplar) and **Bernoulli** (logit link — the scale-free/known-scale exemplar, dispersion fixed
+  at 1 by the family).
+- **DGP.** One fully-observed covariate $X\sim N(0,1)$; one outcome $Y$ with **MCAR** missingness
+  (independent of $X$ and $Y$) at a fixed rate (~20–25%, matching the paper's existing missingness
+  rates). MCAR only — this isolates the trace/known-scale mechanism the reviewer is asking about
+  without also invoking the $(A)+(C)$ design-imbalance term (0 under MCAR), keeping the
+  illustration a clean, minimal test of the SAME mechanism already treated for MAR elsewhere in
+  the paper. $N=200$, matching the paper's headline cell.
+- **Congenial by construction.** The imputer model equals the analysis model exactly in both
+  families (same linear predictor, same family) — the paper's existing "theorem cell" design
+  (W1), not the model-selection sweep (W3); uncongeniality is already a separately-disclosed scope
+  limit (G7) and is not reopened here.
+- **Two engines per family, each with a FITTED anchor and a genuine-draw arm** (mirroring the
+  paper's existing FITTED-vs-proper-MI structure):
+  - **Gamma:** FITTED = deterministic conditional-mean imputation from a single Gamma GLM fit to
+    the observed data (no randomness); proper draw = `brms` with its default weakly-informative
+    priors (matching the r1#8 brms cross-check convention), harvesting $M=50$ posterior-predictive
+    completions from one `brm()` fit per repetition (same construction as
+    `verification/spikes/phase0b-brms-imputer.R`, swapped to `family = Gamma(link = "log")`).
+  - **Bernoulli:** FITTED = deterministic imputation at the rounded fitted probability from a
+    single `glm(family = binomial)` fit to the observed data (no randomness); proper draw =
+    `mice(method = "logreg")`, $m=50$, which approximates Rubin's proper (Bayesian-ish) imputation
+    for a logistic model.
+- **Measured quantities**, mirroring the frozen W1/`00-setup.R` conventions: per repetition,
+  $T = \bar L_{\text{obs}} - \ell_{\text{com}}(\hat\theta_{\text{com}})$ (the headline), with
+  $A$/$B$ reported too; **sample** $\operatorname{tr}(\mathrm{RIV})$ via Rubin's $(1+1/M)W^{-1}B$
+  rule (the analytic GLM tr(RIV) is not derived — sample tr(RIV) suffices for an illustration, per
+  §6). $R$: start at 200 repetitions per family/engine cell (cheap at these per-fit costs; extend
+  if the resulting SE is too wide to read the pass criteria below).
+- **Pass criteria (fixed here, before any repetition is run):**
+  - **G-P3a (feasibility).** Both engines fit without error on every repetition and return $M$
+    valid completions.
+  - **G-P3b (sample tr(RIV) sane).** Positive, finite, and consistent in order of magnitude with
+    the ~20–25% MCAR rate.
+  - **G-P3c (Gamma FITTED).** $T_{\text{fitted}}/\operatorname{tr}(\mathrm{RIV})$ falls inside a
+    95% MC CI around $+\tfrac12$ — the same headline pass rule the frozen W1 uses.
+  - **G-P3d (Gamma brms, directional only).** $T_{\text{brms}}/\operatorname{tr}(\mathrm{RIV})$ is
+    **not** required to hit $+\tfrac12$; report it, and check only that it sits below (more
+    negative than) the FITTED anchor, matching the *direction* of the MVN Bayesian-draw finding.
+    No numeric target — this is the directional/qualitative check described above.
+  - **G-P3e (Bernoulli FITTED).** $T_{\text{fitted}}/\operatorname{tr}(\mathrm{RIV})$ falls inside
+    a 95% MC CI around $0$ — the known-scale FIML-analog prediction.
+  - **G-P3f (Bernoulli mice, scored).** $T_{\text{mice}}/\operatorname{tr}(\mathrm{RIV})$ falls
+    inside a 95% MC CI around $-\tfrac12$ — the known-scale proper-MI collapse, already MC-verified
+    for MVN and now tested on a genuinely non-normal, non-MVN likelihood for the first time.
+  - Every result is reported as measured regardless of pass/fail, per the paper's own
+    preregistration discipline (§0 above) — a miss on G-P3d/e/f is a disclosed scope-limit finding,
+    not a reason to re-run or drop the cell.
+- **Citations activated by this decision.** The Bürkner (brms)/Carpenter (Stan)/Lewandowski–
+  Kurowicka–Joe (LKJ prior) trio moves from "conditional" to "queued" in `todo/003` (the brms
+  number is now printed in `manuscript/`, triggering the condition set 2026-07-01); `mice`'s
+  methodology citation is already covered by the verified `@vanbuurenFlexibleImputationMissing2018a`
+  (no new acquisition needed), with the JSS software paper (van Buuren & Groothuis-Oudshoorn 2011)
+  logged as an optional package-identity nicety. Use `@TODO:brms-engine` as the drafting
+  placeholder in level3 prose until the trio is acquired, converted, and verified.
+- **Reproducibility.** Per the standing fold-in-before-citing policy, this lands as a documented,
+  rerunnable script (a CLAUDE.md Commands entry at minimum), not a scratchpad — the small-N BIC
+  probe is the precedent (documented spike, not wired into `run_all.R` phase dispatch, since this
+  is explicitly a one-off illustration rather than a repeated production sweep).
+
+## 10. Phase 3 RESULT (executed 2026-07-03, dated amendment)
+
+Ran `verification/spikes/phase3-nonnormal-illustration.R` at $R=1000$, $M=50$
+(`verification/cache/phase3-nonnormal-prod.rds`; CLAUDE.md Commands entry added). All $1000$
+repetitions succeeded on both families (`n_fail=0`), roughly 33 minutes wall-clock (dominated by
+the Gamma/brms arm's cmdstan compile + per-fit sampling; the Bernoulli/mice arm took well under a
+minute). Estimator: ratio-of-means $\mathbb E[T]/\mathbb E[\operatorname{tr}(\mathrm{RIV})]$ with a
+paired bootstrap SE (§9 already flagged that the per-replicate mean-of-ratios estimator is unstable
+here because sample tr(RIV) is itself noisy, unlike the analytic denominator used elsewhere in this
+repo).
+
+**Gamma (estimated-scale) — measured close to predicted, gates pass.**
+
+| Arm | Predicted | Measured | Gate |
+|---|---|---|---|
+| FITTED (deterministic analytic anchor) | $+0.5$ (scored) | $+0.318$ (bootstrap se $0.200$) | **G-P3c PASS** — $+0.5$ sits inside the 95% interval $[-0.07, +0.71]$ |
+| brms (genuine posterior draw) | more negative than FITTED (directional) | $-0.520$ (se $0.203$) | **G-P3d PASS** — $-0.520 < +0.318$, and the gap ($\approx-0.84\operatorname{tr}(\mathrm{RIV})$) is the same order of magnitude and sign as the MVN DA-engine's Bayesian-draw discount |
+
+This is a genuine, non-forced confirmation of the mechanism on a likelihood the theorem was never
+verified on before: a model with an estimated dispersion parameter (Gamma's shape, playing the role
+$\Sigma$ plays in the MVN case) keeps the $+\tfrac12\operatorname{tr}(\mathrm{RIV})$ headline under a
+deterministic plug-in, and a genuine Bayesian posterior draw carries a persistent, more-negative
+discount, exactly the qualitative pattern the DA-engine work established for MVN.
+
+**Bernoulli (nominal "scale-free" exemplar) — clear, informative miss; mechanism traced, not a
+bug.**
+
+| Arm | Predicted | Measured | Gate |
+|---|---|---|---|
+| FITTED (deterministic analytic anchor) | $\approx0$ (scored) | $+0.853$ (bootstrap se $0.161$) | **G-P3e MISS** — about $5.3$ se from $0$ |
+| mice `logreg` (genuine posterior draw) | $\approx-0.5$ (scored) | $+0.628$ (se $0.161$) | **G-P3f MISS** — about $7$ se from $-0.5$, and the *wrong sign* relative to the naive prediction |
+
+Both misses trace to one thing, not to independent problems and not to a coding error: **the
+known-scale collapse requires the family's own conditional missing-data entropy to be independent
+of the parameter being estimated** ($\alpha=0$; `derivation.qmd`'s scope callout, :792–827). This
+holds for a Gaussian mean with *fixed* variance, because a Gaussian's differential entropy is a
+function of its variance alone, not its mean. It does **not** hold for Bernoulli: the binary
+entropy $H(p)=-[p\log p+(1-p)\log(1-p)]$ has $dH/dp=-\operatorname{logit}(p)$, which is the model's
+own linear predictor and is zero only at the single point $p=\tfrac12$, not identically zero as the
+Gaussian-mean case requires. Bernoulli (and, by the identical one-line argument on
+$\lambda\log\lambda-\lambda$, Poisson) is a *one-parameter* exponential family: the same parameter
+that sets the location also sets the entire shape of the distribution, including its own entropy,
+so there is no independent dispersion parameter to hold fixed in the first place. The registered
+prediction in §6/§9 ("scale-free GLMs collapse to the known-scale case") assumed "no explicit
+dispersion parameter" was equivalent to "known scale, $\alpha=0$"; the measured numbers show that
+assumption was wrong, and the one-line entropy-gradient calculation above explains why, independent
+of the simulation. A follow-up check (not promoted to the repo; scratchpad only) confirms the
+direction of the mechanism: shrinking the true logistic slope so that $p_i\to\tfrac12$ for every row
+shrinks the FITTED gap from $+0.474$ (se $0.157$) to $+0.291$ (se $0.049$) as $\mathrm{mean}|\eta|$
+at the missing rows falls from $0.798$ to $0.180$ — moving in the predicted direction, though not
+resolving fully to zero, because $\theta_{\text{obs}}$'s own sampling noise keeps $\alpha$ away from
+exactly $0$ even when the true slope is tiny. This secondary check is reported here for the record
+but is not needed to support the headline point, which rests on the exact, closed-form entropy
+gradient, not on simulation.
+
+**Consequence for the response to r3#2.** The honest generalization is sharper than the registered
+prediction, not weaker: the two-regime split is not "GLM with a nuisance dispersion parameter
+(Gamma, Student-$t$) versus GLM without one (Bernoulli, Poisson)" — it is "does the family's own
+conditional missing-data entropy depend on the estimated parameter." Families with a genuine,
+separate dispersion parameter (Gaussian with known variance, or any location-scale family holding
+scale fixed) can instantiate the known-scale collapse; one-parameter exponential families
+(Bernoulli, Poisson) structurally cannot, because they have no dispersion parameter to fix. This
+lands as a Discussion paragraph (new G-number after G6/G8) and the r3#2 response-letter entry, both
+citing the measured Gamma confirmation and the Bernoulli mechanism correction plainly, per the
+paper's own preregistration discipline (a miss is reported, not re-run away).

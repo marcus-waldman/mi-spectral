@@ -1,0 +1,11 @@
+{
+  "rulings": [
+    {
+      "objection_id": "OBJ-08",
+      "ruling": "sustained",
+      "sustained_point": "The advocate's round-3 defense rebuts only the SCOPE reading of r3#2 (that 'the current findings' names the trace-penalty/design-imbalance terms, excluding the known-scale collapse) — and that reading, plus the disclosure amendment, is accepted. But the bar's actual sufficiency question, sharpened in round 2, is left unanswered: after the OBJ-05/06/07 concessions Bernoulli is no longer a quantitative confirmation of the general-case target — it is a directional non-collapse result (+0.853, unattributed, 2.2 se off, no clean interval containment). So the affirmative evidence that the general-case result 'safely generalizes to standard GLM frameworks' now rests on Gamma ALONE as a clean quantitative confirmation, with Bernoulli demoted to 'escapes the collapse and is positive.' The advocate never defends that a single clean family plus one merely-directional family is sufficient on its own terms to meet r3#2's generalization bar. To hold, the advocate must either (a) show that Gamma's clean confirmation plus Bernoulli's directional non-collapse jointly discharge 'safely generalized to standard GLM frameworks' — e.g. by arguing the two families span the relevant structural axis (separable-scale vs. no-scale one-parameter EF) such that directional agreement in the second is evidentially adequate — or (b) recover a genuine quantitative scoring of Bernoulli against +0.5, or (c) add a third family. The scope reading does not substitute for this sufficiency defense."
+    }
+  ],
+  "new_objections": [],
+  "stance": "objecting"
+}

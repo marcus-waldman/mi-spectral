@@ -178,6 +178,15 @@ Rscript verification/spikes/phase2-bic-smallN-probe.R <R> <out_suffix> [n_cores]
 ```
 Outputs land in `verification/cache/smallN-bic-probe-<out_suffix>/` (per-cell `.rds` + `summary.csv`).
 
+**Reproduce the Phase-3 non-normal illustration** (todo/040 §9, reviewer r3#2; exploratory
+one-off illustration, NOT part of `run_all.R`'s phase dispatch — two families (Gamma
+estimated-scale via brms, Bernoulli scale-free via mice), each with a deterministic FIML-analytic
+anchor and a genuine posterior-draw engine, N=200, MCAR-only):
+```
+Rscript verification/spikes/phase3-nonnormal-illustration.R <R> <M> <out_suffix>
+```
+Outputs land in `verification/cache/phase3-nonnormal-<out_suffix>.rds`.
+
 **Preregistered W1/W2/W3 originals** (todo/004; only for reproducing the SHA ddc9037 results, not for new analysis):
 ```
 Rscript verification/W1-bias-decomposition.R <mode> <engine> [n_cores] [N_override]

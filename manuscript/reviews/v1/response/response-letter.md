@@ -66,14 +66,62 @@ no extra steps; a `verdicts$BIC` block in `_modules/aggregate.R` reports the num
 from any future `run_all.R` run, and `00-test-primitives.R` covers the BIC penalty/correction
 arithmetic directly against synthetic inputs.
 
-## reviewer3 — r3#2 (non-normal / GLM generalizability) — Tier D — Status: PENDING
+## reviewer3 — r3#2 (non-normal / GLM generalizability) — Tier D — Status: DRAFTED
 
 > The manuscript relies exclusively on a four-dimensional multivariate normal distribution for
 > all empirical validations. [...] The authors should discuss how the derived trace penalty and
 > design-imbalance terms are expected to behave under non-normal likelihoods [...]
 
-*Gated on Phase 3* (non-normal fork, gated on a scope decision per `todo/040` §2). Resolves either
-as an empirical two-regime illustration or a Discussion-only prediction paragraph.
+We ran a first check outside the multivariate normal family rather than leaving this as a
+prediction-only paragraph. Two non-normal likelihoods were used: a Gamma model, which estimates
+its own dispersion, and a Bernoulli model, which does not — chosen to match the reviewer's own
+examples of "skewed continuous" and "categorical" variables. A feasibility check first found that
+brms's `mi()` imputation mechanism hard-refuses discrete families (confirmed failures on both
+`bernoulli(logit)` and `poisson(log)`), so brms served as the estimated-scale engine (Gamma, a
+genuine Bayesian posterior draw with weakly-informative priors) and `mice` served as the
+scale-free engine (Bernoulli, `method="logreg"`), each checked against a deterministic
+FIML-analytic anchor built from the family's own differential entropy (validated against
+brute-force Monte Carlo to $10^{-4}$ before use). Design and pass criteria were registered before
+any code ran (`todo/040-v1-review-response-registration.md` §9); results at $R=1{,}000$,
+$M=50$ are in §10 of the same file.
+
+**The Gamma check confirms the pattern.** The deterministic anchor measures $+0.32$ times the
+trace (bootstrap se $0.20$), inside the $95$ percent interval around the predicted one half, and
+the genuine Bayesian draw measures $-0.52$ (se $0.20$) — more negative than the anchor, the same
+direction the paper's multivariate-normal posterior-draw check (r1#8, above) already established.
+This is a real, non-forced confirmation of the mechanism on a likelihood the theorem had not been
+tested on before.
+
+**The Bernoulli check misses both of its registered targets, and we traced why rather than
+re-running it away.** The deterministic anchor measures $+0.85$ (se $0.16$, predicted
+approximately $0$) and the mice draw measures $+0.63$ (se $0.16$, predicted approximately
+$-0.5$, the wrong sign). The reason is a genuine mechanism, not an implementation error: the
+known-scale collapse this paper derives (@sec-discussion) requires the family's own conditional
+missing-data entropy to stay flat as the estimated parameter moves. That holds for a Gaussian mean
+under a *fixed* variance, because a normal distribution's entropy depends on its variance alone,
+not its mean. It does not hold for a Bernoulli probability $p$: the binary entropy
+$-[p\log p+(1-p)\log(1-p)]$ has derivative $-\operatorname{logit}(p)$, which is zero only at the
+single point $p=\tfrac12$, not identically zero. The same one-line argument applies to Poisson
+through $\lambda\log\lambda-\lambda$. Bernoulli and Poisson are one-parameter exponential
+families — the same parameter sets both the location and the entire shape of the distribution —
+so neither has an independent dispersion parameter that could be held fixed in the first place.
+Our own registered prediction (§6 of the registration doc) had treated "no named dispersion
+parameter" as equivalent to "known scale, flat entropy." The measured numbers show that
+equivalence is false, and the one-line entropy-gradient calculation explains why, independent of
+the simulation.
+
+**This sharpens the answer to the reviewer's question rather than weakening it.** The correct
+generalization of the trace-penalty result to GLMs is not "families with a nuisance dispersion
+parameter behave one way, families without one behave the other way" — it is "does the family's
+own missing-data entropy depend on the parameter being estimated." Families with a genuine, held-
+fixed dispersion parameter (a Gaussian mean under known variance, or any location-scale family
+with scale fixed) can instantiate the known-scale collapse; one-parameter exponential families
+(Bernoulli, Poisson) structurally cannot, because they have no dispersion parameter to fix. This
+lands as a new Discussion paragraph, G9, reporting both results plainly.
+
+*Manuscript change landed:* Discussion paragraph G9 (`S6-P4d`, inserted after G8); `decisions.md`
+D-24 records the finding and its provenance; `verification/spikes/phase3-nonnormal-illustration.R`
+has a CLAUDE.md Commands entry per the reproducibility fold-in policy.
 
 ## reviewer3 — r3#3 (congeniality diagnosis) — Tier D — Status: PENDING
 

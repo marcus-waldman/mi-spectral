@@ -1,0 +1,11 @@
+{
+  "rulings": [
+    {
+      "objection_id": "OBJ-08",
+      "ruling": "sustained",
+      "sustained_point": "The advocate successfully argued that r3#2's request does not require a known-scale test, but failed to address the core sufficiency question raised in Round 2: whether the surviving evidence is actually enough. With Bernoulli reduced to a merely directional result (due to its 2.2 SE miss from the general-case target), the affirmative quantitative evidence for GLM generalization rests entirely on Gamma. The advocate has not defended how a single quantitative confirmation (Gamma) plus a directional non-collapse (Bernoulli) is sufficient to satisfy r3#2's request to show the findings can be 'safely generalized to standard GLM frameworks used in applied research' without needing a third family."
+    }
+  ],
+  "new_objections": [],
+  "stance": "objecting"
+}
