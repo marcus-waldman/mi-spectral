@@ -22,19 +22,18 @@ place.
 ## Resume prompt (paste as the opening message)
 
 Resume mi-spectral. Confirm `git branch --show-current` first (should be
-`da-engine-phase0-todo040`). Read `.prometheus/charter.md` first for full current-state context —
-it was wrapped at the end of last session (`ab62fef`, referencing `f67c5c1`), so check `git log`
-against `last_synced_commit` before assuming it's current, and run `/prometheus:wrap` if commits
-have landed since.
+`da-engine-phase0-todo040`, in sync with `origin` — everything pushed as of `a5b23f7`). Read
+`.prometheus/charter.md` first for full current-state context — it was wrapped at the end of last
+session (`a5b23f7`, referencing `8c4ed35`), so check `git log` against `last_synced_commit` before
+assuming it's current, and run `/prometheus:wrap` if commits have landed since.
 
 **Where things stand.** The v1-review response milestone has two independent threads, and they
 must NOT be conflated. **Thread 1 (Phase 4, solid, don't re-open):** 13 of 15 response-letter
 comments are DRAFTED and landed — r3#1 (BIC), r1#7 (heavy-tail N=1000), r1#9 (nested-confound), and
-all nine Tier C notation/consistency fixes (proof#10/11, contra#12-15, r2#4-6). All committed via
-`manuscript/plan/updates/*.py` scripts (uncommitted as of last session's end — check `git status`),
-`check_plan` green, manuscript rendered clean after each batch. Only r3#3 (congeniality diagnosis)
-remains untouched, blocked on sourcing a citable method (log candidates to `todo/003` first). None
-of this is affected by Thread 2 below and should not be redone.
+all nine Tier C notation/consistency fixes (proof#10/11, contra#12-15, r2#4-6). Committed and
+pushed (`fd52e99`), `check_plan` green, manuscript rendered clean. Only r3#3 (congeniality
+diagnosis) remains untouched, blocked on sourcing a citable method (log candidates to `todo/003`
+first). None of this is affected by Thread 2 below and should not be redone.
 
 **Thread 2 (Phase 3, STALE, the actual work for this session):** the non-normal illustration
 (Gamma via brms, Bernoulli via `mice`) ran at R=1000. Gamma landed cleanly — FITTED +0.318 (se
@@ -66,7 +65,10 @@ investigation into **why** the registration HARKed and **why** the numbers look 
 registered as `todo/045-phase3-bernoulli-investigation.md`. The response-letter r3#2 entry,
 Discussion G9, and `decisions.md` D-24 are flagged STALE — left in place, not deleted, known to
 overclaim relative to what the quorum found tenable. Do not cite, extend, or build on them until
-`todo/045` closes.
+`todo/045` closes. All of this (the Phase-3 illustration, the quorum transcript at
+`tkal-reviews/quorum-phase3-bernoulli-20260703/`, and this stale-flagged text) is already committed
+and pushed (`459e2c8`) — the STALE flag is a status marker in the text and in this handoff, not an
+uncommitted/pending state.
 
 **Task 1 — `todo/045` Q1 (process retrospective, Sec.2, no code, do this first).** Reconstruct
 exactly what happened in `todo/040` Sec.9's registration: was the entropy-gradient condition
@@ -113,7 +115,7 @@ amendment in the relevant todo file before code, not after. The reproducibility 
 (Marcus, 2026-07-03) applies to any new cited result — fold into `run_all.R`/`aggregate.R`/CLAUDE.md
 before citing, not after; `verification/spikes/phase3-nonnormal-illustration.R` already has a
 CLAUDE.md Commands entry from this session and can be extended (e.g. for an N-scan or a new
-known-scale exemplar) rather than replaced. The branch has several commits' worth of uncommitted
-work from this session (check `git status` — Phase 4 fixes, the Phase 3 script + cache, the quorum
-run directory, `todo/045`, this handoff) that were deliberately left uncommitted pending Marcus's
-review; confirm with him whether/how to commit before doing so.
+known-scale exemplar) rather than replaced. Everything from last session is already committed and
+pushed to `origin` (three commits, `fd52e99`/`459e2c8`/`8c4ed35`, plus the charter wrap `a5b23f7`) —
+working tree should be clean at the start of this session; if it isn't, something changed since,
+so check `git status` before assuming otherwise.
