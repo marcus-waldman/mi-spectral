@@ -1,6 +1,13 @@
 # todo/045c — STAGED rewrites of r3#2, G9, D-24/D-25, and the todo/040 §9 amendment
 
-**Status: STAGED, NOT LANDED (2026-07-04).** This file holds the complete replacement text for
+**Status: STAGED, NOT LANDED (2026-07-04); COMPLIANCE-VALIDATED same day.** A repo-grounded
+cross-model compliance validation (Gemini 3.1 Pro via Antigravity, `todo/045d` handoff;
+report: `tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`) scored the staged texts
+against the quorum's binding amendments: 9/10 axes HONORED, all three verification scripts
+reproduced, git chronology confirmed. The one VIOLATED axis (A1: §4's todo/040 amendment put
+the correction before the misses and omitted the measured values) is FIXED in place below
+(reordered, exact decimals restored per the report's optional suggestion); no other text
+changed. Remaining landing gate: Marcus's ratification. This file holds the complete replacement text for
 the three stale artifacts flagged by the quorum (`tkal-reviews/quorum-phase3-bernoulli-20260703/`)
 plus the registration-doc amendment its OBJ-01 requires. Landing is gated on (i) the GPT-5.5 Pro
 cross-model verdict on the §3.1 derivation (`todo/045b`, running when this was staged) and
@@ -206,17 +213,25 @@ rewritten to match; Gamma stays directional (non-canonical link, underived).
 
 Append at the end of §9:
 
-> **Amendment (2026-07-04, after the quorum and the todo/045 investigation).** The Bernoulli
-> classification above ("the scale-free/known-scale exemplar, dispersion fixed at 1 by the
-> family") was wrong, and the section's "no new derivation needed" was the process failure that
-> let it through: the known-scale collapse requires a flat conditional missing-data entropy,
-> which Bernoulli does not have ($dH/dp=-\operatorname{logit}(p)$). The registered targets
-> (plug-in $\approx0$, draw $\approx-0.5$) were missed at $\approx5$ and $\approx7$ standard
-> errors (the latter with the opposite sign). The family choice was pre-registered; the target
-> was corrected post hoc, and the corrected target was then derived, CAS-verified,
-> re-registered (`4aaeaae`), and confirmed blind (`afa4438`) — full record: todo/045 §§2–3,
-> quorum record `tkal-reviews/quorum-phase3-bernoulli-20260703/`. The §10 numbers for Bernoulli
-> are superseded (Monte-Carlo noise + a fixed `mice` seed across repetitions; see
+> **Amendment (2026-07-04, after the quorum and the todo/045 investigation; reordered
+> 2026-07-04 per the Gemini compliance validation,
+> `tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`, to keep the misses strictly before
+> the corrected framing).** This section registered Bernoulli as "the scale-free/known-scale
+> exemplar, dispersion fixed at 1 by the family," with targets of approximately $0$ for the
+> deterministic plug-in and approximately $-0.5$ for the genuine posterior draw, and asserted
+> the classification "with no new derivation needed." Both targets were missed: the measured
+> plug-in value was $+0.853$ (se $0.161$), about $5.3$ standard errors from the registered
+> $\approx0$, and the measured posterior-draw value was $+0.628$ (se $0.161$), about $7$
+> standard errors from the registered $\approx-0.5$ and of the opposite sign. The
+> classification was wrong, and "no new derivation needed" was the process failure that let it
+> through: the known-scale collapse requires a flat conditional missing-data entropy, which
+> Bernoulli does not have ($dH/dp=-\operatorname{logit}(p)$, zero only at $p=\tfrac12$). The
+> family choice was pre-registered; the target attached to it was corrected post hoc, and the
+> corrected target was then derived, CAS-verified, re-registered (`4aaeaae`), and confirmed
+> blind (`afa4438`) — full record: todo/045 §§2–3.5, quorum record
+> `tkal-reviews/quorum-phase3-bernoulli-20260703/`. The §10 numbers for Bernoulli are
+> superseded (the plug-in value was Monte-Carlo noise around a true $+0.518\pm0.012$ at
+> $R=200{,}000$; the draw value also carried a fixed `mice` seed across all repetitions — see
 > `verification/spikes/phase3-mice-seed-diagnostic.R`).
 
 ## 5. Landing checklist (do NOT execute before the two gates clear)
