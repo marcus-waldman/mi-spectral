@@ -1,6 +1,15 @@
 # todo/045c — STAGED rewrites of r3#2, G9, D-24/D-25, and the todo/040 §9 amendment
 
-**Status: STAGED, NOT LANDED (2026-07-04); COMPLIANCE-VALIDATED same day.** A repo-grounded
+**Status: LANDED 2026-07-04 (Marcus ratified; this file stays as the staging record).** All four
+sections landed per §5: G9 via `manuscript/plan/updates/update-g9-rewrite-20260704.py`
+(check_plan green, qmd rebuilt, render exit 0), the r3#2 letter body, the D-24 pointer + D-25,
+and the todo/040 §9 amendment. ONE wording deviation from the ratified text, recorded in the
+update script and here: the staged G9's final sentence used an em-dash pair, which the
+check_plan prose gate bans; landed as two plain sentences with identical content ("...not by the
+family's name. Non-canonical links remain underived."), `closing_sentence` updated to match.
+Also fixed at landing: a bash-heredoc backslash-eating artifact turned `\t`-leading LaTeX macros
+into literal tabs in decisions.md and the letter; repaired and verified zero tabs remain.
+Pre-landing history: **STAGED, NOT LANDED (2026-07-04); COMPLIANCE-VALIDATED same day.** A repo-grounded
 cross-model compliance validation (Gemini 3.1 Pro via Antigravity, `todo/045d` handoff;
 report: `tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`) scored the staged texts
 against the quorum's binding amendments: 9/10 axes HONORED, all three verification scripts

@@ -578,6 +578,27 @@ verified prediction).
   probe is the precedent (documented spike, not wired into `run_all.R` phase dispatch, since this
   is explicitly a one-off illustration rather than a repeated production sweep).
 
+> **Amendment (2026-07-04, after the quorum and the todo/045 investigation; reordered
+> 2026-07-04 per the Gemini compliance validation,
+> `tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`, to keep the misses strictly before
+> the corrected framing).** This section registered Bernoulli as "the scale-free/known-scale
+> exemplar, dispersion fixed at 1 by the family," with targets of approximately $0$ for the
+> deterministic plug-in and approximately $-0.5$ for the genuine posterior draw, and asserted
+> the classification "with no new derivation needed." Both targets were missed: the measured
+> plug-in value was $+0.853$ (se $0.161$), about $5.3$ standard errors from the registered
+> $\approx0$, and the measured posterior-draw value was $+0.628$ (se $0.161$), about $7$
+> standard errors from the registered $\approx-0.5$ and of the opposite sign. The
+> classification was wrong, and "no new derivation needed" was the process failure that let it
+> through: the known-scale collapse requires a flat conditional missing-data entropy, which
+> Bernoulli does not have ($dH/dp=-\operatorname{logit}(p)$, zero only at $p=\tfrac12$). The
+> family choice was pre-registered; the target attached to it was corrected post hoc, and the
+> corrected target was then derived, CAS-verified, re-registered (`4aaeaae`), and confirmed
+> blind (`afa4438`) — full record: todo/045 §§2–3.5, quorum record
+> `tkal-reviews/quorum-phase3-bernoulli-20260703/`. The §10 numbers for Bernoulli are
+> superseded (the plug-in value was Monte-Carlo noise around a true $+0.518\pm0.012$ at
+> $R=200{,}000$; the draw value also carried a fixed `mice` seed across all repetitions — see
+> `verification/spikes/phase3-mice-seed-diagnostic.R`).
+
 ## 10. Phase 3 RESULT (executed 2026-07-03, dated amendment)
 
 Ran `verification/spikes/phase3-nonnormal-illustration.R` at $R=1000$, $M=50$

@@ -1,6 +1,12 @@
 # Todo 045 — REGISTRATION + PLAN: why the Phase-3 Bernoulli check HARKed, and why the numbers look the way they do
 
-**Status:** Q1 CLOSED 2026-07-03 (same session, continued); Q2 3a DERIVED + CAS-VERIFIED
+**Status: CLOSED 2026-07-04.** Marcus ratified `todo/045c-staged-rewrites.md` after the GPT-5.5
+gate cleared (§3.5) and a repo-grounded Gemini compliance validation passed post-fix
+(`tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`); the rewrites are LANDED (G9 via
+`manuscript/plan/updates/update-g9-rewrite-20260704.py`, check_plan green, render exit 0; the
+r3#2 letter body; the D-24 superseding pointer + new D-25; the todo/040 §9 amendment). The
+response letter is now 15/15 DRAFTED. Investigation history below, kept as the record.
+Original status trail: Q1 CLOSED 2026-07-03 (same session, continued); Q2 3a DERIVED + CAS-VERIFIED
 2026-07-04 (§3.1; cross-model gate launched same day), 3b/3c REGISTERED (§3.2, §3.3, committed
 `4aaeaae` pre-production) and EXECUTED same day — **all five substantive registered criteria
 PASS** (§3.4: Bernoulli asymptote $+0.512\pm0.037$ vs derived $+0.5$; Poisson blind arm

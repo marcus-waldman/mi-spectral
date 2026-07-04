@@ -72,56 +72,82 @@ arithmetic directly against synthetic inputs.
 > all empirical validations. [...] The authors should discuss how the derived trace penalty and
 > design-imbalance terms are expected to behave under non-normal likelihoods [...]
 
-We ran a first check outside the multivariate normal family rather than leaving this as a
-prediction-only paragraph. Two non-normal likelihoods were used: a Gamma model, which estimates
-its own dispersion, and a Bernoulli model, which does not — chosen to match the reviewer's own
-examples of "skewed continuous" and "categorical" variables. A feasibility check first found that
-brms's `mi()` imputation mechanism hard-refuses discrete families (confirmed failures on both
-`bernoulli(logit)` and `poisson(log)`), so brms served as the estimated-scale engine (Gamma, a
-genuine Bayesian posterior draw with weakly-informative priors) and `mice` served as the
-scale-free engine (Bernoulli, `method="logreg"`), each checked against a deterministic
-FIML-analytic anchor built from the family's own differential entropy (validated against
-brute-force Monte Carlo to $10^{-4}$ before use). Design and pass criteria were registered before
-any code ran (`todo/040-v1-review-response-registration.md` §9); results at $R=1{,}000$,
-$M=50$ are in §10 of the same file.
+We ran checks outside the multivariate normal family rather than leaving this as a
+prediction-only paragraph — and the first round exposed an error in our own registration, which
+we report first, because the corrected analysis only exists on account of that miss.
 
-**The Gamma check confirms the pattern.** The deterministic anchor measures $+0.32$ times the
-trace (bootstrap se $0.20$), inside the $95$ percent interval around the predicted one half, and
-the genuine Bayesian draw measures $-0.52$ (se $0.20$) — more negative than the anchor, the same
-direction the paper's multivariate-normal posterior-draw check (r1#8, above) already established.
-This is a real, non-forced confirmation of the mechanism on a likelihood the theorem had not been
-tested on before.
+**What was registered, and what happened.** Two families were pre-registered before any code ran
+(`todo/040-v1-review-response-registration.md` §9), chosen to match the reviewer's own "skewed
+continuous" and "categorical" examples: Gamma (estimated dispersion) and Bernoulli, which the
+registration classified as the known-scale exemplar on the reasoning "no explicit dispersion
+parameter." The registered Bernoulli targets were approximately $0$ for the deterministic plug-in
+and approximately $-0.5$ for the genuine posterior draw. The measured values ($R{=}1{,}000$,
+$N{=}200$) were $+0.85$ (se $0.16$), about $5$ standard errors from the registered target, and
+$+0.63$ (se $0.16$), about $7$ standard errors away and of the opposite sign. The family
+selection was pre-registered; the theoretical target attached to it was not correct, and it was
+corrected only after the miss. The error is a category error, not a computation: the known-scale
+collapse requires the family's conditional missing-data entropy to be flat in the estimated
+parameter, and the binary entropy is not flat ($dH/dp=-\operatorname{logit}(p)$, zero only at
+$p=\tfrac12$). "Has no dispersion parameter" and "has a dispersion parameter, held fixed" are
+opposite structural situations, and the registration mapped one onto the other.
 
-**The Bernoulli check misses both of its registered targets, and we traced why rather than
-re-running it away.** The deterministic anchor measures $+0.85$ (se $0.16$, predicted
-approximately $0$) and the mice draw measures $+0.63$ (se $0.16$, predicted approximately
-$-0.5$, the wrong sign). The reason is a genuine mechanism, not an implementation error: the
-known-scale collapse this paper derives (@sec-discussion) requires the family's own conditional
-missing-data entropy to stay flat as the estimated parameter moves. That holds for a Gaussian mean
-under a *fixed* variance, because a normal distribution's entropy depends on its variance alone,
-not its mean. It does not hold for a Bernoulli probability $p$: the binary entropy
-$-[p\log p+(1-p)\log(1-p)]$ has derivative $-\operatorname{logit}(p)$, which is zero only at the
-single point $p=\tfrac12$, not identically zero. The same one-line argument applies to Poisson
-through $\lambda\log\lambda-\lambda$. Bernoulli and Poisson are one-parameter exponential
-families — the same parameter sets both the location and the entire shape of the distribution —
-so neither has an independent dispersion parameter that could be held fixed in the first place.
-Our own registered prediction (§6 of the registration doc) had treated "no named dispersion
-parameter" as equivalent to "known scale, flat entropy." The measured numbers show that
-equivalence is false, and the one-line entropy-gradient calculation explains why, independent of
-the simulation.
+**The corrected target was then derived, not asserted — and verified blind.** Because a post-hoc
+correction prompted by a miss is exactly the pattern an adversarial review flagged in our own
+process, the corrected analysis was rebuilt to a higher standard than the original: (i) a full
+derivation of what a canonical-link GLM should show, from the paper's own Term-A objects — under
+response-only MCAR the two order-one design terms (entropy-gradient $\times$ MLE-bias, and
+cross-entropy curvature) cancel exactly for any canonical link, leaving the general
+$+\tfrac12\operatorname{tr}(\mathrm{RIV})$ plus a base-measure term that is zero for Bernoulli
+and nonzero for Poisson; (ii) a 15-check computer-algebra verification, including exact finite-$n$
+enumerations that need no Monte Carlo; (iii) pre-registration of every new target in a commit
+that precedes the production runs in the git history; and (iv) an independent, blinded
+cross-model re-derivation requested from a different model family given only the problem setup.
 
-**This sharpens the answer to the reviewer's question rather than weakening it.** The correct
-generalization of the trace-penalty result to GLMs is not "families with a nuisance dispersion
-parameter behave one way, families without one behave the other way" — it is "does the family's
-own missing-data entropy depend on the parameter being estimated." Families with a genuine, held-
-fixed dispersion parameter (a Gaussian mean under known variance, or any location-scale family
-with scale fixed) can instantiate the known-scale collapse; one-parameter exponential families
-(Bernoulli, Poisson) structurally cannot, because they have no dispersion parameter to fix. This
-lands as a new Discussion paragraph, G9, reporting both results plainly.
+**Every registered criterion the corrected theory implies then passed.** An $N$-scan of the
+Bernoulli plug-in arm ($N{=}200$ to $2{,}000$, up to $R{=}200{,}000$) gives an asymptote of
+$+0.512\pm0.037$ against the derived $+0.500$; its $N{=}200$ value is $+0.518\pm0.012$, which
+also settles the residual the earlier run left unattributed — the $+0.85$ was Monte-Carlo noise
+at $R{=}1{,}000$ around a true value near $+0.52$, not a hidden term. A Poisson model, simulated
+in this project for the first time only after its target was fixed, lands at $+0.113\pm0.027$
+against its derived target of $+0.104$ — a target far from both naive candidates ($+0.5$ and
+$0$), because Poisson's base measure ($1/y!$) contributes a derived $-0.40$ correction that
+Bernoulli's constant base measure does not have. The posterior-draw arm matches its derived
+discount ($-0.31\pm0.07$ at $N{=}2{,}000$ against $-0.261$). And a Student-t location model with
+scale and degrees of freedom held fixed — a genuine known-scale family outside the normal, with
+both targets derived and dated before any code ran — measures $+0.02\pm0.05$ (plug-in) and
+$-0.48\pm0.05$ (posterior draw) against the derived $0$ and $-0.5$, so the known-scale collapse
+is no longer verified only in the multivariate normal family. In the course of this the original
+Bernoulli draw value was found to carry a second defect: the original script fixed the imputation
+seed across all repetitions, so its quoted standard error overstated independence
+(`verification/spikes/phase3-mice-seed-diagnostic.R` reproduces the old value with the fixed
+seed and the corrected one without it). All superseded numbers stay in the record; none is
+load-bearing.
 
-*Manuscript change landed:* Discussion paragraph G9 (`S6-P4d`, inserted after G8); `decisions.md`
-D-24 records the finding and its provenance; `verification/spikes/phase3-nonnormal-illustration.R`
-has a CLAUDE.md Commands entry per the reproducibility fold-in policy.
+**The Gamma check stays a directional confirmation.** The plug-in measures $+0.32$ (se $0.20$),
+inside a wide interval around the predicted one half, and the posterior draw is more negative
+($-0.52$, se $0.20$), the same direction as the multivariate-normal posterior-draw result (r1#8).
+Gamma's log link is not canonical, so the new lemma does not cover it, and its run shares the
+fixed-seed caveat above — we therefore claim direction, not magnitude, for this family.
+
+**Scope of what this answers.** This addresses the trace penalty and design-imbalance terms named
+in the reviewer's question — the quantities the paper's applications use — now with a derived,
+blind-tested GLM extension rather than only an empirical spot-check; and separately it closes the
+known-scale boundary result's non-normal gap with the Student-t exemplar. The remaining
+non-normal opening is stated in the manuscript (G9): non-canonical links (including Gamma's) have
+no derived magnitude, and general missingness patterns beyond response-only are not covered by
+the new lemma.
+
+*Manuscript change landed:* Discussion paragraph G9 (`S6-P4d`) rewritten to the corrected,
+chronology-first account; `decisions.md` D-25 records the correction (D-24 carries a superseding
+pointer). *Reproducibility:* `verification/spikes/phase3-family-scan.R` (four arms) +
+`phase3-family-scan-score.R` (registered-criteria scorecard) + `phase3-mice-seed-diagnostic.R`,
+all with CLAUDE.md Commands entries; CAS companion
+`verification/cas-wolfram/verify_bernoulli_fitted_gap.py` (15 checks); registration and results
+are separate commits (`4aaeaae` then `afa4438`), so the pre-registration is checkable in the git
+history, not asserted. Cross-model verification: a blinded GPT-5.5 Pro re-derivation plus
+red-team (both archived at `verification/cache/layer3-gpt-5.5-pro-bern-glm-mode{A,B}.md`) and a
+repo-grounded Gemini compliance validation of this very text against the adversarial review's
+amendments (`tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`).
 
 ## reviewer3 — r3#3 (congeniality diagnosis) — Tier D — Status: DRAFTED
 

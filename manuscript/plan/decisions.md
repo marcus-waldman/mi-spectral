@@ -144,3 +144,45 @@ Following the v1-review response's MI-BIC work (todo/040 Phase 2), a full 60-cel
 ## Phase 3 non-normal illustration: Gamma confirms, Bernoulli refines the known-scale scope (2026-07-03, Marcus-directed, D-24)
 
 Answering r3#2 (non-normal/GLM generalizability), Marcus approved (AskUserQuestion) a non-normal empirical illustration after a runtime probe found brms's `mi()` addition term hard-refuses discrete families -- confirmed failures on both `bernoulli(logit)` and `poisson(log)` -- so brms (Gamma, estimated-scale) and `mice` (Bernoulli, scale-free) were run as two separate engines, each against a deterministic FIML-analytic anchor (Gamma/Bernoulli differential-entropy formulas, validated against brute-force Monte Carlo to $10^{-4}$ before use), registered before code in `todo/040-v1-review-response-registration.md` §9. Ran at $R=1{,}000$, $M=50$ (`verification/spikes/phase3-nonnormal-illustration.R`, `verification/cache/phase3-nonnormal-prod.rds`; CLAUDE.md Commands entry). **Gamma (estimated-scale) confirms the pattern**: FITTED $=+0.318$ (se $0.200$), inside the 95% interval around the predicted $+\tfrac12$; the brms posterior draw is more negative ($-0.520$, se $0.203$), the same qualitative Bayesian-draw discount the DA-engine work established for MVN. **Bernoulli (the nominal "scale-free" exemplar) misses both registered targets** -- FITTED $=+0.853$ (se $0.161$, predicted $\approx0$) and the mice `logreg` draw $=+0.628$ (se $0.161$, predicted $\approx-0.5$, wrong sign) -- and the miss is traced to a genuine, non-buggy mechanism, not a coding error: the known-scale collapse requires the family's own conditional missing-data entropy to be *independent* of the estimated parameter ($\alpha=0$), which holds for a Gaussian mean under *fixed* variance (entropy is a function of variance alone) but not for Bernoulli, whose binary entropy has $dH/dp=-\operatorname{logit}(p)$, zero only at the single point $p=\tfrac12$ (the identical one-line argument applies to Poisson via $\lambda\log\lambda-\lambda$). Bernoulli and Poisson are one-parameter exponential families with no independent dispersion parameter to hold fixed in the first place, so "no explicit dispersion parameter" is not the same condition as "known scale, $\alpha=0$" -- the registered prediction conflated the two. This sharpens rather than weakens the answer to r3#2: the two-regime split is about whether a family's own missing-data entropy depends on the estimated parameter, not about which textbook GLM family is used. Lands as a new Discussion paragraph and the r3#2 response-letter entry, both reporting the Gamma confirmation and the Bernoulli mechanism correction plainly, per the paper's preregistration discipline. Full record: `todo/040-v1-review-response-registration.md` §10.
+
+
+> **(Partially superseded 2026-07-04 — see D-25.)** The mechanism sentence stands, but three
+> specifics are corrected by the todo/045 investigation: the "identical one-line argument applies
+> to Poisson" clause is wrong as a magnitude claim (Poisson escapes the known-scale collapse but
+> its non-constant base measure moves its plug-in value to a derived $+0.104$, confirmed blind at
+> $+0.113\pm0.027$); the quoted Bernoulli measurements are superseded (the $+0.853$ was
+> Monte-Carlo noise around a true $+0.518\pm0.012$, and the $+0.628$ draw value also carried a
+> fixed `mice` seed across repetitions); and the "two-regime" framing now has a derived
+> canonical-GLM theorem plus a Student-t known-scale exemplar behind it rather than a
+> post-hoc re-scoring.
+
+## Canonical-GLM extension derived + blind-verified; known-scale exemplar closes the non-normal gap (2026-07-04, D-25)
+
+The todo/045 investigation (opened after the D-24 write-up was found HARKing-shaped by Marcus and
+determined AMENDED by an adversarial quorum) resolved the substance. Q1 traced the registration
+error to a category-error analogy ("no dispersion parameter" mapped onto "dispersion parameter
+held fixed"). Q2 then derived the corrected result rather than assuming it: for a canonical-link
+GLM under response-only MCAR, the theorem's two $O(1)$ design terms — entropy-gradient $\times$
+Cox–Snell MLE bias, and cross-entropy curvature — cancel exactly (Lemma P: because $\eta$ is
+linear in $X$ and $\Omega$ carries the information weight, $\mathbb{E}[\eta wX^\top]\Omega^{-1}
+\mathbb{E}[A'''(X^\top\Omega^{-1}X)X]=\mathbb{E}[\eta A'''(X^\top\Omega^{-1}X)]$), so
+$\mathbb{E}[T_{\text{fitted}}]=+\tfrac12\operatorname{tr}(\mathrm{RIV})+\Delta_h+O(1/N)$ with
+$\Delta_h$ a base-measure functional: $0$ for Bernoulli ($h\equiv1$), $-0.396\cdot
+\operatorname{tr}(\mathrm{RIV})$ for Poisson at the studied design. CAS: 15 checks incl. exact
+finite-$n$ enumerations (`verification/cas-wolfram/verify_bernoulli_fitted_gap.py`). All targets
+were re-registered in a commit preceding the production runs (`4aaeaae`); all five substantive
+criteria passed (`afa4438`): Bernoulli asymptote $+0.512\pm0.037$ (derived $+0.5$); Poisson blind
+arm $+0.113\pm0.027$ (derived $+0.104$; first Poisson simulation in the repo); draw discount
+$-0.313\pm0.070$ at $N{=}2000$ (derived $-0.2606$); Student-t fixed-scale exemplar
+$+0.025\pm0.049$ / $-0.483\pm0.049$ (derived $0$ / $-0.5$) — the known-scale collapse verified
+outside MVN for the first time, with the entropy condition derived and dated before any code
+(the Q1 process fix in action). Also found: the original phase-3 script fixed `mice(seed = 1)`
+across all repetitions (one shared 50-draw set; se overstated independence) —
+`verification/spikes/phase3-mice-seed-diagnostic.R`. Cross-model gate: GPT-5.5 Pro xhigh, Mode A
+blind re-derivation + Mode B red-team (`todo/045b`), verdict CLEARED, recorded in todo/045 §3.5;
+plus a repo-grounded Gemini 3.1 Pro compliance validation of the staged texts against the
+quorum's amendments (`tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`, one ordering
+defect found and fixed pre-ratification). Manuscript consequence: G9 rewritten chronology-first
+per the quorum's binding amendments (`update-g9-rewrite-20260704.py`); r3#2 response rewritten to
+match; Gamma stays directional (non-canonical link, underived). Ratified by Marcus 2026-07-04;
+staging record `todo/045c-staged-rewrites.md`.
