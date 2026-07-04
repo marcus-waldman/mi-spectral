@@ -1,11 +1,16 @@
 # Todo 045 — REGISTRATION + PLAN: why the Phase-3 Bernoulli check HARKed, and why the numbers look the way they do
 
-**Status:** REGISTERED 2026-07-03, **before any new code**. Written at the end of the session that
-ran the Phase-3 non-normal illustration (todo/040 §9-10), then ran it through an adversarial
-`tkal-in-ket` quorum (Gemini + Claude-Opus peers) after Marcus flagged the write-up as
-HARKing-shaped. Determination: **AMENDED** — the position survives only via substantial
+**Status:** Q1 CLOSED 2026-07-03 (same session, continued); Q2 OPEN, no code yet. Written at the
+end of the session that ran the Phase-3 non-normal illustration (todo/040 §9-10), then ran it
+through an adversarial `tkal-in-ket` quorum (Gemini + Claude-Opus peers) after Marcus flagged the
+write-up as HARKing-shaped. Determination: **AMENDED** — the position survives only via substantial
 concessions, and one objection (OBJ-08) is sustained, not resolved. Full record:
-`tkal-reviews/quorum-phase3-bernoulli-20260703/DETERMINATION.md`.
+`tkal-reviews/quorum-phase3-bernoulli-20260703/DETERMINATION.md`. **Q1's findings are in §2 below**
+("Q1 FINDINGS," dated 2026-07-03): the registration explicitly declined to derive anything for
+Bernoulli ("no new derivation needed," quoted verbatim from §9), the same description-only pattern
+was used for Gamma, and Gamma landed correctly because it is a genuine structural analogy
+(a real second parameter, like MVN's $\Sigma$) while Bernoulli's was a category error (no such
+parameter exists to map at all). Q2 (§3) is unstarted.
 
 Marcus's direction closing that session: stop rewriting the manuscript-facing text for now. The
 next session is a **full investigation** into two linked but distinct questions — (1) *why* the
@@ -100,6 +105,99 @@ looking at any new numbers, to actually satisfy OBJ-05's "what would satisfy").
   written. This is cheap (a few lines of calculus per family) and directly closes the OBJ-05 gap
   for any *future* instance, even though it cannot retroactively fix this one.
 
+### Q1 FINDINGS (executed 2026-07-03, dated amendment — resolves Q1)
+
+**2a — confirmed against the actual text, not memory.** `todo/040` §9 states, verbatim: *"The
+theorem's known-scale scope callout (`derivation.qmd` :792–827) already gives the two-regime
+prediction with **no new derivation needed**"* (§9, "What this illustrates," first sentence). This
+is a direct textual admission, not an inference — the registration explicitly declined to derive
+anything for the new instance, treating the EXISTENCE of the general known-scale/estimated-scale
+split (proven for MVN) as sufficient license to classify a brand-new family without checking the
+split's own antecedent condition against that family. The classification itself is asserted purely
+descriptively: *"a model with a known scale (dispersion fixed by the mean–variance relationship, as
+in Bernoulli/Poisson GLMs) collapses to..."* (§9) and, in the Design section, *"Bernoulli (logit
+link — the scale-free/known-scale exemplar, dispersion fixed at 1 by the family)"*. Neither passage
+writes down Bernoulli's entropy $H(p)=-[p\log p+(1-p)\log(1-p)]$ or computes $dH/dp$. The entropy
+formula and its derivative appear for the first time in §10, **after** the miss — confirming the
+quorum's OBJ-05 finding directly from the primary text: the derivation genuinely did not exist
+before the data.
+
+**2b — the same shortcut was used for Gamma, but it is a structurally sound analogy, not merely a
+lucky one.** Gamma's classification is equally description-only in §9: *"Gamma (log link, shape
+estimated — the estimated-scale exemplar)"* and, in §10 (written after the run), *"a model with an
+estimated dispersion parameter (Gamma's shape, **playing the role $\Sigma$ plays** in the MVN
+case)"* — analogy language ("playing the role"), not a derivation. Neither section computes
+$dH_{\text{Gamma}}/d\beta$ or $dH_{\text{Gamma}}/d\text{shape}$ anywhere. Checked now, directly from
+the entropy formula already coded in `verification/spikes/phase3-nonnormal-illustration.R:90-95`
+($H_i = \text{shape}+\log(\text{scale}_i)+\log\Gamma(\text{shape})+(1-\text{shape})\psi(\text{shape})$,
+$\text{scale}_i=\mu_i/\text{shape}=e^{X_i\beta}/\text{shape}$): $dH_i/d\beta = X_i \neq 0$ (entropy
+depends on $\beta$ through $\log\text{scale}_i=X_i\beta-\log\text{shape}$, so its $\beta$-gradient is
+exactly $X_i$, generically nonzero) and $dH_i/d\text{shape}=1-1/\text{shape}+(1-\text{shape})\psi'(\text{shape})$,
+also not identically zero (both confirmed symbolically, sympy). So the Gamma classification's
+*conclusion* is correct by direct calculation, not just by the empirical match — but this
+calculation was done **now**, for this investigation, not at registration time either. §9/§10 never
+performed it.
+
+**However, Gamma's underlying analogy is a fundamentally different kind of claim than Bernoulli's,
+and this matters for the process fix.** Gamma genuinely is a two-parameter family with an
+independently-identifiable dispersion parameter (shape) that is structurally the same kind of
+object MVN's $\Sigma$ is — a quantity that COULD be held fixed while only the mean/location varies,
+exactly the construction the known-scale collapse requires as its point of comparison. Bernoulli has
+no such second parameter *at all* — there is nothing in the family that could be held fixed while a
+separate location parameter varies, because the single natural parameter fixes the entire
+distribution. The registration's error for Bernoulli was not merely "skipped a check that happened
+to fail" — it was a **category error**: mapping "has no parameter of this kind" onto "has this kind
+of parameter, held fixed," when these are opposite conditions, not similar ones. Gamma's analogy
+mapped a real structural correspondence (a genuine second parameter, estimated) onto the right
+regime; Bernoulli's analogy mapped the *absence* of that structure onto the *other* regime, which
+does not follow. Both were unverified when written; only one was also incoherent by construction.
+
+**One further honest calibration, so this finding does not overcorrect in the other direction.**
+Confirming $dH_{\text{Gamma}}/d\theta \neq 0$ shows Gamma is not in the known-scale case — the same
+*necessary-but-not-sufficient* limit the quorum's OBJ-02/OBJ-06 already placed on the Bernoulli
+side. It does not, by itself, verify that the theorem's full regularity conditions (R1-R7) hold
+without modification for a Gamma GLM (as opposed to the additive-Gaussian family they were stated
+and verified in). Gamma's measured FITTED value (+0.318, inside the interval around +0.5) is
+evidence *for* R1-R7 transferring, but "the empirical match is good" is exactly the standard of
+evidence the quorum ruled insufficient for Bernoulli's post-hoc +0.5 claim (OBJ-07). By the same
+standard applied consistently, Gamma's match is suggestive, not yet a proof that R1-R7 hold — that
+is Q2's job, not retroactively settled by this Q1 finding.
+
+**2c — root cause.** Two compounding causes, both visible directly in the §9 text: (i) the
+registration's own attention was allocated almost entirely to feasibility mechanics (the brms
+family-restriction discovery, per-fit runtime costs, the two-engine design) — the theoretical
+classification of which regime each family tests occupies two sentences out of a multi-paragraph
+section, the least-scrutinized part of the document even though it is the part that determines what
+the pass criteria mean. (ii) A conflation between "the general rule is proven" (true — the
+known-scale collapse is a proven, MC-verified fact of this paper, for MVN) and "this new instance
+satisfies the rule's antecedent" (a claim that needs its own check every time the rule is applied to
+a family it was not proven for). Citing an existing, true theorem is not the same as verifying a new
+case falls under it. Doc-before-code protects against moving the goalposts after seeing data; it did
+not, by itself, protect against aiming at the wrong goalposts, because the registration's own
+internal discipline never required showing the aim was correct before firing.
+
+**2d — the process fix, sharpened by 2a/2b's distinction.** Before any pass criterion naming a
+target value is written for a new family:
+1. Write the family's exact entropy (or relevant sufficient-statistic) formula.
+2. Compute its gradient with respect to **every** component of the parameter vector being
+   estimated in the actual design (not a generic "the family" but the specific fitted model).
+3. If classifying by analogy to an existing proven case (e.g. "this has a dispersion parameter like
+   MVN's $\Sigma$"), state explicitly what structural correspondence licenses the analogy (a
+   genuinely separate, independently-identifiable parameter that could be held fixed) — and treat
+   the ABSENCE of that structure as its own case requiring its own argument, never as automatically
+   implying the opposite regime by default.
+4. Date the derivation and place it in the registration text itself, not left to be reconstructed
+   afterward.
+This is now applied prospectively to any Q2 work (§3) — in particular, if a genuine known-scale
+exemplar (Student-t/Laplace, fixed scale) is registered, its entropy-gradient condition must be
+derived inline in that registration, not asserted by analogy, before any code runs.
+
+**Q1 is closed.** Both parts of the question are now answered directly from the primary text: the
+registration explicitly declined to derive anything ("no new derivation needed"), the same
+description-only pattern was used for Gamma, and the reason Gamma nonetheless landed on the correct
+side is a real structural correspondence to MVN's estimated-covariance case, not luck. The process
+fix above is what should have been in §9 from the start.
+
 ## 3. Q2 — substantive re-derivation and, if warranted, new code
 
 **3a. Derive (not assume) whether R1-R7 hold for a Bernoulli/logit-link GLM with response-only MCAR
@@ -164,6 +262,9 @@ since it would mean NEITHER regime currently has solid non-normal support.
 
 ## 5. Entry point for next session
 
-Start with Q1 (§2), which is pure reading/writing, no code, and should take well under an hour.
-Its findings determine how rigorously Q2's re-derivation (§3a) must be timestamped/documented
-before Q2's code (§3b) runs. Do not skip straight to reruns.
+**Q1 is closed (§2, "Q1 FINDINGS").** Start with Q2 (§3): 3a first (derive whether R1-R7 hold for
+a Bernoulli/logit-link GLM, cross-model-verifying if genuinely new — Q1's process fix applies here
+directly: derive the condition inline, dated, before trusting any target), then 3b (the N-scan and
+CAS check for the unattributed 2.2 se gap), then 3c (resolve OBJ-08 with evidence). Do not skip
+straight to reruns without 3a's derivation in hand first — that is exactly the ordering Q1 found
+missing the first time.
