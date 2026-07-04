@@ -4,13 +4,14 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Respond to the v1 AI review (paper 88): empirical reruns for the two cheap gaps (data-augmentation replication + MI-BIC) + prose/response-letter for the rest; non-normal via brms gated on a runtime spike; fold in the pending per-paragraph annotation + compile-enablement toward JAIGP submission."
-last_synced_commit: e8e9cd1
+last_synced_commit: 6aa4975
 tree_state: clean
-updated: "2026-07-04T21:12:09Z"
+updated: "2026-07-04T21:28:29Z"
 updated_by: wrap
 cockpit: { provider: null, list_id: null }
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 ---
+
 
 
 
@@ -126,7 +127,7 @@ _This session (2026-07-03, continued yet further) -- the two threads were split 
 
 1. **Per-paragraph annotation (Marcus) + compile-enablement.** The v1-review response is content-complete (letter 15/15 DRAFTED; all manuscript-facing changes landed and rendered). Marcus reads the letter end-to-end (`manuscript/reviews/v1/response/response-letter.md`) and does his annotation pass on the manuscript; then fold annotations, flip `compile_enabled`, and close the discretionary items parked in Open questions (CRediT roles, correspondence address, S1-P6 trim, applied-first ordering).
 
-2. **Lemma P formal section in `derivation.qmd` (DECIDED 2026-07-04, Marcus; dedicated future session), then derivation-audit (0 blocker / 0 warn) -> Zenodo deposit -> JAIGP submission.** The section formalizes todo/045 §3.1 (Lemma P, Delta_h, draw-discount + known-scale corollaries) under FULL citation discipline: Marcus first acquires Cox-Snell 1968 (+ optional Firth 1993) per the new todo/003 rows -> lit-sync -> verify-read in-session -> then draft with Mode B's outer-expectation note, [mc]/source pointers to the CAS scripts + scan caches + both cross-model records, Appendix A source-quote entries, and a clean `/derivation-audit` at the end.
+2. **Lemma P formal section in `derivation.qmd` (DECIDED 2026-07-04, Marcus; dedicated future session), then derivation-audit (0 blocker / 0 warn) -> Zenodo deposit -> JAIGP submission.** SOURCES NOW FULLY UNBLOCKED (2026-07-04, commit `6aa4975`): Firth 1993 acquired + verified (todo/003 row has the loci); Cox-Snell 1968 turned out to be ALREADY owned and cited at derivation.qmd:1126 alongside the Cordeiro-Klein + Patriota-Lemonte bias cluster -- the bias-formula locus is settled by direct read (Section 3: scalar b=(K+2J)/(2I^2) at :229, vector :269), so the drafting session reuses `@coxGeneralDefinitionResiduals1968` (re-read in-session then, per the standing rule). Drafting requirements unchanged: Mode B's outer-expectation note, [mc]/source pointers to the CAS scripts + scan caches + both cross-model records, Appendix A source-quote entries, clean `/derivation-audit`. ONE Marcus follow-up from the acquisition: merge/delete the duplicate Cox-Snell item in Zotero (its BBT key pinned as `...1968a`, and its lit-sync rewrote the existing markdown with a different conversion -- restored from git, duplicate md + bib entry removed; a future BBT export would resurrect `1968a` until the Zotero item is merged).
 
 3. **Optional/cheap, non-blocking:** extend the E3 bootstrap-floor exact-identity arm to N=500/2000 (gate item C7); verify Mode B's IMB closed form (CAS or numeric vs the measured -0.005/-0.0065); silence the apaquarto affiliation-noise ERROR lines; the transcripts-link public-release loop. Frozen preregistered originals UNTOUCHED.
 
