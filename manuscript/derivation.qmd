@@ -59,7 +59,9 @@ $\tfrac12\operatorname{tr}(\mathrm{RIV})$. The two do not cancel — they leave 
 bias of half the trace. This $\tfrac12\operatorname{tr}(\mathrm{RIV})$ holds **to leading order
 under MCAR** (the design-imbalance term is $O(n^{-1})$) for any regular likelihood **whose
 conditional missing-data entropy depends on the estimated parameters** — concretely, an estimated
-scale or covariance, as in the multivariate normal we instantiate throughout. That dependence is
+scale or covariance, as in the multivariate normal we instantiate throughout. For canonical
+generalized linear models the same statement holds up to a computable base-measure offset
+$\Delta_h$, zero for the Bernoulli and nonzero for the Poisson (@sec-glm). That dependence is
 essential: with a *known* scale (a location-only fit) the conditional entropy is parameter-free and
 the net bias collapses to $\mathbb{E}[T]=0$ under FIML and $-\tfrac12\operatorname{tr}(\mathrm{RIV})$
 under proper MI (scope remark after the theorem). **Under MAR** Term A carries one further $O(1)$ piece — a
@@ -148,7 +150,9 @@ congeniality, and properness conditions together with the asymptotic lemmas the 
 rests on. @sec-derivation states the theorem, sketches the proof strategy, and gives the
 proof: Term B (estimation mismatch) is an elementary Taylor argument, while Term A
 (imputation bias) is a second-order expansion turning on a cancellation we isolate as a
-lemma. @sec-lrt develops the likelihood-ratio application: the exact differential bias of
+lemma; a closing subsection carries that cancellation beyond the multivariate normal, to
+canonical generalized linear models, where a base-measure offset survives it (@sec-glm).
+@sec-lrt develops the likelihood-ratio application: the exact differential bias of
 the MI deviance numerator at the null, why the naive difference of the two models'
 $\operatorname{tr}(\mathrm{RIV})$s overstates it, and the noise collapse that makes the
 comparison-relevant correction precisely estimable. @sec-ic develops the model-selection
@@ -729,7 +733,9 @@ The term $(A)+(C)$ is a **design-imbalance** correction carried by Term A (@sec-
 **vanishes under MCAR** (missing and observed units share a conditioning-variable distribution),
 recovering the clean $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ that holds for any
 regular likelihood **with an estimated scale or covariance** (the scope remark below; the headline is
-not universal — a known-scale, location-only fit gives $\mathbb{E}[T]=0$ under FIML), and is a nonzero
+not universal — a known-scale, location-only fit gives $\mathbb{E}[T]=0$ under FIML, and a
+canonical-GLM family whose base measure is not constant adds the computable offset $\Delta_h$ of
+@sec-glm even under MCAR), and is a nonzero
 $O(1)$ under **MAR**. Its general-MVN *structure* is derived
 in @sec-termA — $(A)+(C)=\alpha^\top\mathbb{E}[\delta]+\tfrac12\operatorname{tr}(\mathcal H\,I_{\text{obs}}^{-1})-\operatorname{tr}(\mathrm{RIV})$, with the entropy gradient $\alpha$ supported only on
 the covariance parameters — and for the bivariate monotone MVN it has the closed form
@@ -824,6 +830,10 @@ $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$ (`verification/rederiva
 The information-criteria application (@sec-intro-why) compares multivariate-normal models with an
 estimated covariance and so sits squarely in the estimated-scale regime; the known-scale collapse
 affects only location-only fits with a fixed dispersion, which the applications do not use.
+Both regimes are instantiated beyond the multivariate normal in @sec-glm: for canonical
+generalized linear models the estimated-parameter dependence delivers the headline up to a
+computable base-measure offset ($\Delta_h$ — zero for the Bernoulli, nonzero for the Poisson),
+and a fixed-scale location family confirms the collapse outside the normal family.
 :::
 
 ### Proof strategy {#sec-strategy}
@@ -1123,7 +1133,8 @@ observed-information convention.
 observed-data likelihood factors into complete-data regressions. For **non-monotone** patterns it
 does not factor, so $b_\Sigma$ has no such recursion; it instead follows from the general second-order
 (Cox–Snell) bias of the maximum-likelihood estimate
-[@coxGeneralDefinitionResiduals1968; @cordeiroBiasCorrectionARMA1994], evaluated from the first three
+[@coxGeneralDefinitionResiduals1968; @cordeiroBiasCorrectionARMA1994],
+<a href="#sec-src-coxsnell"><code>:269</code></a>, evaluated from the first three
 derivatives of the (non-factoring) observed-data log-likelihood — the multivariate-normal recipe of
 @patriotaBiasCorrectionMultivariate2009, adapted to the pattern-mixed observed-data score. For the
 minimal bivariate non-monotone design — complete / $X_1$-missing / $X_2$-missing units under an
@@ -1301,6 +1312,197 @@ cells where the approximation is most exposed — but this does not establish en
 them, and a fully Bayesian sampler remains the conservative choice when the fraction of missing
 information is large.
 :::
+
+### Extension: canonical generalized linear models {#sec-glm}
+
+The one step of the proof whose general form is established above only for the multivariate
+normal is the A4 cancellation. For the MVN the entropy gradient $\alpha$ is supported on the
+covariance coordinates alone, and the lemma's closed-form checks cover scalar families with no
+covariates; for a regression family $\alpha$ has support on *every* coordinate of the
+estimated parameter, so the MCAR cancellation needed its own proof. This subsection supplies
+that proof for one-parameter exponential-family responses with a canonical link, identifies
+the term that survives when the family's base measure is not constant, and records the
+corollaries that a set of pre-registered scans then tested blind. Everything here concerns
+response-only missingness under MCAR; the MAR design-imbalance term of A4 is a separate object
+and is not re-derived for this family.
+
+**Setup.** The response follows a one-parameter exponential family with canonical link,
+$$ f(y\mid x;\beta)=h(y)\exp\{y\eta-A(\eta)\},\qquad \eta=x^\top\beta,\qquad \beta\in\mathbb{R}^q, $$
+with covariates $X$ fully observed and the response missing completely at random at rate $r$.
+The estimated parameter is $\beta$ alone (any dispersion is fixed by the family), responses
+are conditionally independent given $X$, and under response-only missingness
+$\ell_{\text{mis}\mid\text{obs}}(\theta)=\sum_{i\in\text{mis}}\log f(y_i\mid x_i;\theta)$ and
+$\hat\theta_{\text{obs}}=\hat\beta_{\text{obs}}$ is the complete-case MLE. Write $w=A''(\eta)$
+(the information weight), $A'''$ (the third cumulant), $g(\eta)=\mathbb{E}_\eta[\log h(Y)]$
+(the base-measure mean), $J_{\text{obs}}=\sum_{j\in\text{obs}}w_j x_j x_j^\top$ (the realized
+observed-block information), and $\Omega=\mathbb{E}[wXX^\top]$ (its per-unit population
+version), so that $I_{\text{com}}=n\Omega$, $I_{\text{obs}}=(1-r)\,I_{\text{com}}$, and
+$\operatorname{tr}(\mathrm{RIV})=q\,r/(1-r)$ exactly.
+
+Two facts transfer from the main proof unchanged. First, the deterministic-FIML evaluation is
+exact for any family, not only the normal: a missing row's contribution to
+$\bar Q_\infty(\hat\theta_{\text{obs}})$ is
+$\mathbb{E}_{\tilde Y\sim f(\cdot;\hat\theta_{\text{obs}})}[\log f(\tilde Y;\hat\theta_{\text{obs}})]=-H_i(\hat\theta_{\text{obs}})$,
+the response entropy at the fit, so the analytic anchor the scans evaluate *is* the $M=\infty$
+FITTED limit with no Monte-Carlo gap. Second, the A/B split and the A3 expansion are
+family-generic under R1–R2: Term B is $-\tfrac12\operatorname{tr}(\mathrm{RIV})+O(n^{-1})$
+with no normal input, and Term A is
+$\operatorname{tr}(\mathrm{RIV})+[(A)+(C)]+O(n^{-1})$ with the A4 objects instantiated for
+this family. The conditional cross-entropy per missing unit is
+$f_{0,i}(\phi)=g(\eta_i(\phi))+A'(\eta_i(\phi))\,\eta_{0,i}-A(\eta_{0,i})$ with
+$\eta_i(\phi)=x_i^\top\phi$; differentiating twice in $\phi$ at $\theta_0$ gives
+$$ \alpha=\sum_{i\in\text{mis}}\big(g'_i+\eta_i w_i\big)x_i,\qquad
+   \mathcal H_\phi=\sum_{i\in\text{mis}}\big(g''_i+\eta_i A'''_i\big)x_i x_i^\top,\qquad
+   (A)=\alpha^\top\mathbb{E}[\delta],\quad
+   (C)=\tfrac12\operatorname{tr}\!\big(\mathcal H_\phi J_{\text{obs}}^{-1}\big), $$
+with $J_{\text{obs}}^{-1}$ and $I_{\text{obs}}^{-1}$ interchangeable at this order under MCAR
+($J_{\text{obs}}=(1-r)n\,\Omega\,(1+o_P(1))$). One bookkeeping convention is stated
+explicitly: $\alpha$ and $\mathcal H_\phi$ are built from the realized design points and the
+realized missing set, so the $(A)$ and $(C)$ displays here — and the population-design forms
+below — carry an outer expectation over the covariate design and the missingness pattern as
+well as over the response.
+
+**The MLE-bias input.** Piece $(A)$ pairs $\alpha$ with
+$b:=\mathbb{E}[\hat\beta_{\text{obs}}-\beta_0]$, the second-order bias of the complete-case
+MLE (for the FITTED arm $\tilde\phi=\hat\theta_{\text{obs}}$, so $\mathbb{E}[\delta]=b$; a
+proper draw centered there adds no further mean). For a canonical link the observed
+information carries no $Y$, so $J_{\text{obs}}$ is deterministic given the design, and
+expanding the score equation $0=U(\hat\beta)$ to second order and taking expectations gives
+$$ b=-\tfrac12\,J_{\text{obs}}^{-1}\sum_{j\in\text{obs}}A'''_j\,\big(x_j^\top J_{\text{obs}}^{-1}x_j\big)\,x_j+O(n^{-2}), $$
+the canonical-link case of the general second-order MLE bias of
+@coxGeneralDefinitionResiduals1968 [§3], <a href="#sec-src-coxsnell"><code>:269</code></a> —
+the same classical input the non-monotone $b_\Sigma$ of the A4 lemma already draws on, here in
+its original regression form (their §§8–9 work it for a binomial logit design,
+<a href="#sec-src-coxsnell"><code>:748</code></a>). On the intercept-only Bernoulli design the
+formula reduces to the delta-method value
+$\mathbb{E}[\operatorname{logit}\bar y]-\eta=\sinh(\eta)/n+O(n^{-2})$ — a bias directed away
+from zero, the direction @firthBiasReductionMaximum1993 records for the logistic MLE
+(<a href="#sec-src-firth"><code>:211</code></a>).
+
+::: {.column-margin}
+**Source.** @coxGeneralDefinitionResiduals1968, §3: the second-order score equation
+[<a href="#sec-src-coxsnell"><code>:180</code></a>], scalar bias $b=(K+2J)/(2I^2)$
+[<a href="#sec-src-coxsnell"><code>:229</code></a>], vector case, their eq. (20)
+[<a href="#sec-src-coxsnell"><code>:269</code></a>]. Direction:
+@firthBiasReductionMaximum1993, §3.3 — the logistic-regression MLE is biased away from
+$\beta=0$ [<a href="#sec-src-firth"><code>:211</code></a>]. `[mc]` the canonical-link formula
+reproduces the intercept-only $\sinh(\eta)/n$ delta-method value symbolically and the exact
+enumerated $\mathbb{E}[\hat\beta]$ on a two-point design
+(`verification/cas-wolfram/verify_bernoulli_fitted_gap.py`, checks 3 and 5).
+:::
+
+**Lemma P (projection cancellation).** `[derived]` Substituting $b$ into $(A)$ and passing to
+the population design ($J_{\text{obs}}\to(1-r)n\,\Omega$ and
+$\sum_{i\in\text{mis}}\to rn\,\mathbb{E}[\cdot]$ — the step where MCAR enters), the two $O(1)$
+pieces built from the canonical-structure parts of $\alpha$ and $\mathcal H_\phi$ are
+$$ (A)_{\eta w}=-\tfrac{r}{2(1-r)}\,\mathbb{E}[\eta wX^\top]\,\Omega^{-1}\,\mathbb{E}\big[A'''\,(X^\top\Omega^{-1}X)\,X\big],\qquad
+   (C)_{\eta A'''}=+\tfrac{r}{2(1-r)}\,\mathbb{E}\big[\eta A'''\,(X^\top\Omega^{-1}X)\big], $$
+and these cancel exactly, for every design distribution and every canonical family, because
+$\eta=X^\top\beta_0$ is linear in $X$ and $\Omega=\mathbb{E}[wXX^\top]$ uses the same weight
+$w$: $\mathbb{E}[\eta wX^\top]=\beta_0^\top\Omega$, so
+$$ \mathbb{E}[\eta wX^\top]\,\Omega^{-1}\,\mathbb{E}\big[A'''(X^\top\Omega^{-1}X)X\big]=\beta_0^\top\,\mathbb{E}\big[A'''(X^\top\Omega^{-1}X)X\big]=\mathbb{E}\big[\eta A'''(X^\top\Omega^{-1}X)\big]. $$ {#eq-lemmap}
+What survives is the base-measure part alone:
+$$ (A)+(C)=\Delta_h+O(n^{-1}),\qquad
+   \Delta_h=\tfrac{r}{1-r}\Big[-\tfrac12\,\mathbb{E}[g'X^\top]\,\Omega^{-1}\,\mathbb{E}\big[A'''(X^\top\Omega^{-1}X)X\big]+\tfrac12\,\mathbb{E}\big[g''\,X^\top\Omega^{-1}X\big]\Big], $$ {#eq-deltah}
+which the same projection does not cancel, because $g'(\eta)$ is not linear in $X$.
+
+::: {.column-margin}
+`[derived]` + `[mc]` Lemma P (@eq-lemmap) reduces to zero symbolically on a free-symbol
+three-point design and on 12 exact-rational four-point designs, and numerically on two
+quadrature designs (`verification/cas-wolfram/verify_bernoulli_fitted_gap.py`, 15 checks, all
+passing). An independent blind re-derivation from the setup alone (GPT-5.5 Pro, no access to
+this derivation or to any measured value) produced the same cancellation, the same
+base-measure survivor, and the same family constants
+(`verification/cache/layer3-gpt-5.5-pro-bern-glm-modeA.md`); the adversarial red-team pass
+returned zero refutations (`...-modeB.md`). Transparent provenance per the authorship model.
+:::
+
+**Result (canonical-GLM FITTED gap, response-only MCAR).** Under R1–R7,
+$$ \mathbb{E}[T_{\text{fitted}}]=+\tfrac12\operatorname{tr}(\mathrm{RIV})+\Delta_h+O(n^{-1}). $$ {#eq-glm}
+The base-measure offset $\Delta_h$ is the refinement this family class forces on the
+theorem's MCAR statement: the A4 cancellation to *zero* is a property of families whose base
+measure contributes no entropy of its own, not a consequence of MCAR alone.
+
+- **Bernoulli (logit).** $h\equiv1$, so $g\equiv0$ and $\Delta_h=0$: the estimated-scale
+  headline $+\tfrac12\operatorname{tr}(\mathrm{RIV})$ transfers exactly, for every design
+  distribution — likewise for any canonical family with unit base measure (geometric,
+  exponential). R1–R7 hold at the scan design: a full exponential family, smooth with
+  interchange licensed (R1); $J_{\text{obs}}\succ0$ off degenerate designs (R2); MCAR by
+  construction, parameters distinct (R3); the imputation model equal to the analysis model
+  (R4); the draw arm's $\beta^\ast\sim N(\hat\beta,\hat V)$ second-moment proper to leading
+  order (R5); the complete-case MLE equal to the observed-data MLE (R6); and the analytic
+  anchor exact at $M=\infty$ (R7). The separation event, where the logistic MLE is infinite,
+  has exponentially small probability at this design and leaves $T$ itself bounded.
+- **Poisson (log).** $h(y)=1/y!$, so $g(\eta)=-\mathbb{E}_\mu[\log Y!]$ and $\Delta_h\neq0$
+  even under MCAR. At the scan design, quadrature gives
+  $\Delta_h/\operatorname{tr}(\mathrm{RIV})=-0.396$, a FITTED asymptote of $+0.104$ — far from
+  the two naive candidates $+0.5$ and $0$ alike.
+- **Proper-draw corollary.** A second-moment-proper regular draw centered at
+  $\hat\theta_{\text{obs}}$ leaves $(A)$ and the Term-A main piece unchanged and doubles the
+  variance entering $(C)$, so the draw arm sits below FITTED by exactly one further copy of
+  the $(C)$ functional:
+  $$ \mathbb{E}[T_{\text{draw}}-T_{\text{fitted}}]=(C)=\tfrac{r}{2(1-r)}\,\mathbb{E}\big[(g''+\eta A''')\,(X^\top\Omega^{-1}X)\big]+O(n^{-1}), $$
+  an $O(1)$ constant in $n$ — the GLM analog of the posterior-draw correction of @sec-qfun.
+  At the Bernoulli scan design the ratio to $\operatorname{tr}(\mathrm{RIV})$ is
+  $K/(2q)=-0.2606$, with $K=\mathbb{E}[\eta A'''\,X^\top\Omega^{-1}X]=-1.0424$.
+- **Fixed-scale location family (a corollary of the scope remark, not of Lemma P).** For a
+  location family with scale and shape both held fixed — Student-$t_5$ with $\sigma=1$, not an
+  exponential family at all — the response entropy is a constant in the estimated location
+  ($dH/d\mu=0$ by translation invariance), so $\alpha=0$ and the entropy part of
+  $\mathcal H_\phi$ vanishes; the known-scale collapse of the scope remark after @sec-thm
+  applies verbatim, FITTED $\to0$ and proper draw $\to-\tfrac12\operatorname{tr}(\mathrm{RIV})$,
+  now confirmed outside the normal family by the exemplar below.
+
+**The scans, registered blind.** Every family constant above was derived and committed before
+the production run that tested it (registration commit `4aaeaae`, production run committed at
+`afa4438`); the finite-$n$ remainder constants are the stated exception, reported as measured.
+One disclosure per the authorship model: the derivation postdates a single $N{=}200$ Bernoulli
+measurement ($+0.846\pm0.161$ on the ratio scale at $R{=}1000$); its out-of-sample content is
+everything else — the $N$-scan, the Poisson family (no simulation of which existed in this
+repository when its target was registered), and the Student-$t$ exemplar. On the ratio scale
+$\mathbb{E}[T]/\operatorname{tr}(\mathrm{RIV})$ with the analytic denominator, the production
+results are: Bernoulli FITTED $N$-scan asymptote $\hat a=+0.512\pm0.037$ (weighted fit of
+$a+C/N$ over $N=200/500/1000/2000$) against the derived $+0.500$, the $R{=}200{,}000$ point at
+$N{=}200$ being $+0.5176\pm0.0116$ — which identifies the earlier $+0.846$ as Monte-Carlo
+noise at $R{=}1000$ on top of a real $\approx+3.5/n$ finite-sample term of the same order as
+the exact-enumeration constants; the blind Poisson arm $+0.113\pm0.027$ at $N{=}200$ and
+$+0.284\pm0.112$ at $N{=}1000$, both within two standard errors of the registered $+0.104$;
+the paired draw discount $-0.313\pm0.070$ at $N{=}2000$ against the derived $-0.2606$, with a
+real decaying finite-$n$ excess at $N{=}200$ ($-0.383\pm0.023$); and the Student-$t$ exemplar
+FITTED $+0.025\pm0.049$ against $0$ and proper draw $-0.483\pm0.049$ against $-0.500$
+($R{=}200{,}000$). Two registered hygiene checks failed marginally, with recorded causes that
+touch no claim: a continuity check landed at $2.03$ against a $2.00$ combined-standard-error
+threshold because the earlier $R{=}1000$ cache value was itself the outlier, and a $3\%$
+sample-RIV tolerance was registered against the $M{=}\infty$ analytic value, omitting Rubin's
+$(1+1/M)$ factor that the sample estimator deliberately carries.
+
+::: {.column-margin}
+**Source.** Scan and scoring scripts `verification/spikes/phase3-family-scan.R`,
+`verification/spikes/phase3-family-scan-score.R`; caches
+`verification/cache/phase3-family-scan-{bern_fitted,bern_draw,pois_fitted,t_exemplar}-prod.rds`
+(registered criteria P1–P6 in `todo/045` §3.2–§3.3, scored in §3.4). `[mc]` the quadrature
+constants rest on three independent numerical routes: Gauss–Hermite
+(`verification/cas-wolfram/verify_bernoulli_fitted_gap.py`), the blind re-derivation's own
+quadrature ($-0.260$), and a composite-Simpson third route reproducing $K=-1.042393$ and the
+Poisson parts $+0.687997/-1.084067$ to six decimals
+(`verification/cas-wolfram/verify_045b_escalations.py`). Cross-model records:
+`verification/cache/layer3-gpt-5.5-pro-bern-glm-mode{A,B}.md`; repo-grounded compliance
+validation of the staged texts: `tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`.
+:::
+
+**Fences.** Four limits bound the result. (i) Canonical link only: the derivation uses
+$\eta=x^\top\beta$ linear in $X$ and $\Omega$ sharing the weight $A''$ at every occurrence; a
+non-canonical link breaks both, and the estimated-shape Gamma arm run alongside the scans
+(log link — not the Gamma family's canonical link) therefore remains a directional check
+outside this lemma. (ii) Response-only missingness; general patterns are not derived. (iii)
+MCAR: the population-design substitution is where MCAR enters, and the MAR design-imbalance
+term of A4 is a separate $O(1)$ not instantiated for this family. (iv) Asymptotic: the
+$O(n^{-1})$ remainder's constant is measured, not derived — exact enumeration gives
+$\approx0.6/n$ (intercept-only) and $\approx1.6/n$ (two-point) on the ratio scale, and the
+Gaussian-covariate scan design's $\approx+3.5/n$ comes from the $N$-scan itself. The draw
+corollary additionally assumes a second-moment-proper, regular draw in the sense of @sec-qfun
+— the $(C)$ discount is this family class's analog of the posterior-draw correction stated
+there, and engines that are not second-moment proper are not covered by it.
 
 ---
 
@@ -2267,6 +2469,47 @@ implementation of the weighted-$\chi^2$ distribution function).
 **Scope of the framework (nested, non-nested, overlapping; LR limit laws)** [`:40`, `:55`].
 
 > "The tests are directional and are derived successively for the cases where the competing models are non-nested, overlapping, or nested and whether both, one, or neither is misspecified. As a prerequisite, we fully characterize the asymptotic distribution of the likelihood ratio statistic under the most general conditions." [`:40`]
+
+### Cox & Snell (1968) — A General Definition of Residuals {#sec-src-coxsnell}
+
+[@coxGeneralDefinitionResiduals1968]. Invoked by the A4 lemma (@sec-termA, the non-monotone
+$b_\Sigma$) and by @sec-glm (the canonical-link MLE-bias input to Lemma P): the general
+second-order bias of the maximum-likelihood estimate, obtained from the second-order expansion
+of the score equation.
+
+**The second-order score equation** [`:180`].
+
+> "To obtain a more refined answer, we replace (10) by the second-order equation
+> $L^{\prime}(\beta)+(\widehat{\beta}-\beta) L^{\prime \prime}(\beta)+\frac{1}{2}(\widehat{\beta}-\beta)^{2} L^{\prime \prime \prime}(\beta)=0 .$"
+
+**Scalar bias, order $n^{-1}$** [`:229`].
+
+> "$b \equiv E(\hat{\beta}-\beta)=\frac{1}{2 I^{2}}(K+2 J)$ which is of order $n^{-1}$."
+
+**Vector case, their eq. (20)** [`:269`].
+
+> "a set of simultaneous linear equations for the biases, with solution
+> $b_{s} \equiv E\left(\hat{\beta}_{s}-\beta_{s}\right)=\frac{1}{2} I^{r s} I^{t u}\left(K_{r t u}+2 J_{t, r u}\right)$"
+
+**The binomial and logit instantiations (their §§8–9)** [`:715`, `:748`].
+
+> "from which we obtain the biases $b_{s}=-\frac{1}{2} I^{r s} I^{t u} \Sigma \frac{m_{j}}{\theta_{j}\left(1-\theta_{j}\right)} \frac{\partial \theta_{j}}{\partial \beta_{r}} \frac{\partial^{2} \theta_{j}}{\partial \beta_{t} \partial \beta_{u}},$" [`:715`]
+
+> "and substitution into (44) gives $b_{s}=-4 I^{r s} I^{t u} \sum m_{j} \theta_{j}\left(1-\theta_{j}\right)\left(1-2 \theta_{j}\right) l_{j r} l_{j t} l_{j u}$" [`:748`]
+
+### Firth (1993) — Bias Reduction of Maximum Likelihood Estimates {#sec-src-firth}
+
+[@firthBiasReductionMaximum1993]. Invoked by @sec-glm: the direction of the
+logistic-regression MLE bias (away from $\beta=0$), matching the inline intercept-only
+$\sinh(\eta)/n$ value; the paper also attributes the first-order bias formula to Cox & Snell.
+
+**Direction: away from zero** [`:211`].
+
+> "maximum likelihood estimates of the canonical parameter $\beta$ are found to be biased away from the point $\beta=0$. Bias correction, therefore, requires some degree of 'shrinkage' of $\hat{\beta}$ towards this point."
+
+**The first-order bias attributed to Cox & Snell** [`:137`, `:140`].
+
+> "The term $-n^{-1} \kappa^{r, s} \kappa^{t, u}\left(\kappa_{s, t, u}+\kappa_{s, t u}\right) / 2=n^{-1} b_{1}^{r}(\theta)$ is the first-order bias of $\hat{\theta}$, for example Cox \& Snell (1968)."
 
 ---
 
