@@ -1,7 +1,18 @@
 # todo/049 — session handoff: R11 typed-precision pass over derivation.qmd + the response letter
 
-**STATUS: OPEN (written 2026-07-05, immediately after the todo/048 style review completed
-end to end and the evidence-map table landed; working tree clean, `main` in sync).** This
+**STATUS: EXECUTED (2026-07-05, same day). Inventory `6aa2243` (flag-only, mirroring the
+ratified template: derivation 114 hit-lines -> 5 E2 / 2 borderline / 15 E3 / 65 E1 / 26
+measurement-sense / 1 record; letter 15 hit-lines -> 0 E2 / 6 E1 / 6 E3 / 2 quoted).
+Marcus gated per item and approved all recommendations. Applied `4ac5a90` (14 derivation
++ 4 letter edits, guarded script, all count-asserted); incidental D-26 straggler found
+and closed at `e6fd0b1` (authorized rescope #6, S5-P13, was missing from the S5 batch —
+applied with the ratified wording via `update-r11-rescope6-s5p13-20260705.py` + rebuild +
+PDF render exit 0). Verification: derivation render exit 0 (20/20 Appendix B cells),
+derivation-audit engine PASS 0 blocker / 0 warn / 16 pre-existing INFO (= `4e93aaf`
+baseline), check_plan green throughout. The E1 supermajority predicted below held.**
+
+**(Original handoff, written 2026-07-05 immediately after the todo/048 style review
+completed end to end and the evidence-map table landed; kept as the record.)** This
 is the follow-up D-26 explicitly queued and Marcus explicitly signalled as next ("Before
 we go over the derivation.md..."): apply the R11 typed-precision rule to the two documents
 OUTSIDE todo/048's scope — `manuscript/derivation.qmd` and

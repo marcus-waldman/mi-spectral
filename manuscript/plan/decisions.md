@@ -231,7 +231,10 @@ the direction the six side-by-side demonstrations exhibit
   "by exactly that surplus") KEPT (the antecedent is the already-scoped leading term);
   borderline #8 (the S5-P20 caption) drops "exact"; all six E3 idiom thins AUTHORIZED.
   Follow-up queued: a one-off R11 pass over `derivation.qmd` and the response letter
-  (outside todo/048 scope).
+  (outside todo/048 scope). *Follow-up EXECUTED 2026-07-05 (todo/049): inventory
+  `6aa2243`, applied `4ac5a90` after Marcus's per-item gate; the sixth E2 rescope
+  (S5-P13), found unapplied by that pass, landed at `e6fd0b1` with the wording
+  authorized here.*
 - **Incidental catches authorized as content fixes in their batches:** S6-P1's "six
   specific limits" reconciled to the current G-list; the @fig-w4-nonnested caption
   escaping normalized at rebuild.
