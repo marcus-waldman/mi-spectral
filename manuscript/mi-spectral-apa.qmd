@@ -13,6 +13,7 @@ author:
         city: Aurora
         region: CO
   - name: Claude Opus 4.7–4.8
+  - name: Claude Fable 5
   - name: GPT-5.5 Pro
   - name: Gemini 3.1 Pro
 author-note:
@@ -23,27 +24,31 @@ abstract: |
   Model selection on multiply imputed data is biased toward the candidates with more missing information, which in the nested families studied are the more complex models, because their larger relative increase in variance makes the fit look better than it is. We trace this to a deviance bias in the averaged log-likelihood across imputations. Under congenial proper multiple imputation with the complete-data maximum likelihood estimate as target and an estimated scale or covariance, the averaged log-likelihood overstates its complete-data counterpart by one half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that vanishes when data are missing completely at random. The bias is specific to each candidate model, which is why uncorrected information criteria favor the models with more missing information. Adding one trace term per candidate removes that trace component of the deviance bias in expectation and substantially restores complete-data model selection. The same analysis gives the bias of a likelihood-ratio comparison at the null, the missing information in the tested directions alone, and identifies where a calibrated test already supplies the correction so that it must not be applied twice. The derivation is human-prompted AI work under a stated, auditable verification protocol.
 keywords: [multiple imputation, model selection, likelihood-ratio test, information criterion, missing data]
 documentmode: man
-header-includes:
-  - |
-    \let\openbox\relax
-    \makeatletter
-    \@ifundefined{c@NumberOfSuperscripts}{}{\setcounter{NumberOfSuperscripts}{0}}
-    \makeatother
-    \renewcommand{\displayauthors}{%
-      Marcus Waldman\textsuperscript{1}\\[11pt]
-      {\bfseries AI Authors}\\[3pt]
-      Claude Opus 4.7\textendash4.8\quad Claude Fable 5\quad GPT-5.5 Pro\quad Gemini 3.1 Pro%
-    }
-    \renewcommand{\displayaffiliations}{%
-      \textsuperscript{1}Center for Innovative Design and Analysis, Department of Biostatistics and Informatics, Colorado School of Public Health, University of Colorado Anschutz Medical Campus, Aurora, CO%
-    }
-    \leftheader{Waldman et al.}
-    \raggedbottom
 format:
   apaquarto-pdf:
     keep-tex: true
     number-sections: true
     number-depth: 1
+    header-includes:
+      - |
+        \let\openbox\relax
+        \makeatletter
+        \@ifundefined{c@NumberOfSuperscripts}{}{\setcounter{NumberOfSuperscripts}{0}}
+        \makeatother
+        \renewcommand{\displayauthors}{%
+          Marcus Waldman\textsuperscript{1}\\[11pt]
+          {\bfseries AI Authors}\\[3pt]
+          Claude Opus 4.7\textendash4.8\quad Claude Fable 5\quad GPT-5.5 Pro\quad Gemini 3.1 Pro%
+        }
+        \renewcommand{\displayaffiliations}{%
+          \textsuperscript{1}Center for Innovative Design and Analysis, Department of Biostatistics and Informatics, Colorado School of Public Health, University of Colorado Anschutz Medical Campus, Aurora, CO%
+        }
+        \leftheader{Waldman et al.}
+        \raggedbottom
+  apaquarto-html:
+    number-sections: true
+    number-depth: 1
+    embed-resources: true
 bibliography: ../literature/mi-spectral-better-bibTeX.bib
 ---
 
@@ -507,13 +512,19 @@ Two points follow. In this block-diagonal candidate family the naive and project
 
 # Discussion {#sec-discussion}
 
-The scope of the result follows from its own mechanism, and we state that scope first. The deviance optimism that inflates the criteria exists only when the fit estimates a scale or covariance, because only then does the conditional missing-data entropy depend on the estimated parameters; a known-scale, location-only fit has no such bias under deterministic FIML and only $-\tfrac12\operatorname{tr}(\mathrm{RIV})$ under proper MI, which is why the estimated-scale clause belongs in the statement of the theorem rather than in a footnote. Congeniality is assumed throughout, and what the bias becomes without it [@mengMultipleImputationInferencesUncongenial1994a] is a separate question that this paper does not take up. Beyond these scope conditions, nine specific limits remain, each stated next to the claim it qualifies together with its evidential standing, and they are followed by one conjecture, three directions, and the answer to the question the paper opened with.
+The scope of the result follows from its own mechanism, and we state that scope first. The deviance optimism that inflates the criteria exists only when the fit estimates a scale or covariance, because only then does the conditional missing-data entropy depend on the estimated parameters; a known-scale, location-only fit has no such bias under deterministic FIML and only $-\tfrac12\operatorname{tr}(\mathrm{RIV})$ under proper MI, which is why the estimated-scale clause belongs in the statement of the theorem rather than in a footnote. Congeniality is assumed throughout, and what the bias becomes without it [@mengMultipleImputationInferencesUncongenial1994a] is a separate question that this paper does not take up. Beyond these scope conditions, nine specific limits remain, labeled G1 through G9, each stated next to the claim it qualifies together with its evidential standing, and they are followed by one conjecture, three directions, and the answer to the question the paper opened with.
 
-**G1.** The absolute magnitude of $(A)+(C)$ is not independently determined. This qualifies the theorem. The structural facts are firm. Its sign, its $O(1)$ order, its exact MCAR vanishing, the closed form @eq-ac, and the $O(1/n)$ order of the correction beyond the leading-order analytic value are all proved. The absolute magnitude is not. The direct Monte Carlo estimates are heavy-tailed and untrended. The variance-reduced estimate of the higher-order remainder is conditional on the analytic anchor it is paired against. Every comparison in this paper therefore uses $(A)+(C)$ only through the better-conditioned paired differential. **G2.** The proper-MI carry-over of the likelihood-ratio propositions is structural, not separately measured. This qualifies the likelihood-ratio part of @sec-derivations. The propositions are proved and confirmed for the deterministic-FIML $\bar Q_\infty$. Under proper MI the imputation-side quantities remain common to both fits. This preserves the cancellation arguments. But no dedicated proper-MI replication of the differential experiments exists.
+**G1.** The absolute magnitude of $(A)+(C)$ is not independently determined. This qualifies the theorem. The structural facts are firm. Its sign, its $O(1)$ order, its exact MCAR vanishing, the closed form @eq-ac, and the $O(1/n)$ order of the correction beyond the leading-order analytic value are all proved. The absolute magnitude is not. The direct Monte Carlo estimates are heavy-tailed and untrended. The variance-reduced estimate of the higher-order remainder is conditional on the analytic anchor it is paired against. Every comparison in this paper therefore uses $(A)+(C)$ only through the better-conditioned paired differential.
 
-**G3.** Imputation-engine robustness is empirical and restricted in scope, which qualifies @sec-simulations. On the designs studied, the EMB engine tracks deterministic FIML within the stated tolerances. Exact data augmentation was not run, so nothing here establishes engine-independence beyond those designs. **G4.** The weak-signal shortfall is a measurement, not an impossibility proof, and this qualifies the selection part of @sec-derivations. In the weak-signal cell, the residual is information loss as measured through these corrections. No argument here shows that no estimator built from the same observed data could do better.
+**G2.** The proper-MI carry-over of the likelihood-ratio propositions is structural, not separately measured. This qualifies the likelihood-ratio part of @sec-derivations. The propositions are proved and confirmed for the deterministic-FIML $\bar Q_\infty$. Under proper MI the imputation-side quantities remain common to both fits. This preserves the cancellation arguments. But no dedicated proper-MI replication of the differential experiments exists.
 
-**G5.** For dissimilar candidate pairs, a mechanism-independent misspecification $O(1)$ coexists with the design-imbalance $O(1)$. This qualifies @prp-ac-diff and its use in selection. The MCAR contrast separates the two in measurement. But they can reinforce or partially offset each other in the net ranking bias a criterion sees. We make no claim that the design-imbalance term dominates every pair. **G6.** All instantiation is multivariate normal. This qualifies the theorem. The theorem is stated for general regular likelihoods with an estimated scale. But every constant is verified, symbolically and by simulation, only in the normal family.
+**G3.** Imputation-engine robustness is empirical and restricted in scope, which qualifies @sec-simulations. On the designs studied, the EMB engine tracks deterministic FIML within the stated tolerances. Exact data augmentation was not run, so nothing here establishes engine-independence beyond those designs.
+
+**G4.** The weak-signal shortfall is a measurement, not an impossibility proof, and this qualifies the selection part of @sec-derivations. In the weak-signal cell, the residual is information loss as measured through these corrections. No argument here shows that no estimator built from the same observed data could do better.
+
+**G5.** For dissimilar candidate pairs, a mechanism-independent misspecification $O(1)$ coexists with the design-imbalance $O(1)$. This qualifies @prp-ac-diff and its use in selection. The MCAR contrast separates the two in measurement. But they can reinforce or partially offset each other in the net ranking bias a criterion sees. We make no claim that the design-imbalance term dominates every pair.
+
+**G6.** All instantiation is multivariate normal. This qualifies the theorem. The theorem is stated for general regular likelihoods with an estimated scale. But every constant is verified, symbolically and by simulation, only in the normal family.
 
 **G7.** The correction's guarantees assume congenial imputation. Uncongeniality is the practical boundary. The imputation model can shrink the cross-block correlations that the analysis estimates. A strong ridge prior does this. When it happens the deviance bias no longer points the way the theory assumes. The sweep includes uncongenial cells, and they show the effect. There the uncorrected criterion already selects the true model more often than the complete-data benchmark, near $0.93$ against the benchmark's $0.91$. The correction then pushes past the benchmark to about $0.98$. That is an overshoot, not a recovery. We registered this behavior as an observational stress test, not as a pass target. It marks where the framework's safety margin ends. In practice it is wise to diagnose congeniality before trusting bias-corrected selection. Practical tools for that diagnosis exist. @heDiagnosingImputationModels2012 give a posterior predictive check that applies the analyst's own target analysis to the completed data and to replicates drawn under the imputation model, and their re-imputation scheme runs on standard imputation software. @bondarenkoGraphicalNumericalDiagnostic2016 compare observed and imputed values conditional on the response propensity, so an analyst can judge congeniality without knowing the imputation model. @nguyenModelCheckingMultiple2017 review these and related checks for applied use.
 

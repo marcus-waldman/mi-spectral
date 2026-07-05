@@ -71,7 +71,7 @@ def block(text, indent):
 
 grat_block = block(GRAT, 6)
 abs_block = block(ABSTRACT, 2)
-hdr_block = block(HDR, 4)
+hdr_block = block(HDR, 8)
 
 front = f"""---
 title: "Model selection after multiple imputation: a deviance correction for AIC, BIC, and likelihood-ratio tests"
@@ -88,6 +88,7 @@ author:
         city: Aurora
         region: CO
   - name: Claude Opus 4.7–4.8
+  - name: Claude Fable 5
   - name: GPT-5.5 Pro
   - name: Gemini 3.1 Pro
 author-note:
@@ -98,14 +99,18 @@ abstract: |
 {abs_block}
 keywords: [multiple imputation, model selection, likelihood-ratio test, information criterion, missing data]
 documentmode: man
-header-includes:
-  - |
-{hdr_block}
 format:
   apaquarto-pdf:
     keep-tex: true
     number-sections: true
     number-depth: 1
+    header-includes:
+      - |
+{hdr_block}
+  apaquarto-html:
+    number-sections: true
+    number-depth: 1
+    embed-resources: true
 bibliography: ../literature/mi-spectral-better-bibTeX.bib
 ---
 """
