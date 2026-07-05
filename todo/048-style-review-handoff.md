@@ -99,6 +99,47 @@ Marcus can tighten this). Each batch: level3 update script → check_plan → re
 scouts clean. The abstract counts as a unit. (iii) A closing whole-document read for register
 consistency (a half-rewritten corpus is worse than either register).
 
+## Vocabulary distribution component (added same day, Marcus's directive)
+
+Marcus's second directive: word choices should stay **within the distribution of the owned
+literature corpus** — part of what reads as "bloggy" is vocabulary no statistics paper uses.
+The instrument already exists: `scripts/corpus_vocab_check.py` (READ-ONLY diagnostic; weighted
+log-odds with a Dirichlet prior, Monroe–Colaresi–Quinn 2008) compares the level3 prose against
+`literature/*.md` and reports (A) disproportionate unigrams, (B) content-word bigrams, (C) the
+manuscript words ABSENT from the corpus, with paragraph locations in the report at
+`verification/cache/corpus-vocab-check.md`. Run it with
+`py scripts/corpus_vocab_check.py --top 40`.
+
+**Baseline at handoff time (2026-07-04, run on the current manuscript):** 7,984 manuscript
+tokens vs. 652,872 literature tokens; T-03 banned hits 0; absent-from-literature list:
+`riv, ladder, committed, preregistered, registration, sits, headline, floor, preregistration,
+genuinely, amendment, transcripts, lands, scoped, closes, junk, anchored, frees, regimes`.
+This list is the evidence for Marcus's instinct — "sits/lands/closes/headline/floor/junk/
+genuinely/anchored/frees" are exactly the conversational register — but it needs TRIAGE, not
+blind replacement:
+
+- **Bucket 1 — whitelist (the paper's own vocabulary, legitimately absent):** RIV (ours by
+  construction), the preregistration family (methodological, standard in modern practice even
+  if absent from a 1968–2019 corpus), and the S3 AI-collaboration vocabulary (transcripts,
+  committed, amendment) that no prior statistics paper could contain. Phase A produces an
+  EXPLICIT whitelist file with a one-line justification per entry; unjustifiable entries do
+  not get whitelisted.
+- **Bucket 2 — replace:** out-of-register word choices with in-distribution alternatives
+  drawn from the corpus itself (e.g., a quantity does not "sit at" a value in Biometrika — it
+  "equals", "is approximately", "remains"; results do not "land"; a bound is not a "floor").
+  The rubric (Phase A) should pair each flagged word with corpus-attested replacements.
+- **Bucket 3 — Marcus's call:** borderline terms (e.g., "ladder" for the rung-1/2/3
+  calibration construction is a named house construction — rename it or whitelist it) go into
+  the Phase C ratification packet.
+
+Also triage the top log-odds OVERUSED words (not only absences): the current top unigrams
+(trace, differential, candidate, deviance...) are mostly the paper's subject matter and fine,
+but the bigram list should be scanned for construction tells. **Phase D promotes the check
+from occasional diagnostic to standing guard:** rerun after every batch; the whitelist lives
+in the repo; consider a `check_plan.py` guard that fails on any non-whitelisted
+absent-from-corpus word above a small count threshold, so the distribution cannot silently
+drift again after this pass.
+
 ## Scope
 
 - **IN:** the manuscript body — level3, currently 87 paragraphs + the tracked abstract.
@@ -147,10 +188,13 @@ with `origin`; last substantive commit `4e93aaf`, the Lemma P derivation section
 Task — the critical style review of the manuscript, per `todo/048-style-review-handoff.md`
 (read it in full first; it is the spec of record): build a checkable style rubric from the
 Rubin-authored and top-venue exemplars in `literature/` (read in-session, quoted with line
-refs); run a flag-only critical review of `manuscript/mi-spectral-apa.qmd` against it,
-naming which house style rules conflict with the discipline register; then produce 4–6
-side-by-side demonstration rewrites (current vs. proposed register, facts/numbers/hedges/
-citations provably unchanged) for Marcus's ratification. No level3 edits, no decisions.md
+refs), including the vocabulary-distribution component (run
+`py scripts/corpus_vocab_check.py`, triage the absent-from-corpus and log-odds lists into
+whitelist / replace / Marcus's-call buckets with corpus-attested replacements); run a
+flag-only critical review of `manuscript/mi-spectral-apa.qmd` against it, naming which house
+style rules conflict with the discipline register; then produce 4–6 side-by-side
+demonstration rewrites (current vs. proposed register, facts/numbers/hedges/citations
+provably unchanged) for Marcus's ratification. No level3 edits, no decisions.md
 amendments, and no sweep until Marcus ratifies the direction from the demonstrations; after
 ratification, follow the handoff's Phase D (dated amendments + guard/scout recalibration in
 one commit, then section-batched sweep, check_plan green, rebuild + render per batch). The
