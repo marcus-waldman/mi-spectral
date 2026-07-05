@@ -37,10 +37,20 @@ Manuscript prose: 7,984 content tokens (1,774 types). Indexed literature (70 fil
 | target | 20 | 25.1 | 105 | 1.61 | 10.9 |
 | checks | 14 | 17.5 | 33 | 0.51 | 10.8 |
 | projected | 14 | 17.5 | 7 | 0.11 | 10.8 |
+| grows | 13 | 16.3 | 25 | 0.38 | 10.7 |
+| sign | 20 | 25.1 | 113 | 1.73 | 10.6 |
+| derivations | 15 | 18.8 | 48 | 0.74 | 10.6 |
+| corrected | 19 | 23.8 | 101 | 1.55 | 10.5 |
+| produced | 15 | 18.8 | 53 | 0.81 | 10.4 |
+| record | 14 | 17.5 | 42 | 0.64 | 10.4 |
+| percent | 15 | 18.8 | 54 | 0.83 | 10.4 |
+| imbalance | 21 | 26.3 | 3 | 0.05 | 10.1 |
+| scope | 12 | 15.0 | 29 | 0.44 | 10.0 |
+| analytic | 17 | 21.3 | 92 | 1.41 | 9.9 |
 
 ## A2. Manuscript words absent from the source literature (>= 3x)
 
-riv (9), ladder (9), committed (8), preregistered (8), registration (7), sits (5), headline (4), floor (4), preregistration (4), genuinely (4), amendment (4), transcripts (4), lands (3), scoped (3), closes (3), junk (3), anchored (3), frees (3), regimes (3)
+ladder (9), riv (9), committed (8), preregistered (8), registration (7), sits (5), preregistration (4), transcripts (4), genuinely (4), headline (4), floor (4), amendment (4), junk (3), anchored (3), regimes (3), scoped (3), frees (3), closes (3), lands (3)
 
 
 ## B. Two-word phrases most over-represented vs the field
@@ -76,7 +86,17 @@ riv (9), ladder (9), committed (8), preregistered (8), registration (7), sits (5
 | single model | 5 | 24 | 5.6 |
 | log likelihood | 21 | 481 | 5.5 |
 | variate normal | 4 | 13 | 5.5 |
+| estimated scale | 5 | 1 | 5.4 |
 | data entropy | 5 | 1 | 5.4 |
+| pooled estimate | 3 | 3 | 5.3 |
+| cross term | 3 | 3 | 5.3 |
+| average completed | 3 | 3 | 5.3 |
+| likelihood itself | 3 | 4 | 5.3 |
+| carlo error | 4 | 16 | 5.2 |
+| term zero | 3 | 5 | 5.2 |
+| near nominal | 3 | 2 | 5.2 |
+| augmentation run | 3 | 2 | 5.2 |
+| improper imputation | 3 | 2 | 5.2 |
 
 
 ## C. Banned-vocabulary scan (CLAUDE.md T-03)
