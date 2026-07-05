@@ -1,4 +1,16 @@
-# Response to Reviewers — v1 Review (Paper 88)
+---
+title: "Response to Reviewers — v1 Review (Paper 88)"
+author: "Marcus Waldman"
+date: last-modified
+format:
+  pdf:
+    documentclass: article
+    fontsize: 11pt
+    geometry: margin=1in
+    colorlinks: true
+bibliography: ../../../../literature/mi-spectral-better-bibTeX.bib
+csl: ../../../_extensions/wjschne/apaquarto/apa.csl
+---
 
 We thank the reviewers for their careful reading. Every comment is addressed below,
 grouped by reviewer, with the reviewer's text quoted first in each case. Manuscript
@@ -428,3 +440,8 @@ is unchanged.
 asymptotic-limit uses (the Wei–Tanner/Rubin draws and their $m\to\infty$ limit in the Background,
 the $m\to\infty$ Rubin's-rules statement, the "finite-$m$ corrections," and the "infinite-$m$
 limit") now read $M$, matching the simulation's own $M\in\{20,200\}$ used everywhere else.
+
+## References
+
+::: {#refs}
+:::

@@ -222,12 +222,14 @@ by `scripts/build_manuscript_apa.py` (two-class JAIGP author block, D-18). Build
 from `manuscript/` (apaquarto extension at `manuscript/_extensions`):
 ```
 py scripts/build_manuscript_apa.py            # level3 -> manuscript/mi-spectral-apa.qmd
-quarto render manuscript/mi-spectral-apa.qmd  # -> manuscript/mi-spectral-apa.pdf
+quarto render manuscript/mi-spectral-apa.qmd  # -> manuscript/mi-spectral-apa.{pdf,html}
 quarto render manuscript/derivation.qmd       # executes Appendix B (needs sympy, numpy, the fixture json)
+quarto render manuscript/reviews/v1/response/response-letter.md --to pdf  # -> response-letter.pdf
 ```
 The old HTML pipeline (`compile_manuscript.py` -> `mi-spectral.qmd`) is retired (D-21);
-`build_manuscript_apa.py` is the sole builder. `compile_enabled` still gates when level3
-prose is locked as the source of record.
+`build_manuscript_apa.py` is the sole builder. `compile_enabled` flipped TRUE 2026-07-05:
+level3 is locked as the source of record; all prose changes go through
+`manuscript/plan/updates/` scripts.
 
 **Sync the literature corpus** (Zotero BBT export → `literature/<citekey>.md`):
 ```
