@@ -8,6 +8,9 @@ format:
     fontsize: 11pt
     geometry: margin=1in
     colorlinks: true
+    include-in-header:
+      text: |
+        \emergencystretch=6em
 bibliography: ../../../../literature/mi-spectral-better-bibTeX.bib
 csl: ../../../_extensions/wjschne/apaquarto/apa.csl
 ---
@@ -83,7 +86,7 @@ terms — resolves that over-dispersion into an $O(1)$ effect that a finite-samp
 make vanish.
 
 We derived this correction in closed form and verified it two ways: symbolically
-([`verification/cas-wolfram/verify_engine_gap_sympy.py`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cas-wolfram/verify_engine_gap_sympy.py), 10/10 checks, including a $p=1$ toy table
+([`verify_engine_gap_sympy.py`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cas-wolfram/verify_engine_gap_sympy.py), 10/10 checks, including a $p=1$ toy table
 that independently reconstructs a withheld grading key) and via an independent cross-model
 derivation (GPT-5.5 Pro, blind and red-team passes, xhigh reasoning effort;
 [`todo/040b-gpt55-gate-package.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/todo/040b-gpt55-gate-package.md)). For a genuine posterior draw the correction to the headline is
@@ -178,7 +181,7 @@ points to it rather than proposing new simulations.
 
 Checked the actual computations rather than assuming: the pooled theorem-validation estimate
 ($2.43\pm0.26$) uses `pooled_se = 1/sqrt(sum(w))`, one Monte Carlo standard error
-([`verification/w1-h1-pooled-reconciliation.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/w1-h1-pooled-reconciliation.R)), while every figure's whiskers plot
+([`w1-h1-pooled-reconciliation.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/w1-h1-pooled-reconciliation.R)), while every figure's whiskers plot
 `est +/- 1.96*se`, a $95$ percent interval ([`verification/figures.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/figures.R)) — two different, unlabeled
 conventions in the same document. *Manuscript change landed:* the theorem-validation results
 paragraph now states at first use that its $\pm$ is one Monte Carlo standard error and explicitly
@@ -317,7 +320,7 @@ $-0.48\pm0.05$ (posterior draw) against the derived $0$ and $-0.5$, so the known
 is no longer verified only in the multivariate normal family. In the course of this the original
 Bernoulli draw value was found to carry a second defect: the original script fixed the imputation
 seed across all repetitions, so its quoted standard error overstated independence
-([`verification/spikes/phase3-mice-seed-diagnostic.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-mice-seed-diagnostic.R) reproduces the old value with the fixed
+([`phase3-mice-seed-diagnostic.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-mice-seed-diagnostic.R) reproduces the old value with the fixed
 seed and the corrected one without it). All superseded numbers stay in the record; none is
 load-bearing.
 
@@ -338,15 +341,15 @@ the new lemma.
 
 *Manuscript change landed:* Discussion paragraph G9 rewritten to the corrected,
 chronology-first account; the repository's decision log records the correction (D-25, with a
-superseding pointer at D-24). *Reproducibility:* [`verification/spikes/phase3-family-scan.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-family-scan.R)
+superseding pointer at D-24). *Reproducibility:* [`phase3-family-scan.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-family-scan.R)
 (four arms) + [`phase3-family-scan-score.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-family-scan-score.R) (registered-criteria scorecard) +
 [`phase3-mice-seed-diagnostic.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-mice-seed-diagnostic.R), all with documented commands; CAS companion
-[`verification/cas-wolfram/verify_bernoulli_fitted_gap.py`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cas-wolfram/verify_bernoulli_fitted_gap.py) (15 checks); registration and results
+[`verify_bernoulli_fitted_gap.py`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cas-wolfram/verify_bernoulli_fitted_gap.py) (15 checks); registration and results
 are separate commits ([`4aaeaae`](https://github.com/marcus-waldman/mi-spectral/commit/4aaeaae) then [`afa4438`](https://github.com/marcus-waldman/mi-spectral/commit/afa4438)), so the pre-registration is checkable in the git
 history, not asserted. Cross-model verification: a blinded GPT-5.5 Pro re-derivation plus
-red-team (both archived at [`verification/cache/layer3-gpt-5.5-pro-bern-glm-modeA.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cache/layer3-gpt-5.5-pro-bern-glm-modeA.md) and [`...modeB.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cache/layer3-gpt-5.5-pro-bern-glm-modeB.md)) and a
+red-team (both archived at [`layer3-gpt-5.5-pro-bern-glm-modeA.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cache/layer3-gpt-5.5-pro-bern-glm-modeA.md) and [`...modeB.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cache/layer3-gpt-5.5-pro-bern-glm-modeB.md)) and a
 repo-grounded Gemini compliance validation of this very text against the adversarial review's
-amendments ([`tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/tkal-reviews/gemini-045c-compliance-20260704/REPORT.md)).
+amendments ([`gemini-045c-compliance-20260704/REPORT.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/tkal-reviews/gemini-045c-compliance-20260704/REPORT.md)).
 
 ## Reviewer 3, comment 3 (congeniality diagnosis)
 
