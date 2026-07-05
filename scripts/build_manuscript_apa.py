@@ -40,24 +40,28 @@ GRAT = (
 )
 
 # Two-class title block. apa7 typesets the author block through \displayauthors and
-# \displayaffiliations inside a centered box at \maketitle; we override both. AI
-# authors carry no affiliation; only the prompter does. \setcounter neutralizes apa7's
-# author-vs-superscript count check (guarded). \let\openbox\relax fixes the apa7-vs-
-# amsthm clash.
+# \displayaffiliations inside a centered box at \maketitle; we override both. The human
+# prompter is listed first with a standard superscript-1 affiliation marker; the AI
+# authors follow under a group label and carry no affiliation (Marcus's ordering,
+# 2026-07-05). \setcounter neutralizes apa7's author-vs-superscript count check
+# (guarded). \let\openbox\relax fixes the apa7-vs-amsthm clash. \raggedbottom overrides
+# apa7's \flushbottom: with double spacing, short pages otherwise dump their vertical
+# deficit into the few stretchable paragraph glues, producing irregular ~2-line gaps
+# between paragraphs (measured 46-51pt against the normal 24pt baseline grid).
 HDR = r"""\let\openbox\relax
 \makeatletter
 \@ifundefined{c@NumberOfSuperscripts}{}{\setcounter{NumberOfSuperscripts}{0}}
 \makeatother
 \renewcommand{\displayauthors}{%
+  Marcus Waldman\textsuperscript{1}\\[11pt]
   {\bfseries AI Authors}\\[3pt]
-  Claude Opus 4.7\textendash4.8\quad GPT-5.5 Pro\quad Gemini 3.1 Pro\\[11pt]
-  {\bfseries Prompters}\\[3pt]
-  Marcus Waldman%
+  Claude Opus 4.7\textendash4.8\quad Claude Fable 5\quad GPT-5.5 Pro\quad Gemini 3.1 Pro%
 }
 \renewcommand{\displayaffiliations}{%
-  Center for Innovative Design and Analysis, Department of Biostatistics and Informatics, Colorado School of Public Health, University of Colorado Anschutz Medical Campus, Aurora, CO%
+  \textsuperscript{1}Center for Innovative Design and Analysis, Department of Biostatistics and Informatics, Colorado School of Public Health, University of Colorado Anschutz Medical Campus, Aurora, CO%
 }
-\leftheader{Waldman et al.}"""
+\leftheader{Waldman et al.}
+\raggedbottom"""
 
 
 def block(text, indent):

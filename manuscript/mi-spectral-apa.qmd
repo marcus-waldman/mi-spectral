@@ -30,15 +30,15 @@ header-includes:
     \@ifundefined{c@NumberOfSuperscripts}{}{\setcounter{NumberOfSuperscripts}{0}}
     \makeatother
     \renewcommand{\displayauthors}{%
+      Marcus Waldman\textsuperscript{1}\\[11pt]
       {\bfseries AI Authors}\\[3pt]
-      Claude Opus 4.7\textendash4.8\quad GPT-5.5 Pro\quad Gemini 3.1 Pro\\[11pt]
-      {\bfseries Prompters}\\[3pt]
-      Marcus Waldman%
+      Claude Opus 4.7\textendash4.8\quad Claude Fable 5\quad GPT-5.5 Pro\quad Gemini 3.1 Pro%
     }
     \renewcommand{\displayaffiliations}{%
-      Center for Innovative Design and Analysis, Department of Biostatistics and Informatics, Colorado School of Public Health, University of Colorado Anschutz Medical Campus, Aurora, CO%
+      \textsuperscript{1}Center for Innovative Design and Analysis, Department of Biostatistics and Informatics, Colorado School of Public Health, University of Colorado Anschutz Medical Campus, Aurora, CO%
     }
     \leftheader{Waldman et al.}
+    \raggedbottom
 format:
   apaquarto-pdf:
     keep-tex: true
@@ -421,7 +421,7 @@ The correspondence between the derivations and the studies is collected in @tbl-
 | The design-imbalance differential decouples only for separated candidates and grows with dissimilarity | @prp-ac-diff | Non-nested measurement | the dissimilar pair resolves at $-1.2$ ($3.5$ standard errors); the similar pair stays below resolution (@fig-w4-nonnested) | mixed: mechanism and dissimilar pair pass; the similar-pair prediction failed |
 | The bootstrap engine tracks the analytic arm, bounding the cost of not running data augmentation | the G3 scope statement of @sec-discussion | Engine sensitivity | $\operatorname{tr}(\mathrm{RIV})$ within $2$ to $3$ percent; selection within $0.011$ | within stated tolerances (empirical bound, no registered criterion) |
 
-: **The studies of this section mapped to the claims they test.** Each row names a claim from @sec-derivations, the analytic result behind it, the study that tests it, the outcome with its exhibit, and the assessment against the pre-registered pass criterion. {#tbl-evidence-map}
+: **The studies of this section mapped to the claims they test.** Each row names a claim from @sec-derivations, the analytic result behind it, the study that tests it, the outcome with its exhibit, and the assessment against the pre-registered pass criterion. {#tbl-evidence-map apa-longtable="true"}
 
 **Apparatus.** The designs are multivariate normal in four dimensions, with one bivariate special case. Two imputation arms run throughout. The deterministic arm evaluates the averaged log-likelihood $\bar Q_\infty$ in closed form at the full-information maximum-likelihood estimate $\hat\theta_{\text{obs}}$. This arm is the expectation-maximization Q-function with no simulation error. The proper arm draws imputations by expectation-maximization with bootstrapping, as implemented in Amelia [@honakerAmeliaIIProgram2011]. That sampler runs expectation-maximization on bootstrap resamples of the incomplete data. It approximates the posterior of $(\mu, \Sigma)$ and then draws completions at those values. The exact alternative is data augmentation. We did not run it. The engine-sensitivity study below bounds what that choice costs.
 
