@@ -127,7 +127,7 @@
     <section class="abstract">
       <h2>Abstract</h2>
       <p>Model selection on multiply imputed data is biased toward the candidates with more missing information, which in the nested families studied are the more complex models, because their larger relative increase in variance makes the fit look better than it is. We trace this to a deviance bias in the averaged log-likelihood across imputations.</p>
-      <p>Under congenial proper multiple imputation with the complete-data maximum likelihood estimate as target, the averaged log-likelihood overstates its complete-data counterpart by one half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that vanishes when data are missing completely at random. The bias is specific to each candidate model, which is why uncorrected information criteria favor the models with more missing information. Adding one trace term per candidate removes the deviance bias in expectation and substantially restores complete-data model selection. The same analysis gives the bias of a likelihood-ratio comparison at the null, the missing information in the tested directions alone, and identifies where a calibrated test already supplies the correction so that it must not be applied twice. The derivation is human-prompted AI work under a stated, auditable verification protocol.</p>
+      <p>Under congenial proper multiple imputation with the complete-data maximum likelihood estimate as target and an estimated scale or covariance, the averaged log-likelihood overstates its complete-data counterpart by one half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that vanishes when data are missing completely at random. The bias is specific to each candidate model, which is why uncorrected information criteria favor the models with more missing information. Adding one trace term per candidate removes that trace component of the deviance bias in expectation and substantially restores complete-data model selection. The same analysis gives the bias of a likelihood-ratio comparison at the null, the missing information in the tested directions alone, and identifies where a calibrated test already supplies the correction so that it must not be applied twice. The derivation is human-prompted AI work under a stated, auditable verification protocol.</p>
     </section>
 
     <section>
@@ -141,7 +141,7 @@
         <a class="card" href="https://github.com/marcus-waldman/mi-spectral">
           <p class="k">Browse &middot; GitHub</p>
           <p class="t">Code and evidence</p>
-          <p class="d">The simulation sweep, preregistered numerical checks, figures, and per-citation source corpus. The submission manuscript is in preparation.</p>
+          <p class="d">The simulation sweep, preregistered numerical checks, figures, per-citation source corpus, and the full manuscript draft (PDF).</p>
         </a>
       </div>
     </section>
@@ -150,7 +150,7 @@
       <h2>The result, in brief</h2>
       <div class="result">
         <div class="eq">Bias = +tr(RIV) &minus; &frac12;&nbsp;tr(RIV) = +&frac12;&nbsp;tr(RIV)</div>
-        <p class="note" style="margin:0">The averaged complete-data log-likelihood carries a positive imputation-bias term and a negative estimation-mismatch term. For a model that estimates a scale or covariance, they do not cancel: a net upward bias of one half the trace of the relative-increase-in-variance matrix remains (under MAR, plus an <code>O(1)</code> design-imbalance term that is zero under MCAR).</p>
+        <p class="note" style="margin:0">The averaged complete-data log-likelihood carries a positive imputation-bias term and a negative estimation-mismatch term. For a model that estimates a scale or covariance, they do not cancel: a net upward bias of one half the trace of the relative-increase-in-variance matrix remains (under MAR, plus an <code>O(1)</code> design-imbalance term that is zero under MCAR). The result extends to canonical generalized linear models, where a base-measure offset survives the cancellation (zero for Bernoulli, nonzero for Poisson).</p>
       </div>
       <p class="note" style="margin:0 0 14px">Five contributions, stated for use:</p>
       <ul class="plain">

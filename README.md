@@ -36,6 +36,12 @@ there is an additional `O(1)` design-imbalance term that is zero under MCAR. The
 model-comparison table built on imputed data favors the candidates with the most missing
 information — which, in the nested model families studied here, are the more complex models.
 
+The result extends to canonical generalized linear models, where the two order-one design
+terms cancel for any canonical link and a base-measure offset survives (zero for Bernoulli,
+nonzero for Poisson). The theorem is scoped to second-moment-matched imputation engines
+(fitted-parameter and bootstrap/EM imputation, the kind the simulations use); genuine
+Bayesian posterior-draw imputation carries a derived, disclosed correction.
+
 ### Contributions
 
 Stated for use, in the order an applied reader is likely to need them:
@@ -97,10 +103,12 @@ manuscript/
   derivation.qmd        Canonical sourced derivation (setup, assumptions, proof);
                         executable Sympy/NumPy verification inline. Rendered to
                         docs/derivation.html.
-  mi-spectral.qmd       Submission document (working draft).
+  mi-spectral-apa.qmd   Submission manuscript (APA format), built from the plan's
+                        paragraph level by scripts/build_manuscript_apa.py and
+                        rendered to mi-spectral-apa.pdf (both tracked).
   plan/                 Leveled manuscript plan (thesis → sections → paragraphs →
                         evidence) and locked decisions.
-  figures/             Generated figures for the simulation evidence.
+  figures/              Generated figures for the simulation evidence.
 
 verification/
   run_all.R             Single entry point for the comprehensive simulation sweep.
@@ -136,8 +144,9 @@ Render the documents (requires [Quarto](https://quarto.org); the derivation also
 Python with `sympy` and `numpy`):
 
 ```sh
-quarto render manuscript/derivation.qmd     # → manuscript/derivation.html
-quarto render manuscript/mi-spectral.qmd
+quarto render manuscript/derivation.qmd        # → manuscript/derivation.html
+py scripts/build_manuscript_apa.py             # plan → manuscript/mi-spectral-apa.qmd
+quarto render manuscript/mi-spectral-apa.qmd   # → manuscript/mi-spectral-apa.pdf
 ```
 
 ## Lineage
