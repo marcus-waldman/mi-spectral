@@ -92,7 +92,7 @@ $p=\tfrac12$). "Has no dispersion parameter" and "has a dispersion parameter, he
 opposite structural situations, and the registration mapped one onto the other.
 
 **The corrected target was then derived, not asserted — and verified blind.** Because a post-hoc
-correction prompted by a miss is exactly the pattern an adversarial review flagged in our own
+correction prompted by a miss is the pattern an adversarial review flagged in our own
 process, the corrected analysis was rebuilt to a higher standard than the original: (i) a full
 derivation of what a canonical-link GLM should show, from the paper's own Term-A objects — under
 response-only MCAR the two order-one design terms (entropy-gradient $\times$ MLE-bias, and
@@ -173,7 +173,7 @@ practical pointers, each backed by a reference acquired and read in full for thi
 - **Nguyen, Carlin & Lee (2017, *Emerging Themes in Epidemiology*)** review the available
   checking methods for applied use (graphical observed-vs-imputed comparisons, the
   propensity-conditional checks above, regression diagnostics, cross-validation, and posterior
-  predictive checking); their case study shows the posterior predictive check catching exactly an
+  predictive checking); their case study shows the posterior predictive check catching just such an
   imputation/analysis incompatibility.
 
 *Manuscript change landed:* the G7 Discussion paragraph (`S6-P4b`) gains the three-sentence
@@ -273,7 +273,7 @@ shortfall sits inside the same noise band as the paper's already-disclosed desig
 A genuine Bayesian posterior draw, by contrast, does *not* converge to the headline as $N$ grows;
 it carries a persistent $O(1)$ correction, because a proper posterior draw is over-dispersed
 relative to the fitted plug-in by construction (Rubin's between-imputation variance rule exists
-to capture exactly that extra spread), and the deviance — a sum of $n$ per-cell $O(1/n)$-sensitive
+to capture that extra spread), and the deviance — a sum of $n$ per-cell $O(1/n)$-sensitive
 terms — resolves that over-dispersion into an $O(1)$ effect that a finite-sample argument cannot
 make vanish.
 
@@ -423,7 +423,7 @@ figure and the value's actual floating-point representation.
 > The symbol $k$ is initially defined as the number of parameters [...] However, in Section 5's
 > information-criterion selection, $k$ is redefined as a model index in $\text{AIC}_{MI}(k)$ [...]
 
-Confirmed exactly as described, and traced to two further occurrences of the same double-duty
+Confirmed as described, and traced to two further occurrences of the same double-duty
 $k$ the reviewer's example did not cite (`S4-P3`'s RIV display and fraction-of-missing-information
 identity, and `S4-P6`'s derivation of the estimation-mismatch term). *Manuscript change landed:*
 every parameter-count use of $k$ (the dimension $q=p+\tfrac12p(p+1)$, and the matching $I_k\to I_q$

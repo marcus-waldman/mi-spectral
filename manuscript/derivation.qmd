@@ -96,7 +96,7 @@ RIV depends on the model. Left uncorrected, the criteria systematically favor hi
 models; adding $\operatorname{tr}(\mathrm{RIV})$ to the deviance *substantially recovers*
 complete-data selection (measured in @sec-ic: $\approx 0.81$ against an oracle $\approx 0.90$
 from an uncorrected $\approx 0.65$), and @sec-ic derives how much more than the mean a
-correction can match — the whole null distribution per pair, exactly; nothing on the
+correction can match — the whole null distribution per pair, up to asymptotic approximation; nothing on the
 noncentral side, in principle. The corrected criterion **coincides with the missing-data information criterion
 $\mathrm{AIC}_{x;y}$ of [@shimodairaInformationCriterionModel2017]**, whose penalty is *half* that
 of the earlier complete-data-discrepancy criteria — AICcd
@@ -152,7 +152,7 @@ proof: Term B (estimation mismatch) is an elementary Taylor argument, while Term
 (imputation bias) is a second-order expansion turning on a cancellation we isolate as a
 lemma; a closing subsection carries that cancellation beyond the multivariate normal, to
 canonical generalized linear models, where a base-measure offset survives it (@sec-glm).
-@sec-lrt develops the likelihood-ratio application: the exact differential bias of
+@sec-lrt develops the likelihood-ratio application: the closed-form leading-order differential bias of
 the MI deviance numerator at the null, why the naive difference of the two models'
 $\operatorname{tr}(\mathrm{RIV})$s overstates it, and the noise collapse that makes the
 comparison-relevant correction precisely estimable. @sec-ic develops the model-selection
@@ -454,7 +454,7 @@ though, the bootstrap still carries the small design-imbalance term under MAR.
 
 A genuine Bayesian posterior draw is not second-moment-matched, by construction: a proper draw
 is *over*-dispersed relative to the plug-in (Rubin's between-imputation variance rule is built
-to capture exactly that extra spread), so $\Xi\succ0$. Such a draw carries a persistent,
+to capture that extra spread), so $\Xi\succ0$. Such a draw carries a persistent,
 computable correction to the headline,
 $$
 D=-\tfrac12\operatorname{tr}(\mathrm{RIV}_{\mu\mu})-\tfrac12\sum_i\operatorname{tr}\!\big(\hat V_i^{-1}C_i\,b_\Sigma\,C_i^\top\big)-\mathrm{IMB}+o(1).
@@ -752,7 +752,7 @@ the bivariate design by two computer-algebra systems and direct Monte-Carlo, and
 `verification/cas-wolfram/verify_term_ac_nonmonotone{,_genp}.py`), where it reduces exactly to the
 bivariate value, meets the score/information identities to machine precision, and recovers the
 complete-data bias $-\sigma$ on the always-observed block. **The information *convention* for
-$(A)+(C)$ is settled; its exact magnitude is an $O(1)$ that direct Monte Carlo does not pin sharply.**
+$(A)+(C)$ is settled; its magnitude is an $O(1)$ that direct Monte Carlo does not pin sharply.**
 The convention is the *realized* (observed) information [@kenwardLikelihoodBasedFrequentist1998] —
 which under MAR carries the mean–covariance cross term, is biased otherwise, and differs from the
 naive expected information by the $O(1)$ **realized-information correction** $\Delta_{\mathrm{KM}}$
@@ -760,7 +760,7 @@ naive expected information by the $O(1)$ **realized-information correction** $\D
 its block structure and $O(1)$ order independently cross-checked off-lineage, exactly $0$ under MCAR,
 and itself an ultra-precise *paired* contrast — Monte-Carlo standard error $<10^{-3}$). The
 leading-order ($\delta$-method) analytic value is $\approx-0.22$ for the four-variate design (right
-sign and $O(1)$ order; MCAR control $\approx0$). The exact magnitude, by contrast, is the *mean* of a
+sign and $O(1)$ order; MCAR control $\approx0$). The magnitude, by contrast, is the *mean* of a
 heavy-tailed statistic — the per-replicate remainder $A_{\mathrm{rb}}-\operatorname{tr}(\mathrm{RIV})$
 has standard deviation $\propto\sqrt n$ and a long right tail (from over-fitted draws) — so its direct
 Monte-Carlo estimate is imprecise and **untrended**: $-0.34,-0.46,-0.29,+0.17$ across
@@ -1198,7 +1198,7 @@ via Cox–Snell, confirmed by two computer-algebra systems plus direct Monte-Car
 `verification/verify_term_ac_nonmonotone.R`) and extended to general $p$ (`..._genp.py`, `..._4v.R`).
 The $(A)+(C)$ information **convention** is settled to the observed information
 [@kenwardLikelihoodBasedFrequentist1998]: a leading-order approximation gives $\approx-0.22$ (right
-sign and order); the exact magnitude is a heavy-tailed, imprecise $O(1)\approx-0.3$ (@sec-termA). What
+sign and order); the magnitude is a heavy-tailed, imprecise $O(1)\approx-0.3$ (@sec-termA). What
 is sharply pinned is the realized−naive information gap $\Delta_{\mathrm{KM}}\approx-0.55$
 (non-monotone), derived two ways (@sec-termA). Firm: $(A)+(C)$ is $O(1)$ under MAR, $\approx0$ under MCAR. The MVN FIML instantiation of $\bar Q_\infty$ matches the R
 code to machine precision (@lst-mc-fiml).
@@ -1219,7 +1219,7 @@ $(A)+(C)=0$ and $\mathbb{E}[T]=+\tfrac12\operatorname{tr}(\mathrm{RIV})$; under 
 design-imbalance term remains — a nonzero $O(1)$ whose structure is derived (entropy gradient,
 cross-entropy curvature, and the now general-$p$ Cox–Snell $b_\Sigma$) and whose information
 convention is settled to the realized (observed) information
-[@kenwardLikelihoodBasedFrequentist1998]. Its leading-order value is $\approx-0.22$; the exact
+[@kenwardLikelihoodBasedFrequentist1998]. Its leading-order value is $\approx-0.22$; the
 magnitude is the mean of a heavy-tailed statistic, not sharply pinnable by direct Monte Carlo
 ($\approx-0.3$, untrended; @sec-termA). What is precise is the realized-vs-naive information gap
 $\Delta_{\mathrm{KM}}\approx-0.55$, derived in closed form (@sec-termA), its block structure and
@@ -1510,8 +1510,8 @@ there, and engines that are not second-moment proper are not covered by it.
 
 The theorem prices the bias of one model's $\bar Q_\infty$. A likelihood-ratio comparison consumes
 two such quantities at once — the same imputed data, two nested fits — and everything in this
-section follows from asking what survives the subtraction. Three things are derived here: the exact
-differential bias of the MI deviance numerator at the null (it is *not* the difference of the two
+section follows from asking what survives the subtraction. Three things are derived here: the closed-form
+leading-order differential bias of the MI deviance numerator at the null (it is *not* the difference of the two
 models' $\operatorname{tr}(\mathrm{RIV})$s); the collapse of the per-dataset noise from
 $O_p(\sqrt n)$ to $O_p(1)$ under pairing; and the exact cancellation of the design-imbalance term
 $(A)+(C)$ at the null.
@@ -1685,7 +1685,7 @@ into a genuine $O(1)$ differential, alongside the return of the $O(\sqrt n)$ noi
 Proposition L3.
 
 This sharpens the standalone-value discussion of @sec-termA: the $(A)+(C)$ *level* is an $O(1)$
-whose exact magnitude is hard to pin (heavy-tailed, $\operatorname{sd}\propto\sqrt n$), but the
+whose magnitude is hard to pin (heavy-tailed, $\operatorname{sd}\propto\sqrt n$), but the
 LRT consumes only its *differential*, which is exactly zero at the null, asymptotically negligible
 under contiguous alternatives, and re-emerges only for non-nested comparison.
 
@@ -1694,7 +1694,7 @@ and AR(1) covariance candidates to the *same* congenial imputations under a stro
 design — a genuine non-nested comparison [@vuongLikelihoodRatioTests1989] with the two pseudo-true
 correlations well separated ($0.35$ vs $0.50$; $0.40$ vs $0.47$) — and isolating the
 design-imbalance contribution by differencing against an MCAR twin ($20{,}000$ replicates per cell,
-$N \in \{500, 1000, 2000\}$), the run reproduces the *mechanism* of Proposition L4 exactly. The
+$N \in \{500, 1000, 2000\}$), the run reproduces the *mechanism* of Proposition L4. The
 single-model $(A)+(C)$ *level* is a large $O(1)$ for each curved candidate — $\approx +2.5$ deviance
 units, tens of standard errors from zero — that collapses to zero under MCAR: the two candidates'
 levels *decouple* ($+2.33$ vs $+2.85$ in the AR(1)-truth cell), no longer the identical realizations
@@ -1834,7 +1834,7 @@ of @shimodairaInformationCriterionModel2017 [<a href="#sec-src-shimodaira2017"><
 :::
 
 The ranking consequence is immediate. For two candidates the uncorrected criterion difference
-carries a differential bias $-[\operatorname{tr}(\mathrm{RIV}_j) -
+carries a differential bias whose leading term is $-[\operatorname{tr}(\mathrm{RIV}_j) -
 \operatorname{tr}(\mathrm{RIV}_k)]$: the candidate with *more* missing information about its
 own parameters looks artificially better, by exactly the amount of extra missing information.
 Two caveats from @sec-lrt frame what the correction can and cannot promise. First, candidate
@@ -1988,7 +1988,7 @@ mean: the two-moment and equating arms select the true model at $0.904$ and $0.9
 statistically indistinguishable from complete-data AIC. The junk cell shows the same
 mechanism at larger scale: the full contrast closes 90% of the uncorrected-to-oracle gap.
 
-*The noncentral side shrinks, exactly as the law predicts.* The underfit candidate's mean
+*The noncentral side shrinks as the law predicts.* The underfit candidate's mean
 statistic, relative to its complete-data counterpart: $1.002$ under the mean correction
 (evidence preserved), $0.586$ under two moments (predicted $a_k = 0.570$), $0.362$ under
 equating (predicted far-tail factor $1/\lambda_{\max} = 0.398$). This is the toy made exact:
@@ -2040,7 +2040,7 @@ complete-data selection where the data no longer carry the information — the w
 floor is the honest summary. Selection-aware refinements beyond the per-model null maps —
 de-shrinkage of estimated noncentrality, joint (copula-aware) calibration of score vectors —
 are developed separately. These fences differ in standing, and it is worth being explicit about
-which is which: the first two are theorems with exact empirical confirmation — the noncentral
+which is which: the first two are theorems with direct empirical confirmation — the noncentral
 shrinkage is the $a_k$ and $1/\lambda_{\max}$ law landed above, and difference-distribution
 non-calibration is the invariance of the score copula under per-model marginal transforms — whereas
 the last is an empirical floor, the measured $0.17$ weak-signal residual, not a proof that no
@@ -3067,7 +3067,7 @@ mean–covariance cross term [@kenwardLikelihoodBasedFrequentist1998, §3.2], <a
 and is estimated by the observed information $-\partial^2\ell_{\text{obs}}/\partial\theta\partial\theta^\top$.
 This appendix gives that observed information in closed form for the MVN under missingness — so the
 RIV is computable analytically, with no imputations and no numerical differentiation — and shows
-exactly where the cross term comes from.
+where the cross term comes from.
 
 **Observed information.** The observed information is the realized negative Hessian
 $\mathcal{J}_{\text{obs}}(\theta;Y)=-\partial^2\ell_{\text{obs}}/\partial\theta\,\partial\theta^\top$,
