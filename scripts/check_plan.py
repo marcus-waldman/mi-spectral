@@ -99,7 +99,7 @@ COLOR_COMMENTARY = [
 # 'the estimated-scale regime'.
 VOCAB_OUT_OF_REGISTER = [
     (re.compile(r"\bsits?\s+(between|close|in|at|near)\b", re.I), "sits (use: is/equals/belongs/lies between)"),
-    (re.compile(r"\bland(s|ed)?\s+(directly\s+)?(on|at|in)\b", re.I), "lands (use: is/equals/enters/agrees with)"),
+    (re.compile(r"\bland(s|ed)?\s+(directly\s+)?(on|at|in|within)\b", re.I), "lands (use: is/equals/enters/agrees with)"),
     (re.compile(r"\bheadlines?\b", re.I), "headline (use: primary/main)"),
     (re.compile(r"\bfloor\b", re.I), "floor (use: residual shortfall/limit; NOT 'bound')"),
     (re.compile(r"\bjunk\b", re.I), "junk (use: zero-correlation/no-signal cell)"),
