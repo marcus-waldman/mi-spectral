@@ -4,13 +4,14 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Submission tail (v1-review response COMPLETE + merged to main @ 8055daf, letter 15/15): per-paragraph annotation (Marcus) + compile-enablement; the decided Lemma P derivation.qmd section under full citation discipline (sources verified, loci pinned); then derivation-audit 0/0 -> Zenodo -> JAIGP."
-last_synced_commit: 7ab01a3
+last_synced_commit: 60b0b73
 tree_state: clean
-updated: "2026-07-04T22:25:08Z"
+updated: "2026-07-05T04:58:05Z"
 updated_by: wrap
 cockpit: { provider: null, list_id: null }
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 ---
+
 
 
 
@@ -133,7 +134,7 @@ _This session (2026-07-03, continued yet further) -- the two threads were split 
 
 1. **Per-paragraph annotation (Marcus) + compile-enablement.** The v1-review response is content-complete (letter 15/15 DRAFTED; all manuscript-facing changes landed and rendered). Marcus reads the letter end-to-end (`manuscript/reviews/v1/response/response-letter.md`) and does his annotation pass on the manuscript; then fold annotations, flip `compile_enabled`, and close the discretionary items parked in Open questions (CRediT roles, correspondence address, S1-P6 trim, applied-first ordering).
 
-2. **Lemma P formal section in `derivation.qmd` (DECIDED 2026-07-04, Marcus; dedicated future session), then derivation-audit (0 blocker / 0 warn) -> Zenodo deposit -> JAIGP submission.** SOURCES NOW FULLY UNBLOCKED (2026-07-04, commit `6aa4975`): Firth 1993 acquired + verified (todo/003 row has the loci); Cox-Snell 1968 turned out to be ALREADY owned and cited at derivation.qmd:1126 alongside the Cordeiro-Klein + Patriota-Lemonte bias cluster -- the bias-formula locus is settled by direct read (Section 3: scalar b=(K+2J)/(2I^2) at :229, vector :269), so the drafting session reuses `@coxGeneralDefinitionResiduals1968` (re-read in-session then, per the standing rule). Drafting requirements unchanged: Mode B's outer-expectation note, [mc]/source pointers to the CAS scripts + scan caches + both cross-model records, Appendix A source-quote entries, clean `/derivation-audit`. ONE Marcus follow-up from the acquisition: merge/delete the duplicate Cox-Snell item in Zotero (its BBT key pinned as `...1968a`, and its lit-sync rewrote the existing markdown with a different conversion -- restored from git, duplicate md + bib entry removed; a future BBT export would resurrect `1968a` until the Zotero item is merged).
+2. **Lemma P formal section in `derivation.qmd` (DECIDED 2026-07-04, Marcus; dedicated future session — HANDOFF: `todo/047-lemma-p-derivation-handoff.md`, commit `60b0b73`, incl. the paste-able resume prompt and the Fable-5-at-HIGH-effort recommendation), then derivation-audit (0 blocker / 0 warn) -> Zenodo deposit -> JAIGP submission.** SOURCES NOW FULLY UNBLOCKED (2026-07-04, commit `6aa4975`): Firth 1993 acquired + verified (todo/003 row has the loci); Cox-Snell 1968 turned out to be ALREADY owned and cited at derivation.qmd:1126 alongside the Cordeiro-Klein + Patriota-Lemonte bias cluster -- the bias-formula locus is settled by direct read (Section 3: scalar b=(K+2J)/(2I^2) at :229, vector :269), so the drafting session reuses `@coxGeneralDefinitionResiduals1968` (re-read in-session then, per the standing rule). Drafting requirements unchanged: Mode B's outer-expectation note, [mc]/source pointers to the CAS scripts + scan caches + both cross-model records, Appendix A source-quote entries, clean `/derivation-audit`. ONE Marcus follow-up from the acquisition: merge/delete the duplicate Cox-Snell item in Zotero (its BBT key pinned as `...1968a`, and its lit-sync rewrote the existing markdown with a different conversion -- restored from git, duplicate md + bib entry removed; a future BBT export would resurrect `1968a` until the Zotero item is merged).
 
 3. **Optional/cheap, non-blocking:** extend the E3 bootstrap-floor exact-identity arm to N=500/2000 (gate item C7); verify Mode B's IMB closed form (CAS or numeric vs the measured -0.005/-0.0065); silence the apaquarto affiliation-noise ERROR lines; the transcripts-link public-release loop. Frozen preregistered originals UNTOUCHED.
 
