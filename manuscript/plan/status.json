@@ -2,18 +2,18 @@
   "schema_version": 1,
   "project": "mi-spectral JAIGP manuscript",
   "goal": "Submission-ready manuscript: deviance bias of congenial MI, with LRT and IC applications",
-  "phase": "level3_drafting",
-  "last_updated": "2026-06-26",
-  "updated_by": "claude (S5 tribunal review DONE -> verdict AMEND, amendments applied + committed on branch s5-tribunal-amendments; Marcus then flagged a manuscript-wide PROSE READABILITY gap after reading the JASA PDF -- queued as the next-session priority)",
+  "phase": "submission_ready",
+  "last_updated": "2026-07-05",
+  "updated_by": "claude (compile_enabled FLIPPED after Marcus declined further annotation passes; v1-review response letter FINALIZED @68522bd; R11 precision pass over derivation.qmd + letter done (todo/049); todo/048 register sweep + evidence-map table done; PDF/HTML rendering fixes + G1-G9 labeling done)",
   "blocked_on": {
     "who": "marcus",
-    "what": "Per-paragraph annotation sessions on S1 (7), S2 (13), S3 (8), and now S4 (22 paragraphs, drafted 2026-06-07: setup+theorem A1-A8, LRT B1-B7, IC C1-C7; quarried displays/propositions/numbers with prose rewritten to the style rules). Open flags unchanged (S1 length; decomposition sentence; improper continuity) + S4-P22 note (naive-input arm comparison kept implicit, full version in S5). After approvals or in parallel: Claude drafts S5 + S6 (small).",
-    "artifact": "manuscript/plan/level3-paragraphs.json"
+    "what": "JAIGP submission itself (account/upload). Everything on the repo side is closed: level3 locked, letter final, derivation-audit engine 0 blocker / 0 warn, check_plan green, both renders exit 0.",
+    "artifact": "manuscript/mi-spectral-apa.pdf + manuscript/reviews/v1/response/response-letter.md"
   },
   "levels": {
     "level1": "ratified_cycle2",
     "level2": "annotated_cycle1",
-    "level3": "all_six_drafted + S5 tribunal-amended (82 paragraphs incl. new S6-P4b G6); compile pending Marcus passes",
+    "level3": "LOCKED (compile_enabled 2026-07-05): 88 paragraphs; S5 tribunal + todo/037/038/039 audits + D-26 register sweep + R11 precision pass + v1-review response all folded in; Marcus declined a further per-paragraph annotation pass",
     "level4": "populated (87 entries, all verified)"
   },
   "sections": [
@@ -21,37 +21,43 @@
       "id": "S1",
       "anchor": "sec-intro",
       "title": "Introduction",
-      "state": "drafted_awaiting_annotation"
+      "state": "approved"
+    },
+    {
+      "id": "S1B",
+      "anchor": "sec-collab",
+      "title": "AI-human collaboration",
+      "state": "approved"
     },
     {
       "id": "S2",
       "anchor": "sec-background",
       "title": "Background and notation",
-      "state": "drafted_awaiting_annotation"
+      "state": "approved"
     },
     {
       "id": "S3",
       "anchor": "sec-methods",
       "title": "Methods: the derivation and verification workflow",
-      "state": "drafted_awaiting_annotation"
+      "state": "approved"
     },
     {
       "id": "S4",
       "anchor": "sec-derivations",
       "title": "Derivations",
-      "state": "drafted_awaiting_annotation"
+      "state": "approved"
     },
     {
       "id": "S5",
       "anchor": "sec-simulations",
       "title": "Simulation studies",
-      "state": "drafted_awaiting_annotation"
+      "state": "approved"
     },
     {
       "id": "S6",
       "anchor": "sec-discussion",
       "title": "Discussion",
-      "state": "drafted_awaiting_annotation"
+      "state": "approved"
     }
   ],
   "section_state_vocabulary": [
@@ -62,7 +68,8 @@
     "committed"
   ],
   "open_decisions": [
-    "T-08 follow-up: conditioning-sense 'oracle' rename in S3-P6/S4-P4/S4-P7"
+    "Parked discretionary items DEFAULTED to keep-as-is at compile-enablement (2026-07-05, Marcus declined annotations; override any on request): CRediT roles stay as drafted; correspondence line stays email-only; S1-P6 inline enumeration kept alongside the S1-P6b Contributions list; applied-first contributions ordering kept; parent-company names kept in the author note; the five 1a wording deviations (TV-09/10/12/14/15) stand as applied",
+    "Presentation residuals (optional, Marcus's call): compact Table 1 (currently double-spaced across four back-matter pages); publish mi-spectral-apa.html to the Pages site; restore the 'Prompters' label on the title page"
   ],
   "citations_backlog": {
     "proposed": 3,
@@ -74,12 +81,9 @@
     "last_synced": null
   },
   "next_actions": [
-    "PROSE READABILITY PASS (Marcus 2026-06-26, top priority): per-paragraph rewrite of level3 draft_prose S1-S6 for easier readability / lower grade reading level -- complete the topic-sentence -> supporting-details -> wrap-up/hand-off arc; state inferred steps plainly (a little redundancy is fine); lower sentence complexity. The manuscript still reads inference-heavy and above grade level despite the existing cadence/punctuation rules.",
-    "DECIDE (Marcus): S3-P6 / S4-P4 / S4-P7 conditioning-sense 'oracle' rename (T-08 follow-up; e.g. 'true-parameter expectation')",
-    "Then flip compile_enabled to lock level3 as the source of record (the canonical render is rebuilt from level3 by scripts/build_manuscript_apa.py, so there is no longer a frozen qmd to diverge from)",
-    "Marcus: per-paragraph annotation passes S1-S6 (82 paragraphs); the S5 tribunal pass is one external-review cycle, not a substitute for the annotation",
-    "Optional: commit the tribunal review record (tkal-reviews/) as provenance per D-13 -- Marcus's call on what enters the public record",
-    "Follow-up queued: todo/030 map sync"
+    "Marcus: JAIGP submission (manuscript/mi-spectral-apa.pdf + the finalized response letter)",
+    "Optional presentation residuals listed in open_decisions",
+    "Optional non-blocking verification items: extend the E3 bootstrap-floor exact-identity arm to N=500/2000; verify the candidate IMB closed form before ever citing it; silence the apaquarto affiliation-noise ERROR lines"
   ],
-  "structure_note": "Section list = the ratified 6-section set (D-09 + Amendment 1) + title-page declaration (D-11/D-13). The canonical render manuscript/mi-spectral-apa.qmd is rebuilt from level3 by scripts/build_manuscript_apa.py (D-20). Citations backlog: proposed = White 2011, Grund 2021, Schomaker 2007 (all optional)."
+  "structure_note": "Section list = the ratified 7-move arc (D-09 + Amendment 1 + D-12 S1B) + title-page declaration (D-11/D-16/D-18/D-19). The canonical renders manuscript/mi-spectral-apa.{pdf,html} are rebuilt from level3 by scripts/build_manuscript_apa.py (D-21). Citations backlog: proposed = White 2011, Grund 2021, Schomaker 2007 (all optional, none load-bearing)."
 }
