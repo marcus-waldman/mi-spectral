@@ -15,9 +15,11 @@ csl: ../../../_extensions/wjschne/apaquarto/apa.csl
 We thank the reviewers for their careful reading. Every comment is addressed below,
 grouped by reviewer, with the reviewer's text quoted first in each case. Manuscript
 changes are identified in place. The verification scripts, computer-algebra checks, and
-cross-model review records cited in the responses are committed in the public repository,
-so each claim about what was run can be checked against the artifact itself. The review
-being answered is archived at `manuscript/reviews/v1/ai-review-paper-88.md` (15 comments
+cross-model review records cited in the responses are committed in the public repository
+at <https://github.com/marcus-waldman/mi-spectral>; every file reference below is
+hyperlinked to that repository on the GitHub website at the fixed commit `7b56b67`, so
+each artifact can be inspected in a browser without cloning anything. The review
+being answered is archived at [`manuscript/reviews/v1/ai-review-paper-88.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/manuscript/reviews/v1/ai-review-paper-88.md) (15 comments
 across five reviewer personas).
 
 ---
@@ -60,7 +62,7 @@ what grows with $N$, and that spread is finite.
 
 We ran the requested control. Two independent exact data-augmentation engines were built: a
 hand-rolled conjugate Gibbs sampler under the reference prior $p(\mu,\Sigma)\propto|\Sigma|^{-(p+1)/2}$
-(`verification/da-conjugate-engine.R`), and, as a cross-check, `norm::da.norm`. Both were run on
+([`verification/da-conjugate-engine.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/da-conjugate-engine.R)), and, as a cross-check, `norm::da.norm`. Both were run on
 the paper's own headline W1 cell (four-variate MVN, $N=200$ non-monotone MAR) to $R=20{,}000$
 repetitions, and the conjugate engine was extended across $N\in\{200,500,1000,2000\}$. The two
 engines agree to the third decimal ($-0.783$ and $-0.783$, standard errors $.0023$/$.0031$,
@@ -81,10 +83,10 @@ terms — resolves that over-dispersion into an $O(1)$ effect that a finite-samp
 make vanish.
 
 We derived this correction in closed form and verified it two ways: symbolically
-(`verification/cas-wolfram/verify_engine_gap_sympy.py`, 10/10 checks, including a $p=1$ toy table
+([`verification/cas-wolfram/verify_engine_gap_sympy.py`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cas-wolfram/verify_engine_gap_sympy.py), 10/10 checks, including a $p=1$ toy table
 that independently reconstructs a withheld grading key) and via an independent cross-model
 derivation (GPT-5.5 Pro, blind and red-team passes, xhigh reasoning effort;
-`todo/040b-gpt55-gate-package.md`). For a genuine posterior draw the correction to the headline is
+[`todo/040b-gpt55-gate-package.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/todo/040b-gpt55-gate-package.md)). For a genuine posterior draw the correction to the headline is
 
 $$
 D=-\tfrac12\operatorname{tr}(\mathrm{RIV}_{\mu\mu})-\tfrac12\sum_i\operatorname{tr}\!\big(\hat V_i^{-1}C_i\,b_\Sigma\,C_i^\top\big)-\mathrm{IMB}+o(1),
@@ -122,7 +124,7 @@ plug-in estimates the sampling bias of $\hat\Sigma_{\text{obs}}$ directly, which
 complete-data second-moment identity ($\mathbb{E}^\ast[\tilde\Sigma+(\tilde\mu-\hat\mu)^{\otimes2}]
 =\hat\Sigma$) that makes Amelia's EMB second-moment-matched.
 
-*Manuscript changes already landed:* `manuscript/derivation.qmd` — a forward-pointer at the
+*Manuscript changes already landed:* [`manuscript/derivation.qmd`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/manuscript/derivation.qmd) — a forward-pointer at the
 Q-function definition, a corrected fitted-vs-oracle callout, and a new scope-and-correction
 callout following the theorem's setup, stating the theorem's scope (second-moment-matched,
 regular-draw imputers) and the disclosed correction for engines outside that scope; a
@@ -176,8 +178,8 @@ points to it rather than proposing new simulations.
 
 Checked the actual computations rather than assuming: the pooled theorem-validation estimate
 ($2.43\pm0.26$) uses `pooled_se = 1/sqrt(sum(w))`, one Monte Carlo standard error
-(`verification/w1-h1-pooled-reconciliation.R`), while every figure's whiskers plot
-`est +/- 1.96*se`, a $95$ percent interval (`verification/figures.R`) — two different, unlabeled
+([`verification/w1-h1-pooled-reconciliation.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/w1-h1-pooled-reconciliation.R)), while every figure's whiskers plot
+`est +/- 1.96*se`, a $95$ percent interval ([`verification/figures.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/figures.R)) — two different, unlabeled
 conventions in the same document. *Manuscript change landed:* the theorem-validation results
 paragraph now states at first use that its $\pm$ is one Monte Carlo standard error and explicitly
 distinguishes it from the figure's $95$ percent whiskers.
@@ -188,7 +190,7 @@ distinguishes it from the figure's $95$ percent whiskers.
 > definitions of the two intermediate nested models [...]
 
 *Manuscript change landed:* the selection-sweep design paragraph now names all four candidates
-from the actual sweep code (`verification/W3-model-selection.R`): the diagonal model (eight free
+from the actual sweep code ([`verification/W3-model-selection.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/W3-model-selection.R)): the diagonal model (eight free
 parameters), a model that frees the wrong off-diagonal pair $\sigma_{12},\sigma_{34}$ (ten free
 parameters), a model that frees the correct pair $\sigma_{13},\sigma_{24}$ matching the truth
 (ten free parameters, the true model), and the saturated model (fourteen free parameters). While
@@ -203,7 +205,7 @@ $\sigma_{13}=\sigma_{24}=0.4$ with every other off-diagonal entry zero, now stat
 > the correlations of 0.6, 0.3, and 0.5. [...]
 
 *Manuscript change landed:* the simulation-design paragraph now states the placement from the
-actual covariance matrix (`verification/00-setup.R`, `default_Sigma`): $\sigma_{12}=0.6$ between
+actual covariance matrix ([`verification/00-setup.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/00-setup.R), `default_Sigma`): $\sigma_{12}=0.6$ between
 the two coordinates that carry missingness, $\sigma_{13}=\sigma_{24}=0.3$ between each missing
 coordinate and the fully observed coordinate that drives its own missingness, $\sigma_{34}=0.5$
 between the two fully observed driving coordinates, and $\sigma_{14}=\sigma_{23}=0$.
@@ -227,7 +229,7 @@ complete-data-equivalent selection — comparing against what BIC would select i
 been missing, not against some alternative notion of information content under imputation.
 
 We formulated the corrected MI-BIC and added it to the same simulation grid the paper already
-uses for MI-AIC (60 cells, $R=2{,}000$ repetitions, `verification/_modules/w3-sweep.R`), so the
+uses for MI-AIC (60 cells, $R=2{,}000$ repetitions, [`verification/_modules/w3-sweep.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/_modules/w3-sweep.R)), so the
 BIC numbers below are measured under the identical design, not a separate study. The correction is
 directionally right for BIC — uncorrected selection favors the higher-missing-information
 candidates, and correcting narrows that — but the *yield* is much smaller than for AIC, because
@@ -255,11 +257,11 @@ results section, since it is an honest qualification of an existing claim, not a
 large-$N$ recovery numbers, and the small-$N$ follow-up; the repository's decision log (D-23)
 records the design decision and the numbers' provenance.
 
-*Reproducibility.* The BIC computation lives inside `verification/_modules/w3-sweep.R`, which
-`run_all.R`'s phase 2 already sources, so it reproduces from the standard documented command with
-no extra steps; a `verdicts$BIC` block in `_modules/aggregate.R` reports the numbers above (median
+*Reproducibility.* The BIC computation lives inside [`verification/_modules/w3-sweep.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/_modules/w3-sweep.R), which
+[`run_all.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/run_all.R)'s phase 2 already sources, so it reproduces from the standard documented command with
+no extra steps; a `verdicts$BIC` block in [`_modules/aggregate.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/_modules/aggregate.R) reports the numbers above (median
 `pi_bic[uncorrected/corrected/oracle]`, the BIC/AIC yield ratio, and the concentration fraction)
-from any future `run_all.R` run, and `00-test-primitives.R` covers the BIC penalty/correction
+from any future [`run_all.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/run_all.R) run, and [`00-test-primitives.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/00-test-primitives.R) covers the BIC penalty/correction
 arithmetic directly against synthetic inputs.
 
 ## Reviewer 3, comment 2 (non-normal / GLM generalizability)
@@ -273,7 +275,7 @@ prediction-only paragraph — and the first round exposed an error in our own re
 we report first, because the corrected analysis only exists on account of that miss.
 
 **What was registered, and what happened.** Two families were pre-registered before any code ran
-(`todo/040-v1-review-response-registration.md` §9), chosen to match the reviewer's own "skewed
+([`todo/040-v1-review-response-registration.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/todo/040-v1-review-response-registration.md) §9), chosen to match the reviewer's own "skewed
 continuous" and "categorical" examples: Gamma (estimated dispersion) and Bernoulli, which the
 registration classified as the known-scale exemplar on the reasoning "no explicit dispersion
 parameter." The registered Bernoulli targets were approximately $0$ for the deterministic plug-in
@@ -315,7 +317,7 @@ $-0.48\pm0.05$ (posterior draw) against the derived $0$ and $-0.5$, so the known
 is no longer verified only in the multivariate normal family. In the course of this the original
 Bernoulli draw value was found to carry a second defect: the original script fixed the imputation
 seed across all repetitions, so its quoted standard error overstated independence
-(`verification/spikes/phase3-mice-seed-diagnostic.R` reproduces the old value with the fixed
+([`verification/spikes/phase3-mice-seed-diagnostic.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-mice-seed-diagnostic.R) reproduces the old value with the fixed
 seed and the corrected one without it). All superseded numbers stay in the record; none is
 load-bearing.
 
@@ -336,15 +338,15 @@ the new lemma.
 
 *Manuscript change landed:* Discussion paragraph G9 rewritten to the corrected,
 chronology-first account; the repository's decision log records the correction (D-25, with a
-superseding pointer at D-24). *Reproducibility:* `verification/spikes/phase3-family-scan.R`
-(four arms) + `phase3-family-scan-score.R` (registered-criteria scorecard) +
-`phase3-mice-seed-diagnostic.R`, all with documented commands; CAS companion
-`verification/cas-wolfram/verify_bernoulli_fitted_gap.py` (15 checks); registration and results
-are separate commits (`4aaeaae` then `afa4438`), so the pre-registration is checkable in the git
+superseding pointer at D-24). *Reproducibility:* [`verification/spikes/phase3-family-scan.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-family-scan.R)
+(four arms) + [`phase3-family-scan-score.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-family-scan-score.R) (registered-criteria scorecard) +
+[`phase3-mice-seed-diagnostic.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/spikes/phase3-mice-seed-diagnostic.R), all with documented commands; CAS companion
+[`verification/cas-wolfram/verify_bernoulli_fitted_gap.py`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cas-wolfram/verify_bernoulli_fitted_gap.py) (15 checks); registration and results
+are separate commits ([`4aaeaae`](https://github.com/marcus-waldman/mi-spectral/commit/4aaeaae) then [`afa4438`](https://github.com/marcus-waldman/mi-spectral/commit/afa4438)), so the pre-registration is checkable in the git
 history, not asserted. Cross-model verification: a blinded GPT-5.5 Pro re-derivation plus
-red-team (both archived at `verification/cache/layer3-gpt-5.5-pro-bern-glm-mode{A,B}.md`) and a
+red-team (both archived at [`verification/cache/layer3-gpt-5.5-pro-bern-glm-modeA.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cache/layer3-gpt-5.5-pro-bern-glm-modeA.md) and [`...modeB.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cache/layer3-gpt-5.5-pro-bern-glm-modeB.md)) and a
 repo-grounded Gemini compliance validation of this very text against the adversarial review's
-amendments (`tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`).
+amendments ([`tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/tkal-reviews/gemini-045c-compliance-20260704/REPORT.md)).
 
 ## Reviewer 3, comment 3 (congeniality diagnosis)
 
@@ -354,7 +356,7 @@ amendments (`tkal-reviews/gemini-045c-compliance-20260704/REPORT.md`).
 The reviewer is right that the Discussion recommended diagnosing congeniality without pointing
 at any way to do it. The congeniality-limit paragraph (G7) now closes with three sentences of
 practical pointers, each backed by a reference acquired and read in full for this response
-(acquisition and claim-verification trail in `todo/003-references-to-acquire.md`):
+(acquisition and claim-verification trail in [`todo/003-references-to-acquire.md`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/todo/003-references-to-acquire.md)):
 
 - **He & Zaslavsky (2012, *Statistics in Medicine*)** give the closest published
   operationalization of a congeniality check: a posterior predictive diagnostic that applies the
@@ -412,10 +414,10 @@ of the conditional missing-data entropy."
 > The main text states that the Kolmogorov-Smirnov distance falls to 0.019 under equating. However,
 > Figure 8 displays the value 0.018 above the equating bar.
 
-Traced to source: the underlying value is stored in `verification/cache/ic-ladder-summary.csv` as
+Traced to source: the underlying value is stored in [`verification/cache/ic-ladder-summary.csv`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/cache/ic-ladder-summary.csv) as
 $0.0185$, which sits exactly on a floating-point rounding boundary — R represents it as
 $0.01849999\ldots$, so `sprintf("%.3f", ks)` in the figure-generating code
-(`verification/figures.R`) mechanically rounds to $0.018$, while the manuscript prose had been
+([`verification/figures.R`](https://github.com/marcus-waldman/mi-spectral/blob/7b56b6797533fa409bcb894d7aad5ca7ee1a4bd4/verification/figures.R)) mechanically rounds to $0.018$, while the manuscript prose had been
 rounded by hand to $0.019$. *Manuscript change landed:* the calibration-ladder results paragraph
 now states $0.018$, matching the figure and the value's actual floating-point representation.
 
