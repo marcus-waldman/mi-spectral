@@ -1,13 +1,13 @@
 {
-  "n_paragraphs": 10,
+  "n_paragraphs": 12,
   "paragraphs": [
     {
       "id": "S1-P6b",
       "section": "S1",
-      "words": 348,
+      "words": 353,
       "hits": 1,
       "weighted": 1.0,
-      "density": 0.29,
+      "density": 0.28,
       "by_category": {
         "intensifier": 1
       },
@@ -23,10 +23,10 @@
     {
       "id": "S2-P10",
       "section": "S2",
-      "words": 110,
+      "words": 106,
       "hits": 1,
       "weighted": 0.9,
-      "density": 0.82,
+      "density": 0.85,
       "by_category": {
         "intensifier": 1
       },
@@ -59,12 +59,31 @@
       ]
     },
     {
+      "id": "S6-P4c",
+      "section": "S6",
+      "words": 262,
+      "hits": 1,
+      "weighted": 0.9,
+      "density": 0.34,
+      "by_category": {
+        "intensifier": 1
+      },
+      "flagged": [
+        {
+          "phrase": "essentially",
+          "category": "intensifier",
+          "count": 1,
+          "weight": 0.9
+        }
+      ]
+    },
+    {
       "id": "S4-P14",
       "section": "S4",
-      "words": 141,
+      "words": 140,
       "hits": 1,
       "weighted": 0.5,
-      "density": 0.35,
+      "density": 0.36,
       "by_category": {
         "weak": 1
       },
@@ -80,7 +99,7 @@
     {
       "id": "S4-P10",
       "section": "S4",
-      "words": 214,
+      "words": 215,
       "hits": 1,
       "weighted": 0.5,
       "density": 0.23,
@@ -99,10 +118,29 @@
     {
       "id": "S5-P20",
       "section": "S5",
-      "words": 219,
+      "words": 245,
       "hits": 1,
       "weighted": 0.5,
-      "density": 0.23,
+      "density": 0.2,
+      "by_category": {
+        "weak": 1
+      },
+      "flagged": [
+        {
+          "phrase": "actually",
+          "category": "weak",
+          "count": 1,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "id": "S6-P4d",
+      "section": "S6",
+      "words": 401,
+      "hits": 1,
+      "weighted": 0.5,
+      "density": 0.12,
       "by_category": {
         "weak": 1
       },
@@ -135,21 +173,21 @@
       ]
     },
     {
-      "id": "S2-P9",
-      "section": "S2",
-      "words": 99,
+      "id": "S5-P12",
+      "section": "S5",
+      "words": 265,
       "hits": 1,
-      "weighted": 0.3,
-      "density": 0.3,
+      "weighted": 0.4,
+      "density": 0.15,
       "by_category": {
         "weak": 1
       },
       "flagged": [
         {
-          "phrase": "there is",
+          "phrase": "just",
           "category": "weak",
           "count": 1,
-          "weight": 0.3
+          "weight": 0.4
         }
       ]
     },

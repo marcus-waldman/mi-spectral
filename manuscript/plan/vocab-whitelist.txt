@@ -15,4 +15,5 @@ anchoring	same
 anchor	same
 free	model-specification usage ("free parameters", "parameter-free"); tokenizer artifact
 frees	same ("frees the off-diagonal pair")
-ladder	named house construction (D-26 Bucket-3 call: KEEP, introduced explicitly at first use)
+ladder	named house construction (D-26 Bucket-3 call: KEEP, introduced explicitly at first use — naming clause at S4-P19)
+shortfall	the sweep's replacement for "floor" (D-26 Bucket 2); standard formal English for a remaining deficit, absent from the 1968-2019 corpus by chance, not register

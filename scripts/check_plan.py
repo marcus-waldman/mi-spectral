@@ -100,16 +100,16 @@ COLOR_COMMENTARY = [
 VOCAB_OUT_OF_REGISTER = [
     (re.compile(r"\bsits?\s+(between|close|in|at|near)\b", re.I), "sits (use: is/equals/belongs/lies between)"),
     (re.compile(r"\bland(s|ed)?\s+(directly\s+)?(on|at|in)\b", re.I), "lands (use: is/equals/enters/agrees with)"),
-    (re.compile(r"\bheadline\b", re.I), "headline (use: primary/main)"),
+    (re.compile(r"\bheadlines?\b", re.I), "headline (use: primary/main)"),
     (re.compile(r"\bfloor\b", re.I), "floor (use: residual shortfall/limit; NOT 'bound')"),
     (re.compile(r"\bjunk\b", re.I), "junk (use: zero-correlation/no-signal cell)"),
     (re.compile(r"\bgenuinely\b", re.I), "genuinely (use: truly, or state the literal fact)"),
     (re.compile(r"\bscoped\b", re.I), "scoped (use: restricted/confined/limited to)"),
     (re.compile(r"\bregimes\b", re.I), "regimes (use: cases/settings)"),
 ]
-# Flip to True in the D-26 sweep's closing commit (until then the pre-sweep corpus
-# still contains these words and the gate is advisory).
-VOCAB_GATE_FATAL = False
+# Flipped True in the D-26 sweep's closing commit (2026-07-05): the corpus is clean
+# and the gate is now a hard guard against register drift.
+VOCAB_GATE_FATAL = True
 
 PLAN_FILES = [
     "level1-thesis.json",

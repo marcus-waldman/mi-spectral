@@ -5,7 +5,7 @@ exercise text, so treat their rows as indicative.
 
 | corpus | sents | mean w/s | med | sd | >35w | <10w | FK | commas/s | ;/1000w | (/1000w | we/1000w | subord/s |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| MANUSCRIPT | 699 | 15.2 | 13 | 9.0 | 3% | 31% | 11.6 | 0.72 | 2.1 | 3.0 | 3.6 | 0.34 |
+| MANUSCRIPT | 623 | 17.1 | 14 | 11.1 | 7% | 28% | 12.4 | 0.87 | 3.2 | 3.3 | 3.7 | 0.39 |
 | EXEMPLARS (pooled) | 5363 | 25.1 | 20 | 101.0 | 18% | 22% | 16.2 | 2.10 | 3.1 | 40.4 | 5.1 | 0.57 |
 
 ## Per-exemplar
@@ -29,5 +29,5 @@ exercise text, so treat their rows as indicative.
 
 | corpus | The | This | That | It | We | A | In | For |
 |---|---|---|---|---|---|---|---|---|
-| MANUSCRIPT | 36.1 | 6.3 | 3.0 | 1.4 | 3.3 | 3.0 | 1.4 | 1.7 |
+| MANUSCRIPT | 37.2 | 5.9 | 2.9 | 1.1 | 2.1 | 2.4 | 1.8 | 1.8 |
 | EXEMPLARS (pooled) | 14.4 | 3.1 | 0.4 | 1.8 | 2.6 | 2.7 | 6.5 | 3.2 |

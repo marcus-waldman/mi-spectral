@@ -1,23 +1,14 @@
 {
-  "n_candidates": 326,
+  "n_candidates": 293,
   "candidates": [
     {
       "id": "S1-P1",
       "section": "S1",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "An imputer fills in the missing values several times from a model for the complete data.",
+      "sentence": "Multiple imputation treats missing data through a division of labor that has served applied research for nearly four decades: an imputer fills in the missing values several times from a model for the complete data, an analyst fits the model of substantive interest to each completed data set, and simple rules combine the results .",
       "triggers": [
-        "complete"
-      ]
-    },
-    {
-      "id": "S1-P1",
-      "section": "S1",
-      "goal": "position_lineage",
-      "grade_words_in_paragraph": [],
-      "sentence": "An analyst fits the model of substantive interest to each completed data set.",
-      "triggers": [
+        "complete",
         "each"
       ]
     },
@@ -26,7 +17,7 @@
       "section": "S1",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "Point estimates recover their complete-data targets under stated conditions.",
+      "sentence": "Reviews of the field's state of the art describe a mature methodology , in which the role of the missing-data mechanism is understood, point estimates recover their complete-data targets under stated conditions, and Wald-type tests for single and multiple parameters are well calibrated.",
       "triggers": [
         "complete",
         "recover"
@@ -37,7 +28,7 @@
       "section": "S1",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "Only one information criterion has been proposed for multiply imputed data.",
+      "sentence": "Only one information criterion has been proposed specifically for averaging over multiply imputed data, and its authors call for further theoretical and practical study of the method while placing that work beyond their own scope .",
       "triggers": [
         "only"
       ]
@@ -47,49 +38,9 @@
       "section": "S1",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "The applied guides are silent in the same direction.",
+      "sentence": "The applied guides are silent on the same question: the standard book-length treatment does not treat information criteria for multiply imputed data at all , and neither does the current state-of-the-art review .",
       "triggers": [
-        "the same"
-      ]
-    },
-    {
-      "id": "S1-P2",
-      "section": "S1",
-      "goal": "position_lineage",
-      "grade_words_in_paragraph": [],
-      "sentence": "The standard book-length treatment does not treat information criteria for multiply imputed data at all .",
-      "triggers": [
-        "all"
-      ]
-    },
-    {
-      "id": "S1-P3",
-      "section": "S1",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "We call it the *complete-data replication principle*.",
-      "triggers": [
-        "complete"
-      ]
-    },
-    {
-      "id": "S1-P3",
-      "section": "S1",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "A procedure for multiply imputed data replicates complete-data inference under one condition.",
-      "triggers": [
-        "complete"
-      ]
-    },
-    {
-      "id": "S1-P3",
-      "section": "S1",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "On average over repeated samples, it must reach the same conclusion that would have been reached had no data been missing.",
-      "triggers": [
-        "must",
+        "all",
         "the same"
       ]
     },
@@ -98,7 +49,18 @@
       "section": "S1",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "At the first level, estimates recover their complete-data targets.",
+      "sentence": "We propose a standard, the *complete-data replication principle*, and organize this paper around it: a procedure for multiply imputed data replicates complete-data inference when, on average over repeated samples, it reaches the same conclusion that would have been reached had no data been missing.",
+      "triggers": [
+        "complete",
+        "the same"
+      ]
+    },
+    {
+      "id": "S1-P3",
+      "section": "S1",
+      "goal": "define_concept",
+      "grade_words_in_paragraph": [],
+      "sentence": "At the first level, estimates recover their complete-data targets; this is the classical level, and Rubin's rules settle it.",
       "triggers": [
         "complete",
         "recover"
@@ -109,7 +71,7 @@
       "section": "S1",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "At the second level, the decision criterion itself recovers its complete-data counterpart in expectation.",
+      "sentence": "At the second level, the decision criterion itself (a deviance or an information criterion) recovers its complete-data counterpart in expectation.",
       "triggers": [
         "complete",
         "recovers"
@@ -120,7 +82,7 @@
       "section": "S1",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The same model is selected, and the same hypotheses are rejected, as often as they would have been with complete data.",
+      "sentence": "At the third level, decision rates match: the same model is selected, and the same hypotheses are rejected, as often as they would have been with complete data.",
       "triggers": [
         "complete",
         "the same"
@@ -131,9 +93,9 @@
       "section": "S1",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Benchmarking selection methods against the full data is not new in itself.",
+      "sentence": "Stated this way, the settled results are settled because they pass at the first level, and posing the second and third levels reframes the open questions, which had been posed only at the first level.",
       "triggers": [
-        "full"
+        "only"
       ]
     },
     {
@@ -141,9 +103,10 @@
       "section": "S1",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "We add a characterization of when it can and cannot be met.",
+      "sentence": "Benchmarking selection methods against the full data is not new in itself, because simulation comparisons of that kind appear in and ; the principle as an explicit yardstick is, to our knowledge, stated here for the first time, and we add a characterization of when it can and cannot be met.",
       "triggers": [
-        "cannot"
+        "cannot",
+        "full"
       ]
     },
     {
@@ -151,7 +114,7 @@
       "section": "S1",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "This paper's central result describes that bias exactly.",
+      "sentence": "The obstacle is a bias in the averaged log-likelihood, and this paper's central result describes the leading term of that bias exactly.",
       "triggers": [
         "exactly"
       ]
@@ -161,18 +124,9 @@
       "section": "S1",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "We show that the averaged log-likelihood then overstates its complete-data counterpart by The first term is one half the trace of the relative-increase-in-variance matrix.",
+      "sentence": "When a likelihood model with an estimated variance or covariance is fit to congenially imputed data, we show that the averaged log-likelihood overstates its complete-data counterpart by The first term, one half the trace of the relative-increase-in-variance matrix (a standard object in the MI literature), adds up the missing information about the model's parameters; the second, smaller term reflects imbalance between the observed and the missing units on the conditioning variables, and vanishes when the data are missing completely at random.",
       "triggers": [
-        "complete"
-      ]
-    },
-    {
-      "id": "S1-P4",
-      "section": "S1",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "It vanishes when the data are missing completely at random.",
-      "triggers": [
+        "complete",
         "completely"
       ]
     },
@@ -181,7 +135,7 @@
       "section": "S1",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "The practical consequence is that, for such a model, every deviance and every information criterion computed from multiply imputed data is too optimistic.",
+      "sentence": "The practical consequence is that, for such a model, every deviance and information criterion built on the averaged log-likelihood across imputations is, in expectation, too optimistic.",
       "triggers": [
         "every"
       ]
@@ -191,8 +145,10 @@
       "section": "S1",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "Worse, the optimism is not uniform across models.",
+      "sentence": "The more serious consequence is that the optimism is not uniform across models: because each candidate's criterion is inflated in proportion to that candidate's own missing information, a model-comparison table built on imputed data tends, all else equal, to favor the candidates with the most missing information, and in our pre-registered simulations 100% of uncorrected MI-AIC's misclassifications fell on the candidate with the largest RIV.",
       "triggers": [
+        "all",
+        "each",
         "uniform"
       ]
     },
@@ -201,51 +157,13 @@
       "section": "S1",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "Each candidate's criterion is inflated in proportion to that candidate's own missing information.",
-      "triggers": [
-        "each"
-      ]
-    },
-    {
-      "id": "S1-P4",
-      "section": "S1",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "In our pre-registered study, every misclassification by uncorrected MI-AIC chose the candidate with the largest RIV.",
-      "triggers": [
-        "every"
-      ]
-    },
-    {
-      "id": "S1-P4",
-      "section": "S1",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "Add each candidate's own trace back to its criterion.",
-      "triggers": [
-        "each"
-      ]
-    },
-    {
-      "id": "S1-P4",
-      "section": "S1",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "We show that the corrected criterion recovers its complete-data expectation at any signal strength.",
+      "sentence": "Adding each candidate's own trace back to its criterion recovers, as we show, the criterion's complete-data expectation at any signal strength, so the principle's second level is met in full.",
       "triggers": [
         "any",
         "complete",
+        "each",
+        "full",
         "recovers"
-      ]
-    },
-    {
-      "id": "S1-P4",
-      "section": "S1",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "This is the principle's second level, met in full.",
-      "triggers": [
-        "full"
       ]
     },
     {
@@ -253,7 +171,7 @@
       "section": "S1",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "It asks for the same decisions at the same rates as the complete data.",
+      "sentence": "The principle's third level asks for more: the same decisions at the same rates as the complete data.",
       "triggers": [
         "complete",
         "the same"
@@ -264,10 +182,10 @@
       "section": "S1",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "Correction then restores complete-data behavior entirely.",
+      "sentence": "In the first, the competing models fit equally well, in the sense that the smaller model is true, and correction then restores complete-data behavior: calibrated tests reject at the complete-data rate , and selection that matches the criterion's full null distribution chooses models indistinguishably from complete-data AIC in our pre-registered design.",
       "triggers": [
         "complete",
-        "entirely",
+        "full",
         "restores"
       ]
     },
@@ -276,40 +194,10 @@
       "section": "S1",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "Calibrated tests reject at the complete-data rate .",
+      "sentence": "The missing data have then destroyed part of the evidence in its favor, and the corrected criteria and calibrated tests studied here cannot recover it; the relevant statistics shrink by factors we predict, and the remaining shortfall is information loss rather than a fixable calibration error.",
       "triggers": [
-        "complete"
-      ]
-    },
-    {
-      "id": "S1-P5",
-      "section": "S1",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "Selection that matches the criterion's full null distribution chooses models indistinguishably from complete-data AIC in our pre-registered design.",
-      "triggers": [
-        "complete",
-        "full"
-      ]
-    },
-    {
-      "id": "S1-P5",
-      "section": "S1",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "The missing data have then destroyed part of the evidence in its favor, and we show that no transformation of the observed data can recover it.",
-      "triggers": [
+        "cannot",
         "recover"
-      ]
-    },
-    {
-      "id": "S1-P5",
-      "section": "S1",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "Less information means less power, and the third level is met exactly to the extent the data permit.",
-      "triggers": [
-        "exactly"
       ]
     },
     {
@@ -317,8 +205,10 @@
       "section": "S1",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "It reproduces <math> of .",
+      "sentence": "As a penalty the correction is precedented, because it reproduces <math> of , the criterion that halved the missing-data surcharge of the earlier complete-data-discrepancy criteria ; all of those criteria were derived for deterministic EM estimation under a fixed missingness pattern.",
       "triggers": [
+        "all",
+        "complete",
         "reproduces"
       ]
     },
@@ -327,7 +217,7 @@
       "section": "S1",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "That criterion halved the missing-data surcharge of the earlier complete-data-discrepancy criteria .",
+      "sentence": "Two other routes deserve mention: the missing-covariate criteria of target a different, Takeuchi-type discrepancy, and the reweighting route of reaches the complete-data target through inverse-probability weights but explicitly leaves an imputation-based criterion open.",
       "triggers": [
         "complete"
       ]
@@ -337,17 +227,7 @@
       "section": "S1",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "All of those criteria were derived for deterministic EM estimation under a fixed missingness pattern.",
-      "triggers": [
-        "all"
-      ]
-    },
-    {
-      "id": "S1-P6",
-      "section": "S1",
-      "goal": "position_lineage",
-      "grade_words_in_paragraph": [],
-      "sentence": "The reweighting route of reaches the complete-data target through inverse-probability weights.",
+      "sentence": "Fourth is the closed-form leading-order differential bias of the likelihood-ratio numerator at the null in the complete-data metric.",
       "triggers": [
         "complete"
       ]
@@ -357,18 +237,7 @@
       "section": "S1",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "Fourth, the exact differential bias of the likelihood-ratio numerator at the null in the complete-data metric.",
-      "triggers": [
-        "complete",
-        "exact"
-      ]
-    },
-    {
-      "id": "S1-P6",
-      "section": "S1",
-      "goal": "position_lineage",
-      "grade_words_in_paragraph": [],
-      "sentence": "Congeniality is assumed throughout .",
+      "sentence": "Congeniality is assumed throughout , and the bias derived here is what remains after the imputer and the analyst agree.",
       "triggers": [
         "throughout"
       ]
@@ -380,7 +249,7 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "**A correction for model selection after imputation.** Choosing among models by AIC or BIC on multiply imputed data is biased, and the bias is specific to each candidate.",
+      "sentence": "**A correction for model selection after imputation.** Choosing among models by AIC or BIC on multiply imputed data is biased, and the bias is specific to each candidate and grows with that candidate's missing information.",
       "triggers": [
         "each"
       ]
@@ -392,7 +261,7 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the bias and substantially restores the ranking that complete data would have given.",
+      "sentence": "Adding one term per candidate, the trace of its relative-increase-in-variance matrix, removes the trace component of the bias and substantially restores the ranking that complete data would have given.",
       "triggers": [
         "complete",
         "restores"
@@ -405,7 +274,7 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "**The deviance bias behind it.** For a model that estimates a scale or covariance, we show that the averaged log-likelihood across imputations overstates its complete-data counterpart by half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that appears only under data missing at random and disappears when data are missing completely at random.",
+      "sentence": "**The deviance bias behind the correction.** For a model that estimates a scale or covariance, we show that the averaged log-likelihood across imputations overstates its complete-data counterpart by half the trace of the relative-increase-in-variance matrix, plus a design-imbalance term that appears only under data missing at random and disappears when data are missing completely at random.",
       "triggers": [
         "complete",
         "completely",
@@ -502,7 +371,7 @@
       "section": "S1B",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "The human author set the direction, fixed the standards, supplied field knowledge, and accepted or rejected each result.",
+      "sentence": "The division of labor is as follows: the human author set the direction, fixed the standards, supplied field knowledge, and accepted or rejected each result, while the AI system produced the derivations, the drafts, and the computations.",
       "triggers": [
         "each"
       ]
@@ -512,7 +381,7 @@
       "section": "S1B",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "The human prompter of record is ORCID-verified, and the full record of the work enters the public record.",
+      "sentence": "By design, the provenance is transparent, because the human prompter of record is ORCID-verified and the full record of the work enters the public record.",
       "triggers": [
         "full"
       ]
@@ -594,7 +463,7 @@
       "section": "S2",
       "goal": "transition",
       "grade_words_in_paragraph": [],
-      "sentence": "Fifth, the complete-data baselines --- AIC and Wilks --- and the three prior results the applications extend.",
+      "sentence": "Fifth are the complete-data baselines, AIC and Wilks, along with the three prior results the applications extend.",
       "triggers": [
         "complete"
       ]
@@ -654,9 +523,10 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The complete-data maximum likelihood estimate <math> is computable only when nothing is missing.",
+      "sentence": "The complete-data maximum likelihood estimate <math> is computable only when no data are missing and is the target an analyst would have reached with full data.",
       "triggers": [
         "complete",
+        "full",
         "only"
       ]
     },
@@ -665,9 +535,9 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "It is the target an analyst would have reached with full data.",
+      "sentence": "The comparison measures what happens when a value built around the observed-data estimate <math> is read as if it were built around the complete-data target <math> .",
       "triggers": [
-        "full"
+        "complete"
       ]
     },
     {
@@ -675,7 +545,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "**Ignorability.** This paper assumes throughout that the missingness mechanism is ignorable.",
+      "sentence": "**Ignorability.** This paper assumes throughout that the missingness mechanism is ignorable, in the sense and under the conditions set out by Rubin .",
       "triggers": [
         "throughout"
       ]
@@ -685,31 +555,12 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The data must be missing at random.",
-      "triggers": [
-        "must"
-      ]
-    },
-    {
-      "id": "S2-P3",
-      "section": "S2",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "This means the conditional probability of the observed missingness pattern is the same for all values of the missing data.",
+      "sentence": "The data must be missing at random, which means that the conditional probability of the observed missingness pattern is the same for all values of the missing data, and the mechanism's parameter must also be distinct from the data parameter.",
       "triggers": [
         "all",
         "for all",
+        "must",
         "the same"
-      ]
-    },
-    {
-      "id": "S2-P3",
-      "section": "S2",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "The mechanism's parameter must also be distinct from the data parameter.",
-      "triggers": [
-        "must"
       ]
     },
     {
@@ -727,7 +578,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The observed-data score is the conditional expectation of the complete-data score.",
+      "sentence": "They state this decomposition together with a score identity, in which the observed-data score is the conditional expectation of the complete-data score.",
       "triggers": [
         "complete"
       ]
@@ -750,7 +601,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The central matrix is built from these ingredients: Its trace adds up the odds of missing information about each parameter.",
+      "sentence": "The central matrix is built from these ingredients: Its trace adds up the odds of missing information about each parameter, and the RIV is the matrix form of Rubin's scalar relative increase in variance, restated below.",
       "triggers": [
         "each"
       ]
@@ -760,7 +611,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The EM literature works with a different normalization of the same ingredients.",
+      "sentence": "One warning is needed here, because the EM literature works with a different normalization of the same ingredients, namely the EM rate matrix <math> of and .",
       "triggers": [
         "the same"
       ]
@@ -770,7 +621,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The rate matrix divides by the complete-data information.",
+      "sentence": "The RIV divides by the observed-data information, while the rate matrix divides by the complete-data information, and the two matrices therefore have different eigenvalues.",
       "triggers": [
         "complete"
       ]
@@ -780,7 +631,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Conflating them corrupts every trace formula in this paper.",
+      "sentence": "Conflating them invalidates every trace formula in this paper.",
       "triggers": [
         "every"
       ]
@@ -800,19 +651,19 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Second, the curvature of <math> at its maximizer is the complete-data information <math> , not the observed-data information.",
+      "sentence": "Two facts from their analysis recur throughout what follows.",
       "triggers": [
-        "complete"
+        "throughout"
       ]
     },
     {
-      "id": "S2-P6",
+      "id": "S2-P5",
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "One feature of this construction must be marked at once.",
+      "sentence": "Second, the curvature of <math> at its maximizer is the complete-data information <math> , not the observed-data information.",
       "triggers": [
-        "must"
+        "complete"
       ]
     },
     {
@@ -820,7 +671,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "It gives the fully normal Bayesian scheme as the canonical example.",
+      "sentence": "Proper imputation propagates parameter uncertainty: a parameter value is first drawn from its posterior given the observed data, and the missing values are then drawn from the predictive distribution at that drawn value; Chapter 4 of states the validity conditions and gives the fully normal Bayesian scheme as the canonical example.",
       "triggers": [
         "fully"
       ]
@@ -830,7 +681,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "So is the entire deterministic-EM line of work in which the earlier missing-data criteria were derived .",
+      "sentence": "Improper imputation, by contrast, skips the first draw and imputes at a fixed parameter value; the Monte Carlo E-step of the previous paragraph is improper by construction, as is the entire deterministic-EM line of work in which the earlier missing-data criteria were derived .",
       "triggers": [
         "entire"
       ]
@@ -840,58 +691,19 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The main theorem prices it exactly.",
+      "sentence": "shows that Bayesian imputations are proper when the analyst's complete-data estimator is the maximum likelihood estimator, yet the same imputations can fail to be proper for a different estimator; this paper's analyst always uses the complete-data MLE, which is the case where congeniality implies properness .",
       "triggers": [
-        "exactly"
-      ]
-    },
-    {
-      "id": "S2-P7",
-      "section": "S2",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "The two forms differ by precisely the posterior-draw contribution.",
-      "triggers": [
-        "precisely"
-      ]
-    },
-    {
-      "id": "S2-P7",
-      "section": "S2",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "shows that Bayesian imputations are proper when the analyst's complete-data estimator is the maximum likelihood estimator.",
-      "triggers": [
-        "complete"
-      ]
-    },
-    {
-      "id": "S2-P7",
-      "section": "S2",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "The same imputations can fail to be proper for a different estimator.",
-      "triggers": [
+        "always",
+        "complete",
         "the same"
       ]
     },
     {
-      "id": "S2-P7",
-      "section": "S2",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "This paper's analyst always uses the complete-data MLE.",
-      "triggers": [
-        "always",
-        "complete"
-      ]
-    },
-    {
       "id": "S2-P8",
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "**Rubin's rules are exact posterior-moment identities.** This paper uses Rubin's combining rules through the likelihood, not as moment formulas.",
+      "sentence": "**Rubin's rules are exact posterior-moment identities.** This paper uses Rubin's combining rules through the likelihood rather than as moment formulas, and that use requires them in their exact form.",
       "triggers": [
         "exact"
       ]
@@ -901,17 +713,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "That use requires them in their exact form.",
-      "triggers": [
-        "exact"
-      ]
-    },
-    {
-      "id": "S2-P8",
-      "section": "S2",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "The posterior mean of an estimand given the observed data equals the average of the completed-data posterior means.",
+      "sentence": "The posterior mean of an estimand given the observed data equals the average of the completed-data posterior means, and the posterior variance equals the average completed-data variance plus the variance of the completed-data means.",
       "triggers": [
         "equals"
       ]
@@ -921,17 +723,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The posterior variance equals the average completed-data variance plus the variance of the completed-data means.",
-      "triggers": [
-        "equals"
-      ]
-    },
-    {
-      "id": "S2-P8",
-      "section": "S2",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "With infinitely many imputations they are exact identities, not asymptotic approximations.",
+      "sentence": "These are the ordinary rules for conditional moments applied to imputation, and with infinitely many imputations they are exact identities rather than asymptotic approximations.",
       "triggers": [
         "exact"
       ]
@@ -951,7 +743,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "One approximation separates the exact identities from usable inference.",
+      "sentence": "One approximation separates the exact identities from usable inference, namely the usual treatment of the posterior distribution as approximately normal, a Laplace-type approximation .",
       "triggers": [
         "exact"
       ]
@@ -961,19 +753,9 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The main theorem describes what happens when the exact moment identities are used through the likelihood itself, not as moments.",
+      "sentence": "The main theorem describes what happens when these exact moment identities are used through the likelihood itself rather than as moments.",
       "triggers": [
         "exact"
-      ]
-    },
-    {
-      "id": "S2-P9",
-      "section": "S2",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "It says the imputer and the analyst must agree.",
-      "triggers": [
-        "must"
       ]
     },
     {
@@ -1001,7 +783,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "It needs a correction for the downward bias from replacing <math> with its estimate <math> , and that correction is simply to add the parameter count <math> .",
+      "sentence": "That estimate is too optimistic, and the needed correction for the downward bias from replacing <math> with its estimate <math> is simply to add the parameter count <math> .",
       "triggers": [
         "simply"
       ]
@@ -1031,7 +813,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "**Wilks.** The complete-data baseline for testing is Wilks' theorem.",
+      "sentence": "**Wilks.** The complete-data baseline for testing is Wilks' theorem, and the replication principle is defined against it.",
       "triggers": [
         "complete"
       ]
@@ -1041,7 +823,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Every multiply imputed deviance in this paper is ultimately compared against this reference.",
+      "sentence": "For this case shows that <math> is distributed as <math> in large samples, so this distribution is the reference against which every multiply imputed deviance in this paper is ultimately compared.",
       "triggers": [
         "every"
       ]
@@ -1051,7 +833,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The complete-data replication principle asks when that comparison behaves as it would have with full data.",
+      "sentence": "The complete-data replication principle then asks when that comparison behaves as it would have with full data.",
       "triggers": [
         "complete",
         "full"
@@ -1062,7 +844,7 @@
       "section": "S2",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "**Observed versus expected information under MAR.** One convention must be fixed before any trace in this paper is computed.",
+      "sentence": "**Observed versus expected information under MAR.** One convention must be fixed before any trace in this paper is computed, namely which information matrix to use under MAR.",
       "triggers": [
         "any",
         "must"
@@ -1083,7 +865,7 @@
       "section": "S2",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "**MI test combining, calibration, and the prior MI-AIC.** Three strands of prior work meet the applications directly, and each is restated here as the launch point it provides.",
+      "sentence": "**MI test combining, calibration, and the prior MI-AIC.** Three strands of prior work meet the applications directly, and each is restated here as the starting point it provides.",
       "triggers": [
         "each"
       ]
@@ -1093,7 +875,7 @@
       "section": "S2",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "combine complete-data likelihood-ratio statistics across imputations into a single test statistic.",
+      "sentence": "combine complete-data likelihood-ratio statistics across imputations into a single test statistic, then calibrate it against an <math> reference under an equal-fractions assumption.",
       "triggers": [
         "complete"
       ]
@@ -1103,7 +885,7 @@
       "section": "S2",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "It is nonnegative and invariant by construction.",
+      "sentence": "Their statistic maximizes the averaged log-likelihood rather than averaging the maxima, and it is nonnegative and invariant by construction.",
       "triggers": [
         "invariant"
       ]
@@ -1133,7 +915,7 @@
       "section": "S2",
       "goal": "position_lineage",
       "grade_words_in_paragraph": [],
-      "sentence": "Stacking the imputed data sets yields estimators of every eigenvalue <math> of the odds-of-missing-information matrix.",
+      "sentence": "Stacking the imputed data sets yields estimators of every eigenvalue <math> of the odds-of-missing-information matrix, and the limiting null law of the combined statistic is a weighted sum.",
       "triggers": [
         "every"
       ]
@@ -1153,7 +935,7 @@
       "section": "S3",
       "goal": "transition",
       "grade_words_in_paragraph": [],
-      "sentence": "Why do the results that follow deserve the same scrutiny that is applied to human-derived mathematics?",
+      "sentence": "One question motivates that protocol: why do the results that follow deserve the same scrutiny that is applied to human-derived mathematics?",
       "triggers": [
         "the same"
       ]
@@ -1163,18 +945,9 @@
       "section": "S3",
       "goal": "transition",
       "grade_words_in_paragraph": [],
-      "sentence": "The third is preregistration of every simulation.",
+      "sentence": "The third is preregistration of every simulation, the fourth is adversarial cross-model review, and the fifth is full reproducibility.",
       "triggers": [
-        "every"
-      ]
-    },
-    {
-      "id": "S3-P1",
-      "section": "S3",
-      "goal": "transition",
-      "grade_words_in_paragraph": [],
-      "sentence": "The fifth is full reproducibility.",
-      "triggers": [
+        "every",
         "full"
       ]
     },
@@ -1194,7 +967,7 @@
       "section": "S3",
       "goal": "transition",
       "grade_words_in_paragraph": [],
-      "sentence": "The complete protocol records are collected in the appendices and the public repository.",
+      "sentence": "The complete protocol records are collected in the appendices and the public repository; they include the decision logs, the assessment records, the amendment histories, and the enforcement code.",
       "triggers": [
         "complete"
       ]
@@ -1214,7 +987,7 @@
       "section": "S3",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "A pre-write check blocked any manuscript edit that cited a paper whose archived copy did not exist.",
+      "sentence": "A pre-write check enforced the rule in software, blocking any manuscript edit that cited a paper whose archived copy did not exist.",
       "triggers": [
         "any"
       ]
@@ -1224,7 +997,7 @@
       "section": "S3",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Reliance on the AI system's trained recollection of a paper was prohibited throughout.",
+      "sentence": "Reliance on the AI system's trained recollection of a paper was prohibited throughout, because invented or misattributed citations are among the most common failures of human-prompted AI scholarship.",
       "triggers": [
         "throughout"
       ]
@@ -1270,21 +1043,6 @@
       ]
     },
     {
-      "id": "S3-P4",
-      "section": "S3",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [
-        "firm",
-        "measured",
-        "structural",
-        "conjecture"
-      ],
-      "sentence": "A wrong conditioning or a misstated expectation is exactly that kind of error.",
-      "triggers": [
-        "exactly"
-      ]
-    },
-    {
       "id": "S3-P5",
       "section": "S3",
       "goal": "define_concept",
@@ -1299,7 +1057,7 @@
       "section": "S3",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Changes were handled by dated amendments, themselves committed before any new runs.",
+      "sentence": "Predictions, designs, and pass criteria were committed to the repository before the simulation code was written, and changes were handled by dated amendments, themselves committed before any new runs.",
       "triggers": [
         "any"
       ]
@@ -1360,7 +1118,7 @@
       "section": "S3",
       "goal": "transition",
       "grade_words_in_paragraph": [],
-      "sentence": "Each claim in the Derivations and Simulation studies sections arrives with a grade label.",
+      "sentence": "Read with this section in hand, each claim in the Derivations and Simulation studies sections arrives with a grade label, and each quantitative claim arrives with a committed artifact behind it.",
       "triggers": [
         "each"
       ]
@@ -1370,17 +1128,7 @@
       "section": "S3",
       "goal": "transition",
       "grade_words_in_paragraph": [],
-      "sentence": "Each quantitative claim also arrives with a committed artifact behind it.",
-      "triggers": [
-        "each"
-      ]
-    },
-    {
-      "id": "S3-P8",
-      "section": "S3",
-      "goal": "transition",
-      "grade_words_in_paragraph": [],
-      "sentence": "It states where the checking has already been done and where it cannot be.",
+      "sentence": "It asks the reader to check one, and states where the checking has already been done and where it cannot be.",
       "triggers": [
         "cannot"
       ]
@@ -1390,7 +1138,7 @@
       "section": "S4",
       "goal": "transition",
       "grade_words_in_paragraph": [],
-      "sentence": "It prices the bias of the averaged log-likelihood to leading order, so the criterion can be restored to its complete-data expectation.",
+      "sentence": "It quantifies the bias of the averaged log-likelihood to leading order, so the criterion can be restored to its complete-data expectation.",
       "triggers": [
         "complete"
       ]
@@ -1440,7 +1188,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The complete-data maximizer <math> is the target an analyst with full data would have reached.",
+      "sentence": "One is the complete-data maximizer <math> , the target an analyst with full data would have reached.",
       "triggers": [
         "complete",
         "full"
@@ -1451,7 +1199,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The observed-data maximizer <math> sums each row's marginal density over its observed coordinates .",
+      "sentence": "The other is the observed-data maximizer <math> , which sums each row's marginal density over its observed coordinates and is the best available from the data at hand.",
       "triggers": [
         "each"
       ]
@@ -1461,7 +1209,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "So this matrix is exactly Rubin's <math> in matrix form.",
+      "sentence": "In this family Under congenial proper MI with <math> , Rubin's rules give <math> and <math> , so this matrix is exactly Rubin's <math> in matrix form.",
       "triggers": [
         "exactly"
       ]
@@ -1471,7 +1219,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The fraction-of-missing-information matrix <math> has the same trace ingredients but the other normalization.",
+      "sentence": "Here the fraction-of-missing-information matrix <math> has the same trace ingredients but the other normalization, and the two relate by <math> .",
       "triggers": [
         "the same"
       ]
@@ -1491,7 +1239,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Each completion is drawn at <math> .",
+      "sentence": "Each completion is then drawn at <math> , and the infinite-imputation Q-function averages these completions.",
       "triggers": [
         "each"
       ]
@@ -1521,7 +1269,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Those letters must not collide.",
+      "sentence": "For pieces inside the first term, the companion's bookkeeping also uses the labels <math> and <math> , so those letters must not collide.",
       "triggers": [
         "must"
       ]
@@ -1531,9 +1279,9 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Seven regularity conditions are in force and none is exotic.",
+      "sentence": "Seven regularity conditions are in force, and all are standard.",
       "triggers": [
-        "none"
+        "all"
       ]
     },
     {
@@ -1587,7 +1335,7 @@
         "measured",
         "structural"
       ],
-      "sentence": "Their leading parts cancel exactly when the missing and observed units share a conditioning-variable distribution.",
+      "sentence": "Their leading parts cancel exactly when the missing and observed units share a conditioning-variable distribution, which is the MCAR case.",
       "triggers": [
         "exactly"
       ]
@@ -1615,7 +1363,7 @@
         "measured",
         "structural"
       ],
-      "sentence": "These statements do not all rest on the same footing.",
+      "sentence": "These statements do not all rest on the same footing, and the distinction matters for how the term is used.",
       "triggers": [
         "all",
         "the same"
@@ -1645,7 +1393,7 @@
         "measured",
         "structural"
       ],
-      "sentence": "The magnitude is measured only imprecisely.",
+      "sentence": "The per-replicate statistic is heavy-tailed, so direct Monte Carlo estimates scatter without trend around the analytic leading-order value, and the magnitude is measured only imprecisely.",
       "triggers": [
         "only"
       ]
@@ -1659,7 +1407,7 @@
         "measured",
         "structural"
       ],
-      "sentence": "The saving fact is that comparisons never depend on the magnitude alone.",
+      "sentence": "This imprecision does not hurt the comparison, because comparisons never depend on the magnitude alone.",
       "triggers": [
         "never"
       ]
@@ -1673,7 +1421,7 @@
         "measured",
         "structural"
       ],
-      "sentence": "Candidates fit to the same imputations touch <math> only through their difference.",
+      "sentence": "Candidates fit to the same imputations touch <math> only through their difference, and the heavy-tailed component cancels in that difference.",
       "triggers": [
         "only",
         "the same"
@@ -1698,9 +1446,9 @@
       "section": "S4",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "With a known scale and a location-only fit the conditional missing-data entropy is parameter-free.",
+      "sentence": "Two checks complete the theorem, one on its scope and one on its form.",
       "triggers": [
-        "only"
+        "complete"
       ]
     },
     {
@@ -1708,9 +1456,9 @@
       "section": "S4",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "The net bias then collapses to The two arms differ by exactly the posterior-draw imputation variance of 's proper-imputation paragraph.",
+      "sentence": "With a known scale and a location-only fit the conditional missing-data entropy is parameter-free.",
       "triggers": [
-        "exactly"
+        "only"
       ]
     },
     {
@@ -1914,8 +1662,9 @@
       "grade_words_in_paragraph": [
         "firm"
       ],
-      "sentence": "The mechanism is exact cancellation of realizations rather than averaging.",
+      "sentence": "This result is firm, and the mechanism is exact cancellation of realizations rather than averaging, because the large noise of each level lives in fit-independent realized constants.",
       "triggers": [
+        "each",
         "exact"
       ]
     },
@@ -1926,20 +1675,9 @@
       "grade_words_in_paragraph": [
         "firm"
       ],
-      "sentence": "The large noise of each level lives in fit-independent realized constants.",
+      "sentence": "Both fits maximize the same realized <math> , and they build it from the same imputation parameter, so these constants are identical in the two levels and cancel dataset by dataset.",
       "triggers": [
-        "each"
-      ]
-    },
-    {
-      "id": "S4-P12",
-      "section": "S4",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [
-        "firm"
-      ],
-      "sentence": "Both fits maximize the same realized <math> , and they build it from the same imputation parameter.",
-      "triggers": [
+        "identical",
         "the same"
       ]
     },
@@ -1950,32 +1688,9 @@
       "grade_words_in_paragraph": [
         "firm"
       ],
-      "sentence": "So these constants are identical in the two levels.",
+      "sentence": "This is why the paper estimates every comparison-relevant quantity by paired contrasts, never by differencing separately estimated levels.",
       "triggers": [
-        "identical"
-      ]
-    },
-    {
-      "id": "S4-P12",
-      "section": "S4",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [
-        "firm"
-      ],
-      "sentence": "This is why the paper estimates every comparison-relevant quantity by paired contrasts.",
-      "triggers": [
-        "every"
-      ]
-    },
-    {
-      "id": "S4-P12",
-      "section": "S4",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [
-        "firm"
-      ],
-      "sentence": "It never differences separately estimated levels.",
-      "triggers": [
+        "every",
         "never"
       ]
     },
@@ -1984,7 +1699,7 @@
       "section": "S4",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "At the null they are identical realizations and cancel exactly to leading order.",
+      "sentence": "At the null they are identical realizations, so they cancel exactly to leading order.",
       "triggers": [
         "exactly",
         "identical"
@@ -1995,7 +1710,7 @@
       "section": "S4",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "It becomes a genuine <math> only when the candidates' pseudo-true values are separated at <math> .",
+      "sentence": "Under local alternatives the differential is <math> , and it becomes a genuine <math> only when the candidates' pseudo-true values are separated at <math> .",
       "triggers": [
         "only"
       ]
@@ -2005,7 +1720,7 @@
       "section": "S4",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "The reason is that similar candidates respond to the same imbalance almost identically, and so their contributions nearly cancel.",
+      "sentence": "The expansion leads us to expect that the differential's size scales with how differently the competitors handle the missing data, since similar candidates respond to the same imbalance almost identically and their contributions nearly cancel.",
       "triggers": [
         "identically",
         "the same"
@@ -2016,7 +1731,7 @@
       "section": "S4",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "A pre-registered measurement covered all three.",
+      "sentence": "A pre-registered measurement covered all three, namely the decoupling, the dissimilarity scaling, and the caveat.",
       "triggers": [
         "all"
       ]
@@ -2029,16 +1744,6 @@
       "sentence": "At the null, is precisely the mean inflation that a correctly calibrated reference distribution already absorbs.",
       "triggers": [
         "precisely"
-      ]
-    },
-    {
-      "id": "S4-P14",
-      "section": "S4",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "The differential bias matters instead exactly where no reference distribution stands between the statistic and its use.",
-      "triggers": [
-        "exactly"
       ]
     },
     {
@@ -2096,7 +1801,7 @@
       "section": "S4",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "Whatever bias each candidate's <math> carries lands directly in the ranking.",
+      "sentence": "Because model selection by information criterion compares penalized deviances as numbers and takes the smallest, whatever bias each candidate's <math> carries enters the ranking directly, and by that bias is model-specific, since <math> is computed on candidate <math> 's own parameter space.",
       "triggers": [
         "each"
       ]
@@ -2106,8 +1811,10 @@
       "section": "S4",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "This penalty reproduces <math> of .",
+      "sentence": "The corrected criterion is This penalty reproduces <math> of , with a missing-data surcharge exactly half that of the earlier complete-data-discrepancy criteria ; what adds is the decomposition of the bias, the MAR term, and the proper-MI scope.",
       "triggers": [
+        "complete",
+        "exactly",
         "reproduces"
       ]
     },
@@ -2116,18 +1823,7 @@
       "section": "S4",
       "goal": "state_result",
       "grade_words_in_paragraph": [],
-      "sentence": "Its missing-data surcharge is exactly half that of the earlier complete-data-discrepancy criteria .",
-      "triggers": [
-        "complete",
-        "exactly"
-      ]
-    },
-    {
-      "id": "S4-P16",
-      "section": "S4",
-      "goal": "state_result",
-      "grade_words_in_paragraph": [],
-      "sentence": "So the candidate with more missing information about its own parameters looks artificially better by exactly that surplus.",
+      "sentence": "The consequence for ranking is immediate: for two candidates, the uncorrected difference carries a differential bias whose leading term is the surplus of missing information, so the candidate with more missing information about its own parameters looks artificially better by exactly that surplus.",
       "triggers": [
         "exactly"
       ]
@@ -2173,7 +1869,7 @@
       "section": "S4",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "A correctly centered criterion can still select worse than complete-data AIC.",
+      "sentence": "The residual matters, because a correctly centered criterion can still select worse than complete-data AIC, and the reason is the subject of the rest of this part.",
       "triggers": [
         "complete"
       ]
@@ -2183,7 +1879,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "At the null the limiting law of each anchored deviance is <math> with every weight at least one ( ).",
+      "sentence": "At the null the limiting law of each anchored deviance is <math> with every weight at least one ( ), so the variance is inflated by <math> even after the mean is fixed, and that inflated spread flips rankings.",
       "triggers": [
         "each",
         "every"
@@ -2194,30 +1890,12 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "This motivates a three-step contrast, pre-registered in full before any code was written.",
+      "sentence": "This motivates a three-step contrast, pre-registered in full before any code was written, that matches the first moment, the first two moments, or the entire null distribution and then measures what each step achieves; we call this graded comparison the distribution-matching ladder.",
       "triggers": [
         "any",
+        "each",
+        "entire",
         "full"
-      ]
-    },
-    {
-      "id": "S4-P19",
-      "section": "S4",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "Match the first moment, the first two moments, or the entire null distribution.",
-      "triggers": [
-        "entire"
-      ]
-    },
-    {
-      "id": "S4-P19",
-      "section": "S4",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "Then measure what each step achieves.",
-      "triggers": [
-        "each"
       ]
     },
     {
@@ -2236,7 +1914,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The deviance notation is used here because the paper's <math> is the total bias of .",
+      "sentence": "The companion derivation writes <math> for this statistic, but the deviance notation is used here because the paper's <math> is the total bias of .",
       "triggers": [
         "total"
       ]
@@ -2246,7 +1924,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Anchoring costs nothing, because AIC ranking is invariant to the common shift.",
+      "sentence": "Anchoring costs nothing, because AIC ranking is invariant to the common shift, and yet it yields three things.",
       "triggers": [
         "invariant"
       ]
@@ -2256,7 +1934,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "This is the mechanism applied to every candidate.",
+      "sentence": "Since the anchor is the congenial imputation model itself, the heavy-tailed realized <math> component and the <math> noise cancel dataset by dataset, which is the mechanism applied to every candidate.",
       "triggers": [
         "every"
       ]
@@ -2266,7 +1944,7 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Every <math> is a proper likelihood-ratio statistic with a constructible per-model null law.",
+      "sentence": "Every <math> is a proper likelihood-ratio statistic with a constructible per-model null law, whose analytic weights <math> are the nonzero eigenvalues of available from the law of without knowing the global truth.",
       "triggers": [
         "every"
       ]
@@ -2276,18 +1954,9 @@
       "section": "S4",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "And each candidate here is a block-diagonal zero pattern.",
+      "sentence": "Each candidate here is a block-diagonal zero pattern, so the constrained maximizer is closed-form, and exactly, with <math> the saturated E-step second-moment matrix.",
       "triggers": [
-        "each"
-      ]
-    },
-    {
-      "id": "S4-P19",
-      "section": "S4",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "So the constrained maximizer is closed-form, and exactly, with <math> the saturated E-step second-moment matrix.",
-      "triggers": [
+        "each",
         "exactly"
       ]
     },
@@ -2310,7 +1979,7 @@
       "grade_words_in_paragraph": [
         "structural"
       ],
-      "sentence": "So every pairwise comparison is simultaneously mean-corrected.",
+      "sentence": "This is a linear per-model shift that telescopes, so every pairwise comparison is simultaneously mean-corrected.",
       "triggers": [
         "every"
       ]
@@ -2322,7 +1991,7 @@
       "grade_words_in_paragraph": [
         "structural"
       ],
-      "sentence": "The mean-and-variance-adjusted statistics match both from the same moment inputs <math> and <math> .",
+      "sentence": "The Satorra-Bentler scaled difference statistic matches the mean , while the mean-and-variance-adjusted statistics match both from the same moment inputs <math> and <math> .",
       "triggers": [
         "the same"
       ]
@@ -2346,20 +2015,9 @@
       "grade_words_in_paragraph": [
         "structural"
       ],
-      "sentence": "We apply it with the analytic null law as <math> and the complete-data <math> as <math> .",
+      "sentence": "We apply it with the analytic null law as <math> and the complete-data <math> as <math> , so by the probability integral transform the equated statistic matches the entire null distribution.",
       "triggers": [
-        "complete"
-      ]
-    },
-    {
-      "id": "S4-P20",
-      "section": "S4",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [
-        "structural"
-      ],
-      "sentence": "By the probability integral transform the equated statistic matches the entire null distribution.",
-      "triggers": [
+        "complete",
         "entire"
       ]
     },
@@ -2392,7 +2050,7 @@
       "section": "S4",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "The pre-registration states what each map should achieve.",
+      "sentence": "The pre-registration states what each map should achieve, and the predictions split along the null/noncentral axis.",
       "triggers": [
         "each"
       ]
@@ -2402,19 +2060,10 @@
       "section": "S4",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "On the null side, each map should close more of the calibration gap than the one before it.",
-      "triggers": [
-        "each"
-      ]
-    },
-    {
-      "id": "S4-P21",
-      "section": "S4",
-      "goal": "evaluate_evidence",
-      "grade_words_in_paragraph": [],
-      "sentence": "Matching the full null distribution should make selection indistinguishable from complete-data AIC wherever overfit flips drive the errors.",
+      "sentence": "On the null side, each map should close more of the calibration gap than the one before it, and matching the full null distribution should make selection indistinguishable from complete-data AIC wherever overfit flips drive the errors.",
       "triggers": [
         "complete",
+        "each",
         "full"
       ]
     },
@@ -2423,7 +2072,7 @@
       "section": "S4",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "And where the complete-data benchmark itself struggles, no observed-data correction should close the remaining gap.",
+      "sentence": "Where the complete-data benchmark itself struggles, by contrast, no observed-data correction should close the remaining gap, because the shortfall there is information loss rather than miscalibration.",
       "triggers": [
         "complete"
       ]
@@ -2433,7 +2082,7 @@
       "section": "S4",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "All three predictions are reported in .",
+      "sentence": "All three predictions are reported in , together with the frozen pass criteria they were assessed against.",
       "triggers": [
         "all"
       ]
@@ -2518,7 +2167,7 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "Every quantitative claim in points here.",
+      "sentence": "Every quantitative claim in points here, and every number here traces to one study.",
       "triggers": [
         "every"
       ]
@@ -2530,9 +2179,10 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "Every number here traces to one study.",
+      "sentence": "Before any code was written, each study fixed its predictions and pass criteria ( ).",
       "triggers": [
-        "every"
+        "any",
+        "each"
       ]
     },
     {
@@ -2542,7 +2192,7 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "Each study fixed its predictions and pass criteria before its code was written ( ).",
+      "sentence": "The setup subsection states each study as a stand-alone design that another analyst could reproduce, while the results subsection presents each study as a figure or a table and includes the predictions that were not met.",
       "triggers": [
         "each"
       ]
@@ -2554,46 +2204,10 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "The setup subsection states each study as a stand-alone design that another analyst could reproduce.",
+      "sentence": "A reader can enter at any single exhibit, because each one names its reference value and the value the study achieved.",
       "triggers": [
+        "any",
         "each"
-      ]
-    },
-    {
-      "id": "S5-P1",
-      "section": "S5",
-      "goal": "transition",
-      "grade_words_in_paragraph": [
-        "measured"
-      ],
-      "sentence": "The results subsection presents each study as a figure or a table.",
-      "triggers": [
-        "each"
-      ]
-    },
-    {
-      "id": "S5-P1",
-      "section": "S5",
-      "goal": "transition",
-      "grade_words_in_paragraph": [
-        "measured"
-      ],
-      "sentence": "A reader can enter at any single exhibit.",
-      "triggers": [
-        "any"
-      ]
-    },
-    {
-      "id": "S5-P1",
-      "section": "S5",
-      "goal": "transition",
-      "grade_words_in_paragraph": [
-        "measured"
-      ],
-      "sentence": "Each exhibit names the perfect reference and the value the study achieved.",
-      "triggers": [
-        "each",
-        "perfect"
       ]
     },
     {
@@ -2631,7 +2245,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "**Assessment and registration.** Each study is assessed against pass criteria fixed before its code existed.",
+      "sentence": "**Assessment and registration.** Each study is assessed against pass criteria fixed before its code existed, and the pre-registration documents together with their dated amendment histories record those criteria.",
       "triggers": [
         "each"
       ]
@@ -2641,7 +2255,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The distribution-matching ladder and the non-nested measurement each carry their own registration.",
+      "sentence": "The bias-decomposition, likelihood-ratio, and selection studies were registered together, while the distribution-matching ladder and the non-nested measurement each carry their own registration.",
       "triggers": [
         "each"
       ]
@@ -2661,7 +2275,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The second rule is that every quantitative claim is stated for totals and paired differentials rather than for components.",
+      "sentence": "The second rule is that every quantitative claim is stated for totals and paired differentials rather than for components, and the first study makes the reason for that second rule concrete.",
       "triggers": [
         "every"
       ]
@@ -2671,7 +2285,18 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The two fully observed coordinates drive that missingness.",
+      "sentence": "The pair <math> lies between the two coordinates that carry missingness, the pair <math> lies between each missing coordinate and the fully observed coordinate that drives its own missingness, and the pair <math> lies between the two fully observed driving coordinates, with <math> ; this gives a relative-increase-in-variance trace near <math> .",
+      "triggers": [
+        "each",
+        "fully"
+      ]
+    },
+    {
+      "id": "S5-P4",
+      "section": "S5",
+      "goal": "define_concept",
+      "grade_words_in_paragraph": [],
+      "sentence": "Missingness falls on the first two coordinates at random, with probabilities <math> and <math> , so the two fully observed coordinates drive it.",
       "triggers": [
         "fully"
       ]
@@ -2681,7 +2306,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Sample sizes are <math> with <math> repetitions each.",
+      "sentence": "Sample sizes are <math> , with <math> repetitions each.",
       "triggers": [
         "each"
       ]
@@ -2691,7 +2316,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The known-scale run holds the covariance at its true value and fits only the mean.",
+      "sentence": "The known-scale run holds the covariance at its true value and fits only the mean, so the conditional missing-data entropy no longer depends on the estimated parameters.",
       "triggers": [
         "only"
       ]
@@ -2701,7 +2326,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "It checks that the total reverses sign, as the fitted-model-versus-true-model distinction of requires.",
+      "sentence": "The sign-regime run imputes from the true model rather than the fitted model, and it checks that the total reverses sign, as the fitted-model-versus-true-model distinction of requires.",
       "triggers": [
         "total"
       ]
@@ -2721,7 +2346,17 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The complete-data benchmark refers its statistic to <math> .",
+      "sentence": "Four references are compared, each scored by its rejection rate at level <math> .",
+      "triggers": [
+        "each"
+      ]
+    },
+    {
+      "id": "S5-P6",
+      "section": "S5",
+      "goal": "define_concept",
+      "grade_words_in_paragraph": [],
+      "sentence": "The complete-data benchmark refers its statistic to <math> , while the corrected and uncorrected numerators are referred to a simulated reference distribution.",
       "triggers": [
         "complete"
       ]
@@ -2731,7 +2366,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The second coordinate is essentially complete, and the rest are fully observed.",
+      "sentence": "Here the first coordinate is made heavily missing at random through <math> , about <math> to <math> percent, while the second coordinate is essentially complete and the rest are fully observed.",
       "triggers": [
         "complete",
         "fully"
@@ -2752,6 +2387,36 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
+      "sentence": "The most restrictive is a diagonal model with every off-diagonal entry fixed at zero, eight free parameters.",
+      "triggers": [
+        "every"
+      ]
+    },
+    {
+      "id": "S5-P9",
+      "section": "S5",
+      "goal": "define_concept",
+      "grade_words_in_paragraph": [],
+      "sentence": "The saturated model frees every entry, fourteen free parameters.",
+      "triggers": [
+        "every"
+      ]
+    },
+    {
+      "id": "S5-P9",
+      "section": "S5",
+      "goal": "define_concept",
+      "grade_words_in_paragraph": [],
+      "sentence": "The truth sets <math> and every other off-diagonal entry to zero.",
+      "triggers": [
+        "every"
+      ]
+    },
+    {
+      "id": "S5-P9",
+      "section": "S5",
+      "goal": "define_concept",
+      "grade_words_in_paragraph": [],
       "sentence": "Missingness is set near <math> percent, and each cell uses <math> repetitions.",
       "triggers": [
         "each"
@@ -2762,7 +2427,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "It is computed for the complete-data benchmark, the result an analyst would reach with no missing data, the uncorrected imputation criterion, and the corrected criterion.",
+      "sentence": "The metric is the true-model selection rate by the Akaike criterion, computed for the complete-data benchmark, which is the result an analyst would reach with no missing data, and then for the uncorrected imputation criterion and the corrected criterion.",
       "triggers": [
         "complete"
       ]
@@ -2772,9 +2437,10 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The first is that the correction moves selection toward the complete-data benchmark.",
+      "sentence": "The correction must move selection toward the complete-data benchmark, and the uncorrected criterion's errors must concentrate on the largest-missing-information candidate.",
       "triggers": [
-        "complete"
+        "complete",
+        "must"
       ]
     },
     {
@@ -2782,8 +2448,9 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "**Distribution-matching ladder design.** This study takes the same candidate family.",
+      "sentence": "**Distribution-matching ladder design.** This study takes the same candidate family and contrasts four ways of referring the saturated-anchored imputation deviance to its complete-data law, with the contrast spanning a range of signal strength.",
       "triggers": [
+        "complete",
         "the same"
       ]
     },
@@ -2792,17 +2459,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "It contrasts four ways of referring the saturated-anchored imputation deviance to its complete-data law.",
-      "triggers": [
-        "complete"
-      ]
-    },
-    {
-      "id": "S5-P10",
-      "section": "S5",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "All three are non-monotone missing at random near <math> percent on the deterministic arm.",
+      "sentence": "Three cells run at <math> with <math> repetitions and four tested directions, and all three are non-monotone missing at random near <math> percent on the deterministic arm.",
       "triggers": [
         "all"
       ]
@@ -2812,7 +2469,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "They are the complete-data benchmark, the uncorrected deviance, and a mean correction that subtracts the projected trace of .",
+      "sentence": "The first three are the complete-data benchmark, the uncorrected deviance, and a mean correction that subtracts the projected trace of , while the remaining two are a two-moment match to the reference and a per-model equipercentile equating.",
       "triggers": [
         "complete"
       ]
@@ -2822,7 +2479,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "The second is that the stronger arms reach the complete-data benchmark where overfit flips drive the errors.",
+      "sentence": "The null side calibrates, the stronger arms reach the complete-data benchmark where overfit flips drive the errors, and the noncentral side shrinks by the predicted factors.",
       "triggers": [
         "complete"
       ]
@@ -2832,17 +2489,7 @@
       "section": "S5",
       "goal": "define_concept",
       "grade_words_in_paragraph": [],
-      "sentence": "Each cell runs at <math> with <math> repetitions.",
-      "triggers": [
-        "each"
-      ]
-    },
-    {
-      "id": "S5-P11",
-      "section": "S5",
-      "goal": "define_concept",
-      "grade_words_in_paragraph": [],
-      "sentence": "Each cell is also paired with a missing-completely-at-random twin that removes the design-imbalance term.",
+      "sentence": "Each cell runs at <math> with <math> repetitions, and is also paired with a missing-completely-at-random twin that removes the design-imbalance term.",
       "triggers": [
         "completely",
         "each"
@@ -2863,7 +2510,7 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "It appears only under missing-at-random data, and it is about <math> .",
+      "sentence": "That second term is order one in size and appears only under missing-at-random data, where it is about <math> .",
       "triggers": [
         "only"
       ]
@@ -2873,9 +2520,11 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "At a fixed repetition count the larger cells therefore cannot resolve an order-one offset.",
+      "sentence": "The repetition count is the same <math> at every sample size; it is the per-replicate statistic's own spread that grows with <math> , and that spread is finite, so the figure's standard-error bars stay valid, just wider at the largest cell, and the larger cells therefore cannot resolve an order-one offset as tightly as the smaller ones.",
       "triggers": [
-        "cannot"
+        "cannot",
+        "every",
+        "the same"
       ]
     },
     {
@@ -2883,18 +2532,9 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "The component terms each miss their own targets by roughly <math> to <math> percent.",
+      "sentence": "The component terms each miss their own targets by roughly <math> to <math> percent, which is why the assessment reports only the totals and the paired differentials.",
       "triggers": [
-        "each"
-      ]
-    },
-    {
-      "id": "S5-P12",
-      "section": "S5",
-      "goal": "evaluate_evidence",
-      "grade_words_in_paragraph": [],
-      "sentence": "For that reason the assessment reports only the totals and the paired differentials.",
-      "triggers": [
+        "each",
         "only"
       ]
     },
@@ -2913,7 +2553,7 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "The two arms differ by exactly the posterior-draw imputation variance.",
+      "sentence": "Both arms land within Monte Carlo error of their targets, and the two arms differ by exactly the posterior-draw imputation variance.",
       "triggers": [
         "exactly"
       ]
@@ -2923,7 +2563,7 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "Imputing from the true model rather than the fitted model reverses the sign of the total.",
+      "sentence": "Imputing from the true model rather than the fitted model reverses the sign of the total, and that sign reversal is what the fitted-model-versus-true-model distinction requires.",
       "triggers": [
         "total"
       ]
@@ -2959,16 +2599,6 @@
       ]
     },
     {
-      "id": "S5-P16",
-      "section": "S5",
-      "goal": "evaluate_evidence",
-      "grade_words_in_paragraph": [],
-      "sentence": "This is exactly the failure mode the result specifies.",
-      "triggers": [
-        "exactly"
-      ]
-    },
-    {
       "id": "S5-P17",
       "section": "S5",
       "goal": "evaluate_evidence",
@@ -2983,7 +2613,7 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "At <math> on the deterministic arm the complete-data benchmark selects the true model at <math> .",
+      "sentence": "At <math> on the deterministic arm, the complete-data benchmark selects the true model at <math> , while the uncorrected criterion selects it at <math> and the corrected criterion at <math> .",
       "triggers": [
         "complete"
       ]
@@ -2993,11 +2623,10 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "In every congenial cell all of the uncorrected criterion's errors land on the saturated, largest-missing-information candidate.",
+      "sentence": "In our simulations, every misclassification by the uncorrected criterion fell on the saturated, largest-missing-information candidate, 100% in all sixty cells.",
       "triggers": [
         "all",
-        "every",
-        "in every"
+        "every"
       ]
     },
     {
@@ -3005,17 +2634,7 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "This is a registered directional prediction, and it held across all sixty cells.",
-      "triggers": [
-        "all"
-      ]
-    },
-    {
-      "id": "S5-P17",
-      "section": "S5",
-      "goal": "evaluate_evidence",
-      "grade_words_in_paragraph": [],
-      "sentence": "The saturated model is therefore the natural destination for any downward-biased deviance.",
+      "sentence": "Because the candidates are nested and ordered by missing information, the saturated model is the natural destination for any downward-biased deviance, so the error pattern confirms the predicted direction of the bias rather than discriminating the specific decomposition.",
       "triggers": [
         "any"
       ]
@@ -3025,7 +2644,7 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "The recovery is substantial and visibly short of the complete-data benchmark.",
+      "sentence": "The recovery is substantial but visibly short of the complete-data benchmark, and that gap is what the distribution-matching ladder was registered to explain.",
       "triggers": [
         "complete"
       ]
@@ -3035,7 +2654,7 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "**The distribution-matching ladder.** Across three levels of signal strength the stronger constructions recover the complete-data benchmark where the errors come from choosing too rich a model.",
+      "sentence": "**The distribution-matching ladder.** Across three levels of signal strength, the stronger constructions recover the complete-data benchmark wherever the errors come from choosing too rich a model, while a residual shortfall remains where selection is hard even with complete data ( ).",
       "triggers": [
         "complete",
         "recover"
@@ -3046,9 +2665,10 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "| Cell | complete-data | uncorrected | mean | two-moment | equating | |---|---|---|---|---|---| | <math> | 0.899 | 0.678 | 0.814 | 0.904 | 0.903 | | <math> | 0.820 | 0.582 | 0.650 | 0.648 | 0.650 | | <math> (junk) | 0.727 | 0.422 | 0.585 | 0.702 | 0.696 | At correlation <math> the two-moment and equating arms reach <math> and <math> .",
+      "sentence": "| Cell | complete-data | uncorrected | mean | two-moment | equating | |---|---|---|---|---|---| | <math> | 0.899 | 0.678 | 0.814 | 0.904 | 0.903 | | <math> | 0.820 | 0.582 | 0.650 | 0.648 | 0.650 | | <math> (no signal) | 0.727 | 0.422 | 0.585 | 0.702 | 0.696 | : **True-model selection rates across the distribution-matching ladder.** Rate of selecting the true model for each construction in three signal cells at <math> with <math> repetitions; Monte Carlo standard error near <math> .",
       "triggers": [
-        "complete"
+        "complete",
+        "each"
       ]
     },
     {
@@ -3056,18 +2676,9 @@
       "section": "S5",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "The complete-data benchmark is <math> .",
+      "sentence": "At correlation <math> the two-moment and equating arms reach <math> and <math> against a complete-data benchmark of <math> ; because the differences are within twice the Monte Carlo standard error of about <math> , both arms are statistically indistinguishable from the benchmark, with a small overshoot the same interval does not resolve.",
       "triggers": [
-        "complete"
-      ]
-    },
-    {
-      "id": "S5-P18",
-      "section": "S5",
-      "goal": "evaluate_evidence",
-      "grade_words_in_paragraph": [],
-      "sentence": "So the arms are statistically indistinguishable from the benchmark, with a small overshoot the same interval does not resolve.",
-      "triggers": [
+        "complete",
         "the same"
       ]
     },
@@ -3127,11 +2738,11 @@
         "measured",
         "structural"
       ],
-      "sentence": "| Structural limit | perfect | achieved | |---|---|---| | block-diagonal family, naive vs projected trace | exact equality | agree to <math> | | off-equality moment map, main-cell rate | complete-data <math> | naive input <math> , correct input <math> | | per-model map, equated difference mean and sd | complete-data <math> and <math> | <math> and <math> | Two points follow.",
+      "sentence": "| Structural limit | reference | achieved | |---|---|---| | block-diagonal family, naive vs projected trace | exact equality | agree to <math> | | off-equality moment map, main-cell rate | complete-data <math> | naive input <math> , correct input <math> | | per-model map, equated difference mean and sd | complete-data <math> and <math> | <math> and <math> | : **Structural checks of the derivations seen in the selection rates.** Each row pairs a structural prediction with its measured value; Monte Carlo standard error near <math> .",
       "triggers": [
         "complete",
-        "exact",
-        "perfect"
+        "each",
+        "exact"
       ]
     },
     {
@@ -3142,7 +2753,7 @@
         "measured",
         "structural"
       ],
-      "sentence": "So the family cannot by itself separate the two trace formulas.",
+      "sentence": "In this block-diagonal candidate family the naive and projected traces coincide, to <math> , so the family cannot by itself separate the two trace formulas.",
       "triggers": [
         "cannot"
       ]
@@ -3155,7 +2766,7 @@
         "measured",
         "structural"
       ],
-      "sentence": "It shows that a per-model marginal map cannot calibrate the joint difference distribution.",
+      "sentence": "The third row is separate again, and it shows that a per-model marginal map cannot calibrate the joint difference distribution.",
       "triggers": [
         "cannot"
       ]
@@ -3167,8 +2778,9 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "Each candidate's order-one level is large under missing-at-random data, near <math> and <math> deviance units for the two candidates.",
+      "sentence": "Each candidate's order-one level is large under missing-at-random data, near <math> and <math> deviance units for the two candidates, but that level collapses under the completely-at-random twin, most sharply for the autoregressive candidate.",
       "triggers": [
+        "completely",
         "each"
       ]
     },
@@ -3179,19 +2791,7 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "That level collapses under the completely-at-random twin, most sharply for the autoregressive candidate.",
-      "triggers": [
-        "completely"
-      ]
-    },
-    {
-      "id": "S5-P21",
-      "section": "S5",
-      "goal": "evaluate_evidence",
-      "grade_words_in_paragraph": [
-        "measured"
-      ],
-      "sentence": "A pilot's apparent value of <math> dissolved in the full run.",
+      "sentence": "A pilot's apparent value of <math> did not persist in the full run, a failure we report as the pre-registration requires.",
       "triggers": [
         "full"
       ]
@@ -3203,7 +2803,7 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "There the naive trace difference overstates the exact projected trace by about <math> percent.",
+      "sentence": "As a byproduct, the analysis gave the first measured case off the equality condition of , where the naive trace difference overstates the exact projected trace by about <math> percent.",
       "triggers": [
         "exact"
       ]
@@ -3213,7 +2813,7 @@
       "section": "S5",
       "goal": "scope_limit",
       "grade_words_in_paragraph": [],
-      "sentence": "**Engine sensitivity.** The bootstrap imputation sampler reproduces the analytic results on the most demanding cells.",
+      "sentence": "**Engine sensitivity.** The bootstrap imputation sampler reproduces the analytic results on the most demanding cells, which indicates the cost of not running data augmentation is small on these designs.",
       "triggers": [
         "reproduces"
       ]
@@ -3223,19 +2823,10 @@
       "section": "S5",
       "goal": "scope_limit",
       "grade_words_in_paragraph": [],
-      "sentence": "The bootstrap sampler is only approximately Bayesian, and data augmentation was not run.",
+      "sentence": "The bootstrap sampler is only approximately Bayesian and data augmentation was not run, so a fully Bayesian sampler remains the conservative choice when the fraction of missing information is large ( ).",
       "triggers": [
+        "fully",
         "only"
-      ]
-    },
-    {
-      "id": "S5-P22",
-      "section": "S5",
-      "goal": "scope_limit",
-      "grade_words_in_paragraph": [],
-      "sentence": "A fully Bayesian sampler remains the conservative choice when the fraction of missing information is large ( ).",
-      "triggers": [
-        "fully"
       ]
     },
     {
@@ -3245,7 +2836,7 @@
       "grade_words_in_paragraph": [
         "conjecture"
       ],
-      "sentence": "The bias exists only when the fit estimates a scale or covariance.",
+      "sentence": "The deviance optimism that inflates the criteria exists only when the fit estimates a scale or covariance, because only then does the conditional missing-data entropy depend on the estimated parameters; a known-scale, location-only fit has no such bias under deterministic FIML and only <math> under proper MI, which is why the estimated-scale clause belongs in the statement of the theorem rather than in a footnote.",
       "triggers": [
         "only"
       ]
@@ -3257,19 +2848,7 @@
       "grade_words_in_paragraph": [
         "conjecture"
       ],
-      "sentence": "A known-scale, location-only fit has no such bias under deterministic FIML and only <math> under proper MI.",
-      "triggers": [
-        "only"
-      ]
-    },
-    {
-      "id": "S6-P1",
-      "section": "S6",
-      "goal": "scope_limit",
-      "grade_words_in_paragraph": [
-        "conjecture"
-      ],
-      "sentence": "Congeniality is assumed throughout.",
+      "sentence": "Congeniality is assumed throughout, and what the bias becomes without it is a separate question that this paper does not take up.",
       "triggers": [
         "throughout"
       ]
@@ -3281,7 +2860,7 @@
       "grade_words_in_paragraph": [
         "conjecture"
       ],
-      "sentence": "Each is stated next to the claim it qualifies, with its evidential standing.",
+      "sentence": "Beyond these scope conditions, nine specific limits remain, each stated next to the claim it qualifies together with its evidential standing, and they are followed by one conjecture, three directions, and the answer to the question the paper opened with.",
       "triggers": [
         "each"
       ]
@@ -3323,7 +2902,7 @@
       "grade_words_in_paragraph": [
         "measured"
       ],
-      "sentence": "Exact data augmentation was not run.",
+      "sentence": "Exact data augmentation was not run, so nothing here establishes engine-independence beyond those designs.",
       "triggers": [
         "exact"
       ]
@@ -3402,13 +2981,125 @@
       ]
     },
     {
+      "id": "S6-P4c",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [],
+      "sentence": "**G8.** BIC carries the same directional bias as AIC, but its own penalty grows with the sample size while AIC's does not, so at the sizes used in the main sweep BIC is already close to the complete-data benchmark before any correction is applied.",
+      "triggers": [
+        "any",
+        "complete",
+        "the same"
+      ]
+    },
+    {
+      "id": "S6-P4c",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [],
+      "sentence": "At <math> , uncorrected BIC selects the true model at <math> against the benchmark's <math> , and every one of its rare misclassifications falls on the largest-missing-information candidate, so the correction has little left to recover, closing the gap to <math> .",
+      "triggers": [
+        "every",
+        "recover"
+      ]
+    },
+    {
+      "id": "S6-P4c",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [],
+      "sentence": "As a follow-up check outside the pre-registered sweep, we reran the same comparison at <math> and <math> , where BIC's penalty has not yet grown large enough to dominate.",
+      "triggers": [
+        "the same"
+      ]
+    },
+    {
+      "id": "S6-P4c",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [],
+      "sentence": "There uncorrected BIC's selection rate falls to about <math> at <math> and <math> at <math> , against benchmarks of <math> and <math> , and the correction recovers proportionally more of the gap.",
+      "triggers": [
+        "recovers"
+      ]
+    },
+    {
+      "id": "S6-P4c",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [],
+      "sentence": "Only about <math> to <math> of BIC's more frequent errors at <math> fall on that candidate, rising to about <math> to <math> at <math> and to essentially all of them by <math> .",
+      "triggers": [
+        "all",
+        "only"
+      ]
+    },
+    {
+      "id": "S6-P4c",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [],
+      "sentence": "So the concentration pattern reported above for AIC is, for BIC, a property of large samples, tied to a penalty that grows with <math> , and not a law that holds at every size studied.",
+      "triggers": [
+        "every"
+      ]
+    },
+    {
+      "id": "S6-P4c",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [],
+      "sentence": "In practice the correction should be expected to matter most for BIC where its own penalty has not yet reached that regime, and any BIC-based comparison at a small sample should be read with that limit in mind.",
+      "triggers": [
+        "any"
+      ]
+    },
+    {
+      "id": "S6-P4d",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [
+        "measured"
+      ],
+      "sentence": "Under response-only MCAR missingness the two order-one design terms in the theorem's proof cancel exactly for any canonical link, so the plug-in bias is the general <math> trace value plus a base-measure term.",
+      "triggers": [
+        "any",
+        "exactly",
+        "only"
+      ]
+    },
+    {
+      "id": "S6-P4d",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [
+        "measured"
+      ],
+      "sentence": "The Bernoulli plug-in reaches an asymptote of <math> across an <math> -scan against the derived <math> , and the earlier <math> at <math> proves to have been Monte-Carlo noise around a true <math> .",
+      "triggers": [
+        "proves"
+      ]
+    },
+    {
+      "id": "S6-P4d",
+      "section": "S6",
+      "goal": "scope_limit",
+      "grade_words_in_paragraph": [
+        "measured"
+      ],
+      "sentence": "A Poisson model, simulated here for the first time only after its target was fixed, measures <math> against its derived <math> .",
+      "triggers": [
+        "only"
+      ]
+    },
+    {
       "id": "S6-P5",
       "section": "S6",
       "goal": "scope_limit",
       "grade_words_in_paragraph": [
         "conjecture"
       ],
-      "sentence": "We conjecture that the bias-corrected likelihood-ratio comparison dominates its uncorrected counterpart in power uniformly.",
+      "sentence": "We conjecture that the bias-corrected likelihood-ratio comparison dominates its uncorrected counterpart in power uniformly; the preregistered likelihood-ratio study's power arms provide partial support ( ), but we state no theorem.",
       "triggers": [
         "uniformly"
       ]
@@ -3460,7 +3151,7 @@
       "section": "S6",
       "goal": "summarize",
       "grade_words_in_paragraph": [],
-      "sentence": "Corrected selection and calibrated tests behave as they would have with complete data.",
+      "sentence": "There, corrected selection and calibrated tests behave as they would have with complete data.",
       "triggers": [
         "complete"
       ]
@@ -3470,7 +3161,7 @@
       "section": "S6",
       "goal": "summarize",
       "grade_words_in_paragraph": [],
-      "sentence": "Then trust the result the way complete-data results are trusted.",
+      "sentence": "In practical terms the advice is short: correct the criterion, or match its null distribution, and then trust the result the way complete-data results are trusted, subject to the stated conditions.",
       "triggers": [
         "complete"
       ]
@@ -3480,7 +3171,7 @@
       "section": "S6",
       "goal": "summarize",
       "grade_words_in_paragraph": [],
-      "sentence": "An applied team deciding whether to rely on an AI-assisted derivation can ask for the same evidence required here.",
+      "sentence": "An applied team deciding whether to rely on a human-prompted AI derivation can ask for the same evidence required here.",
       "triggers": [
         "the same"
       ]
@@ -3500,7 +3191,7 @@
       "section": "S6",
       "goal": "evaluate_evidence",
       "grade_words_in_paragraph": [],
-      "sentence": "And it forced every failed prediction into .",
+      "sentence": "The protocol caught a sign error that eight of nine blind re-derivations shipped, caught a wrong shortcut in an early entropy-gradient argument, and forced every failed prediction into .",
       "triggers": [
         "every"
       ]
