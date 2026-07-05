@@ -53,10 +53,12 @@ add(r"\bis\s+what\s+(makes|drives|gives|powers)\b", "is what makes/drives", 0.9)
 # -- importance assertions: telling the reader what to find important --
 # NB: "central" is deliberately EXCLUDED -- "this paper's central result/object/matrix"
 # is the CLAUDE-endorsed motivate-by-use opener, not evaluative narration.
-add(r"\b(the\s+)?(key|crucial|essential|critical|pivotal)\s+"
+# D-26 (register v3): "key" removed from the banned adjectives -- "The key observation
+# is that..." is register-attested (mengPerformingLikelihoodRatio1992b:244, R4 set).
+add(r"\b(the\s+)?(crucial|essential|critical|pivotal)\s+"
     r"(assumption|ingredient|step|fact|point|idea|insight|observation|property|"
     r"feature|move|object|quantity|term|result)\b",
-    "key/crucial <noun>", 1.0)
+    "crucial/essential <noun>", 1.0)
 add(r"\bcrucially\b", "crucially", 1.0)
 add(r"\bimportantly\b", "importantly", 0.7)
 add(r"\bcritically\b", "critically", 0.7)

@@ -29,10 +29,16 @@ Checks
    - level3: every paragraph has a non-null proposition OR a goal in the
      rhetorical set; review and audit objects present.
    - level4: every entry's pointer resolves; proposition_id non-empty.
-7. Prose-style gate (level3 draft_prose): the CLAUDE.md punctuation budget.
-   Rhetorical colons and semicolons are flagged. Display/table/quotation/heading
-   colons and math/citation-bracket semicolons are allowed. See
-   prose_punctuation_hits().
+7. Prose-style gate (level3 draft_prose): the CLAUDE.md punctuation budget
+   (register v3, D-26). Em-dashes are banned; semicolons are allowed up to 3
+   per paragraph (register density, incl. enumerations); colons are allowed
+   for in-sentence expansion. Math/citation-bracket semicolons are invisible.
+   See prose_punctuation_hits().
+8. Vocabulary gate (level3 draft_prose, D-26): out-of-register words from the
+   todo/048 Bucket-2 triage (sits/lands/headline/floor/junk/genuinely/scoped/
+   regimes). WARN-ONLY until the D-26 sweep completes (the pre-sweep corpus
+   still contains them); flip VOCAB_GATE_FATAL to True in the sweep's closing
+   commit.
 
 Exit 0 = green; exit 1 = violations (listed on stdout).
 
@@ -78,10 +84,32 @@ COLOR_COMMENTARY = [
     re.compile(r"\bcrucially\b", re.I),
     re.compile(r"\bis\s+what\s+(makes|drives|gives|powers)\b", re.I),
     re.compile(r"\b(the\s+)?(heart|crux|linchpin)\s+of\s+(the|this|its|it)\b", re.I),
-    re.compile(r"\b(the\s+)?(key|crucial|essential|pivotal)\s+"
+    # D-26 (register v3): 'key' removed from the banned adjectives -- "The key
+    # observation is that..." is register-attested (mengPerformingLikelihoodRatio1992b:244).
+    re.compile(r"\b(the\s+)?(crucial|essential|pivotal)\s+"
                r"(assumption|ingredient|step|fact|point|idea|insight|observation|"
                r"property|feature|move|object|quantity|term|result)\b", re.I),
 ]
+
+# D-26 vocabulary gate (todo/048 Bucket-2 triage): out-of-register vocabulary with
+# corpus-attested replacements (see manuscript/reviews/style/rubric-2026-07-05.md §3).
+# Precise verb-phrase patterns to spare legitimate uses; whitelisted terms (RIV,
+# preregistration family, anchored, free/frees, ladder per D-26) are NOT gated.
+# 'regimes' is plural-only: the singular survives in the sign-regime design name and
+# 'the estimated-scale regime'.
+VOCAB_OUT_OF_REGISTER = [
+    (re.compile(r"\bsits?\s+(between|close|in|at|near)\b", re.I), "sits (use: is/equals/belongs/lies between)"),
+    (re.compile(r"\bland(s|ed)?\s+(directly\s+)?(on|at|in)\b", re.I), "lands (use: is/equals/enters/agrees with)"),
+    (re.compile(r"\bheadline\b", re.I), "headline (use: primary/main)"),
+    (re.compile(r"\bfloor\b", re.I), "floor (use: residual shortfall/limit; NOT 'bound')"),
+    (re.compile(r"\bjunk\b", re.I), "junk (use: zero-correlation/no-signal cell)"),
+    (re.compile(r"\bgenuinely\b", re.I), "genuinely (use: truly, or state the literal fact)"),
+    (re.compile(r"\bscoped\b", re.I), "scoped (use: restricted/confined/limited to)"),
+    (re.compile(r"\bregimes\b", re.I), "regimes (use: cases/settings)"),
+]
+# Flip to True in the D-26 sweep's closing commit (until then the pre-sweep corpus
+# still contains these words and the gate is advisory).
+VOCAB_GATE_FATAL = False
 
 PLAN_FILES = [
     "level1-thesis.json",
@@ -155,15 +183,15 @@ def detect_cycles(nodes):
 
 def prose_punctuation_hits(prose):
     """
-    Manuscript prose-style gate (CLAUDE.md 'Punctuation budget').
+    Manuscript prose-style gate (CLAUDE.md 'Punctuation budget', register v3 / D-26).
 
-    Flags rhetorical colons, em-dashes, and 2+ semicolons per paragraph. A single
-    semicolon between tightly-linked clauses is allowed (sparse budget v2). Allowed and
-    therefore NOT flagged:
-      - colons introducing a display ($$...$$), a markdown table, a heading run-in
-        (a **bold:** label, or a '## ...:' subhead), or a verbatim quotation;
-      - semicolons inside math ($...$) and inside citation brackets ([@a; @b]);
-      - the em-dash / arithmetic uses of ':' inside math.
+    Register-recalibrated per the todo/048 rubric (C3/C6 dispositions, adopted
+    2026-07-05): colons are ALLOWED for in-sentence expansion, series, and
+    definitions (register-native; the old rhetorical-colon flag is retired);
+    semicolons are allowed at register density INCLUDING enumerations, up to 3
+    per paragraph (exemplar band 0.8-5.8 per 1000 words); em-dash appositive /
+    gloss chains stay BANNED. Semicolons inside math ($...$) and citation
+    brackets ([@a; @b]) remain invisible to the count.
     Returns a list of short human-readable strings (empty when clean).
     """
     hits = []
@@ -175,29 +203,32 @@ def prose_punctuation_hits(prose):
     text = re.sub(r"\{#[^}]*\}", "", text)                                # crossref anchors
     text = re.sub(r":::[^\n]*", "", text)                                # fenced-div markers
 
-    for m in re.finditer(r"([^.\n]{0,55}):(\s|$)", text):
-        frag = m.group(1).strip()
-        after = text[m.end():m.end() + 16].lstrip()
-        if not frag:
-            continue
-        if after.startswith(('"', "“", "§DISPLAY")):
-            continue  # quotation- or display-introducing colon
-        if frag.startswith("#") or frag.startswith("**") or frag.endswith("**"):
-            continue  # subhead or bold run-in label
-        if "Monte Carlo standard error" in frag:
-            continue  # introduces the results table
-        hits.append(f"rhetorical colon after '...{frag[-40:]}'")
-
-    # Semicolons: allowed but SPARSE (punctuation budget v2). At most one per
-    # paragraph; two or more (including semicolon-chained lists) is a violation.
+    # Semicolons: register density (D-26). More than 3 in one paragraph is beyond
+    # the exemplar norm and usually signals a chained list that wants a display.
     n_semi = len(re.findall(r";", text))
-    if n_semi > 1:
-        hits.append(f"{n_semi} semicolons in one paragraph (sparse budget allows at most one)")
+    if n_semi > 3:
+        hits.append(f"{n_semi} semicolons in one paragraph (register budget allows at most three)")
 
-    # Em-dashes stay banned (appositive / gloss chains).
+    # Em-dashes stay banned (appositive / gloss chains) -- D-26 kept the ban;
+    # qualification belongs in parentheses and which-clauses.
     if "—" in text:
-        hits.append("em-dash present (banned; use a connective or a new sentence)")
+        hits.append("em-dash present (banned; use a parenthesis, a which-clause, or a semicolon)")
 
+    return hits
+
+
+def prose_vocab_hits(prose):
+    """
+    D-26 vocabulary gate (todo/048 Bucket-2). Flags out-of-register vocabulary with
+    its corpus-attested replacement. Math is blanked first. Advisory (WARN) until
+    VOCAB_GATE_FATAL is flipped in the sweep's closing commit.
+    """
+    text = re.sub(r"\$\$.*?\$\$", " ", prose, flags=re.S)
+    text = re.sub(r"\$[^$]*\$", " ", text)
+    hits = []
+    for rx, msg in VOCAB_OUT_OF_REGISTER:
+        for m in rx.finditer(text):
+            hits.append(f"out-of-register '{m.group(0).strip()}' -> {msg}")
     return hits
 
 
@@ -360,6 +391,7 @@ def main():
                         f"level2-sections.json: {s.get('id')} SP[{j}] has no evidence pointers and is not flagged needs_grounding"
                     )
 
+    vocab_warnings = []
     l3 = docs.get("level3-paragraphs.json")
     if l3 and (l3.get("paragraphs") or []):
         deps = {}
@@ -381,6 +413,11 @@ def main():
                 problems.append(f"level3-paragraphs.json: {pid} prose-accuracy: {hit}")
             for hit in prose_color_hits(p.get("draft_prose") or ""):
                 problems.append(f"level3-paragraphs.json: {pid} prose-style: {hit}")
+            for hit in prose_vocab_hits(p.get("draft_prose") or ""):
+                if VOCAB_GATE_FATAL:
+                    problems.append(f"level3-paragraphs.json: {pid} vocabulary: {hit}")
+                else:
+                    vocab_warnings.append(f"level3-paragraphs.json: {pid} vocabulary: {hit}")
         for pid, dlist in deps.items():
             for d in dlist:
                 if d not in deps:
@@ -388,6 +425,13 @@ def main():
         cyc = detect_cycles(deps)
         if cyc:
             problems.append(f"level3-paragraphs.json: dependency cycle involving {sorted(set(cyc))}")
+
+    if vocab_warnings:
+        print(f"check_plan: {len(vocab_warnings)} vocabulary WARNING(s) "
+              f"(advisory until the D-26 sweep completes)\n")
+        for w in vocab_warnings:
+            print(f"  ~ {w}")
+        print()
 
     if problems:
         print(f"check_plan: {len(problems)} violation(s)\n")

@@ -240,48 +240,63 @@ Or invoke `/lit-sync` as a slash command.
 Rscript verification/00-test-primitives.R
 ```
 
-## Manuscript prose style (binding for all drafting)
+## Manuscript prose style (binding for all drafting; register v3, D-26)
 
 Target reader: an applied researcher with quantitative training and working MI knowledge.
+Target REGISTER: the statistics-journal exemplars in `literature/` (Rubin 1976/1987, Meng
+& Rubin 1991/1992, Barnard & Rubin 1999, DLR 1977, and the top-venue controls). The rubric
+of record is `manuscript/reviews/style/rubric-2026-07-05.md` (R1-R11); the FK-10 /
+short-declarative register is retired (D-26). Measure with
+`py scripts/style_register_stats.py`.
 
-- **Plain expository structure.** Topic sentence first, then supporting details.
-  Usually one idea per sentence, but join two closely-related clauses with a connective
-  ("X, because Y"; "X, so Y") when that carries the logic better than a period would.
-  No em-dash appositive chains (X — gloss — verb), no nested mid-sentence glosses, no
-  fixed poetic cadence, no constructions that make the reader backtrack. Run the full
-  paragraph arc. Open with a topic sentence, give the supporting details, and close
-  with a wrap-up or a hand-off to the next idea. State each logical step plainly rather
-  than leaving the reader to infer it, even at the cost of a little redundancy. Keep
-  the words plain and the reading level low, but VARY sentence length: join some
-  clauses and leave others short, so the prose does not read as a column of
-  equal-length declaratives. Break runs of same-length or same-opener ("The... The...
-  The...") sentences.
-- **Punctuation budget (v2, 2026-06-27).** Connectives between clauses are the main
-  tool for sentence-length variety. Prefer ", because", ", but", ", so", ", while",
-  and sentence-initial transitions (". However,", ". Therefore,", ". By contrast,").
-  Semicolons are ALLOWED but SPARSE: only between two tightly-linked independent clauses
-  ("X; therefore, Y"), never to chain a list, roughly at most one per paragraph and
-  only where a period would sever a link worth keeping tight. Still banned: em-dash
-  appositive or gloss chains (X — gloss — verb), nested mid-sentence glosses, and
-  semicolon-chained lists (use "The first is X. The second is Y." or an enumerated
-  display). A colon is acceptable only to introduce a display or a definition. Why v2:
-  the near-zero-connective rule forced every clause relationship into a period and left
-  a monotone column of short declaratives, so restoring connectives is what varies the
-  rhythm.
+- **Sentence architecture (R1).** The default sentence carries a main claim plus one or
+  two riders (a concession, a reason, a scope condition) joined by subordination; aim
+  for the exemplar-article band (mean 18-26 words/sentence, commas/sentence near or
+  above 1.0). Short sentences are punctuation for emphasis, not the default. Run the
+  full paragraph arc (topic sentence, support, hand-off); break runs of same-opener
+  ("The... The... The...") sentences.
+- **Punctuation budget (v3, 2026-07-05, D-26).** Qualification lives mid-sentence: in
+  parentheses ("(a standard object in the MI literature)", "(see @sec-...)"; "e.g." and
+  "i.e." inside parentheses only, per APA), appositives, and non-restrictive
+  which-clauses. Colons may introduce in-sentence expansions, series, and definitions,
+  not only displays. Semicolons may join tight clauses AND chain short enumerations, up
+  to 3 per paragraph (register density). Em-dash appositive/gloss chains stay BANNED
+  (use a parenthesis, a which-clause, or a semicolon). Connectives and sentence-initial
+  transitions remain the workaday joins.
+- **Typed precision (R11, D-26).** "exact/exactly/precisely" only for finite-sample
+  identities, definitional identifications, iff conditions, and exact samplers. A
+  leading-order claim takes the scope word ("to leading order", "up to $O(n^{-1})$") or
+  attaches exactness to the coefficient ("the leading term is exactly
+  $\tfrac12\operatorname{tr}(\mathrm{RIV})$"), never to the equality.
+- **Vocabulary distribution (D-26).** Word choices stay within the literature-corpus
+  distribution: run `py scripts/corpus_vocab_check.py` after every batch; the whitelist
+  (with justifications) is `manuscript/plan/vocab-whitelist.txt`; the out-of-register
+  set (sits/lands/headline/floor/junk/genuinely/scoped/regimes) is gated in
+  `check_plan.py` (WARN until the D-26 sweep completes, then fatal). "ladder" is KEPT as
+  a named construction, introduced explicitly at first use. Figure captions use register
+  syntax ("The dashed line shows the complete-data benchmark"), not the retired
+  "Perfect is ..." formula.
+- **No house formulas (R10, D-26).** Recommendations in the register's advice voice ("in
+  practice it is generally wise to..."). Retired formulas: "The practical
+  reading/summary/recommendation is ...", "X is direct/simple to state.", "X is worth
+  naming.", bare "This result is firm." (fold grade labels into content sentences), and
+  "prices" for "quantifies".
 - **No orphaned pronouns.** Do not open or continue a sentence with "it/this/that/they"
   when the antecedent could be more than one thing or sits more than a clause back. Name
   the noun. Joining the clauses ("X, which...") usually keeps the referent local and
   removes the ambiguity.
-- **Announce results.** New results are introduced as things the paper shows ("We show
-  that..."), never asserted cold. Immediately translate each formal object into applied
-  terms in its own sentence (e.g., the model-specific bias → "a model-comparison table
-  built on imputed data favors the candidates with the most missing information").
-- **Motivate by use, not provenance.** Background/restatement paragraphs open with the
-  item's role in THIS paper ("This paper assumes...", "The paper's central matrix is...",
-  "The complete-data baseline is..."), with the source second — never "Author (year)
-  gives/defines/shows..." first (reads as literature review; the impatient reader asks
-  "why are you telling me this"). Section openers are roadmaps of what the reader will
-  get, never self-justifications of why the section exists.
+- **Announce results (R3, D-26).** New results are announced, never asserted cold, with
+  a VARIED verb set as the register does: "we show that", "it is shown that", "we
+  propose/derive", "here we provide". No single formula repeats throughout. Immediately
+  translate each formal object into applied terms (e.g., the model-specific bias → "a
+  model-comparison table built on imputed data favors the candidates with the most
+  missing information").
+- **Motivate by use; provenance appositives allowed (R6, D-26).** Background paragraphs
+  carry the item's role in THIS paper, and the source may now ride in a register-native
+  provenance appositive ("Multiple imputation (Rubin, 1987) is ...", "the EM rate matrix
+  of Dempster et al. ...") provided the same sentence says what the object does here —
+  never a bare literature-review recitation. Section openers are roadmaps of what the
+  reader will get, never self-justifications of why the section exists.
 - **Typed claims (T-06).** "Unresolved in the literature" must be either documented-open
   (cited to the stating passage, **paraphrased -- no verbatim quotation of other work
   anywhere in the manuscript prose**, per D-17) or asserted-here (in the authors'
@@ -299,21 +314,26 @@ Target reader: an applied researcher with quantitative training and working MI k
   attribute candidate differences to missing information or RIV. (Twins the abstract
   fix 53b96bc; enforced by the data-quantity rule in `scripts/check_plan.py` and the
   `scripts/mechanism_flag.py` scout.)
-- **No color commentary.** State an object and its consequence; do not narrate that it
-  is important or that it "does work". Banned: "gives X its force", "does (real) work",
-  "the key/crucial/essential <noun>", "crucially", "the heart/crux of", "the workhorse",
-  "heavy lifting", "what makes X work", "load-bearing". Show that an assumption matters
-  by showing what changes without it, never by asserting that it matters. ("central" in
-  "this paper's central result/object" stays — that is the motivate-by-use opener.)
-  Enforced by `scripts/color_commentary_flag.py` and a `scripts/check_plan.py` guard.
+- **No color commentary (narrowed, R4/D-26).** State an object and its consequence.
+  ALLOWED (register-attested, on mathematical objects and steps only): the R4 evaluative
+  set — important, key ("the key observation is that ..."), subtle, remarkable,
+  appealing, interesting, encouraging, striking, delicate, and sentence-initial
+  "Clearly,". STILL BANNED: the metaphor family ("gives X its force", "does (real)
+  work", "the heart/crux of", "the workhorse", "heavy lifting", "what makes X work",
+  "load-bearing"), "crucially"/"the crucial/essential <noun>", and praise of the paper's
+  own apparatus. Show that an assumption matters by showing what changes without it.
+  ("central" in "this paper's central result/object" stays — the motivate-by-use
+  opener.) Enforced by `scripts/color_commentary_flag.py` and a `scripts/check_plan.py`
+  guard, both recalibrated at D-26.
 - **Methods section only (T-05):** factual passive voice; every safeguard paragraph ends
   with what it cannot catch.
 - **Terminology:** "repetitions" for Monte Carlo, never "replications" (reserved for the
   complete-data replication principle, D-10); one RIV normalized by I_obs (T-01); K–M
   observed-information convention (T-02).
 
-Decisions of record: `manuscript/plan/decisions.md`. Standing examples: S1 in
-`manuscript/plan/level3-paragraphs.json` (post-rewrite, commit `b7e2a40`).
+Decisions of record: `manuscript/plan/decisions.md`. Standing examples of the register:
+the six ratified side-by-sides in `manuscript/reviews/style/demonstrations-2026-07-05.md`
+(plus the precision addendum in the same directory).
 
 ## Related repos
 

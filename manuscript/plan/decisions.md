@@ -186,3 +186,70 @@ defect found and fixed pre-ratification). Manuscript consequence: G9 rewritten c
 per the quorum's binding amendments (`update-g9-rewrite-20260704.py`); r3#2 response rewritten to
 match; Gamma stays directional (non-canonical link, underived). Ratified by Marcus 2026-07-04;
 staging record `todo/045c-staged-rewrites.md`.
+
+## Statistics-journal register adopted; prose rules v3 + typed precision (2026-07-05, D-26)
+
+Marcus ratified the todo/048 style-review packet (`manuscript/reviews/style/`, commits
+`c75eb4f` + `ede60c2`): the manuscript moves to the statistics-journal register the rubric
+documents from the owned exemplars (rubric of record `rubric-2026-07-05.md`, R1-R11), in
+the direction the six side-by-side demonstrations exhibit
+(`demonstrations-2026-07-05.md`). Dispositions adopted, superseding the prior prose rules:
+
+- **C1** the FK-10 / "reading level low" target is RETIRED; the standard is the
+  exemplar-article band (mean 18-26 words/sentence; measured by
+  `scripts/style_register_stats.py`, new at `c75eb4f`).
+- **C2** the one-idea-per-sentence default is REPLACED by subordination-by-default
+  (main claim plus riders); short sentences are emphasis.
+- **C3** parenthetical and appositive qualification is UNBANNED (register density);
+  "e.g."/"i.e." inside parentheses only; colons allowed for in-sentence expansion;
+  the em-dash ban is KEPT.
+- **C4** the mandatory "We show that..." formula is REPLACED by the register's varied
+  announcement set; the announce-never-assert rule itself stands.
+- **C5** the color-commentary ban is NARROWED: the register-attested R4 evaluative set
+  (important, key, subtle, remarkable, appealing, interesting, encouraging, striking,
+  delicate, "Clearly,") is allowed on mathematical objects and steps; the metaphor
+  family and self-praise of the paper's apparatus stay banned. "key" removed from the
+  `check_plan.py` and `color_commentary_flag.py` patterns.
+- **C6** the semicolon budget moves from "at most one, never lists" to "up to three per
+  paragraph, enumerations allowed" (punctuation budget v2 -> v3).
+- **C7** provenance appositives are ALLOWED when the same sentence carries the object's
+  role in this paper.
+- **C8 / vocabulary:** Bucket-1 whitelist recorded at `manuscript/plan/vocab-whitelist.txt`;
+  Bucket-2 replacements adopted (sits/lands/headline/floor/junk/genuinely/scoped/regimes,
+  with the rubric's corpus-attested alternatives); a `check_plan.py` vocabulary gate is
+  live in WARN mode and flips fatal (`VOCAB_GATE_FATAL = True`) in the sweep's closing
+  commit. Bucket-3 calls: "ladder" KEPT as a named construction introduced explicitly at
+  first use; the "Perfect is ..." caption convention is REPHRASED to register syntax
+  (the convention that every exhibit names its reference stays); the two signature
+  sentences ("Corrected criteria are honest, not clairvoyant."; "the data no longer
+  say") are KEPT as deliberate exceptions, re-confirmable at their section gates.
+- **R11 typed precision** (precision addendum `precision-addendum-2026-07-05.md`, a
+  claim-strength item authorized separately from the style pass): "exact/exactly/
+  precisely" reserved for finite-sample identities, definitions, iffs, and exact
+  samplers; leading-order claims take the scope word or attach exactness to the
+  coefficient. The addendum's six E2 rescopes are AUTHORIZED; borderline #7 (S4-P16
+  "by exactly that surplus") KEPT (the antecedent is the already-scoped leading term);
+  borderline #8 (the S5-P20 caption) drops "exact"; all six E3 idiom thins AUTHORIZED.
+  Follow-up queued: a one-off R11 pass over `derivation.qmd` and the response letter
+  (outside todo/048 scope).
+- **Incidental catches authorized as content fixes in their batches:** S6-P1's "six
+  specific limits" reconciled to the current G-list; the @fig-w4-nonnested caption
+  escaping normalized at rebuild.
+- **House formulas retired (R10):** "The practical reading/summary/recommendation
+  is ...", "X is direct/simple to state.", "X is worth naming.", bare "This result is
+  firm.", "prices" for "quantifies".
+
+Enforcement recalibrated in this same commit (per the todo/048 ground rule):
+`check_plan.py` (rhetorical-colon flag retired; semicolon cap 1 -> 3; "key" allowance;
+new WARN-mode vocabulary gate), `color_commentary_flag.py` ("key" allowance);
+`cadence_flag.py`, `fluff_flag.py`, `mechanism_flag.py`, `overclaim_flag.py` unchanged
+(their signals are register-compatible: monotony, lexical fluff, mechanism accuracy, and
+overclaim remain violations under v3). CLAUDE.md "Manuscript prose style" rewritten to
+register v3.
+
+Execution: section-batched sweep S1 -> S6 (the abstract counts as a unit), one Marcus
+gate per section; each batch is an atomic `manuscript/plan/updates/` script, check_plan
+green, rebuild, render, scouts clean; precision (R11) changes labeled separately from
+register changes inside each batch script. A closing whole-document read for register
+consistency ends the sweep, flips the vocabulary gate fatal, and reruns
+`corpus_vocab_check.py` + `style_register_stats.py` as the exit measurement.
