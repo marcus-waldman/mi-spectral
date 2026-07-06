@@ -1,5 +1,18 @@
 # todo/050 — Antigravity handoff: did the response actually address the original reviewers' concerns?
 
+**STATUS: EXECUTED, TWO ROUNDS, CLOSED (2026-07-05).** Round 1 (at `693aff4`): 13/15
+ADDRESSED, 2 PARTIALLY — the letter claimed G8 "states the BIC formulation" but G8 had
+prose only (the original reviewer's literal ask was an explicit formulation), and the
+Background AIC display still carried the parameter-count $k$ the contra#14 rename missed;
+plus one mislabel (the r1#8 "manuscript changes" actually landed in the sourced-derivation
+companion). All three fixed at `64950b0` (Marcus approved; guarded level3 update script;
+both renders verified). Round 2 (fresh Antigravity conversation, blind to round 1, at
+`64950b0`): **all 15 concerns ADDRESSED** (Marcus, in-chat, 2026-07-05). The submission
+pair `manuscript/mi-spectral-apa.pdf` + `manuscript/reviews/v1/response/response-letter.pdf`
+is validated closed against the original review.
+
+**(Original handoff below, kept as the spec of record for both rounds.)**
+
 **For: Gemini 3.1 Pro via Google Antigravity, pointed at the LOCAL repository
 `C:\Users\marcu\git-repositories\mi-spectral` (read-only).** You are an independent
 validator. Marcus Waldman (the human author of record) is asking one question before
