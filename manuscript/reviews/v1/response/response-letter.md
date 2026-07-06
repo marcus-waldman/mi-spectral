@@ -127,7 +127,7 @@ plug-in estimates the sampling bias of $\hat\Sigma_{\text{obs}}$ directly, which
 complete-data second-moment identity ($\mathbb{E}^\ast[\tilde\Sigma+(\tilde\mu-\hat\mu)^{\otimes2}]
 =\hat\Sigma$) that makes Amelia's EMB second-moment-matched.
 
-*Manuscript changes already landed:* the sourced-derivation companion document gains a
+*Changes already landed in the sourced-derivation companion document:* a
 forward-pointer at the Q-function definition, a corrected fitted-vs-oracle callout, and a new
 scope-and-correction callout following the theorem's setup, stating the theorem's scope
 (second-moment-matched, regular-draw imputers) and the disclosed correction for engines outside
