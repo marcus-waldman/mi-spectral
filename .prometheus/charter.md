@@ -4,9 +4,9 @@ project_id: d51ab9db-0748-44c5-ad94-2eee09e126f5
 project_name: mi-spectral
 status: active
 current_milestone: "Submission tail (v1-review response COMPLETE + merged to main @ 8055daf, letter 15/15): per-paragraph annotation (Marcus) + compile-enablement; the decided Lemma P derivation.qmd section under full citation discipline (sources verified, loci pinned); then derivation-audit 0/0 -> Zenodo -> JAIGP."
-last_synced_commit: a3ddbdf
+last_synced_commit: c5cc7de
 tree_state: clean
-updated: "2026-11-13T16:05:07Z"
+updated: "2026-11-13T16:09:28Z"
 updated_by: wrap
 cockpit: { provider: null, list_id: null }
 supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
@@ -46,9 +46,10 @@ supermemory_container: proj-d51ab9db-0748-44c5-ad94-2eee09e126f5
 
 
 
+
 # Goal
 
-A finite-M spectral correction for likelihood-based hypothesis tests under *congenial* multiple imputation (MI), with applications to likelihood-ratio model comparison and information-criterion model selection. Core result: the MI Q-function carries a deviance bias that decomposes as +1/2 * tr(RIV) (RIV = relative-increase-in-variance). It is a human-prompted AI derivation with transparent, ORCID-verified provenance, targeting JAIGP; every load-bearing claim is meant to be paired with a preregistered numerical witness. Predicted empirical signature: uncorrected MI-AIC misclassifications should concentrate on the highest-RIV candidate model -- confirmed (W3-C = 1.000) and adversarially reviewed.
+A deviance-bias correction for the Q-function under *congenial* proper multiple imputation (MI), applied to likelihood-ratio model comparison and to information-criterion model selection (MI-AIC, MI-BIC). Core result: for regular likelihood models that estimate a scale or covariance, the MI Q-function's deviance is biased by +1/2 * tr(RIV) (RIV = relative increase in variance), the sum of imputation bias (+tr) and estimation mismatch (-1/2 tr). Because that bias differs by candidate model, uncorrected MI criteria favor the candidates with the most missing information; the correction substantially restores complete-data-equivalent selection in expectation. The paper sits upstream of MI test calibration: Chan (2022, AoS) supplies the reference distribution, and this work corrects the bias of the numerator referred to it (reframed 2026-05-22 from the original finite-M spectral chi-square correction, which Chan preempted). It is a human-prompted AI derivation with transparent, ORCID-verified provenance, targeting JAIGP; every load-bearing claim is paired with a pre-registered simulation check. Predicted empirical signature: uncorrected MI-AIC misclassifications concentrate on the highest-RIV candidate model -- confirmed (W3-C = 1.000) and adversarially reviewed.
 
 # Current milestone
 
@@ -419,3 +420,5 @@ entry). The question is now reframed and re-opened, more precisely scoped, as th
 
 - (2026-11-13) **Has the JAIGP submission happened?** The repo does not record it; the charter still treats it as the one open milestone. Update Current milestone once Marcus confirms.
 - (2026-11-13) **The Goal paragraph predates the 2026-05-22 reframing** ("a finite-M spectral correction for likelihood-based hypothesis tests"), which this charter's own Decisions log superseded (deviance-bias decomposition upstream of Chan 2022). Left untouched pending Marcus's wording; the wiki overview notes the mismatch.
+
+(Resolved 2026-11-13, Marcus: the Goal paragraph is rewritten to the reframed wording -- deviance-bias correction upstream of Chan 2022 test calibration; the reframing provenance is kept in a parenthetical, and "numerical witness" became "pre-registered simulation check" per the T-03 vocabulary ban.)
