@@ -24,8 +24,7 @@ highest-RIV candidate — held in every cell of the selection sweep (W3-C = 1.00
 The project was **reframed on 2026-05-22** after Chan (2022, *Annals of Statistics*)
 preempted the original "spectral chi-square correction" framing; the paper now sits
 *upstream* of test calibration, correcting the numerator that Chan's reference distribution
-calibrates. (The charter's Goal paragraph still uses the older "finite-M spectral
-correction" wording; its own Decisions log records the reframing.) It is a human-prompted
+calibrates. It is a human-prompted
 AI derivation with ORCID-verified provenance, targeting **JAIGP**.
 
 See [the core result](/concepts/core-result.md) for the theorem and its scope, and
