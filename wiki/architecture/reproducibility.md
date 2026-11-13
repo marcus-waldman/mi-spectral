@@ -1,10 +1,12 @@
 ---
 type: Architecture
 title: How evidence and prose are produced
-description: The three reproducibility layers, the run_all.R simulation pipeline, the manuscript plan system and build chain, and citation discipline.
+description: The three reproducibility layers, the run_all.R simulation pipeline, the manuscript plan system and build chain, citation discipline, and where the literature PDFs live.
 sources:
   - "CLAUDE.md (Repo layout, Manuscript plan system, Commands, Citation discipline)"
   - ".prometheus/charter.md (Decisions made — fold-in gate, D-21, compile enablement)"
+  - ".prometheus/charter.md (Decisions made — where the literature lives, 2026-11-13)"
+  - "scripts/lit_sync.py (lines 42-43, Drive path constants)"
 updated: "2026-11-13"
 ---
 
@@ -45,5 +47,23 @@ Every `@citekey` in `manuscript/` must have a `literature/<citekey>.md` copy tha
 the current session; a PreToolUse hook enforces this, and papers proposed in conversation are
 logged in `todo/003-references-to-acquire.md`. The literature corpus is synced from Zotero
 via `scripts/lit_sync.py` (`/lit-sync`).
+
+## Where the literature lives
+
+The **full-text PDFs are not in the repo.** They are in Google Drive at
+`Literature/MI-SPECTRAL/`, with the Mathpix conversions cached at
+`Literature/.litrev/mathpix_cache/<sha256-of-pdf>.md`. The repo tracks the converted text as
+`literature/<citekey>.md` (each file's `source_pdf` and `pdf_sha256` front-matter points back
+to its Drive PDF) plus the Better BibTeX export `literature/mi-spectral-better-bibTeX.bib`.
+
+- **Drafting and auditing** need only the tracked `.md` files, so a fresh clone is enough.
+- **Acquiring new papers** needs the Drive folder. `scripts/lit_sync.py` hard-codes both Drive
+  paths (`DRIVE_PROJECT_DIR`, `MATHPIX_CACHE`, lines 42–43) to the original machine's
+  `C:\Users\marcu\Google Drive\...`; on a new machine, update them before the first
+  `/lit-sync`.
+- A few PDFs are deliberately named `<citekey>.pdf` (multi-word surnames the auto-namer
+  mangles); keep those names.
+- Also outside the repo: Claude's per-project memory, raw session transcripts under
+  `~/.claude`, and API keys.
 
 The calls behind these rules are in [decisions](/decisions/decisions.md).

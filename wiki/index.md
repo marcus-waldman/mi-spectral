@@ -32,7 +32,8 @@ about the project.
 - [core result](/concepts/core-result.md) — the +½·tr(RIV) theorem, its LRT and
   information-criterion applications, and its settled scope.
 - [reproducibility](/architecture/reproducibility.md) — the three evidence layers, the
-  `run_all.R` pipeline, the manuscript plan system and build, and citation discipline.
+  `run_all.R` pipeline, the manuscript plan system and build, citation discipline, and
+  where the literature PDFs live.
 
 **Decisions**
 - [decisions](/decisions/decisions.md) — the single canonical list of settled calls,
