@@ -33,7 +33,9 @@ See [the core result](/concepts/core-result.md) for the theorem and its scope, a
 
 ## Where it stands
 
-*As of the last charter wrap (2026-07-06, `ef50eba`).*
+*As of the last charter wrap (2026-11-13). The last manuscript work was 2026-07-05; whether
+the JAIGP submission has since happened is not recorded in the repo (an open question in the
+charter).*
 
 **Submission-ready and closure-validated.** Every repo-side milestone is done: derivation and
 proofs (incl. CAS verification), pre-registered simulation witnesses, the response to the v1
@@ -49,13 +51,16 @@ Zenodo was dropped; the public GitHub repo and Pages site are the public record.
 ## Where it goes next
 
 1. **Marcus submits to JAIGP** with the two deliverables above.
-2. **Presentation residuals, Marcus's call (none blocking):** compact Table 1; publish
-   `mi-spectral-apa.html` to the Pages site; restore the "Prompters" title-page label; any
-   override of the six keep-as-is discretionary defaults in `status.json`; an optional
-   register-deepening pass.
-3. **Optional, cheap, non-blocking:** extend the bootstrap-floor arm to N=500/2000 (gate item
-   C7); verify Mode B's IMB closed form before ever citing it; silence apaquarto's
-   affiliation-noise ERROR lines; the transcripts-link public-release loop; merge the
-   duplicate Cox–Snell Zotero item.
+2. **Machine move:** confirm on drive.google.com that `Literature/MI-SPECTRAL` holds all 72
+   PDFs; on the new machine, point `scripts/lit_sync.py` (lines 42–43) at wherever Drive
+   mounts before the first `/lit-sync`. Details in
+   [reproducibility](/architecture/reproducibility.md).
+3. **Presentation residuals and optional items (Marcus's call, none blocking):** compact
+   Table 1; publish `mi-spectral-apa.html` to the Pages site; restore the "Prompters"
+   title-page label; any override of the six keep-as-is defaults in `status.json`; an
+   optional register-deepening pass; extend the bootstrap-floor arm to N=500/2000 (gate C7);
+   verify Mode B's IMB closed form before ever citing it; silence apaquarto's
+   affiliation-noise ERROR lines; the transcripts-link loop; merge the duplicate Cox–Snell
+   Zotero item.
 
 For the settled calls behind all of this, see [decisions](/decisions/decisions.md).

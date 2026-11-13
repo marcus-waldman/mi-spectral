@@ -110,6 +110,15 @@ refer to `manuscript/plan/decisions.md`.
 - **Closure validation:** two Antigravity rounds; round 1 found three real gaps (fixed at
   `64950b0`); round 2 (blind) found all 15 original concerns addressed.
 
+## Repo housekeeping
+
+- **This wiki (2026-11-13)** is a derived projection of the charter, tracked because the repo
+  is public, and re-synced after every wrap.
+- **Literature location (2026-11-13):** full-text PDFs and the Mathpix cache live in Google
+  Drive, not the repo; see [reproducibility](/architecture/reproducibility.md).
+- **Don't open `todo/003` in a markdown visual editor:** an Aug-7 reformat (no content change,
+  escaped `@`, corrupted symbols) was discarded; the audit engine reads that file.
+
 ## Recorded tooling gotchas
 
 - The citation hook misfires on Edit/Write in `manuscript/` subdirectories — write via Bash.
