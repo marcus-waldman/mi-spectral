@@ -102,12 +102,12 @@ todo/
   hooks/check_citations.py               # PreToolUse hook: blocks @<citekey> writes if
                                          #   literature/<citekey>.md absent; also checks lit: pointers and
                                          #   structured citation fields in plan JSONs. Bypass via @TODO:<slug>.
-  skills/lit-sync/                       # /lit-sync slash command (BBT -> literature/ bridge)
+  skills/lit-sync/                       # RETIRED /lit-sync (superseded by a separate literature pipeline)
   skills/status/                         # /status — manuscript project-manager dashboard (derived, read-only)
   skills/section-review/                 # /section-review <target> — 5-phase human-in-the-loop review cycle
 
 scripts/
-  lit_sync.py                            # Zotero BBT -> literature/<citekey>.md sync (see skill)
+  lit_sync.py                            # RETIRED (old BBT -> literature/ sync; Drive paths stale)
   check_plan.py                          # authoritative plan lint (pointers, citekeys, gates); must be green
                                          #   before every review-cycle commit; also runs from pre-commit
   build_manuscript_apa.py                # level3-paragraphs.json -> manuscript/mi-spectral-apa.qmd (canonical
@@ -231,11 +231,11 @@ The old HTML pipeline (`compile_manuscript.py` -> `mi-spectral.qmd`) is retired 
 level3 is locked as the source of record; all prose changes go through
 `manuscript/plan/updates/` scripts.
 
-**Sync the literature corpus** (Zotero BBT export → `literature/<citekey>.md`):
-```
-py scripts/lit_sync.py
-```
-Or invoke `/lit-sync` as a slash command.
+**Literature corpus.** `scripts/lit_sync.py` and `/lit-sync` are retired; new papers come in
+through a separate literature pipeline outside this repo. The PDFs live in Google Drive at
+`Literature/MI-SPECTRAL/` (Mathpix cache at `Literature/.litrev/mathpix_cache/`); the repo
+tracks the converted text as `literature/<citekey>.md` plus the BBT export
+`literature/mi-spectral-better-bibTeX.bib`.
 
 **Smoke-test the primitives** (independent of the sweep):
 ```
