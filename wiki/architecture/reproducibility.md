@@ -6,7 +6,7 @@ sources:
   - "CLAUDE.md (Repo layout, Manuscript plan system, Commands, Citation discipline)"
   - ".prometheus/charter.md (Decisions made — fold-in gate, D-21, compile enablement)"
   - ".prometheus/charter.md (Decisions made — where the literature lives, 2026-11-13)"
-  - "scripts/lit_sync.py (lines 42-43, Drive path constants)"
+  - ".prometheus/charter.md (Decisions made — lit_sync retired, 2026-11-13)"
 updated: "2026-11-13"
 ---
 
@@ -45,8 +45,8 @@ executable derivation is `manuscript/derivation.qmd`.
 
 Every `@citekey` in `manuscript/` must have a `literature/<citekey>.md` copy that was read in
 the current session; a PreToolUse hook enforces this, and papers proposed in conversation are
-logged in `todo/003-references-to-acquire.md`. The literature corpus is synced from Zotero
-via `scripts/lit_sync.py` (`/lit-sync`).
+logged in `todo/003-references-to-acquire.md`. New papers come in through a separate literature
+pipeline outside this repo (`scripts/lit_sync.py` and `/lit-sync` are retired).
 
 ## Where the literature lives
 
@@ -57,10 +57,9 @@ The **full-text PDFs are not in the repo.** They are in Google Drive at
 to its Drive PDF) plus the Better BibTeX export `literature/mi-spectral-better-bibTeX.bib`.
 
 - **Drafting and auditing** need only the tracked `.md` files, so a fresh clone is enough.
-- **Acquiring new papers** needs the Drive folder. `scripts/lit_sync.py` hard-codes both Drive
-  paths (`DRIVE_PROJECT_DIR`, `MATHPIX_CACHE`, lines 42–43) to the original machine's
-  `C:\Users\marcu\Google Drive\...`; on a new machine, update them before the first
-  `/lit-sync`.
+- **Acquiring new papers** goes through the separate literature pipeline outside this repo.
+  `scripts/lit_sync.py` and the `/lit-sync` skill are retired, so their hard-coded Drive
+  paths (lines 42–43) no longer need updating on a new machine.
 - A few PDFs are deliberately named `<citekey>.pdf` (multi-word surnames the auto-namer
   mangles); keep those names.
 - Also outside the repo: Claude's per-project memory, raw session transcripts under

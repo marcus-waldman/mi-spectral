@@ -13,8 +13,8 @@ updated: "2026-11-13"
 ## What & why
 
 mi-spectral is a theory paper on **multiple imputation (MI) and likelihood-based model
-comparison**. Its core result: under congenial proper MI, the MI Q-function's deviance
-carries a bias of **+½·tr(RIV)** (RIV = relative increase in variance), from imputation bias
+comparison**. Its core result: for the multivariate normal with an unrestricted covariance,
+imputed by deterministic FIML or bootstrap-EM, the MI Q-function's deviance carries a bias of **+½·tr(RIV)** (RIV = relative increase in variance), from imputation bias
 (+tr) minus estimation mismatch (−½tr). Because that bias is *model-specific*, uncorrected
 MI-AIC/MI-BIC favor the candidate models with the most missing information; the paper
 derives the correction and applies it to likelihood-ratio tests and information criteria.
@@ -32,34 +32,28 @@ See [the core result](/concepts/core-result.md) for the theorem and its scope, a
 
 ## Where it stands
 
-*As of the last charter wrap (2026-11-13). The last manuscript work was 2026-07-05; whether
-the JAIGP submission has since happened is not recorded in the repo (an open question in the
-charter).*
+*As of the charter wrap of 2026-11-13 (second session). The paper is **not yet submitted**
+(Marcus, 2026-11-13).*
 
-**Submission-ready and closure-validated.** Every repo-side milestone is done: derivation and
-proofs (incl. CAS verification), pre-registered simulation witnesses, the response to the v1
-AI review (all 15 comments), the Lemma P canonical-GLM extension, the D-26 style-register
-pass, compile-enablement (level3 prose locked), and two repo-grounded Antigravity validation
-rounds — the second blind — confirming all 15 original review concerns ADDRESSED.
-
-The one open milestone is the **JAIGP submission itself**, which is Marcus's action. The
-deliverables are `manuscript/mi-spectral-apa.pdf` and
-`manuscript/reviews/v1/response/response-letter.pdf` (the delinked, AI-reviewer-safe letter).
-Zenodo was dropped; the public GitHub repo and Pages site are the public record.
+**Scope corrections before submission.** An adversarial review of the derivation (Gemini,
+run by the theoretical-statistician-agent session) was checked by hand. Two findings change
+the paper's statements, though no reported number: the theorem's stated scope was too broad
+(a shared-variance covariance breaks +½·tr(RIV) under MCAR), and decision D-22's imputer
+restriction never reached the manuscript prose. Marcus ratified the corrections as D-27; the
+plan of record is `todo/051-scope-corrections-plan.md`. Everything else repo-side was already
+done: derivation and proofs (incl. CAS verification), pre-registered simulations, the response
+to the v1 AI review (all 15 comments, closure-validated), the Lemma P canonical-GLM extension,
+the D-26 register pass, and compile-enablement (level3 prose locked).
 
 ## Where it goes next
 
-1. **Marcus submits to JAIGP** with the two deliverables above.
-2. **Machine move:** confirm on drive.google.com that `Literature/MI-SPECTRAL` holds all 72
-   PDFs; on the new machine, point `scripts/lit_sync.py` (lines 42–43) at wherever Drive
-   mounts before the first `/lit-sync`. Details in
-   [reproducibility](/architecture/reproducibility.md).
-3. **Presentation residuals and optional items (Marcus's call, none blocking):** compact
-   Table 1; publish `mi-spectral-apa.html` to the Pages site; restore the "Prompters"
-   title-page label; any override of the six keep-as-is defaults in `status.json`; an
-   optional register-deepening pass; extend the bootstrap-floor arm to N=500/2000 (gate C7);
-   verify Mode B's IMB closed form before ever citing it; silence apaquarto's
-   affiliation-noise ERROR lines; the transcripts-link loop; merge the duplicate Cox–Snell
-   Zotero item.
+1. **Two exploratory checks** (todo/051 §4), predictions written first: a Monte Carlo and CAS
+   check of the shared-variance case, and the non-monotone selection-covariance check.
+2. **Apply the D-27 corrections:** `derivation.qmd` first, then the locked level3 prose unit
+   by unit with Marcus, one update script, rebuild and render.
+3. **Marcus submits to JAIGP** with the corrected `manuscript/mi-spectral-apa.pdf` and
+   `manuscript/reviews/v1/response/response-letter.pdf`. Machine move: confirm the Drive
+   PDFs and Mathpix cache (nothing to repoint; `lit_sync.py` is retired). Optional
+   presentation residuals are unchanged and listed in the charter.
 
 For the settled calls behind all of this, see [decisions](/decisions/decisions.md).

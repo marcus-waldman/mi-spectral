@@ -5,6 +5,7 @@ description: The single canonical list of settled calls, including supersessions
 sources:
   - ".prometheus/charter.md (Decisions made)"
   - "manuscript/plan/decisions.md (D-numbered decisions of record, as referenced by the charter)"
+  - "todo/051-scope-corrections-plan.md (2026-11-13 review findings)"
 updated: "2026-11-13"
 ---
 
@@ -36,6 +37,14 @@ refer to `manuscript/plan/decisions.md`.
   validation used). Bayesian posterior draws carry a derived, disclosed discount. The earlier
   "Schur–Jensen inflation" mechanism and the "83%/13%/4%" percentage decomposition were
   **retracted** and must not be used.
+- **Scope narrowed (D-27, ratified 2026-11-13; supersedes the broad scope wording).** An
+  adversarial review (Gemini, via the theoretical-statistician-agent session), checked by hand:
+  the shared-variance counterexample is confirmed, so the theorem is stated for the MVN with an
+  unrestricted covariance plus the Lemma P GLMs; D-22 is carried into the manuscript in full;
+  the abstract names the engines instead of "proper"; the non-monotone check runs before the
+  edits. Also confirmed: three statement errors (a −tr(RIV) typo, the displayed H_φ sign, the
+  Term B remainder orders). Not upheld: the omitted MAR covariance (monotone) and the b_Σ
+  objection. No reported number changes. Plan: `todo/051`.
 - **MI-BIC (D-23).** The correction transfers to BIC's deviance numerator verbatim, with the
   complete-data N in the penalty. Yield is small at N ≥ 200; at N = 50/100 the
   error-concentration pattern weakens. Landed as limit G8, which now states the explicit
@@ -103,6 +112,8 @@ refer to `manuscript/plan/decisions.md`.
 
 ## Submission tail
 
+- **Not yet submitted (2026-11-13, Marcus):** the D-27 scope corrections land before
+  submission.
 - **No Zenodo deposit:** the public GitHub repo and Pages site are the public record.
 - **Response letter:** finalized; rendered to PDF. It was first GitHub-linked for reviewers,
   then **delinked** for the submission copy because the AI reviewer crawls links into the code
@@ -115,7 +126,11 @@ refer to `manuscript/plan/decisions.md`.
 - **This wiki (2026-11-13)** is a derived projection of the charter, tracked because the repo
   is public, and re-synced after every wrap.
 - **Literature location (2026-11-13):** full-text PDFs and the Mathpix cache live in Google
-  Drive, not the repo; see [reproducibility](/architecture/reproducibility.md).
+  Drive, not the repo; see [reproducibility](/architecture/reproducibility.md). The same day
+  `scripts/lit_sync.py` was retired in favor of a separate literature pipeline.
+- **MI-SPECTRAL seeds the theoretical-statistician agent (2026-11-13):** it is the initial
+  knowledge base for `~/git-repositories/theoretical-statistician-agent`; that work makes no
+  changes here.
 - **Don't open `todo/003` in a markdown visual editor:** an Aug-7 reformat (no content change,
   escaped `@`, corrupted symbols) was discarded; the audit engine reads that file.
 
@@ -127,5 +142,6 @@ refer to `manuscript/plan/decisions.md`.
 - Confirm `git branch --show-current` before rendering; a concurrent session can switch it.
 - tkal quorum: read per-peer `determination.json`, not the headline class ("REFUTED"
   aggregation bug).
-- Drive PDFs for multi-word surnames must be renamed to `<citekey>.pdf` for lit-sync.
+- Drive PDFs for multi-word surnames are named `<citekey>.pdf` (the auto-namer drops the
+  second word of the surname); keep those names.
 - Never harvest Amelia's internal `mu`/`covMatrices` (reordered, standardized scale).
