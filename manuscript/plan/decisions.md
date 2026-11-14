@@ -256,3 +256,38 @@ green, rebuild, render, scouts clean; precision (R11) changes labeled separately
 register changes inside each batch script. A closing whole-document read for register
 consistency ends the sweep, flips the vocabulary gate fatal, and reruns
 `corpus_vocab_check.py` + `style_register_stats.py` as the exit measurement.
+
+## Theorem scope narrowed; D-22 carried into the manuscript (2026-11-13, Marcus ratified, D-27)
+
+An adversarial review of `derivation.qmd` (Gemini 4 Argon high via the
+theoretical-statistician-agent session; record in that repo's
+`lit/kg/verification/half-trace-riv-bias/`) was checked by hand in the MI-SPECTRAL
+session. The findings table and edit list are `todo/051-scope-corrections-plan.md`
+(F1-F8). The paper has NOT been submitted to JAIGP (Marcus, 2026-11-13), so the
+changes below are pre-submission edits. Marcus ratified, via AskUserQuestion:
+
+- **Theorem scope (F1).** NARROWED to the multivariate normal with an unrestricted
+  covariance (what D1 and the proof cover) plus the canonical GLMs of Lemma P. The
+  shared-variance counterexample (N2(mu, sigma^2 I), one variable MCAR-missing on pi,
+  FIML; E[T] = 3pi/(2(2-pi)) against 1/2 tr(RIV), an O(1) gap under MCAR) is added as a
+  displayed scope case next to the known-scale collapse. Rejected: deriving the general
+  constrained-covariance MCAR residual before editing (moved to the Discussion as
+  future work).
+- **Imputer scope (F2).** D-22 is carried into the manuscript in full. The covered
+  imputers (deterministic FIML, bootstrap-EM) are named wherever the result is stated;
+  the posterior-draw correction D is given once in S4 with the Jeffreys example; the
+  S5-P22 advice that a fully Bayesian sampler is the conservative choice is replaced.
+  Rejected: restricting the wording only and leaving D to the derivation.
+- **Abstract.** "congenial proper multiple imputation" is replaced by naming the
+  engines (deterministic FIML and bootstrap-EM imputation), with Bayesian posterior
+  draws adding a computable correction. Rejected: keeping "proper" with a gloss.
+- **F6 (selection covariance, non-monotone MAR).** The non-monotone Monte Carlo runs
+  BEFORE the edits land (exploratory, predictions written first in todo/051).
+  Rejected: a limitation sentence only.
+
+Corrections adopted without a separate choice, as errors of statement: the -tr(RIV)
+term at `derivation.qmd:740` (F3), the sign of the displayed H_phi at `:1041` (F4), and
+the Term B remainder orders plus a stated moment condition (F5). Not adopted: the b_Sigma
+recursion objection (F7; the recursion is correct as written). Still to be decided: the
+re-justification of the per-candidate IC correction through L1 and L2 (F8). No reported
+number changes.
